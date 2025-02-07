@@ -1,6 +1,9 @@
 body{
     font-family: PP Formula;
 
+    display: flex;
+    flex-direction: column;
+
     background-color: #0D0D0D;
     background-image: url('img/Star.png');
     background-size: cover;
@@ -9,7 +12,7 @@ body{
     background-attachment: absolute;
 
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -29,7 +32,7 @@ a {
 }
 
 .intro {
-    z-index: 100;
+    z-index: 101;
     background-color: #F2DBAF;
     position: fixed;
     left: 0;
@@ -97,9 +100,18 @@ a {
     align-items: center;
     position: sticky;
     top: 0;
+    
+    z-index: 100;
+    transition: ease-in-out 0.5s;
 
-    transition: ease-in-out .5s;
+    backdrop-filter: blur(10px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%);
 }
+
+
+
+
+
 
 .menu {
     transition: ease-in-out .5s;
@@ -140,11 +152,15 @@ a {
     background-color: #FFFAE7;
 }
 
+.landing, .pourquoi-nous, .destinations, .comment {
+    margin-bottom: 150px;
+}
+
 .landing {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 150px;
 }
 
 .hero {
@@ -223,11 +239,9 @@ a {
     font-size: 15px;
     color: #fffae7;
     font-family: 'PP Formula';
-    margin-bottom: 10em;
 }
 
 .pourquoi-nous{
-    height: 100vh;
     display: flex;
     justify-content: center;
 }
@@ -248,10 +262,6 @@ a {
     margin: 0;
     font-size: 1rem;
     color: #F2DBAF;
-}
-
-.destinations, .comment{
-    height: 100vh;
 }
 
 .destinations-text{
@@ -312,7 +322,6 @@ a {
     padding: 50px 70px;
     background-color: #F2DBAF;
     gap: 100px;
-    margin-top: -10em;
 }
 
 .footer-top {
@@ -402,12 +411,16 @@ a {
 .rouge {
     position: absolute;
     margin-top: 19em;
+    max-width: 100%;
+    height: auto;
 }
 
 .bleu {
     margin-top: 10em;
     margin-right: 60em;
     position: absolute;
+    max-width: 100%;
+    height: auto;
 }
 
 .vert {
@@ -415,22 +428,80 @@ a {
     margin-bottom: 15em;
     margin-right: 45em;
     z-index: -1;
+    max-width: 100%;
+    height: auto;
 }
 
 .violet {
     position: absolute;
     margin-bottom: 15em;
     margin-left: 45em;
+    max-width: 100%;
+    height: auto;
 }
 
 .orange {
     position: absolute;
     margin-top: 10em;
     margin-left: 50em;
+    max-width: 100%;
+    height: auto;
 }
 
 @media (max-width: 768px) {
     .rouge, .bleu, .vert, .violet, .orange {
         display: none;
     }
+}
+
+.NY img, .WAK img, .ASG img, .KNOW img {
+    border-radius: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.destinations-exemples {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 0 50px;
+}
+
+
+.destinations-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4em;
+}
+
+.autres {
+    font-weight: 200;
+    font-size: 3em;
+    color: #FFFAE7;
+}
+
+.destinations-exemples div {
+    position: relative;
+}
+
+.destinations-exemples .ville {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #F2DBAF;
+    padding: 10px;
+}
+
+.destinations-exemples .film {
+    position: absolute;
+    color: #FFFAE7;
+    font-family: Marvel;
+    font-size: 2.5em;
+    text-align: center;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+
 }

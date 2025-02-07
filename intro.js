@@ -32,6 +32,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     logo_container.style.left = '0%';
     logo_container.style.transform = 'translate(0, 0)';
     logo_container.style.padding = '20px';
+    nav.style.transform = 'translateY(0)';
 
     await delay(100);
     intro.style.top = '-100vh';
@@ -54,4 +55,3 @@ window.addEventListener('scroll', () => {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-let pierre = document.querySelector('.pierre');
