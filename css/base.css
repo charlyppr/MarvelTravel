@@ -10,13 +10,15 @@
 body {
     font-family: 'PP Formula', sans-serif;
     background-color: var(--couleur-tertiaire);
-    background-image: url('img/Star.png');
+    background-image: url('../img/Star.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: absolute;
+
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
     user-select: none;
     transition: ease-in-out .5s;

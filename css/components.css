@@ -114,12 +114,13 @@ a {
 
 /* ------------------------- PREMIERE PAGE ------------------------- */
 
-.landing {
+
+
+.landing-container {
+    height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    gap: 150px;
-    overflow: hidden;
+    justify-content: space-evenly;
 }
 
 .hero {
@@ -127,7 +128,6 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .hero-text {
@@ -201,7 +201,19 @@ a {
     gap: 10px;
     font-size: 15px;
     color: var(--couleur-primaire);
-    font-family: 'PP Formula';
+}
+
+.more-svg {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 
