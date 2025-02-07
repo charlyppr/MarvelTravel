@@ -53,3 +53,5 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+
+let pierre = document.querySelector('.pierre');
