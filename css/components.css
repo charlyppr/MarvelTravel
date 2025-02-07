@@ -1,5 +1,9 @@
 /* ------------------------- GENERAL ------------------------- */
 
+a {
+    text-decoration: none;
+}
+
 .landing, .pourquoi-nous, .destinations, .comment {
     margin-bottom: 150px;
 }
@@ -108,7 +112,7 @@
 }
 
 
-/* ------------------------- LANDING ------------------------- */
+/* ------------------------- PREMIERE PAGE ------------------------- */
 
 .landing {
     display: flex;
@@ -280,6 +284,8 @@
     margin: 0 10%;
 }
 
+
+/* ------------------------- COMMENT CA MARCHE ------------------------- */
 
 .comment-all{
     display: flex;
