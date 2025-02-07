@@ -1,0 +1,31 @@
+/* Variables de couleurs */
+:root {
+    --couleur-primaire: #FFFAE7;
+    --couleur-secondaire: #F2DBAF;
+    --couleur-tertiaire: #0D0D0D;
+    --couleur-accent: #AF1F24;
+    --couleur-sous-titre: #F2DBAF;
+}
+
+body {
+    font-family: 'PP Formula', sans-serif;
+    background-color: var(--couleur-tertiaire);
+    background-image: url('img/Star.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: absolute;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    transition: ease-in-out .5s;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}

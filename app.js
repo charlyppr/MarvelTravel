@@ -45,6 +45,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 let lastScrollTop = 0;
+
 window.addEventListener('scroll', () => {
     let scrollTop = document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop) {
@@ -54,4 +55,3 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
-
