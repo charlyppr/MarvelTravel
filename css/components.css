@@ -119,12 +119,15 @@ a {
     flex-direction: column;
     justify-content: space-around;
     gap: 150px;
+    overflow: hidden;
 }
 
 .hero {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .hero-text {
@@ -153,45 +156,37 @@ a {
     opacity: .7;
 }
 
-
-.rouge {
+.pierre {
     position: absolute;
-    margin-top: 19em;
     max-width: 100%;
     height: auto;
+}
+
+.rouge {
+    margin-top: 19em;
+    max-width: 100%;
 }
 
 .bleu {
     margin-top: 10em;
     margin-right: 60em;
-    position: absolute;
-    max-width: 100%;
-    height: auto;
+
 }
 
 .vert {
-    position: absolute;
     margin-bottom: 15em;
     margin-right: 45em;
     z-index: -1;
-    max-width: 100%;
-    height: auto;
 }
 
 .violet {
-    position: absolute;
     margin-bottom: 15em;
     margin-left: 45em;
-    max-width: 100%;
-    height: auto;
 }
 
 .orange {
-    position: absolute;
     margin-top: 10em;
     margin-left: 50em;
-    max-width: 100%;
-    height: auto;
 }
 
 .more-text {
