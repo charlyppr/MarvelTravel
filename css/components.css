@@ -1,6 +1,6 @@
 /* ------------------------- GENERAL ------------------------- */
 
-.landing, .confiance, .pourquoi-nous, .destinations, .comment {
+.landing, .partenaires, .pourquoi-nous, .destinations, .comment {
     margin-bottom: 150px;
 }
 
@@ -127,10 +127,10 @@
 
 
 .landing-container {
-    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    gap: 150px;
 }
 
 .hero {
@@ -177,8 +177,8 @@
     position: absolute;
     max-width: 100%;
     height: auto;
-
     transition: transform 0.1s ease-out;
+    transform-origin: center;
 }
 
 .rouge {
@@ -190,7 +190,6 @@
 .bleu {
     margin-top: 10em;
     margin-right: 60em;
-
 }
 
 .vert {
@@ -238,7 +237,7 @@
     }
 }
 
-/* ------------------------- ILS NOUS FONT CONFIANCE ------------------------- */
+/* ------------------------- PARTENAIRES ------------------------- */
 
 .companie-logo-container {
     display: flex;

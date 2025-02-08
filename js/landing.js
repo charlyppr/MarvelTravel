@@ -1,6 +1,6 @@
+const pierres = document.querySelectorAll('.pierre');
+
 document.addEventListener('mousemove', function(event) {
-    const pierres = document.querySelectorAll('.pierre');
-    
     pierres.forEach(function(pierre) {
         // Calculer la position de la souris
         const mouseX = event.clientX;
@@ -27,13 +27,11 @@ document.addEventListener('mousemove', function(event) {
 
         pierre.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
     });
-});
-  
-document.addEventListener('mousemove', function(e) {
+
     const text = document.querySelector('.hero-text h1');
     const rect = text.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
 
     // Calculer les valeurs de mouvement de l'ombre
     let shadowX = (mouseX / rect.width) * 20;
@@ -49,3 +47,4 @@ document.addEventListener('mousemove', function(e) {
                            ${-shadowX - 20}px ${-shadowY + 0}px 60px rgba(238, 102, 102, 0.4),
                            ${-shadowX - 0}px ${-shadowY + 20}px 80px rgba(141, 254, 2, 0.4)`;
 });
+
