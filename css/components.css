@@ -155,7 +155,9 @@
     font-weight: normal;
     font-size: 7rem;
     color: var(--couleur-secondaire);
+    z-index: 1;
 }
+
 
 .flou {
     position: absolute;
@@ -177,6 +179,7 @@
 .rouge {
     margin-top: 19em;
     max-width: 100%;
+    z-index: 2;
 }
 
 .bleu {
@@ -194,6 +197,7 @@
 .violet {
     margin-bottom: 15em;
     margin-left: 45em;
+    z-index: 2;
 }
 
 .orange {
