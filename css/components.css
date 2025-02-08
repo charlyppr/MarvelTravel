@@ -1,6 +1,6 @@
 /* ------------------------- GENERAL ------------------------- */
 
-.landing, .pourquoi-nous, .destinations, .comment {
+.landing, .confiance, .pourquoi-nous, .destinations, .comment {
     margin-bottom: 150px;
 }
 
@@ -16,6 +16,14 @@
     margin: 0;
     font-size: 1rem;
     color: var(--couleur-secondaire);
+}
+
+.sous-titre-2 {
+    color: var(--couleur-secondaire);
+    font-size: .8rem;
+    text-transform: uppercase;
+    opacity: .7;
+    text-align: center;
 }
 
 
@@ -219,13 +227,19 @@
     overflow: hidden;
     white-space: nowrap;
     width: 100%; 
-    gap: 100px;
+    gap: 150px;
     margin: 5em 0;
 }
   
 .companie-logo {
     height: 100px;
     filter: saturate(0);
+
+    transition: ease-in-out .3s;
+}
+
+.companie-logo:hover {
+    filter: saturate(1);
 }
   
 
@@ -266,12 +280,6 @@
     gap: 4em;
 }
 
-.autres {
-    font-weight: 200;
-    font-size: 3em;
-    color: var(--couleur-primaire);
-}
-
 .destinations-exemples div {
     position: relative;
 }
@@ -281,6 +289,7 @@
     top: 10px;
     left: 10px;
     color: var(--couleur-secondaire);
+    font-size: 1.2rem;
     padding: 10px;
 }
 

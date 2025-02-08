@@ -24,11 +24,12 @@ window.addEventListener('load', () => {
     };
 
     cloneLogos();
+    cloneLogos();
     scrollLogos();
 });
 
 logoContainer.addEventListener('mouseover', () => {
-    scrollSpeed = 0.2;
+    scrollSpeed = 0.3;
 });
 
 logoContainer.addEventListener('mouseout', () => {
