@@ -29,3 +29,19 @@ document.addEventListener('mousemove', function(event) {
     });
 });
   
+
+document.addEventListener('mousemove', function(e) {
+    const text = document.querySelector('.hero-text h1');
+    const rect = text.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    // Calculer les valeurs de mouvement de l'ombre
+    const shadowX = (mouseX / rect.width) * 20; // ajuster la plage ici pour avoir plus ou moins de mouvement
+    const shadowY = (mouseY / rect.height) * 20; // ajuster la plage ici pour avoir plus ou moins de mouvement
+
+    // Appliquer le mouvement au texte
+    text.style.textShadow = `${-shadowX / 8}px  ${-shadowY / 10}px 10px var(--couleur-secondaire),
+                           ${-shadowX - 20}px ${-shadowY + 0}px 60px rgba(238, 102, 102, 0.4),
+                           ${-shadowX - 0}px ${-shadowY + 20}px 80px rgba(141, 254, 2, 0.4)`;
+});
