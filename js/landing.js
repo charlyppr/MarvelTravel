@@ -29,49 +29,23 @@ document.addEventListener('mousemove', function(event) {
     });
 });
   
-
-
-
-const text = document.querySelector('.hero-text h1');
-let lastShadow = '';
-
-// Lorsque la souris entre dans la section nav et landing
-document.querySelector('.nav').addEventListener('mouseenter', function() {
-    document.addEventListener('mousemove', applyShadow);
-});
-
-document.querySelector('.landing').addEventListener('mouseenter', function() {
-    document.addEventListener('mousemove', applyShadow);
-});
-
-// Lorsque la souris quitte la section landing
-document.querySelector('.landing').addEventListener('mouseleave', function() {
-    // Ne pas réinitialiser l'ombre, mais la garder telle qu'elle était
-    document.removeEventListener('mousemove', applyShadow);
-    // Garder l'ombre actuelle
-    text.style.textShadow = lastShadow;
-});
-
-// Appliquer l'ombre en fonction de la position de la souris
-function applyShadow(e) {
+document.addEventListener('mousemove', function(e) {
+    const text = document.querySelector('.hero-text h1');
     const rect = text.getBoundingClientRect();
-
-    // Position de la souris par rapport à la page
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
 
     // Calculer les valeurs de mouvement de l'ombre
-    const shadowX = (mouseX / rect.width) * 20;
-    const shadowY = (mouseY / rect.height) * 20;
+    let shadowX = (mouseX / rect.width) * 20;
+    let shadowY = (mouseY / rect.height) * 20;
 
-    // Calculer l'ombre en fonction de la position de la souris
-    const newShadow = `${-shadowX / 10}px  ${-shadowY / 10}px 8px var(--couleur-secondaire),
-                       ${-shadowX - 20}px ${-shadowY + 0}px 60px rgba(238, 102, 102, 0.4),
-                       ${-shadowX - 0}px ${-shadowY + 20}px 80px rgba(141, 254, 2, 0.4)`;
+    // Limiter les valeurs de l'ombre
+    const maxShadow = 30;
+    shadowX = Math.min(Math.max(shadowX, -maxShadow), maxShadow);
+    shadowY = Math.min(Math.max(shadowY, -maxShadow), maxShadow);
 
-    // Appliquer l'ombre et conserver son état
-    text.style.textShadow = newShadow;
-
-    // Conserver l'ombre actuelle pour la réutiliser après le leave
-    lastShadow = newShadow;
-}
+    // Appliquer le mouvement au texte
+    text.style.textShadow = `${-shadowX / 8}px  ${-shadowY / 10}px 10px var(--couleur-secondaire),
+                           ${-shadowX - 20}px ${-shadowY + 0}px 60px rgba(238, 102, 102, 0.4),
+                           ${-shadowX - 0}px ${-shadowY + 20}px 80px rgba(141, 254, 2, 0.4)`;
+});
