@@ -170,6 +170,8 @@
     position: absolute;
     max-width: 100%;
     height: auto;
+
+    transition: transform 0.1s ease-out;
 }
 
 .rouge {
