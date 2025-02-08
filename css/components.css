@@ -70,12 +70,18 @@
 .logo-gauche span {
     font-size: 1.6rem;
     color: var(--couleur-primaire);
+    transition: ease-out .5s;
 }
 
 .vel {
     font-size: 4rem;
     line-height: 1;
     color: var(--couleur-primaire);
+    transition: ease-out .5s;
+}
+
+.logo-container:hover .logo-gauche span, .logo-container:hover .vel{
+    color: var(--couleur-accent);
 }
 
 .menu ul {
