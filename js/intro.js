@@ -1,10 +1,10 @@
-let mar = document.querySelector('.mar-intro');
-let tra = document.querySelector('.tra-intro');
-let vel = document.querySelector('.vel-intro');
-let logo_gauche = document.querySelectorAll('.logo-gauche-intro span');
-let logo_container = document.querySelector('.logo-container-intro');
-let intro = document.querySelector('.intro');
-let nav = document.querySelector('.nav');
+const mar = document.querySelector('.mar-intro');
+const tra = document.querySelector('.tra-intro');
+const vel = document.querySelector('.vel-intro');
+const logo_gauche = document.querySelectorAll('.logo-gauche-intro span');
+const logo_container = document.querySelector('.logo-container-intro');
+const intro = document.querySelector('.intro');
+const nav = document.querySelector('.nav');
 
 window.addEventListener('DOMContentLoaded', async () => {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -43,16 +43,3 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     document.body.style.overflow = 'auto';
 });
-
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', () => {
-    let scrollTop = document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop) {
-        nav.style.transform = 'translateY(-100%)';
-    } else {
-        nav.style.transform = 'translateY(0)';
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
-

@@ -1,9 +1,5 @@
 /* ------------------------- GENERAL ------------------------- */
 
-a {
-    text-decoration: none;
-}
-
 .landing, .pourquoi-nous, .destinations, .comment {
     margin-bottom: 150px;
 }
@@ -215,6 +211,24 @@ a {
         transform: translateY(-5px);
     }
 }
+
+/* ------------------------- ILS NOUS FONT CONFIANCE ------------------------- */
+
+.companie-logo-container {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%; 
+    gap: 100px;
+    margin: 5em 0;
+}
+  
+.companie-logo {
+    height: 100px;
+    filter: saturate(0);
+}
+  
+
 
 
 /* ------------------------- POURQUOI NOUS ------------------------- */

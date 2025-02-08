@@ -24,6 +24,10 @@ body {
     transition: ease-in-out .5s;
 }
 
+a {
+    text-decoration: none;
+}
+
 .hidden {
     display: none;
 }
