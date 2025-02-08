@@ -164,7 +164,6 @@
 
 }
 
-
 .flou {
     position: absolute;
     z-index: -1;
@@ -223,6 +222,7 @@
     gap: 10px;
     font-size: 15px;
     color: var(--couleur-primaire);
+    cursor: pointer;
 }
 
 .more-svg {
@@ -259,8 +259,6 @@
 .companie-logo:hover {
     filter: saturate(1);
 }
-  
-
 
 
 /* ------------------------- POURQUOI NOUS ------------------------- */
