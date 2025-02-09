@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/accueil.css">
     <link rel="stylesheet" href="css/intro.css">
     <link rel="stylesheet" href="css/media.css">
 
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Marvel Travel</title>
-    
-</head>
-<body>
 
-    <div class="intro hidden">
+</head>
+
+<body>
+    <div class="hidden" id="custom-cursor"></div>
+    <div class="intro">
         <div class="logo-container-intro">
             <div class="logo-gauche-intro">
                 <span class="logo-intro mar-intro">MAR</span>
@@ -47,26 +49,26 @@
 
         <div class="landing-container">
             <div class="hero">
-                
+
                 <img src="img/pierres/rouge.png" alt="pierre rouge" class="pierre rouge">
                 <img src="img/pierres/bleu.png" alt="pierre bleu" class="pierre bleu">
                 <img src="img/pierres/vert.png" alt="pierre verte" class="pierre vert">
                 <img src="img/pierres/violet.png" alt="pierre violette" class="pierre violet">
                 <img src="img/pierres/orange.png" alt="pierre orange" class="pierre orange">
-                
+
                 <div class="hero-text">
                     <h1>Explorer l'infini, un monde a la fois</h1>
                 </div>
                 <img src="img/flou.png" alt="flou" class="flou">
             </div>
-            
+
 
             <div class="more-container">
                 <div class="more-text">Voir plus</div>
                 <img class="more-svg" alt="fleche bas" src="img/Arrow 1.svg">
             </div>
         </div>
-        
+
     </section>
 
     <section class="partenaires">
@@ -90,18 +92,21 @@
         </div>
     </section>
 
-    
+
     <section class="pourquoi-nous">
-        <div class="pourquoi-nous-text">
-            <div class="titre">
-                <span>Pourquoi voyager avec nous ?</span>
-            </div>
-            <div class="sous-titre">
-                <span>Des destinations légendaires. <br>
-                    Une immersion totale dans le Multivers.
-                </span>
+        <div class="pourquoi-nous-container">
+            <div class="pourquoi-nous-text">
+                <div class="titre">
+                    <span>Pourquoi voyager avec nous ?</span>
+                </div>
+                <div class="sous-titre">
+                    <span>Des destinations légendaires. <br>
+                        Une immersion totale dans le Multivers.
+                    </span>
+                </div>
             </div>
         </div>
+
     </section>
 
     <section class="destinations">
@@ -145,7 +150,7 @@
 
             <span class="sous-titre-2">Et bien d'autres ...</span>
         </div>
-        
+
     </section>
 
 
@@ -215,7 +220,7 @@
 
                 <div class="footer-bottom">
                     <div class="footer-left-bottom">
-                        <span class="copyright">Fait avec amour… et un peu de Vibranium •  © 2025 Marvel Travel</span>
+                        <span class="copyright">Fait avec amour… et un peu de Vibranium • © 2025 Marvel Travel</span>
                     </div>
 
                     <div class="footer-right-bottom">
@@ -233,19 +238,20 @@
                 </div>
             </div>
         </div>
-        
+
 
     </footer>
-    
+
     <!-- <script src="js/intro.js"></script> -->
+    <script src="js/intro.js"></script>
+    <script src="js/custom-cursor.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/landing.js"></script>
-    <script src="js/defilement.js"></script>
-    <script src="js/scroll.js"></script>
+    <script src="js/defilement-logo.js"></script>
+    <script src="js/scroll-to.js"></script>
 
 
 
 </body>
+
 </html>
-
-
