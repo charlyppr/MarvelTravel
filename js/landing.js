@@ -13,7 +13,7 @@ document.addEventListener('mousemove', function(event) {
     let shadowX = (mouseTextX / rect.width) * 20;
     let shadowY = (mouseTextY / rect.height) * 20;
 
-
+    
     const maxShadow = 30;
     shadowX = Math.min(Math.max(shadowX, -maxShadow), maxShadow);
     shadowY = Math.min(Math.max(shadowY, -maxShadow), maxShadow);
