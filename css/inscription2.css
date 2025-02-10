@@ -5,6 +5,17 @@ body{
     margin: auto;
     width: 100%;
     background-color: black;
+    
+    background-image: url('../img/Star.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: absolute;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+
    
 }
 
