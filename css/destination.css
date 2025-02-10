@@ -1,3 +1,30 @@
 #container{
-    color:fff;
+    color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px;
+    width: 95%;
+}
+
+main{
+    text-align: center;
+}
+
+.personnage{
+    padding:0 50px;
+    height: 270px;
+    display: flex;
+    text-align: center;
+    background-color: aqua;
+    border: solid red;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#box{
+    width: fit-content;
+    margin: 0 7%;
 }
