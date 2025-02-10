@@ -32,6 +32,7 @@ header img{
     justify-content: center;
     align-items: center;
     margin: 2em 0;
+    gap: 10px;
 }
 
 .inscription, .connexion {

@@ -173,6 +173,7 @@ a {
 .active {
     position: relative;
 }
+
 .active::after {
     cursor: default;
     content: '';
@@ -183,4 +184,11 @@ a {
     height: 2px;
     border-radius: 30px;
     background-color: var(--couleur-primaire);
+
+    transition: all 0.3s ease-out;
+}
+
+.active:hover::after {
+    left: 0%;
+    width: 100%;
 }
