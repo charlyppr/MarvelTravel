@@ -1,26 +1,6 @@
-@import url('/css_copy/base.css');
+@import url(css_copy/base.css);
 
 
-body{
-    margin: auto;
-    width: 100%;
-    background-color: black;
-   
-}
-
-
-header img{
-    width: 123px;
-    height: 61px;
-    padding: 60px 40px;
-}
-
-/* Positionne le menu en haut à droite */
-.menu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
 
 .Button {
     display: flex;
@@ -31,9 +11,10 @@ header img{
     margin: 50px auto;
     border-radius: 5px;
     overflow: hidden;
+    gap: 10px;
 }
 
-.Choix {
+.choix {
     flex: 1;
     height: 64px;
     font-size: 24px;
@@ -80,8 +61,8 @@ header img{
     height: 22px;
 }
 
-form {
-    
+form { 
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,8 +92,9 @@ form {
 input {
     padding: 10px;
     width: 100%;
-    max-width: 350px;
-    border-radius: 5px;
+    max-width: 500px;
+    height: 40px;
+    border-radius: 8px;
     border: 1px solid var(--couleur-primaire);
     background-color: black;
     color: white;
@@ -127,13 +109,14 @@ input:focus {
 }
 
 .Suivant {
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 45px;
     width: 100%;
     max-width: 300px;
-    background-color: var(--couleur-accent);
+    background-color: #115422;
     color: var(--couleur-primaire);
     border: none;
     padding: 15px 30px;
@@ -146,4 +129,8 @@ input:focus {
 
 .Suivant:hover {
     background-color: #901A1E;
+}
+
+.btn{
+    margin-top: 50px;
 }
