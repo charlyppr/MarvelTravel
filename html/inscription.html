@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/accueil.css">
-    <link rel="stylesheet" href="/css/intro.css">
-    <link rel="stylesheet" href="/css/media.css">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/inscription2.css">
+    <link rel="stylesheet" href="../css/accueil.css">
+    <link rel="stylesheet" href="../css/intro.css">
+    <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/inscription2.css">
 
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Document</title>
     
 </head>
 <body>
+    <div class="default"></div>  
 
     <div class="intro hidden">
         <div class="logo-container-intro">
@@ -27,7 +28,7 @@
 
 
     <header class="nav">
-        <a href="index.html" class="logo-container">
+        <a href="../accueil.html" class="logo-container">
             <div class="logo-gauche">
                 <span class="logo mar">MAR</span>
                 <span class="logo tra">TRA</span>
@@ -37,20 +38,22 @@
 
         <div class="menu">
             <ul>
-                <li><a href="#" class="active">Accueil</a></li>
+                <li><a href="../accueil.html">Accueil</a></li>
                 <li><a href="#">Destinations</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
     </header>
 
-   
-
-    <section class="container">
-        <div class="Button">
-            <button  id="inscription" class="Choix">S'inscrire</button>
-            <button id="connexion" class="Choix">Se connecter</button>
-        </div>
+    <section class="con-ins-container">
+        <div class="con-ins">
+            <div class="inscription">
+                <a href="inscription.html">S'inscrire</a>
+            </div>
+            <div class="connexion">
+                <a href="Se_connecter.html">Se connecter</a>
+            </div>
+        </div>   
     </section>
    
     
@@ -80,5 +83,8 @@
             <button class="Suivant" type="submit">Suivant →</button>
         </form>
     </section>
+
+
+    <script src="../js/custom-cursor.js"></script>
 </body>
 </html>

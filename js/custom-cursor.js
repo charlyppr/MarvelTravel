@@ -24,6 +24,9 @@ function updateCursor() {
     requestAnimationFrame(updateCursor);
 }
 
+window.addEventListener('load', () => {
+    cursor.style.opacity = '0';
+});
 
 document.addEventListener('mousemove', (e) => {
 
@@ -64,7 +67,7 @@ document.querySelectorAll('.github-ibra').forEach(function (link) {
         // Modifie le contenu et la taille de la police pour le lien 'ibra'
         styleSheet.sheet.insertRule(`
             .default::before {
-                content: "Ibra";
+                content: "Ibrahima";
                 font-size: 1em;
             }
         `, styleSheet.sheet.cssRules.length);
