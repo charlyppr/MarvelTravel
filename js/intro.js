@@ -41,9 +41,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     logo_container.style.opacity = '0';
     logo_container.style.position = 'relative';
 
-    const cursor = document.getElementById('custom-cursor');
+    const cursor = document.querySelector('.default');
     cursor.classList.remove('hidden');   
-
-    document.body.style.overflow = 'auto';
  
+    document.body.style.overflow = 'auto';
 });

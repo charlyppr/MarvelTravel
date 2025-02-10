@@ -343,3 +343,8 @@
     display: flex;
     gap: 20px;
 }
+
+.footer-right-top-content img {
+    width: 30px;
+    height: 30px;
+}
