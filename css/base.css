@@ -7,6 +7,11 @@
     --couleur-sous-titre: #F2DBAF;
 }
 
+@font-face {
+	font-family: 'Marvel';
+	src: url('../police/Marvel.ttf');
+}
+
 body {
     font-family: 'PP Formula', sans-serif;
     background-color: var(--couleur-tertiaire);
