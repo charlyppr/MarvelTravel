@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/accueil.css">
-    <link rel="stylesheet" href="css/intro.css">
-    <link rel="stylesheet" href="css/media.css">
-    <link rel="stylesheet" href="css/destination.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/accueil.css">
+    <link rel="stylesheet" href="../css/intro.css">
+    <link rel="stylesheet" href="../css/media.css">
+    <link rel="stylesheet" href="../css/destination.css">
 
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Marvel Travel</title>
@@ -16,17 +16,8 @@
 </head>
 
 <body>
-    <div class="default"></div>  
-    
-    <div class="intro hidden">
-        <div class="logo-container-intro">
-            <div class="logo-gauche-intro">
-                <span class="logo-intro mar-intro">MAR</span>
-                <span class="logo-intro tra-intro">TRA</span>
-            </div>
-            <span class="logo-intro vel-intro">VEL</span>
-        </div>
-    </div>
+
+    <div class="default"></div>
 
     <header class="nav">
         <a href="index.html" class="logo-container">
@@ -39,30 +30,38 @@
 
         <div class="menu">
             <ul>
-                <li><a href="accueil.html">Accueil</a></li>
-                <li><a href="#" class="active">Destinations</a></li>
+                <li><a href="../accueil.html">Accueil</a></li>
+                <li><a href="destination.html" class="active">Destinations</a></li>
                 <li><a href="">Contact</a></li>
-                <li><a href="#" class="button">Se connecter</a></li>
+                <li><a href="../html/inscription.html" class="button">S'inscrire</a></li>
             </ul>
         </div>
     </header>
     <main>
-    <div id="box">
-        <span class="titre">Choisissez votre personnage</span>
-        <div id="container">
+        <div id="box">
+            <span class="titre">Choisissez votre personnage</span>
+            <div id="container">
                 <div class="personnage"><img src="/img/heroes/Black_Panther_Hero_Portrait.png" alt="BLACK PANTER">
                 </div>
                 <div class="personnage"><img src="/img/heroes/Black_Widow_Hero_Portrait.png" alt="BLACK WIDOW"></div>
-                <div class="personnage"><img src="/img/heroes/Captain_America_Hero_Portrait.png" alt="CAPTAIN AMERICA"></div>
-                <div class="personnage"><img src="/img/heroes/Doctor_Strange_Hero_Portrait.png" alt="DOCTOR STRANGE"></div>
+                <div class="personnage"><img src="/img/heroes/Captain_America_Hero_Portrait.png" alt="CAPTAIN AMERICA">
+                </div>
+                <div class="personnage"><img src="/img/heroes/Doctor_Strange_Hero_Portrait.png" alt="DOCTOR STRANGE">
+                </div>
                 <div class="personnage"><img src="/img/heroes/Star-Lord_Hero_Portrait.webp" alt="STAR LORD"></div>
                 <div class="personnage"><img src="img/heroes/Iron_Man_Hero_Portrait.png" alt="IRON MAN"></div>
-                <div class="personnage"><img src="img/heroes/Wolverine_hero_portrait.webp" id="wolverine" alt="WOLVERINE"></div>
+                <div class="personnage"><img src="img/heroes/Wolverine_hero_portrait.webp" id="wolverine"
+                        alt="WOLVERINE"></div>
                 <div class="personnage"><img src="img/heroes/Venom_Hero_Portrait.webp" alt="VENOM"></div>
                 <div class="personnage"><img src="img/heroes/Hulk_Hero_Portrait.webp" alt="HULK"></div>
                 <div class="personnage"><img src="img/heroes/Thor_Hero_Portrait.png" alt="THOR"></div>
             </div>
         </div>
     </main>
+
+    <script src="../js/custom-cursor.js"></script>
+    
 </body>
+
+
 </html>
