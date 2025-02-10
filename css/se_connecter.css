@@ -1,6 +1,17 @@
 @import url(css_copy/base.css);
 
+body{
+    background-image: url('../img/Star.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: absolute;
+    margin: 0;
+    padding: 0;
 
+    box-sizing: border-box;
+    user-select: none;
+}
 
 .Button {
     display: flex;
