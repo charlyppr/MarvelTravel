@@ -210,7 +210,7 @@
 .destinations-exemples .film {
     position: absolute;
     color: var(--couleur-primaire);
-    font-family: Marvel;
+    font-family: 'Marvel', sans-serif;
     font-size: 2.5em;
     text-align: center;
     bottom: 20px;
