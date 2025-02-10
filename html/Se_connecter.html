@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/accueil.css">
     <link rel="stylesheet" href="/css/intro.css">
     <link rel="stylesheet" href="/css/media.css">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/inscription2.css">
+    <link rel="stylesheet" href="/css/se_connecter.css">
 
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Document</title>
@@ -44,41 +44,37 @@
         </div>
     </header>
 
-   
-
-    <section class="container">
+    <section class="Choice">
         <div class="Button">
-            <button  id="inscription" class="Choix">S'inscrire</button>
-            <button id="connexion" class="Choix">Se connecter</button>
+            <button id="inscription" class="choix">S'inscire</button>
+            <button id="connexion" class="choix">Se connecter</button>
         </div>
     </section>
-   
-    
-    <section class="Info">
-        <h4 class="Sous_titre">Première visite ? Obtenez votre Passeport Multiversel !</h4>
+
+    <section class="Deja_inscrit">
+        <h4 class="Sous_titre">Deja un aventurier ? Reprenez votre aventure</h4>
         <form >
-            <div class="group">
-                <label class="texte_inscription">Nom d'explorateur :</label><br>
-                <input  name="Nom" class="txt" type="text" placeholder="Entrez votre nom">
-            </div>
 
             <div class="group">
-                <label class="texte_inscription">Email :</label><br>
-                <input  name="Email" class="txt" type="email" placeholder="Entrez votre email">
-            </div>
-
-            <div class="group">
-                <label class="texte_inscription">Mot de passe :</label><br>
-                <input name="mdp" class="txt" type="password" placeholder="Entrez votre mot de passe">
-            </div>
-
-            <div class="group">
-                <label class="texte_inscription">Retapez votre mot de passe :</label><br>
-                <input name="mdp1" class="txt" type="password" placeholder="Encore une fois pour être sûr">
+                <label  class="texte_inscription">Email:</label><br>
+                <input name="Email" type="text" placeholder="Entrez votre email">
             </div>
             
-            <button class="Suivant" type="submit">Suivant →</button>
+            <div class="group">
+                <label class="texte_inscription">Mot de passe :</label><br>
+                <input name="mdp2" type="password" placeholder="Entrez votre mot de passe">
+            </div>
+            
+            <div class="btn">
+                <button class="Suivant" type="submit">Accéder au Multivers</button>
+            </div>
+            
         </form>
+
+       
+
     </section>
+
+
 </body>
 </html>
