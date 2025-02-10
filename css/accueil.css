@@ -318,6 +318,12 @@
     margin-bottom: 20px;
 }
 
+.footer-right-top-content ul:nth-child(1){
+    display: flex;
+    gap: 10px;
+}
+
+
 .footer-bottom {
     display: flex;
     justify-content: space-between;
