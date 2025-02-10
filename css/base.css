@@ -39,7 +39,6 @@ a {
 
 .default {
     position: fixed;
-    opacity: 0;
     width: .6em;
     height: .6em;
     background-color: var(--couleur-accent);
