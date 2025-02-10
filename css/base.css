@@ -32,9 +32,9 @@ a {
     display: none;
 }
 
-#custom-cursor {
-    opacity: 0;
+.default {
     position: fixed;
+    opacity: 0;
     width: .6em;
     height: .6em;
     background-color: var(--couleur-accent);
@@ -42,6 +42,23 @@ a {
     pointer-events: none;
     z-index: 1000;
     transform: translate(-50%, -50%);
+    transition: all 0.3s ease-out, left 0s, top 0s;
+}
 
-    transition: opacity ease-in-out .4s;
+.link-hover {
+    width: 6em; 
+    height: 2.5em;
+    border-radius: 10px;
+    transform: translate(0%, 0%);
+}
+
+.default::before {
+    content: '';
+    position: absolute;
+    font-size: 0em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--couleur-primaire);
+    transition: font-size 0.3s ease-out;
 }
