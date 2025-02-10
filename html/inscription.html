@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css_copy/base.css">
+    <link rel="stylesheet" href="/css_copy/components.css">
+    <link rel="stylesheet" href="/css_copy/intro.css">
+    <link rel="stylesheet" href="/css_copy/media.css">
+    <link rel="stylesheet" href="inscription2.css">
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <div class="intro hidden">
+        <div class="logo-container-intro">
+            <div class="logo-gauche-intro">
+                <span class="logo-intro mar-intro">MAR</span>
+                <span class="logo-intro tra-intro">TRA</span>
+            </div>
+            <span class="logo-intro vel-intro">VEL</span>
+        </div>
+    </div>
+
+
+    <header class="nav">
+        <a href="index.html" class="logo-container">
+            <div class="logo-gauche">
+                <span class="logo mar">MAR</span>
+                <span class="logo tra">TRA</span>
+            </div>
+            <span class="logo vel">VEL</span>
+        </a>
+
+        <div class="menu">
+            <ul>
+                <li><a href="#" class="active">Accueil</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+   
+
+    <section class="container">
+        <div class="Button">
+            <button  id="inscription" class="Choix">S'inscrire</button>
+            <button id="connexion" class="Choix">Se connecter</button>
+        </div>
+    </section>
+   
+    
+    <section class="Info">
+        <h4 class="Sous_titre">Première visite ? Obtenez votre Passeport Multiversel !</h4>
+        <form >
+            <div class="group">
+                <label class="texte_inscription">Nom d'explorateur :</label><br>
+                <input  name="Nom" class="txt" type="text" placeholder="Entrez votre nom">
+            </div>
+
+            <div class="group">
+                <label class="texte_inscription">Email :</label><br>
+                <input  name="Email" class="txt" type="email" placeholder="Entrez votre email">
+            </div>
+
+            <div class="group">
+                <label class="texte_inscription">Mot de passe :</label><br>
+                <input name="mdp" class="txt" type="password" placeholder="Entrez votre mot de passe">
+            </div>
+
+            <div class="group">
+                <label class="texte_inscription">Retapez votre mot de passe :</label><br>
+                <input name="mdp1" class="txt" type="password" placeholder="Encore une fois pour être sûr">
+            </div>
+            
+            <button class="Suivant" type="submit">Suivant →</button>
+        </form>
+    </section>
+</body>
+</html>
