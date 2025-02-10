@@ -46,6 +46,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         logo_container.style.opacity = '0';
         logo_container.style.position = 'relative';
 
+        cursor.style.opacity = '0';
         cursor.classList.remove('hidden');   
 
         document.body.style.overflow = 'auto';
