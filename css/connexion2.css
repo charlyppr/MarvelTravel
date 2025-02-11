@@ -1,0 +1,177 @@
+.logo-container {
+    z-index: 99;
+    font-family: 'Marvel', sans-serif;
+    text-decoration: none;
+    display: flex;
+    gap: 3px;
+    flex-direction: row;
+    margin: -1.5em;
+
+    transition: ease-in-out .5s;
+}
+
+.logo-gauche {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-gauche span {
+    font-size: 2.3rem;
+    color: var(--couleur-primaire);
+    text-shadow: 0px 0px 20px #fffae7c5;
+
+    transition: ease-out .5s;
+}
+
+.vel {
+    font-size: 5.7rem;
+    line-height: 1;
+    color: var(--couleur-primaire);
+    text-shadow: 0px 0px 20px #fffae7c5;
+
+    transition: ease-out .5s;
+}
+
+.logo-container:hover .logo-gauche span, .logo-container:hover .vel{
+    color: var(--couleur-accent);
+    text-shadow: 0px 0px 10px var(--couleur-accent);
+}
+
+.connexion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.connexion-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 35px;
+    padding: 40px;
+    background: linear-gradient(to bottom, #0d0d0d50 60%, #f2dbaf43 100%);
+    border-radius: 20px;
+    box-shadow: 0 3px 5px #f2dbaf3d;
+    backdrop-filter: blur(2px);
+}
+
+.connexion-header {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 350px;
+}
+
+.connexion-content .titre-2 {
+    font-size: 23px;
+    font-weight: 600;
+    color: var(--couleur-secondaire);
+}
+
+.connexion-content .sous-titre-3 {
+    font-size: 14px;
+    font-weight: 200;
+    font-style: italic;
+    color: var(--couleur-primaire);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    width: 100%;
+}
+
+.email, .mdp {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
+    background-color: #59514283;
+    height: 50px;
+    border-radius: 15px;
+    width: -webkit-fill-available;
+}
+
+input {
+    font-family: PP Formula;
+    background-color: transparent;
+    border: none;
+    color: #fffae7;
+    font-size: 13px;
+    font-weight: 400;
+    width: 100%;
+}
+
+input::placeholder {
+    color: #fffae7;
+}
+
+input:focus {
+    outline: none;
+}
+
+.email img, .mdp img {
+    width: 15px;
+    height: 15px;
+}
+
+.form a {
+    font-size: 12px;
+    font-weight: 200;
+    color: #fffae7;
+}
+
+.connexion-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--couleur-primaire);
+    background-color: var(--couleur-tertiaire);
+    border-radius: 15px;
+    width: 100%;
+    padding: 15px 0;
+    box-shadow: 0 4px 4px #f2dbaf1b;
+
+    transition: all .2s ease-in-out;
+}
+
+.connexion-button:hover {
+    background-color: #0d0d0d9a;
+    box-shadow: 0 0 0 #f2dbaf1b;
+    transform: translateY(-3px);
+}
+
+.connexion-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.inscription-text a {
+    font-size: 14px;
+    font-weight: 200;
+    color: var(--couleur-primaire);
+}
+
+.inscription-text a span {
+    font-weight: 600;
+}
+
+.spiderman-pin {
+    position: absolute;
+    left: 80%;
+    bottom: 93%;
+    transform: rotate(20deg);
+}
+
+.hulk-pin {
+    position: absolute;
+    right: 90%;
+    top: 93%;
+    transform: rotate(-20deg);
+}
