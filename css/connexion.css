@@ -37,27 +37,28 @@ body{
 }
 
 #inscription{
-    background-color: var(--couleur-accent);
-    color: var(--couleur-primaire);
+    background-color: var(--couleur-primaire);
+    color: black;
     border-radius: 20px 0 0 20px;
     border: none;
     width: 50%
 }
 
 #inscription:hover {
-    background-color: #901A1E;
+    background-color: rgb(208, 197, 184);
 }
 
+
 #connexion{
-    background-color: var(--couleur-primaire);
-    color: black;
+    background-color: var(--couleur-accent);
+    color: var(--couleur-primaire);
     border-radius: 0 20px 20px 0;
     border: none;
     width: 50%;
 }
 
 #connexion:hover {
-    background-color: rgb(208, 197, 184);
+    background-color: #901A1E;
 }
 
 
