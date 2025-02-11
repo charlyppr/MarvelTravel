@@ -147,6 +147,13 @@ input:focus {
     transform: translateY(-3px);
 }
 
+.connexion-button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 20px #f2dbaf1b;
+
+    transition: all .1s ease-in-out;
+}
+
 .connexion-button img {
     width: 20px;
     height: 20px;
