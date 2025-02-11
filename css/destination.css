@@ -2,7 +2,7 @@
     color: aliceblue;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
     margin: 30px;
     width: 95%;
@@ -13,15 +13,15 @@ main{
 }
 
 .personnage{
-    padding:0 50px;
     height: 270px;
+    max-width: 200px;
     display: flex;
     text-align: center;
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    width: 80px;
-    overflow: hidden;
+
+    transition: all ease-in-out .5s;
 }
 
 #box{
@@ -29,20 +29,17 @@ main{
     margin: 0 10%;
 }
 
-.personnage>img{
-    transition: transform .1s;
-    height:270px;
-    margin-top: 30px;
-    transform: scale(1);
-    transition: all ease-in-out .1.8s;
+.personnage img{
+    height: 270px;
+    transition: all ease-in-out .5s;
 }
 
-.personnage>img:hover{
+.personnage:hover img{
     transform: scale(1.2);
 }
 
-#wolverine{
-    margin-top: 10px;
+.personnage:hover {
+    box-shadow: 0 0 20px var(--couleur-secondaire);
 }
 
 #blackWidow{
@@ -50,6 +47,11 @@ main{
     background-size: 265%;
     background-repeat: no-repeat;
     background-position-x: center;
+}
+
+
+#wolverine{
+    margin-top: 10px;
 }
 
 #blackPanther{
