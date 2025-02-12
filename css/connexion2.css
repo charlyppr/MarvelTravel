@@ -120,10 +120,26 @@ input:focus {
     height: 15px;
 }
 
-.form a {
+.forgot {
     font-size: 12px;
     font-weight: 200;
     color: #fffae7;
+    position: relative;
+}
+
+.forgot::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: #fffae7;
+    transition: all 0.3s ease-in-out;
+}
+
+.forgot:hover::after {
+    width: 100%;
 }
 
 .connexion-button {
