@@ -91,6 +91,7 @@ main{
 #hulk{
     background-image: url("/img/backgroundCard/HulkBackground.webp");
     background-size: 255%;
+    background-size: 256%;
     background-repeat: no-repeat;
     background-position-x: -100px;
 }
