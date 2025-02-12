@@ -1,0 +1,127 @@
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    width: fit-content;
+    background-color: #5b5b5b76;
+    backdrop-filter: blur(5px);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    height: -webkit-fill-available;
+    padding: 45px;
+}
+
+.sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: fit-content;
+}
+
+.logo-container {
+    padding: 0px;
+}
+
+.logo-gauche span {
+    font-size: 2.8em;
+    color: var(--couleur-primaire);
+    transition: ease-out .5s;
+}
+
+.vel {
+    font-size: 7rem;
+    color: var(--couleur-primaire);
+    transition: ease-out .5s;
+}
+
+.trait {
+    width: 210px;
+    height: 1px;
+    border-radius: 50%;
+    background-color: var(--couleur-primaire);
+    opacity: 0.3;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.categories-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    gap: 15px;
+    padding-block: 5px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.categorie-img {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.active-2 {
+    width: 100%;
+    height: 100%;
+    background-color: var(--couleur-secondaire);
+}
+
+.categorie-text {
+    color: var(--couleur-primaire);
+}
+
+.active-text {
+    color: var(--couleur-tertiaire);
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: -webkit-fill-available;
+}
+
+.photo-admin {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+
+.info-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    width: -webkit-fill-available;
+}
+
+.info-admin .nom-admin {
+    font-size: 1.2em;
+    color: var(--couleur-secondaire);
+}
+
+.info-admin .mail-admin {
+    font-size: 0.8em;
+    font-weight: 200;
+    color: var(--couleur-primaire);
+}
