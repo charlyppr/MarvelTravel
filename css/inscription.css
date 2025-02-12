@@ -1,6 +1,4 @@
-body{
-    overflow: hidden;
-    
+body{    
     background-image: url('../img/Star.png');
     background-size: cover;
     background-position: center;
@@ -29,9 +27,10 @@ header img{
 
 .con-ins {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 2em 0;
+    margin: 2em 1em;
     gap: 10px;
 }
 
@@ -45,10 +44,11 @@ header img{
     background-color: var(--couleur-accent);
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    box-shadow: inset 0px 5px 4px 0px #0d0d0d7b;
 }
 
 .connexion a {
-    color: var(--couleur-accent);
+    color: var(--couleur-tertiaire);
     background-color: var(--couleur-primaire);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -58,88 +58,71 @@ header img{
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
-    padding: 20px 170px;
+    padding: 15px 130px;
 }
 
+.texte_inscription {
+    color: var(--couleur-primaire);
+    font-weight: 200;
+    font-size: .8em;
+    text-align: left;
+    padding: 0 1em;
+}
 
-.Sous_titre {
-    color: #FFFAE7;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 100;
-    line-height: normal;
-    text-align: center;
-    opacity: 0.5;
-    height: 22px;
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
+    width: 400px;
 }
 
-.group{
+.group {
     display: flex;
-    flex-direction: column; /* Met le label au-dessus de l’input */
-    align-items: flex-start; /* Alignement à gauche */
-    width: 100%; /* Prend toute la largeur */
-    margin-bottom: 15px; /* Espacement entre chaque champ */
-
-}
-
-.texte_inscription {
-    color: var(--couleur-primaire);
-    font-weight: 200;
-    font-size: 15px;
-    text-align: left;
+    flex-direction: column;
     width: 100%;
-    margin-bottom: 5px;
+    gap: 5px;
+    margin-bottom: 2em;
 }
 
 input {
-    padding: 10px;
-    width: 100%;
-    max-width: 350px;
-    border-radius: 5px;
-    border: 1px solid var(--couleur-primaire);
-    background-color: black;
-    color: white;
+    font-family: PP Formula;
+    color: var(--couleur-primaire);
+    border: 1px solid var(--couleur-secondaire);
+    border-radius: 15px;
+    height: 4em;
+    background-color: transparent;
+    padding-left: 1.5em;
+    font-size: .7em;
 
     transition: ease-in-out .3s;
 }
 
-
-
 input:focus {
     outline: none;
-    box-shadow: 0 0 10px ; /* Effet lumineux pour un meilleur rendu */
-
+    border: 1px solid var(--couleur-accent);
+    box-shadow: 0px 0px 7px 0px var(--couleur-accent);
 }
 
-.Suivant {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    width: 100%;
-    max-width: 300px;
+.suivant {
     background-color: var(--couleur-accent);
     color: var(--couleur-primaire);
     border: none;
+    width: fit-content;
     padding: 15px 30px;
     font-size: 20px;
-    font-weight: 200;
     border-radius: 10px;
     cursor: pointer;
-    margin: 20px auto 50px auto;
 
     transition: ease-in-out .5s;
 }
 
-.Suivant:hover {
+.suivant:hover {
     background-color: #901A1E;
 }
