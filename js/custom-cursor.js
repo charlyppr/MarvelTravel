@@ -55,6 +55,7 @@ styleSheet.sheet.insertRule(`
     .default::before {
         content: "";
         font-size: 0em;
+        white-space: nowrap;
         transition: font-size 0.3s ease-out;
     }
 `, styleSheet.sheet.cssRules.length);
@@ -65,21 +66,45 @@ function updateCursorContent(content) {
         .default::before {
             content: "${content}";
             font-size: ${content ? '1em' : '0em'};
+            white-space: nowrap;
             transition: font-size 0.3s ease-out;
         }
     `, 0);
+}
+
+styleSheet.sheet.insertRule(`
+    .link-hover {
+        width: 0;
+        height: 0;
+        transition: width 0.3s ease-out, height 0.3s ease-out;
+    }
+`, styleSheet.sheet.cssRules.length);
+
+function updateCursorSize(content) {
+    const width = content ? `${content.length}ch` : '0';
+    const height = content ? `2.5em` : '0';
+    styleSheet.sheet.deleteRule(1);
+    styleSheet.sheet.insertRule(`
+        .link-hover {
+            width: ${width};
+            height: ${height};
+            transition: width 0.3s ease-out, height 0.3s ease-out;
+        }
+    `, 1);
 }
 
 document.querySelectorAll('.github-ibra').forEach(function (link) {
     link.addEventListener('mouseenter', function () {
         document.querySelector('.default').classList.add('link-hover');
         document.querySelector('.github-ibra').style.cursor = 'none';
+        updateCursorSize("Ibrahima");
         updateCursorContent("Ibrahima");
     });
 
     link.addEventListener('mouseleave', function () {
         document.querySelector('.default').classList.remove('link-hover');
         document.querySelector('.github-ibra').style.cursor = 'auto';
+        updateCursorSize("");
         updateCursorContent("");
     });
 });
@@ -88,12 +113,14 @@ document.querySelectorAll('.github-paul').forEach(function (link) {
     link.addEventListener('mouseenter', function () {
         document.querySelector('.default').classList.add('link-hover');
         document.querySelector('.github-paul').style.cursor = 'none';
+        updateCursorSize("Paul");
         updateCursorContent("Paul");
     });
 
     link.addEventListener('mouseleave', function () {
         document.querySelector('.default').classList.remove('link-hover');
         document.querySelector('.github-paul').style.cursor = 'auto';
+        updateCursorSize("");
         updateCursorContent("");
     });
 });
@@ -102,12 +129,30 @@ document.querySelectorAll('.github-charly').forEach(function (link) {
     link.addEventListener('mouseenter', function () {
         document.querySelector('.default').classList.add('link-hover');
         document.querySelector('.github-charly').style.cursor = 'none';
+        updateCursorSize("Charly");
         updateCursorContent("Charly");
     });
 
     link.addEventListener('mouseleave', function () {
         document.querySelector('.default').classList.remove('link-hover');
         document.querySelector('.github-charly').style.cursor = 'auto';
+        updateCursorSize("");
+        updateCursorContent("");
+    });
+});
+
+document.querySelectorAll('.logo-container').forEach(function (link) {
+    link.addEventListener('mouseenter', function () {
+        document.querySelector('.default').classList.add('link-hover');
+        document.querySelector('.logo-container').style.cursor = 'none';
+        updateCursorSize("Accueil");
+        updateCursorContent("Accueil");
+    });
+
+    link.addEventListener('mouseleave', function () {
+        document.querySelector('.default').classList.remove('link-hover');
+        document.querySelector('.logo-container').style.cursor = 'auto';
+        updateCursorSize("");
         updateCursorContent("");
     });
 });
