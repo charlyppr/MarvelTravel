@@ -44,7 +44,7 @@ main{
 
 #blackWidow{
     background-image: url("../img/backgroundCard/blackWidowBackground.webp");
-    background-size: 265%;
+    background-size: 240%;
     background-repeat: no-repeat;
     background-position-x: center;
 }
@@ -56,7 +56,7 @@ main{
 
 #blackPanther{
     background-image: url("../img/backgroundCard/blackPantherBackground.webp");
-    background-size: 269%;
+    background-size: 245%;
     background-repeat: no-repeat;
     background-position-x:-80px;
 }
@@ -70,14 +70,14 @@ main{
 
 #thor{
     background-image: url("../img/backgroundCard/thorBackground.webp");
-    background-size: 270%;
+    background-size: 230%;
     background-repeat: no-repeat;
     background-position-x: -140px;
 }
 
 #doctorStrange{
     background-image: url("../img/backgroundCard/doctorStrangeBackground.webp");
-    background-size: 271%;
+    background-size: 245%;
     background-repeat: no-repeat;
     background-position-x: -120px;
 }
@@ -91,7 +91,28 @@ main{
 
 #hulk{
     background-image: url("/img/backgroundCard/HulkBackground.webp");
-    background-size: 255%;
+    background-size: 230%;
     background-repeat: no-repeat;
     background-position-x: -100px;
+}
+
+#captainAmerica{
+    background-image: url("/img/backgroundCard/captainAmericaBackground.avif");
+    background-size: 240%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+#starLord{
+    background-image: url("/img/backgroundCard/starLordBackground.avif");
+    background-size: 241%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+#wolve{
+    background-image: url("/img/backgroundCard/wolverineBackground.avif");
+    background-size: 240%;
+    background-repeat: no-repeat;
+    background-position-x: center;
 }
