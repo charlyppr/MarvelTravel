@@ -1,118 +1,52 @@
-#container{
-    color: aliceblue;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin: 30px;
-    width: 95%;
+header{
+    background-image: url(../img/yggdrasil.jpg);
+    height: 780px;
+    background-position: center;
+    background-size: cover;
+    top: 0px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 50%, transparent 100%);
 }
 
-main{
+#head{
+    color: #FFFAE7;
     text-align: center;
 }
 
-.personnage{
-    height: 270px;
-    max-width: 200px;
-    display: flex;
-    text-align: center;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-
-    transition: all ease-in-out .5s;
+#titre{
+    font-size: 50px;
+    padding: 100px;
 }
 
-#box{
-    width: fit-content;
-    margin: 0 10%;
+#filter{
+    display: inline;
+    border: #FFFAE7 inset 1.7px;
+    padding: 20px;
+    padding-right: 0px;
+    border-radius: 40px;
+    backdrop-filter: blur(20px);
 }
 
-.personnage img{
-    height: 270px;
-    transition: all ease-in-out .5s;
+.parameter{
+    border-right: #FFFAE7 solid 1px;
+    all:unset;
+    margin-right: 10px;
+    margin-left: 30px;
 }
 
-.personnage:hover img{
-    transform: scale(1.2);
+#search{
+    border-radius: 40px;
+    background-color: #FFFAE7;
+    color:#0D0D0D;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 30px;
+    margin-right: 5px;
 }
 
-.personnage:hover {
-    box-shadow: 0 0 20px var(--couleur-secondaire);
-}
-
-#blackWidow{
-    background-image: url("../img/backgroundCard/blackWidowBackground.webp");
-    background-size: 240%;
-    background-repeat: no-repeat;
-    background-position-x: center;
-}
-
-
-#wolverine{
-    margin-top: 10px;
-}
-
-#blackPanther{
-    background-image: url("../img/backgroundCard/blackPantherBackground.webp");
-    background-size: 245%;
-    background-repeat: no-repeat;
-    background-position-x:-80px;
-}
-
-#venom{
-    background-image: url("../img/backgroundCard/venomBackground.webp");
-    background-size: 270%;
-    background-repeat: no-repeat;
-    background-position-x: -50px;
-}
-
-#thor{
-    background-image: url("../img/backgroundCard/thorBackground.webp");
-    background-size: 230%;
-    background-repeat: no-repeat;
-    background-position-x: -140px;
-}
-
-#doctorStrange{
-    background-image: url("../img/backgroundCard/doctorStrangeBackground.webp");
-    background-size: 245%;
-    background-repeat: no-repeat;
-    background-position-x: -120px;
-}
-
-#ironMan{
-    background-image: url("../img/backgroundCard/ironManBackground.webp");
-    background-size: 270%;
-    background-repeat: no-repeat;
-    background-position-x: -210px;
-}
-
-#hulk{
-    background-image: url("/img/backgroundCard/HulkBackground.webp");
-    background-size: 230%;
-    background-repeat: no-repeat;
-    background-position-x: -100px;
-}
-
-#captainAmerica{
-    background-image: url("/img/backgroundCard/captainAmericaBackground.avif");
-    background-size: 240%;
-    background-repeat: no-repeat;
-    background-position-x: center;
-}
-
-#starLord{
-    background-image: url("/img/backgroundCard/starLordBackground.avif");
-    background-size: 241%;
-    background-repeat: no-repeat;
-    background-position-x: center;
-}
-
-#wolve{
-    background-image: url("/img/backgroundCard/wolverineBackground.avif");
-    background-size: 240%;
-    background-repeat: no-repeat;
-    background-position-x: center;
+#search:hover{
+    background-color: #d3d0c5;
+    transition: 200ms;
 }
