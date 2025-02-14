@@ -19,7 +19,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: absolute;
+    background-attachment: fixed;
 
     margin: 0;
     padding: 0;
@@ -87,6 +87,11 @@ a {
     text-align: center;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    font-family: 'PP Formula', sans-serif !important;
+    transition: background-color 10000s, color 10000s !important;
+}
 
 /* ------------------------- NAV BAR ------------------------- */
 
