@@ -100,9 +100,9 @@ a {
     gap: 45px;
     padding: 40px;
     border-radius: 20px;
-    background: linear-gradient(#F5E4C3 15%, #f9ebcb 65%);
+    background: linear-gradient(#fff4df 15%, #f9ebcb 65%);
     border: 1px solid #fffae778;
-    box-shadow: 0 4px 10px 0 #0d0d0d43;
+    box-shadow: 0 4px 20px 0 #0d0d0d43;
 }
 
 .spiderman-pin {
