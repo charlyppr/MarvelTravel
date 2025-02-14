@@ -142,7 +142,7 @@ a {
 }
 
 .logo-container:hover .logo-gauche span, .logo-container:hover .vel{
-    color: var(--couleur-accent);
+    color: var(--couleur-accent) !important;
 }
 
 .menu ul {
@@ -192,16 +192,15 @@ a {
 
 /* ------------------------- FOOTER ------------------------- */
 
-footer {
-    bottom: 0;
-}
-
 .footer-content {
+    position: relative;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     padding: 50px 70px;
     background-color: var(--couleur-secondaire);
     gap: 100px;
+    z-index: 3;
 }
 
 .footer-top {

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter</title>
 
     <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/base.css">
 </head>
+
 <body>
     <div class="default"></div>
 
@@ -28,40 +31,47 @@
             </ul>
         </div>
     </header>
-    
+
     <section class="contact-us">
         <div class="contact-container">
             <div class="left">
                 <div class="contact-info">
                     <span class="contact-title">Contactez - nous</span>
-                    <span class="contact-description">Envoyer-nous un mail, ou complétez le formulaire pour qu’on puisse vous aider</span>
+                    <span class="contact-description">Envoyer-nous un mail, ou complétez le formulaire pour qu’on puisse
+                        vous aider</span>
                     <a href="mailto:contact@marveltravel.com" class="contact-email">contact@marveltravel.com</a>
                 </div>
 
                 <div class="support-section">
                     <div class="support-info">
                         <span class="support-title">Support client </span>
-                        <span class="support-description">Un problème avec ta réservation ? Un portail dimensionnel qui s’est refermé trop tôt ? On est là pour toi ! Contacte-nous, et on réglera ça.</span>
+                        <span class="support-description">Un problème avec ta réservation ? Un portail dimensionnel qui
+                            s’est refermé trop tôt ? On est là pour toi ! Contacte-nous, et on réglera ça.</span>
                     </div>
 
                     <div class="support-info">
                         <span class="support-title">Feedback et Suggestions</span>
-                        <span class="support-description">Tu as une idée de voyage intergalactique ou tu penses qu’on devrait ajouter une escale à Wakanda ? On adore les bonnes idées !</span>
+                        <span class="support-description">Tu as une idée de voyage intergalactique ou tu penses qu’on
+                            devrait ajouter une escale à Wakanda ? On adore les bonnes idées !</span>
                     </div>
 
                     <div class="support-info">
                         <span class="support-title">Partenariat</span>
-                        <span class="support-description">Tu veux t’associer avec nous pour créer des expériences héroïques ? On est prêts à unir nos forces, faisons équipe, comme les Avengers, mais en costard !</span>
+                        <span class="support-description">Tu veux t’associer avec nous pour créer des expériences
+                            héroïques ? On est prêts à unir nos forces, faisons équipe, comme les Avengers, mais en
+                            costard !</span>
                     </div>
                 </div>
             </div>
 
             <div class="right">
+                <img class="spiderman-pin" src="../img/spiderman-pin.svg" alt="spiderman-pin">
+
                 <div class="header">
                     <span class="form-title">Un message pour nous ?</span>
                     <span class="form-description">Un problème, une idée, vous pouvez tout nous dire</span>
                 </div>
-                
+
                 <form action="" method="post" class="contact-form">
                     <div class="form-row">
                         <input type="text" name="prenom" id="prenom" placeholder="Prénom" required autocomplete="name">
@@ -73,15 +83,127 @@
                     <textarea name="message" id="message" placeholder="Message" required></textarea>
 
                     <div class="button-div">
-                        <button type="submit" class="button-form">Envoyer</button>
+                        <button type="submit" class="button-form">Envoyer<img src="../img/avion.svg" alt="avion"></button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
-    <section class="location">
-        
+    <section class="location-faq">
+        <div class="location">
+            <div class="location-container">
+                <div class="location-map"></div>
+
+                <div class="location-info">
+                    <span class="location-sous-titre">Où nous trouver ?</span>
+                    <span class="location-titre">Nous rejoindre de près ou de loin</span>
+
+                    <div class="location-details">
+                        <span class="location-titre">Notre QG</span>
+                        <span class="location-description">Marvel Travel • Sanctum Sanctorum <br>New York, NY 10012
+                            <br>177A Bleeker Street <br>États-Unis</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=177A+Bleeker+Street,+New+York,+NY+10012"
+                            target="_blank">Voir sur Google Maps</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-info">
+                <span class="faq-titre">FAQ</span>
+                <span class="location-description">Des questions ? On y repond !</span>
+            </div>
+
+            <div class="questions-list">
+                <div class="question">
+                    <span class="question-title">Comment fonctionnent les voyages avec Marvel Travel ?</span>
+                    <img src="../img/chevron.svg" alt="chevron">
+                </div>
+
+                <div class="question">
+                    <span class="question-title">Y a-t-il des réductions ou des offres spéciales chez Marvel Travel
+                        ?</span>
+                    <img src="../img/chevron.svg" alt="chevron">
+                </div>
+
+                <div class="question">
+                    <span class="question-title">En quoi consiste Infinity Green ?</span>
+                    <img src="../img/chevron.svg" alt="chevron">
+                </div>
+
+                <div class="question">
+                    <span class="question-title">Les voyages avec Marvel Travel sont-ils sécurisés ?</span>
+                    <img src="../img/chevron.svg" alt="chevron">
+                </div>
+            </div>
+        </div>
+
     </section>
+
+    <footer>
+        <img class="shield" src="../img/shield.svg" alt="shield">
+
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="../img/logo.svg" alt="logo marvel travel" width="200px">
+                    <span>Aucun Groot n’a été blessé lors du développement.</span>
+                </div>
+
+                <div class="footer-right-top">
+                    <div class="footer-right-top-content">
+                        <span>Notre agence</span>
+                        <ul>
+                            <li><a href="#">Qui sommes-nous ?</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="administrateur.html">Administrateur</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-right-top-content">
+                        <span>Nos réseaux</span>
+                        <div class="github">
+                            <ul>
+                                <li><a class="github-ibra" href="#"><img src="../img/github-mark.svg"
+                                            alt="logo github"></a></li>
+                                <li><a class="github-paul" href="#"><img src="../img/github-mark.svg"
+                                            alt="logo github"></a></li>
+                                <li><a class="github-charly" href="#"><img src="../img/github-mark.svg"
+                                            alt="logo github"></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-left-bottom">
+                    <span class="copyright">Fait avec amour… et un peu de Vibranium • © 2025 Marvel Travel</span>
+                </div>
+
+                <div class="footer-right-bottom">
+                    <span>Moyens de paiements acceptés</span>
+
+                    <div class="paiements">
+                        <img src="../img/cards/mastercard.svg" alt="mastercard">
+                        <img src="../img/cards/wakanda.svg" alt="credit wakanda">
+                        <img src="../img/cards/visa.svg" alt="visa">
+                        <img src="../img/cards/asgard.svg" alt="lingots d'or asgard">
+                        <img src="../img/cards/paypal.svg" alt="paypal">
+                        <img src="../img/cards/amex.svg" alt="amex">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/custom-cursor.js"></script>
+    <script src="../js/nav.js"></script>
 </body>
+
 </html>
