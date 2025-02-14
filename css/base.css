@@ -240,7 +240,7 @@ footer {
 
 .footer-right-top-content ul:nth-child(1){
     display: flex;
-    gap: 10px;
+    flex-direction: column;
 }
 
 
