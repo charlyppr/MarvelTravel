@@ -347,6 +347,8 @@ input:-webkit-autofill:focus {
 
     .menu ul li {
         margin: 2px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .menu ul li a {
