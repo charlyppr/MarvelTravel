@@ -325,6 +325,10 @@ input:-webkit-autofill:focus {
 
 @media screen and (max-width: 600px){
     
+    body{
+        overflow: hidden;
+    }
+
     .nav {
         gap: 20px;
     }
@@ -342,7 +346,7 @@ input:-webkit-autofill:focus {
     }
 
     .menu ul li {
-        margin: 5px;
+        margin: 2px;
     }
 
     .menu ul li a {
