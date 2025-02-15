@@ -322,3 +322,32 @@ input:-webkit-autofill:focus {
         }
 
 }
+
+@media screen and (max-width: 600px){
+    
+    .nav {
+        gap: 20px;
+    }
+
+    .logo-container {
+        padding: 10px;
+    }
+
+    .logo-gauche span {
+        font-size: 1.2rem;
+    }
+
+    .vel {
+        font-size: 3rem;
+    }
+
+    .menu ul li a {
+        font-size: 9px;
+    }
+
+    .button, .menu ul li .button {
+        padding: 10px 15px;
+        font-size: 9px;
+    }
+
+}
