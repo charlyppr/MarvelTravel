@@ -4,6 +4,7 @@ body {
 
 .main-container {
     display: flex;
+    height: 100vh;
 }
 
 .sidebar {
@@ -44,14 +45,6 @@ body {
     font-size: 7rem;
     color: var(--couleur-primaire);
     transition: ease-out .5s;
-}
-
-.trait {
-    width: 90%;    
-    height: 1px;
-    border-radius: 50%;
-    background-color: var(--couleur-primaire);
-    opacity: 0.3;
 }
 
 .categories {

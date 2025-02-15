@@ -1,5 +1,7 @@
 .main-container {
     display: flex;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .sidebar {
@@ -9,7 +11,6 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     width: fit-content;
-    height: 100%;
 }
 
 .sidebar-content {
@@ -65,8 +66,8 @@
     padding: 10px 15px;
     border-radius: 15px;
     font-size: 12px;
-    font-weight: 600;
     cursor: pointer;
+    min-width: max-content;
 }
 
 .categorie-img {
@@ -87,6 +88,7 @@
 }
 
 .active-2 {
+    font-weight: 600;
     background-color: var(--couleur-secondaire);
 }
 
@@ -110,7 +112,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: -webkit-fill-available;
+    width: fit-content;
 }
 
 .photo-admin {
@@ -124,7 +126,7 @@
     flex-direction: column;
     gap: 5px;
     align-items: center;
-    width: -webkit-fill-available;
+    min-width: max-content;
 }
 
 .info-admin .nom-admin {
@@ -151,6 +153,13 @@
 
 
 
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 70px;
+    width: 100%;
+}
 
 .content {
     display: flex;
@@ -175,12 +184,30 @@
     font-size: 12px;
     color: #FFFAE7;
     cursor: pointer;
+    position: relative;
 }
+
+.back-accueil::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 0;
+    left: 0;
+    bottom: -2px;
+    background-color: #FFFAE7;
+    transition: width 0.3s ease;
+}
+
+.back-accueil:hover::after {
+    width: 100%;
+}
+
 
 
 
 .cards {
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 30px;
 }
@@ -188,23 +215,20 @@
 .profil-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     padding: 30px 20px;
     border-radius: 25px;
     background-color: #FFFAE7;
+    box-shadow: 0px 4px 30px #f2dbaf77;
+    height: fit-content;
 }
 
 .header-text {
     display: flex;
     align-items: baseline;
+    width: 90%;
     gap: 15px;
-    padding: 0 10px;
-}
-
-.header-text img {
-    width: 16px;
-    height: 18px;
-    filter: invert(1);
 }
 
 .titre-card {
@@ -247,4 +271,67 @@
 .mail {
     font-size: 13px;
     font-weight: 200;
+}
+
+.card-content .trait {
+    width: 100%;
+    background-color: #0d0d0d42;
+}
+
+.modif-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.row-user-info {
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    width: 270px;
+}
+
+.row-user-info span:nth-child(1) {
+    color: #0d0d0d9a;
+}
+
+.row img {
+    width: 13px;
+    height: 13px;
+    filter: invert(1);
+}
+
+.sous-texte {
+    font-size: 12px;
+    font-weight: 200;
+    max-width: 250px;
+    text-align: center;
+}
+
+.decouvrir-button {
+    padding: 10px;
+    text-align: center;
+    color: #FFFAE7;
+    background-color: #0d0d0d;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px #0d0d0d42;
+
+    transition: all 0.3s ease-out;
+}
+
+.decouvrir-button:hover {
+    transform: translate(0px, -5px);
+    background-color: #0d0d0d9a;
+    box-shadow: 0px 0px 0px #0d0d0d42;
+}
+
+.decouvrir-button:active {
+    transform: translate(0px, 0px);
+    box-shadow: 0px 4px 15px #0d0d0d42;
 }
