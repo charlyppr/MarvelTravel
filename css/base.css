@@ -15,7 +15,7 @@
 body {
     font-family: 'PP Formula', sans-serif;
     background-color: var(--couleur-tertiaire);
-    background-image: url('../img/Star.png');
+    background-image: url('../img/star.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -31,6 +31,7 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--couleur-tertiaire);
 }
 
 .hidden {
@@ -48,6 +49,14 @@ a {
     z-index: 1000;
     transform: translate(-50%, -50%);
     transition: all 0.3s ease-out, left 0s, top 0s;
+}
+
+.trait {
+    width: 90%;    
+    height: 1px;
+    border-radius: 50%;
+    background-color: var(--couleur-primaire);
+    opacity: 0.3;
 }
 
 .link-hover {
@@ -68,7 +77,6 @@ a {
 .titre{
     margin: 0;
     font-size: 2.5rem;
-    font-style: italic;
     color: var(--couleur-primaire);
     text-align: center;
 }

@@ -1,10 +1,15 @@
+body {
+    backdrop-filter: blur(3px);
+}
+
 .main-container {
     display: flex;
+    height: 100vh;
 }
 
 .sidebar {
     padding: 50px 30px;
-    background-color: #5b5b5b76;
+    background-color: #44444444;
     backdrop-filter: blur(5px);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -40,14 +45,6 @@
     font-size: 7rem;
     color: var(--couleur-primaire);
     transition: ease-out .5s;
-}
-
-.trait {
-    width: 90%;    
-    height: 1px;
-    border-radius: 50%;
-    background-color: var(--couleur-primaire);
-    opacity: 0.3;
 }
 
 .categories {
@@ -141,7 +138,7 @@
     display: flex;
     justify-content: space-between;
     color: var(--couleur-primaire);
-    border: 2px solid #5B5B5B;
+    border: 2px solid #fffae776;
     border-radius: 15px;
     padding-right: 15px;
 }
