@@ -1,3 +1,5 @@
+/* --------------------- Logo agrandi ----------------------- */
+
 .logo-container {
     z-index: 99;
     font-family: 'Marvel', sans-serif;
@@ -37,14 +39,16 @@
     text-shadow: 0px 0px 10px var(--couleur-accent);
 }
 
-.inscription {
+/* --------------------- SE CONNECTER ----------------------- */
+
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.inscription-content {
+.card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,20 +62,20 @@
     backdrop-filter: blur(2px);
 }
 
-.inscription-header {
+.card-header {
     display: flex;
     flex-direction: column;
     gap: 3px;
     width: 350px;
 }
 
-.inscription-content .titre-2 {
+.card-content .titre-2 {
     font-size: 23px;
     font-weight: 600;
     color: var(--couleur-secondaire);
 }
 
-.inscription-content .sous-titre-3 {
+.card-content .sous-titre-3 {
     font-size: 14px;
     font-weight: 200;
     font-style: italic;
@@ -105,25 +109,22 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    padding: 0 20px;
     background-color: #59514283;
-    width: 100%;
+    height: 50px;
     border-radius: 15px;
-}
-
-.email img, .mdp img {
-    padding-left: 20px;
+    width: -webkit-fill-available;
 }
 
 input {
-    font-family: 'PP Formula', sans-serif;
+    font-family: PP Formula;
     background-color: transparent;
     border: none;
     color: #fffae7;
     font-size: 13px;
+    font-weight: 400;
     width: 100%;
-    height: 50px;
-    
-    transition: all 0.3s ease-out;
+    height: 100%;
 }
 
 input::placeholder {
@@ -134,12 +135,34 @@ input:focus {
     outline: none;
 }
 
-.email img, .mdp img, .nom img {
+.email img, .mdp img {
     width: 15px;
     height: 15px;
 }
 
-.suivant-button {
+.forgot {
+    font-size: 12px;
+    font-weight: 200;
+    color: #fffae7;
+    position: relative;
+}
+
+.forgot::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: #fffae7;
+    transition: all 0.3s ease-in-out;
+}
+
+.forgot:hover::after {
+    width: 100%;
+}
+
+.next-button {
     font-family: PP Formula;
     font-size: .8em;
     font-weight: 600;
@@ -159,47 +182,59 @@ input:focus {
     transition: all .2s ease-in-out;
 }
 
-.suivant-button:hover {
+.next-button:hover {
     background-color: #0d0d0d9a;
     box-shadow: 0 0 0 #f2dbaf1b;
     transform: translateY(-3px);
 }
 
-.suivant-button:hover img{
-    transform: rotate(-90deg) translateY(5px);
-}
-
-.suivant-button:active {
+.next-button:active {
     transform: translateY(0);
     box-shadow: 0 0 20px #f2dbaf1b;
 
     transition: all .1s ease-in-out;
 }
 
-.suivant-button img {
-    width: 15px;
-    height: 15px;
-    transform: rotate(-90deg);
+.next-button img {
+    width: 20px;
+    height: 20px;
 
     transition: all .2s ease-in-out;
 }
 
-.connexion-text {
+.next-button:hover img{
+    transform: translateX(5px);
+}
+
+.other-text {
     width: 100%;
 }
 
-.connexion-text a {
+.other-text a {
     display: flex;
     justify-content: center;
-    text-align: center;
     font-size: 14px;
     font-weight: 200;
     color: var(--couleur-primaire);
     width: 400px;
 }
 
-.connexion-text a span {
+.other-text a span {
     font-weight: 600;
+}
+
+.spiderman-pin {
+    position: absolute;
+    left: 80%;
+    bottom: 93%;
+    transform: rotate(20deg);
+}
+
+.hulk-pin {
+    position: absolute;
+    right: 90%;
+    top: 93%;
+    transform: rotate(-20deg);
 }
 
 .shield-pin {

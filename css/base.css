@@ -95,6 +95,8 @@ a {
     text-align: center;
 }
 
+/* --------- Eviter un background sur les input --------- */
+
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
     font-family: 'PP Formula', sans-serif !important;

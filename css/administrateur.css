@@ -7,6 +7,8 @@ body {
     height: 100vh;
 }
 
+/* ------------------- SIDEBAR ------------------- */
+
 .sidebar {
     padding: 50px 30px;
     background-color: #44444444;
@@ -117,6 +119,8 @@ body {
     color: var(--couleur-primaire);
 }
 
+/* ------------------- PARTIE DROITE ------------------- */
+
 .content-container {
     display: flex;
     flex-direction: column;
@@ -144,7 +148,7 @@ body {
 }
 
 #search {
-    font-family: PP Formula;
+    font-family: 'PP Formula', sans-serif;
     border: none;
     outline: none;
     padding: 15px 20px;
@@ -182,6 +186,9 @@ body {
 .quitter-admin:hover::after {
     width: 100%;
 }
+
+
+/* ------------------- TABLEAU ------------------- */
 
 .main-content {
     display: flex;
