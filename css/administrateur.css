@@ -138,7 +138,7 @@ body {
     display: flex;
     justify-content: space-between;
     color: var(--couleur-primaire);
-    border: 2px solid #5B5B5B;
+    border: 2px solid #fffae776;
     border-radius: 15px;
     padding-right: 15px;
 }
