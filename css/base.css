@@ -346,7 +346,7 @@ input:-webkit-autofill:focus {
     }
 
     .button, .menu ul li .button {
-        padding: 10px 15px;
+        padding: 7px 10px;
         font-size: 9px;
     }
 
