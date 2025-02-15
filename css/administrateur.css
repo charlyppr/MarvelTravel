@@ -1,10 +1,14 @@
+body {
+    backdrop-filter: blur(3px);
+}
+
 .main-container {
     display: flex;
 }
 
 .sidebar {
     padding: 50px 30px;
-    background-color: #5b5b5b76;
+    background-color: #fffae729;
     backdrop-filter: blur(5px);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
