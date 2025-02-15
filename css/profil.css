@@ -309,12 +309,6 @@ body {
     color: #0d0d0d9a;
 }
 
-.row img {
-    width: 13px;
-    height: 13px;
-    filter: invert(1);
-}
-
 .sous-texte {
     font-size: 12px;
     font-weight: 200;
