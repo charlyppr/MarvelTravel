@@ -271,3 +271,22 @@
     font-weight: 600;
     color: var(--couleur-primaire);
 }
+
+.decouvrir-button {
+    padding: 15px 20px;
+    border-radius: 15px;
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-tertiaire);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #f2dbafcb;
+
+    transition: all 0.3s ease-out;
+}
+
+.decouvrir-button:hover {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-accent);
+    box-shadow: 0px 0px 10px #f2dbafcb;
+}

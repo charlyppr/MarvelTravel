@@ -13,18 +13,21 @@ body {
     user-select: none;
 }
 
-a {
-    text-decoration: none;
-    color: #0D0D0D;
-}
-
 .logo-gauche span, .vel, .menu ul li a {
     color: #0D0D0D !important;
 }
 
-.button, .menu ul li .button, .active::after {
-    background-color: #0D0D0D !important;
+.menu a {
+    color: #0D0D0D;
+}
+
+.nav-button, .active::after {
     color: #FFFAE7 !important;
+    background-color: #0D0D0D !important;
+}
+
+.nav-button:hover {
+    background-color: #AF1F24 !important;
 }
 
 .contact-us {
