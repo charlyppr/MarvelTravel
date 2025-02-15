@@ -307,7 +307,7 @@ input:-webkit-autofill:focus {
         }
 
         .menu ul li a {
-            font-size: 13px;
+            font-size: 12px;
         }
     
         .button, .menu ul li .button {
@@ -320,5 +320,5 @@ input:-webkit-autofill:focus {
             margin-top:125px;
             margin-bottom: 125px;
         }
-        
+
 }

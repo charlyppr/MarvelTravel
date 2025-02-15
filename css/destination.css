@@ -1,5 +1,5 @@
 header{
-    background-image: url(../img/yggdrasil.jpg);
+    background-image: url(../img/destination-header.jpg);
     background-attachment: fixed;
     height: 780px;
     background-position: center;
@@ -15,10 +15,12 @@ header{
     text-align: center;
 }
 
-#titre{
+#question-titre{
     font-family: url(../police/Marvel.ttf);
     font-size: 50px;
-    padding: 100px;
+    padding: 50px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 #filter{
@@ -247,9 +249,11 @@ img{
 
 @media screen and (max-width: 800px){
 
-    #titre{
+    #question-titre{
         font-size: 30px;
-        padding: 50px;
+        padding: 40px;
+        padding-top: 80px;
+        padding-bottom: 80px;
     }
     
     .container1{
