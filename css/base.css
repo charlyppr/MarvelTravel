@@ -326,7 +326,7 @@ input:-webkit-autofill:focus {
 @media screen and (max-width: 600px){
     
     body{
-        overflow: hidden;
+        overflow-y: hidden;
     }
 
     .nav {
