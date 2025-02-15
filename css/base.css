@@ -278,3 +278,39 @@ input:-webkit-autofill:focus {
     width: 30px;
     height: 30px;
 }
+
+
+@media screen and (max-width: 800px){
+    
+        .nav {
+            gap: 20px;
+        }
+    
+        .logo-container {
+            padding: 10px;
+        }
+    
+        .logo-gauche span {
+            font-size: 1.2rem;
+        }
+    
+        .vel {
+            font-size: 3rem;
+        }
+
+        .menu ul li a {
+            font-size: 13px;
+        }
+    
+        .button, .menu ul li .button {
+            padding: 10px 15px;
+            font-size: 10px;
+        }
+
+        #question-titre{
+            font-size: 30px;
+            margin-top:125px;
+            margin-bottom: 125px;
+        }
+        
+}

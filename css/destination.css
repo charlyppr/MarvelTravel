@@ -75,7 +75,6 @@ section{
 
 .box{
     color: #FFFAE7;
-    border:#FFFAE7 solid 1px;
     transition: all ease-in-out .3s;
 }
 
@@ -98,24 +97,16 @@ section{
     margin: 0;
 }
 
-.destName{
-    color: #FFFAE7;
-    font-size: 30px;
-    text-align: left;
-    margin-top: 100px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
 #prime{
     background-image: url(../img/destinations/wakanda.jpg);
     background-position: left;
     background-size: cover;
     grid-area: box1;
     margin: 20px;
-    margin-right: 6px;
+    margin-right: 10px;
     padding: 20px;
     border-radius: 20px;
-    height: 350px;
+    height: 500px;
 }
 
 #second{
@@ -124,8 +115,8 @@ section{
     background-size: cover;
     grid-area: box2;
     margin: 20px;
-    margin-left: 6px;
-    margin-bottom: 6px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     padding: 20px;
     border-radius: 20px;
 }
@@ -136,8 +127,8 @@ section{
     background-size: cover;
     grid-area: box3;
     margin: 20px;
-    margin-left: 6px;
-    margin-top: 6px;
+    margin-left: 10px;
+    margin-top: 10px;
     padding: 20px;
     border-radius: 20px;
 }
@@ -154,7 +145,7 @@ section{
     background-size: cover;
     width: 40%;
     margin: 10px;
-    height: 150px;
+    height: 250px;
     padding: 20px;
     border-radius: 20px;
 }
@@ -164,7 +155,7 @@ section{
     background-position: bottom;
     background-size: cover;
     width: 40%;
-    height: 150px;
+    height: 250px;
     margin: 10px;
     padding: 20px;
     border-radius: 20px;
@@ -175,7 +166,7 @@ section{
     background-position: center;
     background-size: cover;
     width: 40%;
-    height: 150px;
+    height: 250px;
     margin: 10px;
     padding: 20px;
     border-radius: 20px;
@@ -242,7 +233,82 @@ img{
     margin: 0;
 }
 
+.question:hover{
+    cursor: pointer;
+}
+
 .reponse{
+    text-align: justify;
     padding-bottom: 10px;
     margin: 0;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 800px){
+
+    #titre{
+        font-size: 30px;
+        padding: 50px;
+    }
+    
+    .container1{
+        grid-template-areas: 
+        "box1"
+        "box2"
+        "box3";
+        grid-template-columns: 1fr;
+    }
+
+    #prime{
+        height: 200px;
+        margin: 10px;
+    }
+
+    #second{
+        height: 200px;
+        margin: 10px;
+    }
+
+    #third{
+        height: 200px;
+        margin: 10px;
+    }
+
+    .container2{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #fourth{
+        width: 90%;
+        height: 200px;
+    }
+
+    #fifth{
+        width: 90%;
+        height: 200px;
+    }
+
+    #sixth{
+        width: 90%;
+        height: 200px;
+    }
+    
+    .FAQ{
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .FAQ>.titre{
+        margin: 20px;
+    }
+
+    .FAQ>.corp{
+        margin: 20px;
+
+    }
 }
