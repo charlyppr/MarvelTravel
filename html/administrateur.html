@@ -30,14 +30,14 @@
                     <div class="categories">
                         <div class="categories-content active-2">
                             <div class="categorie-img">
-                                <img src="../img/dashboard.svg" alt="crayon et rectangle">
+                                <img src="../img/svg/dashboard.svg" alt="crayon et rectangle">
                             </div>
                             <span class="categorie-text active-text">Dashboard</span>
                         </div>
 
                         <div class="categories-content">
                             <div class="categorie-img">
-                                <img src="../img/notif.svg" alt="cloche">
+                                <img src="../img/svg/notif.svg" alt="cloche">
                             </div>
                             <span class="categorie-text">Notifications</span>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="sidebar-bottom">
-                    <img class="photo-admin" src="../img/spiderman-pin.svg" alt="spiderman-pin">
+                    <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
 
                     <div class="info-admin">
                         <span class="nom-admin">Spiderman</span>
@@ -59,12 +59,12 @@
             <div class="header">
                 <div class="search-bar">
                     <input type="text" placeholder="Chercher un voyageur" name="search" id="search">
-                    <img src="../img/loupe.svg" alt="loupe">
+                    <img src="../img/svg/loupe.svg" alt="loupe">
                 </div>
 
                 <a href="../accueil.html" class="quitter-admin">
                     <span>Quitter le mode administrateur</span>
-                    <img src="../img/fleche-redir.svg" alt="fleche">
+                    <img src="../img/svg/fleche-redir.svg" alt="fleche">
                 </a>
             </div>
 
@@ -88,13 +88,13 @@
                         <tr>
                             <td class="nom">Peter Parker</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    VIP<img src="../img/etoile.svg" alt="etoile">
+                                <div class="vip">
+                                    VIP<img src="../img/svg/etoile.svg" alt="etoile">
                                 </div>
                             </td>
                             <td class="date">28 mai 2024</td>
@@ -103,13 +103,13 @@
                         <tr>
                             <td class="nom">Natasha Romanoff</td>
                             <td>
-                                <div class="unblock block" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Bloqué<img src="../img/no.svg" alt="croix">
+                                <div class="unblock block">
+                                    Bloqué<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip novip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    Non<img src="../img/no.svg" alt="croix">
+                                <div class="vip novip">
+                                    Non<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td class="date">10 avril 2022</td>
@@ -118,13 +118,13 @@
                         <tr>
                             <td class="nom">Bruce Banner</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip novip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    Non<img src="../img/no.svg" alt="croix">
+                                <div class="vip novip">
+                                    Non<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td class="date">5 mars 2021</td>
@@ -133,13 +133,13 @@
                         <tr>
                             <td class="nom">Steve Rogers</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip novip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    Non<img src="../img/no.svg" alt="croix">
+                                <div class="vip novip">
+                                    Non<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td class="date">12 janvier 2020</td>
@@ -148,13 +148,13 @@
                         <tr>
                             <td class="nom">Clint Barton</td>
                             <td>
-                                <div class="unblock block" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Bloqué<img src="../img/no.svg" alt="croix">
+                                <div class="unblock block">
+                                    Bloqué<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip novip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    Non<img src="../img/no.svg" alt="croix">
+                                <div class="vip novip">
+                                    Non<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td class="date">8 février 2019</td>
@@ -163,13 +163,13 @@
                         <tr>
                             <td class="nom">Tony Stark</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    VIP<img src="../img/etoile.svg" alt="etoile">
+                                <div class="vip">
+                                    VIP<img src="../img/svg/etoile.svg" alt="etoile">
                                 </div>
                             </td>
                             <td class="date">15 juin 2023</td>
@@ -178,13 +178,13 @@
                         <tr>
                             <td class="nom">Wanda Maximoff</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip novip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    Non<img src="../img/no.svg" alt="croix">
+                                <div class="vip novip">
+                                    Non<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td class="date">20 juillet 2018</td>
@@ -193,13 +193,13 @@
                         <tr>
                             <td class="nom">Vision</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip novip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    Non<img src="../img/no.svg" alt="croix">
+                                <div class="vip novip">
+                                    Non<img src="../img/svg/no.svg" alt="croix">
                                 </div>
                             </td>
                             <td class="date">30 août 2017</td>
@@ -208,13 +208,13 @@
                         <tr>
                             <td class="nom">Happy Hogan</td>
                             <td>
-                                <div class="unblock" onclick="this.classList.toggle('block'); this.querySelector('img').src = this.classList.contains('block') ? '../img/no.svg' : '../img/check.svg'; this.innerHTML = this.classList.contains('block') ? 'Bloqué<img src=\'../img/no.svg\' alt=\'croix\'>' : 'Non bloqué<img src=\'../img/check.svg\' alt=\'check\'>';">
-                                    Non bloqué<img src="../img/check.svg" alt="check">
+                                <div class="unblock">
+                                    Non bloqué<img src="../img/svg/check.svg" alt="check">
                                 </div>
                             </td>
                             <td>
-                                <div class="vip" onclick="this.classList.toggle('novip'); this.querySelector('img').src = this.classList.contains('novip') ? '../img/no.svg' : '../img/etoile.svg'; this.innerHTML = this.classList.contains('novip') ? 'Non<img src=\'../img/no.svg\' alt=\'croix\'>' : 'VIP<img src=\'../img/etoile.svg\' alt=\'etoile\'>'; ">
-                                    VIP<img src="../img/etoile.svg" alt="etoile">
+                                <div class="vip">
+                                    VIP<img src="../img/svg/etoile.svg" alt="etoile">
                                 </div>
                             </td>
                             <td class="date">25 mai 2023</td>
@@ -226,6 +226,7 @@
     </div>
 
     <script src="../js/custom-cursor.js"></script>
+    <script src="../js/admin.js"></script>
 
 </body>
 

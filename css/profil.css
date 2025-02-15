@@ -182,13 +182,16 @@ body {
     color: #FFFAE7;
 }
 
-.back-accueil {
+.back-accueil{
     display: flex;
     gap: 10px;
-    font-size: 12px;
-    color: #FFFAE7;
     cursor: pointer;
     position: relative;
+}
+
+.back-accueil a {
+    font-size: 12px;
+    color: #FFFAE7;
 }
 
 .back-accueil::after {

@@ -226,8 +226,6 @@ input:focus, textarea:focus {
 }
 
 .location-map {
-    background-image: url('../img/MTmap.png');
-    background-size: cover;
     width: 540px;
     height: 540px;
 }
