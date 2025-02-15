@@ -1,5 +1,6 @@
 header{
     background-image: url(../img/yggdrasil.jpg);
+    background-attachment: fixed;
     height: 780px;
     background-position: center;
     background-size: cover;
@@ -15,17 +16,23 @@ header{
 }
 
 #titre{
+    font-family: url(../police/Marvel.ttf);
     font-size: 50px;
     padding: 100px;
 }
 
 #filter{
+    background-color: rgba(0, 0, 0, 0.25);
     display: inline;
+    text-align: left;
     border: #FFFAE7 inset 1.7px;
     padding: 20px;
     padding-right: 0px;
     border-radius: 40px;
-    backdrop-filter: blur(20px);
+}
+
+input[type=search]::placeholder{
+    color: rgb(255,250,231,0.5);
 }
 
 .parameter{
@@ -36,6 +43,7 @@ header{
 }
 
 #search{
+    all:unset;
     border-radius: 40px;
     background-color: #FFFAE7;
     color:#0D0D0D;
@@ -49,4 +57,192 @@ header{
 #search:hover{
     background-color: #d3d0c5;
     transition: 200ms;
+}
+
+section{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container1{
+    display: grid;
+    grid-template-areas: 
+    "box1 box2"
+    "box1 box3";
+    grid-template-columns: 1fr 1fr;
+}
+
+.box{
+    color: #FFFAE7;
+    border:#FFFAE7 solid 1px;
+    transition: all ease-in-out .3s;
+}
+
+.box:hover{
+    transform: scale(1.04);
+    transition: 200ms;
+}
+
+.duration{
+    background-color: rgba(0, 0, 0, 0.25);
+    font-family: url(../police/Marvel.ttf);
+    text-align: center;
+    padding: 2px;
+    font-size: 13px;
+    border-radius: 10px;
+    backdrop-filter: blur(30px);
+    border: #FFFAE7 inset 1px;
+    width: 150px;
+    font-family:'Courier New', Courier, monospace;
+    margin: 0;
+}
+
+.destName{
+    color: #FFFAE7;
+    font-size: 30px;
+    text-align: left;
+    margin-top: 100px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#prime{
+    background-image: url(../img/destinations/wakanda.jpg);
+    background-position: left;
+    background-size: cover;
+    grid-area: box1;
+    margin: 20px;
+    margin-right: 6px;
+    padding: 20px;
+    border-radius: 20px;
+    height: 350px;
+}
+
+#second{
+    background-image: url(../img/destinations/newyork.jpg);
+    background-position: left;
+    background-size: cover;
+    grid-area: box2;
+    margin: 20px;
+    margin-left: 6px;
+    margin-bottom: 6px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#third{
+    background-image: url(../img/destinations/wandar.png);
+    background-position: center;
+    background-size: cover;
+    grid-area: box3;
+    margin: 20px;
+    margin-left: 6px;
+    margin-top: 6px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.container2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#fourth{
+    background-image: url(../img/destinations/hala.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 40%;
+    margin: 10px;
+    height: 150px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#fifth{
+    background-image: url(../img/destinations/xmenMansion.webp);
+    background-position: bottom;
+    background-size: cover;
+    width: 40%;
+    height: 150px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#sixth{
+    background-image: url(../img/destinations/TA_LO.webp);
+    background-position: center;
+    background-size: cover;
+    width: 40%;
+    height: 150px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.commentary-container{
+    margin-top: 30px;
+    display: flex;
+    overflow: hidden;
+    width: 100%; 
+    gap: 50px;
+}
+
+.commentary{
+    color: #FFFAE7;
+    display: grid;
+    grid-template-areas: 
+    "pdp pseudo "
+    "comment comment";
+    grid-template-columns: 50px 100%;
+}
+
+.pseudo{
+    grid-area: pseudo;
+    text-align: left;
+}
+
+img{
+    grid-area: pdp;
+    height: 40px;
+}
+
+.commentary-text{
+    grid-area: comment;
+    text-align: justify;
+    width: 450px;
+}
+
+.FAQ{
+    width: 95%;
+    display: flex;
+    align-items: baseline;
+}
+
+.FAQ>.titre{
+    font-size: 20px;
+    grid-area: title;
+    margin: 50px;
+}
+
+.FAQ>.corp{
+    text-align: justify;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width:100%;
+    color: #FFFAE7;
+    text-align: left;
+}
+
+.question{
+    border-top: #FFFAE7 solid 1px;
+    font-weight: bolder;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0;
+}
+
+.reponse{
+    padding-bottom: 10px;
+    margin: 0;
 }
