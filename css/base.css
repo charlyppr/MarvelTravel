@@ -524,6 +524,7 @@ input:-webkit-autofill:focus {
     .footer-content {
         padding: 50px 30px;
         gap: 20px;
+        bottom: 70px;
     }
 
     .footer-top, .footer-bottom {
