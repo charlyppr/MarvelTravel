@@ -242,6 +242,7 @@ input:focus, textarea:focus {
     flex-direction: column;
     gap: 100px;
     padding: 70px;
+    padding-bottom: 150px;
     background-color: #FFFAE7;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px;
@@ -394,6 +395,7 @@ input:focus, textarea:focus {
     .location-faq {
         gap: 50px;
         padding: 40px;
+        padding-bottom: 140px;
     }
 
     .faq {
