@@ -234,3 +234,44 @@ input:focus {
     top: 93%;
     transform: rotate(-20deg);
 }
+
+
+/* --------------------- Media ----------------------- */
+
+@media screen and (max-width: 768px) {
+
+    .card-header {
+        width: 100%;
+    }
+
+    .card-content {
+        background: none;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    .card-content .titre-2 {
+        font-size: 16px;
+    }
+
+    .card-content .sous-titre-3 {
+        font-size: 11px;
+    }
+
+    .form {
+        gap: 10px;
+    }
+
+    .next-button {
+        padding: 15px 2px;
+    }
+
+    .other-text a {
+        width: 100%;
+        font-size: 11px;
+    }
+
+    .spiderman-pin, .hulk-pin, .shield-pin, .captain-pin {
+        display: none;
+    }
+}

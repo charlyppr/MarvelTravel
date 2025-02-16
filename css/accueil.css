@@ -20,6 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .hero-text {
@@ -297,4 +298,58 @@
     box-shadow: 0px 0px 0px #f2dbafcb;
 
     transition: all 0.2s ease-out;
+}
+
+
+@media screen and (max-width: 768px) {
+    .landing {
+        height: 100vh;
+    }
+
+    .landing-container {
+        justify-content: center !important;
+        height: 100%;
+        gap: 0px !important;
+    }
+
+    .hero-text h1 {
+        font-size: 4em !important;
+        padding: 20px;
+    }
+
+    .more-text {
+        font-size: 12px;
+    }
+
+    .companie-logo-container {
+        gap: 50px;
+    }
+
+    .card {
+        max-width: 200px;
+    }
+
+    .destinations-exemples .film {
+        font-size: 1.5em;
+    }
+
+    .destinations-text{
+        gap: 10px;
+    }
+
+    .comment-all{
+        gap: 5em;
+    }
+
+    .comment-text{
+        gap: 30px;
+    }
+
+    .etapes{
+        gap: 20px;
+    }
+
+    .decouvrir-button {
+        font-size: 12px;
+    }
 }

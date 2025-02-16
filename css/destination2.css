@@ -298,3 +298,103 @@
     gap: 30px;
     cursor: pointer;
 }
+
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .destination-container {
+        margin-top: 0;
+    }
+
+    .destination-landing {
+        height: 100vh;
+        padding: 20px;
+    }
+
+    .destination-titre h1 {
+        font-size: 50px;
+    }
+
+    .destination-titre p {
+        font-size: 14px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .filtres-container {
+        gap: 10px;
+        padding: 0;
+    }
+
+    .filtre {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filtre input[type="search"] {
+        width: 100%;
+    }
+
+    .filtre input[type="search"]::placeholder {
+        font-size: 12px;
+    }
+
+    .filtre span {
+        font-size: 12px;
+    }
+
+    .card-info {
+        flex-direction: column;
+        gap: 50px;
+        padding: 20px;
+        margin-top: -5em;
+    }
+
+    .card {
+        padding: 10px 20px;
+        min-width: 200px;
+    }
+
+    .card h1 {
+        font-size: 30px;
+    }
+
+    .card p {
+        font-size: 16px;
+    }
+
+    .titre {
+        font-size: 1.5rem !important;
+    }
+
+    .best-seller, .all-destination, .avis-section {
+        padding: 5em 2em;
+    }
+
+    .best-seller-cards {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-text {
+        font-size: 3vw;
+    }
+
+    .avis-container {
+        gap: 50px;
+    }
+
+    .avis {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .fleches {
+        justify-content: center;
+    }
+}
