@@ -61,7 +61,7 @@
     text-align: center;
     gap: 35px;
     padding: 40px;
-    height: 500px;
+    height: 520px;
     background: linear-gradient(to bottom, #0d0d0d50 60%, #f2dbaf43 100%);
     border-radius: 20px;
     box-shadow: 0 -3px 5px #f2dbaf3d;
@@ -144,28 +144,6 @@ input:focus {
 .email img, .mdp img {
     width: 15px;
     height: 15px;
-}
-
-.forgot {
-    font-size: 12px;
-    font-weight: 200;
-    color: #fffae7;
-    position: relative;
-}
-
-.forgot::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background-color: #fffae7;
-    transition: all 0.3s ease-in-out;
-}
-
-.forgot:hover::after {
-    width: 100%;
 }
 
 .next-button {

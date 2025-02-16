@@ -11,3 +11,23 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const menuItems = document.querySelectorAll('.menu-li');
+
+    menuItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            menuItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.add('hovered');
+                }
+            });
+        });
+
+        item.addEventListener('mouseout', () => {
+            menuItems.forEach(otherItem => {
+                otherItem.classList.remove('hovered');
+            });
+        });
+    });
+});

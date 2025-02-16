@@ -1,157 +1,18 @@
-.main-container {
-    display: flex;
-    min-height: 100vh;
-    height: 100%;
-}
-
-.sidebar {
-    padding: 50px 30px;
-    background-color: #44444444;
-    backdrop-filter: blur(5px);
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    width: fit-content;
-}
-
-.sidebar-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-}
-
-.sidebar-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    width: fit-content;
-}
-
 .logo-container {
     padding: 0px;
 }
 
 .logo-gauche span {
-    font-size: 2.8em;
+    font-size: 2.2em;
     color: var(--couleur-primaire);
     transition: ease-out .5s;
 }
 
 .vel {
-    font-size: 7rem;
+    font-size: 5.5rem;
     color: var(--couleur-primaire);
     transition: ease-out .5s;
 }
-
-.trait {
-    width: 90%;    
-    height: 1px;
-    border-radius: 50%;
-    background-color: var(--couleur-primaire);
-    opacity: 0.3;
-}
-
-.categories {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.categories-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 12px;
-    cursor: pointer;
-    min-width: max-content;
-}
-
-.categorie-img {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.categorie-img img {
-    width: 20px;
-    height: 20px;
-}
-
-.active-img {
-    filter: invert(1);
-}
-
-.active-2 {
-    font-weight: 600;
-    background-color: var(--couleur-secondaire);
-}
-
-.categorie-text {
-    color: var(--couleur-primaire);
-}
-
-.active-text {
-    color: var(--couleur-tertiaire);
-}
-
-.sidebar-bottom-deco {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.sidebar-bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: fit-content;
-}
-
-.photo-admin {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-}
-
-.info-admin {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: center;
-    min-width: max-content;
-}
-
-.info-admin .nom-admin {
-    font-size: 1.2em;
-    color: var(--couleur-secondaire);
-}
-
-.info-admin .mail-admin {
-    font-size: 0.8em;
-    font-weight: 200;
-    color: var(--couleur-primaire);
-}
-
-.deconnexion {
-    display: flex;
-    gap: 10px;
-}
-
-.deconnexion a {
-    font-size: 12px;
-    color: #FFFAE7;
-    cursor: pointer;
-}
-
-
 
 .content-container {
     display: flex;
