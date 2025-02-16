@@ -12,6 +12,16 @@
 	src: url('../police/Marvel.ttf');
 }
 
+@font-face {
+    font-family: 'PP Formula Bold';
+    src: url('../police/PPFormula-ExtendedBold.otf');
+}
+
+@font-face {
+    font-family: 'PP Formula';
+    src: url('../police/PPFormula-ExtendedRegular.otf');
+}
+
 body {
     font-family: 'PP Formula', sans-serif;
     background-color: var(--couleur-tertiaire);
