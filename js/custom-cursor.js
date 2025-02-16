@@ -1,4 +1,4 @@
-if (window.innerWidth > 800) {
+if (window.innerWidth > 768) {
     const cursor = document.querySelector('.default');
 
     let cursorX = 0, cursorY = 0;
@@ -91,49 +91,49 @@ if (window.innerWidth > 800) {
         `, 1);
     }
 
-    document.querySelectorAll('.github-ibra').forEach(function (link) {
+    document.querySelectorAll('.ibra').forEach(function (link) {
         link.addEventListener('mouseenter', function () {
             document.querySelector('.default').classList.add('link-hover');
-            document.querySelector('.github-ibra').style.cursor = 'none';
+            document.querySelector('.ibra').style.cursor = 'none';
             updateCursorSize("Ibrahima");
             updateCursorContent("Ibrahima");
         });
 
         link.addEventListener('mouseleave', function () {
             document.querySelector('.default').classList.remove('link-hover');
-            document.querySelector('.github-ibra').style.cursor = 'auto';
+            document.querySelector('.ibra').style.cursor = 'auto';
             updateCursorSize("");
             updateCursorContent("");
         });
     });
 
-    document.querySelectorAll('.github-paul').forEach(function (link) {
+    document.querySelectorAll('.paul').forEach(function (link) {
         link.addEventListener('mouseenter', function () {
             document.querySelector('.default').classList.add('link-hover');
-            document.querySelector('.github-paul').style.cursor = 'none';
+            document.querySelector('.paul').style.cursor = 'none';
             updateCursorSize("Paul");
             updateCursorContent("Paul");
         });
 
         link.addEventListener('mouseleave', function () {
             document.querySelector('.default').classList.remove('link-hover');
-            document.querySelector('.github-paul').style.cursor = 'auto';
+            document.querySelector('.paul').style.cursor = 'auto';
             updateCursorSize("");
             updateCursorContent("");
         });
     });
 
-    document.querySelectorAll('.github-charly').forEach(function (link) {
+    document.querySelectorAll('.charly').forEach(function (link) {
         link.addEventListener('mouseenter', function () {
             document.querySelector('.default').classList.add('link-hover');
-            document.querySelector('.github-charly').style.cursor = 'none';
+            document.querySelector('.charly').style.cursor = 'none';
             updateCursorSize("Charly");
             updateCursorContent("Charly");
         });
 
         link.addEventListener('mouseleave', function () {
             document.querySelector('.default').classList.remove('link-hover');
-            document.querySelector('.github-charly').style.cursor = 'auto';
+            document.querySelector('.charly').style.cursor = 'auto';
             updateCursorSize("");
             updateCursorContent("");
         });

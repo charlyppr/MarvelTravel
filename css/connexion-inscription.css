@@ -59,9 +59,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-content: space-evenly;
     gap: 35px;
     padding: 40px;
-    height: 520px;
+    min-height: 540px;
+    min-width: 440px;
     background: linear-gradient(to bottom, #0d0d0d50 60%, #f2dbaf43 100%);
     border-radius: 20px;
     box-shadow: 0 -3px 5px #f2dbaf3d;
@@ -76,7 +78,8 @@
 }
 
 .card-content .titre-2 {
-    font-size: 23px;
+    font-family: 'PP Formula Bold', sans-serif;
+    font-size: 20px;
     font-weight: 600;
     color: var(--couleur-secondaire);
 }
@@ -84,7 +87,6 @@
 .card-content .sous-titre-3 {
     font-size: 14px;
     font-weight: 200;
-    font-style: italic;
     color: var(--couleur-primaire);
 }
 
@@ -123,7 +125,7 @@
 }
 
 input {
-    font-family: PP Formula;
+    font-family: 'PP Formula Bold', sans-serif;
     background-color: transparent;
     border: none;
     color: #fffae7;
@@ -134,7 +136,7 @@ input {
 }
 
 input::placeholder {
-    color: #fffae7;
+    color: #fffae785;
 }
 
 input:focus {
@@ -147,7 +149,7 @@ input:focus {
 }
 
 .next-button {
-    font-family: PP Formula;
+    font-family: 'PP Formula Bold', sans-serif;
     font-size: .8em;
     font-weight: 600;
     cursor: pointer;
@@ -248,6 +250,7 @@ input:focus {
         background: none;
         box-shadow: none;
         backdrop-filter: none;
+        min-width: fit-content;
     }
 
     .card-content .titre-2 {
@@ -259,7 +262,7 @@ input:focus {
     }
 
     .form {
-        gap: 10px;
+        gap: 25px;
     }
 
     .next-button {

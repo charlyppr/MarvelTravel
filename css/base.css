@@ -19,7 +19,7 @@
 
 @font-face {
     font-family: 'PP Formula';
-    src: url('../police/PPFormula-ExtendedRegular.otf');
+    src: url('../police/PPFormula-Light.otf');
 }
 
 body {
@@ -85,6 +85,7 @@ a {
 }
 
 .titre{
+    font-family: 'PP Formula Bold', sans-serif;
     margin: 0;
     font-size: 2.5rem;
     color: var(--couleur-primaire);
@@ -92,12 +93,14 @@ a {
 }
 
 .sous-titre{
+    font-family: 'PP Formula Bold', sans-serif;
     margin: 0;
     font-size: .9rem;
     color: var(--couleur-secondaire);
 }
 
 .sous-titre-2 {
+    font-family: 'PP Formula Bold', sans-serif;
     color: var(--couleur-secondaire);
     font-size: .8rem;
     text-transform: uppercase;
@@ -116,6 +119,7 @@ input:-webkit-autofill:focus {
 /* ------------------------- NAV BAR ------------------------- */
 
 .nav {
+    font-family: 'PP Formula Bold', sans-serif;
     position: sticky;
 
     display: flex;
@@ -451,13 +455,30 @@ input:-webkit-autofill:focus {
     font-weight: 100;
 }
 
-.footer-right-top-content a, .footer-right-top-content ul, .footer-right-top-content li {
-    font-weight: 400;
-    color: var(--couleur-tertiaire);
+.reseaux {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-right-top-content ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     list-style-type: none;
     margin: 0;
     padding: 0;
     margin-bottom: 20px;
+}
+
+.footer-right-top-content a {
+    font-weight: 800;
+    color: var(--couleur-tertiaire);
+
+    transition: all 0.3s ease;
+}
+
+.footer-right-top-content a:hover {
+    color: var(--couleur-accent);
 }
 
 .footer-right-top-content ul:nth-child(1){
@@ -497,6 +518,7 @@ input:-webkit-autofill:focus {
 .footer-right-top-content img {
     width: 30px;
     height: 30px;
+    filter: saturate(0);
 }
 
 
@@ -530,6 +552,7 @@ input:-webkit-autofill:focus {
     }
 
     .menu ul {
+        font-family: 'PP Formula';
         padding: 10px;
         padding-left: 20px;
         margin: 0;

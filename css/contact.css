@@ -1,11 +1,5 @@
 body {
-    margin: 0;
-    padding: 0;
-
-    font-family: 'PP Formula', sans-serif;
-
     background-color: #F2DBAF !important;
-
 }
 
 * {
@@ -30,6 +24,9 @@ body {
     background-color: #AF1F24 !important;
 }
 
+
+/* ------------------ CONTACT ------------------ */
+
 .contact-us {
     display: flex;
     justify-content: center;
@@ -53,10 +50,11 @@ body {
 }
 
 .contact-info {
+    font-family: 'PP Formula Bold', sans-serif;
     display: flex;
     flex-direction: column;
     gap: 40px;
-    width: 400px;
+    width: fit-content;
 }
 
 .contact-title {
@@ -115,6 +113,8 @@ body {
 }
 
 
+/* ------------------ FORMULAIRE ------------------ */
+
 .right {
     display: flex;
     flex-direction: column;
@@ -135,11 +135,13 @@ body {
 }
 
 .header {
+    font-family: 'PP Formula Bold', sans-serif;
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 5px;
-    width: 333px;
+    max-width: 400px;
+    width: fit-content;
 }
 
 .form-title {
@@ -232,6 +234,9 @@ input:focus, textarea:focus {
     gap: 5px;
 }
 
+
+/* ------------------ LOCATION & FAQ ------------------ */
+
 .location-faq {
     display: flex;
     flex-direction: column;
@@ -272,6 +277,7 @@ input:focus, textarea:focus {
 }
 
 .location-titre {
+    font-family: 'PP Formula Bold', sans-serif;
     font-size: 20px;
     font-weight: 600;
 }
@@ -288,6 +294,7 @@ input:focus, textarea:focus {
 }
 
 .faq {
+    font-family: 'PP Formula Bold', sans-serif;
     display: flex;
     justify-content: space-evenly;
     gap: 30px;
@@ -327,6 +334,9 @@ input:focus, textarea:focus {
     transform: rotate(15deg) translate(160px, -110px);
 }
 
+
+/* ------------------ Media ------------------ */
+
 @media (max-width: 768px) {
     body {
         font-size: 14px;
@@ -334,7 +344,7 @@ input:focus, textarea:focus {
 
     .contact-us {
         flex-direction: column;
-        padding: 50px;
+        padding: 35px;
         margin-bottom: 0;
     }
 
