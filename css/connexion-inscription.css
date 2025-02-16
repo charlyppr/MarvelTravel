@@ -1,4 +1,10 @@
-/* --------------------- Logo agrandi ----------------------- */
+/* --------------------- TOP CARD ----------------------- */
+
+.retour {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
 
 .logo-container {
     z-index: 99;
@@ -7,7 +13,7 @@
     display: flex;
     gap: 3px;
     flex-direction: row;
-    margin: -1.5em;
+    margin: -1em;
 
     transition: ease-in-out .5s;
 }
