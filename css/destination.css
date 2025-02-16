@@ -1,310 +1,400 @@
-header{
-    background-image: url(../img/destination-header.jpg);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.destination-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url(../img/destination-header.png);
     background-attachment: fixed;
-    height: 780px;
     background-position: center;
     background-size: cover;
     top: 0px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 95%, transparent 100%);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-top: -100px;
 }
 
-#head{
-    color: #FFFAE7;
-    text-align: center;
-}
-
-#question-titre{
-    font-family: url(../police/Marvel.ttf);
-    font-size: 50px;
-    padding: 50px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-
-#filter{
-    background-color: rgba(0, 0, 0, 0.25);
-    display: inline;
-    text-align: left;
-    border: #FFFAE7 inset 1.7px;
-    padding: 20px;
-    padding-right: 0px;
-    border-radius: 40px;
-}
-
-input[type=search]::placeholder{
-    color: rgb(255,250,231,0.5);
-}
-
-.parameter{
-    border-right: #FFFAE7 solid 1px;
-    all:unset;
-    margin-right: 10px;
-    margin-left: 30px;
-}
-
-#search{
-    all:unset;
-    border-radius: 40px;
-    background-color: #FFFAE7;
-    color:#0D0D0D;
-    padding: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-left: 30px;
-    margin-right: 5px;
-}
-
-#search:hover{
-    background-color: #d3d0c5;
-    transition: 200ms;
-}
-
-section{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.container1{
-    display: grid;
-    grid-template-areas: 
-    "box1 box2"
-    "box1 box3";
-    grid-template-columns: 1fr 1fr;
-}
-
-.box{
-    color: #FFFAE7;
-    transition: all ease-in-out .3s;
-}
-
-.box:hover{
-    transform: scale(1.04);
-    transition: 200ms;
-}
-
-.duration{
-    background-color: rgba(0, 0, 0, 0.25);
-    font-family: url(../police/Marvel.ttf);
-    text-align: center;
-    padding: 2px;
-    font-size: 13px;
-    border-radius: 10px;
-    backdrop-filter: blur(30px);
-    border: #FFFAE7 inset 1px;
-    width: 150px;
-    margin: 0;
-}
-
-#prime{
-    background-image: url(../img/destinations/wakanda.jpg);
-    background-position: left;
-    background-size: cover;
-    grid-area: box1;
-    margin: 20px;
-    margin-right: 10px;
-    padding: 20px;
-    border-radius: 20px;
-    height: 500px;
-}
-
-#second{
-    background-image: url(../img/destinations/newyork.jpg);
-    background-position: left;
-    background-size: cover;
-    grid-area: box2;
-    margin: 20px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-#third{
-    background-image: url(../img/destinations/wandar.png);
-    background-position: center;
-    background-size: cover;
-    grid-area: box3;
-    margin: 20px;
-    margin-left: 10px;
-    margin-top: 10px;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-.container2{
+.destination-landing {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 80px;
+    height: 100%;
 }
 
-#fourth{
-    background-image: url(../img/destinations/hala.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 40%;
-    margin: 10px;
-    height: 250px;
-    padding: 20px;
-    border-radius: 20px;
+.destination-titre {
+    max-width: 825px;
+    text-align: center;
 }
 
-#fifth{
-    background-image: url(../img/destinations/xmenMansion.webp);
-    background-position: bottom;
-    background-size: cover;
-    width: 40%;
-    height: 250px;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-#sixth{
-    background-image: url(../img/destinations/TA_LO.webp);
-    background-position: center;
-    background-size: cover;
-    width: 40%;
-    height: 250px;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-.commentary-container{
-    margin-top: 30px;
-    display: flex;
-    overflow: hidden;
-    width: 100%; 
-    gap: 50px;
-}
-
-.commentary{
+.destination-titre h1 {
+    font-family: 'Marvel';
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 85px;
     color: #FFFAE7;
-    display: grid;
-    grid-template-areas: 
-    "pdp pseudo "
-    "comment comment";
-    grid-template-columns: 50px 100%;
 }
 
-.pseudo{
-    grid-area: pseudo;
-    text-align: left;
+.destination-titre p {
+    font-size: 16px;
+    color: #F2DBAF;
 }
 
-.commentary-text{
-    grid-area: comment;
-    text-align: justify;
-    width: 450px;
-}
-
-.FAQ{
-    width: 95%;
+.search-container {
     display: flex;
-    align-items: baseline;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 25px;
+    background-color: #fffae730;
+    backdrop-filter: blur(30px);
+    box-shadow: inset 0 3px 10px 0 #fffae773, 0 4px 30px 0 #0d0d0d73;
 }
 
-.FAQ>.titre{
-    font-size: 20px;
-    grid-area: title;
-    margin: 50px;
+.filtres-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0 20px;
+    height: 100%;
 }
 
-.FAQ>.corp{
-    text-align: justify;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width:100%;
-    color: #FFFAE7;
-    text-align: left;
-}
-
-.question{
-    border-top: #FFFAE7 solid 1px;
-    font-weight: bolder;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 0;
-}
-
-.question:hover{
+.filtre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
     cursor: pointer;
 }
 
-.reponse{
-    text-align: justify;
-    padding-bottom: 10px;
-    margin: 0;
-    display: none;
-    transition: all 0.3s ease;
+.filtre input[type="search"], .filtre input[type="search"]::placeholder {
+    all: unset;
+    color: #FFFAE7;
+    font-size: 14px;
+    height: 100%;
+    cursor: text;
 }
 
-@media screen and (max-width: 800px){
+.filtre span {
+    font-size: 14px;
+    color: #FFFAE7;
+}
 
-    #question-titre{
+.search-button {
+    font-family: 'PP Formula', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: none;
+    background-color: #FFFAE7;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+    margin-top: -5em;
+}
+
+.card {
+    background-color: #0d0d0dc6;
+    border-radius: 25px;
+    min-width: 300px;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    padding: 20px 50px;
+    box-shadow: 0 4px 30px 0 #fffae730;
+    backdrop-filter: blur(10px);
+}
+
+.card h1 {
+    font-size: 40px;
+    color: #FFFAE7;
+}
+
+.card p {
+    font-size: 20px;
+    color: #F2DBAF;
+    max-width: 250px;
+}
+
+.best {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.best-seller, .all-destination, .avis-section {
+    padding: 5em 10em;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.best-seller-cards {
+    width: 100%;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.card-best {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 3px 20px 0 #fffae753;
+    cursor: pointer;
+
+    transition: all ease-in-out .3s;
+}
+
+.card-best:hover {
+    transform: scale(1.02);
+}
+
+.card-best:nth-child(1) {
+    grid-row: 1 / 2;
+    grid-column: 1 / 5;
+}
+
+.card-best:nth-child(2) {
+    grid-row: 1 / 2;
+    grid-column: 5 / 8;
+}
+
+.card-best:nth-child(3) {
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+}
+
+.card-best:nth-child(4) {
+    grid-row: 2 / 3;
+    grid-column: 4 / 8;
+}
+
+.card-best img, .card-all img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-text{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    font-size: 1.5vw;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    color: #FFFAE7;
+    padding: 10px 30px;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+
+.discover-more-container {
+    display: flex;
+    justify-content: center;
+}
+
+.discover-more {
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+    width: fit-content;
+    color: #0d0d0d;
+    background-color: #FFFAE7;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 #fffae777;
+
+    transition: all ease-in-out .2s;
+}
+
+.discover-more:hover {
+    background-color: #F2DBAF;
+    color: #AF1F24;
+    transform: translate(0, -5px);
+    box-shadow: 0 5px 10px 0 #fffae777;
+}
+
+.discover-more:active {
+    transform: translate(0, 0);
+    box-shadow: 0 0 20px 0 #fffae777;
+}
+
+.avis-section {
+    margin-bottom: 150px;
+}
+
+.avis-container {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.avis {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nom {
+    font-size: 14px;
+    color: #FFFAE7;
+}
+
+.destination {
+    font-size: 12px;
+    color: #F2DBAF;
+}
+
+.avis-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #FFFAE7;
+    max-width: 80%;
+}
+
+.fleches {
+    display: flex;
+    gap: 30px;
+    cursor: pointer;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .destination-container {
+        margin-top: 0;
+    }
+
+    .destination-landing {
+        height: 100vh;
+        padding: 20px;
+    }
+
+    .destination-titre h1 {
+        font-size: 50px;
+    }
+
+    .destination-titre p {
+        font-size: 14px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .filtres-container {
+        gap: 10px;
+        padding: 0;
+    }
+
+    .filtre {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filtre input[type="search"] {
+        width: 100%;
+    }
+
+    .filtre input[type="search"]::placeholder {
+        font-size: 12px;
+    }
+
+    .filtre span {
+        font-size: 12px;
+    }
+
+    .card-info {
+        flex-direction: column;
+        gap: 50px;
+        padding: 20px;
+        margin-top: -5em;
+    }
+
+    .card {
+        padding: 10px 20px;
+        min-width: 200px;
+    }
+
+    .card h1 {
         font-size: 30px;
-        padding: 40px;
-        padding-top: 80px;
-        padding-bottom: 80px;
-    }
-    
-    .container1{
-        grid-template-areas: 
-        "box1"
-        "box2"
-        "box3";
-        grid-template-columns: 1fr;
     }
 
-    #prime{
-        height: 200px;
-        margin: 10px;
+    .card p {
+        font-size: 16px;
     }
 
-    #second{
-        height: 200px;
-        margin: 10px;
+    .titre {
+        font-size: 1.5rem !important;
     }
 
-    #third{
-        height: 200px;
-        margin: 10px;
+    .best-seller, .all-destination, .avis-section {
+        padding: 5em 2em;
     }
 
-    .container2{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    #fourth{
-        width: 90%;
-        height: 200px;
-    }
-
-    #fifth{
-        width: 90%;
-        height: 200px;
-    }
-
-    #sixth{
-        width: 90%;
-        height: 200px;
-    }
-    
-    .FAQ{
-        margin: 10px;
+    .best-seller-cards {
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
-    .FAQ>.titre{
-        margin: 20px;
+    .card-text {
+        font-size: 3vw;
     }
 
-    .FAQ>.corp{
-        margin: 20px;
+    .avis-container {
+        gap: 50px;
+    }
 
+    .avis {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .fleches {
+        justify-content: center;
     }
 }

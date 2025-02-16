@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/media.css">
     <link rel="stylesheet" href="../css/destination.css">
 
     <title>Marvel Travel • Destinations</title>
@@ -15,148 +14,170 @@
 <body>
     <div class="default"></div>
 
-    <header>
-        <div class="nav">
-            <a href="../accueil.html" class="logo-container">
-                <div class="logo-gauche">
-                    <span class="logo mar">MAR</span>
-                    <span class="logo tra">TRA</span>
-                </div>
-                <span class="logo vel">VEL</span>
-            </a>
-    
-            <div class="menu">
-                <ul>
-                    <a href="../accueil.html" class="menu-li"><li>Accueil</li></a>
-                    <a href="destination.html" class="active menu-li"><li>Destinations</li></a>
-                    <a href="contact.html" class="menu-li"><li>Contact</li></a>
-                    <a href="connexion.html" class="nav-button"><li>Se connecter</li></a>
-                </ul>
+    <header class="nav">
+        <a href="../accueil.html" class="logo-container">
+            <div class="logo-gauche">
+                <span class="logo mar">MAR</span>
+                <span class="logo tra">TRA</span>
             </div>
-        </div>
+            <span class="logo vel">VEL</span>
+        </a>
 
-        <div id="head">
-            <div id="question-titre">
-                Vers quels destinations vous envolerez-vous ?
-            </div>
-            <div id="filter">
-                <input type="search" placeholder="search a destination..." class="parameter" />
-                <input type="button" id="search" value="search" />
-            </div>
+        <div class="menu">
+            <ul>
+                <a href="../accueil.html" class="menu-li"><li>Accueil</li></a>
+                <a href="destination.html" class="active menu-li"><li>Destinations</li></a>
+                <a href="contact.html" class="menu-li"><li>Contact</li></a>
+                <a href="connexion.html" class="nav-button"><li>Se connecter</li></a>
+            </ul>
         </div>
     </header>
-    <main>
-        <section>
-            <div class="titre">Tops destinations</div>
-            <div class="container1">
-                <div class="box" id="prime">
-                    <p class="duration">5 days, 4 nights</p>
-                </div>
-                <div class="box" id="second">
-                    <p class="duration">7 days, 6 nights</p>
-                </div>
-                <div class="box" id="third">
-                    <p class="duration">31 days, 30nights</p>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="titre">Tops commentaires</div>
 
-            <div class="commentary-container">
-                <div class="commentary">
-                    <img alt="pp" src="../img/svg/personWhite.png" class="pdp">
-                    <p class="pseudo">spidey</p>
-                    <p class="commentary-text">J’ai réservé un séjour à Asgard, et quelle aventure ! Les paysages sont
-                        majestueux, et j’ai même pu assister à un entraînement de guerriers avec Lady Sif. Par contre,
-                        attention aux éclairs de Thor, ça secoue !</p>
-                </div>
-                <div class="commentary">
-                    <img alt="pp" src="../img/svg/personWhite.png" class="pdp">
-                    <p class="pseudo">nick fury</p>
-                    <p class="commentary-text">Le Wakanda est une destination de rêve ! La technologie avancée combinée
-                        aux traditions africaines en fait un lieu unique. Le marché de Birnin Zana était incroyable, et
-                        j’ai même goûté un plat au vibranium</p>
-                </div>
-                <div class="commentary">
-                    <img alt="pp" src="../img/svg/personWhite.png" class="pdp">
-                    <p class="pseudo">tony stark</p>
-                    <p class="commentary-text">Voir la tour des Avengers en vrai, c’est juste dingue ! J’ai fait le
-                        circuit guidé 'Batailles des Avengers', et on sent vraiment l’histoire de la ville. Petit
-                        conseil : évitez Times Square si Hulk est de mauvaise humeur</p>
-                </div>
-                <div class="commentary">
-                    <img alt="pp" src="../img/svg/personWhite.png" class="pdp">
-                    <p class="pseudo">happy hogan</p>
-                    <p class="commentary-text">J’ai tenté une escapade avec le portail du Sanctum Sanctorum… et je me
-                        suis retrouvé dans une dimension étrange où tout était inversé. Heureusement, Wong m’a ramené
-                        sain et sauf. Sensations garanties !</p>
-                </div>
-                <div class="commentary">
-                    <img alt="pp" src="../img/svg/personWhite.png" class="pdp">
-                    <p class="pseudo">tante may</p>
-                    <p class="commentary-text">J’ai toujours voulu explorer l’espace, et Knowhere ne m’a pas déçu. Bars
-                        intergalactiques, créatures étranges et ambiance cosmique… J’ai même croisé Rocket et Groot dans
-                        une taverne !</p>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="titre">Autres destinations</div>
-            <div class="container2">
-                <div class="box" id="fourth">
-                    <p class="duration">35 days, 34 nights</p>
-                </div>
-                <div class="box" id="fifth">
-                    <p class="duration">3 days, 2 nights</p>
-                </div>
-                <div class="box" id="sixth">
-                    <p class="duration">15 days, 14 nights</p>
-                </div>
-            </div>
-        </section>
-        <section class="FAQ">
-            <div class="titre">Questions fréquentes</div>
-            <div class="corp">
-                <p class="question">Comment se rendre sur une autre planète ?</p>
-                <p class="reponse">Nos voyages interstellaires sont opérés par les meilleurs pilotes de la galaxie.
-                    Selon votre destination, vous voyagerez à bord du Milano (piloté par les Gardiens de la Galaxie),
-                    d’un vaisseau Kree ou même d’un transporteur Asgardien. Grâce à nos propulseurs à saut spatial, le
-                    voyage est quasi instantané !</p>
-                <p class="question">Est-ce dangereux de visiter Knowhere ?</p>
-                <p class="reponse">Knowhere est un avant-poste spatial unique, mais il faut être prudent. Les Ravageurs
-                    et autres contrebandiers sont partout, alors évitez de trop attirer l’attention. Rassurez-vous, nous
-                    avons des accords avec Cosmo, le chien télépathe, qui veille à votre sécurité.</p>
-                <p class="question">Peut-on séjourner à Asgard ?</p>
-                <p class="reponse"> Oui ! Asgard vous accueille dans ses palais dorés, et vous pourrez assister aux
-                    banquets royaux en compagnie des guerriers asgardiens. Nos guides vous apprendront les bases du
-                    combat à l’épée, et si vous avez de la chance, Thor pourrait même faire une apparition !</p>
-                <p class="question">Le Wakanda est-il accessible aux visiteurs étrangers ?</p>
-                <p class="reponse"> Grâce à un accord spécial avec la famille royale, les visiteurs sont autorisés à
-                    découvrir certaines zones du Wakanda, comme la ville de Birnin Zana et la jungle environnante. Vous
-                    aurez même la chance de voir de près certaines technologies wakandaises, sous surveillance du Dora
-                    Milaje bien sûr !</p>
-                <p class="question">Peut-on visiter la Tour des Avengers ?</p>
-                <p class="reponse"> Oui, mais l’accès est limité. Vous pourrez explorer les zones ouvertes au public,
-                    voir l’armurerie de Tony Stark, et même tester une simulation de combat contre Ultron. Si un Avenger
-                    est disponible, une rencontre surprise est possible !</p>
-                <p class="question">Que se passe-t-il si un voyageur est perdu dans une autre dimension ?</p>
-                <p class="reponse"> Pas de panique ! Chaque voyageur porte un bracelet mystique lié au Sanctum
-                    Sanctorum. En cas de problème, Wong ou un autre maître des arts mystiques ouvrira un portail de
-                    secours pour vous ramener à bon port.</p>
-                <p class="question"> Y a-t-il des restrictions pour voyager ?</p>
-                <p class="reponse"> Certains mondes et dimensions sont réservés aux voyageurs expérimentés. Par exemple,
-                    la Dimension Noire et la Zone Négative ne sont accessibles qu’avec un guide spécialisé. De plus, il
-                    est interdit d’emporter des artefacts ou de modifier l’histoire d’une dimension visitée (sinon TVA
-                    et Loki risquent de ne pas apprécier…).</p>
-                <p class="question"> Peut-on visiter Sakaar et participer à l’arène du Grand Maître ?</p>
-                <p class="reponse"> Oui, Sakaar est ouvert aux visiteurs ! Vous pourrez admirer l’arène de combat et,
-                    pour les plus courageux, participer à des combats amicaux sous la supervision du Grand Maître. Pas
-                    d’inquiétude, des régénérateurs seront disponibles en cas de pépin !</p>
+    <section class="destination-container">
+
+        <div class="destination-landing">
+            <div class="destination-titre">
+                <h1>Vers quels destinations vous envolerez-vous</h1>
+                <p>Asgard, Knowhere, New York, Wakanda, plus d’une vingtaine de destinations ...</p>
             </div>
 
-        </section>
-    </main>
+            <form class="search-container">
+                <div class="filtres-container">
+                    <div class="filtre">
+                        <img src="../img/svg/globe.svg" alt="globe">
+                        <input type="search" name="destination" placeholder="Destination">
+                    </div>
+
+                    <img src="../img/svg/line-haut.svg" alt="separateur">
+
+                    <div class="filtre">
+                        <img src="../img/svg/calendar.svg" alt="calendrier">
+                        <span>Date</span>
+                    </div>
+
+                    <img src="../img/svg/line-haut.svg" alt="separateur">
+
+
+                    <div class="filtre">
+                        <img src="../img/svg/budget.svg" alt="budget euro">
+                        <span>Budget</span>
+                    </div>
+
+                    <img src="../img/svg/line-haut.svg" alt="separateur">
+
+
+                    <div class="filtre">
+                        <img src="../img/svg/double-person.svg" alt="deux personne">
+                        <span>Voyageurs</span>
+                    </div>
+                </div>
+
+                <button class="search-button" type="submit">Rechercher</button>
+            </form>
+        </div>
+
+    </section>
+
+    <section class="card-info">
+        <div class="card">
+            <h1>100+</h1>
+            <p>Clients</p>
+        </div>
+
+        <div class="card">
+            <div class="best">
+                <img src="../img/svg/ble.svg" alt="blé">
+                <h1>N°1</h1>
+                <img src="../img/svg/ble.svg" alt="blé" class="flip">
+            </div>
+            <p>Agence de voyage multiversel</p>
+        </div>
+
+        <div class="card">
+            <h1>20+</h1>
+            <p>Destinations</p>
+        </div>
+    </section>
+
+    <section class="best-seller">
+
+        <div class="top-section">
+            <p class="sous-titre-2">Nos best-seller</p>
+            <h1 class="titre">Les destinations les plus vendu</h1>
+        </div>
+
+        <div class="best-seller-cards">
+            <div class="card-best">
+                <img src="../img/destinations/newyork.jpg" alt="new york">
+                <div class="card-text">
+                    <p>New York</p>
+                    <p>399,95€</p>
+                </div>
+            </div>
+
+            <div class="card-best">
+                <img src="../img/destinations/wakanda.jpg" alt="wakanda">
+                <div class="card-text">
+                    <p>Wakanda</p>
+                    <p>5099,95€</p>
+                </div>
+            </div>
+
+            <div class="card-best">
+                <img src="../img/destinations/hala.jpg" alt="hala">
+                <div class="card-text">
+                    <p>Hala</p>
+                    <p>1199,95€</p>
+                </div>
+                
+            </div>
+
+            <div class="card-best">
+                <img src="../img/destinations/wandar.png" alt="wandar">
+                <div class="card-text">
+                    <p>Wandar</p>
+                    <p>999,95€</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="discover-more-container">
+            <a href="" class="discover-more">Voir toutes nos destinations</a>
+        </div>
+
+    </section>
+
+    <section class="avis-section">
+        <div class="top-section">
+            <p class="sous-titre-2">Ils ont adorés</p>
+        </div>
+
+        <div class="avis-container">
+            <div class="avis">
+                <div class="user-info">
+                    <span class="nom">Sophie Lefebvre</span>
+                    <span class="destination">New York</span>
+                </div>
+
+                <div class="avis-text-container">
+                    <p>Voir la tour des Avengers en vrai, c’est juste dingue ! J’ai fait le circuit guidé 'Batailles des Avengers', et on sent vraiment l’histoire de la ville. Petit conseil : évitez Times Square si Hulk est de mauvaise humeur</p>
+                    <div class="stars">
+                        <img src="../img/svg/star.svg" alt="étoile">
+                        <img src="../img/svg/star.svg" alt="étoile">
+                        <img src="../img/svg/star.svg" alt="étoile">
+                        <img src="../img/svg/star.svg" alt="étoile">
+                        <img src="../img/svg/star.svg" alt="étoile">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fleches">
+                <img src="../img/svg/fleche-droite.svg" alt="fleche-gauche" class="flip" style="opacity: 0.5;">
+                <img src="../img/svg/fleche-droite.svg" alt="fleche-droite">
+            </div>
+        </div>
+    </section>
+
 
     <footer>
         <div class="footer-content">
@@ -217,13 +238,9 @@
 
     </footer>
 
-
-    <script src="../js/custom-cursor.js"></script>
     <script src="../js/nav.js"></script>
-    <script src="../js/defilement-commentary.js"></script>
-    <script src="../js/faq-destination.js"></script>
+    <script src="../js/custom-cursor.js"></script>
 
 </body>
-
 
 </html>

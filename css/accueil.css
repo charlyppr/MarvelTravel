@@ -349,6 +349,14 @@
         gap: 20px;
     }
 
+    .etapes .chiffre {
+        font-size: 1.5rem;
+    }
+
+    .etapes span {
+        font-size: 0.8rem;
+    }
+
     .decouvrir-button {
         font-size: 12px;
     }

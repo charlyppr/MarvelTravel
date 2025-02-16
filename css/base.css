@@ -492,6 +492,14 @@ input:-webkit-autofill:focus {
 
 
 @media (max-width: 768px) {
+    .titre {
+        font-size: 1.5rem;
+    }
+
+    .sous-titre {
+        font-size: .7rem;
+    }
+
     .nav {
         padding: 0;
         position: fixed;
@@ -501,20 +509,38 @@ input:-webkit-autofill:focus {
         bottom: 0;
         width: 100%;
         border-radius: 20px;
+        background-color: #fffae766;
     }
 
     .menu {
         margin: 0;
+        width: 100%;
     }
 
     .menu ul {
         padding: 10px;
         margin: 0;
         gap: 20px;
+        justify-content: space-evenly;
     }
 
-    .menu li, .nav-button {
+    .menu ul li {
         font-size: 11px;
+    }
+
+    .menu-li{
+        color: #0D0D0D;
+    }
+
+    .active::after {
+        background-color: #0D0D0D;
+    }
+
+    .nav-button {
+        padding: 10px 5px;
+        border-radius: 15px;
+        background-color: #0D0D0D;
+        color: #FFFAE7;
     }
 
     .logo-container {
@@ -524,15 +550,15 @@ input:-webkit-autofill:focus {
     .footer-content {
         padding: 50px 30px;
         gap: 20px;
-        bottom: 70px;
     }
 
     .footer-top, .footer-bottom {
         flex-direction: column;
+        gap: 40px;
     }
 
-    .footer-logo {
-        margin-bottom: 4em;
+    .footer-logo img {
+        width: 150px;
     }
 
     .footer-right-top {
