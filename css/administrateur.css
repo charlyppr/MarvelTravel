@@ -16,13 +16,16 @@
 
 /* ------------------- PARTIE DROITE ------------------- */
 
+.content-container-div {
+    width: 100%;
+    padding: 40px 80px;
+}
+
 .content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 70px;
-    width: 100%;
-    padding: 40px 80px;
 }
 
 .header {
@@ -108,7 +111,7 @@ td {
     display: flex;
     width: 100%;
     align-items: center;
-    padding: 15px 0;
+    padding: 15px 5px;
     border-bottom: 1px solid #fffae72c
 }
 
@@ -185,4 +188,84 @@ tbody::-webkit-scrollbar {
 
 .unblock:active, .block:active, .vip:active, .novip:active {
     transform: scale(0.95);
+}
+
+
+/* ------------------- Media ------------------- */
+
+@media screen and (max-width: 768px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .trait {
+        display: none;
+    }
+
+    .content-container-div {
+        padding: 0px;
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 0;
+        border-radius: 0px;
+    }
+
+    .sidebar-content {
+        flex-direction: row-reverse;
+        padding: 20px;
+    }
+
+    .content-container {
+        padding: 30px;
+        margin-top: 50px;
+    }
+
+    .header {
+        gap: 20px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    #search {
+        width: 100%;
+    }
+
+    .titre-content span:nth-child(1) {
+        font-size: 1.5em;
+    }
+
+    .titre-content span:nth-child(2) {
+        font-size: .8em;
+    }
+
+    th, .nom-head {
+        font-size: .7em;
+    }
+
+    .nom {
+        font-size: 12px;
+    }
+
+    .unblock, .block {
+        font-size: 11px;
+        width: 90px;
+    }
+
+    .vip, .novip {
+        font-size: 11px;
+        width: 40px;
+    }
+
+    .date {
+        font-size: 12px;
+    }
 }

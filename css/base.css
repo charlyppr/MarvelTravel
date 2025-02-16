@@ -508,19 +508,22 @@ input:-webkit-autofill:focus {
         top: auto;
         bottom: 0;
         width: 100%;
-        border-radius: 20px;
-        background-color: #fffae766;
+        backdrop-filter: none;
     }
 
     .menu {
-        margin: 0;
+        margin: 10px;
         width: 100%;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        background-color: #fffae766;
     }
 
     .menu ul {
         padding: 10px;
+        padding-left: 20px;
         margin: 0;
-        gap: 20px;
+        gap: 15px;
         justify-content: space-evenly;
     }
 
@@ -537,7 +540,7 @@ input:-webkit-autofill:focus {
     }
 
     .nav-button {
-        padding: 10px 5px;
+        padding: 10px;
         border-radius: 15px;
         background-color: #0D0D0D;
         color: #FFFAE7;
@@ -550,6 +553,7 @@ input:-webkit-autofill:focus {
     .footer-content {
         padding: 50px 30px;
         gap: 20px;
+        font-size: 12px;
     }
 
     .footer-top, .footer-bottom {
