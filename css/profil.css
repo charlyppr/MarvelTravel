@@ -1,3 +1,5 @@
+/* ------------------ Logo plus petit ------------------ */
+
 .logo-container {
     padding: 0px;
 }
@@ -15,7 +17,7 @@
 }
 
 
-
+/* ------------------- PARTIE DROITE ------------------- */
 
 .content-container-div {
     width: 100%;
@@ -73,7 +75,7 @@
 }
 
 
-
+/* ------------------- CARDS ------------------- */
 
 .cards {
     display: flex;
