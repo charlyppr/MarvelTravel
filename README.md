@@ -68,6 +68,11 @@ MarvelTravel/
 - **Contact** : Page de contact avec un formulaire pour envoyer des messages à l'agence.
 - **Destinations** : Page listant les différentes destinations disponibles.
 
+> [!IMPORTANT] 
+> Les pages **Administrateur** et **Profil** se trouvent dans le footer pour l'instant.
+
+
+
 ## Langages utilisées
 
 - **HTML** : Structure des pages web.
