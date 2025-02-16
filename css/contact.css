@@ -109,7 +109,6 @@ body {
     font-size: 12px;
     font-weight: 200;
     color: #444444;
-    text-align: justify;
     margin: 10px;
 }
 
@@ -410,8 +409,4 @@ input:focus, textarea:focus {
     .question {
         font-size: 14px;
     }
-}
-
-.contact-us, .location-faq, .faq, .location{
-    margin: 10px; 
 }

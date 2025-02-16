@@ -170,6 +170,13 @@
     overflow: hidden;
     border-radius: 25px;
     box-shadow: 0 3px 20px 0 #fffae753;
+    cursor: pointer;
+
+    transition: all ease-in-out .3s;
+}
+
+.card-best:hover {
+    transform: scale(1.02);
 }
 
 .card-best:nth-child(1) {
