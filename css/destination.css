@@ -60,14 +60,17 @@
 .filtres-container {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     gap: 30px;
     padding: 0 20px;
     height: 100%;
 }
 
 .filtre {
+    font-family: 'PP Formula Bold', sans-serif;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     height: 100%;
     cursor: pointer;
@@ -75,6 +78,7 @@
 
 .filtre input[type="search"], .filtre input[type="search"]::placeholder {
     all: unset;
+    text-align: center;
     color: #FFFAE7;
     font-size: 14px;
     height: 100%;
@@ -94,6 +98,7 @@
     padding: 15px 25px;
     border-radius: 15px;
     border: none;
+    color: #0d0d0d;
     background-color: #FFFAE7;
     font-weight: 600;
     cursor: pointer;

@@ -322,7 +322,11 @@
     }
 
     .companie-logo-container {
-        gap: 50px;
+        gap: 70px;
+    }
+
+    .companie-logo {
+        height: 70px;
     }
 
     .card {
