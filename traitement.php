@@ -1,9 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupération des données du formulaire
-    $nom = htmlspecialchars($_POST['nom']);
-    $email = htmlspecialchars($_POST['email']);
-    $message = htmlspecialchars($_POST['message']);
+    // Vérification de l'existence des clés dans $_POST
+    $nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '';
+    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+    $message = isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '';
 
     // Affichage des informations soumises
     echo "<h2>Informations soumises :</h2>";
