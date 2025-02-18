@@ -76,7 +76,9 @@
     cursor: pointer;
 }
 
-.filtre input[type="search"], .filtre input[type="search"]::placeholder {
+.filtre input[type="search"], .filtre input[type="search"]::placeholder,
+.filtre input[type="date"], .filtre input[type="date"]::placeholder,
+.filtre input[type="number"], .filtre input[type="number"]::placeholder {
     all: unset;
     text-align: center;
     color: #FFFAE7;
@@ -342,11 +344,15 @@
         gap: 10px;
     }
 
-    .filtre input[type="search"] {
+    .filtre input[type="search"], 
+    .filtre input[type="date"], 
+    .filtre input[type="number"] {
         width: 100%;
     }
 
-    .filtre input[type="search"]::placeholder {
+    .filtre input[type="search"]::placeholder, 
+    .filtre input[type="date"]::placeholder, 
+    .filtre input[type="number"]::placeholder {
         font-size: 12px;
     }
 
