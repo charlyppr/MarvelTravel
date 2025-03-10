@@ -19,7 +19,7 @@
         <div class="sidebar">
             <div class="sidebar-content">
                 <div class="sidebar-top">
-                    <a href="../index.html" class="logo-container">
+                    <a href="../index.php" class="logo-container">
                         <div class="logo-gauche">
                             <span class="logo mar">MAR</span>
                             <span class="logo tra">TRA</span>
@@ -77,7 +77,7 @@
                                 d="M5.10112 8.73108H10.7191C11.1829 8.73108 11.5176 8.44474 11.5176 8.01389C11.5176 7.57748 11.1947 7.28558 10.7191 7.28558H5.10112C4.62855 7.28558 4.30273 7.57748 4.30273 8.01389C4.30273 8.44474 4.63735 8.73108 5.10112 8.73108Z"
                                 fill="#FFFAE7" />
                         </svg>
-                        <a href="../index.html">Se déconnectez</a>
+                        <a href="../index.php">Se déconnectez</a>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
                 <div class="content">
                     <div class="top-text">
                         <span class="titre">Bonjour Caryl,</span>
-                        <a href="../index.html" class="redir-text">
+                        <a href="../index.php" class="redir-text">
                             <span>Retour à l'accueil</span>
                             <img src="../img/svg/fleche-redir.svg" alt="fleche">
                         </a>
@@ -189,7 +189,7 @@
 
                                 <span class="trait"></span>
 
-                                <a href="destination.html" class="decouvrir-button">Découvrir les mondes !</a>
+                                <a href="destination.php" class="decouvrir-button">Découvrir les mondes !</a>
                             </div>
 
 

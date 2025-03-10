@@ -16,7 +16,7 @@
     <div class="default"></div>
 
     <header class="nav">
-        <a href="../index.html" class="logo-container">
+        <a href="../index.php" class="logo-container">
             <div class="logo-gauche">
                 <span class="logo mar">MAR</span>
                 <span class="logo tra">TRA</span>
@@ -26,16 +26,16 @@
 
         <div class="menu">
             <ul>
-                <a href="../index.html" class="menu-li">
+                <a href="../index.php" class="menu-li">
                     <li>Accueil</li>
                 </a>
-                <a href="../html/destination.html" class="menu-li">
+                <a href="destination.php" class="menu-li">
                     <li>Destinations</li>
                 </a>
-                <a href="../html/contact.html" class="active menu-li">
+                <a href="contact.php" class="active menu-li">
                     <li>Contact</li>
                 </a>
-                <a href="../html/connexion.html" class="nav-button">
+                <a href="connexion.php" class="nav-button">
                     <li>Se connecter</li>
                 </a>
             </ul>
@@ -166,9 +166,9 @@
                     <div class="footer-right-top-content">
                         <span>Notre agence</span>
                         <ul>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="administrateur.html">Administrateur</a></li>
-                            <li><a href="profil.html">Profil</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <li><a href="administrateur.php">Administrateur</a></li>
+                            <li><a href="profil.php">Profil</a></li>
                         </ul>
                     </div>
                     <div class="footer-right-top-content">

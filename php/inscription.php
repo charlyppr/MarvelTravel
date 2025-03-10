@@ -1,11 +1,47 @@
 <?php
-    $login_lastname = $_POST['login_lastname'];
-    $login_pass = $_POST['login_pass'];
-    $login_mail = $_POST['login_mail'];
-    $login_firstname = $_POST['login_firstname'];
-    $file = fopen("../csv/data.csv", "a", ",");
-    fputcsv($file, array($login_name, $login_pass, $login_mail));
-    fclose($file);
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $login_firstname = trim($_POST['login_firstname'] ?? '');
+    $login_lastname = trim($_POST['login_lastname'] ?? '');
+    $login_mail = trim($_POST['login_mail'] ?? '');
+    $login_pass = trim($_POST['login_pass'] ?? '');
+
+    $csv_file = "../csv/data.csv";
+    $inscri = 0;
+    
+    if ($login_firstname && $login_lastname && $login_mail && $login_pass) {
+        if (!filter_var($login_mail, FILTER_VALIDATE_EMAIL)) {
+            $inscri = 3; // Email invalide
+        } else {
+            if (file_exists($csv_file)) {
+                $file = fopen($csv_file, "r");
+                while (($line = fgetcsv($file, 1000, ",")) !== FALSE) {
+                    if ($line[2] == $login_mail) {
+                        $inscri = 2; // Email déjà utilisé
+                        break;
+                    }
+                }
+                fclose($file);
+            }
+            
+            if ($inscri == 0) {
+                $file = fopen($csv_file, "a", ",");
+                if (filesize($csv_file) > 0) {
+                    fwrite($file, PHP_EOL); // Ajoute un saut de ligne pour éviter que les données s’écrivent sur la même ligne
+                }
+                fputcsv($file, [$login_firstname, $login_lastname, $login_mail, password_hash($login_pass, PASSWORD_BCRYPT)]);
+                fclose($file);
+                $inscri = 1; // Inscription réussie
+            }
+        }
+    }
+
+    // Stocker le résultat dans une session et rediriger
+    $_SESSION['inscri'] = $inscri;
+    header("Location: inscription.php"); // Recharge la page sans réafficher le formulaire
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,7 +68,7 @@
             <a href="javascript:history.back()" class="retour"><img src="../img/svg/fleche-gauche.svg"
                     alt="fleche retour"></a>
 
-            <a href="../index.html" class="logo-container">
+            <a href="../index.php" class="logo-container">
                 <div class="logo-gauche">
                     <span class="logo mar">MAR</span>
                     <span class="logo tra">TRA</span>
@@ -63,9 +99,23 @@
 
                 <button class="next-button" type="submit">Suivant<img src="../img/svg/fleche-droite.svg"
                         alt="fleche"></button>
-                <div class="other_text">
+                        <div class="other_text">
+                            <?php
+                                if (isset($_SESSION['inscri'])) {
+                                    if ($_SESSION['inscri'] == 2) {
+                                        echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
+                                    } elseif ($_SESSION['inscri'] == 3) {
+                                        echo "<p class='sous-titre-3'>Adresse email invalide</p>";
+                                    } elseif ($_SESSION['inscri'] == 1) {
+                                        echo "<p class='sous-titre-3'>Inscription réussie</p>";
+                                    }
+                                    unset($_SESSION['inscri']); // Supprime la variable après affichage
+                                }
+                            ?>
+                        </div>
+
                 <div class="other-text">
-                    <a href="connexion.html">Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
+                    <a href="connexion.php">Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
                 </div>
             </form>
 

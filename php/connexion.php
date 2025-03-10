@@ -1,51 +1,69 @@
 <?php
-    $connexion = 1;
-    if(empty($_POST['login_mail']) == False && empty($_POST['login_pass']) == False){
-        $login_mail = $_POST['login_mail'];
-        $login_pass = $_POST['login_pass'];
-        $file = fopen("../csv/data.csv", "r", ",");
-        while(($line = fgetcsv($file)) !== FALSE){
-            if($line[0] == $login_mail && $line[1] == $login_pass){
-                $connexion = 0;
-                break;
+session_start();
+
+$message = ""; // Initialisation du message
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $login_mail = trim($_POST['login_mail'] ?? '');
+    $login_pass = trim($_POST['login_pass'] ?? '');
+
+    $csv_file = "../csv/data.csv";
+    $connexion = 1; // 1 = erreur par défaut
+
+    if (!empty($login_mail) && !empty($login_pass)) {
+        if (($file = fopen($csv_file, "r")) !== FALSE) {
+            while (($line = fgetcsv($file)) !== FALSE) {
+                if ($line[2] == $login_mail && password_verify($login_pass, $line[3])) {
+                    $connexion = 0; // Connexion réussie
+                    break;
+                }
             }
+            fclose($file);
         }
-        fclose($file);
     }
+
+    $_SESSION['connexion'] = $connexion;
+    header("Location: connexion.php"); // Redirection pour éviter le re-submit du formulaire
+    exit();
+}
+
+// Affichage du message si une connexion a été tentée
+if (isset($_SESSION['connexion'])) {
+    if ($_SESSION['connexion'] == 0) {
+        $message = "<p class='success'>Connexion réussie</p>";
+    } elseif ($_SESSION['connexion'] == 1) {
+        $message = "<p class='error'>Identifiant ou mot de passe incorrect</p>";
+    }
+    unset($_SESSION['connexion']); // Suppression de la variable après affichage
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Connexion</title>
-
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
-
 </head>
 
 <body>
     <div class="default"></div>
-
     <div class="card">
         <div class="card-content">
             <img src="../img/svg/spiderman-pin.svg" alt="spiderman pin" class="spiderman-pin">
             <img src="../img/svg/hulk-pin.svg" alt="hulk-pin" class="hulk-pin">
+            <a href="javascript:history.back()" class="retour"><img src="../img/svg/fleche-gauche.svg" alt="fleche retour"></a>
 
-            <a href="javascript:history.back()" class="retour"><img src="../img/svg/fleche-gauche.svg"
-                    alt="fleche retour"></a>
-
-            <a href="../index.html" class="logo-container">
+            <a href="index.php" class="logo-container">
                 <div class="logo-gauche">
                     <span class="logo mar">MAR</span>
                     <span class="logo tra">TRA</span>
                 </div>
                 <span class="logo vel">VEL</span>
             </a>
-
 
             <div class="card-header">
                 <span class="titre-2">Se connecter avec l'email</span>
@@ -65,26 +83,19 @@
 
                 <a href="#" class="redir-text">Mot de passe oublié dans la galaxie ?</a>
 
-                <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg"
-                        alt="etoile"></button>
+                <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg" alt="etoile"></button>
 
                 <div class="other-text">
-                <?php
-                        if($connexion == 0){
-                            echo "<p>Vous êtes connecté</p>";
-                        }
-                ?>
+                    <?= $message ?> <!-- Affichage du message -->
                 </div>
+
                 <div class="other-text">
-                    <a href="inscription.html">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
+                    <a href="inscription.php">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
                 </div>
             </form>
-
         </div>
     </div>
 
     <script src="../js/custom-cursor.js"></script>
-
 </body>
-
 </html>

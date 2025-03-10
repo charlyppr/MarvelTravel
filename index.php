@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE php>
+<php lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,7 @@
     </div>
 
     <header class="nav">
-        <a href="index.html" class="logo-container">
+        <a href="index.php" class="logo-container">
             <div class="logo-gauche">
                 <span class="logo mar">MAR</span>
                 <span class="logo tra">TRA</span>
@@ -37,10 +37,10 @@
 
         <div class="menu">
             <ul>
-                <a href="index.html" class="active menu-li"><li>Accueil</li></a>
-                <a href="html/destination.html" class="menu-li"><li>Destinations</li></a>
-                <a href="html/contact.html" class="menu-li"><li>Contact</li></a>
-                <a href="html/connexion.html" class="nav-button"><li>Se connecter</li></a>
+                <a href="index.php" class="active menu-li"><li>Accueil</li></a>
+                <a href="php/destination.php" class="menu-li"><li>Destinations</li></a>
+                <a href="php/contact.php" class="menu-li"><li>Contact</li></a>
+                <a href="php/connexion.php" class="nav-button"><li>Se connecter</li></a>
             </ul>
         </div>
     </header>
@@ -177,7 +177,7 @@
                 </div>
             </div>
 
-            <a href="html/destination.html" class="decouvrir-button">Découvrir les mondes !</a>
+            <a href="php/destination.php" class="decouvrir-button">Découvrir les mondes !</a>
         </div>
 
     </section>
@@ -195,9 +195,9 @@
                     <div class="footer-right-top-content">
                         <span>Notre agence</span>
                         <ul>
-                            <li><a href="html/contact.html">Contact</a></li>
-                            <li><a href="html/administrateur.html">Administrateur</a></li>
-                            <li><a href="html/profil.html">Profil</a></li>
+                            <li><a href="php/contact.php">Contact</a></li>
+                            <li><a href="php/administrateur.php">Administrateur</a></li>
+                            <li><a href="php/profil.php">Profil</a></li>
                         </ul>
                     </div>
                     <div class="footer-right-top-content">
@@ -265,4 +265,4 @@
 
 </body>
 
-</html>
+</php>
