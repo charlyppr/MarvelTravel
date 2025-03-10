@@ -1,3 +1,12 @@
+<?php
+    $login_lastname = $_POST['login_lastname'];
+    $login_pass = $_POST['login_pass'];
+    $login_mail = $_POST['login_mail'];
+    $login_firstname = $_POST['login_firstname'];
+    $file = fopen("../csv/data.csv", "a", ",");
+    fputcsv($file, array($login_name, $login_pass, $login_mail));
+    fclose($file);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -36,25 +45,25 @@
                 <span class="sous-titre-3">Première visite ? Obtenez votre Passeport Multiversel !</span>
             </div>
 
-            <form class="form" action="" method="post">
+            <form class="form" action="inscription.php" method="post">
                 <div class="form-row">
-                    <input type="text" name="prenom" id="prenom" placeholder="Prénom" required autocomplete="name">
-                    <input type="text" name="nom" id="nom" placeholder="Nom" required autocomplete="family-name">
+                    <input type="text" name="login_firstname" id="prenom" placeholder="Prénom" required autocomplete="name">
+                    <input type="text" name="login_lastname" id="nom" placeholder="Nom" required autocomplete="family-name">
                 </div>
 
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
-                    <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email">
+                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email">
                 </div>
 
                 <div class="mdp">
                     <img src="../img/svg/lock.svg" alt="Lock Icon">
-                    <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
+                    <input type="password" id="mdp" name="login_pass" placeholder="Mot de passe" required>
                 </div>
 
                 <button class="next-button" type="submit">Suivant<img src="../img/svg/fleche-droite.svg"
                         alt="fleche"></button>
-
+                <div class="other_text">
                 <div class="other-text">
                     <a href="connexion.html">Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
                 </div>

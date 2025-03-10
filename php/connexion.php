@@ -1,3 +1,18 @@
+<?php
+    $connexion = 1;
+    if(empty($_POST['login_mail']) == False && empty($_POST['login_pass']) == False){
+        $login_mail = $_POST['login_mail'];
+        $login_pass = $_POST['login_pass'];
+        $file = fopen("../csv/data.csv", "r", ",");
+        while(($line = fgetcsv($file)) !== FALSE){
+            if($line[0] == $login_mail && $line[1] == $login_pass){
+                $connexion = 0;
+                break;
+            }
+        }
+        fclose($file);
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -37,15 +52,15 @@
                 <span class="sous-titre-3">Déjà explorateur ? Voyage avec nous dans le Multivers</span>
             </div>
 
-            <form class="form" action="../traitement.php" method="post">
+            <form class="form" action="connexion.php" method="post">
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
-                    <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email">
+                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email">
                 </div>
 
                 <div class="mdp">
                     <img src="../img/svg/lock.svg" alt="Lock Icon">
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="password" id="password" name="login_pass" placeholder="Mot de passe" required>
                 </div>
 
                 <a href="#" class="redir-text">Mot de passe oublié dans la galaxie ?</a>
@@ -53,6 +68,13 @@
                 <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg"
                         alt="etoile"></button>
 
+                <div class="other-text">
+                <?php
+                        if($connexion == 0){
+                            echo "<p>Vous êtes connecté</p>";
+                        }
+                ?>
+                </div>
                 <div class="other-text">
                     <a href="inscription.html">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
                 </div>
