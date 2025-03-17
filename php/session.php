@@ -28,4 +28,16 @@
             exit();
         }
     }
+
+    function log_out(){
+        session_unset(); // Supprime toutes les variables de session
+        session_destroy(); // Détruit la session
+        header("Location: index.php"); // Redirection vers la page de connexion
+        exit();
+    }
+
+    if(isset($_GET['logout'])){
+        log_out();
+    }
+
 ?>
