@@ -194,7 +194,7 @@
 
 
                             <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos
-                                badges obtenu lors de vos voyages</span>
+                                badges obtenues lors de vos voyages</span>
                         </div>
                     </div>
                 </div>
