@@ -1,4 +1,4 @@
-<!DOCTYPE php>
+<!DOCTYPE html>
 <php lang="fr">
 
     <head>
@@ -266,10 +266,9 @@
         </footer>
 
         <!-- <script src="js/intro.js"></script> -->
-
         <script src="js/custom-cursor.js"></script>
         <script src="js/nav.js"></script>
-        <script src="js/accueil.js"></script>
+        <!-- <script src="js/accueil.js"></script> -->
         <script src="js/defilement-logo.js"></script>
         <script src="js/scroll-to.js"></script>
 
