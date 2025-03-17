@@ -61,7 +61,7 @@ if (isset($_SESSION['connexion'])) {
             <img src="../img/svg/hulk-pin.svg" alt="hulk-pin" class="hulk-pin">
             <a href="javascript:history.back()" class="retour"><img src="../img/svg/fleche-gauche.svg" alt="fleche retour"></a>
 
-            <a href="index.php" class="logo-container">
+            <a href="../index.php" class="logo-container">
                 <div class="logo-gauche">
                     <span class="logo mar">MAR</span>
                     <span class="logo tra">TRA</span>
