@@ -6,7 +6,7 @@ $message = ""; // Initialisation du message
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
-
+    
     $json_file = "../json/data.json"; // Corrigé : c'est un JSON, pas un CSV
     $connexion = 1; // 1 = erreur par défaut
 

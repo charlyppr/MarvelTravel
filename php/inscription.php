@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_lastname = trim($_POST['login_lastname'] ?? '');
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
+    $role = 'user'; // Rôle par défaut
 
     $json_file = "../json/data.json";
     $inscri = 0;
@@ -35,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "firstname" => $login_firstname,
                     "lastname" => $login_lastname,
                     "email" => $login_mail,
-                    "password" => password_hash($login_pass, PASSWORD_BCRYPT) // Sécurisation du mot de passe
+                    "password" => password_hash($login_pass, PASSWORD_BCRYPT), // Sécurisation du mot de passe
+                    "role" => $role
                 ];
                 file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Sauvegarde dans le fichier JSON
                 $inscri = 1; // Inscription réussie

@@ -1,3 +1,6 @@
+<?php
+require('php/session.php');
+?>
 <!DOCTYPE html>
 <php lang="fr">
 
@@ -46,9 +49,15 @@
                     <a href="php/contact.php" class="menu-li">
                         <li>Contact</li>
                     </a>
-                    <a href="php/connexion.php" class="nav-button">
-                        <li>Se connecter</li>
-                    </a>
+                    <?php 
+                        if (isset($_SESSION['user'])) { 
+                            echo "<a href='php/profil.php' class='menu-li'>
+                            <li>Profil</li></a>";
+                        }else {
+                            echo "<a href='php/connexion.php' class='nav-button'>
+                            <li>Se connecter</li></a>";
+                        }
+                    ?>
                 </ul>
             </div>
         </header>

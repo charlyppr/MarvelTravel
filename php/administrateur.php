@@ -1,3 +1,7 @@
+<?php 
+    require('session.php');
+    check_admin_auth();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
