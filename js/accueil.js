@@ -63,7 +63,7 @@ function rotatePierres() {
     requestAnimationFrame(rotatePierres);
 }
 
-rotatePierres();
+// rotatePierres();
 
 
 const cards = document.querySelectorAll('.card');
