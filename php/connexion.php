@@ -25,20 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    $_SESSION['first_name'] = $user['first_name'];
+    $_SESSION['last_name'] = $user['last_name'];
+    $_SESSION['email'] = $user['email'];
     $_SESSION['connexion'] = $connexion;
     header("Location: connexion.php"); // Redirection pour éviter le re-submit du formulaire
     exit();
 }
 
-// Affichage du message si une connexion a été tentée
-if (isset($_SESSION['connexion'])) {
-    if ($_SESSION['connexion'] == 0) {
-        $message = "<p class='success'>Connexion réussie</p>";
-    } elseif ($_SESSION['connexion'] == 1) {
-        $message = "<p class='error'>Identifiant ou mot de passe incorrect</p>";
-    }
-    unset($_SESSION['connexion']); // Suppression de la variable après affichage
-}
+
 
 ?>
 
@@ -91,7 +86,17 @@ if (isset($_SESSION['connexion'])) {
 
                 <div class="other-text">
                     <a href="inscription.php">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
-                    <p><?= $message ?></p>
+                    <?php
+                        // Affichage du message si une connexion a été tentée
+                        if (isset($_SESSION['connexion'])) {
+                            if ($_SESSION['connexion'] == 0) {
+                                echo "<p>Connexion réussie</p><a href='../index.php'>Retour à l'acceuil</a>";
+                            } elseif ($_SESSION['connexion'] == 1) {
+                                echo "<p>Identifiant ou mot de passe incorrect</p>";
+                            }
+                            unset($_SESSION['connexion']); // Suppression de la variable après affichage
+                        }
+                    ?>
                 </div>
             </form>
         </div>

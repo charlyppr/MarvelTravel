@@ -1,7 +1,7 @@
 [
     {
-        "firstname": "caca",
-        "lastname": "caca",
+        "first_name": "caca",
+        "last_name": "caca",
         "email": "caca@gmail.com",
         "password": "$2y$10$wx5FL9YQ8zTv6CDLAL7.euxhFvTLzhfLDDb1qsGHfUdQL87crz2ji",
         "role": "user"

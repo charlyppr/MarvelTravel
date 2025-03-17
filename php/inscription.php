@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Ajouter l'utilisateur s'il n'existe pas encore
             if ($inscri == 0) {
                 $users[] = [
-                    "firstname" => $login_firstname,
-                    "lastname" => $login_lastname,
+                    "first_name" => $login_firstname,
+                    "last_name" => $login_lastname,
                     "email" => $login_mail,
                     "password" => password_hash($login_pass, PASSWORD_BCRYPT), // Sécurisation du mot de passe
                     "role" => $role

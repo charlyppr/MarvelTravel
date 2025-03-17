@@ -67,9 +67,13 @@
                         <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
 
                         <div class="info-admin">
-                            <span class="nom-admin">Caryl Lebreton</span>
-                            <span class="mail-admin">caryl.le-breton1@cyu.fr</span>
+                            <span class="nom-admin">
+                                <?php echo $_SESSION['first_name'] ?>
+                                <?php echo $_SESSION['last_name'] ?>
+                            </span>
+                            <span class="mail-admin"><?php echo $_SESSION['email'] ?></span>
                         </div>
+
                     </div>
 
                     <div class="deconnexion">
@@ -94,7 +98,7 @@
 
                 <div class="content">
                     <div class="top-text">
-                        <span class="titre">Bonjour Caryl,</span>
+                        <span class="titre">Bonjour <?php echo $_SESSION['first_name'] ?>,</span>
                         <a href="../index.php" class="redir-text">
                             <span>Retour à l'accueil</span>
                             <img src="../img/svg/fleche-redir.svg" alt="fleche">
@@ -120,8 +124,8 @@
                                     <div class="user-info">
                                         <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
                                         <div class="info">
-                                            <span class="nom">Caryl L.</span>
-                                            <span class="mail">caryl.le-breton1@cyu.fr</span>
+                                            <span class="nom"><?= $_SESSION['first_name'].' '.$_SESSION['last_name']?></span>
+                                            <span class="mail"><?= $_SESSION['email']?></span>
                                         </div>
                                     </div>
 
@@ -131,7 +135,7 @@
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Prénom :</span>
-                                                <span>Caryl</span>
+                                                <span><?= $_SESSION['first_name']?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -139,7 +143,7 @@
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Nom :</span>
-                                                <span>Lebreton</span>
+                                                <span><?= $_SESSION['last_name']?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -147,7 +151,7 @@
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Email :</span>
-                                                <span>caryl.le-breton1@cyu.fr</span>
+                                                <span><?= $_SESSION['email']?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
