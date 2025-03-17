@@ -19,7 +19,7 @@
         <div class="sidebar">
             <div class="sidebar-content">
                 <div class="sidebar-top">
-                    <a href="index.php" class="logo-container">
+                    <a href="../index.php" class="logo-container">
                         <div class="logo-gauche">
                             <span class="logo mar">MAR</span>
                             <span class="logo tra">TRA</span>
