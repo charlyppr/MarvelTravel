@@ -7,31 +7,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
 
-    $csv_file = "../csv/data.csv";
+    $json_file = "../json/data.json";
     $inscri = 0;
     
     if ($login_firstname && $login_lastname && $login_mail && $login_pass) {
         if (!filter_var($login_mail, FILTER_VALIDATE_EMAIL)) {
             $inscri = 3; // Email invalide
         } else {
-            if (file_exists($csv_file)) {
-                $file = fopen($csv_file, "r");
-                while (($line = fgetcsv($file, 1000, ",")) !== FALSE) {
-                    if ($line[2] == $login_mail) {
-                        $inscri = 2; // Email déjà utilisé
-                        break;
-                    }
-                }
-                fclose($file);
+            // Lire le fichier JSON existant
+            $users = [];
+            if (file_exists($json_file)) {
+                $json_data = file_get_contents($json_file);
+                $users = json_decode($json_data, true) ?? [];
             }
-            
-            if ($inscri == 0) {
-                $file = fopen($csv_file, "a", ",");
-                if (filesize($csv_file) > 0) {
-                    fwrite($file, PHP_EOL); // Ajoute un saut de ligne pour éviter que les données s’écrivent sur la même ligne
+
+            // Vérifier si l'email est déjà utilisé
+            foreach ($users as $user) {
+                if ($user['email'] === $login_mail) {
+                    $inscri = 2; // Email déjà utilisé
+                    break;
                 }
-                fputcsv($file, [$login_firstname, $login_lastname, $login_mail, password_hash($login_pass, PASSWORD_BCRYPT)]);
-                fclose($file);
+            }
+
+            // Ajouter l'utilisateur s'il n'existe pas encore
+            if ($inscri == 0) {
+                $users[] = [
+                    "firstname" => $login_firstname,
+                    "lastname" => $login_lastname,
+                    "email" => $login_mail,
+                    "password" => password_hash($login_pass, PASSWORD_BCRYPT) // Sécurisation du mot de passe
+                ];
+                file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Sauvegarde dans le fichier JSON
                 $inscri = 1; // Inscription réussie
             }
         }
@@ -39,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Stocker le résultat dans une session et rediriger
     $_SESSION['inscri'] = $inscri;
-    header("Location: inscription.php"); // Recharge la page sans réafficher le formulaire
+    header("Location: inscription.php"); // Recharge la page
     exit();
 }
 ?>

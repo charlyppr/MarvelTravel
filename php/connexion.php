@@ -7,18 +7,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
 
-    $csv_file = "../csv/data.csv";
+    $json_file = "../json/data.json"; // Corrigé : c'est un JSON, pas un CSV
     $connexion = 1; // 1 = erreur par défaut
 
     if (!empty($login_mail) && !empty($login_pass)) {
-        if (($file = fopen($csv_file, "r")) !== FALSE) {
-            while (($line = fgetcsv($file)) !== FALSE) {
-                if ($line[2] == $login_mail && password_verify($login_pass, $line[3])) {
+        if (file_exists($json_file)) {
+            // Lire le fichier JSON et le convertir en tableau PHP
+            $users = json_decode(file_get_contents($json_file), true) ?? [];
+
+            foreach ($users as $user) {
+                if ($user['email'] === $login_mail && password_verify($login_pass, $user['password'])) {
+                    $_SESSION['user'] = $user; // Stocker l'utilisateur en session
                     $connexion = 0; // Connexion réussie
                     break;
                 }
             }
-            fclose($file);
         }
     }
 
@@ -87,11 +90,8 @@ if (isset($_SESSION['connexion'])) {
                 <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg" alt="etoile"></button>
 
                 <div class="other-text">
-                    <?= $message ?> <!-- Affichage du message -->
-                </div>
-
-                <div class="other-text">
                     <a href="inscription.php">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
+                    <p><?= $message ?></p>
                 </div>
             </form>
         </div>
