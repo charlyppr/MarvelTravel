@@ -23,7 +23,7 @@
 
     function check_admin_auth(){
         echo "vous devez vous connecter en tant qu'admin";
-        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') {
+        if (!isset($_SESSION['user']) || $_SESSION['role'] != 'admin') {
             header("Location: connexion.php");
             exit();
         }

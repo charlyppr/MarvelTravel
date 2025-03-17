@@ -37,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "last_name" => $login_lastname,
                     "email" => $login_mail,
                     "password" => password_hash($login_pass, PASSWORD_BCRYPT), // Sécurisation du mot de passe
-                    "role" => $role
+                    "role" => $role,
+                    "date_inscription" => date("Y-m-d H:i:s")
                 ];
                 file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Sauvegarde dans le fichier JSON
                 $inscri = 1; // Inscription réussie

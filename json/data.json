@@ -1,9 +1,27 @@
 [
+
     {
-        "first_name": "caca",
-        "last_name": "caca",
-        "email": "caca@gmail.com",
-        "password": "$2y$10$wx5FL9YQ8zTv6CDLAL7.euxhFvTLzhfLDDb1qsGHfUdQL87crz2ji",
-        "role": "user"
+        "first_name": "Paul",
+        "last_name": "Marmelat",
+        "email": "PaulMarmelat@gmail.com",
+        "password": "$2y$10$734PjeiYZZrXgVcaX4SuM.cWHRMOmXBhzIeQjoHPAyxV0bShZ.r0m",
+        "role": "admin"
+    }, 
+
+    {
+        "first_name": "Charly",
+        "last_name": "Pupier",
+        "email": "CharlyPupier@gmail.com",
+        "password": "$2y$10$lj2CsMbmDaMs4q6QIaUJROc2tL0NOB7.vST9R3pkZNc87oDCgyJA6",
+        "role": "admin"
+    }, 
+
+    {
+        "first_name": "Ibrahima",
+        "last_name": "Baldé Cissé",
+        "email": "ibbc@gmail.com",
+        "password": "$2y$10$iiX96pUA1RGHnVN4WDnT1.BW5yfv7NUAkkjZq53knr/l3qSN2iVDW",
+        "role": "admin"
     }
+
 ]

@@ -87,6 +87,13 @@
                         </svg>
                         <a href='../index.php?logout=true'>Se déconnectez</a>
                     </div>
+                    <div class="deconnexion">
+                        <?php
+                            if($_SESSION['role'] == 'admin'){
+                                echo "<a href='administrateur.php'>page administrateur</a>";
+                            }
+                        ?>
+                    </div>
                 </div>
 
             </div>

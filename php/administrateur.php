@@ -54,8 +54,8 @@
                     <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
 
                     <div class="info-admin">
-                        <span class="nom-admin">Spiderman</span>
-                        <span class="mail-admin">spiderstreet@gmail.com</span>
+                        <span class="nom-admin"><?= $_SESSION['first_name'].' '.$_SESSION['last_name']?></span>
+                        <span class="mail-admin"><?= $_SESSION['email']?></span>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                         <img src="../img/svg/loupe.svg" alt="loupe">
                     </div>
 
-                    <a href="index.php" class="redir-text">
+                    <a href="../index.php?logout=true" class="redir-text">
                         <span>Quitter le mode administrateur</span>
                         <img src="../img/svg/fleche-redir.svg" alt="fleche">
                     </a>
