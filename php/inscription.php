@@ -99,23 +99,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <button class="next-button" type="submit">Suivant<img src="../img/svg/fleche-droite.svg"
                         alt="fleche"></button>
-                        <div class="other_text">
-                            <?php
-                                if (isset($_SESSION['inscri'])) {
-                                    if ($_SESSION['inscri'] == 2) {
-                                        echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
-                                    } elseif ($_SESSION['inscri'] == 3) {
-                                        echo "<p class='sous-titre-3'>Adresse email invalide</p>";
-                                    } elseif ($_SESSION['inscri'] == 1) {
-                                        echo "<p class='sous-titre-3'>Inscription réussie</p>";
-                                    }
-                                    unset($_SESSION['inscri']); // Supprime la variable après affichage
-                                }
-                            ?>
-                        </div>
 
                 <div class="other-text">
-                    <a href="connexion.php">Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
+                    <a href='connexion.php'>Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
+                    <?php
+                        if (isset($_SESSION['inscri'])) {
+                            if ($_SESSION['inscri'] == 2) {
+                                echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
+                            } elseif ($_SESSION['inscri'] == 3) {
+                                echo "<p class='sous-titre-3'>Adresse email invalide</p>";
+                            } elseif ($_SESSION['inscri'] == 1) {
+                                echo "<p class='sous-titre-3'>Connexion réussie !</p>";
+                            }
+                            unset($_SESSION['inscri']); // Supprime la variable après affichage
+                        }
+                    ?>
                 </div>
             </form>
 

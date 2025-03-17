@@ -36,6 +36,7 @@ if (isset($_SESSION['connexion'])) {
     }
     unset($_SESSION['connexion']); // Suppression de la variable après affichage
 }
+
 ?>
 
 <!DOCTYPE html>
