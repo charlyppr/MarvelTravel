@@ -1,6 +1,6 @@
 <?php 
     require('session.php');
-    check_auth();
+    check_auth('connexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

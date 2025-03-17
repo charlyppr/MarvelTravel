@@ -13,18 +13,25 @@
     $_SESSION['last_activity'] = time(); // Mettre à jour le timestamp de la session
 
     // Empêcher l'accès si l'utilisateur n'est pas connecté (à mettre dans les pages protégées)
-    function check_auth() {
+    function check_auth($path) {
         echo "vous devez vous connecter";
         if (!isset($_SESSION['user'])) {
-            header("Location: connexion.php");
+            header("Location: $path");
             exit();
         }
     }
 
-    function check_admin_auth(){
+    function check_none_auth($path) {
+        if (isset($_SESSION['user'])) {
+            header("Location: $path");
+            exit();
+        }
+    }
+
+    function check_admin_auth($path){
         echo "vous devez vous connecter en tant qu'admin";
         if (!isset($_SESSION['user']) || $_SESSION['role'] != 'admin') {
-            header("Location: connexion.php");
+            header("Location: $path");
             exit();
         }
     }
