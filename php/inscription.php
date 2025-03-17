@@ -38,7 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "email" => $login_mail,
                     "password" => password_hash($login_pass, PASSWORD_BCRYPT), // Sécurisation du mot de passe
                     "role" => $role,
-                    "date_inscription" => date("Y-m-d H:i:s")
+                    "date_inscription" => date("Y-m-d H:i:s"),
+                    "blocked" => false,
+                    "vip" => false
                 ];
                 file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Sauvegarde dans le fichier JSON
                 $inscri = 1; // Inscription réussie
@@ -118,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             } elseif ($_SESSION['inscri'] == 3) {
                                 echo "<p class='sous-titre-3'>Adresse email invalide</p>";
                             } elseif ($_SESSION['inscri'] == 1) {
-                                echo "<p class='sous-titre-3'>Connexion réussie !</p>";
+                                echo "<p class='sous-titre-3'>Inscription réussie !</p>";
                             }
                             unset($_SESSION['inscri']); // Supprime la variable après affichage
                         }

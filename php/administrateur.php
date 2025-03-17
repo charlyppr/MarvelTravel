@@ -92,140 +92,33 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td class="nom">Peter Parker</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip">
-                                        VIP<img src="../img/svg/etoile.svg" alt="etoile">
-                                    </div>
-                                </td>
-                                <td class="date">28 mai 2024</td>
-                            </tr>
+                            <?php
+                                $json_file = "../json/data.json";
+                                $users = json_decode(file_get_contents($json_file), true) ?? [];
 
-                            <tr>
-                                <td class="nom">Natasha Romanoff</td>
-                                <td>
-                                    <div class="unblock block">
-                                        Bloqué<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip novip">
-                                        Non<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td class="date">10 avril 2022</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Bruce Banner</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip novip">
-                                        Non<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td class="date">5 mars 2021</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Steve Rogers</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip novip">
-                                        Non<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td class="date">12 janvier 2020</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Clint Barton</td>
-                                <td>
-                                    <div class="unblock block">
-                                        Bloqué<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip novip">
-                                        Non<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td class="date">8 février 2019</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Tony Stark</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip">
-                                        VIP<img src="../img/svg/etoile.svg" alt="etoile">
-                                    </div>
-                                </td>
-                                <td class="date">15 juin 2023</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Wanda Maximoff</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip novip">
-                                        Non<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td class="date">20 juillet 2018</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Vision</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip novip">
-                                        Non<img src="../img/svg/no.svg" alt="croix">
-                                    </div>
-                                </td>
-                                <td class="date">30 août 2017</td>
-                            </tr>
-
-                            <tr>
-                                <td class="nom">Happy Hogan</td>
-                                <td>
-                                    <div class="unblock">
-                                        Non bloqué<img src="../img/svg/check.svg" alt="check">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="vip">
-                                        VIP<img src="../img/svg/etoile.svg" alt="etoile">
-                                    </div>
-                                </td>
-                                <td class="date">25 mai 2023</td>
-                            </tr>
+                                foreach ($users as $user) {
+                                    if ($user['role'] === 'user') {
+                                        echo '<tr>';
+                                        echo '<td class="nom">'.$user['first_name'].' '.$user['last_name'].'</td>';
+                                        echo '<td>';
+                                        if ($user['blocked']) {
+                                            echo '<div class="block">Bloqué<img src="../img/svg/block.svg" alt="block"></div>';
+                                        } else {
+                                            echo '<div class="unblock">Non bloqué<img src="../img/svg/check.svg" alt="check"></div>';
+                                        }
+                                        echo '</td>';
+                                        echo '<td>';
+                                        if ($user['vip']) {
+                                            echo '<div class="vip">VIP<img src="../img/svg/etoile.svg" alt="etoile"></div>';
+                                        } else {
+                                            echo '<div class="vip">Non VIP<img src="../img/svg/etoile.svg" alt="etoile"></div>';
+                                        }
+                                        echo '</td>';
+                                        echo '<td class="date">'.$user['date_inscription'].'</td>';
+                                        echo '</tr>';
+                                    }
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>

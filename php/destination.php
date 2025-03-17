@@ -1,4 +1,5 @@
 <?php
+require('session.php');
 // Récupérer la liste des fichiers JSON
 $jsonDir = __DIR__ . '/../json/voyages';
 $voyages = [];
@@ -55,14 +56,14 @@ if (is_dir($jsonDir)) {
                 <a href="contact.php" class="menu-li">
                     <li>Contact</li>
                 </a>
-                <?php
-                if (isset($_SESSION['user'])) {
-                    echo "<a href='profil.php' class='menu-li'>
+                <?php 
+                        if (isset($_SESSION['user'])) { 
+                            echo "<a href='profil.php' class='menu-li'>
                             <li>Profil</li></a>";
-                } else {
-                    echo "<a href='connexion.php' class='nav-button'>
+                        }else {
+                            echo "<a href='connexion.php' class='nav-button'>
                             <li>Se connecter</li></a>";
-                }
+                        }
                 ?>
             </ul>
         </div>

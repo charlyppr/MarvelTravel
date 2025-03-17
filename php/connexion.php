@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
     
-    $json_file = "../json/data.json"; // Corrigé : c'est un JSON, pas un CSV
+    $json_file = "../json/data.json"; 
     $connexion = 1; // 1 = erreur par défaut
 
     if (!empty($login_mail) && !empty($login_pass)) {
@@ -87,11 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="other-text">
                     <a href="inscription.php">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
+                </div>
+                <div class="other-text">
                     <?php
                         // Affichage du message si une connexion a été tentée
                         if (isset($_SESSION['connexion'])) {
                             if ($_SESSION['connexion'] == 0) {
-                                echo "<p>Connexion réussie</p><a href='../index.php'>Retour à l'acceuil</a>";
+                                echo "<a href='../index.php'>Connexion réussi !&nbsp<span>Retour à l'acceuil</span></a>";
                             } elseif ($_SESSION['connexion'] == 1) {
                                 echo "<p>Identifiant ou mot de passe incorrect</p>";
                             }

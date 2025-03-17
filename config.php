@@ -1,3 +1,3 @@
 <?php
-define('BASE_URL', '/MarvelTravel/');
+    define('BASE_URL', 'http://localhost/projet/MarvelTravel/');
 ?>
