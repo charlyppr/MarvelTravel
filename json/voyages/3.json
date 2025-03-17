@@ -1,0 +1,35 @@
+{
+    "id": 3,
+    "titre": "Hala",
+    "image": "..\/img\/destinations\/hala.jpg",
+    "prix": 1199.95,
+    "resume": "Embarquez pour une exp\u00e9dition sur la plan\u00e8te des Krees et d\u00e9couvrez leur culture.",
+    "dates": {
+        "debut": "2025-08-05",
+        "fin": "2025-08-12",
+        "duree": "7 jours"
+    },
+    "etapes": [
+        {
+            "lieu": "Capitale Kree",
+            "duree": "2 jours",
+            "options": [
+                "Visite du palais imp\u00e9rial"
+            ]
+        },
+        {
+            "lieu": "Ar\u00e8ne de combat",
+            "duree": "1 jour",
+            "options": [
+                "Spectacle de gladiateurs"
+            ]
+        },
+        {
+            "lieu": "Observatoire stellaire",
+            "duree": "2 jours",
+            "options": [
+                "Nuit sous les \u00e9toiles"
+            ]
+        }
+    ]
+}
