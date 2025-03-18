@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_pass = trim($_POST['login_pass'] ?? '');
     $role = 'user'; // Rôle par défaut
 
-    $json_file = "../json/data.json";
+    $json_file = "../json/users.json";
     $inscri = 0;
     
     if ($login_firstname && $login_lastname && $login_mail && $login_pass) {

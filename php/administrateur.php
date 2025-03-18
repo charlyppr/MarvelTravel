@@ -93,7 +93,7 @@
 
                         <tbody>
                             <?php
-                                $json_file = "../json/data.json";
+                                $json_file = "../json/users.json";
                                 $users = json_decode(file_get_contents($json_file), true) ?? [];
 
                                 foreach ($users as $user) {

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
     
-    $json_file = "../json/data.json"; 
+    $json_file = "../json/users.json"; 
     $connexion = 1; // 1 = erreur par défaut
 
     if (!empty($login_mail) && !empty($login_pass)) {
