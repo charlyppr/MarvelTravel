@@ -97,7 +97,7 @@ $voyages = json_decode(file_get_contents($json_file), true);
 
         <div class="best-seller-cards">
             <?php foreach ($voyages as $voyage): ?>
-                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id'];?>">
+                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id']-1;?>">
                     <img src="<?php echo htmlspecialchars($voyage['image']); ?>"
                         alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
                     <div class="card-text">
