@@ -1,30 +1,9 @@
-p {
-    font-size: 1.5em;
-    color: #ffffff;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    color: #ffffff;
-    line-height: 1.5em;
-    margin: 0 0 1em 0;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-ul.etapes>li {
-    color: #ffffff;
-    margin: 0 0 0.5em 0;
-}
-
-.reserver_container {
+.paie_container {
     display: flex;
     justify-content: center;
 }
 
-.reserver {
+.paie {
     font-family: 'PP Formula Bold', sans-serif;
     padding: 15px 25px;
     border-radius: 15px;
@@ -40,14 +19,14 @@ ul.etapes>li {
     transition: all ease-in-out .2s;
 }
 
-.reserver:hover {
+.paie:hover {
     background-color: #F2DBAF;
     color: #AF1F24;
     transform: translate(0, -5px);
     box-shadow: 0 5px 10px 0 #fffae777;
 }
 
-.reserver:active {
+.paie:active {
     transform: translate(0, 0);
     box-shadow: 0 0 20px 0 #fffae777;
 }

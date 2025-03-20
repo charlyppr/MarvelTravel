@@ -2,23 +2,16 @@
 
 require_once('session.php');
 $_SESSION['current_url'] = current_url();
+$id = (int) $_GET['id'];
 
-// Vérifier si un ID est fourni dans l'URL
 if (!isset($_GET['id'])) {
     die("<h1>Erreur </h1><p>ID de voyage manquant ! <a href='destination.php'>Retour</a></p>");
 }
 
-$id = (int) $_GET['id'];
-$filename = "../json/voyages.json";
-$voyages = json_decode(file_get_contents($filename), true);
+$json_file = "../json/voyages.json";
 
-// Vérifier si le fichier JSON du voyage existe
-if (!isset($voyages[$id])) {
-    die("<h1>Erreur 404 🚀</h1><p>Ce voyage n'existe pas encore dans notre base.</p><p><a href='destination.php'>Retour aux destinations</a></p>");
-}
-
-// Récupérer le voyage
-$voyage = $voyages[$id];
+$voyage = json_decode(file_get_contents($json_file), true);
+$voyage = $voyage[$id];
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +64,7 @@ $voyage = $voyages[$id];
         width="50%">
     <p><strong>Prix :</strong> <?php echo number_format($voyage['prix'], 2, ',', ' ') . "€"; ?></p>
     <p><strong>Résumé :</strong> <?php echo htmlspecialchars($voyage['resume']); ?></p>
-    <h2>📍 Étapes du voyage</h2>
+    <h2 class="sous-titre-2">📍 Étapes du voyage</h2>
     <ul class="etapes">
         <?php foreach ($voyage['etapes'] as $etape): ?>
             <li>
@@ -81,10 +74,21 @@ $voyage = $voyages[$id];
             </li>
         <?php endforeach; ?>
     </ul>
-    <div class="reserver_container">
-            <a href="reservation.php?id=<?php echo $id; ?>" class="reserver">Réserver</a>
+    <div class="res">
+        <?php
+        if(isset($_SESSION['user'])){
+            echo "<div class='information'><p>Durée: ".$voyage['dates']['duree']."</p><p>acheteur: ".$_SESSION['first_name'].' '.$_SESSION['last_name']."</p></div>";
+
+            echo "<form action='reservation.php?id=".$id."' method='post' class='commande'><div class='commande_parametre'><img src='../img/svg/calendar.svg' alt='calendrier' /><input type='date' name='date' id='date'>Date de départ</div><div class='commande_parametre'>";
+
+            foreach($voyage['etapes'] as $etapes){
+                echo "<input type='checkbox' name='lieux[]' value='".$etapes['lieu']."' checked>".$etapes['lieu'];
+            }
+            
+            echo "</div><div class='reserver_container'><input type='submit' class='reserver' value='Réserver'/></div></form>";
+        }
+        ?>
     </div>
-    
     <a href="destination.php">⬅ Retour aux voyages</a>
 </body>
 <footer>
@@ -92,5 +96,4 @@ $voyage = $voyages[$id];
     include('footer.php');    
     ?>
 </footer>
-
 </html>
