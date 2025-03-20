@@ -5,7 +5,7 @@ $_SESSION['current_url'] = current_url();
 
 // Vérifier si un ID est fourni dans l'URL
 if (!isset($_GET['id'])) {
-    die("<h1>Erreur 🚨</h1><p>ID de voyage manquant ! <a href='destination.php'>Retour</a></p>");
+    die("<h1>Erreur </h1><p>ID de voyage manquant ! <a href='destination.php'>Retour</a></p>");
 }
 
 $id = (int) $_GET['id'];
@@ -44,7 +44,7 @@ $voyage = $voyages[$id];
 
             <div class="menu">
                 <ul>
-                    <a href="index.php" class="active menu-li">
+                    <a href="../index.php" class="menu-li">
                         <li>Accueil</li>
                     </a>
                     <a href="destination.php" class="menu-li">
@@ -82,7 +82,7 @@ $voyage = $voyages[$id];
         <?php endforeach; ?>
     </ul>
     <div class="reserver_container">
-            <a href="paiement.php?id=<?php echo $id; ?>" class="reserver">Réserver</a>
+            <a href="reservation.php?id=<?php echo $id; ?>" class="reserver">Réserver</a>
     </div>
     
     <a href="destination.php">⬅ Retour aux voyages</a>

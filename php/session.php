@@ -14,7 +14,6 @@
 
     // Empêcher l'accès si l'utilisateur n'est pas connecté (à mettre dans les pages protégées)
     function check_auth($path) {
-        echo "vous devez vous connecter";
         if (!isset($_SESSION['user'])) {
             header("Location: $path");
             exit();
