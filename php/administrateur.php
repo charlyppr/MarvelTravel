@@ -1,6 +1,7 @@
 <?php 
     require('session.php');
     check_admin_auth('connexion.php');
+    $_SESSION['current_url'] = current_url();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -1,22 +1,9 @@
 <?php
 require('session.php');
+$_SESSION['current_url'] = current_url();
 // Récupérer la liste des fichiers JSON
-$jsonDir = __DIR__ . '/../json/voyages';
-$voyages = [];
-
-// Vérifier si le dossier JSON existe et contient des fichiers
-if (is_dir($jsonDir)) {
-    foreach (glob("$jsonDir/*.json") as $filename) {
-        $data = json_decode(file_get_contents($filename), true);
-
-        // Vérifier si les données sont bien un tableau et contiennent les clés attendues
-        if (is_array($data) && isset($data['id'], $data['titre'], $data['image'], $data['prix'])) {
-            $voyages[] = $data;
-        } else {
-            echo "<p style='color:red;'>Erreur : Fichier JSON corrompu ou format incorrect ($filename)</p>";
-        }
-    }
-}
+$json_file = '../json/voyages.json';
+$voyages = json_decode(file_get_contents($json_file), true);
 ?>
 
 
@@ -110,7 +97,7 @@ if (is_dir($jsonDir)) {
 
         <div class="best-seller-cards">
             <?php foreach ($voyages as $voyage): ?>
-                <a class="card-best" href="voyage.php?id=<?php echo urlencode($voyage['id']); ?>">
+                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id'];?>">
                     <img src="<?php echo htmlspecialchars($voyage['image']); ?>"
                         alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
                     <div class="card-text">

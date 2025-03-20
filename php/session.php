@@ -28,6 +28,11 @@
         }
     }
 
+    function current_url() {
+        return $_SERVER['REQUEST_URI']; // Sauvegarder l'URL actuelle
+
+    }
+
     function check_admin_auth($path){
         echo "vous devez vous connecter en tant qu'admin";
         if (!isset($_SESSION['user']) || $_SESSION['role'] != 'admin') {

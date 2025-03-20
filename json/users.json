@@ -69,5 +69,15 @@
         "date_inscription": "2025-03-17 19:39:14",
         "blocked": false,
         "vip": false
+    },
+    {
+        "first_name": "J-L",
+        "last_name": "Maslanka",
+        "email": "jl@gmail.com",
+        "password": "$2y$10$zg7XgEA7rYZmGoqaZYQpYev3fEJlKIJ8ygDGUys7Wf.uI6YVTeK26",
+        "role": "user",
+        "date_inscription": "2025-03-18 13:30:29",
+        "blocked": false,
+        "vip": false
     }
 ]

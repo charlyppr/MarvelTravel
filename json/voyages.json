@@ -1,0 +1,149 @@
+[
+    {
+        "id": 1,
+        "titre": "New York",
+        "image": "..\/img\/destinations\/newyork.jpg",
+        "prix": 399.95,
+        "resume": "Plongez au c\u0153ur de Manhattan, visitez la Statue de la Libert\u00e9 et explorez Central Park.",
+        "dates": {
+            "debut": "2025-06-15",
+            "fin": "2025-06-22",
+            "duree": "7 jours"
+        },
+        "etapes": [
+            {
+                "lieu": "Times Square",
+                "duree": "1 jour",
+                "options": [
+                    "Visite guid\u00e9e",
+                    "Shopping"
+                ]
+            },
+            {
+                "lieu": "Statue de la Libert\u00e9",
+                "duree": "1 jour",
+                "options": [
+                    "Travers\u00e9e en ferry"
+                ]
+            },
+            {
+                "lieu": "Central Park",
+                "duree": "2 jours",
+                "options": [
+                    "Balade \u00e0 v\u00e9lo",
+                    "Pique-nique"
+                ]
+            }
+        ]
+    },
+
+    {
+        "id": 2,
+        "titre": "Wakanda",
+        "image": "..\/img\/destinations\/wakanda.jpg",
+        "prix": 5099.95,
+        "resume": "Explorez le pays le plus avanc\u00e9 technologiquement du monde et rencontrez la royaut\u00e9 Wakandaise.",
+        "dates": {
+            "debut": "2025-07-10",
+            "fin": "2025-07-17",
+            "duree": "7 jours"
+        },
+        "etapes": [
+            {
+                "lieu": "Golden City",
+                "duree": "2 jours",
+                "options": [
+                    "Mus\u00e9e Wakandais",
+                    "March\u00e9 tribal"
+                ]
+            },
+            {
+                "lieu": "Mont Bashenga",
+                "duree": "2 jours",
+                "options": [
+                    "Randonn\u00e9e",
+                    "Visite du temple"
+                ]
+            },
+            {
+                "lieu": "Lac de Vibranium",
+                "duree": "1 jour",
+                "options": [
+                    "Plong\u00e9e sous-marine"
+                ]
+            }
+        ]
+    },
+
+    {
+        "id": 3,
+        "titre": "Hala",
+        "image": "..\/img\/destinations\/hala.jpg",
+        "prix": 1199.95,
+        "resume": "Embarquez pour une exp\u00e9dition sur la plan\u00e8te des Krees et d\u00e9couvrez leur culture.",
+        "dates": {
+            "debut": "2025-08-05",
+            "fin": "2025-08-12",
+            "duree": "7 jours"
+        },
+        "etapes": [
+            {
+                "lieu": "Capitale Kree",
+                "duree": "2 jours",
+                "options": [
+                    "Visite du palais imp\u00e9rial"
+                ]
+            },
+            {
+                "lieu": "Ar\u00e8ne de combat",
+                "duree": "1 jour",
+                "options": [
+                    "Spectacle de gladiateurs"
+                ]
+            },
+            {
+                "lieu": "Observatoire stellaire",
+                "duree": "2 jours",
+                "options": [
+                    "Nuit sous les \u00e9toiles"
+                ]
+            }
+        ]
+    },
+
+    {
+        "id": 4,
+        "titre": "Wandar",
+        "image": "..\/img\/destinations\/wandar.png",
+        "prix": 999.95,
+        "resume": "D\u00e9couvrez la myst\u00e9rieuse cit\u00e9 de Wandar et ses secrets anciens.",
+        "dates": {
+            "debut": "2025-09-01",
+            "fin": "2025-09-07",
+            "duree": "6 jours"
+        },
+        "etapes": [
+            {
+                "lieu": "Temple perdu",
+                "duree": "2 jours",
+                "options": [
+                    "Exploration guid\u00e9e"
+                ]
+            },
+            {
+                "lieu": "Biblioth\u00e8que antique",
+                "duree": "1 jour",
+                "options": [
+                    "Lecture des manuscrits anciens"
+                ]
+            },
+            {
+                "lieu": "Gorges du Vent",
+                "duree": "2 jours",
+                "options": [
+                    "Randonn\u00e9e extr\u00eame"
+                ]
+            }
+        ]
+    }
+]

@@ -1,5 +1,6 @@
 <?php
 require('php/session.php');
+$_SESSION['current_url'] = current_url();
 ?>
 <!DOCTYPE html>
 <php lang="fr">

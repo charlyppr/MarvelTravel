@@ -1,0 +1,16 @@
+{
+    "prix": 15,
+    "nom": "Commande 1",
+    "description": "Description de la commande 1",
+    "image": "https://via.placeholder.com/150",
+    "id": 1,
+    "client": {
+        "nom": "Nom du client",
+        "prenom": "Prénom du client",
+        "adresse": "Adresse du client",
+        "ville": "Ville du client",
+        "codePostal": "Code postal du client",
+        "telephone": "Téléphone du client",
+        "email": "Email du client"
+    }
+}

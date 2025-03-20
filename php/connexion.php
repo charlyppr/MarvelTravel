@@ -1,6 +1,7 @@
 <?php
 require_once "session.php";
-check_none_auth('../index.php');
+check_none_auth($_SESSION['current_url'] ?? "../index.php");
+
 $message = ""; // Initialisation du message
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
