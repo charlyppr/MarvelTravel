@@ -194,12 +194,31 @@
                                         fill="#0D0D0D" />
                                 </svg>
 
-                                <span class="titre-card">Mes Badges</span>
+                                <span class="titre-card">Mes commandes</span>
                             </div>
 
                             <div class="card-content">
                                 <div class="user-info">
-                                    <span>Aucun badges pour le moment</span>
+                                    <?php
+                                        $json_file = file_get_contents('../json/commandes.json');
+                                        $data = json_decode($json_file, true);
+                                        $commandes = false;
+                                        foreach($data as $commande){
+                                            if($commande['acheteur'] == $_SESSION['email']){
+                                                $commandes = true;
+                                                echo "<div class='info-commande'>
+                                                        <span class='nom-commande'>".$commande['voyage']."</span>-
+                                                        <span class='nom-commande'>".$commande['date']."</span>-
+                                                        <span class='decouvrir-button'><a href=''>Voir la commande</a></span>
+                                                    </div>";
+                                            }
+                                        }
+                                        if(!$commandes){
+                                            echo "<div class='info-commande'>
+                                                    <span class='nom-commande'>Aucune commande</span>
+                                                </div>";
+                                        }
+                                    ?>
                                 </div>
 
                                 <span class="trait"></span>
@@ -208,8 +227,7 @@
                             </div>
 
 
-                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos
-                                badges obtenues lors de vos voyages</span>
+                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos voyages</span>
                         </div>
                     </div>
                 </div>

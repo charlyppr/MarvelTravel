@@ -5,11 +5,36 @@ check_auth('connexion.php');
 $json_file = "../json/voyages.json";
 
 $id = (int) $_GET['id'];
+
 $voyages = json_decode(file_get_contents($json_file), true);
-$voyages = $voyages[$id];
+$voyage = $voyages[$id];
 
 $date = $_POST['date'];
 $lieux = isset($_POST['lieux']) ? (array) $_POST['lieux'] : [];
+
+$transaction = uniqid();
+$montant = $voyage['prix'];
+$vendeur = 'MEF-2_F';
+$retour = 'http://localhost/projet/MarvelTravel/php/retour_reservation.php?transaction=$transaction';
+
+$json_file = "../json/commandes.json";
+$commande[] = [
+    "transaction" => $transaction,
+    "montant" => $montant,
+    "vendeur" => $vendeur,
+    "status" => 'pending',
+    "control" => 'pending',
+    "acheteur" => $_SESSION['email'],
+    "voyage" => $voyage['titre'],
+    "date" => $date
+];
+
+file_put_contents($json_file, json_encode($commande, JSON_PRETTY_PRINT));
+
+require('getapikey.php');
+$api_key = getAPIKey($vendeur);
+
+$control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $retour . "#");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,16 +82,24 @@ $lieux = isset($_POST['lieux']) ? (array) $_POST['lieux'] : [];
     </header>
     <h1 class="titre">Recapitulatif de la commande</h1>
     <div class="information">
-        <p>Destination: <?php echo $voyages['titre']?></p>
-        <p>Description: <?php echo $voyages['resume']?></p>
-        <p>Durée: <?php echo $voyages['dates']['duree']?></p>
-        <p>Montant: <?php echo $voyages['prix']?></p>
+        <p>Destination: <?php echo $voyage['titre']?></p>
+        <p>Description: <?php echo $voyage['resume']?></p>
+        <p>Durée: <?php echo $voyage['dates']['duree']?></p>
+        <p>Montant: <?php echo $voyage['prix']?></p>
         <p>acheteur: <?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']?></p>
         <p>Date de départ : <?php echo $date?>
         <p>lieux visité : <?php echo implode(", ", $lieux);?></p>
     </div>
-    <div class='paie_container'><a href="paiement.php">Confirmer et payer</a></div>
     
+    <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' class="carte">
+        <input type='hidden' name='transaction' value='<?php echo $transaction; ?>'>
+        <input type='hidden' name='montant' value='<?php echo $montant; ?>'>
+        <input type='hidden' name='vendeur' value='<?php echo $vendeur; ?>'>
+        <input type='hidden' name='retour' value='<?php echo $retour; ?>'>
+        <input type='hidden' name='control' value='<?php echo $control; ?>'>
+        <input type='submit' value="Valider et payer">
+    </form>
+
     <footer>
         <?php
             include("footer.php");

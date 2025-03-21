@@ -87,6 +87,9 @@ $voyage = $voyage[$id];
             
             echo "</div><div class='reserver_container'><input type='submit' class='reserver' value='Réserver'/></div></form>";
         }
+        else {
+            echo "<div class='reserver_container'><a href='connexion.php' class reserver>Réserver</a></div>";
+        }
         ?>
     </div>
     <a href="destination.php">⬅ Retour aux voyages</a>

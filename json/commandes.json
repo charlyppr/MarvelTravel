@@ -1,9 +1,12 @@
-{
-    "prix": 15,
-    "date": "2021-01-01",
-    "client": {
-        "nom": "Nom du client",
-        "prenom": "Prénom du client",
-        "email": "Email du client"
+[
+    {
+        "transaction": "67ddbcbc5aede",
+        "montant": 1199.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "db100269426229eb7fd748950d9497a7",
+        "acheteur": "caca@gmail.com",
+        "voyage": "Hala",
+        "date": ""
     }
-}
+]
