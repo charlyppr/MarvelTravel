@@ -1,13 +1,13 @@
 [
     {
-        "transaction": "67e2a01de7ab8",
-        "montant": 1199.85,
+        "transaction": "67e2afda7e6b7",
+        "montant": 399.95,
         "vendeur": "MEF-2_F",
         "status": "accepted",
-        "control": "ba033757f1bf6757e00ad1a714d21319",
-        "acheteur": "caca@gmail.com",
+        "control": "5146946615855f5161cb3993e91e5271",
+        "acheteur": "CharlyPupier@gmail.com",
         "voyage": "New York",
-        "date": "",
-        "nb_personne": 3
+        "date": "2025-01-01",
+        "nb_personne": 1
     }
 ]

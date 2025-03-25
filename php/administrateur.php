@@ -1,7 +1,7 @@
-<?php 
-    require('session.php');
-    check_admin_auth('connexion.php');
-    $_SESSION['current_url'] = current_url();
+<?php
+require('session.php');
+check_admin_auth('connexion.php');
+$_SESSION['current_url'] = current_url();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,8 +55,8 @@
                     <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
 
                     <div class="info-admin">
-                        <span class="nom-admin"><?= $_SESSION['first_name'].' '.$_SESSION['last_name']?></span>
-                        <span class="mail-admin"><?= $_SESSION['email']?></span>
+                        <span class="nom-admin"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
+                        <span class="mail-admin"><?= $_SESSION['email'] ?></span>
                     </div>
                 </div>
             </div>
@@ -94,31 +94,31 @@
 
                         <tbody>
                             <?php
-                                $json_file = "../json/users.json";
-                                $users = json_decode(file_get_contents($json_file), true) ?? [];
+                            $json_file = "../json/users.json";
+                            $users = json_decode(file_get_contents($json_file), true) ?? [];
 
-                                foreach ($users as $user) {
-                                    if ($user['role'] === 'user') {
-                                        echo '<tr>';
-                                        echo '<td class="nom">'.$user['first_name'].' '.$user['last_name'].'</td>';
-                                        echo '<td>';
-                                        if ($user['blocked']) {
-                                            echo '<div class="block">Bloqué<img src="../img/svg/block.svg" alt="block"></div>';
-                                        } else {
-                                            echo '<div class="unblock">Non bloqué<img src="../img/svg/check.svg" alt="check"></div>';
-                                        }
-                                        echo '</td>';
-                                        echo '<td>';
-                                        if ($user['vip']) {
-                                            echo '<div class="vip">VIP<img src="../img/svg/etoile.svg" alt="etoile"></div>';
-                                        } else {
-                                            echo '<div class="vip">Non VIP<img src="../img/svg/etoile.svg" alt="etoile"></div>';
-                                        }
-                                        echo '</td>';
-                                        echo '<td class="date">'.$user['date_inscription'].'</td>';
-                                        echo '</tr>';
+                            foreach ($users as $user) {
+                                if ($user['role'] === 'user') {
+                                    echo '<tr>';
+                                    echo '<td class="nom">' . $user['first_name'] . ' ' . $user['last_name'] . '</td>';
+                                    echo '<td>';
+                                    if ($user['blocked']) {
+                                        echo '<div class="block">Bloqué<img src="../img/svg/block.svg" alt="block"></div>';
+                                    } else {
+                                        echo '<div class="unblock">Non bloqué<img src="../img/svg/check.svg" alt="check"></div>';
                                     }
+                                    echo '</td>';
+                                    echo '<td>';
+                                    if ($user['vip']) {
+                                        echo '<div class="vip">VIP<img src="../img/svg/etoile.svg" alt="etoile"></div>';
+                                    } else {
+                                        echo '<div class="vip novip">Non<img src="../img/svg/no.svg" alt="croix"></div>';
+                                    }
+                                    echo '</td>';
+                                    echo '<td class="date">' . $user['date_inscription'] . '</td>';
+                                    echo '</tr>';
                                 }
+                            }
                             ?>
                         </tbody>
                     </table>
