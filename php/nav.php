@@ -51,7 +51,7 @@ $prefix_path = $is_in_root ? '' : '../';
             if (isset($_SESSION['user'])) {
                 // Utilisation du préfixe pour les chemins relatifs
                 echo "<a href='{$prefix_path}php/profil.php' class='menu-li'>
-                      <img src='{$prefix_path}img/svg/spiderman-pin.svg' alt='Profil' class='profil-icon'></a>";
+                      <img src='{$prefix_path}img/svg/spiderman-pin.svg' alt='Profil' style='width: 40px; height: 40px;'></a>";
             } else {
                 echo "<a href='{$prefix_path}php/connexion.php' class='nav-button'>
                       <li>Se connecter</li></a>";

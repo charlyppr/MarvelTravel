@@ -190,11 +190,6 @@ input:-webkit-autofill:focus {
     transition: all 0.2s ease-out;
 }
 
-.profil-icon {
-    width: 40px; 
-    height: 40px;
-}
-
 .hovered {
     opacity: 0.3;
 }
