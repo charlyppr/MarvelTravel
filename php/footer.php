@@ -1,11 +1,18 @@
 <?php
-$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . "/MarvelTravel/";
+// Détermine automatiquement la racine du projet
+$document_root = $_SERVER['DOCUMENT_ROOT'];
+$project_path = realpath(dirname(__FILE__) . '/..');
+$relative_path = str_replace($document_root, '', $project_path);
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
+
+// URL de base pour tous les liens et ressources
+$base_url = $protocol . $relative_path . '/';
+
+// Debug - à supprimer en production
 echo "Debug - base_url: " . $base_url . "<br>";
-echo "Debug - chemin complet logo: " . $base_url . "img/svg/logo.svg" . "<br>";
-echo "Debug - SERVER variables:<br>";
-echo "DOCUMENT_ROOT: " . $_SERVER['DOCUMENT_ROOT'] . "<br>";
-echo "PHP_SELF: " . $_SERVER['PHP_SELF'] . "<br>";
-echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
+echo "Debug - document_root: " . $document_root . "<br>";
+echo "Debug - project_path: " . $project_path . "<br>";
+echo "Debug - relative_path: " . $relative_path . "<br>";
 ?>
 
 <footer>
@@ -20,7 +27,7 @@ echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
                 <div class="footer-right-top-content">
                     <span>Notre agence</span>
                     <ul>
-                        <li><a href="<?php echo $base_url; ?>php/contact.php">Contact</a></li>
+                        <li><a href="<?php echo $base_url; ?>contact.php">Contact</a></li>
                         <li><a href="<?php echo $base_url; ?>php/administrateur.php">Administrateur</a></li>
                         <li><a href="<?php echo $base_url; ?>php/profil.php">Profil</a></li>
                     </ul>
