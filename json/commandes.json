@@ -1,0 +1,13 @@
+[
+    {
+        "transaction": "67e287aa60725",
+        "montant": 20399.8,
+        "vendeur": "MEF-2_F",
+        "status": "pending",
+        "control": "pending",
+        "acheteur": "maelle.smi@gmail.com",
+        "voyage": "Wakanda",
+        "date": "2025-03-06",
+        "nb_personne": "4"
+    }
+]

@@ -11,13 +11,29 @@ $voyage = $voyages[$id];
 
 $date = $_POST['date'];
 $lieux = isset($_POST['lieux']) ? (array) $_POST['lieux'] : [];
+$options = isset($_POST['options']) ? (array) $_POST['options'] : [];
 $nb_personne = $_POST['nb_personne'];
 
 $transaction = uniqid();
-$montant = 0;
-foreach($lieux as $lieu) {
-    $montant += $lieu['prix'];
-};
+$montant = 0; 
+
+foreach ($lieux as $lieu) {
+    foreach ($voyage['etapes'] as $etape) {
+        if ($etape['lieu'] === $lieu) { 
+            if (isset($etape['prix'])) {
+                $montant += $etape['prix'];
+            }
+        }
+        foreach($options as $option) {
+            if ($option === $etape['lieu']) {
+                if (isset($etape['prix'])) {
+                    $montant += $etape['prix'];
+                }
+            }
+        }
+    }
+}
+
 $montant *= $nb_personne;
 $vendeur = 'MEF-2_F';
 $retour = 'http://localhost/projet/MarvelTravel/php/retour_reservation.php?transaction=$transaction';
@@ -91,7 +107,7 @@ $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur .
         <p>Destination: <?php echo $voyage['titre']?></p>
         <p>Description: <?php echo $voyage['resume']?></p>
         <p>Durée: <?php echo $voyage['dates']['duree']?></p>
-        <p>Montant: <?php echo $voyage['prix']?></p>
+        <p>Montant: <?php echo $montant?></p>
         <p>acheteur: <?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']?></p>
         <p>Date de départ : <?php echo $date?>
         <p>lieux visité : <?php echo implode(", ", $lieux);?></p>
@@ -107,7 +123,7 @@ $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur .
         <input type='submit' value="Valider et payer">
     </form>
 
-    <footer>
+    <footer>    
         <?php
             include("footer.php");
         ?>

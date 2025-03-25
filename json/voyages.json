@@ -14,20 +14,28 @@
             {
                 "lieu": "Times Square",
                 "duree": "1 jour",
-                "options": ["Visite guidée", "Shopping"],
-                "prix": 99.99
+                "prix": 99.99,
+                "options": [
+                    {"nom": "Visite guidée", "prix": 10.73},
+                    {"nom": "Shopping", "prix": 29.31}
+                ]
             },
             {
                 "lieu": "Statue de la Liberté",
                 "duree": "1 jour",
-                "options": ["Traversée en ferry"],
-                "prix": 99.99
+                "prix": 99.99,
+                "options": [
+                    {"nom": "Traversée en ferry", "prix": 22.26}
+                ]
             },
             {
                 "lieu": "Central Park",
                 "duree": "2 jours",
-                "options": ["Balade à vélo", "Pique-nique"],
-                "prix": 199.97
+                "prix": 199.97,
+                "options": [
+                    {"nom": "Balade à vélo", "prix": 39.06},
+                    {"nom": "Pique-nique", "prix": 42.13}
+                ]
             }
         ]
     },
@@ -46,20 +54,28 @@
             {
                 "lieu": "Golden City",
                 "duree": "2 jours",
-                "options": ["Musée Wakandais", "Marché tribal"],
-                "prix": 2039.98
+                "prix": 2039.98,
+                "options": [
+                    {"nom": "Musée Wakandais", "prix": 393.89},
+                    {"nom": "Marché tribal", "prix": 348.36}
+                ]
             },
             {
                 "lieu": "Mont Bashenga",
                 "duree": "2 jours",
-                "options": ["Randonnée", "Visite du temple"],
-                "prix": 2039.98
+                "prix": 2039.98,
+                "options": [
+                    {"nom": "Randonnée", "prix": 317.68},
+                    {"nom": "Visite du temple", "prix": 227.84}
+                ]
             },
             {
                 "lieu": "Lac de Vibranium",
                 "duree": "1 jour",
-                "options": ["Plongée sous-marine"],
-                "prix": 1019.99
+                "prix": 1019.99,
+                "options": [
+                    {"nom": "Plongée sous-marine", "prix": 153.4}
+                ]
             }
         ]
     },
@@ -78,20 +94,26 @@
             {
                 "lieu": "Capitale Kree",
                 "duree": "2 jours",
-                "options": ["Visite du palais impérial"],
-                "prix": 479.98
+                "prix": 479.98,
+                "options": [
+                    {"nom": "Visite du palais impérial", "prix": 71.3}
+                ]
             },
             {
                 "lieu": "Arène de combat",
                 "duree": "1 jour",
-                "options": ["Spectacle de gladiateurs"],
-                "prix": 239.99
+                "prix": 239.99,
+                "options": [
+                    {"nom": "Spectacle de gladiateurs", "prix": 49.81}
+                ]
             },
             {
                 "lieu": "Observatoire stellaire",
                 "duree": "2 jours",
-                "options": ["Nuit sous les étoiles"],
-                "prix": 479.98
+                "prix": 479.98,
+                "options": [
+                    {"nom": "Nuit sous les étoiles", "prix": 135.1}
+                ]
             }
         ]
     },
@@ -110,20 +132,26 @@
             {
                 "lieu": "Temple perdu",
                 "duree": "2 jours",
-                "options": ["Exploration guidée"],
-                "prix": 399.98
+                "prix": 399.98,
+                "options": [
+                    {"nom": "Exploration guidée", "prix": 91.86}
+                ]
             },
             {
                 "lieu": "Bibliothèque antique",
                 "duree": "1 jour",
-                "options": ["Lecture des manuscrits anciens"],
-                "prix": 199.99
+                "prix": 199.99,
+                "options": [
+                    {"nom": "Lecture des manuscrits anciens", "prix": 41.08}
+                ]
             },
             {
                 "lieu": "Gorges du Vent",
                 "duree": "2 jours",
-                "options": ["Randonnée extrême"],
-                "prix": 399.98
+                "prix": 399.98,
+                "options": [
+                    {"nom": "Randonnée extrême", "prix": 43.94}
+                ]
             }
         ]
     }

@@ -21,7 +21,6 @@ $voyage = $voyage[$id];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($voyage['titre']); ?></title>
-    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/voyage.css">
 </head>
 
@@ -70,8 +69,11 @@ $voyage = $voyage[$id];
             <li>
                 <strong><?php echo htmlspecialchars($etape['lieu']); ?></strong> (<?php echo $etape['duree']; ?>)
                 <br>
-                Options : <?php echo implode(", ", $etape['options']); ?>
-            </li>
+                Options : <?php 
+                    for($i = 0; $i < count($etape['options']); $i++){
+                        echo ' / '.$etape['options'][$i]['nom'];
+                    }?>
+                </li>
         <?php endforeach; ?>
     </ul>
     <div class="res">
@@ -79,17 +81,36 @@ $voyage = $voyage[$id];
         if(isset($_SESSION['user'])){
             echo "<div class='information'><p>Durée: ".$voyage['dates']['duree']."</p><p>acheteur: ".$_SESSION['first_name'].' '.$_SESSION['last_name']."</p></div>";
 
-            echo "<form action='reservation.php?id=".$id."' method='post' class='commande'><div class='commande_parametre'><img src='../img/svg/calendar.svg' alt='calendrier' /><input type='date' name='date' id='date'>Date de départ</div><div class='commande_parametre'>Nombre de personnes :<input type='number' name='nb_personne' id='nb_personne'>";
-
+            echo "<form action='reservation.php?id=".$id."' method='post' class='commande'>
+                    <div class='commande_parametre'>
+                        <img src='../img/svg/calendar.svg' alt='calendrier' />
+                            <input type='date' name='date' id='date'>Date de départ</input>
+                        </div>
+                        <div class='commande_parametre'>
+                            <input type='number' name='nb_personne' id='nb_personne'>Nombre de personnes :</input>
+                        </div>
+                        <div class='commande_parametre'>";
+            echo "<br>Lieux :<br>";
             foreach($voyage['etapes'] as $etapes){
-                echo "<input type='checkbox' name='lieux[]' value='".$etapes['lieu']."' checked>".$etapes['lieu'];
+                echo "<br><input type='checkbox' name='lieux[]' value='".$etapes['lieu']."' checked>".$etapes['lieu']."</input><br>";            
+                echo "Options :";
+                    foreach($etapes['options'] as $options){
+                        echo "<input type='checkbox' name='options[]' value='".$options['nom']."'>".$options['nom']."</input>";
+                    }
             }
+
             
-            echo "</div><div class='reserver_container'><input type='submit' class='reserver' value='Réserver'/></div></form>";
+            echo "</div>
+                <div class='reserver_container'>
+                    <input type='submit' class='reserver' value='Réserver'/>
+                </div>
+                </form>";
 
         }
         else {
-            echo "<div class='reserver_container'><a href='connexion.php' class reserver>Réserver</a></div>";
+            echo "<div class='reserver_container'>
+                <a href='connexion.php' class reserver>Réserver</a>
+            </div>";
         }
         ?>
     </div>

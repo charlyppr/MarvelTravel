@@ -89,5 +89,15 @@
         "date_inscription": "2025-03-22 11:47:05",
         "blocked": false,
         "vip": false
+    },
+    {
+        "first_name": "Maelle",
+        "last_name": "Smimi",
+        "email": "maelle.smi@gmail.com",
+        "password": "$2y$10$.y7Kll\/ukl1VkPZImMxLBumCjbgcSAZ4Lj3Nj5breRomUmPLe6.yO",
+        "role": "user",
+        "date_inscription": "2025-03-25 09:25:13",
+        "blocked": false,
+        "vip": false
     }
 ]

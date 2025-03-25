@@ -200,17 +200,22 @@
                             <div class="card-content">
                                 <div class="user-info">
                                     <?php
-                                        $json_file = file_get_contents('../json/commandes.json');
-                                        $data = json_decode($json_file, true);
+                                        $json_file_path = '../json/commandes.json';
                                         $commandes = false;
-                                        foreach($data as $commande){
+                                        if (file_exists($json_file_path)) {
+                                            $json_file = file_get_contents($json_file_path);
+                                            $data = json_decode($json_file, true);
+                                            if (is_array($data)) {
+                                                foreach ($data as $commande) {
                                             if($commande['acheteur'] == $_SESSION['email']){
                                                 $commandes = true;
                                                 echo "<div class='info-commande'>
                                                         <span class='nom-commande'>".$commande['voyage']."</span>-
-                                                        <span class='nom-commande'>".$commande['date']."</span>-
-                                                        <span class='decouvrir-button'><a href=''>Voir la commande</a></span>
-                                                    </div>";
+                                                        <span class='nom-commande'>".$commande['date']."</span>-";
+                                                }
+                                            }
+                                        }
+                                        if (!$commandes) {
                                             }
                                         }
                                         if(!$commandes){
