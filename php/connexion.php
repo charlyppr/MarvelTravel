@@ -15,13 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (file_exists($json_file)) {
             // Lire le fichier JSON et le convertir en tableau PHP
             $users = json_decode(file_get_contents($json_file), true) ?? [];
-
             foreach ($users as $user) {
                 if ($user['email'] === $login_mail && password_verify($login_pass, $user['password'])) {
                     $_SESSION['user'] = $user; // Stocker l'utilisateur en session
                     $connexion = 0; // Connexion réussie
-                    $user['last_login'] = date("Y-m-d H:i:s");
-                    file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Mise à jour du fichier JSON
+                    $user['last_login'] = "texte bateau";
+                    file_put_contents($json_file, json_encode($users));// Mise à jour du fichier JSON
                     break;
                 }
             }
