@@ -1,20 +1,22 @@
-<?php include_once __DIR__ . '/../config.php'; ?>
+<?php
+$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . "/MarvelTravel/";
+?>
 
 <footer>
     <div class="footer-content">
         <div class="footer-top">
             <div class="footer-logo">
-                <img src="<?php echo BASE_URL; ?>img/svg/logo.svg" alt="logo marvel travel" width="200px">
-                <span>Aucun Groot n’a été blessé lors du développement.</span>
+                <img src="<?php echo $base_url; ?>img/svg/logo.svg" alt="logo marvel travel" width="200px">
+                <span>Aucun Groot n'a été blessé lors du développement.</span>
             </div>
 
             <div class="footer-right-top">
                 <div class="footer-right-top-content">
                     <span>Notre agence</span>
                     <ul>
-                        <li><a href="<?php echo BASE_URL; ?>php/contact.php">Contact</a></li>
-                        <li><a href="<?php echo BASE_URL; ?>php/administrateur.php">Administrateur</a></li>
-                        <li><a href="<?php echo BASE_URL; ?>php/profil.php">Profil</a></li>
+                        <li><a href="<?php echo $base_url; ?>php/contact.php">Contact</a></li>
+                        <li><a href="<?php echo $base_url; ?>php/administrateur.php">Administrateur</a></li>
+                        <li><a href="<?php echo $base_url; ?>php/profil.php">Profil</a></li>
                     </ul>
                 </div>
                 <div class="footer-right-top-content">
@@ -23,13 +25,13 @@
                         <div class="github">
                             <ul>
                                 <li><a class="ibra" href="https://github.com/IBBC78" target="_blank"><img
-                                            src="<?php echo BASE_URL; ?>img/svg/github-mark.svg" alt="logo github"></a>
+                                            src="<?php echo $base_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
                                 </li>
                                 <li><a class="paul" href="https://github.com/paulmarmelat" target="_blank"><img
-                                            src="<?php echo BASE_URL; ?>img/svg/github-mark.svg" alt="logo github"></a>
+                                            src="<?php echo $base_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
                                 </li>
                                 <li><a class="charly" href="https://github.com/charlyppr" target="_blank"><img
-                                            src="<?php echo BASE_URL; ?>img/svg/github-mark.svg" alt="logo github"></a>
+                                            src="<?php echo $base_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
                                 </li>
                             </ul>
                         </div>
@@ -37,15 +39,15 @@
                         <div class="linkedin">
                             <ul>
                                 <li><a class="ibra" href="https://www.linkedin.com/in/ibrahimabaldecisse/"
-                                        target="_blank"><img src="<?php echo BASE_URL; ?>img/svg/linkedin.svg"
+                                        target="_blank"><img src="<?php echo $base_url; ?>img/svg/linkedin.svg"
                                             alt="logo linkedin"></a>
                                 </li>
                                 <li><a class="paul" href="https://www.linkedin.com/in/paul-marmelat-1387342a6/"
-                                        target="_blank"><img src="<?php echo BASE_URL; ?>img/svg/linkedin.svg"
+                                        target="_blank"><img src="<?php echo $base_url; ?>img/svg/linkedin.svg"
                                             alt="logo linkedin"></a>
                                 </li>
                                 <li><a class="charly" href="https://www.linkedin.com/in/charly-pupier-ba231a339/"
-                                        target="_blank"><img src="<?php echo BASE_URL; ?>img/svg/linkedin.svg"
+                                        target="_blank"><img src="<?php echo $base_url; ?>img/svg/linkedin.svg"
                                             alt="logo linkedin"></a>
                                 </li>
                             </ul>
@@ -64,12 +66,12 @@
                 <span>Moyens de paiements acceptés</span>
 
                 <div class="paiements">
-                    <img src="<?php echo BASE_URL; ?>img/cards/mastercard.svg" alt="mastercard">
-                    <img src="<?php echo BASE_URL; ?>img/cards/wakanda.svg" alt="credit wakanda">
-                    <img src="<?php echo BASE_URL; ?>img/cards/visa.svg" alt="visa">
-                    <img src="<?php echo BASE_URL; ?>img/cards/asgard.svg" alt="lingots d'or asgard">
-                    <img src="<?php echo BASE_URL; ?>img/cards/paypal.svg" alt="paypal">
-                    <img src="<?php echo BASE_URL; ?>img/cards/amex.svg" alt="amex">
+                    <img src="<?php echo $base_url; ?>img/cards/mastercard.svg" alt="mastercard">
+                    <img src="<?php echo $base_url; ?>img/cards/wakanda.svg" alt="credit wakanda">
+                    <img src="<?php echo $base_url; ?>img/cards/visa.svg" alt="visa">
+                    <img src="<?php echo $base_url; ?>img/cards/asgard.svg" alt="lingots d'or asgard">
+                    <img src="<?php echo $base_url; ?>img/cards/paypal.svg" alt="paypal">
+                    <img src="<?php echo $base_url; ?>img/cards/amex.svg" alt="amex">
                 </div>
             </div>
         </div>
