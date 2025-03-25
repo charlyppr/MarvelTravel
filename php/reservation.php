@@ -11,9 +11,14 @@ $voyage = $voyages[$id];
 
 $date = $_POST['date'];
 $lieux = isset($_POST['lieux']) ? (array) $_POST['lieux'] : [];
+$nb_personne = $_POST['nb_personne'];
 
 $transaction = uniqid();
-$montant = $voyage['prix'];
+$montant = 0;
+foreach($lieux as $lieu) {
+    $montant += $lieu['prix'];
+};
+$montant *= $nb_personne;
 $vendeur = 'MEF-2_F';
 $retour = 'http://localhost/projet/MarvelTravel/php/retour_reservation.php?transaction=$transaction';
 
@@ -26,7 +31,8 @@ $commande[] = [
     "control" => 'pending',
     "acheteur" => $_SESSION['email'],
     "voyage" => $voyage['titre'],
-    "date" => $date
+    "date" => $date,
+    "nb_personne" => $nb_personne
 ];
 
 file_put_contents($json_file, json_encode($commande, JSON_PRETTY_PRINT));
@@ -89,6 +95,7 @@ $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur .
         <p>acheteur: <?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']?></p>
         <p>Date de départ : <?php echo $date?>
         <p>lieux visité : <?php echo implode(", ", $lieux);?></p>
+        <p>Nombre de personnes : <?php echo $nb_personne?></p>
     </div>
     
     <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' class="carte">

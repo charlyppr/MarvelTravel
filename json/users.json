@@ -79,5 +79,15 @@
         "date_inscription": "2025-03-18 13:30:29",
         "blocked": false,
         "vip": false
+    },
+    {
+        "first_name": "Michel",
+        "last_name": "Legrand",
+        "email": "Legrand@gmail.com",
+        "password": "$2y$10$YW0dHFclI6cq92fLoFkpYeUX9ApAy63TxyCXUXfwcSbCDaPBcEofi",
+        "role": "user",
+        "date_inscription": "2025-03-22 11:47:05",
+        "blocked": false,
+        "vip": false
     }
 ]

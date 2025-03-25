@@ -2,9 +2,9 @@
     {
         "id": 1,
         "titre": "New York",
-        "image": "..\/img\/destinations\/newyork.jpg",
+        "image": "../img/destinations/newyork.jpg",
         "prix": 399.95,
-        "resume": "Plongez au c\u0153ur de Manhattan, visitez la Statue de la Libert\u00e9 et explorez Central Park.",
+        "resume": "Plongez au cœur de Manhattan, visitez la Statue de la Liberté et explorez Central Park.",
         "dates": {
             "debut": "2025-06-15",
             "fin": "2025-06-22",
@@ -14,35 +14,29 @@
             {
                 "lieu": "Times Square",
                 "duree": "1 jour",
-                "options": [
-                    "Visite guid\u00e9e",
-                    "Shopping"
-                ]
+                "options": ["Visite guidée", "Shopping"],
+                "prix": 99.99
             },
             {
-                "lieu": "Statue de la Libert\u00e9",
+                "lieu": "Statue de la Liberté",
                 "duree": "1 jour",
-                "options": [
-                    "Travers\u00e9e en ferry"
-                ]
+                "options": ["Traversée en ferry"],
+                "prix": 99.99
             },
             {
                 "lieu": "Central Park",
                 "duree": "2 jours",
-                "options": [
-                    "Balade \u00e0 v\u00e9lo",
-                    "Pique-nique"
-                ]
+                "options": ["Balade à vélo", "Pique-nique"],
+                "prix": 199.97
             }
         ]
     },
-
     {
         "id": 2,
         "titre": "Wakanda",
-        "image": "..\/img\/destinations\/wakanda.jpg",
+        "image": "../img/destinations/wakanda.jpg",
         "prix": 5099.95,
-        "resume": "Explorez le pays le plus avanc\u00e9 technologiquement du monde et rencontrez la royaut\u00e9 Wakandaise.",
+        "resume": "Explorez le pays le plus avancé technologiquement du monde et rencontrez la royauté Wakandaise.",
         "dates": {
             "debut": "2025-07-10",
             "fin": "2025-07-17",
@@ -52,35 +46,29 @@
             {
                 "lieu": "Golden City",
                 "duree": "2 jours",
-                "options": [
-                    "Mus\u00e9e Wakandais",
-                    "March\u00e9 tribal"
-                ]
+                "options": ["Musée Wakandais", "Marché tribal"],
+                "prix": 2039.98
             },
             {
                 "lieu": "Mont Bashenga",
                 "duree": "2 jours",
-                "options": [
-                    "Randonn\u00e9e",
-                    "Visite du temple"
-                ]
+                "options": ["Randonnée", "Visite du temple"],
+                "prix": 2039.98
             },
             {
                 "lieu": "Lac de Vibranium",
                 "duree": "1 jour",
-                "options": [
-                    "Plong\u00e9e sous-marine"
-                ]
+                "options": ["Plongée sous-marine"],
+                "prix": 1019.99
             }
         ]
     },
-
     {
         "id": 3,
         "titre": "Hala",
-        "image": "..\/img\/destinations\/hala.jpg",
+        "image": "../img/destinations/hala.jpg",
         "prix": 1199.95,
-        "resume": "Embarquez pour une exp\u00e9dition sur la plan\u00e8te des Krees et d\u00e9couvrez leur culture.",
+        "resume": "Embarquez pour une expédition sur la planète des Krees et découvrez leur culture.",
         "dates": {
             "debut": "2025-08-05",
             "fin": "2025-08-12",
@@ -90,33 +78,29 @@
             {
                 "lieu": "Capitale Kree",
                 "duree": "2 jours",
-                "options": [
-                    "Visite du palais imp\u00e9rial"
-                ]
+                "options": ["Visite du palais impérial"],
+                "prix": 479.98
             },
             {
-                "lieu": "Ar\u00e8ne de combat",
+                "lieu": "Arène de combat",
                 "duree": "1 jour",
-                "options": [
-                    "Spectacle de gladiateurs"
-                ]
+                "options": ["Spectacle de gladiateurs"],
+                "prix": 239.99
             },
             {
                 "lieu": "Observatoire stellaire",
                 "duree": "2 jours",
-                "options": [
-                    "Nuit sous les \u00e9toiles"
-                ]
+                "options": ["Nuit sous les étoiles"],
+                "prix": 479.98
             }
         ]
     },
-
     {
         "id": 4,
         "titre": "Wandar",
-        "image": "..\/img\/destinations\/wandar.png",
+        "image": "../img/destinations/wandar.png",
         "prix": 999.95,
-        "resume": "D\u00e9couvrez la myst\u00e9rieuse cit\u00e9 de Wandar et ses secrets anciens.",
+        "resume": "Découvrez la mystérieuse cité de Wandar et ses secrets anciens.",
         "dates": {
             "debut": "2025-09-01",
             "fin": "2025-09-07",
@@ -126,23 +110,20 @@
             {
                 "lieu": "Temple perdu",
                 "duree": "2 jours",
-                "options": [
-                    "Exploration guid\u00e9e"
-                ]
+                "options": ["Exploration guidée"],
+                "prix": 399.98
             },
             {
-                "lieu": "Biblioth\u00e8que antique",
+                "lieu": "Bibliothèque antique",
                 "duree": "1 jour",
-                "options": [
-                    "Lecture des manuscrits anciens"
-                ]
+                "options": ["Lecture des manuscrits anciens"],
+                "prix": 199.99
             },
             {
                 "lieu": "Gorges du Vent",
                 "duree": "2 jours",
-                "options": [
-                    "Randonn\u00e9e extr\u00eame"
-                ]
+                "options": ["Randonnée extrême"],
+                "prix": 399.98
             }
         ]
     }
