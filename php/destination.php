@@ -23,38 +23,7 @@ $voyages = json_decode(file_get_contents($json_file), true);
 <body>
     <div class="default"></div>
 
-    <header class="nav">
-        <a href="../index.php" class="logo-container">
-            <div class="logo-gauche">
-                <span class="logo mar">MAR</span>
-                <span class="logo tra">TRA</span>
-            </div>
-            <span class="logo vel">VEL</span>
-        </a>
-
-        <div class="menu">
-            <ul>
-                <a href="../index.php" class="menu-li">
-                    <li>Accueil</li>
-                </a>
-                <a href="destination.php" class="active menu-li">
-                    <li>Destinations</li>
-                </a>
-                <a href="contact.php" class="menu-li">
-                    <li>Contact</li>
-                </a>
-                <?php 
-                        if (isset($_SESSION['user'])) { 
-                            echo "<a href='profil.php' class='menu-li'>
-                            <li>Profil</li></a>";
-                        }else {
-                            echo "<a href='connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
-                        }
-                ?>
-            </ul>
-        </div>
-    </header>
+    <?php include 'nav.php'; ?>
 
     <section class="destination-container">
         <div class="destination-landing">
@@ -97,7 +66,7 @@ $voyages = json_decode(file_get_contents($json_file), true);
 
         <div class="best-seller-cards">
             <?php foreach ($voyages as $voyage): ?>
-                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id']-1;?>">
+                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id'] - 1; ?>">
                     <img src="<?php echo htmlspecialchars($voyage['image']); ?>"
                         alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
                     <div class="card-text">
