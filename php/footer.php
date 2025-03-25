@@ -37,7 +37,7 @@ $base_url = $protocol . "://" . $host . $relative_path . '/';
                 <div class="footer-right-top-content">
                     <span>Notre agence</span>
                     <ul>
-                        <li><a href="<?php echo $base_url; ?>contact.php">Contact</a></li>
+                        <li><a href="<?php echo $base_url; ?>php/contact.php">Contact</a></li>
                         <li><a href="<?php echo $base_url; ?>php/administrateur.php">Administrateur</a></li>
                         <li><a href="<?php echo $base_url; ?>php/profil.php">Profil</a></li>
                     </ul>
