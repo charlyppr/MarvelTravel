@@ -1,6 +1,16 @@
 <?php
-$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
-echo "Debug - base_url: " . $base_url . "<br>";
+$project_name = "MarvelTravel";
+$current_path = dirname($_SERVER['PHP_SELF']);
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
+
+// Pour les liens (relatif au dossier courant)
+$base_url = $protocol . $current_path . "/";
+
+// Pour les images (toujours depuis la racine du projet)
+$img_url = $protocol . "/$project_name/";
+
+echo "Debug - base_url (liens): " . $base_url . "<br>";
+echo "Debug - img_url (images): " . $img_url . "<br>";
 echo "Debug - chemin complet logo: " . $base_url . "img/svg/logo.svg" . "<br>";
 echo "Debug - SERVER variables:<br>";
 echo "DOCUMENT_ROOT: " . $_SERVER['DOCUMENT_ROOT'] . "<br>";
@@ -12,7 +22,7 @@ echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
     <div class="footer-content">
         <div class="footer-top">
             <div class="footer-logo">
-                <img src="<?php echo $base_url; ?>img/svg/logo.svg" alt="logo marvel travel" width="200px">
+                <img src="<?php echo $img_url; ?>img/svg/logo.svg" alt="logo marvel travel" width="200px">
                 <span>Aucun Groot n'a été blessé lors du développement.</span>
             </div>
 
@@ -20,7 +30,7 @@ echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
                 <div class="footer-right-top-content">
                     <span>Notre agence</span>
                     <ul>
-                        <li><a href="<?php echo $base_url; ?>php/contact.php">Contact</a></li>
+                        <li><a href="<?php echo $base_url; ?>contact.php">Contact</a></li>
                         <li><a href="<?php echo $base_url; ?>php/administrateur.php">Administrateur</a></li>
                         <li><a href="<?php echo $base_url; ?>php/profil.php">Profil</a></li>
                     </ul>
@@ -31,13 +41,13 @@ echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
                         <div class="github">
                             <ul>
                                 <li><a class="ibra" href="https://github.com/IBBC78" target="_blank"><img
-                                            src="<?php echo $base_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
+                                            src="<?php echo $img_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
                                 </li>
                                 <li><a class="paul" href="https://github.com/paulmarmelat" target="_blank"><img
-                                            src="<?php echo $base_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
+                                            src="<?php echo $img_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
                                 </li>
                                 <li><a class="charly" href="https://github.com/charlyppr" target="_blank"><img
-                                            src="<?php echo $base_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
+                                            src="<?php echo $img_url; ?>img/svg/github-mark.svg" alt="logo github"></a>
                                 </li>
                             </ul>
                         </div>
@@ -45,15 +55,15 @@ echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
                         <div class="linkedin">
                             <ul>
                                 <li><a class="ibra" href="https://www.linkedin.com/in/ibrahimabaldecisse/"
-                                        target="_blank"><img src="<?php echo $base_url; ?>img/svg/linkedin.svg"
+                                        target="_blank"><img src="<?php echo $img_url; ?>img/svg/linkedin.svg"
                                             alt="logo linkedin"></a>
                                 </li>
                                 <li><a class="paul" href="https://www.linkedin.com/in/paul-marmelat-1387342a6/"
-                                        target="_blank"><img src="<?php echo $base_url; ?>img/svg/linkedin.svg"
+                                        target="_blank"><img src="<?php echo $img_url; ?>img/svg/linkedin.svg"
                                             alt="logo linkedin"></a>
                                 </li>
                                 <li><a class="charly" href="https://www.linkedin.com/in/charly-pupier-ba231a339/"
-                                        target="_blank"><img src="<?php echo $base_url; ?>img/svg/linkedin.svg"
+                                        target="_blank"><img src="<?php echo $img_url; ?>img/svg/linkedin.svg"
                                             alt="logo linkedin"></a>
                                 </li>
                             </ul>
@@ -72,12 +82,12 @@ echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
                 <span>Moyens de paiements acceptés</span>
 
                 <div class="paiements">
-                    <img src="<?php echo $base_url; ?>img/cards/mastercard.svg" alt="mastercard">
-                    <img src="<?php echo $base_url; ?>img/cards/wakanda.svg" alt="credit wakanda">
-                    <img src="<?php echo $base_url; ?>img/cards/visa.svg" alt="visa">
-                    <img src="<?php echo $base_url; ?>img/cards/asgard.svg" alt="lingots d'or asgard">
-                    <img src="<?php echo $base_url; ?>img/cards/paypal.svg" alt="paypal">
-                    <img src="<?php echo $base_url; ?>img/cards/amex.svg" alt="amex">
+                    <img src="<?php echo $img_url; ?>img/cards/mastercard.svg" alt="mastercard">
+                    <img src="<?php echo $img_url; ?>img/cards/wakanda.svg" alt="credit wakanda">
+                    <img src="<?php echo $img_url; ?>img/cards/visa.svg" alt="visa">
+                    <img src="<?php echo $img_url; ?>img/cards/asgard.svg" alt="lingots d'or asgard">
+                    <img src="<?php echo $img_url; ?>img/cards/paypal.svg" alt="paypal">
+                    <img src="<?php echo $img_url; ?>img/cards/amex.svg" alt="amex">
                 </div>
             </div>
         </div>
