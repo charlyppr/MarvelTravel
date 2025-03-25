@@ -74,9 +74,6 @@
     width: 100%;
 }
 
-
-/* ------------------- CARDS ------------------- */
-
 .cards {
     display: flex;
     justify-content: space-evenly;
@@ -94,6 +91,7 @@
     background-color: #F2DBAF;
     box-shadow: 0px 4px 30px #f2dbaf77;
     height: fit-content;
+    width: 1000px;
 }
 
 .header-text {
@@ -108,6 +106,9 @@
     font-weight: 600;
 }
 
+.card-content-container{
+    width: 100%;
+}
 
 .card-content {
     display: flex;
@@ -123,10 +124,6 @@
     display: flex;
     gap: 15px;
     align-items: center;
-}
-
-a{
-    color: #0d0d0d;
 }
 
 .user-info img {
@@ -177,97 +174,4 @@ a{
 
 .row-user-info span:nth-child(1) {
     color: #0d0d0d9a;
-}
-
-.sous-texte {
-    font-size: 12px;
-    font-weight: 200;
-    max-width: 250px;
-    text-align: center;
-}
-
-.decouvrir-button {
-    padding: 10px;
-    text-align: center;
-    color: #FFFAE7;
-    background-color: #0d0d0d;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px #0d0d0d42;
-
-    transition: all 0.3s ease-out;
-}
-
-.decouvrir-button:hover {
-    transform: translate(0px, -5px);
-    background-color: #0d0d0d9a;
-    box-shadow: 0px 0px 0px #0d0d0d42;
-}
-
-.decouvrir-button:active {
-    transform: translate(0px, 0px);
-    box-shadow: 0px 4px 15px #0d0d0d42;
-}
-
-
-/* ------------------ Media ------------------ */
-
-@media screen and (max-width: 768px) {
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    .trait {
-        display: none;
-    }
-
-    .content-container-div {
-        padding: 0px;
-    }
-
-    .main-container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        padding: 0;
-        border-radius: 0px;
-    }
-
-    .sidebar-bottom {
-        font-size: 12px;
-    }
-
-    .sidebar-content {
-        flex-direction: row-reverse;
-        padding: 20px;
-    }
-
-    .content-container {
-        padding: 30px;
-        margin-top: 50px;
-    }
-
-    .top-text {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .card {
-        padding: 15px;
-        width: fit-content;
-    }
-
-    .card-content {
-        padding: 20px;
-        gap: 15px;
-    }
-
-
-    .row-user-info, .user-info {
-        width: 100%;
-        font-size: 11px;
-    }
 }
