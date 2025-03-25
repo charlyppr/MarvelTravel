@@ -79,10 +79,6 @@ $voyages = json_decode(file_get_contents($json_file), true);
                         <input type="number" name="budget" id="budget" placeholder="Budget">
                     </div>
                     <img src="../img/svg/line-haut.svg" alt="separateur">
-                    <div class="filtre">
-                        <img src="../img/svg/double-person.svg" alt="deux personne">
-                        <input type="number" name="voyageurs" id="voyageurs" placeholder="Voyageurs">
-                    </div>
                 </div>
                 <button class="search-button" type="submit">Rechercher</button>
             </form>
