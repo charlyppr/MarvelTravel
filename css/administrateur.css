@@ -122,6 +122,12 @@ tbody {
     overflow-y: auto;
 }
 
+tbody.no-height {
+    max-height: unset;
+    height: auto;
+    overflow: visible;
+}
+
 tbody::-webkit-scrollbar {
     display: none;
 }
@@ -188,6 +194,17 @@ tbody::-webkit-scrollbar {
 
 .unblock:active, .block:active, .vip:active, .novip:active {
     transform: scale(0.95);
+}
+
+
+.no-res {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: var(--couleur-primaire);
+    font-weight: 200;
+    height: 100%;
 }
 
 

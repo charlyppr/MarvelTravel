@@ -1,7 +1,13 @@
 <?php
+
 require('session.php');
 check_admin_auth('connexion.php');
 $_SESSION['current_url'] = current_url();
+
+$search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+$displayed_users = 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -65,12 +71,15 @@ $_SESSION['current_url'] = current_url();
         <div class="content-container-div">
             <div class="content-container">
                 <div class="header">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Chercher un voyageur" name="search" id="search">
-                        <img src="../img/svg/loupe.svg" alt="loupe">
-                    </div>
+                    <form class="search-bar" method="GET" action="">
+                        <input type="text" placeholder="Chercher un voyageur" name="search" id="search"
+                            value="<?php echo htmlspecialchars($search_query); ?>">
+                        <button type="submit" style="background: none; border: none; cursor: pointer;">
+                            <img src="../img/svg/loupe.svg" alt="loupe">
+                        </button>
+                    </form>
 
-                    <a href="../index.php?logout=true" class="redir-text">
+                    <a href="../index.php" class="redir-text">
                         <span>Quitter le mode administrateur</span>
                         <img src="../img/svg/fleche-redir.svg" alt="fleche">
                     </a>
@@ -92,13 +101,27 @@ $_SESSION['current_url'] = current_url();
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody
+                            class="<?php echo ($displayed_users === 0 && !empty($search_query)) ? 'no-height' : ''; ?>">
                             <?php
                             $json_file = "../json/users.json";
                             $users = json_decode(file_get_contents($json_file), true) ?? [];
+                            $displayed_users = 0;
 
                             foreach ($users as $user) {
                                 if ($user['role'] === 'user') {
+                                    // Filtrer par la recherche
+                                    $full_name = strtolower($user['first_name'] . ' ' . $user['last_name']);
+                                    $email = strtolower($user['email'] ?? '');
+                                    $search_term = strtolower($search_query);
+
+                                    // Si une recherche est active et que l'utilisateur ne correspond pas, passer au suivant
+                                    if (!empty($search_query) && strpos($full_name, $search_term) === false && strpos($email, $search_term) === false) {
+                                        continue;
+                                    }
+
+                                    $displayed_users++;
+
                                     echo '<tr>';
                                     echo '<td class="nom">' . $user['first_name'] . ' ' . $user['last_name'] . '</td>';
                                     echo '<td>';
@@ -119,9 +142,16 @@ $_SESSION['current_url'] = current_url();
                                     echo '</tr>';
                                 }
                             }
+
                             ?>
                         </tbody>
                     </table>
+                    <?php if ($displayed_users === 0 && !empty($search_query)): ?>
+                        <div class="no-res">
+                            <p>Aucun utilisateur ne correspond à votre recherche</p>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>
