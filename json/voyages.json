@@ -154,9 +154,7 @@
                 ]
             }
         ]
-    }
-]
-[
+    },
     {
       "id": 5,
       "titre": "Asgard",
@@ -199,32 +197,41 @@
     },
     {
       "id": 6,
-      "titre": "Xandar",
-      "image": "../img/destinations/xandar.jpg",
-      "prix": 1499.95,
-      "resume": "Découvrez la planète de Xandar, fief des Nova Corps, et explorez ses avancées technologiques et ses plages paradisiaques.",
+      "titre": "The Dark Dimension",
+      "image": "../img/destinations/dark_dimension.jpg",
+      "prix": 3599.95,
+      "resume": "Plongez dans la dimension obscure, un endroit mystérieux où les lois de la réalité sont altérées. Découvrez les secrets de Dormammu et ses habitants interdimensionnels.",
       "dates": {
-        "debut": "2025-10-05",
-        "fin": "2025-10-12",
+        "debut": "2026-04-01",
+        "fin": "2026-04-08",
         "duree": "7 jours"
       },
       "etapes": [
         {
-          "lieu": "Ville de Xandar",
+          "lieu": "Forteresse de Dormammu",
           "duree": "3 jours",
-          "prix": 999.98,
+          "prix": 1599.98,
           "options": [
-            {"nom": "Visite des Nova Corps", "prix": 129.99},
-            {"nom": "Balade spatiale", "prix": 149.99}
+            {"nom": "Exploration du trône de Dormammu", "prix": 499.99},
+            {"nom": "Batailles dimensionnelles", "prix": 349.99}
           ]
         },
         {
-          "lieu": "Plages de Xandar",
+          "lieu": "Cavernes des Ombres",
           "duree": "2 jours",
-          "prix": 499.99,
+          "prix": 799.99,
           "options": [
-            {"nom": "Détente au bord de l'eau", "prix": 79.99},
-            {"nom": "Cours de plongée", "prix": 59.99}
+            {"nom": "Randonnée dans les cavernes", "prix": 199.99},
+            {"nom": "Rencontre avec les entités obscures", "prix": 299.99}
+          ]
+        },
+        {
+          "lieu": "Temple des Anciens",
+          "duree": "2 jours",
+          "prix": 1199.98,
+          "options": [
+            {"nom": "Visite des artefacts anciens", "prix": 399.99},
+            {"nom": "Rituel mystique", "prix": 499.99}
           ]
         }
       ]
@@ -263,32 +270,41 @@
     },
     {
       "id": 8,
-      "titre": "Wakanda (Extension)",
-      "image": "../img/destinations/wakanda_extension.jpg",
-      "prix": 5599.95,
-      "resume": "Explorez plus profondément Wakanda et découvrez ses technologies avancées et ses traditions ancestrales.",
+      "titre": "Knowhere",
+      "image": "../img/destinations/knowhere.jpg",
+      "prix": 1999.95,
+      "resume": "Explorez Knowhere, la station spatiale située dans la tête d'un ancien Celestial, un lieu de commerce, d'aventure et de mystères intergalactiques.",
       "dates": {
-        "debut": "2025-11-10",
-        "fin": "2025-11-17",
+        "debut": "2026-02-15",
+        "fin": "2026-02-22",
         "duree": "7 jours"
       },
       "etapes": [
         {
-          "lieu": "Laboratoire de Shuri",
+          "lieu": "Marché de Knowhere",
           "duree": "2 jours",
-          "prix": 2039.98,
+          "prix": 799.98,
           "options": [
-            {"nom": "Technologie Wakanda", "prix": 399.99},
-            {"nom": "Création d'armures", "prix": 349.99}
+            {"nom": "Shopping intergalactique", "prix": 199.99},
+            {"nom": "Dégustation de mets extraterrestres", "prix": 129.99}
           ]
         },
         {
-          "lieu": "Forets de Vibranium",
-          "duree": "2 jours",
-          "prix": 2039.98,
+          "lieu": "Tête du Celestial",
+          "duree": "3 jours",
+          "prix": 1199.98,
           "options": [
-            {"nom": "Randonnée", "prix": 119.99},
-            {"nom": "Séance photo avec animaux", "prix": 199.99}
+            {"nom": "Exploration du crâne", "prix": 299.99},
+            {"nom": "Observation de la galaxie", "prix": 179.99}
+          ]
+        },
+        {
+          "lieu": "Zone des mines de l'orbite",
+          "duree": "2 jours",
+          "prix": 499.99,
+          "options": [
+            {"nom": "Extraction de minerais rares", "prix": 99.99},
+            {"nom": "Excursion en vaisseau", "prix": 149.99}
           ]
         }
       ]
@@ -449,6 +465,88 @@
           "options": [
             {"nom": "Détente", "prix": 79.99},
             {"nom": "Plongée sous-marine", "prix": 99.99}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "titre": "The Sanctum Sanctorum",
+      "image": "../img/destinations/sanctum_sanctorum.jpg",
+      "prix": 2499.95,
+      "resume": "Venez explorer le sanctuaire mystique de Doctor Strange à New York, un lieu rempli de secrets magiques, de mystères interdimensionnels et de découvertes mystiques.",
+      "dates": {
+        "debut": "2026-03-01",
+        "fin": "2026-03-08",
+        "duree": "7 jours"
+      },
+      "etapes": [
+        {
+          "lieu": "Hall du Sanctum",
+          "duree": "2 jours",
+          "prix": 999.98,
+          "options": [
+            {"nom": "Visite guidée", "prix": 149.99},
+            {"nom": "Cours de magie", "prix": 199.99}
+          ]
+        },
+        {
+          "lieu": "Salle des Portails",
+          "duree": "2 jours",
+          "prix": 799.99,
+          "options": [
+            {"nom": "Voyage interdimensionnel", "prix": 249.99},
+            {"nom": "Séance de méditation mystique", "prix": 99.99}
+          ]
+        },
+        {
+          "lieu": "Chambre des Artéfacts",
+          "duree": "3 jours",
+          "prix": 699.98,
+          "options": [
+            {"nom": "Découverte des artefacts anciens", "prix": 299.99},
+            {"nom": "Exploration des dimensions parallèles", "prix": 179.99}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "titre": "The Battleworld",
+      "image": "../img/destinations/battleworld.jpg",
+      "prix": 3999.95,
+      "resume": "Découvrez Battleworld, le monde créé par Doctor Doom dans l'événement Secret Wars, où de multiples réalités se rencontrent et s'affrontent dans des batailles épiques.",
+      "dates": {
+        "debut": "2026-03-10",
+        "fin": "2026-03-17",
+        "duree": "7 jours"
+      },
+      "etapes": [
+        {
+          "lieu": "Zone des Champions",
+          "duree": "3 jours",
+          "prix": 1499.98,
+          "options": [
+            {"nom": "Combat dans l'arène", "prix": 299.99},
+            {"nom": "Spectacles de gladiateurs", "prix": 199.99}
+          ]
+        },
+        {
+          "lieu": "Terre de l'Ultron",
+          "duree": "2 jours",
+          "prix": 999.99,
+          "options": [
+            {"nom": "Visite de la forteresse d'Ultron", "prix": 149.99},
+            {"nom": "Combat contre les armées de robots", "prix": 249.99}
+          ]
+        },
+        {
+          "lieu": "Domaine des X-Men",
+          "duree": "2 jours",
+          "prix": 499.99,
+          "options": [
+            {"nom": "Rencontre avec les X-Men", "prix": 199.99},
+            {"nom": "Exploration du domaine mutant", "prix": 149.99}
           ]
         }
       ]
