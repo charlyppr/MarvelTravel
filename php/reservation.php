@@ -12,7 +12,7 @@ $voyage = $voyages[$id];
 $date = $_POST['date'];
 $lieux = isset($_POST['lieux']) ? (array) $_POST['lieux'] : [];
 $options = isset($_POST['options']) ? (array) $_POST['options'] : [];
-$nb_personne = $_POST['nb_personne'];
+$nb_personne = (int)$_POST['nb_personne'];
 
 $transaction = uniqid();
 $montant = 0; 
@@ -34,7 +34,7 @@ foreach ($lieux as $lieu) {
     }
 }
 
-$montant *= $nb_personne;
+$montant = $montant * $nb_personne;
 $vendeur = 'MEF-2_F';
 $retour = 'http://localhost/projet/MarvelTravel/php/retour_reservation.php?transaction=$transaction';
 

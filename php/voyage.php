@@ -83,11 +83,11 @@ $voyage = $voyage[$id];
 
             echo "<form action='reservation.php?id=".$id."' method='post' class='commande'>
                     <div class='commande_parametre'>
-                        <img src='../img/svg/calendar.svg' alt='calendrier' />
-                            <input type='date' name='date' id='date'>Date de départ</input>
+                        <img src='../img/svg/calendar.svg' alt='calendrier'/>
+                            <input type='date' name='date' id='date' required>Date de départ</input>
                         </div>
                         <div class='commande_parametre'>
-                            <input type='number' name='nb_personne' id='nb_personne'>Nombre de personnes :</input>
+                            <input type='number' name='nb_personne' id='nb_personne' min='1' max='11'>Nombre de personnes :</input>
                         </div>
                         <div class='commande_parametre'>";
             echo "<br>Lieux :<br>";

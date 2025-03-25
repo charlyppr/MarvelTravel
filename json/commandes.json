@@ -1,13 +1,13 @@
 [
     {
-        "transaction": "67e287aa60725",
-        "montant": 20399.8,
+        "transaction": "67e2a01de7ab8",
+        "montant": 1199.85,
         "vendeur": "MEF-2_F",
-        "status": "pending",
-        "control": "pending",
-        "acheteur": "maelle.smi@gmail.com",
-        "voyage": "Wakanda",
-        "date": "2025-03-06",
-        "nb_personne": "4"
+        "status": "accepted",
+        "control": "ba033757f1bf6757e00ad1a714d21319",
+        "acheteur": "caca@gmail.com",
+        "voyage": "New York",
+        "date": "",
+        "nb_personne": 3
     }
 ]

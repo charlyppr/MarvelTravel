@@ -211,7 +211,9 @@
                                                 $commandes = true;
                                                 echo "<div class='info-commande'>
                                                         <span class='nom-commande'>".$commande['voyage']."</span>-
-                                                        <span class='nom-commande'>".$commande['date']."</span>-";
+                                                        <span class='nom-commande'>".$commande['date']."</span>-
+                                                    </div>";
+                                                    
                                                 }
                                             }
                                         }
