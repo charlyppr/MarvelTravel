@@ -271,7 +271,7 @@
     {
       "id": 8,
       "titre": "Wakanda (Extension)",
-      "image": "../img/destinations/wakanda_extension.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 5599.95,
       "resume": "Explorez plus profondément Wakanda et découvrez ses technologies avancées et ses traditions ancestrales.",
       "dates": {
@@ -472,7 +472,7 @@
     {
       "id": 14,
       "titre": "The Sanctum Sanctorum",
-      "image": "../img/destinations/sanctum_sanctorum.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 2499.95,
       "resume": "Venez explorer le sanctuaire mystique de Doctor Strange à New York, un lieu rempli de secrets magiques, de mystères interdimensionnels et de découvertes mystiques.",
       "dates": {
@@ -513,7 +513,7 @@
     {
       "id": 15,
       "titre": "The Battleworld",
-      "image": "../img/destinations/battleworld.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 3999.95,
       "resume": "Découvrez Battleworld, le monde créé par Doctor Doom dans l'événement Secret Wars, où de multiples réalités se rencontrent et s'affrontent dans des batailles épiques.",
       "dates": {
