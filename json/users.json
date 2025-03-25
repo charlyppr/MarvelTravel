@@ -99,5 +99,15 @@
         "date_inscription": "2025-03-25 09:25:13",
         "blocked": false,
         "vip": false
+    },
+    {
+        "first_name": "zouzou",
+        "last_name": "zouzou",
+        "email": "zouzou@gmail.com",
+        "password": "$2y$10$J6pJ2QYhNqgUOgsIH51m2eWQytbChdSGT0zAsgPRbMreIx4b.LF2y",
+        "role": "user",
+        "date_inscription": "2025-03-25 12:57:14",
+        "blocked": false,
+        "vip": false
     }
 ]

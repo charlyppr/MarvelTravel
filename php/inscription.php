@@ -40,7 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "role" => $role,
                     "date_inscription" => date("Y-m-d H:i:s"),
                     "blocked" => false,
-                    "vip" => false
+                    "vip" => false,
+                    "last_login" => null
                 ];
                 file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Sauvegarde dans le fichier JSON
                 $inscri = 1; // Inscription réussie
