@@ -53,7 +53,7 @@ $_SESSION['current_url'] = current_url();
                     <?php 
                         if (isset($_SESSION['user'])) { 
                             echo "<a href='php/profil.php' class='menu-li'>
-                            <li>Profil</li></a>";
+                            <img src='img/svg/spiderman-pin.svg' alt='Profil' class='profil-icon'></a>";
                         }else {
                             echo "<a href='php/connexion.php' class='nav-button'>
                             <li>Se connecter</li></a>";
