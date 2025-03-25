@@ -112,7 +112,7 @@ $_SESSION['current_url'] = current_url();
                                     if ($user['vip']) {
                                         echo '<div class="vip">VIP<img src="../img/svg/etoile.svg" alt="etoile"></div>';
                                     } else {
-                                        echo '<div class="novip">Non<img src="../img/svg/etoile.svg" alt="etoile"></div>';
+                                        echo '<div class="vip novip">Non<img src="../img/svg/no.svg" alt="croix"></div>';
                                     }
                                     echo '</td>';
                                     echo '<td class="date">' . $user['date_inscription'] . '</td>';
