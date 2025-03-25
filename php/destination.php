@@ -23,38 +23,7 @@ $voyages = json_decode(file_get_contents($json_file), true);
 <body>
     <div class="default"></div>
 
-    <header class="nav">
-        <a href="../index.php" class="logo-container">
-            <div class="logo-gauche">
-                <span class="logo mar">MAR</span>
-                <span class="logo tra">TRA</span>
-            </div>
-            <span class="logo vel">VEL</span>
-        </a>
-
-        <div class="menu">
-            <ul>
-                <a href="../index.php" class="menu-li">
-                    <li>Accueil</li>
-                </a>
-                <a href="destination.php" class="active menu-li">
-                    <li>Destinations</li>
-                </a>
-                <a href="contact.php" class="menu-li">
-                    <li>Contact</li>
-                </a>
-                <?php 
-                        if (isset($_SESSION['user'])) { 
-                            echo "<a href='profil.php' class='menu-li'>
-                            <li>Profil</li></a>";
-                        }else {
-                            echo "<a href='connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
-                        }
-                ?>
-            </ul>
-        </div>
-    </header>
+    <?php include 'nav.php'; ?>
 
     <section class="destination-container">
         <div class="destination-landing">
@@ -79,10 +48,6 @@ $voyages = json_decode(file_get_contents($json_file), true);
                         <input type="number" name="budget" id="budget" placeholder="Budget">
                     </div>
                     <img src="../img/svg/line-haut.svg" alt="separateur">
-                    <div class="filtre">
-                        <img src="../img/svg/double-person.svg" alt="deux personne">
-                        <input type="number" name="voyageurs" id="voyageurs" placeholder="Voyageurs">
-                    </div>
                 </div>
                 <button class="search-button" type="submit">Rechercher</button>
             </form>
@@ -96,20 +61,39 @@ $voyages = json_decode(file_get_contents($json_file), true);
         </div>
 
         <div class="best-seller-cards">
-            <?php foreach ($voyages as $voyage): ?>
-                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id']-1;?>">
-                    <img src="<?php echo htmlspecialchars($voyage['image']); ?>"
-                        alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
-                    <div class="card-text">
+        <?php for ($i = 0; $i < 4; $i++): ?>
+            <?php $voyage = $voyages[$i]; ?>
+            <a href='voyage.php?id=<?php echo htmlspecialchars($voyage['id'])-1; ?>' class='card-best'>
+                    <img src='<?php echo htmlspecialchars($voyage['image']); ?>' alt='<?php echo htmlspecialchars($voyage['titre']); ?>'>
+                    <div class='card-text'>
                         <p><?php echo htmlspecialchars($voyage['titre']); ?></p>
-                        <p><?php echo number_format($voyage['prix'], 2, ',', ' ') . "€"; ?></p>
+                        <p><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></p>
                     </div>
-                </a>
-            <?php endforeach; ?>
+            </a>
+        <?php endfor; ?>
         </div>
+
 
         <div class="discover-more-container">
             <a href="" class="discover-more">Voir toutes nos destinations</a>
+        </div>
+        <div class="all-destination">
+            <div class="top-section">
+                <p class="sous-titre-2">Toutes nos destinations</p>
+                <h1 class="titre">Le choix est vôtre</h1>
+            </div>
+            <div class="all-destination-cards">
+            <?php for ($i = 5; $i < count($voyages); $i++): ?>
+                <?php $voyage = $voyages[$i]; ?>
+                <a href='voyage.php?id=<?php echo htmlspecialchars($voyage['id'])-1; ?>' class='card-all'>
+                    <img src='<?php echo htmlspecialchars($voyage['image']); ?>' alt='<?php echo htmlspecialchars($voyage['titre']); ?>'>
+                    <div class='card-text'>
+                        <p><?php echo htmlspecialchars($voyage['titre']); ?></p>
+                        <p><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></p>
+                    </div>
+                </a>
+            <?php endfor; ?>
+            </div>
         </div>
     </section>
 

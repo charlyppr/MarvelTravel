@@ -30,38 +30,7 @@ $_SESSION['current_url'] = current_url();
             </div>
         </div>
 
-        <header class="nav">
-            <a href="index.php" class="logo-container">
-                <div class="logo-gauche">
-                    <span class="logo mar">MAR</span>
-                    <span class="logo tra">TRA</span>
-                </div>
-                <span class="logo vel">VEL</span>
-            </a>
-
-            <div class="menu">
-                <ul>
-                    <a href="index.php" class="active menu-li">
-                        <li>Accueil</li>
-                    </a>
-                    <a href="php/destination.php" class="menu-li">
-                        <li>Destinations</li>
-                    </a>
-                    <a href="php/contact.php" class="menu-li">
-                        <li>Contact</li>
-                    </a>
-                    <?php 
-                        if (isset($_SESSION['user'])) { 
-                            echo "<a href='php/profil.php' class='menu-li'>
-                            <img src='img/svg/spiderman-pin.svg' alt='Profil' class='profil-icon'></a>";
-                        }else {
-                            echo "<a href='php/connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
-                        }
-                    ?>
-                </ul>
-            </div>
-        </header>
+        <?php include 'php/nav.php'; ?>
 
         <section class="landing">
 
