@@ -19,10 +19,10 @@ $host = $_SERVER['HTTP_HOST'];
 $base_url = $protocol . "://" . $host . $relative_path . '/';
 
 // Debug - à supprimer en production
-echo "Debug - base_url: " . $base_url . "<br>";
-echo "Debug - document_root (normalisé): " . $document_root . "<br>";
-echo "Debug - project_root (normalisé): " . $project_root . "<br>";
-echo "Debug - relative_path: " . $relative_path . "<br>";
+// echo "Debug - base_url: " . $base_url . "<br>";
+// echo "Debug - document_root (normalisé): " . $document_root . "<br>";
+// echo "Debug - project_root (normalisé): " . $project_root . "<br>";
+// echo "Debug - relative_path: " . $relative_path . "<br>";
 ?>
 
 <footer>
