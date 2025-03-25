@@ -1,6 +1,6 @@
 <?php
-    require('session.php');
-    $_SESSION['current_url'] = current_url();
+require('session.php');
+$_SESSION['current_url'] = current_url();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,38 +19,7 @@
 <body>
     <div class="default"></div>
 
-    <header class="nav">
-        <a href="../index.php" class="logo-container">
-            <div class="logo-gauche">
-                <span class="logo mar">MAR</span>
-                <span class="logo tra">TRA</span>
-            </div>
-            <span class="logo vel">VEL</span>
-        </a>
-
-        <div class="menu">
-            <ul>
-                <a href="../index.php" class="menu-li">
-                    <li>Accueil</li>
-                </a>
-                <a href="destination.php" class="menu-li">
-                    <li>Destinations</li>
-                </a>
-                <a href="contact.php" class="active menu-li">
-                    <li>Contact</li>
-                </a>
-                    <?php 
-                        if (isset($_SESSION['user'])) { 
-                            echo "<a href='profil.php' class='menu-li'>
-                            <li>Profil</li></a>";
-                        }else {
-                            echo "<a href='connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
-                        }
-                    ?>
-            </ul>
-        </div>
-    </header>
+    <?php include 'nav.php'; ?>
 
     <section class="contact-us">
         <div class="contact-container">

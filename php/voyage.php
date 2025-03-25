@@ -25,38 +25,8 @@ $voyage = $voyage[$id];
 </head>
 
 <body>
-<header class="nav">
-            <a href="index.php" class="logo-container">
-                <div class="logo-gauche">
-                    <span class="logo mar">MAR</span>
-                    <span class="logo tra">TRA</span>
-                </div>
-                <span class="logo vel">VEL</span>
-            </a>
 
-            <div class="menu">
-                <ul>
-                    <a href="../index.php" class="menu-li">
-                        <li>Accueil</li>
-                    </a>
-                    <a href="destination.php" class="menu-li">
-                        <li>Destinations</li>
-                    </a>
-                    <a href="contact.php" class="menu-li">
-                        <li>Contact</li>
-                    </a>
-                    <?php 
-                        if (isset($_SESSION['user'])) { 
-                            echo "<a href='profil.php' class='menu-li'>
-                            <li>Profil</li></a>";
-                        }else {
-                            echo "<a href='connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
-                        }
-                    ?>
-                </ul>
-            </div>
-        </header>
+    <?php include 'php/nav.php'; ?>
 
     <h1 class="titre"><?php echo htmlspecialchars($voyage['titre']); ?></h1>
     <img src="<?php echo htmlspecialchars($voyage['image']); ?>" alt="<?php echo htmlspecialchars($voyage['titre']); ?>"
@@ -69,19 +39,19 @@ $voyage = $voyage[$id];
             <li>
                 <strong><?php echo htmlspecialchars($etape['lieu']); ?></strong> (<?php echo $etape['duree']; ?>)
                 <br>
-                Options : <?php 
-                    for($i = 0; $i < count($etape['options']); $i++){
-                        echo ' / '.$etape['options'][$i]['nom'];
-                    }?>
-                </li>
+                Options : <?php
+                for ($i = 0; $i < count($etape['options']); $i++) {
+                    echo ' / ' . $etape['options'][$i]['nom'];
+                } ?>
+            </li>
         <?php endforeach; ?>
     </ul>
     <div class="res">
         <?php
-        if(isset($_SESSION['user'])){
-            echo "<div class='information'><p>Durée: ".$voyage['dates']['duree']."</p><p>acheteur: ".$_SESSION['first_name'].' '.$_SESSION['last_name']."</p></div>";
+        if (isset($_SESSION['user'])) {
+            echo "<div class='information'><p>Durée: " . $voyage['dates']['duree'] . "</p><p>acheteur: " . $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] . "</p></div>";
 
-            echo "<form action='reservation.php?id=".$id."' method='post' class='commande'>
+            echo "<form action='reservation.php?id=" . $id . "' method='post' class='commande'>
                     <div class='commande_parametre'>
                         <img src='../img/svg/calendar.svg' alt='calendrier'/>
                             <input type='date' name='date' id='date' required>Date de départ</input>
@@ -91,23 +61,22 @@ $voyage = $voyage[$id];
                         </div>
                         <div class='commande_parametre'>";
             echo "<br>Lieux :<br>";
-            foreach($voyage['etapes'] as $etapes){
-                echo "<br><input type='checkbox' name='lieux[]' value='".$etapes['lieu']."' checked>".$etapes['lieu']."</input><br>";            
+            foreach ($voyage['etapes'] as $etapes) {
+                echo "<br><input type='checkbox' name='lieux[]' value='" . $etapes['lieu'] . "' checked>" . $etapes['lieu'] . "</input><br>";
                 echo "Options :";
-                    foreach($etapes['options'] as $options){
-                        echo "<input type='checkbox' name='options[]' value='".$options['nom']."'>".$options['nom']."</input>";
-                    }
+                foreach ($etapes['options'] as $options) {
+                    echo "<input type='checkbox' name='options[]' value='" . $options['nom'] . "'>" . $options['nom'] . "</input>";
+                }
             }
 
-            
+
             echo "</div>
                 <div class='reserver_container'>
                     <input type='submit' class='reserver' value='Réserver'/>
                 </div>
                 </form>";
 
-        }
-        else {
+        } else {
             echo "<div class='reserver_container'>
                 <a href='connexion.php' class reserver>Réserver</a>
             </div>";
@@ -118,7 +87,8 @@ $voyage = $voyage[$id];
 </body>
 <footer>
     <?php
-    include('footer.php');    
+    include('footer.php');
     ?>
 </footer>
+
 </html>

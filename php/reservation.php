@@ -87,38 +87,8 @@ $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur .
 <body>
     <div class="default"></div>
 
-    <header class="nav">
-        <a href="../index.php" class="logo-container">
-            <div class="logo-gauche">
-                <span class="logo mar">MAR</span>
-                <span class="logo tra">TRA</span>
-            </div>
-            <span class="logo vel">VEL</span>
-        </a>
+    <?php include 'nav.php'; ?>
 
-        <div class="menu">
-            <ul>
-                <a href="../index.php" class="menu-li">
-                    <li>Accueil</li>
-                </a>
-                <a href="destination.php" class="active menu-li">
-                    <li>Destinations</li>
-                </a>
-                <a href="contact.php" class="menu-li">
-                    <li>Contact</li>
-                </a>
-                <?php
-                if (isset($_SESSION['user'])) {
-                    echo "<a href='profil.php' class='menu-li'>
-                            <li>Profil</li></a>";
-                } else {
-                    echo "<a href='connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
-                }
-                ?>
-            </ul>
-        </div>
-    </header>
     <h1 class="titre">Recapitulatif de la commande</h1>
     <div class="information">
         <p>Destination: <?php echo $voyage['titre'] ?></p>
