@@ -1,5 +1,11 @@
 <?php
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . "/MarvelTravel/";
+echo "Debug - base_url: " . $base_url . "<br>";
+echo "Debug - chemin complet logo: " . $base_url . "img/svg/logo.svg" . "<br>";
+echo "Debug - SERVER variables:<br>";
+echo "DOCUMENT_ROOT: " . $_SERVER['DOCUMENT_ROOT'] . "<br>";
+echo "PHP_SELF: " . $_SERVER['PHP_SELF'] . "<br>";
+echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "<br>";
 ?>
 
 <footer>
