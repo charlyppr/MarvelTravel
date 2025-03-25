@@ -79,7 +79,7 @@ $displayed_users = 0;
                         </button>
                     </form>
 
-                    <a href="../index.php" class="redir-text">
+                    <a href="javascript:history.back()" class="redir-text">
                         <span>Quitter le mode administrateur</span>
                         <img src="../img/svg/fleche-redir.svg" alt="fleche">
                     </a>
