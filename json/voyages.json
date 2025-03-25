@@ -119,7 +119,7 @@
     },
     {
         "id": 4,
-        "titre": "Wandar",
+        "titre": "Xandar",
         "image": "../img/destinations/wandar.png",
         "prix": 999.95,
         "resume": "Découvrez la mystérieuse cité de Wandar et ses secrets anciens.",
@@ -154,13 +154,11 @@
                 ]
             }
         ]
-    }
-]
-[
+    },
     {
       "id": 5,
       "titre": "Asgard",
-      "image": "../img/destinations/asgard.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 2499.95,
       "resume": "Explorez le royaume mythologique d'Asgard et découvrez ses merveilles, entre majestueux palais et paysages épiques.",
       "dates": {
@@ -200,7 +198,7 @@
     {
       "id": 6,
       "titre": "Xandar",
-      "image": "../img/destinations/xandar.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 1499.95,
       "resume": "Découvrez la planète de Xandar, fief des Nova Corps, et explorez ses avancées technologiques et ses plages paradisiaques.",
       "dates": {
@@ -232,7 +230,7 @@
     {
       "id": 7,
       "titre": "Sakaar",
-      "image": "../img/destinations/sakaar.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 2199.95,
       "resume": "Vivez une aventure intergalactique sur Sakaar, la planète du Grand Maître, avec ses arènes et ses défis extrêmes.",
       "dates": {
@@ -264,7 +262,7 @@
     {
       "id": 8,
       "titre": "Wakanda (Extension)",
-      "image": "../img/destinations/wakanda_extension.jpg",
+      "image": "../img/destinations/newyork.jpgg",
       "prix": 5599.95,
       "resume": "Explorez plus profondément Wakanda et découvrez ses technologies avancées et ses traditions ancestrales.",
       "dates": {
@@ -296,7 +294,7 @@
     {
       "id": 9,
       "titre": "Titan",
-      "image": "../img/destinations/titan.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 3099.95,
       "resume": "Explorez la planète Titan, autrefois fief de Thanos, et découvrez ses paysages sombres et sa richesse culturelle.",
       "dates": {
@@ -328,7 +326,7 @@
     {
       "id": 10,
       "titre": "Kree Homeworld",
-      "image": "../img/destinations/kree_homeworld.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 1799.95,
       "resume": "Partez pour un voyage sur la planète Kree et plongez dans la culture et l'histoire de cette civilisation ancienne.",
       "dates": {
@@ -360,7 +358,7 @@
     {
       "id": 11,
       "titre": "The Savage Land",
-      "image": "../img/destinations/savage_land.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 1199.95,
       "resume": "Découvrez le Savage Land, une jungle préhistorique abritant des créatures mystérieuses et une flore exotique.",
       "dates": {
@@ -392,7 +390,7 @@
     {
       "id": 12,
       "titre": "The Negative Zone",
-      "image": "../img/destinations/negative_zone.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 2299.95,
       "resume": "Partez pour un voyage interdimensionnel dans la Zone Négative, un endroit hostile peuplé de créatures mystérieuses.",
       "dates": {
@@ -424,7 +422,7 @@
     {
       "id": 13,
       "titre": "Morag",
-      "image": "../img/destinations/morag.jpg",
+      "image": "../img/destinations/newyork.jpg",
       "prix": 1499.95,
       "resume": "Découvrez la planète Morag, ancienne demeure des Templiers et site d'exploration archéologique.",
       "dates": {

@@ -165,7 +165,7 @@
     gap: 10px;
 }
 
-.best-seller-cards {
+.best-seller-cards, .all-destination-cards{
     width: 100%;
     display: grid;
     gap: 30px;
@@ -173,7 +173,13 @@
     grid-template-rows: repeat(2, 1fr);
 }
 
-.card-best {
+
+.all-destination-cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-best, .card-all{
     position: relative;
     overflow: hidden;
     border-radius: 25px;
@@ -183,7 +189,7 @@
     transition: all ease-in-out .3s;
 }
 
-.card-best:hover {
+.card-best:hover, .card-all:hover {
     transform: scale(1.02);
 }
 

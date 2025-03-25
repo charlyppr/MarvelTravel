@@ -61,20 +61,39 @@ $voyages = json_decode(file_get_contents($json_file), true);
         </div>
 
         <div class="best-seller-cards">
-            <?php foreach ($voyages as $voyage): ?>
-                <a class="card-best" href="voyage.php?id=<?php echo $voyage['id'] - 1; ?>">
-                    <img src="<?php echo htmlspecialchars($voyage['image']); ?>"
-                        alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
-                    <div class="card-text">
+        <?php for ($i = 0; $i < 4; $i++): ?>
+            <?php $voyage = $voyages[$i]; ?>
+            <a href='voyage.php?id=<?php echo htmlspecialchars($voyage['id'])-1; ?>' class='card-best'>
+                    <img src='<?php echo htmlspecialchars($voyage['image']); ?>' alt='<?php echo htmlspecialchars($voyage['titre']); ?>'>
+                    <div class='card-text'>
                         <p><?php echo htmlspecialchars($voyage['titre']); ?></p>
-                        <p><?php echo number_format($voyage['prix'], 2, ',', ' ') . "€"; ?></p>
+                        <p><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></p>
                     </div>
-                </a>
-            <?php endforeach; ?>
+            </a>
+        <?php endfor; ?>
         </div>
+
 
         <div class="discover-more-container">
             <a href="" class="discover-more">Voir toutes nos destinations</a>
+        </div>
+        <div class="all-destination">
+            <div class="top-section">
+                <p class="sous-titre-2">Toutes nos destinations</p>
+                <h1 class="titre">Le choix est vôtre</h1>
+            </div>
+            <div class="all-destination-cards">
+            <?php for ($i = 5; $i < count($voyages); $i++): ?>
+                <?php $voyage = $voyages[$i]; ?>
+                <a href='voyage.php?id=<?php echo htmlspecialchars($voyage['id'])-1; ?>' class='card-all'>
+                    <img src='<?php echo htmlspecialchars($voyage['image']); ?>' alt='<?php echo htmlspecialchars($voyage['titre']); ?>'>
+                    <div class='card-text'>
+                        <p><?php echo htmlspecialchars($voyage['titre']); ?></p>
+                        <p><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></p>
+                    </div>
+                </a>
+            <?php endfor; ?>
+            </div>
         </div>
     </section>
 

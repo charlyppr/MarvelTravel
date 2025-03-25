@@ -26,7 +26,7 @@ $voyage = $voyage[$id];
 
 <body>
 
-    <?php include 'php/nav.php'; ?>
+    <?php include 'nav.php'; ?>
 
     <h1 class="titre"><?php echo htmlspecialchars($voyage['titre']); ?></h1>
     <img src="<?php echo htmlspecialchars($voyage['image']); ?>" alt="<?php echo htmlspecialchars($voyage['titre']); ?>"
