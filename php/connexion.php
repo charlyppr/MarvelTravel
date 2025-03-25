@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($user['email'] === $login_mail && password_verify($login_pass, $user['password'])) {
                     $_SESSION['user'] = $user; // Stocker l'utilisateur en session
                     $connexion = 0; // Connexion réussie
+                    $user['last_login'] = date("Y-m-d H:i:s");
+                    file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Mise à jour du fichier JSON
                     break;
                 }
             }
