@@ -37,7 +37,6 @@ function current_url()
 
 function check_admin_auth($path)
 {
-    echo "vous devez vous connecter en tant qu'admin";
     if (!isset($_SESSION['user']) || $_SESSION['role'] != 'admin') {
         header("Location: $path");
         exit();

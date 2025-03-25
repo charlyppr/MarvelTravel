@@ -6,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Détermination de la page active
 $current_page = basename($_SERVER['PHP_SELF']);
+$is_in_root = dirname($_SERVER['PHP_SELF']) == '/' . basename(dirname(dirname(__FILE__)));
 
 // Déterminer le chemin de base pour les URLs
 $project_root = str_replace('\\', '/', dirname(dirname(__FILE__))); // Chemin absolu du projet
@@ -18,6 +19,9 @@ if (strpos($project_root, $document_root) === 0) {
 $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
 $host = $_SERVER['HTTP_HOST'];
 $base_url = $protocol . "://" . $host . $relative_path;
+
+// Chemins relatifs pour les ressources statiques et les liens
+$prefix_path = $is_in_root ? '' : '../';
 ?>
 
 <header class="nav">
@@ -45,11 +49,12 @@ $base_url = $protocol . "://" . $host . $relative_path;
             </a>
             <?php
             if (isset($_SESSION['user'])) {
-                echo "<a href='php/profil.php' class='menu-li'>
-                            <img src='img/svg/spiderman-pin.svg' alt='Profil' class='profil-icon'></a>";
+                // Utilisation du préfixe pour les chemins relatifs
+                echo "<a href='{$prefix_path}php/profil.php' class='menu-li'>
+                      <img src='{$prefix_path}img/svg/spiderman-pin.svg' alt='Profil' style='width: 40px; height: 40px;'></a>";
             } else {
-                echo "<a href='php/connexion.php' class='nav-button'>
-                            <li>Se connecter</li></a>";
+                echo "<a href='{$prefix_path}php/connexion.php' class='nav-button'>
+                      <li>Se connecter</li></a>";
             }
             ?>
         </ul>
