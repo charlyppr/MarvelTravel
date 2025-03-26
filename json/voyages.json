@@ -198,7 +198,7 @@
     {
       "id": 6,
       "titre": "Genovia",
-      "image": "../img/destinations/genovia.jpg",
+      "image": "../img/destinations/genosha.jpg",
       "prix": 1499.95,
       "resume": "Venez découvrir le charmant royaume de Genovia, une destination royale avec ses palais majestueux et ses paysages époustouflants.",
       "dates": {
@@ -239,7 +239,7 @@
     {
       "id": 7,
       "titre": "Sakaar",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/sakaar.jpg",
       "prix": 2199.95,
       "resume": "Vivez une aventure intergalactique sur Sakaar, la planète du Grand Maître, avec ses arènes et ses défis extrêmes.",
       "dates": {
@@ -312,7 +312,7 @@
     {
       "id": 9,
       "titre": "Titan",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/titan.jpg",
       "prix": 3099.95,
       "resume": "Explorez la planète Titan, autrefois fief de Thanos, et découvrez ses paysages sombres et sa richesse culturelle.",
       "dates": {
@@ -344,7 +344,7 @@
     {
       "id": 10,
       "titre": "Kree Homeworld",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/KRee_Homeworld.jpg",
       "prix": 1799.95,
       "resume": "Partez pour un voyage sur la planète Kree et plongez dans la culture et l'histoire de cette civilisation ancienne.",
       "dates": {
@@ -376,7 +376,7 @@
     {
       "id": 11,
       "titre": "The Savage Land",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/the_savage_land.jpg",
       "prix": 1199.95,
       "resume": "Découvrez le Savage Land, une jungle préhistorique abritant des créatures mystérieuses et une flore exotique.",
       "dates": {
@@ -408,7 +408,7 @@
     {
       "id": 12,
       "titre": "The Negative Zone",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/The_negative_zone.jpg",
       "prix": 2299.95,
       "resume": "Partez pour un voyage interdimensionnel dans la Zone Négative, un endroit hostile peuplé de créatures mystérieuses.",
       "dates": {
@@ -440,7 +440,7 @@
     {
       "id": 13,
       "titre": "Morag",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/Morag.jpg",
       "prix": 1499.95,
       "resume": "Découvrez la planète Morag, ancienne demeure des Templiers et site d'exploration archéologique.",
       "dates": {
@@ -472,7 +472,7 @@
     {
       "id": 14,
       "titre": "The Sanctum Sanctorum",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/sanctum_sanctorum.jpg",
       "prix": 2499.95,
       "resume": "Venez explorer le sanctuaire mystique de Doctor Strange à New York, un lieu rempli de secrets magiques, de mystères interdimensionnels et de découvertes mystiques.",
       "dates": {
@@ -513,7 +513,7 @@
     {
       "id": 15,
       "titre": "The Battleworld",
-      "image": "../img/destinations/newyork.jpg",
+      "image": "../img/destinations/battleworld.jpg",
       "prix": 3999.95,
       "resume": "Découvrez Battleworld, le monde créé par Doctor Doom dans l'événement Secret Wars, où de multiples réalités se rencontrent et s'affrontent dans des batailles épiques.",
       "dates": {
