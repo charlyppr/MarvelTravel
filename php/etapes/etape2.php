@@ -126,7 +126,7 @@ $user_passport_id = isset($_SESSION['passport_id']) ? $_SESSION['passport_id'] :
     </div>
 
     <form action="etape3.php?id=<?php echo $id; ?>" method="post" class="travelers-form">
-        <!-- Données cachées de l'étape précédente -->
+
         <input type="hidden" name="date_debut" value="<?php echo htmlspecialchars($date_debut); ?>">
         <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
         <input type="hidden" name="nb_personne" value="<?php echo $nb_personne; ?>">

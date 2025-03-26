@@ -10,7 +10,6 @@ $json_file = '../json/voyages.json';
 $voyages = json_decode(file_get_contents($json_file), true);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 

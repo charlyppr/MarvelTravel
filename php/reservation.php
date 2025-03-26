@@ -19,11 +19,11 @@ $montant = 0;
 
 foreach ($lieux as $lieu) {
     foreach ($voyage['etapes'] as $etape) {
-        
+
         if (isset($etape['prix'])) {
             $montant += $etape['prix'];
         }
-    
+
         foreach ($options as $option) {
             if (isset($etape['prix'])) {
                 $montant += $etape['prix'];
@@ -78,6 +78,7 @@ require('getapikey.php');
 $api_key = getAPIKey($vendeur);
 $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $retour . "#");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

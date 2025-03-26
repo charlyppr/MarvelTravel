@@ -9,6 +9,7 @@ $search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
 $displayed_users = 0;
 
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

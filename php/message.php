@@ -6,7 +6,8 @@ $objet = $_POST['objet'] ?? '';
 $nom = $_POST['nom'] ?? '';
 $email = $_POST['email'] ?? '';
 
-$messages = json_decode(file_get_contents($json_file), true) ?? [];    $messages[] = [
+$messages = json_decode(file_get_contents($json_file), true) ?? [];
+$messages[] = [
     'nom' => $nom,
     'objet' => $objet,
     'email' => $email,
@@ -16,4 +17,5 @@ $messages = json_decode(file_get_contents($json_file), true) ?? [];    $messages
 file_put_contents($json_file, json_encode($messages, JSON_PRETTY_PRINT));
 
 header("Location: ../php/retour_message.php?message=true");
+
 ?>

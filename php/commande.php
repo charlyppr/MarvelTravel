@@ -40,6 +40,7 @@ if (!$commande) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,43 +48,44 @@ if (!$commande) {
     <link rel="stylesheet" href="../css/commande.css">
     <link rel="stylesheet" href="../css/base.css">
 </head>
+
 <body>
-<div class="default"></div>
+    <div class="default"></div>
 
-<div class="main-container">
-    <div class="sidebar">
-        <div class="sidebar-content">
-            <div class="sidebar-top">
-                <a href="../index.php" class="logo-container">
-                    <div class="logo-gauche">
-                        <span class="logo mar">MAR</span>
-                        <span class="logo tra">TRA</span>
-                    </div>
-                    <span class="logo vel">VEL</span>
-                </a>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-top">
+                    <a href="../index.php" class="logo-container">
+                        <div class="logo-gauche">
+                            <span class="logo mar">MAR</span>
+                            <span class="logo tra">TRA</span>
+                        </div>
+                        <span class="logo vel">VEL</span>
+                    </a>
 
-                <span class="trait"></span>
+                    <span class="trait"></span>
 
-            <div class="sidebar-bottom-deco">
-                <div class="sidebar-bottom">
-                    <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
+                    <div class="sidebar-bottom-deco">
+                        <div class="sidebar-bottom">
+                            <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
 
-                    <div class="info-admin">
-                        <span class="nom-admin">
-                            <?php echo $_SESSION['first_name'] ?>
-                            <?php echo $_SESSION['last_name'] ?>
-                        </span>
-                        <span class="mail-admin"><?php echo $_SESSION['email'] ?></span>
+                            <div class="info-admin">
+                                <span class="nom-admin">
+                                    <?php echo $_SESSION['first_name'] ?>
+                                    <?php echo $_SESSION['last_name'] ?>
+                                </span>
+                                <span class="mail-admin"><?php echo $_SESSION['email'] ?></span>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
-
         </div>
-    </div>
-</div>
-<div class="content-container-div">
-        <div class="content-container">
+        <div class="content-container-div">
+            <div class="content-container">
                 <div class="content">
                     <div class="top-text">
                         <span class="titre">Bonjour <?php echo $_SESSION['first_name'] ?>,</span>
@@ -97,7 +99,7 @@ if (!$commande) {
 
                         <div class="card">
                             <div class="header-text">
-                                <span class="titre-card">Mon voyage à <?=$commande['voyage']?></span>
+                                <span class="titre-card">Mon voyage à <?= $commande['voyage'] ?></span>
                             </div>
 
 
@@ -108,7 +110,9 @@ if (!$commande) {
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>voyageurs :</span>
-                                                <span><?php foreach($commande['voyageurs'] as $voyageur){echo $voyageur['prenom'].' '.strtoupper($voyageur['nom']);}?></span>
+                                                <span><?php foreach ($commande['voyageurs'] as $voyageur) {
+                                                    echo $voyageur['prenom'] . ' ' . strtoupper($voyageur['nom']);
+                                                } ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -116,7 +120,9 @@ if (!$commande) {
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span> Etapes du voyage :</span>
-                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'].'    ';}?></span>
+                                                <span><?php foreach ($commande['options'] as $option) {
+                                                    echo $option['etape'] . '    ';
+                                                } ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -124,7 +130,9 @@ if (!$commande) {
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Options du voyage :</span>
-                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'].'    ';}?></span>
+                                                <span><?php foreach ($commande['options'] as $option) {
+                                                    echo $option['etape'] . '    ';
+                                                } ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -132,7 +140,7 @@ if (!$commande) {
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Prix du voyage :</span>
-                                                <span><?= $commande['montant']?>€</span>
+                                                <span><?= $commande['montant'] ?>€</span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -140,7 +148,7 @@ if (!$commande) {
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Date de départ :</span>
-                                                <span><?= $commande['date_debut']?></span>
+                                                <span><?= $commande['date_debut'] ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -148,7 +156,7 @@ if (!$commande) {
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Date de retour :</span>
-                                                <span><?= $commande['date_fin']?></span>
+                                                <span><?= $commande['date_fin'] ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -162,4 +170,5 @@ if (!$commande) {
         </div>
     </div>
 </body>
+
 </html>

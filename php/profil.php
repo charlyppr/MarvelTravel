@@ -1,7 +1,8 @@
-<?php 
-    require('session.php');
-    check_auth('connexion.php');
+<?php
+require('session.php');
+check_auth('connexion.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -89,9 +90,9 @@
                     </div>
                     <div class="deconnexion">
                         <?php
-                            if($_SESSION['role'] == 'admin'){
-                                echo "<a href='administrateur.php'>page administrateur</a>";
-                            }
+                        if ($_SESSION['role'] == 'admin') {
+                            echo "<a href='administrateur.php'>page administrateur</a>";
+                        }
                         ?>
                     </div>
                 </div>
@@ -131,8 +132,9 @@
                                     <div class="user-info">
                                         <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
                                         <div class="info">
-                                            <span class="nom"><?= $_SESSION['first_name'].' '.$_SESSION['last_name']?></span>
-                                            <span class="mail"><?= $_SESSION['email']?></span>
+                                            <span
+                                                class="nom"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
+                                            <span class="mail"><?= $_SESSION['email'] ?></span>
                                         </div>
                                     </div>
 
@@ -142,7 +144,7 @@
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Prénom :</span>
-                                                <span><?= $_SESSION['first_name']?></span>
+                                                <span><?= $_SESSION['first_name'] ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -150,7 +152,7 @@
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Nom :</span>
-                                                <span><?= $_SESSION['last_name']?></span>
+                                                <span><?= $_SESSION['last_name'] ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -158,7 +160,7 @@
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Email :</span>
-                                                <span><?= $_SESSION['email']?></span>
+                                                <span><?= $_SESSION['email'] ?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -200,38 +202,40 @@
                             <div class="card-content">
                                 <div class="user-info">
                                     <?php
-                                        $json_file_path = '../json/commandes.json';
-                                        $commandes = false;
-                                        if (file_exists($json_file_path)) {
-                                                $json_file = file_get_contents($json_file_path);
-                                                $data = json_decode($json_file, true);
-                                                if(empty($data)){echo "<div class='info-commande'>
-                                                    <span class='nom-commande'>Aucune commande</span>
-                                                </div>";}
-                                                if (is_array($data)) {
-                                                    foreach ($data as $commande) {
-                                                        if($commande['acheteur'] == $_SESSION['email']){
-                                                            $commandes = true;
-                                                            echo "<a href='commande.php?transaction=".$commande['transaction']."' class='info-commande'>
-                                                                    <span class='nom-commande'>".$commande['voyage']."</span>-
-                                                                    <span class='nom-commande'>".$commande['date_debut']."</span>
-                                                                </a>";  
-                                                        }
-                                                    }
-                                                }
-                                        }
-                                        if (!$commandes) {
-                                            }
-                                        else if(!$commandes){
+                                    $json_file_path = '../json/commandes.json';
+                                    $commandes = false;
+                                    if (file_exists($json_file_path)) {
+                                        $json_file = file_get_contents($json_file_path);
+                                        $data = json_decode($json_file, true);
+                                        if (empty($data)) {
                                             echo "<div class='info-commande'>
                                                     <span class='nom-commande'>Aucune commande</span>
                                                 </div>";
                                         }
+                                        if (is_array($data)) {
+                                            foreach ($data as $commande) {
+                                                if ($commande['acheteur'] == $_SESSION['email']) {
+                                                    $commandes = true;
+                                                    echo "<a href='commande.php?transaction=" . $commande['transaction'] . "' class='info-commande'>
+                                                                    <span class='nom-commande'>" . $commande['voyage'] . "</span>-
+                                                                    <span class='nom-commande'>" . $commande['date_debut'] . "</span>
+                                                                </a>";
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (!$commandes) {
+                                    } else if (!$commandes) {
+                                        echo "<div class='info-commande'>
+                                                    <span class='nom-commande'>Aucune commande</span>
+                                                </div>";
+                                    }
                                     ?>
                                 </div>
                             </div>
 
-                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos voyages</span>
+                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos
+                                voyages</span>
 
                             <div class="header-text">
                                 <span class="titre-card">Mes messages</span>
@@ -240,45 +244,46 @@
                             <div class="card-content">
                                 <div class="user-info">
                                     <?php
-                                        $json_file_path = '../json/messages.json';
-                                        $messages = false;
-                                        if (file_exists($json_file_path)) {
-                                            $json_file = file_get_contents($json_file_path);
-                                            $data = json_decode($json_file, true);
-                                            if (is_array($data)) {
-                                                foreach ($data as $message) {
-                                            if($message['email'] == $_SESSION['email']){
-                                                $messages = true;
-                                                echo "<div class='info-commande'>
-                                                        <span class='nom-commande'>".$message['objet']."</span>-
+                                    $json_file_path = '../json/messages.json';
+                                    $messages = false;
+                                    if (file_exists($json_file_path)) {
+                                        $json_file = file_get_contents($json_file_path);
+                                        $data = json_decode($json_file, true);
+                                        if (is_array($data)) {
+                                            foreach ($data as $message) {
+                                                if ($message['email'] == $_SESSION['email']) {
+                                                    $messages = true;
+                                                    echo "<div class='info-commande'>
+                                                        <span class='nom-commande'>" . $message['objet'] . "</span>-
                                                     </div>";
-                                                    
+
                                                 }
                                             }
                                         }
                                         if (!$messages) {
-                                            }
                                         }
-                                        if(!$messages){
-                                            echo "<div class='info-commande'>
+                                    }
+                                    if (!$messages) {
+                                        echo "<div class='info-commande'>
                                                     <span class='nom-commande'>Aucun message</span>
                                                 </div>";
-                                        }
+                                    }
                                     ?>
                                 </div>
+                            </div>
+                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos
+                                messages</span>
                         </div>
-                        <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos messages</span>
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
 
-
-
-
-    </div>
-
-    <script src="../js/custom-cursor.js"></script>
+        <script src="../js/custom-cursor.js"></script>
 
 </body>
 
