@@ -2,20 +2,42 @@
 require('session.php');
 $_SESSION['current_url'] = current_url();
 check_auth($_SESSION['current_url'] ?? "../index.php");
-$transaction = (int) $_GET['transaction'];
+
 if (!isset($_GET['transaction'])) {
-    die("<h1>Erreur </h1><p>ID de transaction manquant ! <a href='commande.php'>Retour</a></p>");
+    die("<h1>Erreur</h1><p>ID de transaction manquant ! <a href='commande.php'>Retour</a></p>");
 }
 
+$transaction = $_GET['transaction']; // Ne pas convertir en int, car c'est un `uniqid()`
 $json_file_path = '../json/commandes.json';
+
+// Vérifier si le fichier existe et peut être lu
+if (!file_exists($json_file_path) || !is_readable($json_file_path)) {
+    die("<h1>Erreur</h1><p>Fichier de commandes introuvable ! <a href='profil.php'>Retour</a></p>");
+}
+
 $json_file = file_get_contents($json_file_path);
 $json_data = json_decode($json_file, true);
 
-if (!isset($json_data[$transaction])) {
-    die("<h1>Erreur </h1><p>Transaction introuvable ! <a href='profil.php'>Retour</a></p>");
+// Vérifier si le JSON est valide
+if (!is_array($json_data)) {
+    die("<h1>Erreur</h1><p>Erreur de lecture des commandes ! <a href='profil.php'>Retour</a></p>");
 }
-$commande = $json_data[$transaction];
+
+// Rechercher la transaction dans le tableau
+$commande = null;
+foreach ($json_data as $cmd) {
+    if ($cmd['transaction'] === $transaction) {
+        $commande = $cmd;
+        break;
+    }
+}
+
+// Vérifier si la transaction a été trouvée
+if (!$commande) {
+    die("<h1>Erreur</h1><p>Transaction introuvable ! <a href='profil.php'>Retour</a></p>");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,8 +107,8 @@ $commande = $json_data[$transaction];
                                     <div class="modif-info">
                                         <div class="row">
                                             <div class="row-user-info">
-                                                <span>nombre de personnes :</span>
-                                                <span><?= $commande['nb_personne']?></span>
+                                                <span>voyageurs :</span>
+                                                <span><?php foreach($commande['voyageurs'] as $voyageur){echo $voyageur['prenom'].' '.strtoupper($voyageur['nom']);}?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -94,7 +116,7 @@ $commande = $json_data[$transaction];
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span> Etapes du voyage :</span>
-                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'];}?></span>
+                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'].'    ';}?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -102,7 +124,7 @@ $commande = $json_data[$transaction];
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Options du voyage :</span>
-                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'];}?></span>
+                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'].'    ';}?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -110,7 +132,23 @@ $commande = $json_data[$transaction];
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Prix du voyage :</span>
-                                                <span><?= $commande['montant']?></span>
+                                                <span><?= $commande['montant']?>€</span>
+                                            </div>
+                                            <img src="../img/svg/edit.svg" alt="modification">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="row-user-info">
+                                                <span>Date de départ :</span>
+                                                <span><?= $commande['date_debut']?></span>
+                                            </div>
+                                            <img src="../img/svg/edit.svg" alt="modification">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="row-user-info">
+                                                <span>Date de retour :</span>
+                                                <span><?= $commande['date_fin']?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
