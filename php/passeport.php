@@ -22,6 +22,46 @@ if (isset($_SESSION['auto_login'])) {
 
     // Créer la session utilisateur si le bouton est cliqué
     if (isset($_GET['auto_login']) && $_GET['auto_login'] === '1') {
+        // ENREGISTREMENT DANS LE FICHIER JSON À CETTE ÉTAPE UNIQUEMENT
+        if (isset($_SESSION['user_data_complete']) && !isset($_SESSION['user_registered'])) {
+            $user_data = $_SESSION['user_data_complete'];
+
+            // Vérifier que le mot de passe est présent
+            if (!isset($user_data['password'])) {
+                // Rediriger vers l'inscription si le mot de passe est manquant
+                session_destroy();
+                header("Location: inscription.php?error=missing_password");
+                exit();
+            }
+
+            // Vérifier si l'utilisateur existe déjà
+            $json_file = "../json/users.json";
+            $users = [];
+            if (file_exists($json_file)) {
+                $json_data = file_get_contents($json_file);
+                $users = json_decode($json_data, true) ?? [];
+            }
+
+            // Vérifier si l'email est déjà utilisé (éviter les doublons)
+            $email_exists = false;
+            foreach ($users as $user) {
+                if (isset($user['email']) && $user['email'] === $user_data['email']) {
+                    $email_exists = true;
+                    break;
+                }
+            }
+
+            // Ajouter l'utilisateur seulement s'il n'existe pas déjà
+            if (!$email_exists) {
+                $users[] = $user_data;
+                file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
+            }
+
+            // Marquer l'utilisateur comme enregistré
+            $_SESSION['user_registered'] = true;
+        }
+
+        // Créer la session utilisateur
         $_SESSION['user'] = $email;
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $role;
@@ -35,6 +75,7 @@ if (isset($_SESSION['auto_login'])) {
         // Nettoyer les données temporaires
         unset($_SESSION['passport_info']);
         unset($_SESSION['auto_login']);
+        unset($_SESSION['user_data_complete']);
 
         // Rediriger vers l'accueil
         header("Location: ../index.php");
@@ -60,12 +101,12 @@ if (isset($_SESSION['auto_login'])) {
 <body>
     <div class="default"></div>
 
-    <div class="card">
-        <div class="">
+    <div class="passport-page">
+        <div class="passport-wrapper">
 
-            <div class="">
-                <span class="">Félicitations!</span>
-                <span class="">Votre Passeport Multiversel est prêt</span>
+            <div class="congratulation-header">
+                <span class="title">Félicitations!</span>
+                <span class="subtitle">Votre Passeport Multiversel est prêt</span>
             </div>
 
             <div class="passport-container">

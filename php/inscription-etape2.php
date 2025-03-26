@@ -20,6 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupérer les données de l'étape 1
         $user_data = $_SESSION['inscription'];
 
+        // S'assurer que le mot de passe existe, sinon utiliser celui stocké dans user_data_complete
+        if (!isset($user_data['password']) && isset($_SESSION['user_data_complete']['password'])) {
+            $user_data['password'] = $_SESSION['user_data_complete']['password'];
+        }
+
+        // Vérifier si le mot de passe existe, sinon rediriger vers l'étape 1
+        if (!isset($user_data['password'])) {
+            $_SESSION['inscri'] = 4; // Code d'erreur pour mot de passe manquant
+            header("Location: inscription.php");
+            exit();
+        }
+
         // Ajouter les nouvelles données
         $user_data['date_naissance'] = $date_naissance;
         $user_data['nationalite'] = $nationalite;
@@ -30,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Générer un ID unique de passeport (10 chiffres)
         $passport_id = generateUniquePassportID();
 
-        // Compléter les données utilisateur
+        // Compléter les données utilisateur SANS LES ENREGISTRER
         $role = 'user';
         $user_data['role'] = $role;
         $user_data['passport_id'] = $passport_id;
@@ -44,16 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             unset($user_data['temp_pass']);
         }
 
-        // Enregistrer dans le fichier JSON
-        $json_file = "../json/users.json";
-        $users = [];
-        if (file_exists($json_file)) {
-            $json_data = file_get_contents($json_file);
-            $users = json_decode($json_data, true) ?? [];
-        }
-
-        $users[] = $user_data;
-        file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
+        // NE PAS ENREGISTRER DANS LE FICHIER JSON À CETTE ÉTAPE
+        // On stocke juste les données complètes en session pour l'enregistrement ultérieur
+        $_SESSION['user_data_complete'] = $user_data;
 
         // Stocker les informations de passeport pour l'affichage
         $_SESSION['passport_info'] = [
@@ -163,51 +168,56 @@ function generateUniquePassportID()
             </div>
 
             <form class="form" action="inscription-etape2.php" method="post">
-                <div class="date-input-container">
-                    <label for="date_naissance">Date de naissance</label>
-                    <div class="date-input">
-                        <img src="../img/svg/calendar.svg" alt="Date Icon">
-                        <input type="date" id="date_naissance" name="date_naissance" required
-                            max="<?php echo date('Y-m-d'); ?>" placeholder="Date de naissance"
-                            value="<?php echo htmlspecialchars($date_naissance_value); ?>">
+                <div class="form-container">
+                    <div class="date-input-container">
+                        <label for="date_naissance">Date de naissance</label>
+                        <div class="date-input">
+                            <img src="../img/svg/calendar.svg" alt="Date Icon">
+                            <input type="date" id="date_naissance" name="date_naissance" required
+                                max="<?php echo date('Y-m-d'); ?>" placeholder="Date de naissance"
+                                value="<?php echo htmlspecialchars($date_naissance_value); ?>">
+                        </div>
+
                     </div>
 
+                    <img src="../img/svg/line-haut.svg" alt="séparation">
+
+                    <div class="nationalite">
+                        <img src="../img/svg/globe.svg" alt="Globe Icon">
+                        <select name="nationalite" id="nationalite" required>
+                            <option value="" disabled selected>Nationalité</option>
+                            <option value="Américaine" <?php echo $nationalite_value === 'Américaine' ? 'selected' : ''; ?>>
+                                Américaine</option>
+                            <option value="Française" <?php echo $nationalite_value === 'Française' ? 'selected' : ''; ?>>
+                                Française</option>
+                            <option value="Britannique" <?php echo $nationalite_value == 'Britannique' ? 'selected' : ''; ?>>
+                                Britannique</option>
+                            <option value="Allemande" <?php echo $nationalite_value == 'Allemande' ? 'selected' : ''; ?>>
+                                Allemande</option>
+                            <option value="Espagnole" <?php echo $nationalite_value == 'Espagnole' ? 'selected' : ''; ?>>
+                                Espagnole</option>
+                            <option value="Italienne" <?php echo $nationalite_value == 'Italienne' ? 'selected' : ''; ?>>
+                                Italienne</option>
+                            <option value="Canadienne" <?php echo $nationalite_value == 'Canadienne' ? 'selected' : ''; ?>>
+                                Canadienne</option>
+                            <option value="Japonaise" <?php echo $nationalite_value == 'Japonaise' ? 'selected' : ''; ?>>
+                                Japonaise</option>
+                            <option value="Chinoise" <?php echo $nationalite_value == 'Chinoise' ? 'selected' : ''; ?>>
+                                Chinoise</option>
+                            <option value="Russe" <?php echo $nationalite_value == 'Russe' ? 'selected' : ''; ?>>Russe
+                            </option>
+                            <option value="Australienne" <?php echo $nationalite_value == 'Australienne' ? 'selected' : ''; ?>>Australienne</option>
+                            <option value="Brésilienne" <?php echo $nationalite_value == 'Brésilienne' ? 'selected' : ''; ?>>
+                                Brésilienne</option>
+                            <option value="Indienne" <?php echo $nationalite_value == 'Indienne' ? 'selected' : ''; ?>>
+                                Indienne</option>
+                            <option value="Mexicaine" <?php echo $nationalite_value == 'Mexicaine' ? 'selected' : ''; ?>>
+                                Mexicaine</option>
+                            <option value="Sud-Africaine" <?php echo $nationalite_value == 'Sud-Africaine' ? 'selected' : ''; ?>>Sud-Africaine</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="nationalite">
-                    <img src="../img/svg/globe.svg" alt="Globe Icon">
-                    <select name="nationalite" id="nationalite" required>
-                        <option value="" disabled selected>Nationalité</option>
-                        <option value="Américaine" <?php echo $nationalite_value === 'Américaine' ? 'selected' : ''; ?>>
-                            Américaine</option>
-                        <option value="Française" <?php echo $nationalite_value === 'Française' ? 'selected' : ''; ?>>
-                            Française</option>
-                        <option value="Britannique" <?php echo $nationalite_value == 'Britannique' ? 'selected' : ''; ?>>
-                            Britannique</option>
-                        <option value="Allemande" <?php echo $nationalite_value == 'Allemande' ? 'selected' : ''; ?>>
-                            Allemande</option>
-                        <option value="Espagnole" <?php echo $nationalite_value == 'Espagnole' ? 'selected' : ''; ?>>
-                            Espagnole</option>
-                        <option value="Italienne" <?php echo $nationalite_value == 'Italienne' ? 'selected' : ''; ?>>
-                            Italienne</option>
-                        <option value="Canadienne" <?php echo $nationalite_value == 'Canadienne' ? 'selected' : ''; ?>>
-                            Canadienne</option>
-                        <option value="Japonaise" <?php echo $nationalite_value == 'Japonaise' ? 'selected' : ''; ?>>
-                            Japonaise</option>
-                        <option value="Chinoise" <?php echo $nationalite_value == 'Chinoise' ? 'selected' : ''; ?>>
-                            Chinoise</option>
-                        <option value="Russe" <?php echo $nationalite_value == 'Russe' ? 'selected' : ''; ?>>Russe
-                        </option>
-                        <option value="Australienne" <?php echo $nationalite_value == 'Australienne' ? 'selected' : ''; ?>>Australienne</option>
-                        <option value="Brésilienne" <?php echo $nationalite_value == 'Brésilienne' ? 'selected' : ''; ?>>
-                            Brésilienne</option>
-                        <option value="Indienne" <?php echo $nationalite_value == 'Indienne' ? 'selected' : ''; ?>>
-                            Indienne</option>
-                        <option value="Mexicaine" <?php echo $nationalite_value == 'Mexicaine' ? 'selected' : ''; ?>>
-                            Mexicaine</option>
-                        <option value="Sud-Africaine" <?php echo $nationalite_value == 'Sud-Africaine' ? 'selected' : ''; ?>>Sud-Africaine</option>
-                    </select>
-                </div>
 
                 <div class="generate-button-container">
                     <button class="generate-button" type="submit">

@@ -11,7 +11,8 @@
         "last_name": "Pupier",
         "email": "CharlyPupier@gmail.com",
         "password": "$2y$10$lj2CsMbmDaMs4q6QIaUJROc2tL0NOB7.vST9R3pkZNc87oDCgyJA6",
-        "role": "admin"
+        "role": "admin",
+        "last_login": "2025-03-26 19:41:57"
     },
     {
         "first_name": "Ibrahima",
@@ -115,26 +116,12 @@
         "first_name": "Hello",
         "last_name": "Darling",
         "email": "hello@gmail.com",
-        "password": "$2y$10$pcyKDV2LzwnwXBwa6m5MKu32YivEhGWYKWFyyzU1YfJa1Qf8.wdQi",
-        "date_naissance": "2000-03-10",
+        "password": "$2y$10$xpUBY0UVVrW7a0N1JUAM.ezcAJ2I6ub9SwW3EAYoWevLTNOPdKnn6",
+        "date_naissance": "2005-03-10",
         "nationalite": "Fran\u00e7aise",
         "role": "user",
-        "passport_id": "4601579284",
-        "date_inscription": "2025-03-26 17:20:55",
-        "blocked": false,
-        "vip": false,
-        "last_login": "null"
-    },
-    {
-        "civilite": "M",
-        "first_name": "Hello",
-        "last_name": "Darling",
-        "email": "hello@gmail.com",
-        "date_naissance": "2000-03-10",
-        "nationalite": "Fran\u00e7aise",
-        "role": "user",
-        "passport_id": "5094110869",
-        "date_inscription": "2025-03-26 17:22:22",
+        "passport_id": "2466910850",
+        "date_inscription": "2025-03-26 20:40:58",
         "blocked": false,
         "vip": false,
         "last_login": "null"
