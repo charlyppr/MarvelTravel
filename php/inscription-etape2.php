@@ -7,6 +7,10 @@ if (!isset($_SESSION['inscription'])) {
     exit();
 }
 
+// Récupérer les données sauvegardées si elles existent
+$date_naissance_value = $_SESSION['inscription']['date_naissance'] ?? '';
+$nationalite_value = $_SESSION['inscription']['nationalite'] ?? '';
+
 // Traitement du formulaire de l'étape 2
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_naissance = $_POST['date_naissance'] ?? '';
@@ -16,19 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupérer les données de l'étape 1
         $user_data = $_SESSION['inscription'];
 
+        // Ajouter les nouvelles données
+        $user_data['date_naissance'] = $date_naissance;
+        $user_data['nationalite'] = $nationalite;
+
+        // Mettre à jour la session avec les nouvelles données
+        $_SESSION['inscription'] = $user_data;
+
         // Générer un ID unique de passeport (10 chiffres)
         $passport_id = generateUniquePassportID();
 
         // Compléter les données utilisateur
         $role = 'user';
         $user_data['role'] = $role;
-        $user_data['date_naissance'] = $date_naissance;
-        $user_data['nationalite'] = $nationalite;
         $user_data['passport_id'] = $passport_id;
         $user_data['date_inscription'] = date("Y-m-d H:i:s");
         $user_data['blocked'] = false;
         $user_data['vip'] = false;
         $user_data['last_login'] = "null";
+
+        // Supprimer le mot de passe temporaire s'il existe
+        if (isset($user_data['temp_pass'])) {
+            unset($user_data['temp_pass']);
+        }
 
         // Enregistrer dans le fichier JSON
         $json_file = "../json/users.json";
@@ -62,12 +76,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'passport_id' => $user_data['passport_id']
         ];
 
-        // Nettoyer les données d'inscription
-        unset($_SESSION['inscription']);
+        // Nettoyer les données d'inscription (on garde juste le nécessaire)
+        $_SESSION['inscription'] = [
+            'civilite' => $user_data['civilite'],
+            'first_name' => $user_data['first_name'],
+            'last_name' => $user_data['last_name'],
+            'email' => $user_data['email']
+        ];
 
         // Redirection vers la page de passeport
         header("Location: passeport.php");
         exit();
+    } else {
+        // Si certains champs sont manquants, on sauvegarde quand même ce qui a été rempli
+        if ($date_naissance) {
+            $_SESSION['inscription']['date_naissance'] = $date_naissance;
+        }
+        if ($nationalite) {
+            $_SESSION['inscription']['nationalite'] = $nationalite;
+        }
     }
 }
 
@@ -119,7 +146,8 @@ function generateUniquePassportID()
             <img src="../img/svg/shield.svg" alt="shield pin" class="shield-pin">
             <img src="../img/svg/captain.svg" alt="captain pin" class="captain-pin">
 
-            <a href="inscription.php" class="retour"><img src="../img/svg/fleche-gauche.svg" alt="fleche retour"></a>
+            <a href="inscription.php" class="retour" id="back-button"><img src="../img/svg/fleche-gauche.svg"
+                    alt="fleche retour"></a>
 
             <a href="../index.php" class="logo-container">
                 <div class="logo-gauche">
@@ -135,20 +163,57 @@ function generateUniquePassportID()
             </div>
 
             <form class="form" action="inscription-etape2.php" method="post">
-                <div class="date-input">
-                    <img src="../img/svg/calendar.svg" alt="Date Icon">
-                    <input type="date" id="date_naissance" name="date_naissance" required>
+                <div class="date-input-container">
+                    <label for="date_naissance">Date de naissance</label>
+                    <div class="date-input">
+                        <img src="../img/svg/calendar.svg" alt="Date Icon">
+                        <input type="date" id="date_naissance" name="date_naissance" required
+                            max="<?php echo date('Y-m-d'); ?>" placeholder="Date de naissance"
+                            value="<?php echo htmlspecialchars($date_naissance_value); ?>">
+                    </div>
+
                 </div>
 
                 <div class="nationalite">
                     <img src="../img/svg/globe.svg" alt="Globe Icon">
-                    <input type="text" id="nationalite" name="nationalite" placeholder="Nationalité" required>
+                    <select name="nationalite" id="nationalite" required>
+                        <option value="" disabled selected>Nationalité</option>
+                        <option value="Américaine" <?php echo $nationalite_value === 'Américaine' ? 'selected' : ''; ?>>
+                            Américaine</option>
+                        <option value="Française" <?php echo $nationalite_value === 'Française' ? 'selected' : ''; ?>>
+                            Française</option>
+                        <option value="Britannique" <?php echo $nationalite_value == 'Britannique' ? 'selected' : ''; ?>>
+                            Britannique</option>
+                        <option value="Allemande" <?php echo $nationalite_value == 'Allemande' ? 'selected' : ''; ?>>
+                            Allemande</option>
+                        <option value="Espagnole" <?php echo $nationalite_value == 'Espagnole' ? 'selected' : ''; ?>>
+                            Espagnole</option>
+                        <option value="Italienne" <?php echo $nationalite_value == 'Italienne' ? 'selected' : ''; ?>>
+                            Italienne</option>
+                        <option value="Canadienne" <?php echo $nationalite_value == 'Canadienne' ? 'selected' : ''; ?>>
+                            Canadienne</option>
+                        <option value="Japonaise" <?php echo $nationalite_value == 'Japonaise' ? 'selected' : ''; ?>>
+                            Japonaise</option>
+                        <option value="Chinoise" <?php echo $nationalite_value == 'Chinoise' ? 'selected' : ''; ?>>
+                            Chinoise</option>
+                        <option value="Russe" <?php echo $nationalite_value == 'Russe' ? 'selected' : ''; ?>>Russe
+                        </option>
+                        <option value="Australienne" <?php echo $nationalite_value == 'Australienne' ? 'selected' : ''; ?>>Australienne</option>
+                        <option value="Brésilienne" <?php echo $nationalite_value == 'Brésilienne' ? 'selected' : ''; ?>>
+                            Brésilienne</option>
+                        <option value="Indienne" <?php echo $nationalite_value == 'Indienne' ? 'selected' : ''; ?>>
+                            Indienne</option>
+                        <option value="Mexicaine" <?php echo $nationalite_value == 'Mexicaine' ? 'selected' : ''; ?>>
+                            Mexicaine</option>
+                        <option value="Sud-Africaine" <?php echo $nationalite_value == 'Sud-Africaine' ? 'selected' : ''; ?>>Sud-Africaine</option>
+                    </select>
                 </div>
 
-                <button class="generate-button" type="submit">
-                    Générer mon passeport multiversel
-                    <img src="../img/svg/shield.svg" alt="shield" style="width: 20px; height: 20px;">
-                </button>
+                <div class="generate-button-container">
+                    <button class="generate-button" type="submit">
+                        Générer mon passeport multiversel
+                    </button>
+                </div>
             </form>
         </div>
     </div>

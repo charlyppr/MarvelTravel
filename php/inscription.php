@@ -1,6 +1,13 @@
 <?php
 require_once "session.php";
 
+// Récupérer les données sauvegardées si elles existent
+$login_civilite_value = $_SESSION['inscription']['civilite'] ?? '';
+$login_firstname_value = $_SESSION['inscription']['first_name'] ?? '';
+$login_lastname_value = $_SESSION['inscription']['last_name'] ?? '';
+$login_mail_value = $_SESSION['inscription']['email'] ?? '';
+// Ne pas récupérer le mot de passe pour des raisons de sécurité
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_civilite = trim($_POST['login_civilite'] ?? '');
     // Formater le prénom : première lettre en majuscule, reste en minuscule
@@ -41,11 +48,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'last_name' => $login_lastname,
                     'email' => $login_mail,
                     'password' => password_hash($login_pass, PASSWORD_BCRYPT),
+                    'temp_pass' => $login_pass, // Temporairement pour la démonstration - À ÉVITER EN PRODUCTION
                 ];
 
                 // Redirection vers l'étape 2
                 header("Location: inscription-etape2.php");
                 exit();
+            } else {
+                // Sauvegarde des données en cas d'erreur pour ne pas les perdre
+                $_SESSION['inscription'] = [
+                    'civilite' => $login_civilite,
+                    'first_name' => $login_firstname,
+                    'last_name' => $login_lastname,
+                    'email' => $login_mail,
+                    // Ne pas sauvegarder le mot de passe en clair en cas d'erreur
+                ];
             }
         }
     }
@@ -96,27 +113,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <form class="form" action="inscription.php" method="post">
-                <!-- Ajout du champ civilité -->
-                <div class="form-group">
-                    <label for="login_civilite">Civilité</label>
-                    <select name="login_civilite" id="login_civilite" required>
-                        <option value="">Choisir</option>
-                        <option value="M">Monsieur</option>
-                        <option value="Mme">Madame</option>
-                        <option value="Autre">Autre</option>
-                    </select>
+
+                <div class="civilite-container">
+                    <div class="civilite">
+                        <select name="login_civilite" id="login_civilite" required>
+                            <option value="" disabled selected>Civilité</option>
+                            <option value="M" <?php echo $login_civilite_value === 'M' ? 'selected' : ''; ?>>Monsieur
+                            </option>
+                            <option value="Mme" <?php echo $login_civilite_value === 'Mme' ? 'selected' : ''; ?>>Madame
+                            </option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-row">
                     <input type="text" name="login_firstname" id="prenom" placeholder="Prénom" required
-                        autocomplete="name">
+                        autocomplete="name" value="<?php echo htmlspecialchars($login_firstname_value); ?>">
                     <input type="text" name="login_lastname" id="nom" placeholder="Nom" required
-                        autocomplete="family-name">
+                        autocomplete="family-name" value="<?php echo htmlspecialchars($login_lastname_value); ?>">
                 </div>
 
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
-                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email">
+                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email"
+                        value="<?php echo htmlspecialchars($login_mail_value); ?>">
                 </div>
 
                 <div class="mdp">

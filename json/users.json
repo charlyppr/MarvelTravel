@@ -109,5 +109,34 @@
         "date_inscription": "2025-03-25 12:57:14",
         "blocked": false,
         "vip": false
+    },
+    {
+        "civilite": "M",
+        "first_name": "Hello",
+        "last_name": "Darling",
+        "email": "hello@gmail.com",
+        "password": "$2y$10$pcyKDV2LzwnwXBwa6m5MKu32YivEhGWYKWFyyzU1YfJa1Qf8.wdQi",
+        "date_naissance": "2000-03-10",
+        "nationalite": "Fran\u00e7aise",
+        "role": "user",
+        "passport_id": "4601579284",
+        "date_inscription": "2025-03-26 17:20:55",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
+    },
+    {
+        "civilite": "M",
+        "first_name": "Hello",
+        "last_name": "Darling",
+        "email": "hello@gmail.com",
+        "date_naissance": "2000-03-10",
+        "nationalite": "Fran\u00e7aise",
+        "role": "user",
+        "passport_id": "5094110869",
+        "date_inscription": "2025-03-26 17:22:22",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
     }
 ]

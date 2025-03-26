@@ -60,7 +60,7 @@
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
-    gap: 35px;
+    gap: 30px;
     padding: 40px;
     min-height: 540px;
     min-width: 440px;
@@ -93,11 +93,10 @@
 .form {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     gap: 20px;
     width: 100%;
     height: 100%;
-    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .form-row {
@@ -237,6 +236,132 @@ input:focus {
     transform: rotate(-20deg);
 }
 
+
+.civilite-container {
+    width: 100%;
+    display: flex;
+}
+
+.civilite {
+    display: flex;
+    align-items: center;
+    background-color: #59514283;
+    padding: 15px 20px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.civilite select {
+    font-family: 'PP Formula Bold', sans-serif;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--couleur-primaire);
+}
+
+.civilite select option[value="Civilité"] {
+    color: #fffae785;
+}
+
+.date-input, .nationalite {
+    display: flex;
+    gap: 10px;
+}
+
+.generate-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.generate-button {
+    font-family: 'PP Formula Bold', sans-serif;
+    font-size: .8em;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--couleur-primaire);
+    background-color: #115422;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 4px #f2dbaf1b;
+    transition: all .2s ease-in-out;
+}
+
+
+.date-input input[type="date"] {
+    font-family: 'PP Formula Bold', sans-serif;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--couleur-primaire);
+    font-size: 13px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.date-input input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.date-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #fffae785;
+    font-size: 13px;
+    align-items: flex-start;
+}
+
+.nationalite {
+    position: relative;
+}
+
+.nationalite select {
+    font-family: 'PP Formula Bold', sans-serif;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--couleur-primaire);
+    font-size: 13px;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 20px;
+}
+
+.nationalite select.has-value {
+    color: var(--couleur-primaire);
+}
+
+.nationalite::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fffae7;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.nationalite select option {
+    background-color: #1a1a1a;
+    color: #fffae7;
+}
 
 /* --------------------- Media ----------------------- */
 
