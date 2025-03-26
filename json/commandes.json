@@ -1,13 +1,19 @@
 [
     {
-        "transaction": "67e2afda7e6b7",
-        "montant": 399.95,
+        "transaction": "67e316cd9ec12",
+        "montant": 7199.7,
         "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "5146946615855f5161cb3993e91e5271",
-        "acheteur": "CharlyPupier@gmail.com",
-        "voyage": "New York",
-        "date": "2025-01-01",
-        "nb_personne": 1
+        "status": "pending",
+        "control": "pending",
+        "acheteur": "caca@gmail.com",
+        "voyage": "Hala",
+        "date": "2025-03-14",
+        "nb_personne": 2,
+        "etapes": [
+            "Capitale Kree",
+            "Ar\u00e8ne de combat",
+            "Observatoire stellaire"
+        ],
+        "options": []
     }
 ]

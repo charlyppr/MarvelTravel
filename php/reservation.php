@@ -19,16 +19,14 @@ $montant = 0;
 
 foreach ($lieux as $lieu) {
     foreach ($voyage['etapes'] as $etape) {
-        if ($etape['lieu'] === $lieu) {
+        
+        if (isset($etape['prix'])) {
+            $montant += $etape['prix'];
+        }
+    
+        foreach ($options as $option) {
             if (isset($etape['prix'])) {
                 $montant += $etape['prix'];
-            }
-        }
-        foreach ($options as $option) {
-            if ($option === $etape['lieu']) {
-                if (isset($etape['prix'])) {
-                    $montant += $etape['prix'];
-                }
             }
         }
     }
@@ -52,9 +50,15 @@ $base_url = $protocol . "://" . $host . $relative_path;
 
 $retour = "{$base_url}/php/retour_reservation.php?transaction={$transaction}";
 
-
 $json_file = "../json/commandes.json";
-$commande[] = [
+
+$commandes = file_exists($json_file) ? json_decode(file_get_contents($json_file), true) : [];
+if (!is_array($commandes)) {
+    $commandes = [];
+}
+
+
+$new_commande[] = [
     "transaction" => $transaction,
     "montant" => $montant,
     "vendeur" => $vendeur,
@@ -63,14 +67,15 @@ $commande[] = [
     "acheteur" => $_SESSION['email'],
     "voyage" => $voyage['titre'],
     "date" => $date,
-    "nb_personne" => $nb_personne
+    "nb_personne" => $nb_personne,
+    "etapes" => $lieux,
+    "options" => $options
 ];
 
-file_put_contents($json_file, json_encode($commande, JSON_PRETTY_PRINT));
+file_put_contents($json_file, json_encode($new_commande, JSON_PRETTY_PRINT));
 
 require('getapikey.php');
 $api_key = getAPIKey($vendeur);
-
 $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $retour . "#");
 ?>
 <!DOCTYPE html>

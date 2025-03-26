@@ -203,38 +203,68 @@
                                         $json_file_path = '../json/commandes.json';
                                         $commandes = false;
                                         if (file_exists($json_file_path)) {
-                                            $json_file = file_get_contents($json_file_path);
-                                            $data = json_decode($json_file, true);
-                                            if (is_array($data)) {
-                                                foreach ($data as $commande) {
-                                            if($commande['acheteur'] == $_SESSION['email']){
-                                                $commandes = true;
-                                                echo "<div class='info-commande'>
-                                                        <span class='nom-commande'>".$commande['voyage']."</span>-
-                                                        <span class='nom-commande'>".$commande['date']."</span>-
-                                                    </div>";
-                                                    
+                                                $json_file = file_get_contents($json_file_path);
+                                                $data = json_decode($json_file, true);
+                                                if (is_array($data)) {
+                                                    foreach ($data as $commande) {
+                                                        if($commande['acheteur'] == $_SESSION['email']){
+                                                            $commandes = true;
+                                                            echo "<a href='commande.php?transaction=".$commande['transaction']."' class='info-commande'>
+                                                                    <span class='nom-commande'>".$commande['voyage']."</span>-
+                                                                    <span class='nom-commande'>".$commande['date']."</span>
+                                                                </a>";  
+                                                        }
+                                                    }
                                                 }
-                                            }
                                         }
                                         if (!$commandes) {
                                             }
-                                        }
-                                        if(!$commandes){
+                                        else if(!$commandes){
                                             echo "<div class='info-commande'>
                                                     <span class='nom-commande'>Aucune commande</span>
                                                 </div>";
                                         }
                                     ?>
                                 </div>
-
-                                <span class="trait"></span>
-
-                                <a href="destination.php" class="decouvrir-button">Découvrir les mondes !</a>
                             </div>
 
-
                             <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos voyages</span>
+
+                            <div class="header-text">
+                                <span class="titre-card">Mes messages</span>
+                            </div>
+
+                            <div class="card-content">
+                                <div class="user-info">
+                                    <?php
+                                        $json_file_path = '../json/messages.json';
+                                        $messages = false;
+                                        if (file_exists($json_file_path)) {
+                                            $json_file = file_get_contents($json_file_path);
+                                            $data = json_decode($json_file, true);
+                                            if (is_array($data)) {
+                                                foreach ($data as $message) {
+                                            if($message['email'] == $_SESSION['email']){
+                                                $messages = true;
+                                                echo "<div class='info-commande'>
+                                                        <span class='nom-commande'>".$message['date']."</span>-
+                                                    </div>";
+                                                    
+                                                }
+                                            }
+                                        }
+                                        if (!$messages) {
+                                            }
+                                        }
+                                        if(!$messages){
+                                            echo "<div class='info-commande'>
+                                                    <span class='nom-commande'>Aucun message</span>
+                                                </div>";
+                                        }
+                                    ?>
+                                </div>
+
+                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos messages</span>
                         </div>
                     </div>
                 </div>

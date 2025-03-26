@@ -1,0 +1,16 @@
+[
+    {
+        "nom": "ca",
+        "prenom": "ca",
+        "email": "caca@gmail.com",
+        "message": "bonjour le site est nul.",
+        "date": "2025-03-25 18:53:50"
+    },
+    {
+        "nom": "zebi",
+        "prenom": "zebi",
+        "email": "zebi@gmail.com",
+        "message": "bonjour le site est archi nul",
+        "date": "2025-03-25 19:02:02"
+    }
+]
