@@ -166,7 +166,8 @@ input, textarea {
     font-size: 14px;
     font-weight: 200;
     padding-left: 20px;
-    width: 200%;
+    height: 50px;
+    width: 100%;    
     display: flex;
     border-radius: 15px;
     background-color: transparent;
@@ -177,7 +178,7 @@ input, textarea {
 
 textarea {
     padding-top: 15px;
-    height: 150px;
+    height: 100%;
     resize: none;
 }
 

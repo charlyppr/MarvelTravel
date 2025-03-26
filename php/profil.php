@@ -250,7 +250,7 @@
                                             if($message['email'] == $_SESSION['email']){
                                                 $messages = true;
                                                 echo "<div class='info-commande'>
-                                                        <span class='nom-commande'>".$message['date']."</span>-
+                                                        <span class='nom-commande'>".$message['objet']."</span>-
                                                     </div>";
                                                     
                                                 }
@@ -266,9 +266,8 @@
                                         }
                                     ?>
                                 </div>
-
-                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos messages</span>
                         </div>
+                        <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos messages</span>
                     </div>
                 </div>
             </div>
