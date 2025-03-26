@@ -8,6 +8,39 @@ if (!isset($_SESSION['passport_info'])) {
 }
 
 $passport_info = $_SESSION['passport_info'];
+
+// Stocker les identifiants en session pour la connexion automatique
+if (isset($_SESSION['auto_login'])) {
+    $email = $_SESSION['auto_login']['email'];
+    $role = $_SESSION['auto_login']['role'];
+    $first_name = $_SESSION['auto_login']['first_name'];
+    $last_name = $_SESSION['auto_login']['last_name'];
+    $civilite = $_SESSION['auto_login']['civilite'] ?? '';
+    $date_naissance = $_SESSION['auto_login']['date_naissance'] ?? '';
+    $nationalite = $_SESSION['auto_login']['nationalite'] ?? '';
+    $passport_id = $_SESSION['auto_login']['passport_id'] ?? '';
+
+    // Créer la session utilisateur si le bouton est cliqué
+    if (isset($_GET['auto_login']) && $_GET['auto_login'] === '1') {
+        $_SESSION['user'] = $email;
+        $_SESSION['email'] = $email;
+        $_SESSION['role'] = $role;
+        $_SESSION['first_name'] = $first_name;
+        $_SESSION['last_name'] = $last_name;
+        $_SESSION['civilite'] = $civilite;
+        $_SESSION['date_naissance'] = $date_naissance;
+        $_SESSION['nationalite'] = $nationalite;
+        $_SESSION['passport_id'] = $passport_id;
+
+        // Nettoyer les données temporaires
+        unset($_SESSION['passport_info']);
+        unset($_SESSION['auto_login']);
+
+        // Rediriger vers l'accueil
+        header("Location: ../index.php");
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,8 +137,8 @@ $passport_info = $_SESSION['passport_info'];
         }
 
         .continue-button {
-            background: #f0f0f0;
-            color: #333;
+            background: linear-gradient(to right, #e23636, #518cca);
+            color: white;
             border: none;
             border-radius: 5px;
             padding: 12px 25px;
@@ -120,10 +153,19 @@ $passport_info = $_SESSION['passport_info'];
             text-decoration: none;
             margin-top: 20px;
             width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .continue-button:hover {
-            background: #e0e0e0;
+            background: linear-gradient(to right, #c92d2d, #3f70aa);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .continue-button img {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
@@ -188,8 +230,8 @@ $passport_info = $_SESSION['passport_info'];
                 </div>
             </div>
 
-            <a href="connexion.php" class="continue-button">
-                Se connecter
+            <a href="?auto_login=1" class="continue-button">
+                Entrer dans le multivers
                 <img src="../img/svg/fleche-droite.svg" alt="fleche">
             </a>
         </div>

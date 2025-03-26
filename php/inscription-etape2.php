@@ -50,6 +50,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'date_emission' => date("Y-m-d")
         ];
 
+        // Stocker les informations pour la connexion automatique
+        $_SESSION['auto_login'] = [
+            'email' => $user_data['email'],
+            'role' => $user_data['role'],
+            'first_name' => $user_data['first_name'],
+            'last_name' => $user_data['last_name'],
+            'civilite' => $user_data['civilite'] ?? '',
+            'date_naissance' => $user_data['date_naissance'],
+            'nationalite' => $user_data['nationalite'],
+            'passport_id' => $user_data['passport_id']
+        ];
+
         // Nettoyer les données d'inscription
         unset($_SESSION['inscription']);
 
