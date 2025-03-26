@@ -197,10 +197,10 @@
     },
     {
       "id": 6,
-      "titre": "Xandar",
-      "image": "../img/destinations/xandar.jpg",
+      "titre": "Genovia",
+      "image": "../img/destinations/genovia.jpg",
       "prix": 1499.95,
-      "resume": "Découvrez la planète de Xandar, fief des Nova Corps, et explorez ses avancées technologiques et ses plages paradisiaques.",
+      "resume": "Venez découvrir le charmant royaume de Genovia, une destination royale avec ses palais majestueux et ses paysages époustouflants.",
       "dates": {
         "debut": "2026-04-01",
         "fin": "2026-04-08",
@@ -208,30 +208,30 @@
       },
       "etapes": [
         {
-          "lieu": "Forteresse de Dormammu",
+          "lieu": "Palais Royal de Genovia",
           "duree": "3 jours",
-          "prix": 1599.98,
+          "prix": 799.98,
           "options": [
-            {"nom": "Exploration du trône de Dormammu", "prix": 499.99},
-            {"nom": "Batailles dimensionnelles", "prix": 349.99}
+            {"nom": "Visite guidée du palais", "prix": 99.99},
+            {"nom": "Dîner royal", "prix": 199.99}
           ]
         },
         {
-          "lieu": "Cavernes des Ombres",
+          "lieu": "Jardins de Genovia",
           "duree": "2 jours",
-          "prix": 799.99,
+          "prix": 399.99,
           "options": [
-            {"nom": "Randonnée dans les cavernes", "prix": 199.99},
-            {"nom": "Rencontre avec les entités obscures", "prix": 299.99}
+            {"nom": "Promenade dans les jardins", "prix": 49.99},
+            {"nom": "Visite des serres royales", "prix": 89.99}
           ]
         },
         {
-          "lieu": "Temple des Anciens",
+          "lieu": "Plage de Genovia",
           "duree": "2 jours",
-          "prix": 1199.98,
+          "prix": 299.99,
           "options": [
-            {"nom": "Visite des artefacts anciens", "prix": 399.99},
-            {"nom": "Rituel mystique", "prix": 499.99}
+            {"nom": "Détente sur la plage", "prix": 49.99},
+            {"nom": "Sports nautiques", "prix": 79.99}
           ]
         }
       ]
@@ -270,10 +270,10 @@
     },
     {
       "id": 8,
-      "titre": "Wakanda (Extension)",
-      "image": "../img/destinations/wakanda_extension.jpg",
+      "titre": "Atlantis",
+      "image": "../img/destinations/atlantis.jpg",
       "prix": 5599.95,
-      "resume": "Explorez plus profondément Wakanda et découvrez ses technologies avancées et ses traditions ancestrales.",
+      "resume": "Plongez dans les profondeurs de l'océan et explorez la légendaire cité d'Atlantis, ses trésors antiques et ses paysages sous-marins époustouflants.",
       "dates": {
         "debut": "2026-02-15",
         "fin": "2026-02-22",
@@ -281,30 +281,30 @@
       },
       "etapes": [
         {
-          "lieu": "Marché de Knowhere",
+          "lieu": "Cité d'Atlantis",
           "duree": "2 jours",
           "prix": 799.98,
           "options": [
-            {"nom": "Shopping intergalactique", "prix": 199.99},
-            {"nom": "Dégustation de mets extraterrestres", "prix": 129.99}
+            {"nom": "Visite guidée de la cité", "prix": 199.99},
+            {"nom": "Dîner royal sous-marin", "prix": 299.99}
           ]
         },
         {
-          "lieu": "Tête du Celestial",
+          "lieu": "Ruines anciennes d'Atlantis",
           "duree": "3 jours",
           "prix": 1199.98,
           "options": [
-            {"nom": "Exploration du crâne", "prix": 299.99},
-            {"nom": "Observation de la galaxie", "prix": 179.99}
+            {"nom": "Exploration archéologique", "prix": 499.99},
+            {"nom": "Plongée dans les ruines", "prix": 299.99}
           ]
         },
         {
-          "lieu": "Zone des mines de l'orbite",
+          "lieu": "Jardin sous-marin",
           "duree": "2 jours",
           "prix": 499.99,
           "options": [
-            {"nom": "Extraction de minerais rares", "prix": 99.99},
-            {"nom": "Excursion en vaisseau", "prix": 149.99}
+            {"nom": "Balade en sous-marin", "prix": 149.99},
+            {"nom": "Observation de la faune marine", "prix": 199.99}
           ]
         }
       ]
