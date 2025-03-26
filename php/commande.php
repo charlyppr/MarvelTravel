@@ -10,6 +10,10 @@ if (!isset($_GET['transaction'])) {
 $json_file_path = '../json/commandes.json';
 $json_file = file_get_contents($json_file_path);
 $json_data = json_decode($json_file, true);
+
+if (!isset($json_data[$transaction])) {
+    die("<h1>Erreur </h1><p>Transaction introuvable ! <a href='profil.php'>Retour</a></p>");
+}
 $commande = $json_data[$transaction];
 ?>
 <!DOCTYPE html>
@@ -90,7 +94,7 @@ $commande = $json_data[$transaction];
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span> Etapes du voyage :</span>
-                                                <span><?= implode(' - ',$commande['lieux'])?></span>
+                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'];}?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>
@@ -98,7 +102,7 @@ $commande = $json_data[$transaction];
                                         <div class="row">
                                             <div class="row-user-info">
                                                 <span>Options du voyage :</span>
-                                                <span><?= implode(' - ', $commande['options'])?></span>
+                                                <span><?php foreach($commande['options'] as $option){echo $option['etape'];}?></span>
                                             </div>
                                             <img src="../img/svg/edit.svg" alt="modification">
                                         </div>

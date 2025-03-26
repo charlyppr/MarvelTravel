@@ -205,13 +205,16 @@
                                         if (file_exists($json_file_path)) {
                                                 $json_file = file_get_contents($json_file_path);
                                                 $data = json_decode($json_file, true);
+                                                if(empty($data)){echo "<div class='info-commande'>
+                                                    <span class='nom-commande'>Aucune commande</span>
+                                                </div>";}
                                                 if (is_array($data)) {
                                                     foreach ($data as $commande) {
                                                         if($commande['acheteur'] == $_SESSION['email']){
                                                             $commandes = true;
                                                             echo "<a href='commande.php?transaction=".$commande['transaction']."' class='info-commande'>
                                                                     <span class='nom-commande'>".$commande['voyage']."</span>-
-                                                                    <span class='nom-commande'>".$commande['date']."</span>
+                                                                    <span class='nom-commande'>".$commande['date_debut']."</span>
                                                                 </a>";  
                                                         }
                                                     }
