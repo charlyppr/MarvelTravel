@@ -6,7 +6,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Détermination de la page active
 $current_page = basename($_SERVER['PHP_SELF']);
-$is_in_root = dirname($_SERVER['PHP_SELF']) == '/' . basename(dirname(dirname(__FILE__)));
+
+// Déterminer si on est dans un sous-dossier de php
+$current_dir = dirname($_SERVER['PHP_SELF']);
+$is_in_root = $current_dir == '/' . basename(dirname(dirname(__FILE__)));
+$is_in_subdirectory = strpos($current_dir, '/' . basename(dirname(dirname(__FILE__))) . '/php/') === 0;
 
 // Déterminer le chemin de base pour les URLs
 $project_root = str_replace('\\', '/', dirname(dirname(__FILE__))); // Chemin absolu du projet
@@ -21,7 +25,23 @@ $host = $_SERVER['HTTP_HOST'];
 $base_url = $protocol . "://" . $host . $relative_path;
 
 // Chemins relatifs pour les ressources statiques et les liens
-$prefix_path = $is_in_root ? '' : '../';
+// Détermine la profondeur du sous-dossier pour ajuster le préfixe
+$prefix_path = '';
+if ($is_in_root) {
+    $prefix_path = '';
+} else if ($is_in_subdirectory) {
+    // Compter combien de niveaux sous php/ nous sommes
+    $path_parts = explode('/', trim($current_dir, '/'));
+    $php_index = array_search('php', $path_parts);
+    if ($php_index !== false) {
+        $sub_levels = count($path_parts) - $php_index - 1;
+        $prefix_path = str_repeat('../', $sub_levels + 1);
+    } else {
+        $prefix_path = '../';
+    }
+} else {
+    $prefix_path = '../';
+}
 ?>
 
 <header class="nav">
@@ -50,10 +70,10 @@ $prefix_path = $is_in_root ? '' : '../';
             <?php
             if (isset($_SESSION['user'])) {
                 // Utilisation du préfixe pour les chemins relatifs
-                echo "<a href='{$prefix_path}php/profil.php' class='menu-li'>
+                echo "<a href='{$base_url}/php/profil.php' class='menu-li'>
                       <img src='{$prefix_path}img/svg/spiderman-pin.svg' alt='Profil' style='width: 40px; height: 40px;'></a>";
             } else {
-                echo "<a href='{$prefix_path}php/connexion.php' class='nav-button'>
+                echo "<a href='{$base_url}/php/connexion.php' class='nav-button'>
                       <li>Se connecter</li></a>";
             }
             ?>
