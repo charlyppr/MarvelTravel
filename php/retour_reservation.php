@@ -206,7 +206,7 @@ $paiement_accepte = $paiement_valide && $status === 'accepted';
         <div class="actions">
             <?php if ($paiement_accepte): ?>
                 <a href="profil.php" class="action-button secondary-button">
-                    <img src="../img/svg/profile.svg" alt="profil" width="20">
+                    <img src="../img/svg/person.svg" alt="profil" width="20">
                     Voir mes réservations
                 </a>
                 <a href="../index.php" class="action-button primary-button">

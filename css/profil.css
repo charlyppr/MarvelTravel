@@ -88,12 +88,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     padding: 20px 10px;
     border-radius: 25px;
     background-color: #F2DBAF;
     box-shadow: 0px 4px 30px #f2dbaf77;
     height: fit-content;
+    min-width: 370px;
 }
 
 .header-text {
@@ -117,6 +118,7 @@
     border-radius: 20px;
     background-color: #FFFAE7;
     box-shadow: 0px 4px 10px #0d0d0d42;
+    width: 80%;
 }
 
 .user-info {
@@ -270,4 +272,102 @@ a{
         width: 100%;
         font-size: 11px;
     }
+}
+
+
+/* ------------------ Deconnexion ------------------ */
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.modal-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-cancel, .btn-confirm {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-cancel {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-confirm {
+    background: linear-gradient(to right, #e23636, #518cca);
+    color: white;
+}
+
+.btn-confirm:hover {
+    background: linear-gradient(to right, #c92d2d, #3f70aa);
+    transform: translateY(-2px);
 }

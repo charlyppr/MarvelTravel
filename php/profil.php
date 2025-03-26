@@ -86,7 +86,7 @@ check_auth('connexion.php');
                                 d="M5.10112 8.73108H10.7191C11.1829 8.73108 11.5176 8.44474 11.5176 8.01389C11.5176 7.57748 11.1947 7.28558 10.7191 7.28558H5.10112C4.62855 7.28558 4.30273 7.57748 4.30273 8.01389C4.30273 8.44474 4.63735 8.73108 5.10112 8.73108Z"
                                 fill="#FFFAE7" />
                         </svg>
-                        <a href='../index.php?logout=true'>Se déconnectez</a>
+                        <a href="javascript:void(0)" id="logout-button">Se déconnecter</a>
                     </div>
                     <div class="deconnexion">
                         <?php
@@ -127,51 +127,49 @@ check_auth('connexion.php');
                             </div>
 
 
-                            <div class="card-content-container">
-                                <div class="card-content">
-                                    <div class="user-info">
-                                        <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
-                                        <div class="info">
-                                            <span
-                                                class="nom"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
-                                            <span class="mail"><?= $_SESSION['email'] ?></span>
+                            <div class="card-content">
+                                <div class="user-info">
+                                    <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
+                                    <div class="info">
+                                        <span
+                                            class="nom"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
+                                        <span class="mail"><?= $_SESSION['email'] ?></span>
+                                    </div>
+                                </div>
+
+                                <span class="trait"></span>
+
+                                <div class="modif-info">
+                                    <div class="row">
+                                        <div class="row-user-info">
+                                            <span>Prénom :</span>
+                                            <span><?= $_SESSION['first_name'] ?></span>
                                         </div>
+                                        <img src="../img/svg/edit.svg" alt="modification">
                                     </div>
 
-                                    <span class="trait"></span>
-
-                                    <div class="modif-info">
-                                        <div class="row">
-                                            <div class="row-user-info">
-                                                <span>Prénom :</span>
-                                                <span><?= $_SESSION['first_name'] ?></span>
-                                            </div>
-                                            <img src="../img/svg/edit.svg" alt="modification">
+                                    <div class="row">
+                                        <div class="row-user-info">
+                                            <span>Nom :</span>
+                                            <span><?= $_SESSION['last_name'] ?></span>
                                         </div>
+                                        <img src="../img/svg/edit.svg" alt="modification">
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="row-user-info">
-                                                <span>Nom :</span>
-                                                <span><?= $_SESSION['last_name'] ?></span>
-                                            </div>
-                                            <img src="../img/svg/edit.svg" alt="modification">
+                                    <div class="row">
+                                        <div class="row-user-info">
+                                            <span>Email :</span>
+                                            <span><?= $_SESSION['email'] ?></span>
                                         </div>
+                                        <img src="../img/svg/edit.svg" alt="modification">
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="row-user-info">
-                                                <span>Email :</span>
-                                                <span><?= $_SESSION['email'] ?></span>
-                                            </div>
-                                            <img src="../img/svg/edit.svg" alt="modification">
+                                    <div class="row">
+                                        <div class="row-user-info">
+                                            <span>Mot de passe :</span>
+                                            <span>•••••••••••</span>
                                         </div>
-
-                                        <div class="row">
-                                            <div class="row-user-info">
-                                                <span>Mot de passe :</span>
-                                                <span>•••••••••••</span>
-                                            </div>
-                                            <img src="../img/svg/edit.svg" alt="modification">
-                                        </div>
+                                        <img src="../img/svg/edit.svg" alt="modification">
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +281,58 @@ check_auth('connexion.php');
 
         </div>
 
+        <!-- Modal de confirmation de déconnexion -->
+        <div id="logout-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="../img/svg/warning.svg" alt="warning" class="modal-icon">
+                    <h2>Confirmation de déconnexion</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel-logout" class="btn-cancel">Annuler</button>
+                    <button id="confirm-logout" class="btn-confirm">Déconnexion</button>
+                </div>
+            </div>
+        </div>
+
         <script src="../js/custom-cursor.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Sélection des éléments
+                const logoutButton = document.getElementById('logout-button');
+                const logoutModal = document.getElementById('logout-modal');
+                const cancelLogout = document.getElementById('cancel-logout');
+                const confirmLogout = document.getElementById('confirm-logout');
+
+                // Afficher la modal lors du clic sur le bouton de déconnexion
+                logoutButton.addEventListener('click', function () {
+                    logoutModal.classList.add('show');
+                    document.body.style.overflow = 'hidden'; // Empêcher le défilement
+                });
+
+                // Cacher la modal lors du clic sur Annuler
+                cancelLogout.addEventListener('click', function () {
+                    logoutModal.classList.remove('show');
+                    document.body.style.overflow = 'auto'; // Réactiver le défilement
+                });
+
+                // Rediriger vers la page de déconnexion lors de la confirmation
+                confirmLogout.addEventListener('click', function () {
+                    window.location.href = '../index.php?logout=true';
+                });
+
+                // Fermer la modal si on clique en dehors
+                window.addEventListener('click', function (event) {
+                    if (event.target === logoutModal) {
+                        logoutModal.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        </script>
 
 </body>
 

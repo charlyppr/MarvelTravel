@@ -65,17 +65,19 @@ $_SESSION['current_url'] = current_url();
                     <?php
                     if (!isset($_SESSION['user'])) {
                         echo '<div class="form-row">
-                            <input type="text" name="nom" id="nom" placeholder="Nom" required autocomplete="nom">
-                            <input type="text" name="email" id="email" placeholder="email" required autocomplete="email">
+                            <input type="text" name="nom" id="nom" placeholder="Prénom" required autocomplete="nom">
+                            <input type="text" name="email" id="email" placeholder="Email" required autocomplete="email">
                         </div>';
 
-                    }else{
+                    } else {
                         echo '<div class="form-row">
-                            <input type="text" name="nom" value="'.$_SESSION['last_name'].'" readonly>
-                            <input type="text" name="email" value="'.$_SESSION['email'].'" readonly>
+                            <input type="text" name="nom" value="' . $_SESSION['first_name'] . '" >
+                            <input type="text" name="email" value="' . $_SESSION['email'] . '" readonly>
                         </div>';
-                    }?>
-                    <input type="objet" name="objet" id="objet" placeholder="Objet" required autocomplete="objet">
+                    } ?>
+                    <div class="form-row">
+                        <input type="objet" name="objet" id="objet" placeholder="Objet" required autocomplete="objet">
+                    </div>
                     <textarea name="message" id="message" placeholder="Message" required></textarea>
 
                     <div class="button-div">
