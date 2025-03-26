@@ -63,7 +63,7 @@ $voyages = json_decode(file_get_contents($json_file), true);
         <div class="best-seller-cards">
             <?php for ($i = 0; $i < 4; $i++): ?>
                 <?php $voyage = $voyages[$i]; ?>
-                <!-- Modification ici pour pointer vers etape1.php -->
+
                 <a href='etapes/etape1.php?id=<?php echo htmlspecialchars($voyage['id']) - 1; ?>' class='card-best'>
                     <img src='<?php echo htmlspecialchars($voyage['image']); ?>'
                         alt='<?php echo htmlspecialchars($voyage['titre']); ?>'>
@@ -85,9 +85,9 @@ $voyages = json_decode(file_get_contents($json_file), true);
                 <h1 class="titre">Le choix est vôtre</h1>
             </div>
             <div class="all-destination-cards">
-                <?php for ($i = 6; $i < count($voyages); $i++): ?>
+                <?php for ($i = 5; $i < count($voyages); $i++): ?>
                     <?php $voyage = $voyages[$i]; ?>
-                    <a href='voyage.php?id=<?php echo htmlspecialchars($voyage['id']) - 1; ?>' class='card-all'>
+                    <a href='etapes/etape1.php?id=<?php echo htmlspecialchars($voyage['id']) - 1; ?>' class='card-all'>
                         <img src='<?php echo htmlspecialchars($voyage['image']); ?>'
                             alt='<?php echo htmlspecialchars($voyage['titre']); ?>'>
                         <div class='card-text'>

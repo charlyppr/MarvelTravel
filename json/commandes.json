@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "transaction": "67e3c103219b9",
         "montant": 6541.12,
         "vendeur": "MEF-2_F",
@@ -18,10 +19,48 @@
                 "date_naissance": "2025-03-01",
                 "nationalite": "nk",
                 "passport": "jnk"
+=======
+        "transaction": "67e316cd9ec12",
+        "montant": 7199.7,
+        "vendeur": "MEF-2_F",
+        "status": "pending",
+        "control": "pending",
+        "acheteur": "caca@gmail.com",
+        "voyage": "Hala",
+        "date": "2025-03-14",
+        "nb_personne": 2,
+        "etapes": [
+            "Capitale Kree",
+            "Ar\u00e8ne de combat",
+            "Observatoire stellaire"
+        ],
+        "options": []
+    },
+    {
+        "transaction": "67e3ba4d84fd9",
+        "montant": 475.07,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "869837f8c97ec5dc311dc6f364adcb61",
+        "acheteur": "CharlyPupier@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-01-01",
+        "date_fin": "2025-02-01",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Pupier",
+                "prenom": "Charly",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "627827571823"
+>>>>>>> 3bca28208e173e7eec78f047a67d22688033299b
             }
         ],
         "options": [
             {
+<<<<<<< HEAD
                 "etape": "Golden City",
                 "option": "Mus\u00e9e Wakandais",
                 "prix_unitaire": 393.89,
@@ -55,10 +94,32 @@
                 "prix_unitaire": 153.4,
                 "nb_participants": 1,
                 "total": 153.4
+=======
+                "etape": "Times Square",
+                "option": "Visite guid\u00e9e",
+                "prix_unitaire": 10.73,
+                "nb_participants": 1,
+                "total": 10.73
+            },
+            {
+                "etape": "Statue de la Libert\u00e9",
+                "option": "Travers\u00e9e en ferry",
+                "prix_unitaire": 22.26,
+                "nb_participants": 1,
+                "total": 22.26
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 42.13,
+                "nb_participants": 1,
+                "total": 42.13
+>>>>>>> 3bca28208e173e7eec78f047a67d22688033299b
             }
         ]
     },
     {
+<<<<<<< HEAD
         "transaction": "67e3c169a8a39",
         "montant": 1997.28,
         "vendeur": "MEF-2_F",
@@ -101,6 +162,34 @@
                 "date_naissance": "2025-03-21",
                 "nationalite": "zaef",
                 "passport": "eazf"
+=======
+        "transaction": "67e3bab9d0a14",
+        "montant": 915.06,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "bab6234a13368476d29187135620ea3c",
+        "acheteur": "CharlyPupier@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-01-01",
+        "date_fin": "2025-01-02",
+        "nb_personne": 2,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Pupier",
+                "prenom": "Charly",
+                "date_naissance": "2026-02-04",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "627827571823"
+            },
+            {
+                "civilite": "M",
+                "nom": "Marmelat",
+                "prenom": "Paul",
+                "date_naissance": "2023-04-04",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "57Z385Z7835"
+>>>>>>> 3bca28208e173e7eec78f047a67d22688033299b
             }
         ],
         "options": [
@@ -115,13 +204,19 @@
                 "etape": "Times Square",
                 "option": "Shopping",
                 "prix_unitaire": 29.31,
+<<<<<<< HEAD
                 "nb_participants": 3,
                 "total": 87.92999999999999
+=======
+                "nb_participants": 1,
+                "total": 29.31
+>>>>>>> 3bca28208e173e7eec78f047a67d22688033299b
             },
             {
                 "etape": "Statue de la Libert\u00e9",
                 "option": "Travers\u00e9e en ferry",
                 "prix_unitaire": 22.26,
+<<<<<<< HEAD
                 "nb_participants": 2,
                 "total": 44.52
             },
@@ -131,13 +226,82 @@
                 "prix_unitaire": 39.06,
                 "nb_participants": 3,
                 "total": 117.18
+=======
+                "nb_participants": 1,
+                "total": 22.26
+>>>>>>> 3bca28208e173e7eec78f047a67d22688033299b
             },
             {
                 "etape": "Central Park",
                 "option": "Pique-nique",
                 "prix_unitaire": 42.13,
+<<<<<<< HEAD
                 "nb_participants": 3,
                 "total": 126.39000000000001
+=======
+                "nb_participants": 1,
+                "total": 42.13
+            }
+        ]
+    },
+    {
+        "transaction": "67e3bce1aa5cc",
+        "montant": 901.26,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "035eea171aa660aff649aff59f16720d",
+        "acheteur": "CharlyPupier@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-01-01",
+        "date_fin": "2025-01-04",
+        "nb_personne": 2,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Pupier",
+                "prenom": "Charly",
+                "date_naissance": "2025-01-01",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "627827571823"
+            },
+            {
+                "civilite": "M",
+                "nom": "Marmelat",
+                "prenom": "Paul",
+                "date_naissance": "2025-01-01",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "57Z385Z7835"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guid\u00e9e",
+                "prix_unitaire": 10.73,
+                "nb_participants": 1,
+                "total": 10.73
+            },
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 29.31,
+                "nb_participants": 1,
+                "total": 29.31
+            },
+            {
+                "etape": "Statue de la Libert\u00e9",
+                "option": "Travers\u00e9e en ferry",
+                "prix_unitaire": 22.26,
+                "nb_participants": 1,
+                "total": 22.26
+            },
+            {
+                "etape": "Central Park",
+                "option": "Balade \u00e0 v\u00e9lo",
+                "prix_unitaire": 39.06,
+                "nb_participants": 1,
+                "total": 39.06
+>>>>>>> 3bca28208e173e7eec78f047a67d22688033299b
             }
         ]
     }
