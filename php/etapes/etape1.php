@@ -1,6 +1,6 @@
 <?php
 require_once('../session.php');
-check_auth('../../connexion.php');
+check_auth('../connexion.php');
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
 
