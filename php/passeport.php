@@ -53,6 +53,7 @@ if (isset($_SESSION['auto_login'])) {
 
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
+    <link rel="stylesheet" href="../css/passeport.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -60,21 +61,11 @@ if (isset($_SESSION['auto_login'])) {
     <div class="default"></div>
 
     <div class="card">
-        <div class="card-content">
-            <img src="../img/svg/shield.svg" alt="shield pin" class="shield-pin">
-            <img src="../img/svg/captain.svg" alt="captain pin" class="captain-pin">
+        <div class="">
 
-            <a href="../index.php" class="logo-container">
-                <div class="logo-gauche">
-                    <span class="logo mar">MAR</span>
-                    <span class="logo tra">TRA</span>
-                </div>
-                <span class="logo vel">VEL</span>
-            </a>
-
-            <div class="card-header">
-                <span class="titre-2">Félicitations!</span>
-                <span class="sous-titre-3">Votre Passeport Multiversel est prêt</span>
+            <div class="">
+                <span class="">Félicitations!</span>
+                <span class="">Votre Passeport Multiversel est prêt</span>
             </div>
 
             <div class="passport-container">

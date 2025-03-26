@@ -21,53 +21,13 @@ $displayed_users = 0;
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/administrateur.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
-
 </head>
 
 <body>
     <div class="default"></div>
 
     <div class="main-container">
-        <div class="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-top">
-                    <a href="../index.php" class="logo-container">
-                        <div class="logo-gauche">
-                            <span class="logo mar">MAR</span>
-                            <span class="logo tra">TRA</span>
-                        </div>
-                        <span class="logo vel">VEL</span>
-                    </a>
-
-                    <span class="trait"></span>
-
-                    <div class="categories">
-                        <div class="categories-content active-2">
-                            <div class="categorie-img">
-                                <img src="../img/svg/dashboard.svg" alt="crayon et rectangle">
-                            </div>
-                            <span class="categorie-text active-text">Dashboard</span>
-                        </div>
-
-                        <div class="categories-content">
-                            <div class="categorie-img">
-                                <img src="../img/svg/notif.svg" alt="cloche">
-                            </div>
-                            <span class="categorie-text">Notifications</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-bottom">
-                    <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
-
-                    <div class="info-admin">
-                        <span class="nom-admin"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
-                        <span class="mail-admin"><?= $_SESSION['email'] ?></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include 'sidebar.php'; ?>
 
         <div class="content-container-div">
             <div class="content-container">
@@ -159,7 +119,10 @@ $displayed_users = 0;
 
     </div>
 
+    <?php include 'modals.php'; ?>
+
     <script src="../js/custom-cursor.js"></script>
+    <script src="../js/modal-handlers.js"></script>
     <script src="../js/admin.js"></script>
 
 </body>

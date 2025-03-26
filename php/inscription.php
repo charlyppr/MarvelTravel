@@ -3,8 +3,10 @@ require_once "session.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_civilite = trim($_POST['login_civilite'] ?? '');
-    $login_firstname = trim($_POST['login_firstname'] ?? '');
-    $login_lastname = trim($_POST['login_lastname'] ?? '');
+    // Formater le prénom : première lettre en majuscule, reste en minuscule
+    $login_firstname = ucfirst(strtolower(trim($_POST['login_firstname'] ?? '')));
+    // Formater le nom : première lettre en majuscule, reste en minuscule
+    $login_lastname = ucfirst(strtolower(trim($_POST['login_lastname'] ?? '')));
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
 

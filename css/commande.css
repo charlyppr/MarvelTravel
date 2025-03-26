@@ -1,17 +1,17 @@
 /* ------------------ Logo plus petit ------------------ */
 
 .logo-container {
-    padding: 0px;
+    padding: 0px !important;
 }
 
 .logo-gauche span {
-    font-size: 2.2em;
+    font-size: 2.2em !important;
     color: var(--couleur-primaire);
     transition: ease-out .5s;
 }
 
 .vel {
-    font-size: 5.5rem;
+    font-size: 5.5rem !important;
     color: var(--couleur-primaire);
     transition: ease-out .5s;
 }
@@ -76,7 +76,7 @@
 
 .cards {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
 }
@@ -86,12 +86,12 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 20px 10px;
+    padding: 20px;
     border-radius: 25px;
     background-color: #F2DBAF;
     box-shadow: 0px 4px 30px #f2dbaf77;
     height: fit-content;
-    width: 1000px;
+    width: 100%;
 }
 
 .header-text {

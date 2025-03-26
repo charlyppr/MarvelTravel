@@ -14,92 +14,13 @@ check_auth('connexion.php');
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
-
 </head>
 
 <body>
     <div class="default"></div>
 
     <div class="main-container">
-        <div class="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-top">
-                    <a href="../index.php" class="logo-container">
-                        <div class="logo-gauche">
-                            <span class="logo mar">MAR</span>
-                            <span class="logo tra">TRA</span>
-                        </div>
-                        <span class="logo vel">VEL</span>
-                    </a>
-
-                    <span class="trait"></span>
-
-                    <div class="categories">
-                        <div class="categories-content active-2">
-                            <div class="categorie-img">
-                                <svg width="16" height="18" viewBox="0 0 163 175" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M17.9736 174.814H144.868C156.106 174.814 162.842 169.366 162.842 160.373C162.842 135.709 131.137 101.903 81.4209 101.903C31.6678 101.903 0 135.709 0 160.373C0 169.366 6.73547 174.814 17.9736 174.814ZM81.458 84.9999C102.929 84.9999 120.494 66.0819 120.494 42.0149C120.494 18.6194 102.743 0 81.458 0C60.1725 0 42.4594 18.8433 42.4594 42.1269C42.4594 66.0819 60.0237 84.9999 81.458 84.9999Z"
-                                        fill="#0D0D0D" />
-                                </svg>
-                            </div>
-                            <span class="categorie-text active-text">Profil</span>
-                        </div>
-
-                        <div class="categories-content">
-                            <div class="categorie-img">
-                                <img src="../img/svg/notif.svg" alt="cloche">
-                            </div>
-                            <span class="categorie-text">Notifications</span>
-                        </div>
-
-                        <div class="categories-content">
-                            <div class="categorie-img">
-                                <img src="../img/svg/globe.svg" alt="cloche">
-                            </div>
-                            <span class="categorie-text">Mes voyages</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-bottom-deco">
-                    <div class="sidebar-bottom">
-                        <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
-
-                        <div class="info-admin">
-                            <span class="nom-admin">
-                                <?php echo $_SESSION['first_name'] ?>
-                                <?php echo $_SESSION['last_name'] ?>
-                            </span>
-                            <span class="mail-admin"><?php echo $_SESSION['email'] ?></span>
-                        </div>
-
-                    </div>
-
-                    <div class="deconnexion">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M7.91341 15.4917C12.284 15.4917 15.8298 12.1336 15.8298 7.99722C15.8298 3.85804 12.284 0.5 7.91341 0.5C3.54283 0.5 0 3.85804 0 7.99722C0 12.1336 3.54283 15.4917 7.91341 15.4917ZM7.91341 13.8098C4.52026 13.8098 1.77582 11.2107 1.77582 7.99722C1.77582 4.78373 4.52026 2.1818 7.91341 2.1818C11.3065 2.1818 14.051 4.78373 14.051 7.99722C14.051 11.2107 11.3065 13.8098 7.91341 13.8098Z"
-                                fill="#FFFAE7" />
-                            <path
-                                d="M5.10112 8.73108H10.7191C11.1829 8.73108 11.5176 8.44474 11.5176 8.01389C11.5176 7.57748 11.1947 7.28558 10.7191 7.28558H5.10112C4.62855 7.28558 4.30273 7.57748 4.30273 8.01389C4.30273 8.44474 4.63735 8.73108 5.10112 8.73108Z"
-                                fill="#FFFAE7" />
-                        </svg>
-                        <a href="javascript:void(0)" id="logout-button">Se déconnecter</a>
-                    </div>
-                    <div class="deconnexion">
-                        <?php
-                        if ($_SESSION['role'] == 'admin') {
-                            echo "<a href='administrateur.php'>page administrateur</a>";
-                        }
-                        ?>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+        <?php include 'sidebar.php'; ?>
 
         <div class="content-container-div">
             <div class="content-container">
@@ -277,63 +198,14 @@ check_auth('connexion.php');
             </div>
 
 
-
-
         </div>
 
-        <!-- Modal de confirmation de déconnexion -->
-        <div id="logout-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="../img/svg/warning.svg" alt="warning" class="modal-icon">
-                    <h2>Confirmation de déconnexion</h2>
-                </div>
-                <div class="modal-body">
-                    <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
-                </div>
-                <div class="modal-footer">
-                    <button id="cancel-logout" class="btn-cancel">Annuler</button>
-                    <button id="confirm-logout" class="btn-confirm">Déconnexion</button>
-                </div>
-            </div>
-        </div>
+    </div>
 
-        <script src="../js/custom-cursor.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Sélection des éléments
-                const logoutButton = document.getElementById('logout-button');
-                const logoutModal = document.getElementById('logout-modal');
-                const cancelLogout = document.getElementById('cancel-logout');
-                const confirmLogout = document.getElementById('confirm-logout');
+    <?php include 'modals.php'; ?>
 
-                // Afficher la modal lors du clic sur le bouton de déconnexion
-                logoutButton.addEventListener('click', function () {
-                    logoutModal.classList.add('show');
-                    document.body.style.overflow = 'hidden'; // Empêcher le défilement
-                });
-
-                // Cacher la modal lors du clic sur Annuler
-                cancelLogout.addEventListener('click', function () {
-                    logoutModal.classList.remove('show');
-                    document.body.style.overflow = 'auto'; // Réactiver le défilement
-                });
-
-                // Rediriger vers la page de déconnexion lors de la confirmation
-                confirmLogout.addEventListener('click', function () {
-                    window.location.href = '../index.php?logout=true';
-                });
-
-                // Fermer la modal si on clique en dehors
-                window.addEventListener('click', function (event) {
-                    if (event.target === logoutModal) {
-                        logoutModal.classList.remove('show');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            });
-        </script>
-
+    <script src="../js/custom-cursor.js"></script>
+    <script src="../js/modal-handlers.js"></script>
 </body>
 
 </html>

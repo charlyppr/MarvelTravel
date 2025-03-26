@@ -39,51 +39,22 @@ if (!$commande) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Commandes</title>
-    <link rel="stylesheet" href="../css/commande.css">
+    <title>Ma Commande - Marvel Travel</title>
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/commande.css">
 </head>
 
 <body>
     <div class="default"></div>
 
     <div class="main-container">
-        <div class="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-top">
-                    <a href="../index.php" class="logo-container">
-                        <div class="logo-gauche">
-                            <span class="logo mar">MAR</span>
-                            <span class="logo tra">TRA</span>
-                        </div>
-                        <span class="logo vel">VEL</span>
-                    </a>
+        <?php include 'sidebar.php'; ?>
 
-                    <span class="trait"></span>
-
-                    <div class="sidebar-bottom-deco">
-                        <div class="sidebar-bottom">
-                            <img class="photo-admin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
-
-                            <div class="info-admin">
-                                <span class="nom-admin">
-                                    <?php echo $_SESSION['first_name'] ?>
-                                    <?php echo $_SESSION['last_name'] ?>
-                                </span>
-                                <span class="mail-admin"><?php echo $_SESSION['email'] ?></span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <div class="content-container-div">
             <div class="content-container">
                 <div class="content">
@@ -169,6 +140,11 @@ if (!$commande) {
             </div>
         </div>
     </div>
+
+    <?php include 'modals.php'; ?>
+
+    <script src="../js/custom-cursor.js"></script>
+    <script src="../js/modal-handlers.js"></script>
 </body>
 
 </html>

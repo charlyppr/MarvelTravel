@@ -109,20 +109,5 @@
         "date_inscription": "2025-03-25 12:57:14",
         "blocked": false,
         "vip": false
-    },
-    {
-        "civilite": "M",
-        "first_name": "hello",
-        "last_name": "darling",
-        "email": "hello@gmail.com",
-        "password": "$2y$10$ng1bb0awPWD4F39YrKl16uEbRo2IEoS32fYPB9qaW6umcxZSwGN5u",
-        "role": "user",
-        "date_naissance": "2005-03-10",
-        "nationalite": "Francaise",
-        "passport_id": "5731379228",
-        "date_inscription": "2025-03-26 10:53:03",
-        "blocked": false,
-        "vip": false,
-        "last_login": "2025-03-26 12:49:53"
     }
 ]
