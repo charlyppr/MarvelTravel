@@ -2,16 +2,8 @@
 require_once('../session.php');
 check_auth('../../connexion.php');
 
-// Récupération des données des étapes précédentes
-if (!isset($_POST['date_debut']) || !isset($_POST['date_fin']) || !isset($_POST['nb_personne'])) {
-    header('Location: ../../destination.php');
-    exit;
-}
-
+// Récupérer l'ID du voyage en premier
 $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
-$date_debut = $_POST['date_debut'];
-$date_fin = $_POST['date_fin'];
-$nb_personne = (int) $_POST['nb_personne'];
 
 // Vérification de la validité de l'ID
 if ($id === null) {
@@ -19,25 +11,13 @@ if ($id === null) {
     exit;
 }
 
-// Récupération des infos voyageurs
-$voyageurs = [];
-for ($i = 1; $i <= $nb_personne; $i++) {
-    if (isset($_POST['nom_' . $i]) && isset($_POST['prenom_' . $i])) {
-        $voyageurs[] = [
-            'civilite' => $_POST['civilite_' . $i],
-            'nom' => $_POST['nom_' . $i],
-            'prenom' => $_POST['prenom_' . $i],
-            'date_naissance' => $_POST['date_naissance_' . $i],
-            'nationalite' => $_POST['nationalite_' . $i],
-            'passport' => $_POST['passport_' . $i]
-        ];
-    }
-}
-
-// Si aucun voyageur n'est enregistré, redirection
-if (count($voyageurs) == 0) {
-    header('Location: ../../destination.php');
-    exit;
+// Vérifier si l'utilisateur consulte une nouvelle destination
+// et effacer les données si c'est le cas
+$current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
+if ($current_voyage_id !== $id) {
+    // ID différent, on efface les données de réservation
+    clear_reservation_data();
+    $_SESSION['current_voyage_id'] = $id;
 }
 
 // Récupération des données du voyage
@@ -52,8 +32,64 @@ if (!isset($voyages[$id])) {
 
 $voyage = $voyages[$id];
 
-// Récupération des options sélectionnées
-$options_selection = isset($_POST['options']) ? $_POST['options'] : [];
+// Récupération des données des étapes précédentes
+if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personne'])) {
+    // Si on reçoit des données POST, on les stocke en session
+    $form_data1 = [
+        'date_debut' => $_POST['date_debut'],
+        'date_fin' => $_POST['date_fin'],
+        'nb_personne' => $_POST['nb_personne']
+    ];
+    store_form_data('etape1', $form_data1);
+
+    // Récupération des infos voyageurs depuis l'étape 2
+    $voyageurs = [];
+    for ($i = 1; $i <= $form_data1['nb_personne']; $i++) {
+        if (isset($_POST['nom_' . $i]) && isset($_POST['prenom_' . $i])) {
+            $voyageurs[] = [
+                'civilite' => $_POST['civilite_' . $i],
+                'nom' => $_POST['nom_' . $i],
+                'prenom' => $_POST['prenom_' . $i],
+                'date_naissance' => $_POST['date_naissance_' . $i],
+                'nationalite' => $_POST['nationalite_' . $i],
+                'passport' => $_POST['passport_' . $i]
+            ];
+        }
+    }
+
+    $form_data2 = [
+        'voyageurs' => $voyageurs
+    ];
+    store_form_data('etape2', $form_data2);
+
+    // Récupération des options depuis l'étape 3
+    $options_selection = isset($_POST['options']) ? $_POST['options'] : [];
+    $form_data3 = [
+        'options' => $options_selection
+    ];
+    store_form_data('etape3', $form_data3);
+
+    $date_debut = $form_data1['date_debut'];
+    $date_fin = $form_data1['date_fin'];
+    $nb_personne = (int) $form_data1['nb_personne'];
+
+} else {
+    // Sinon, on tente de récupérer les données de la session
+    $form_data1 = get_form_data('etape1');
+    $form_data2 = get_form_data('etape2');
+    $form_data3 = get_form_data('etape3');
+
+    if (!$form_data1 || !$form_data2) {
+        header('Location: ../../destination.php');
+        exit;
+    }
+
+    $date_debut = $form_data1['date_debut'];
+    $date_fin = $form_data1['date_fin'];
+    $nb_personne = (int) $form_data1['nb_personne'];
+    $voyageurs = $form_data2['voyageurs'];
+    $options_selection = $form_data3['options'] ?? [];
+}
 
 // Calcul du prix total
 $prix_total = 0;
@@ -269,7 +305,7 @@ $control = md5($api_key . "#" . $transaction . "#" . $prix_total . "#" . $vendeu
                 <input type='hidden' name='control' value='<?php echo $control; ?>'>
 
                 <div class="payment-buttons">
-                    <a href="javascript:history.back()" class="back-button">Modifier ma réservation</a>
+                    <a href="etape3.php?id=<?php echo $id; ?>" class="back-button">Modifier ma réservation</a>
                     <button type="submit" class="payment-button">
                         <img src="../../img/svg/credit-card.svg" alt="carte bancaire" class="card-icon">
                         Payer <?php echo number_format($prix_total, 2, ',', ' '); ?> €

@@ -2,16 +2,8 @@
 require_once('../session.php');
 check_auth('../../connexion.php');
 
-// Récupération des données des étapes précédentes
-if (!isset($_POST['date_debut']) || !isset($_POST['date_fin']) || !isset($_POST['nb_personne'])) {
-    header('Location: ../../destination.php');
-    exit;
-}
-
+// Récupérer l'ID du voyage en premier
 $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
-$date_debut = $_POST['date_debut'];
-$date_fin = $_POST['date_fin'];
-$nb_personne = (int) $_POST['nb_personne'];
 
 // Vérification de la validité de l'ID
 if ($id === null) {
@@ -19,25 +11,13 @@ if ($id === null) {
     exit;
 }
 
-// Récupération des infos voyageurs depuis l'étape 2
-$voyageurs = [];
-for ($i = 1; $i <= $nb_personne; $i++) {
-    if (isset($_POST['nom_' . $i]) && isset($_POST['prenom_' . $i])) {
-        $voyageurs[] = [
-            'civilite' => $_POST['civilite_' . $i],
-            'nom' => $_POST['nom_' . $i],
-            'prenom' => $_POST['prenom_' . $i],
-            'date_naissance' => $_POST['date_naissance_' . $i],
-            'nationalite' => $_POST['nationalite_' . $i],
-            'passport' => $_POST['passport_' . $i]
-        ];
-    }
-}
-
-// Si aucun voyageur n'est enregistré, redirection
-if (count($voyageurs) == 0) {
-    header('Location: ../../destination.php');
-    exit;
+// Vérifier si l'utilisateur consulte une nouvelle destination
+// et effacer les données si c'est le cas
+$current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
+if ($current_voyage_id !== $id) {
+    // ID différent, on efface les données de réservation
+    clear_reservation_data();
+    $_SESSION['current_voyage_id'] = $id;
 }
 
 // Récupération des données du voyage
@@ -51,6 +31,63 @@ if (!isset($voyages[$id])) {
 }
 
 $voyage = $voyages[$id];
+
+// Récupération des données des étapes précédentes
+if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personne'])) {
+    // Si on reçoit des données POST, on les stocke en session
+    $form_data1 = [
+        'date_debut' => $_POST['date_debut'],
+        'date_fin' => $_POST['date_fin'],
+        'nb_personne' => $_POST['nb_personne']
+    ];
+    store_form_data('etape1', $form_data1);
+
+    // Récupération des infos voyageurs depuis l'étape 2
+    $voyageurs = [];
+    for ($i = 1; $i <= $form_data1['nb_personne']; $i++) {
+        if (isset($_POST['nom_' . $i]) && isset($_POST['prenom_' . $i])) {
+            $voyageurs[] = [
+                'civilite' => $_POST['civilite_' . $i],
+                'nom' => $_POST['nom_' . $i],
+                'prenom' => $_POST['prenom_' . $i],
+                'date_naissance' => $_POST['date_naissance_' . $i],
+                'nationalite' => $_POST['nationalite_' . $i],
+                'passport' => $_POST['passport_' . $i]
+            ];
+        }
+    }
+
+    $form_data2 = [
+        'voyageurs' => $voyageurs
+    ];
+    store_form_data('etape2', $form_data2);
+
+    // Initialiser les variables ici également
+    $date_debut = $form_data1['date_debut'];
+    $date_fin = $form_data1['date_fin'];
+    $nb_personne = (int) $form_data1['nb_personne'];
+
+} else {
+    // Sinon, on tente de récupérer les données de la session
+    $form_data1 = get_form_data('etape1');
+    $form_data2 = get_form_data('etape2');
+
+    if (!$form_data1 || !$form_data2) {
+        header('Location: ../../destination.php');
+        exit;
+    }
+
+    $date_debut = $form_data1['date_debut'];
+    $date_fin = $form_data1['date_fin'];
+    $nb_personne = (int) $form_data1['nb_personne'];
+    $voyageurs = $form_data2['voyageurs'];
+}
+
+// Récupérer les options précédemment sélectionnées (si elles existent)
+$optionsData = [];
+if ($form_data3 = get_form_data('etape3')) {
+    $optionsData = $form_data3['options'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +112,8 @@ $voyage = $voyages[$id];
     <div class="information">
         <p>Destination: <?php echo htmlspecialchars($voyage['titre']); ?></p>
         <p>Dates: Du <?php echo date('d/m/Y', strtotime($date_debut)); ?> au
-            <?php echo date('d/m/Y', strtotime($date_fin)); ?></p>
+            <?php echo date('d/m/Y', strtotime($date_fin)); ?>
+        </p>
         <p>Nombre de voyageurs: <?php echo $nb_personne; ?></p>
     </div>
 
@@ -114,16 +152,28 @@ $voyage = $voyages[$id];
                                 <div class="option-item">
                                     <div class="option-header">
                                         <h4><?php echo htmlspecialchars($option['nom']); ?> -
-                                            <?php echo number_format($option['prix'], 2, ',', ' '); ?> €</h4>
+                                            <?php echo number_format($option['prix'], 2, ',', ' '); ?> €
+                                        </h4>
                                     </div>
                                     <div class="voyageurs-checkboxes">
                                         <p>Qui souhaite participer ?</p>
-                                        <?php foreach ($voyageurs as $index => $voyageur): ?>
+                                        <?php foreach ($voyageurs as $index => $voyageur):
+                                            // Vérifier si cette option était précédemment sélectionnée pour ce voyageur
+                                            $isChecked = false;
+                                            if (
+                                                isset($optionsData[$etape_index][$option_index]['voyageurs']) &&
+                                                in_array($index, $optionsData[$etape_index][$option_index]['voyageurs'])
+                                            ) {
+                                                $isChecked = true;
+                                            }
+                                            ?>
                                             <div class="checkbox-container">
                                                 <input type="checkbox"
                                                     name="options[<?php echo $etape_index; ?>][<?php echo $option_index; ?>][voyageurs][]"
                                                     value="<?php echo $index; ?>"
-                                                    id="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>">
+                                                    id="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>"
+                                                    <?php if ($isChecked)
+                                                        echo 'checked'; ?>>
                                                 <label
                                                     for="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>">
                                                     <?php echo htmlspecialchars($voyageur['prenom'] . ' ' . $voyageur['nom']); ?>
@@ -142,7 +192,7 @@ $voyage = $voyages[$id];
         </section>
 
         <div class="nav-buttons">
-            <a href="javascript:history.back()" class="back-button">Retour</a>
+            <a href="etape2.php?id=<?php echo $id; ?>" class="back-button">Retour</a>
             <button type="submit" class="continue-button">Continuer vers le récapitulatif</button>
         </div>
     </form>

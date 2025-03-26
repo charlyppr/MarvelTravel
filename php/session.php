@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Définir une durée d'expiration pour la session (ex: 30 minutes)
 $inactive = 1800; // 1800 secondes = 30 minutes
@@ -16,6 +18,8 @@ $_SESSION['last_activity'] = time(); // Mettre à jour le timestamp de la sessio
 function check_auth($path)
 {
     if (!isset($_SESSION['user'])) {
+        $_SESSION['error'] = "Vous devez être connecté pour accéder à cette page.";
+        $_SESSION['current_url'] = current_url();
         header("Location: $path");
         exit();
     }
@@ -31,8 +35,8 @@ function check_none_auth($path)
 
 function current_url()
 {
-    return $_SERVER['REQUEST_URI']; // Sauvegarder l'URL actuelle
-
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+    return $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 
 function check_admin_auth($path)
@@ -53,6 +57,42 @@ function log_out()
 
 if (isset($_GET['logout'])) {
     log_out();
+}
+
+// Ajouter ces fonctions
+
+// Fonction pour stocker les données d'étape
+function store_form_data($step, $data)
+{
+    if (!isset($_SESSION['reservation_data'])) {
+        $_SESSION['reservation_data'] = [];
+    }
+    $_SESSION['reservation_data'][$step] = $data;
+}
+
+// Fonction pour récupérer les données d'étape
+function get_form_data($step)
+{
+    if (isset($_SESSION['reservation_data']) && isset($_SESSION['reservation_data'][$step])) {
+        return $_SESSION['reservation_data'][$step];
+    }
+    return null;
+}
+
+// Fonction pour effacer toutes les données de réservation en session
+function clear_reservation_data()
+{
+    if (isset($_SESSION['reservation_data'])) {
+        unset($_SESSION['reservation_data']);
+    }
+}
+
+// Fonction pour effacer les données d'une étape spécifique
+function clear_form_data($step)
+{
+    if (isset($_SESSION['reservation_data']) && isset($_SESSION['reservation_data'][$step])) {
+        unset($_SESSION['reservation_data'][$step]);
+    }
 }
 
 ?>

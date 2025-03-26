@@ -34,3 +34,255 @@ body {
     transform: translate(0, 0);
     box-shadow: 0 0 20px 0 #fffae777;
 }
+
+
+/* ------------------- Étape 2 ------------------- */
+
+.travelers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.traveler-info {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+}
+
+.traveler-info legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: #333;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.back-button {
+    padding: 10px 20px;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #555;
+}
+
+/* ------------------- Étape 3 ------------------- */
+
+.etapes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.etape-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.etape-box h2 {
+    color: #333;
+    margin-top: 0;
+    border-bottom: 2px solid #e2e2e2;
+    padding-bottom: 0.5rem;
+}
+
+.options-list {
+    margin-top: 1.5rem;
+}
+
+.option-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.option-header h4 {
+    margin: 0;
+    color: #444;
+}
+
+.voyageurs-checkboxes {
+    border-top: 1px dashed #e0e0e0;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.voyageurs-checkboxes p {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+}
+
+
+/* ------------------- Étape 4 ------------------- */
+
+.recap-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.recap-section {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recap-section h2 {
+    color: #333;
+    margin-top: 0;
+    border-bottom: 2px solid #e2e2e2;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.recap-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.recap-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.recap-row:last-child {
+    border-bottom: none;
+}
+
+.recap-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.recap-value {
+    text-align: right;
+}
+
+.voyageur-recap, .option-recap {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+}
+
+.voyageur-recap h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.prix-section {
+    background-color: #f0f7ff;
+}
+
+.total-row {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    border-top: 2px solid #ccc;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+}
+
+.payment-section {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-form {
+    margin-top: 1.5rem;
+}
+
+.payment-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.payment-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.payment-button:hover {
+    background-color: #218838;
+}
+
+.card-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.option-recap {
+    border-left: 4px solid #4a90e2;
+}

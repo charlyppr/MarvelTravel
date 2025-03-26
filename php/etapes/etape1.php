@@ -9,6 +9,21 @@ if ($id === null) {
     exit;
 }
 
+// Vérifier si l'utilisateur consulte une nouvelle destination
+// et effacer les données si c'est le cas
+$current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
+if ($current_voyage_id !== $id) {
+    // ID différent, on efface les données de réservation
+    clear_reservation_data();
+    $_SESSION['current_voyage_id'] = $id;
+}
+
+// Récupération des données sauvegardées en session
+$form_data = get_form_data('etape1');
+$date_debut_value = $form_data ? $form_data['date_debut'] : '';
+$date_fin_value = $form_data ? $form_data['date_fin'] : '';
+$nb_personne_value = $form_data ? $form_data['nb_personne'] : 1;
+
 $json_file = "../../json/voyages.json";
 $voyages = json_decode(file_get_contents($json_file), true);
 
@@ -81,12 +96,14 @@ $date_min = date('Y-m-d');
             <label for="nb_personne">Nombre de personnes :</label>
             <div class="input-with-icon">
                 <img src="../../img/svg/people.svg" alt="personnes" />
-                <input type="number" name="nb_personne" id="nb_personne" min="1" max="10" value="1" required>
+                <input type="number" name="nb_personne" id="nb_personne" min="1" max="10"
+                    value="<?php echo $nb_personne_value; ?>" required>
             </div>
         </div>
 
         <div class="button-container">
-            <button type="submit" class="continue-button">Continuer vers les détails du voyage</button>
+            <button type="submit" class="continue-button" onclick="storeFormData()">Continuer vers les détails du
+                voyage</button>
         </div>
     </form>
 
@@ -105,7 +122,38 @@ $date_min = date('Y-m-d');
             const dureeRecommandee = <?php echo $duree_recommandee; ?>;
             const form = document.getElementById('reservationForm');
 
-            dateFinInput.disabled = true;
+            // Vérifier s'il y a des valeurs sauvegardées en session
+            const dateSavedDebut = "<?php echo $date_debut_value; ?>";
+            const dateSavedFin = "<?php echo $date_fin_value; ?>";
+
+            // Si aucune valeur sauvegardée, définir aujourd'hui par défaut
+            if (dateSavedDebut) {
+                dateDebutInput.value = dateSavedDebut;
+            } else {
+                const aujourdhui = new Date().toISOString().split('T')[0];
+                dateDebutInput.value = aujourdhui;
+            }
+
+            dateFinInput.disabled = false;
+
+            // Définir la date de fin
+            if (dateSavedFin) {
+                dateFinInput.value = dateSavedFin;
+            } else {
+                const dateDebut = new Date(dateDebutInput.value);
+                const dateFinRecommandee = new Date(dateDebut);
+                dateFinRecommandee.setDate(dateFinRecommandee.getDate() + dureeRecommandee);
+                dateFinInput.value = dateFinRecommandee.toISOString().split('T')[0];
+            }
+
+            // S'assurer que la date minimale est correcte
+            const dateDebut = new Date(dateDebutInput.value);
+            const dateFinMin = new Date(dateDebut);
+            dateFinMin.setDate(dateFinMin.getDate() + 1);
+            dateFinInput.min = dateFinMin.toISOString().split('T')[0];
+
+            // Calculer la durée initiale
+            calculerDuree();
 
             dateDebutInput.addEventListener('change', function () {
                 // Date de début sélectionnée
@@ -157,10 +205,10 @@ $date_min = date('Y-m-d');
                     // Différence en millisecondes
                     const differenceMs = dateFin - dateDebut;
 
-                    // Convertir en jours
-                    const differenceJours = Math.round(differenceMs / (1000 * 60 * 60 * 24));
-
-                    dureeInfo.textContent = `Durée du séjour: ${differenceJours} jour(s)`;
+                            // Convertir en jours
+                        const differenceJours = Math.round(differenceMs / (1000 * 60 * 60 * 24));
+   
+                         dureeInfo.textContent = `Durée du séjour: ${differenceJours} jour(s)`;
 
                     // Avertissement si différent de la durée recommandée
                     if (differenceJours !== dureeRecommandee) {
@@ -183,6 +231,12 @@ $date_min = date('Y-m-d');
                     }
                 }
             });
+
+            // Nouvelle fonction pour stocker les données côté client
+            function storeFormData() {
+                // Les données sont envoyées via le formulaire, donc pas besoin 
+                // d'action supplémentaire ici pour l'étape 1
+            }
         });
     </script>
 </body>

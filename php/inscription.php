@@ -2,20 +2,21 @@
 require_once "session.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $login_civilite = trim($_POST['login_civilite'] ?? '');
     $login_firstname = trim($_POST['login_firstname'] ?? '');
     $login_lastname = trim($_POST['login_lastname'] ?? '');
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
-    $role = 'user'; // Rôle par défaut
 
-    $json_file = "../json/users.json";
+    // Validation des données
     $inscri = 0;
-    
-    if ($login_firstname && $login_lastname && $login_mail && $login_pass) {
+
+    if ($login_civilite && $login_firstname && $login_lastname && $login_mail && $login_pass) {
         if (!filter_var($login_mail, FILTER_VALIDATE_EMAIL)) {
             $inscri = 3; // Email invalide
         } else {
             // Lire le fichier JSON existant
+            $json_file = "../json/users.json";
             $users = [];
             if (file_exists($json_file)) {
                 $json_data = file_get_contents($json_file);
@@ -24,32 +25,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Vérifier si l'email est déjà utilisé
             foreach ($users as $user) {
-                if ($user['email'] === $login_mail) {
+                if (isset($user['email']) && $user['email'] === $login_mail) {
                     $inscri = 2; // Email déjà utilisé
                     break;
                 }
             }
 
-            // Ajouter l'utilisateur s'il n'existe pas encore
+            // Si tout est valide, stocker les informations en session et passer à l'étape 2
             if ($inscri == 0) {
-                $users[] = [
-                    "first_name" => $login_firstname,
-                    "last_name" => $login_lastname,
-                    "email" => $login_mail,
-                    "password" => password_hash($login_pass, PASSWORD_BCRYPT), // Sécurisation du mot de passe
-                    "role" => $role,
-                    "date_inscription" => date("Y-m-d H:i:s"),
-                    "blocked" => false,
-                    "vip" => false,
-                    "last_login" => "null"
+                $_SESSION['inscription'] = [
+                    'civilite' => $login_civilite,
+                    'first_name' => $login_firstname,
+                    'last_name' => $login_lastname,
+                    'email' => $login_mail,
+                    'password' => password_hash($login_pass, PASSWORD_BCRYPT),
                 ];
-                file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)); // Sauvegarde dans le fichier JSON
-                $inscri = 1; // Inscription réussie
+
+                // Redirection vers l'étape 2
+                header("Location: inscription-etape2.php");
+                exit();
             }
         }
     }
 
-    // Stocker le résultat dans une session et rediriger
+    // Stocker le résultat dans une session si erreur
     $_SESSION['inscri'] = $inscri;
     header("Location: inscription.php"); // Recharge la page
     exit();
@@ -94,9 +93,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <form class="form" action="inscription.php" method="post">
+                <!-- Ajout du champ civilité -->
+                <div class="form-group">
+                    <label for="login_civilite">Civilité</label>
+                    <select name="login_civilite" id="login_civilite" required>
+                        <option value="">Choisir</option>
+                        <option value="M">Monsieur</option>
+                        <option value="Mme">Madame</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+
                 <div class="form-row">
-                    <input type="text" name="login_firstname" id="prenom" placeholder="Prénom" required autocomplete="name">
-                    <input type="text" name="login_lastname" id="nom" placeholder="Nom" required autocomplete="family-name">
+                    <input type="text" name="login_firstname" id="prenom" placeholder="Prénom" required
+                        autocomplete="name">
+                    <input type="text" name="login_lastname" id="nom" placeholder="Nom" required
+                        autocomplete="family-name">
                 </div>
 
                 <div class="email">
@@ -115,16 +127,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="other-text">
                     <a href='connexion.php'>Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
                     <?php
-                        if (isset($_SESSION['inscri'])) {
-                            if ($_SESSION['inscri'] == 2) {
-                                echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
-                            } elseif ($_SESSION['inscri'] == 3) {
-                                echo "<p class='sous-titre-3'>Adresse email invalide</p>";
-                            } elseif ($_SESSION['inscri'] == 1) {
-                                echo "<p class='sous-titre-3'>Inscription réussie !</p>";
-                            }
-                            unset($_SESSION['inscri']); // Supprime la variable après affichage
+                    if (isset($_SESSION['inscri'])) {
+                        if ($_SESSION['inscri'] == 2) {
+                            echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
+                        } elseif ($_SESSION['inscri'] == 3) {
+                            echo "<p class='sous-titre-3'>Adresse email invalide</p>";
+                        } elseif ($_SESSION['inscri'] == 1) {
+                            echo "<p class='sous-titre-3'>Inscription réussie !</p>";
                         }
+                        unset($_SESSION['inscri']); // Supprime la variable après affichage
+                    }
                     ?>
                 </div>
             </form>

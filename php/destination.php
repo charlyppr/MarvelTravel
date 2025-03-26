@@ -1,6 +1,10 @@
 <?php
 require('session.php');
 $_SESSION['current_url'] = current_url();
+
+// Effacer les données de réservation précédentes quand on arrive sur cette page
+clear_reservation_data();
+
 // Récupérer la liste des fichiers JSON
 $json_file = '../json/voyages.json';
 $voyages = json_decode(file_get_contents($json_file), true);
