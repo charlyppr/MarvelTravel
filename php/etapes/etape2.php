@@ -70,44 +70,23 @@ $user_civilite = isset($_SESSION['civilite']) ? $_SESSION['civilite'] : '';
 $user_date_naissance = isset($_SESSION['date_naissance']) ? $_SESSION['date_naissance'] : '';
 $user_nationalite = isset($_SESSION['nationalite']) ? $_SESSION['nationalite'] : '';
 $user_passport_id = isset($_SESSION['passport_id']) ? $_SESSION['passport_id'] : '';
+
+// Calculer un prix total en fonction du nombre de personnes
+$prix_base = $voyage['prix'];
+$prix_total = $prix_base * $nb_personne;
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>Informations voyageurs - <?php echo htmlspecialchars($voyage['titre']); ?></title>
+
     <link rel="stylesheet" href="../../css/base.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
+    <link rel="stylesheet" href="../../css/etape2.css">
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
-    <style>
-        .auto-fill-button {
-            background-color: #f2dbaf;
-            color: #0d0d0d;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .auto-fill-button:hover {
-            background-color: #e6c993;
-            transform: translateY(-2px);
-        }
-
-        .auto-fill-button img {
-            width: 16px;
-            height: 16px;
-        }
-    </style>
 </head>
 
 <body>
@@ -115,110 +94,113 @@ $user_passport_id = isset($_SESSION['passport_id']) ? $_SESSION['passport_id'] :
 
     <?php include '../nav.php'; ?>
 
-    <h1 class="titre">Étape 2: Informations des voyageurs</h1>
-
-    <div class="information">
-        <p>Destination: <?php echo htmlspecialchars($voyage['titre']); ?></p>
-        <p>Dates: Du <?php echo date('d/m/Y', strtotime($date_debut)); ?> au
-            <?php echo date('d/m/Y', strtotime($date_fin)); ?>
-        </p>
-        <p>Nombre de voyageurs: <?php echo $nb_personne; ?></p>
-    </div>
-
-    <form action="etape3.php?id=<?php echo $id; ?>" method="post" class="travelers-form">
-
+    <form action="etape3.php?id=<?php echo $id; ?>" method="post">
         <input type="hidden" name="date_debut" value="<?php echo htmlspecialchars($date_debut); ?>">
         <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
         <input type="hidden" name="nb_personne" value="<?php echo $nb_personne; ?>">
 
-        <div class="travelers-container">
-            <?php for ($i = 1; $i <= $nb_personne; $i++): ?>
-                <?php
-                // Récupérer les données du voyageur si elles existent
-                $civilite = '';
-                $nom = '';
-                $prenom = '';
-                $date_naissance = '';
-                $nationalite = '';
-                $passport = '';
+        <div class="traveler-info">
+            <div class="instructions">
+                <div class="title">Informations des voyageurs</div>
+                <div class="subtitle">Notez les informations telles qu'elles sont écrites sur votre passeport
+                    multiversel</div>
+            </div>
 
-                if (isset($voyageursData[$i - 1])) {
-                    $civilite = $voyageursData[$i - 1]['civilite'];
-                    $nom = $voyageursData[$i - 1]['nom'];
-                    $prenom = $voyageursData[$i - 1]['prenom'];
-                    $date_naissance = $voyageursData[$i - 1]['date_naissance'];
-                    $nationalite = $voyageursData[$i - 1]['nationalite'];
-                    $passport = $voyageursData[$i - 1]['passport'];
-                }
-                ?>
-                <fieldset class="traveler-info">
-                    <legend>Voyageur <?php echo $i; ?></legend>
+            <div class="traveler-form">
+                <?php for ($i = 1; $i <= $nb_personne; $i++): ?>
+                    <?php
+                    // Récupérer les données du voyageur si elles existent
+                    $civilite = '';
+                    $nom = '';
+                    $prenom = '';
+                    $date_naissance = '';
+                    $nationalite = '';
+                    $passport = '';
 
-                    <?php if ($i === 1): ?>
-                        <button type="button" id="autofill-button" class="auto-fill-button">
-                            <img src="../../img/svg/profile.svg" alt="profil">
-                            Utiliser mes informations
+                    if (isset($voyageursData[$i - 1])) {
+                        $civilite = $voyageursData[$i - 1]['civilite'];
+                        $nom = $voyageursData[$i - 1]['nom'];
+                        $prenom = $voyageursData[$i - 1]['prenom'];
+                        $date_naissance = $voyageursData[$i - 1]['date_naissance'];
+                        $nationalite = $voyageursData[$i - 1]['nationalite'];
+                        $passport = $voyageursData[$i - 1]['passport'];
+                    }
+                    ?>
+
+                    <div class="traveler-details">
+                        <div class="traveler-header">Voyageur <?php echo $i; ?> :</div>
+
+                        <?php if ($i === 1): ?>
+                            <div class="use-info-button" id="autofill-button">
+                                <div class="use-info-text">Utiliser mes informations</div>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="traveler-fields">
+                            <div class="civility-field">
+                                <div class="civility-label">Civilité :</div>
+                                <select name="civilite_<?php echo $i; ?>" id="civilite_<?php echo $i; ?>"
+                                    class="civility-input" required>
+                                    <option value="">Choisir</option>
+                                    <option value="M" <?php echo ($civilite == 'M') ? 'selected' : ''; ?>>Monsieur</option>
+                                    <option value="Mme" <?php echo ($civilite == 'Mme') ? 'selected' : ''; ?>>Madame</option>
+                                    <option value="Autre" <?php echo ($civilite == 'Autre') ? 'selected' : ''; ?>>Autre
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="name-field">
+                                <div class="last-name-field">
+                                    <div class="civility-label">Nom :</div>
+                                    <input type="text" name="nom_<?php echo $i; ?>" id="nom_<?php echo $i; ?>"
+                                        class="last-name-input" value="<?php echo htmlspecialchars($nom); ?>" required>
+                                </div>
+
+                                <div class="last-name-field">
+                                    <div class="civility-label">Prénom :</div>
+                                    <input type="text" name="prenom_<?php echo $i; ?>" id="prenom_<?php echo $i; ?>"
+                                        class="last-name-input" value="<?php echo htmlspecialchars($prenom); ?>" required>
+                                </div>
+                            </div>
+
+                            <div class="civility-field">
+                                <div class="civility-label">Date de naissance :</div>
+                                <input type="date" name="date_naissance_<?php echo $i; ?>"
+                                    id="date_naissance_<?php echo $i; ?>" class="civility-input"
+                                    value="<?php echo htmlspecialchars($date_naissance); ?>" required>
+                            </div>
+
+                            <div class="civility-field">
+                                <div class="civility-label">Nationalité :</div>
+                                <input type="text" name="nationalite_<?php echo $i; ?>" id="nationalite_<?php echo $i; ?>"
+                                    class="civility-input" value="<?php echo htmlspecialchars($nationalite); ?>" required>
+                            </div>
+
+                            <div class="civility-field">
+                                <div class="civility-label">Numéro de passeport :</div>
+                                <input type="text" name="passport_<?php echo $i; ?>" id="passport_<?php echo $i; ?>"
+                                    class="passport-input" value="<?php echo htmlspecialchars($passport); ?>"
+                                    placeholder="XXX XXX XXX X" required>
+                            </div>
+                        </div>
+                    </div>
+                <?php endfor; ?>
+
+                <div class="total-price">
+                    <b class="total-price-text">Total : <?php echo number_format($prix_total, 2, ',', ' '); ?>€</b>
+                    <div class="navigation-buttons">
+                        <a href="etape1.php?id=<?php echo $id; ?>" class="back-button">
+                            <div class="back-button-text">Retour</div>
+                        </a>
+                        <button type="submit" class="continue-button">
+                            <div class="back-button-text">Continuer vers les options du voyage</div>
                         </button>
-                    <?php endif; ?>
-
-                    <div class="form-group">
-                        <label for="civilite_<?php echo $i; ?>">Civilité :</label>
-                        <select name="civilite_<?php echo $i; ?>" id="civilite_<?php echo $i; ?>" required>
-                            <option value="">Choisir</option>
-                            <option value="M" <?php echo ($civilite == 'M') ? 'selected' : ''; ?>>Monsieur</option>
-                            <option value="Mme" <?php echo ($civilite == 'Mme') ? 'selected' : ''; ?>>Madame</option>
-                            <option value="Autre" <?php echo ($civilite == 'Autre') ? 'selected' : ''; ?>>Autre</option>
-                        </select>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nom_<?php echo $i; ?>">Nom :</label>
-                            <input type="text" name="nom_<?php echo $i; ?>" id="nom_<?php echo $i; ?>"
-                                value="<?php echo htmlspecialchars($nom); ?>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prenom_<?php echo $i; ?>">Prénom :</label>
-                            <input type="text" name="prenom_<?php echo $i; ?>" id="prenom_<?php echo $i; ?>"
-                                value="<?php echo htmlspecialchars($prenom); ?>" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="date_naissance_<?php echo $i; ?>">Date de naissance :</label>
-                        <div class="input-with-icon">
-                            <img src="../../img/svg/calendar.svg" alt="calendrier" />
-                            <input type="date" name="date_naissance_<?php echo $i; ?>" id="date_naissance_<?php echo $i; ?>"
-                                value="<?php echo htmlspecialchars($date_naissance); ?>" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nationalite_<?php echo $i; ?>">Nationalité :</label>
-                        <input type="text" name="nationalite_<?php echo $i; ?>" id="nationalite_<?php echo $i; ?>"
-                            value="<?php echo htmlspecialchars($nationalite); ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="passport_<?php echo $i; ?>">Numéro de passeport :</label>
-                        <input type="text" name="passport_<?php echo $i; ?>" id="passport_<?php echo $i; ?>"
-                            value="<?php echo htmlspecialchars($passport); ?>" required>
-                    </div>
-                </fieldset>
-            <?php endfor; ?>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="etape1.php?id=<?php echo $id; ?>" class="back-button">Retour</a>
-            <button type="submit" class="continue-button">Continuer</button>
+                </div>
+            </div>
         </div>
     </form>
 
-    <?php include '../footer.php'; ?>
-
-    <script src="../../js/nav.js"></script>
-    <script src="../../js/custom-cursor.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -266,6 +248,9 @@ $user_passport_id = isset($_SESSION['passport_id']) ? $_SESSION['passport_id'] :
             }
         });
     </script>
+
+    <script src="../../js/nav.js"></script>
+    <script src="../../js/custom-cursor.js"></script>
 </body>
 
 </html>

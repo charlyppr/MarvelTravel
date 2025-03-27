@@ -88,17 +88,39 @@ $optionsData = [];
 if ($form_data3 = get_form_data('etape3')) {
     $optionsData = $form_data3['options'];
 }
+
+// Calculer un prix total (base + options)
+$prix_base = $voyage['prix'] * $nb_personne;
+$prix_options = 0;
+
+// Calculer le prix des options déjà sélectionnées (s'il y en a)
+if (!empty($optionsData)) {
+    foreach ($optionsData as $etape_index => $etape_options) {
+        foreach ($etape_options as $option_index => $option_data) {
+            if (isset($option_data['voyageurs']) && is_array($option_data['voyageurs'])) {
+                $nb_participants = count($option_data['voyageurs']);
+                if ($nb_participants > 0 && isset($voyage['etapes'][$etape_index]['options'][$option_index]['prix'])) {
+                    $option_prix = $voyage['etapes'][$etape_index]['options'][$option_index]['prix'];
+                    $prix_options += $option_prix * $nb_participants;
+                }
+            }
+        }
+    }
+}
+
+$prix_total_avec_options = $prix_base + $prix_options;
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choix des options - <?php echo htmlspecialchars($voyage['titre']); ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Options du voyage - <?php echo htmlspecialchars($voyage['titre']); ?></title>
+
     <link rel="stylesheet" href="../../css/base.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
+    <link rel="stylesheet" href="../../css/etape3.css">
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -107,17 +129,7 @@ if ($form_data3 = get_form_data('etape3')) {
 
     <?php include '../nav.php'; ?>
 
-    <h1 class="titre">Étape 3: Options du voyage</h1>
-
-    <div class="information">
-        <p>Destination: <?php echo htmlspecialchars($voyage['titre']); ?></p>
-        <p>Dates: Du <?php echo date('d/m/Y', strtotime($date_debut)); ?> au
-            <?php echo date('d/m/Y', strtotime($date_fin)); ?>
-        </p>
-        <p>Nombre de voyageurs: <?php echo $nb_personne; ?></p>
-    </div>
-
-    <form action="etape4.php?id=<?php echo $id; ?>" method="post" class="options-form">
+    <form action="etape4.php?id=<?php echo $id; ?>" method="post">
         <!-- Données cachées des étapes précédentes -->
         <input type="hidden" name="date_debut" value="<?php echo htmlspecialchars($date_debut); ?>">
         <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
@@ -138,66 +150,151 @@ if ($form_data3 = get_form_data('etape3')) {
                 value="<?php echo htmlspecialchars($voyageur['passport']); ?>">
         <?php endforeach; ?>
 
-        <section class="etapes-container">
-            <?php foreach ($voyage['etapes'] as $etape_index => $etape): ?>
-                <div class="etape-box">
-                    <h2><?php echo htmlspecialchars($etape['lieu']); ?></h2>
-                    <p>Durée: <?php echo htmlspecialchars($etape['duree']); ?></p>
-                    <p>Prix de base: <?php echo number_format($etape['prix'], 2, ',', ' '); ?> €</p>
+        <div class="main-container">
+            <div class="header">
+                <div class="title">Options du voyage</div>
+                <div class="subtitle">Retrouvez toutes les options proposées par notre agence !</div>
+            </div>
 
-                    <?php if (!empty($etape['options'])): ?>
-                        <div class="options-list">
-                            <h3>Options disponibles</h3>
-                            <?php foreach ($etape['options'] as $option_index => $option): ?>
-                                <div class="option-item">
-                                    <div class="option-header">
-                                        <h4><?php echo htmlspecialchars($option['nom']); ?> -
-                                            <?php echo number_format($option['prix'], 2, ',', ' '); ?> €
-                                        </h4>
-                                    </div>
-                                    <div class="voyageurs-checkboxes">
-                                        <p>Qui souhaite participer ?</p>
-                                        <?php foreach ($voyageurs as $index => $voyageur):
-                                            // Vérifier si cette option était précédemment sélectionnée pour ce voyageur
-                                            $isChecked = false;
-                                            if (
-                                                isset($optionsData[$etape_index][$option_index]['voyageurs']) &&
-                                                in_array($index, $optionsData[$etape_index][$option_index]['voyageurs'])
-                                            ) {
-                                                $isChecked = true;
-                                            }
-                                            ?>
-                                            <div class="checkbox-container">
-                                                <input type="checkbox"
-                                                    name="options[<?php echo $etape_index; ?>][<?php echo $option_index; ?>][voyageurs][]"
-                                                    value="<?php echo $index; ?>"
-                                                    id="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>"
-                                                    <?php if ($isChecked)
-                                                        echo 'checked'; ?>>
-                                                <label
-                                                    for="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>">
-                                                    <?php echo htmlspecialchars($voyageur['prenom'] . ' ' . $voyageur['nom']); ?>
-                                                </label>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+            <div class="spacer">
+                <?php foreach ($voyage['etapes'] as $etape_index => $etape): ?>
+                    <div class="section">
+                        <div class="section-header">
+                            <div class="section-title"><?php echo htmlspecialchars($etape['lieu']); ?></div>
+                            <div class="section-duration">Durée : <?php echo htmlspecialchars($etape['duree']); ?></div>
                         </div>
-                    <?php else: ?>
-                        <p>Aucune option disponible pour cette étape.</p>
-                    <?php endif; ?>
-                </div>
-            <?php endforeach; ?>
-        </section>
 
-        <div class="nav-buttons">
-            <a href="etape2.php?id=<?php echo $id; ?>" class="back-button">Retour</a>
-            <button type="submit" class="continue-button">Continuer vers le récapitulatif</button>
+                        <?php if (!empty($etape['options'])): ?>
+                            <div class="section-options-label">Options disponibles :</div>
+                            <div class="options-container">
+                                <?php foreach ($etape['options'] as $option_index => $option): ?>
+                                    <div class="option">
+                                        <div class="option-title">
+                                            <span class="visite-guide-"><?php echo htmlspecialchars($option['nom']); ?> - </span>
+                                            <b><?php echo number_format($option['prix'], 2, ',', ' '); ?>€</b>
+                                        </div>
+
+                                        <div class="option-actions">
+                                            <?php foreach ($voyageurs as $index => $voyageur):
+                                                // Vérifier si cette option était précédemment sélectionnée pour ce voyageur
+                                                $isChecked = false;
+                                                if (
+                                                    isset($optionsData[$etape_index][$option_index]['voyageurs']) &&
+                                                    in_array($index, $optionsData[$etape_index][$option_index]['voyageurs'])
+                                                ) {
+                                                    $isChecked = true;
+                                                }
+                                                ?>
+                                                <div class="option-action<?php echo $isChecked ? '' : '1'; ?>">
+                                                    <div class="option-action-name">
+                                                        <?php echo htmlspecialchars($voyageur['prenom']); ?>
+                                                    </div>
+
+                                                    <label
+                                                        for="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>">
+                                                        <input type="checkbox"
+                                                            name="options[<?php echo $etape_index; ?>][<?php echo $option_index; ?>][voyageurs][]"
+                                                            value="<?php echo $index; ?>"
+                                                            id="opt_<?php echo $etape_index; ?>_<?php echo $option_index; ?>_voy_<?php echo $index; ?>"
+                                                            <?php if ($isChecked)
+                                                                echo 'checked'; ?> style="display: none;">
+
+                                                        <img class="<?php echo $isChecked ? 'check-2-icon' : 'no-1-icon'; ?>" alt=""
+                                                            src="../../img/svg/<?php echo $isChecked ? 'check.svg' : 'no.svg'; ?>">
+                                                    </label>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="section-options-label">Aucune option disponible pour cette étape.</div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="total-price">
+                <b class="total-price-text">Total :
+                    <?php echo number_format($prix_total_avec_options, 2, ',', ' '); ?>€</b>
+                <div class="navigation-buttons">
+                    <a href="etape2.php?id=<?php echo $id; ?>" class="back-button">
+                        <div class="back-button-text">Retour</div>
+                    </a>
+                    <button type="submit" class="continue-button">
+                        <div class="back-button-text">Récapitulatif de la commande</div>
+                    </button>
+                </div>
+            </div>
         </div>
     </form>
 
-    <?php include '../footer.php'; ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sélectionner les divs d'option au lieu des labels
+            const optionDivs = document.querySelectorAll('.option-action, .option-action1');
+
+            optionDivs.forEach(div => {
+                div.addEventListener('click', function (e) {
+                    // Trouver la checkbox à l'intérieur du div
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    const img = this.querySelector('img');
+
+                    // Ne rien faire si on a cliqué directement sur la checkbox ou l'image
+                    // (pour éviter double événements)
+                    if (e.target === checkbox || e.target === img) {
+                        return;
+                    }
+
+                    // Inverser l'état de la case à cocher
+                    checkbox.checked = !checkbox.checked;
+
+                    // Changer l'image et la classe du div parent
+                    if (checkbox.checked) {
+                        img.src = '../../img/svg/check.svg';
+                        img.className = 'check-2-icon';
+                        this.className = 'option-action';
+                    } else {
+                        img.src = '../../img/svg/no.svg';
+                        img.className = 'no-1-icon';
+                        this.className = 'option-action1';
+                    }
+                });
+            });
+
+            // Empêcher les événements de propagation sur les labels pour éviter les doubles clics
+            const checkboxLabels = document.querySelectorAll('.option-action label, .option-action1 label');
+            checkboxLabels.forEach(label => {
+                label.addEventListener('click', function (e) {
+                    // Empêcher la propagation pour éviter que l'événement de clic
+                    // ne soit capturé à la fois par le label et le div parent
+                    e.stopPropagation();
+
+                    const checkbox = this.querySelector('input[type="checkbox"]');
+                    const img = this.querySelector('img');
+                    const actionDiv = this.closest('.option-action, .option-action1');
+
+                    // Inverser l'état de la case à cocher
+                    checkbox.checked = !checkbox.checked;
+
+                    // Changer l'image et la classe du div parent
+                    if (checkbox.checked) {
+                        img.src = '../../img/svg/check.svg';
+                        img.className = 'check-2-icon';
+                        actionDiv.className = 'option-action';
+                    } else {
+                        img.src = '../../img/svg/no.svg';
+                        img.className = 'no-1-icon';
+                        actionDiv.className = 'option-action1';
+                    }
+
+                    // Empêcher le comportement par défaut du label
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
 
     <script src="../../js/nav.js"></script>
     <script src="../../js/custom-cursor.js"></script>

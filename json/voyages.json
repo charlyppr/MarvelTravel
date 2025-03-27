@@ -1,554 +1,497 @@
 [
-    {
-        "id": 1,
-        "titre": "New York",
-        "image": "../img/destinations/newyork.jpg",
-        "prix": 399.95,
-        "resume": "Plongez au cœur de Manhattan, visitez la Statue de la Liberté et explorez Central Park.",
-        "dates": {
-            "debut": "2025-06-15",
-            "fin": "2025-06-22",
-            "duree": "7 jours"
-        },
-        "etapes": [
-            {
-                "lieu": "Times Square",
-                "duree": "1 jour",
-                "prix": 99.99,
-                "options": [
-                    {"nom": "Visite guidée", "prix": 10.73},
-                    {"nom": "Shopping", "prix": 29.31}
-                ]
-            },
-            {
-                "lieu": "Statue de la Liberté",
-                "duree": "1 jour",
-                "prix": 99.99,
-                "options": [
-                    {"nom": "Traversée en ferry", "prix": 22.26}
-                ]
-            },
-            {
-                "lieu": "Central Park",
-                "duree": "2 jours",
-                "prix": 199.97,
-                "options": [
-                    {"nom": "Balade à vélo", "prix": 39.06},
-                    {"nom": "Pique-nique", "prix": 42.13}
-                ]
-            }
+  {
+    "id": 1,
+    "titre": "New York",
+    "image": "../img/destinations/newyork.jpg",
+    "prix": 399.95,
+    "resume": "Plongez au cœur de Manhattan, visitez la Statue de la Liberté et explorez Central Park.",
+    "dates": {
+      "debut": "2025-06-15",
+      "fin": "2025-06-22",
+      "duree": "7 jours"
+    },
+    "etapes": [
+      {
+        "lieu": "Times Square",
+        "duree": "1 jour",
+        "options": [
+          { "nom": "Visite guidée", "prix": 50.0 },
+          { "nom": "Shopping", "prix": 20.0 }
         ]
-    },
-    {
-        "id": 2,
-        "titre": "Wakanda",
-        "image": "../img/destinations/wakanda.jpg",
-        "prix": 5099.95,
-        "resume": "Explorez le pays le plus avancé technologiquement du monde et rencontrez la royauté Wakandaise.",
-        "dates": {
-            "debut": "2025-07-10",
-            "fin": "2025-07-17",
-            "duree": "7 jours"
-        },
-        "etapes": [
-            {
-                "lieu": "Golden City",
-                "duree": "2 jours",
-                "prix": 2039.98,
-                "options": [
-                    {"nom": "Musée Wakandais", "prix": 393.89},
-                    {"nom": "Marché tribal", "prix": 348.36}
-                ]
-            },
-            {
-                "lieu": "Mont Bashenga",
-                "duree": "2 jours",
-                "prix": 2039.98,
-                "options": [
-                    {"nom": "Randonnée", "prix": 317.68},
-                    {"nom": "Visite du temple", "prix": 227.84}
-                ]
-            },
-            {
-                "lieu": "Lac de Vibranium",
-                "duree": "1 jour",
-                "prix": 1019.99,
-                "options": [
-                    {"nom": "Plongée sous-marine", "prix": 153.4}
-                ]
-            }
+      },
+      {
+        "lieu": "Statue de la Liberté",
+        "duree": "1 jour",
+        "options": [{ "nom": "Traversée en ferry", "prix": 25.0 }]
+      },
+      {
+        "lieu": "Central Park",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Balade à vélo", "prix": 30.0 },
+          { "nom": "Pique-nique", "prix": 35.0 }
         ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "titre": "Wakanda",
+    "image": "../img/destinations/wakanda.jpg",
+    "prix": 5099.95,
+    "resume": "Explorez le pays le plus avancé technologiquement du monde et rencontrez la royauté Wakandaise.",
+    "dates": {
+      "debut": "2025-07-10",
+      "fin": "2025-07-17",
+      "duree": "7 jours"
     },
-    {
-        "id": 3,
-        "titre": "Hala",
-        "image": "../img/destinations/hala.jpg",
-        "prix": 1199.95,
-        "resume": "Embarquez pour une expédition sur la planète des Krees et découvrez leur culture.",
-        "dates": {
-            "debut": "2025-08-05",
-            "fin": "2025-08-12",
-            "duree": "7 jours"
-        },
-        "etapes": [
-            {
-                "lieu": "Capitale Kree",
-                "duree": "2 jours",
-                "prix": 479.98,
-                "options": [
-                    {"nom": "Visite du palais impérial", "prix": 71.3}
-                ]
-            },
-            {
-                "lieu": "Arène de combat",
-                "duree": "1 jour",
-                "prix": 239.99,
-                "options": [
-                    {"nom": "Spectacle de gladiateurs", "prix": 49.81}
-                ]
-            },
-            {
-                "lieu": "Observatoire stellaire",
-                "duree": "2 jours",
-                "prix": 479.98,
-                "options": [
-                    {"nom": "Nuit sous les étoiles", "prix": 135.1}
-                ]
-            }
+    "etapes": [
+      {
+        "lieu": "Golden City",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Musée Wakandais", "prix": 300.0 },
+          { "nom": "Marché tribal", "prix": 250.0 }
         ]
-    },
-    {
-        "id": 4,
-        "titre": "Xandar",
-        "image": "../img/destinations/wandar.png",
-        "prix": 999.95,
-        "resume": "Découvrez la mystérieuse cité de Wandar et ses secrets anciens.",
-        "dates": {
-            "debut": "2025-09-01",
-            "fin": "2025-09-07",
-            "duree": "6 jours"
-        },
-        "etapes": [
-            {
-                "lieu": "Temple perdu",
-                "duree": "2 jours",
-                "prix": 399.98,
-                "options": [
-                    {"nom": "Exploration guidée", "prix": 91.86}
-                ]
-            },
-            {
-                "lieu": "Bibliothèque antique",
-                "duree": "1 jour",
-                "prix": 199.99,
-                "options": [
-                    {"nom": "Lecture des manuscrits anciens", "prix": 41.08}
-                ]
-            },
-            {
-                "lieu": "Gorges du Vent",
-                "duree": "2 jours",
-                "prix": 399.98,
-                "options": [
-                    {"nom": "Randonnée extrême", "prix": 43.94}
-                ]
-            }
+      },
+      {
+        "lieu": "Mont Bashenga",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Randonnée", "prix": 200.0 },
+          { "nom": "Visite du temple", "prix": 180.0 }
         ]
-    },
-    {
-      "id": 5,
-      "titre": "Asgard",
-      "image": "../img/destinations/newyork.jpg",
-      "prix": 2499.95,
-      "resume": "Explorez le royaume mythologique d'Asgard et découvrez ses merveilles, entre majestueux palais et paysages épiques.",
-      "dates": {
-        "debut": "2025-09-15",
-        "fin": "2025-09-22",
-        "duree": "7 jours"
       },
-      "etapes": [
-        {
-          "lieu": "Palais d'Odin",
-          "duree": "2 jours",
-          "prix": 899.98,
-          "options": [
-            {"nom": "Visite guidée", "prix": 99.99},
-            {"nom": "Combat d'entraînement", "prix": 120.99}
-          ]
-        },
-        {
-          "lieu": "Bifrost",
-          "duree": "1 jour",
-          "prix": 399.99,
-          "options": [
-            {"nom": "Traversée magique", "prix": 199.99}
-          ]
-        },
-        {
-          "lieu": "Plaines d'Asgard",
-          "duree": "2 jours",
-          "prix": 799.98,
-          "options": [
-            {"nom": "Randonnée avec chevaux", "prix": 79.99},
-            {"nom": "Observation des étoiles", "prix": 49.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Lac de Vibranium",
+        "duree": "1 jour",
+        "options": [{ "nom": "Plongée sous-marine", "prix": 150.0 }]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "titre": "Hala",
+    "image": "../img/destinations/hala.jpg",
+    "prix": 1199.95,
+    "resume": "Embarquez pour une expédition sur la planète des Krees et découvrez leur culture.",
+    "dates": {
+      "debut": "2025-08-05",
+      "fin": "2025-08-12",
+      "duree": "7 jours"
     },
-    {
-      "id": 6,
-      "titre": "Genovia",
-      "image": "../img/destinations/genosha.jpg",
-      "prix": 1499.95,
-      "resume": "Venez découvrir le charmant royaume de Genovia, une destination royale avec ses palais majestueux et ses paysages époustouflants.",
-      "dates": {
-        "debut": "2026-04-01",
-        "fin": "2026-04-08",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Capitale Kree",
+        "duree": "2 jours",
+        "options": [{ "nom": "Visite du palais impérial", "prix": 70.0 }]
       },
-      "etapes": [
-        {
-          "lieu": "Palais Royal de Genovia",
-          "duree": "3 jours",
-          "prix": 799.98,
-          "options": [
-            {"nom": "Visite guidée du palais", "prix": 99.99},
-            {"nom": "Dîner royal", "prix": 199.99}
-          ]
-        },
-        {
-          "lieu": "Jardins de Genovia",
-          "duree": "2 jours",
-          "prix": 399.99,
-          "options": [
-            {"nom": "Promenade dans les jardins", "prix": 49.99},
-            {"nom": "Visite des serres royales", "prix": 89.99}
-          ]
-        },
-        {
-          "lieu": "Plage de Genovia",
-          "duree": "2 jours",
-          "prix": 299.99,
-          "options": [
-            {"nom": "Détente sur la plage", "prix": 49.99},
-            {"nom": "Sports nautiques", "prix": 79.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Arène de combat",
+        "duree": "1 jour",
+        "options": [{ "nom": "Spectacle de gladiateurs", "prix": 50.0 }]
+      },
+      {
+        "lieu": "Observatoire stellaire",
+        "duree": "2 jours",
+        "options": [{ "nom": "Nuit sous les étoiles", "prix": 100.0 }]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "titre": "Xandar",
+    "image": "../img/destinations/wandar.png",
+    "prix": 999.95,
+    "resume": "Découvrez la mystérieuse cité de Wandar et ses secrets anciens.",
+    "dates": {
+      "debut": "2025-09-01",
+      "fin": "2025-09-07",
+      "duree": "6 jours"
     },
-    {
-      "id": 7,
-      "titre": "Sakaar",
-      "image": "../img/destinations/sakaar.jpg",
-      "prix": 2199.95,
-      "resume": "Vivez une aventure intergalactique sur Sakaar, la planète du Grand Maître, avec ses arènes et ses défis extrêmes.",
-      "dates": {
-        "debut": "2025-10-20",
-        "fin": "2025-10-27",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Temple perdu",
+        "duree": "2 jours",
+        "options": [{ "nom": "Exploration guidée", "prix": 90.0 }]
       },
-      "etapes": [
-        {
-          "lieu": "Arène de Sakaar",
-          "duree": "3 jours",
-          "prix": 1099.98,
-          "options": [
-            {"nom": "Combat de gladiateurs", "prix": 199.99},
-            {"nom": "Tournoi intergalactique", "prix": 249.99}
-          ]
-        },
-        {
-          "lieu": "Ruinées de Sakaar",
-          "duree": "2 jours",
-          "prix": 799.99,
-          "options": [
-            {"nom": "Exploration des ruines", "prix": 99.99},
-            {"nom": "Course de véhicules", "prix": 129.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Bibliothèque antique",
+        "duree": "1 jour",
+        "options": [{ "nom": "Lecture des manuscrits anciens", "prix": 40.0 }]
+      },
+      {
+        "lieu": "Gorges du Vent",
+        "duree": "2 jours",
+        "options": [{ "nom": "Randonnée extrême", "prix": 50.0 }]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "titre": "Asgard",
+    "image": "../img/destinations/newyork.jpg",
+    "prix": 2499.95,
+    "resume": "Explorez le royaume mythologique d'Asgard et découvrez ses merveilles, entre majestueux palais et paysages épiques.",
+    "dates": {
+      "debut": "2025-09-15",
+      "fin": "2025-09-22",
+      "duree": "7 jours"
     },
-    {
-      "id": 8,
-      "titre": "Atlantis",
-      "image": "../img/destinations/atlantis.jpg",
-      "prix": 5599.95,
-      "resume": "Plongez dans les profondeurs de l'océan et explorez la légendaire cité d'Atlantis, ses trésors antiques et ses paysages sous-marins époustouflants.",
-      "dates": {
-        "debut": "2026-02-15",
-        "fin": "2026-02-22",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Palais d'Odin",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Visite guidée", "prix": 100.0 },
+          { "nom": "Combat d'entraînement", "prix": 120.0 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Cité d'Atlantis",
-          "duree": "2 jours",
-          "prix": 799.98,
-          "options": [
-            {"nom": "Visite guidée de la cité", "prix": 199.99},
-            {"nom": "Dîner royal sous-marin", "prix": 299.99}
-          ]
-        },
-        {
-          "lieu": "Ruines anciennes d'Atlantis",
-          "duree": "3 jours",
-          "prix": 1199.98,
-          "options": [
-            {"nom": "Exploration archéologique", "prix": 499.99},
-            {"nom": "Plongée dans les ruines", "prix": 299.99}
-          ]
-        },
-        {
-          "lieu": "Jardin sous-marin",
-          "duree": "2 jours",
-          "prix": 499.99,
-          "options": [
-            {"nom": "Balade en sous-marin", "prix": 149.99},
-            {"nom": "Observation de la faune marine", "prix": 199.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Bifrost",
+        "duree": "1 jour",
+        "options": [{ "nom": "Traversée magique", "prix": 150.0 }]
+      },
+      {
+        "lieu": "Plaines d'Asgard",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Randonnée avec chevaux", "prix": 80.0 },
+          { "nom": "Observation des étoiles", "prix": 50.0 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "titre": "Genovia",
+    "image": "../img/destinations/genosha.jpg",
+    "prix": 1499.95,
+    "resume": "Venez découvrir le charmant royaume de Genovia, une destination royale avec ses palais majestueux et ses paysages époustouflants.",
+    "dates": {
+      "debut": "2026-04-01",
+      "fin": "2026-04-08",
+      "duree": "7 jours"
     },
-    {
-      "id": 9,
-      "titre": "Titan",
-      "image": "../img/destinations/titan.jpg",
-      "prix": 3099.95,
-      "resume": "Explorez la planète Titan, autrefois fief de Thanos, et découvrez ses paysages sombres et sa richesse culturelle.",
-      "dates": {
-        "debut": "2025-12-01",
-        "fin": "2025-12-08",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Palais Royal de Genovia",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Visite guidée du palais", "prix": 99.99 },
+          { "nom": "Dîner royal", "prix": 199.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Palais de Thanos",
-          "duree": "2 jours",
-          "prix": 1099.98,
-          "options": [
-            {"nom": "Tour du palais", "prix": 249.99},
-            {"nom": "Rencontre avec les membres de la famille", "prix": 349.99}
-          ]
-        },
-        {
-          "lieu": "Montagnes de Titan",
-          "duree": "3 jours",
-          "prix": 1399.98,
-          "options": [
-            {"nom": "Randonnée", "prix": 199.99},
-            {"nom": "Campement sous les étoiles", "prix": 159.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Jardins de Genovia",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Promenade dans les jardins", "prix": 49.99 },
+          { "nom": "Visite des serres royales", "prix": 89.99 }
+        ]
+      },
+      {
+        "lieu": "Plage de Genovia",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Détente sur la plage", "prix": 49.99 },
+          { "nom": "Sports nautiques", "prix": 79.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "titre": "Sakaar",
+    "image": "../img/destinations/sakaar.jpg",
+    "prix": 2199.95,
+    "resume": "Vivez une aventure intergalactique sur Sakaar, la planète du Grand Maître, avec ses arènes et ses défis extrêmes.",
+    "dates": {
+      "debut": "2025-10-20",
+      "fin": "2025-10-27",
+      "duree": "7 jours"
     },
-    {
-      "id": 10,
-      "titre": "Kree Homeworld",
-      "image": "../img/destinations/KRee_Homeworld.jpg",
-      "prix": 1799.95,
-      "resume": "Partez pour un voyage sur la planète Kree et plongez dans la culture et l'histoire de cette civilisation ancienne.",
-      "dates": {
-        "debut": "2025-12-15",
-        "fin": "2025-12-22",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Arène de Sakaar",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Combat de gladiateurs", "prix": 199.99 },
+          { "nom": "Tournoi intergalactique", "prix": 249.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Capitale Kree",
-          "duree": "2 jours",
-          "prix": 699.98,
-          "options": [
-            {"nom": "Visite des monuments", "prix": 99.99},
-            {"nom": "Rencontre avec les leaders", "prix": 149.99}
-          ]
-        },
-        {
-          "lieu": "Ruines anciennes",
-          "duree": "3 jours",
-          "prix": 899.99,
-          "options": [
-            {"nom": "Exploration archéologique", "prix": 159.99},
-            {"nom": "Spectacles culturels", "prix": 199.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Ruinées de Sakaar",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Exploration des ruines", "prix": 99.99 },
+          { "nom": "Course de véhicules", "prix": 129.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "titre": "Atlantis",
+    "image": "../img/destinations/atlantis.jpg",
+    "prix": 5599.95,
+    "resume": "Plongez dans les profondeurs de l'océan et explorez la légendaire cité d'Atlantis, ses trésors antiques et ses paysages sous-marins époustouflants.",
+    "dates": {
+      "debut": "2026-02-15",
+      "fin": "2026-02-22",
+      "duree": "7 jours"
     },
-    {
-      "id": 11,
-      "titre": "The Savage Land",
-      "image": "../img/destinations/the_savage_land.jpg",
-      "prix": 1199.95,
-      "resume": "Découvrez le Savage Land, une jungle préhistorique abritant des créatures mystérieuses et une flore exotique.",
-      "dates": {
-        "debut": "2025-12-25",
-        "fin": "2025-12-31",
-        "duree": "6 jours"
+    "etapes": [
+      {
+        "lieu": "Cité d'Atlantis",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Visite guidée de la cité", "prix": 199.99 },
+          { "nom": "Dîner royal sous-marin", "prix": 299.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Jungle du Savage Land",
-          "duree": "4 jours",
-          "prix": 899.98,
-          "options": [
-            {"nom": "Randonnée", "prix": 129.99},
-            {"nom": "Observation des dinosaures", "prix": 159.99}
-          ]
-        },
-        {
-          "lieu": "Temple des Anciens",
-          "duree": "2 jours",
-          "prix": 399.99,
-          "options": [
-            {"nom": "Exploration", "prix": 119.99},
-            {"nom": "Visite guidée", "prix": 149.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Ruines anciennes d'Atlantis",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Exploration archéologique", "prix": 499.99 },
+          { "nom": "Plongée dans les ruines", "prix": 299.99 }
+        ]
+      },
+      {
+        "lieu": "Jardin sous-marin",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Balade en sous-marin", "prix": 149.99 },
+          { "nom": "Observation de la faune marine", "prix": 199.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "titre": "Titan",
+    "image": "../img/destinations/titan.jpg",
+    "prix": 3099.95,
+    "resume": "Explorez la planète Titan, autrefois fief de Thanos, et découvrez ses paysages sombres et sa richesse culturelle.",
+    "dates": {
+      "debut": "2025-12-01",
+      "fin": "2025-12-08",
+      "duree": "7 jours"
     },
-    {
-      "id": 12,
-      "titre": "The Negative Zone",
-      "image": "../img/destinations/The_negative_zone.jpg",
-      "prix": 2299.95,
-      "resume": "Partez pour un voyage interdimensionnel dans la Zone Négative, un endroit hostile peuplé de créatures mystérieuses.",
-      "dates": {
-        "debut": "2026-01-10",
-        "fin": "2026-01-17",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Palais de Thanos",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Tour du palais", "prix": 249.99 },
+          { "nom": "Rencontre avec les membres de la famille", "prix": 349.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Planète du Chaos",
-          "duree": "3 jours",
-          "prix": 1199.98,
-          "options": [
-            {"nom": "Combat contre les créatures locales", "prix": 249.99},
-            {"nom": "Découverte des artefacts", "prix": 299.99}
-          ]
-        },
-        {
-          "lieu": "Base de la Rébellion",
-          "duree": "2 jours",
-          "prix": 699.99,
-          "options": [
-            {"nom": "Sauvetage", "prix": 159.99},
-            {"nom": "Exploration des bases abandonnées", "prix": 179.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Montagnes de Titan",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Randonnée", "prix": 199.99 },
+          { "nom": "Campement sous les étoiles", "prix": 159.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "titre": "Kree Homeworld",
+    "image": "../img/destinations/KRee_Homeworld.jpg",
+    "prix": 1799.95,
+    "resume": "Partez pour un voyage sur la planète Kree et plongez dans la culture et l'histoire de cette civilisation ancienne.",
+    "dates": {
+      "debut": "2025-12-15",
+      "fin": "2025-12-22",
+      "duree": "7 jours"
     },
-    {
-      "id": 13,
-      "titre": "Morag",
-      "image": "../img/destinations/Morag.jpg",
-      "prix": 1499.95,
-      "resume": "Découvrez la planète Morag, ancienne demeure des Templiers et site d'exploration archéologique.",
-      "dates": {
-        "debut": "2026-02-01",
-        "fin": "2026-02-07",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Capitale Kree",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Visite des monuments", "prix": 99.99 },
+          { "nom": "Rencontre avec les leaders", "prix": 149.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Ruines Templières",
-          "duree": "3 jours",
-          "prix": 799.98,
-          "options": [
-            {"nom": "Exploration archéologique", "prix": 139.99},
-            {"nom": "Séances photo", "prix": 179.99}
-          ]
-        },
-        {
-          "lieu": "Plages de Morag",
-          "duree": "2 jours",
-          "prix": 499.99,
-          "options": [
-            {"nom": "Détente", "prix": 79.99},
-            {"nom": "Plongée sous-marine", "prix": 99.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Ruines anciennes",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Exploration archéologique", "prix": 159.99 },
+          { "nom": "Spectacles culturels", "prix": 199.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "titre": "The Savage Land",
+    "image": "../img/destinations/the_savage_land.jpg",
+    "prix": 1199.95,
+    "resume": "Découvrez le Savage Land, une jungle préhistorique abritant des créatures mystérieuses et une flore exotique.",
+    "dates": {
+      "debut": "2025-12-25",
+      "fin": "2025-12-31",
+      "duree": "6 jours"
     },
-    {
-      "id": 14,
-      "titre": "The Sanctum Sanctorum",
-      "image": "../img/destinations/sanctum_sanctorum.jpg",
-      "prix": 2499.95,
-      "resume": "Venez explorer le sanctuaire mystique de Doctor Strange à New York, un lieu rempli de secrets magiques, de mystères interdimensionnels et de découvertes mystiques.",
-      "dates": {
-        "debut": "2026-03-01",
-        "fin": "2026-03-08",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Jungle du Savage Land",
+        "duree": "4 jours",
+        "options": [
+          { "nom": "Randonnée", "prix": 129.99 },
+          { "nom": "Observation des dinosaures", "prix": 159.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Hall du Sanctum",
-          "duree": "2 jours",
-          "prix": 999.98,
-          "options": [
-            {"nom": "Visite guidée", "prix": 149.99},
-            {"nom": "Cours de magie", "prix": 199.99}
-          ]
-        },
-        {
-          "lieu": "Salle des Portails",
-          "duree": "2 jours",
-          "prix": 799.99,
-          "options": [
-            {"nom": "Voyage interdimensionnel", "prix": 249.99},
-            {"nom": "Séance de méditation mystique", "prix": 99.99}
-          ]
-        },
-        {
-          "lieu": "Chambre des Artéfacts",
-          "duree": "3 jours",
-          "prix": 699.98,
-          "options": [
-            {"nom": "Découverte des artefacts anciens", "prix": 299.99},
-            {"nom": "Exploration des dimensions parallèles", "prix": 179.99}
-          ]
-        }
-      ]
+      {
+        "lieu": "Temple des Anciens",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Exploration", "prix": 119.99 },
+          { "nom": "Visite guidée", "prix": 149.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "titre": "The Negative Zone",
+    "image": "../img/destinations/The_negative_zone.jpg",
+    "prix": 2299.95,
+    "resume": "Partez pour un voyage interdimensionnel dans la Zone Négative, un endroit hostile peuplé de créatures mystérieuses.",
+    "dates": {
+      "debut": "2026-01-10",
+      "fin": "2026-01-17",
+      "duree": "7 jours"
     },
-    {
-      "id": 15,
-      "titre": "The Battleworld",
-      "image": "../img/destinations/battleworld.jpg",
-      "prix": 3999.95,
-      "resume": "Découvrez Battleworld, le monde créé par Doctor Doom dans l'événement Secret Wars, où de multiples réalités se rencontrent et s'affrontent dans des batailles épiques.",
-      "dates": {
-        "debut": "2026-03-10",
-        "fin": "2026-03-17",
-        "duree": "7 jours"
+    "etapes": [
+      {
+        "lieu": "Planète du Chaos",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Combat contre les créatures locales", "prix": 249.99 },
+          { "nom": "Découverte des artefacts", "prix": 299.99 }
+        ]
       },
-      "etapes": [
-        {
-          "lieu": "Zone des Champions",
-          "duree": "3 jours",
-          "prix": 1499.98,
-          "options": [
-            {"nom": "Combat dans l'arène", "prix": 299.99},
-            {"nom": "Spectacles de gladiateurs", "prix": 199.99}
-          ]
-        },
-        {
-          "lieu": "Terre de l'Ultron",
-          "duree": "2 jours",
-          "prix": 999.99,
-          "options": [
-            {"nom": "Visite de la forteresse d'Ultron", "prix": 149.99},
-            {"nom": "Combat contre les armées de robots", "prix": 249.99}
-          ]
-        },
-        {
-          "lieu": "Domaine des X-Men",
-          "duree": "2 jours",
-          "prix": 499.99,
-          "options": [
-            {"nom": "Rencontre avec les X-Men", "prix": 199.99},
-            {"nom": "Exploration du domaine mutant", "prix": 149.99}
-          ]
-        }
-      ]
-    }
-  ]
+      {
+        "lieu": "Base de la Rébellion",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Sauvetage", "prix": 159.99 },
+          { "nom": "Exploration des bases abandonnées", "prix": 179.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "titre": "Morag",
+    "image": "../img/destinations/Morag.jpg",
+    "prix": 1499.95,
+    "resume": "Découvrez la planète Morag, ancienne demeure des Templiers et site d'exploration archéologique.",
+    "dates": {
+      "debut": "2026-02-01",
+      "fin": "2026-02-07",
+      "duree": "7 jours"
+    },
+    "etapes": [
+      {
+        "lieu": "Ruines Templières",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Exploration archéologique", "prix": 139.99 },
+          { "nom": "Séances photo", "prix": 179.99 }
+        ]
+      },
+      {
+        "lieu": "Plages de Morag",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Détente", "prix": 79.99 },
+          { "nom": "Plongée sous-marine", "prix": 99.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "titre": "The Sanctum Sanctorum",
+    "image": "../img/destinations/sanctum_sanctorum.jpg",
+    "prix": 2499.95,
+    "resume": "Venez explorer le sanctuaire mystique de Doctor Strange à New York, un lieu rempli de secrets magiques, de mystères interdimensionnels et de découvertes mystiques.",
+    "dates": {
+      "debut": "2026-03-01",
+      "fin": "2026-03-08",
+      "duree": "7 jours"
+    },
+    "etapes": [
+      {
+        "lieu": "Hall du Sanctum",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Visite guidée", "prix": 149.99 },
+          { "nom": "Cours de magie", "prix": 199.99 }
+        ]
+      },
+      {
+        "lieu": "Salle des Portails",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Voyage interdimensionnel", "prix": 249.99 },
+          { "nom": "Séance de méditation mystique", "prix": 99.99 }
+        ]
+      },
+      {
+        "lieu": "Chambre des Artéfacts",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Découverte des artefacts anciens", "prix": 299.99 },
+          { "nom": "Exploration des dimensions parallèles", "prix": 179.99 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "titre": "The Battleworld",
+    "image": "../img/destinations/battleworld.jpg",
+    "prix": 3999.95,
+    "resume": "Découvrez Battleworld, le monde créé par Doctor Doom dans l'événement Secret Wars, où de multiples réalités se rencontrent et s'affrontent dans des batailles épiques.",
+    "dates": {
+      "debut": "2026-03-10",
+      "fin": "2026-03-17",
+      "duree": "7 jours"
+    },
+    "etapes": [
+      {
+        "lieu": "Zone des Champions",
+        "duree": "3 jours",
+        "options": [
+          { "nom": "Combat dans l'arène", "prix": 299.99 },
+          { "nom": "Spectacles de gladiateurs", "prix": 199.99 }
+        ]
+      },
+      {
+        "lieu": "Terre de l'Ultron",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Visite de la forteresse d'Ultron", "prix": 149.99 },
+          { "nom": "Combat contre les armées de robots", "prix": 249.99 }
+        ]
+      },
+      {
+        "lieu": "Domaine des X-Men",
+        "duree": "2 jours",
+        "options": [
+          { "nom": "Rencontre avec les X-Men", "prix": 199.99 },
+          { "nom": "Exploration du domaine mutant", "prix": 149.99 }
+        ]
+      }
+    ]
+  }
+]

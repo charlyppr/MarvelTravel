@@ -118,6 +118,7 @@
     background-color: #FFFAE7;
     box-shadow: 0px 4px 10px #0d0d0d42;
     flex-direction: column;
+    max-height: 320px;
 }
 
 .user-info {
@@ -125,6 +126,8 @@
     gap: 15px;
     align-items: center;
     flex-direction: column;
+    max-height: 120px;
+    overflow: hidden;
 }
 
 a{

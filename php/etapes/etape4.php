@@ -91,16 +91,19 @@ if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb
     $options_selection = $form_data3['options'] ?? [];
 }
 
+// Calcul de la durée du séjour en jours
+$date_debut_obj = new DateTime($date_debut);
+$date_fin_obj = new DateTime($date_fin);
+$duree = $date_debut_obj->diff($date_fin_obj)->days;
+
 // Calcul du prix total
 $prix_total = 0;
 $prix_base = 0;
 $prix_options = 0;
 $details_options = [];
 
-// Prix de base pour chaque étape (pour tous les voyageurs)
-foreach ($voyage['etapes'] as $etape) {
-    $prix_base += $etape['prix'] * $nb_personne;
-}
+// Prix de base du voyage pour tous les voyageurs
+$prix_base = $voyage['prix'] * $nb_personne;
 
 // Prix des options (uniquement pour les voyageurs sélectionnés)
 if (!empty($options_selection)) {
@@ -168,9 +171,12 @@ $nouvelle_commande = [
     "options" => $details_options
 ];
 
-$commandes[] = $nouvelle_commande;
+// Stocker la commande en session au lieu de l'écrire dans le fichier
+$_SESSION['commande_en_attente'] = $nouvelle_commande;
 
-file_put_contents($commande_json_file, json_encode($commandes, JSON_PRETTY_PRINT));
+// Commenter ces lignes qui écrivent directement dans le fichier
+// $commandes[] = $nouvelle_commande;
+// file_put_contents($commande_json_file, json_encode($commandes, JSON_PRETTY_PRINT));
 
 // Génération du code de contrôle pour la transaction
 require_once('../getapikey.php');
@@ -182,11 +188,12 @@ $control = md5($api_key . "#" . $transaction . "#" . $prix_total . "#" . $vendeu
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Récapitulatif et paiement - <?php echo htmlspecialchars($voyage['titre']); ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Récapitulatif du voyage - <?php echo htmlspecialchars($voyage['titre']); ?></title>
+
     <link rel="stylesheet" href="../../css/base.css">
-    <link rel="stylesheet" href="../../css/reservation.css">
+    <link rel="stylesheet" href="../../css/etape4.css">
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -195,127 +202,130 @@ $control = md5($api_key . "#" . $transaction . "#" . $prix_total . "#" . $vendeu
 
     <?php include '../nav.php'; ?>
 
-    <h1 class="titre">Récapitulatif et paiement</h1>
-
-    <div class="recap-container">
-        <div class="recap-section">
-            <h2>Votre voyage</h2>
-            <div class="recap-info">
-                <div class="recap-row">
-                    <span class="recap-label">Destination:</span>
-                    <span class="recap-value"><?php echo htmlspecialchars($voyage['titre']); ?></span>
-                </div>
-                <div class="recap-row">
-                    <span class="recap-label">Période:</span>
-                    <span class="recap-value">Du <?php echo date('d/m/Y', strtotime($date_debut)); ?> au
-                        <?php echo date('d/m/Y', strtotime($date_fin)); ?></span>
-                </div>
-                <div class="recap-row">
-                    <span class="recap-label">Durée:</span>
-                    <span class="recap-value"><?php echo htmlspecialchars($voyage['dates']['duree']); ?></span>
-                </div>
-            </div>
+    <div class="rcapitulatif-du-voyage">
+        <div class="header">
+            <div class="title">Récapitulatif du voyage</div>
+            <div class="subtitle">Vérifiez les détails de votre réservation avant de procéder au paiement</div>
         </div>
 
-        <div class="recap-section">
-            <h2>Voyageurs</h2>
-            <div class="recap-info">
-                <?php foreach ($voyageurs as $index => $voyageur): ?>
-                    <div class="voyageur-recap">
-                        <h3>Voyageur <?php echo $index + 1; ?></h3>
-                        <div class="recap-row">
-                            <span class="recap-label">Nom complet:</span>
-                            <span
-                                class="recap-value"><?php echo htmlspecialchars($voyageur['civilite'] . ' ' . $voyageur['prenom'] . ' ' . $voyageur['nom']); ?></span>
+        <div class="main-content">
+            <div class="info-section">
+                <div class="info-container">
+                    <div class="section-title">Votre Voyage</div>
+                    <div class="details-container">
+                        <div class="destination">
+                            <span class="priode">Destination : </span>
+                            <b><?php echo htmlspecialchars($voyage['titre']); ?></b>
                         </div>
-                        <div class="recap-row">
-                            <span class="recap-label">Date de naissance:</span>
-                            <span
-                                class="recap-value"><?php echo date('d/m/Y', strtotime($voyageur['date_naissance'])); ?></span>
+                        <div class="period">
+                            <span class="priode">Période : </span>
+                            <b>du <?php echo date('d/m/Y', strtotime($date_debut)); ?> au
+                                <?php echo date('d/m/Y', strtotime($date_fin)); ?></b>
                         </div>
-                        <div class="recap-row">
-                            <span class="recap-label">Nationalité:</span>
-                            <span class="recap-value"><?php echo htmlspecialchars($voyageur['nationalite']); ?></span>
-                        </div>
-                        <div class="recap-row">
-                            <span class="recap-label">N° passeport:</span>
-                            <span class="recap-value"><?php echo htmlspecialchars($voyageur['passport']); ?></span>
+                        <div class="destination">
+                            <span class="priode">Durée : </span>
+                            <b><?php echo $duree; ?> jours / <?php echo $duree + 1; ?> nuits</b>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
+                </div>
 
-        <?php if (!empty($details_options)): ?>
-            <div class="recap-section">
-                <h2>Options sélectionnées</h2>
-                <div class="recap-info">
-                    <?php foreach ($details_options as $option): ?>
-                        <div class="option-recap">
-                            <div class="recap-row">
-                                <span class="recap-label">Étape:</span>
-                                <span class="recap-value"><?php echo htmlspecialchars($option['etape']); ?></span>
+                <div class="info-container">
+                    <div class="section-title">Détails du prix</div>
+                    <div class="details-container">
+                        <div class="destination">
+                            <span class="priode">Prix de base (<?php echo $nb_personne; ?>
+                                personne<?php echo $nb_personne > 1 ? 's' : ''; ?>) : </span>
+                            <b><?php echo number_format($prix_base, 2, ',', ' '); ?>€</b>
+                        </div>
+                        <div class="destination">
+                            <span class="priode">Options : </span>
+                            <b><?php echo number_format($prix_options, 2, ',', ' '); ?> €</b>
+                        </div>
+                        <div class="destination">
+                            <span class="priode">Total : </span>
+                            <b><?php echo number_format($prix_total, 2, ',', ' '); ?>€</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section1">
+                <div class="section-title">Voyageur(s)</div>
+                <div class="details-container2">
+                    <?php foreach ($voyageurs as $index => $voyageur): ?>
+                        <div class="info-container2">
+                            <div class="section-title">
+                                <?php echo htmlspecialchars($voyageur['civilite'] . ' ' . $voyageur['prenom'] . ' ' . $voyageur['nom']); ?>
                             </div>
-                            <div class="recap-row">
-                                <span class="recap-label">Option:</span>
-                                <span class="recap-value"><?php echo htmlspecialchars($option['option']); ?></span>
-                            </div>
-                            <div class="recap-row">
-                                <span class="recap-label">Participants:</span>
-                                <span class="recap-value"><?php echo $option['nb_participants']; ?> personne(s)</span>
-                            </div>
-                            <div class="recap-row">
-                                <span class="recap-label">Prix:</span>
-                                <span class="recap-value"><?php echo number_format($option['total'], 2, ',', ' '); ?> €</span>
+                            <div class="details-container3">
+                                <div class="section-title">
+                                    Date de naissance :
+                                    <?php echo date('d/m/Y', strtotime($voyageur['date_naissance'])); ?>
+                                </div>
+                                <div class="section-title">
+                                    Nationalité : <?php echo htmlspecialchars($voyageur['nationalite']); ?>
+                                </div>
+                                <div class="section-title">
+                                    N°Passeport : <?php echo htmlspecialchars($voyageur['passport']); ?>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
-        <?php endif; ?>
 
-        <div class="recap-section prix-section">
-            <h2>Détail du prix</h2>
-            <div class="recap-info">
-                <div class="recap-row">
-                    <span class="recap-label">Prix de base (<?php echo $nb_personne; ?> personne(s)):</span>
-                    <span class="recap-value"><?php echo number_format($prix_base, 2, ',', ' '); ?> €</span>
+            <?php if (!empty($details_options)): ?>
+                <div class="info-section1">
+                    <div class="section-title">Options sélectionnées</div>
+                    <div class="details-container2">
+                        <?php foreach ($details_options as $option): ?>
+                            <div class="info-container2">
+                                <div class="section-title">
+                                    <?php echo htmlspecialchars($option['etape']); ?> -
+                                    <?php echo htmlspecialchars($option['option']); ?>
+                                </div>
+                                <div class="details-container3">
+                                    <div class="section-title">
+                                        Prix unitaire :
+                                        <?php echo number_format($option['prix_unitaire'], 2, ',', ' '); ?> €
+                                    </div>
+                                    <div class="section-title">
+                                        Participants : <?php echo $option['nb_participants']; ?> personne(s)
+                                    </div>
+                                    <div class="section-title">
+                                        Sous-total : <?php echo number_format($option['total'], 2, ',', ' '); ?> €
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-                <div class="recap-row">
-                    <span class="recap-label">Options:</span>
-                    <span class="recap-value"><?php echo number_format($prix_options, 2, ',', ' '); ?> €</span>
-                </div>
-                <div class="recap-row total-row">
-                    <span class="recap-label">Total:</span>
-                    <span class="recap-value"><?php echo number_format($prix_total, 2, ',', ' '); ?> €</span>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
 
-        <div class="payment-section">
-            <h2>Procéder au paiement</h2>
-            <p>Vous allez être redirigé vers notre plateforme de paiement sécurisée pour finaliser votre réservation.
-            </p>
+        <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' class="form-container">
+            <input type='hidden' name='transaction' value='<?php echo $transaction; ?>'>
+            <input type='hidden' name='montant' value='<?php echo $prix_total; ?>'>
+            <input type='hidden' name='vendeur' value='<?php echo $vendeur; ?>'>
+            <input type='hidden' name='retour' value='<?php echo $retour; ?>'>
+            <input type='hidden' name='control' value='<?php echo $control; ?>'>
 
-            <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' class="payment-form">
-                <input type='hidden' name='transaction' value='<?php echo $transaction; ?>'>
-                <input type='hidden' name='montant' value='<?php echo $prix_total; ?>'>
-                <input type='hidden' name='vendeur' value='<?php echo $vendeur; ?>'>
-                <input type='hidden' name='retour' value='<?php echo $retour; ?>'>
-                <input type='hidden' name='control' value='<?php echo $control; ?>'>
-
-                <div class="payment-buttons">
-                    <a href="etape3.php?id=<?php echo $id; ?>" class="back-button">Modifier ma réservation</a>
-                    <button type="submit" class="payment-button">
-                        <img src="../../img/svg/credit-card.svg" alt="carte bancaire" class="card-icon">
-                        Payer <?php echo number_format($prix_total, 2, ',', ' '); ?> €
+            <div class="total-price-container">
+                <b class="total-price">Total : <?php echo number_format($prix_total, 2, ',', ' '); ?>€</b>
+                <div class="promo-code">Ajouter un code promo</div>
+                <div class="navigation-buttons">
+                    <a href="etape3.php?id=<?php echo $id; ?>" class="back-button">
+                        <div class="back-button-text">Retour</div>
+                    </a>
+                    <button type="submit" class="continue-button">
+                        <div class="back-button-text">Payer
+                            <?php echo number_format($prix_total, 2, ',', ' '); ?>€
+                        </div>
                     </button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-
-    <?php include '../footer.php'; ?>
 
     <script src="../../js/nav.js"></script>
     <script src="../../js/custom-cursor.js"></script>

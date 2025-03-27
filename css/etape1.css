@@ -1,0 +1,437 @@
+/* Variables pour une cohérence et facilité de maintenance */
+:root {
+    --color-primary: #af1f24;
+    --color-secondary: #006fac;
+    --color-accent: #afe7c9;
+    --color-text-light: #fff;
+    --color-text-muted: rgba(242, 219, 175, 0.6);
+    --color-bg-dark: #202020;
+    --color-bg-card: rgba(68, 68, 68, 0.5);
+    --color-border: rgba(255, 250, 231, 0.5);
+    --border-radius-lg: 20px;
+    --border-radius-md: 15px;
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --shadow-subtle: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles généraux et normalisations */
+input, select, button {
+    font-family: 'PP Formula', sans-serif;
+    border: none;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+input[type="date"], input[type="number"] {
+    background-color: transparent;
+    /* color: var(--color-text-light); */
+    padding: 8px 10px;
+    /* border-radius: 8px; */
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+    width: auto;
+}
+
+input[type="date"]:focus, input[type="number"]:focus {
+    border-color: var(--color-accent);
+    /* box-shadow: 0 0 0 2px rgba(175, 231, 201, 0.2); */
+}
+
+/* Structure principale */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    text-align: left;
+    font-size: 36px;
+    color: var(--color-text-light);
+    padding: 50px;
+    /* max-width: 1440px; */
+    /* margin: 0 auto; */
+}
+
+/* Section informations */
+.container1 {
+    /* border-radius: var(--border-radius-lg); */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 60px;
+    animation: fadeIn 0.8s ease;
+    width: unset;
+}
+
+.title {
+    position: relative;
+    font-weight: 600;
+    /* text-align: center; */
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+    animation: expandWidth 0.8s ease-out;
+}
+
+.container2 {
+    /* align-self: stretch; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    font-size: 48px;
+    color: var(--color-accent);
+}
+
+.product-name {
+    /* align-self: stretch; */
+    position: relative;
+    text-transform: uppercase;
+    font-family: 'Marvel', sans-serif;
+    letter-spacing: 5px;
+    position: relative;
+    display: inline-block;
+    transform: translateZ(0);
+}
+
+.product-name::after {
+    /* content: attr(data-text); */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    transform: translateX(3px) translateY(3px);
+}
+
+.description {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.container3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 16px;
+
+}
+
+.check-1-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+    filter: brightness(1.2);
+}
+
+.recommended-duration {
+    position: relative;
+    font-weight: 600;
+}
+
+/* Section formulaire */
+.container4 {
+    width: 100%;
+    max-width: 514px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 49px;
+    /* font-size: 13px; */
+    animation: slideInRight 0.8s ease;
+}
+
+.atlantis-1-icon {
+    /* align-self: stretch; */
+    /* position: relative; */
+    border-radius: var(--border-radius-lg);
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-medium);
+    box-shadow: var(--shadow-subtle);
+}
+
+.atlantis-1-icon:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-medium);
+}
+
+.container5 {
+    align-self: stretch;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    justify-content: flex-start;
+    padding: 25px;
+    gap: 30px;
+    backdrop-filter: blur(5px);
+    box-shadow: var(--shadow-subtle);
+    transition: all var(--transition-fast);
+}
+
+.container5:hover {
+    border-color: rgba(175, 231, 201, 0.3);
+    box-shadow: var(--shadow-medium);
+}
+
+.container6, .container8 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.start-date-label {
+    align-self: stretch;
+    position: relative;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.container7, .container9 {
+    width: 93%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    background-color: rgba(68, 68, 68, 0.8);
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: all var(--transition-fast);
+}
+
+.container7:focus-within, .container9:focus-within {
+    background-color: rgba(68, 68, 68, 1);
+    box-shadow: 0 0 0 2px rgba(175, 231, 201, 0.3);
+}
+
+.calendar-2-icon {
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+}
+
+.container7:hover .calendar-2-icon, 
+.container9:hover .calendar-2-icon {
+    opacity: 1;
+}
+
+.start-date, .end-date {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    background: transparent;
+    color: white;
+    border: none;
+}
+
+.container-child {
+    width: 100%;
+    position: relative;
+    border-top: 1px solid rgba(255, 250, 231, 0.2);
+    box-sizing: border-box;
+    height: 1px;
+    margin: 5px 0;
+}
+
+/* Zone Total et action */
+.container10 {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 20px;
+    text-align: right;
+    font-size: 24px;
+    padding: 10px 5px;
+}
+
+.total-price-text {
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(to right, var(--color-accent), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container11, .continue-button {
+    border-radius: var(--border-radius-md);
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    text-align: left;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(175, 31, 36, 0.3);
+}
+
+.container11::before, .continue-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+}
+
+.container11:hover, .continue-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(175, 31, 36, 0.4);
+}
+
+.container11:hover::before, .continue-button:hover::before {
+    animation: shine 1.5s infinite;
+}
+
+.container11:active, .continue-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(175, 31, 36, 0.3);
+}
+
+.back-button-text {
+    position: relative;
+    font-weight: 600;
+    color: white;
+}
+
+.back-button {
+    border-radius: var(--border-radius-md);
+    background-color: #444;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.total-price {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 15px;
+    text-align: right;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { 
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes expandWidth {
+    from { width: 0; }
+    to { width: 60px; }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .product-name {
+        font-size: 36px;
+    }
+    
+    .navigation-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .back-button, .continue-button {
+        width: 100%;
+    }
+    
+    .container5 {
+        padding: 20px;
+    }
+}

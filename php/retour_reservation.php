@@ -3,42 +3,65 @@ session_start();
 require('getapikey.php');
 
 // Récupération des paramètres
-$transaction = $_GET['transaction'];
-$montant = $_GET['montant'];
-$vendeur = $_GET['vendeur'];
-$status = $_GET['status'];
-$controlRecu = $_GET['control'];
+$transaction = isset($_GET['transaction']) ? $_GET['transaction'] : '';
+$montant = isset($_GET['montant']) ? $_GET['montant'] : '';
+$vendeur = isset($_GET['vendeur']) ? $_GET['vendeur'] : '';
+$status = isset($_GET['status']) ? $_GET['status'] : '';
+$controlRecu = isset($_GET['control']) ? $_GET['control'] : '';
 
-$api_key = getAPIKey($vendeur);
-
-$controlCalcule = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $status . "#");
-
-// Récupération des informations de la commande
-$json_file = "../json/commandes.json";
-$commandes = json_decode(file_get_contents($json_file), true);
-$commande = null;
-
-foreach ($commandes as $key => $cmd) {
-    if ($cmd['transaction'] === $transaction) {
-        $commandes[$key]['control'] = $controlRecu;
-        $commandes[$key]['status'] = $status;
-        $commande = $commandes[$key];
-        file_put_contents($json_file, json_encode($commandes, JSON_PRETTY_PRINT));
-        break;
-    }
-}
-
-// Vérifier si la commande existe
-if (!$commande) {
+// Vérifier que tous les paramètres sont présents
+if (!$transaction || !$montant || !$vendeur || !$status || !$controlRecu) {
     header('Location: ../destination.php');
     exit;
 }
 
-// Récupérer les informations sur le voyage
+// Vérifier que la commande en attente existe en session
+if (!isset($_SESSION['commande_en_attente'])) {
+    header('Location: ../destination.php');
+    exit;
+}
+
+// Récupérer la commande en attente
+$commande = $_SESSION['commande_en_attente'];
+
+// Vérifier que la transaction correspond
+if ($commande['transaction'] !== $transaction) {
+    header('Location: ../destination.php');
+    exit;
+}
+
+// Vérifier l'intégrité de la transaction
+$api_key = getAPIKey($vendeur);
+$controlCalcule = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $status . "#");
+$paiement_valide = $controlRecu === $controlCalcule;
+$paiement_accepte = $paiement_valide && $status === 'accepted';
+
+// Si le paiement est accepté, enregistrer la commande dans le fichier JSON
+if ($paiement_accepte) {
+    $commande_json_file = "../json/commandes.json";
+    $commandes = [];
+
+    if (file_exists($commande_json_file) && filesize($commande_json_file) > 0) {
+        $commandes = json_decode(file_get_contents($commande_json_file), true);
+    }
+
+    // Mettre à jour le statut de la commande
+    $commande['status'] = $status;
+    $commande['control'] = $controlRecu;
+
+    // Ajouter la commande au tableau
+    $commandes[] = $commande;
+
+    // Enregistrer dans le fichier
+    file_put_contents($commande_json_file, json_encode($commandes, JSON_PRETTY_PRINT));
+}
+
+// Récupérer les informations du voyage pour l'affichage
 $json_voyages = "../json/voyages.json";
-$voyages = json_decode(file_get_contents($json_voyages), true);
+$voyages_array = json_decode(file_get_contents($json_voyages), true);
 $voyage = null;
-foreach ($voyages as $v) {
+
+foreach ($voyages_array as $v) {
     if ($v['titre'] === $commande['voyage']) {
         $voyage = $v;
         break;
@@ -50,8 +73,10 @@ $date_debut = new DateTime($commande['date_debut']);
 $date_fin = new DateTime($commande['date_fin']);
 $duree = $date_debut->diff($date_fin)->days;
 
-$paiement_valide = $controlRecu === $controlCalcule;
-$paiement_accepte = $paiement_valide && $status === 'accepted';
+// Nettoyer la session uniquement si le paiement est accepté
+if ($paiement_accepte) {
+    unset($_SESSION['commande_en_attente']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +87,6 @@ $paiement_accepte = $paiement_valide && $status === 'accepted';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmation de réservation - Marvel Travel</title>
     <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/reservation.css">
     <link rel="stylesheet" href="../css/retour_reservation.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
