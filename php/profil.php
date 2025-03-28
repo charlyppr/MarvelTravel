@@ -83,6 +83,7 @@ if (isset($_SESSION['error_message']))
     <title>Marvel Travel • Profil</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/profil.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -317,6 +318,7 @@ if (isset($_SESSION['error_message']))
     <script src="../js/custom-cursor.js"></script>
     <script src="../js/modal-handlers.js"></script>
     <script src="../js/profile-editor.js"></script>
+    <script src="../js/sidebar.js" defer></script>
 </body>
 
 </html>

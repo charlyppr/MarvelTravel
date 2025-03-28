@@ -87,6 +87,7 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
     <title>Voyage à <?= htmlspecialchars($commande['voyage']) ?> - Marvel Travel</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/commande.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -375,6 +376,7 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
 
     <script src="../js/custom-cursor.js"></script>
     <script src="../js/modal-handlers.js"></script>
+    <script src="../js/sidebar.js" defer></script>
 </body>
 
 </html>

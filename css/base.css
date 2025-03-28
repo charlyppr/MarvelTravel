@@ -243,11 +243,29 @@ input:-webkit-autofill:focus {
 .main-container {
     display: flex;
     min-height: 100vh;
-    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.content-container-div {
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    transition: width var(--transition-medium), margin-left var(--transition-medium);
+}
+
+body.sidebar-open {
+    overflow: hidden;
+}
+
+@media (max-width: 992px) {
+    .content-container-div {
+        width: 100%;
+        margin-left: 0;
+    }
 }
 
 .sidebar {
-    padding: 50px 30px;
+    /* padding: 50px 30px; */
     background-color: #44444444;
     backdrop-filter: blur(5px);
     border-top-right-radius: 20px;

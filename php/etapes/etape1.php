@@ -115,10 +115,6 @@ $prix_total_formatte = number_format($prix_total, 2, ',', ' ');
 
                     <div class="destination-highlights">
                         <div class="highlight-item">
-                            <img src="../../img/svg/map-pin.svg" alt="Destination" class="highlight-icon">
-                            <span><?php echo htmlspecialchars($voyage['destination']); ?></span>
-                        </div>
-                        <div class="highlight-item">
                             <img src="../../img/svg/clock.svg" alt="Durée" class="highlight-icon">
                             <span>Durée recommandée: <?php echo htmlspecialchars($voyage['dates']['duree']); ?></span>
                         </div>
