@@ -282,7 +282,7 @@ input:-webkit-autofill:focus {
 .categories {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .categories-content {
@@ -324,6 +324,7 @@ input:-webkit-autofill:focus {
 
 .active-text {
     color: var(--couleur-tertiaire);
+    font-family: 'PP Formula Bold';
 }
 
 .sidebar-bottom-deco {
@@ -400,7 +401,7 @@ input:-webkit-autofill:focus {
 }
 
 .redir-text::after {
-    content: '';
+    /* content: ''; */
     position: absolute;
     height: 1px;
     width: 0;

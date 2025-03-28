@@ -1,6 +1,77 @@
 <?php
 require('session.php');
 check_auth('connexion.php');
+
+// Récupérer les données des commandes
+$json_file_path = '../json/commandes.json';
+$commandes_utilisateur = [];
+$total_commandes = 0;
+$montant_total = 0;
+$destinations_visitees = [];
+
+try {
+    if (file_exists($json_file_path)) {
+        $json_file = file_get_contents($json_file_path);
+        $data = json_decode($json_file, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception("Erreur lors du décodage JSON: " . json_last_error_msg());
+        }
+
+        if (is_array($data)) {
+            foreach ($data as $cmd) {
+                if ($cmd['acheteur'] == $_SESSION['email']) {
+                    // Vérifier que les champs requis existent
+                    if (
+                        !isset($cmd['transaction']) || !isset($cmd['voyage']) ||
+                        !isset($cmd['date_debut']) || !isset($cmd['date_fin']) ||
+                        !isset($cmd['montant']) || !isset($cmd['status'])
+                    ) {
+                        continue; // Ignorer cette commande
+                    }
+
+                    $commandes_utilisateur[] = $cmd;
+                    $total_commandes++;
+                    $montant_total += $cmd['montant'];
+                    if (!in_array($cmd['voyage'], $destinations_visitees)) {
+                        $destinations_visitees[] = $cmd['voyage'];
+                    }
+                }
+            }
+        }
+    }
+
+    // Trier les commandes par date (plus récente en premier)
+    if (!empty($commandes_utilisateur)) {
+        usort($commandes_utilisateur, function ($a, $b) {
+            // Vérifier si date_commande existe
+            if (isset($a['date_commande']) && isset($b['date_commande'])) {
+                return strtotime($b['date_commande']) - strtotime($a['date_commande']);
+            }
+            // Fallback sur transaction (qui est un uniqid)
+            return strcmp($b['transaction'], $a['transaction']);
+        });
+    }
+} catch (Exception $e) {
+    // Journaliser l'erreur
+    error_log("Erreur dans profil.php: " . $e->getMessage());
+
+    // Ne pas arrêter l'exécution, continuer avec des tableaux vides
+    $commandes_utilisateur = [];
+    $total_commandes = 0;
+    $montant_total = 0;
+    $destinations_visitees = [];
+}
+
+// Indicateur de succès pour les messages flash après modification
+$success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : null;
+$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : null;
+
+// Supprimer les messages après les avoir récupérés
+if (isset($_SESSION['success_message']))
+    unset($_SESSION['success_message']);
+if (isset($_SESSION['error_message']))
+    unset($_SESSION['error_message']);
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +81,6 @@ check_auth('connexion.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Profil</title>
-
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
@@ -22,190 +92,231 @@ check_auth('connexion.php');
     <div class="main-container">
         <?php include 'sidebar.php'; ?>
 
+        <?php if ($success_message): ?>
+            <div class="notification success">
+                <img src="../img/svg/check-circle.svg" alt="Succès">
+                <p><?= htmlspecialchars($success_message) ?></p>
+                <button class="close-notification">&times;</button>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($error_message): ?>
+            <div class="notification error">
+                <img src="../img/svg/alert-circle.svg" alt="Erreur">
+                <p><?= htmlspecialchars($error_message) ?></p>
+                <button class="close-notification">&times;</button>
+            </div>
+        <?php endif; ?>
+
         <div class="content-container-div">
             <div class="content-container">
-
                 <div class="content">
-                    <div class="top-text">
-                        <span class="titre">Bonjour <?php echo $_SESSION['first_name'] ?>,</span>
+                    <div class="profile-header">
+                        <div class="profile-greeting">
+                            <span class="titre">Bonjour, <?php echo $_SESSION['first_name']; ?></span>
+                            <p class="subtitle">Bienvenue sur votre espace personnel</p>
+                        </div>
                         <a href="../index.php" class="redir-text">
                             <span>Retour à l'accueil</span>
-                            <img src="../img/svg/fleche-redir.svg" alt="fleche">
+                            <img src="../img/svg/fleche-redir.svg" alt="flèche">
                         </a>
                     </div>
 
-                    <div class="cards">
-
-                        <div class="card">
+                    <div class="dashboard-grid">
+                        <!-- Carte du profil -->
+                        <div class="card profile-card">
                             <div class="header-text">
-                                <svg width="16" height="18" viewBox="0 0 163 175" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M17.9736 174.814H144.868C156.106 174.814 162.842 169.366 162.842 160.373C162.842 135.709 131.137 101.903 81.4209 101.903C31.6678 101.903 0 135.709 0 160.373C0 169.366 6.73547 174.814 17.9736 174.814ZM81.458 84.9999C102.929 84.9999 120.494 66.0819 120.494 42.0149C120.494 18.6194 102.743 0 81.458 0C60.1725 0 42.4594 18.8433 42.4594 42.1269C42.4594 66.0819 60.0237 84.9999 81.458 84.9999Z"
-                                        fill="#0D0D0D" />
-                                </svg>
+                                <img src="../img/svg/users.svg" alt="Profil" class="header-icon">
                                 <span class="titre-card">Mon profil</span>
                             </div>
 
-
                             <div class="card-content">
-                                <div class="user-info">
-                                    <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
-                                    <div class="info">
-                                        <span
-                                            class="nom"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
-                                        <span class="mail"><?= $_SESSION['email'] ?></span>
+                                <div class="profile-header-info">
+                                    <div class="profile-avatar">
+                                        <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
+                                        <div class="profile-status online"></div>
+                                    </div>
+                                    <div class="profile-name">
+                                        <h2><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h2>
+                                        <span class="profile-email"><?= $_SESSION['email'] ?></span>
                                     </div>
                                 </div>
 
-                                <span class="trait"></span>
+                                <div class="separator"></div>
 
-                                <div class="modif-info">
-                                    <div class="row">
-                                        <div class="row-user-info">
-                                            <span>Prénom :</span>
+                                <div class="profile-details">
+                                    <div class="profile-field">
+                                        <div class="field-label">Prénom</div>
+                                        <div class="field-value">
                                             <span><?= $_SESSION['first_name'] ?></span>
+                                            <button class="edit-button" data-field="first_name">
+                                                <img src="../img/svg/edit.svg" alt="Modifier">
+                                            </button>
                                         </div>
-                                        <img src="../img/svg/edit.svg" alt="modification">
                                     </div>
 
-                                    <div class="row">
-                                        <div class="row-user-info">
-                                            <span>Nom :</span>
+                                    <div class="profile-field">
+                                        <div class="field-label">Nom</div>
+                                        <div class="field-value">
                                             <span><?= $_SESSION['last_name'] ?></span>
+                                            <button class="edit-button" data-field="last_name">
+                                                <img src="../img/svg/edit.svg" alt="Modifier">
+                                            </button>
                                         </div>
-                                        <img src="../img/svg/edit.svg" alt="modification">
                                     </div>
 
-                                    <div class="row">
-                                        <div class="row-user-info">
-                                            <span>Email :</span>
+                                    <div class="profile-field">
+                                        <div class="field-label">Email</div>
+                                        <div class="field-value">
                                             <span><?= $_SESSION['email'] ?></span>
+                                            <button class="edit-button" data-field="email">
+                                                <img src="../img/svg/edit.svg" alt="Modifier">
+                                            </button>
                                         </div>
-                                        <img src="../img/svg/edit.svg" alt="modification">
                                     </div>
 
-                                    <div class="row">
-                                        <div class="row-user-info">
-                                            <span>Mot de passe :</span>
-                                            <span>•••••••••••</span>
+                                    <div class="profile-field">
+                                        <div class="field-label">Mot de passe</div>
+                                        <div class="field-value">
+                                            <span>••••••••••</span>
+                                            <button class="edit-button" data-field="password">
+                                                <img src="../img/svg/edit.svg" alt="Modifier">
+                                            </button>
                                         </div>
-                                        <img src="../img/svg/edit.svg" alt="modification">
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-                            <span class="sous-texte"><span style="font-weight: 600;">Modifier </span>vos informations
-                                juste ici</span>
                         </div>
 
-
-                        <div class="card">
+                        <!-- Statistiques -->
+                        <div class="card stats-card">
                             <div class="header-text">
-                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M10.3864 20.9883C16.1227 20.9883 20.7766 16.287 20.7766 10.4961C20.7766 4.70126 16.1227 0 10.3864 0C4.64996 0 0 4.70126 0 10.4961C0 16.287 4.64996 20.9883 10.3864 20.9883ZM10.3864 18.6338C5.93285 18.6338 2.33076 14.995 2.33076 10.4961C2.33076 5.99722 5.93285 2.35452 10.3864 2.35452C14.8398 2.35452 18.4419 5.99722 18.4419 10.4961C18.4419 14.995 14.8398 18.6338 10.3864 18.6338Z"
-                                        fill="#0D0D0D" />
-                                    <path
-                                        d="M7.62404 15.7539C7.89369 15.7539 8.07863 15.6216 8.4446 15.2596L10.34 13.341C10.3632 13.3137 10.3978 13.3137 10.4209 13.341L12.324 15.2596C12.6862 15.6216 12.8634 15.7539 13.1408 15.7539C13.5569 15.7539 13.8381 15.4504 13.8381 14.9716V6.81842C13.8381 5.82989 13.3026 5.28503 12.3318 5.28503H8.42534C7.45451 5.28503 6.92285 5.82989 6.92285 6.81842V14.9716C6.92285 15.4504 7.20411 15.7539 7.62404 15.7539Z"
-                                        fill="#0D0D0D" />
-                                </svg>
+                                <img src="../img/svg/chart.svg" alt="Statistiques" class="header-icon">
+                                <span class="titre-card">Statistiques</span>
+                            </div>
 
-                                <span class="titre-card">Mes commandes</span>
+                            <div class="card-content stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value"><?= $total_commandes ?></div>
+                                    <div class="stat-label">Voyages réservés</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value"><?= count($destinations_visitees) ?></div>
+                                    <div class="stat-label">Destinations</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value"><?= number_format($montant_total, 0, ',', ' ') ?> €</div>
+                                    <div class="stat-label">Dépensés</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Derniers voyages -->
+                        <div class="card voyages-card">
+                            <div class="header-text">
+                                <img src="../img/svg/globe.svg" alt="Voyages" class="header-icon">
+                                <span class="titre-card">Derniers voyages</span>
                             </div>
 
                             <div class="card-content">
-                                <div class="user-info">
-                                    <?php
-                                    $json_file_path = '../json/commandes.json';
-                                    $commandes = false;
-                                    if (file_exists($json_file_path)) {
-                                        $json_file = file_get_contents($json_file_path);
-                                        $data = json_decode($json_file, true);
-                                        if (empty($data)) {
-                                            echo "<div class='info-commande'>
-                                                    <span class='nom-commande'>Aucune commande</span>
-                                                </div>";
-                                        }
-                                        if (is_array($data)) {
-                                            foreach ($data as $commande) {
-                                                if ($commande['acheteur'] == $_SESSION['email']) {
-                                                    $commandes = true;
-                                                    echo "<a href='commande.php?transaction=" . $commande['transaction'] . "' class='info-commande'>
-                                                                    <span class='nom-commande'>" . $commande['voyage'] . "</span>-
-                                                                    <span class='nom-commande'>" . $commande['date_debut'] . "</span>
-                                                                </a>";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (!$commandes) {
-                                    } else if (!$commandes) {
-                                        echo "<div class='info-commande'>
-                                                    <span class='nom-commande'>Aucune commande</span>
-                                                </div>";
-                                    }
-                                    ?>
+                                <div class="voyages-list">
+                                    <?php if (count($commandes_utilisateur) > 0): ?>
+                                        <?php
+                                        $count = 0;
+                                        foreach ($commandes_utilisateur as $commande):
+                                            if ($count >= 3)
+                                                break; // Limitation à 3 voyages
+                                            $count++;
+
+                                            // Formatage des dates
+                                            $date_debut = date('d/m/Y', strtotime($commande['date_debut']));
+                                            $date_fin = date('d/m/Y', strtotime($commande['date_fin']));
+
+                                            // Déterminer le statut
+                                            $statut_class = ($commande['status'] == 'accepted') ? 'status-success' : 'status-pending';
+                                            $statut_text = ($commande['status'] == 'accepted') ? 'Confirmé' : 'En attente';
+                                            ?>
+                                            <a href="commande.php?transaction=<?= $commande['transaction'] ?>"
+                                                class="voyage-item">
+                                                <div class="voyage-info">
+                                                    <div class="voyage-destination"><?= $commande['voyage'] ?></div>
+                                                    <div class="voyage-dates"><?= $date_debut ?> au <?= $date_fin ?></div>
+                                                </div>
+                                                <div class="voyage-meta">
+                                                    <div class="voyage-status <?= $statut_class ?>"><?= $statut_text ?></div>
+                                                    <div class="voyage-price">
+                                                        <?= number_format($commande['montant'], 0, ',', ' ') ?> €
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        <?php endforeach; ?>
+
+                                        <?php if ($total_commandes > 3): ?>
+                                            <a href="mes-voyages.php" class="voir-plus-btn">
+                                                <span>Voir tous mes voyages</span>
+                                                <img src="../img/svg/fleche-droite.svg" alt="Voir plus">
+                                            </a>
+                                        <?php endif; ?>
+
+                                    <?php else: ?>
+                                        <div class="empty-state">
+                                            <img src="../img/svg/empty-voyages.svg" alt="Aucun voyage">
+                                            <p>Vous n'avez pas encore de voyages</p>
+                                            <a href="../index.php" class="action-button">Découvrir des destinations</a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
+                        </div>
 
-                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos
-                                voyages</span>
-
+                        <!-- Messages -->
+                        <div class="card messages-card">
                             <div class="header-text">
-                                <span class="titre-card">Mes messages</span>
+                                <img src="../img/svg/message.svg" alt="Messages" class="header-icon">
+                                <span class="titre-card">Messages</span>
                             </div>
 
                             <div class="card-content">
-                                <div class="user-info">
-                                    <?php
-                                    $json_file_path = '../json/messages.json';
-                                    $messages = false;
-                                    if (file_exists($json_file_path)) {
-                                        $json_file = file_get_contents($json_file_path);
-                                        $data = json_decode($json_file, true);
-                                        if (is_array($data)) {
-                                            foreach ($data as $message) {
-                                                if ($message['email'] == $_SESSION['email']) {
-                                                    $messages = true;
-                                                    echo "<div class='info-commande'>
-                                                        <span class='nom-commande'>" . $message['objet'] . "</span>-
-                                                    </div>";
-
-                                                }
-                                            }
-                                        }
-                                        if (!$messages) {
-                                        }
-                                    }
-                                    if (!$messages) {
-                                        echo "<div class='info-commande'>
-                                                    <span class='nom-commande'>Aucun message</span>
-                                                </div>";
-                                    }
-                                    ?>
+                                <div class="empty-state">
+                                    <img src="../img/svg/filter-empty.svg" alt="Aucun message">
+                                    <p>Vous n'avez pas de messages</p>
                                 </div>
                             </div>
-                            <span class="sous-texte"> <span style="font-weight: 600;">Retrouver </span>ici tous vos
-                                messages</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
+    </div>
 
+    <!-- Modales pour l'édition des champs -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modifier mon profil</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <input type="hidden" id="edit-field-name" name="field_name">
+                    <div class="form-group">
+                        <label for="edit-field-value" id="edit-field-label"></label>
+                        <input type="text" id="edit-field-value" name="field_value">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-button">Annuler</button>
+                        <button type="submit" class="submit-button">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <?php include 'modals.php'; ?>
 
     <script src="../js/custom-cursor.js"></script>
     <script src="../js/modal-handlers.js"></script>
+    <script src="../js/profile-editor.js"></script>
 </body>
 
 </html>

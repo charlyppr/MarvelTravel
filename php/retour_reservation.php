@@ -122,82 +122,6 @@ if ($paiement_accepte) {
             <?php endif; ?>
         </div>
 
-        <div class="recap-section">
-            <h2>Détails du voyage</h2>
-            <div class="recap-info">
-                <div class="recap-row">
-                    <span class="recap-label">Destination:</span>
-                    <span class="recap-value"><?php echo htmlspecialchars($commande['voyage']); ?></span>
-                </div>
-                <div class="recap-row">
-                    <span class="recap-label">Période:</span>
-                    <span class="recap-value">Du <?php echo date('d/m/Y', strtotime($commande['date_debut'])); ?> au
-                        <?php echo date('d/m/Y', strtotime($commande['date_fin'])); ?></span>
-                </div>
-                <div class="recap-row">
-                    <span class="recap-label">Durée:</span>
-                    <span class="recap-value"><?php echo $duree; ?> jour(s)</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="recap-section">
-            <h2>Voyageurs</h2>
-            <div class="recap-info">
-                <?php foreach ($commande['voyageurs'] as $index => $voyageur): ?>
-                    <div class="voyageur-recap">
-                        <h3>Voyageur <?php echo $index + 1; ?></h3>
-                        <div class="recap-row">
-                            <span class="recap-label">Nom complet:</span>
-                            <span
-                                class="recap-value"><?php echo htmlspecialchars($voyageur['civilite'] . ' ' . $voyageur['prenom'] . ' ' . $voyageur['nom']); ?></span>
-                        </div>
-                        <div class="recap-row">
-                            <span class="recap-label">Date de naissance:</span>
-                            <span
-                                class="recap-value"><?php echo date('d/m/Y', strtotime($voyageur['date_naissance'])); ?></span>
-                        </div>
-                        <div class="recap-row">
-                            <span class="recap-label">Nationalité:</span>
-                            <span class="recap-value"><?php echo htmlspecialchars($voyageur['nationalite']); ?></span>
-                        </div>
-                        <div class="recap-row">
-                            <span class="recap-label">N° passeport:</span>
-                            <span class="recap-value"><?php echo htmlspecialchars($voyageur['passport']); ?></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-        <?php if (!empty($commande['options'])): ?>
-            <div class="recap-section">
-                <h2>Options sélectionnées</h2>
-                <div class="recap-info">
-                    <?php foreach ($commande['options'] as $option): ?>
-                        <div class="option-recap">
-                            <div class="recap-row">
-                                <span class="recap-label">Étape:</span>
-                                <span class="recap-value"><?php echo htmlspecialchars($option['etape']); ?></span>
-                            </div>
-                            <div class="recap-row">
-                                <span class="recap-label">Option:</span>
-                                <span class="recap-value"><?php echo htmlspecialchars($option['option']); ?></span>
-                            </div>
-                            <div class="recap-row">
-                                <span class="recap-label">Participants:</span>
-                                <span class="recap-value"><?php echo $option['nb_participants']; ?> personne(s)</span>
-                            </div>
-                            <div class="recap-row">
-                                <span class="recap-label">Prix:</span>
-                                <span class="recap-value"><?php echo number_format($option['total'], 2, ',', ' '); ?> €</span>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
         <div class="recap-section prix-section">
             <h2>Détail du prix</h2>
             <div class="recap-info">
@@ -243,16 +167,60 @@ if ($paiement_accepte) {
                     Retour aux destinations
                 </a>
                 <?php if ($paiement_valide): ?>
-                    <a href="javascript:history.back()" class="action-button primary-button">
-                        Réessayer le paiement
-                        <img src="../img/svg/refresh.svg" alt="refresh" width="20">
-                    </a>
+                    <?php
+                    // Récupérer l'ID du voyage depuis les informations stockées
+                    $voyage_id = null;
+                    $json_voyages = "../json/voyages.json";
+                    $voyages_array = json_decode(file_get_contents($json_voyages), true);
+
+                    foreach ($voyages_array as $index => $v) {
+                        if ($v['titre'] === $commande['voyage']) {
+                            $voyage_id = $index;
+                            break;
+                        }
+                    }
+
+                    // Générer une nouvelle transaction
+                    $new_transaction = uniqid();
+
+                    // Préparer les paramètres pour le nouveau paiement
+                    $montant = $commande['montant'];
+                    $vendeur = $commande['vendeur'];
+
+                    // Créer l'URL de retour
+                    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+                    $host = $_SERVER['HTTP_HOST'];
+                    $script_name = $_SERVER['SCRIPT_NAME'];
+                    $base_path = dirname(dirname($script_name));
+                    $base_url = $protocol . "://" . $host . $base_path;
+                    $retour = "{$base_url}/php/retour_reservation.php?transaction={$new_transaction}";
+
+                    // Générer le nouveau code de contrôle
+                    require_once('getapikey.php');
+                    $api_key = getAPIKey($vendeur);
+                    $control = md5($api_key . "#" . $new_transaction . "#" . $montant . "#" . $vendeur . "#" . $retour . "#");
+
+                    // Mettre à jour la transaction dans la commande en attente
+                    $_SESSION['commande_en_attente']['transaction'] = $new_transaction;
+                    ?>
+
+                    <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' id="retryPaymentForm">
+                        <input type='hidden' name='transaction' value='<?php echo $new_transaction; ?>'>
+                        <input type='hidden' name='montant' value='<?php echo $montant; ?>'>
+                        <input type='hidden' name='vendeur' value='<?php echo $vendeur; ?>'>
+                        <input type='hidden' name='retour' value='<?php echo $retour; ?>'>
+                        <input type='hidden' name='control' value='<?php echo $control; ?>'>
+
+                        <button type="submit" class="action-button primary-button">
+                            Réessayer le paiement
+                            <img src="../img/svg/refresh.svg" alt="refresh" width="20">
+                        </button>
+                    </form>
                 <?php endif; ?>
             <?php endif; ?>
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
 
     <script src="../js/nav.js"></script>
     <script src="../js/custom-cursor.js"></script>

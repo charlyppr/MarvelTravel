@@ -518,5 +518,150 @@
                 "total": 259.98
             }
         ]
+    },
+    {
+        "transaction": "67e5af4f142cb",
+        "montant": 1049.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "f9be63b6831412c3232e20fa1e9a0322",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Xandar",
+        "date_debut": "2025-03-28",
+        "date_fin": "2025-03-30",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "2466910850"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Gorges du Vent",
+                "option": "Randonn\u00e9e extr\u00eame",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            }
+        ]
+    },
+    {
+        "transaction": "67e5b105b67fb",
+        "montant": 1049.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "953145b9e886428c5c5ad040d9ac28f1",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Xandar",
+        "date_debut": "2025-03-28",
+        "date_fin": "2025-03-30",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "2466910850"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Gorges du Vent",
+                "option": "Randonn\u00e9e extr\u00eame",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            }
+        ]
+    },
+    {
+        "transaction": "67e5c86453ea8",
+        "montant": 499.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "0c3c73d8aa31d63f8c2a71af1293bfe5",
+        "acheteur": "hello@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-03-28",
+        "date_fin": "2025-03-29",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "2466910850"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guid\u00e9e",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 20,
+                "nb_participants": 1,
+                "total": 20
+            },
+            {
+                "etape": "Central Park",
+                "option": "Balade \u00e0 v\u00e9lo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            }
+        ]
+    },
+    {
+        "transaction": "67e5c99f73be8",
+        "montant": 1509.93,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "cd2ce7a33093c7dd48084d8bab9bdc8e",
+        "acheteur": "hello@gmail.com",
+        "voyage": "The Savage Land",
+        "date_debut": "2025-03-28",
+        "date_fin": "2025-03-31",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "2466910850"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Jungle du Savage Land",
+                "option": "Observation des dinosaures",
+                "prix_unitaire": 159.99,
+                "nb_participants": 1,
+                "total": 159.99
+            },
+            {
+                "etape": "Temple des Anciens",
+                "option": "Visite guid\u00e9e",
+                "prix_unitaire": 149.99,
+                "nb_participants": 1,
+                "total": 149.99
+            }
+        ]
     }
 ]

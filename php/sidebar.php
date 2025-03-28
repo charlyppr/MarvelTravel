@@ -63,12 +63,14 @@ $is_admin_user = ($_SESSION['role'] === 'admin');
                 </div>
 
                 <?php if (!$is_admin_page): ?>
-                    <div class="categories-content">
+                    <a href='mes-voyages.php'
+                        class="categories-content<?php echo isActive('mes-voyages', $current_page); ?>">
                         <div class="categorie-img">
-                            <img src="../img/svg/globe.svg" alt="globe">
+                            <img src="../img/svg/globe.svg" alt="globe" <?php echo ($current_page === 'mes-voyages') ? 'class="active-img"' : ''; ?>>
                         </div>
-                        <span class="categorie-text">Mes voyages</span>
-                    </div>
+                        <span class="categorie-text<?php echo isActiveText('mes-voyages', $current_page); ?>">Mes
+                            voyages</span>
+                    </a>
                 <?php endif; ?>
             </div>
         </div>
