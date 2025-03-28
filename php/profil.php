@@ -317,7 +317,6 @@ if (isset($_SESSION['error_message']))
     <script src="../js/custom-cursor.js"></script>
     <script src="../js/modal-handlers.js"></script>
     <script src="../js/profile-editor.js"></script>
-    <script src="../js/sidebar.js" defer></script>
 </body>
 
 </html>

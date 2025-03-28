@@ -140,12 +140,12 @@ $prix_total = $prix_base * $nb_personne;
                             <div class="civility-field">
                                 <div class="civility-label">Civilité :</div>
                                 <select name="civilite_<?php echo $i; ?>" id="civilite_<?php echo $i; ?>"
-                                    class="civility-input" required></select>
-                                <option value="">Choisir</option>
-                                <option value="M" <?php echo ($civilite == 'M') ? 'selected' : ''; ?>>Monsieur</option>
-                                <option value="Mme" <?php echo ($civilite == 'Mme') ? 'selected' : ''; ?>>Madame</option>
-                                <option value="Autre" <?php echo ($civilite == 'Autre') ? 'selected' : ''; ?>>Autre
-                                </option>
+                                    class="civility-input" required>
+                                    <option value="">Choisir</option>
+                                    <option value="M" <?php echo ($civilite == 'M') ? 'selected' : ''; ?>>Monsieur</option>
+                                    <option value="Mme" <?php echo ($civilite == 'Mme') ? 'selected' : ''; ?>>Madame</option>
+                                    <option value="Autre" <?php echo ($civilite == 'Autre') ? 'selected' : ''; ?>>Autre
+                                    </option>
                                 </select>
                             </div>
 
