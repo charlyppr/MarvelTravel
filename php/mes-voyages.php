@@ -359,8 +359,6 @@ $displayed_voyages = 0;
         </div>
     </div>
 
-    <?php include 'modals.php'; ?>
-
     <script src="../js/custom-cursor.js"></script>
     <script src="../js/modal-handlers.js"></script>
     <script src="../js/sidebar.js" defer></script>

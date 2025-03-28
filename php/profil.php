@@ -313,7 +313,6 @@ if (isset($_SESSION['error_message']))
         </div>
     </div>
 
-    <?php include 'modals.php'; ?>
 
     <script src="../js/custom-cursor.js"></script>
     <script src="../js/modal-handlers.js"></script>
