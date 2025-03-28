@@ -277,7 +277,8 @@
 .meta-item-highlight {
     background: linear-gradient(to right, rgba(81, 140, 202, 0.6), rgba(226, 54, 54, 0.6));
     border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: pulse 2s infinite;
+    animation: pulse 4s infinite;
+    backdrop-filter: blur(5px);
 }
 
 /* ===== SECTION DÉTAILS DE RÉSERVATION ===== */

@@ -663,5 +663,81 @@
                 "total": 149.99
             }
         ]
+    },
+    {
+        "transaction": "67e65d03ba5f8",
+        "montant": 464.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "a70ea35c3099c01be9a3b6228668fcbf",
+        "acheteur": "hello@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-03-30",
+        "date_fin": "2025-04-03",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "2466910850"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Balade \u00e0 v\u00e9lo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    },
+    {
+        "transaction": "67e65d1f087a3",
+        "montant": 464.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "fcd49374c525c69202696849359784ee",
+        "acheteur": "hello@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-03-30",
+        "date_fin": "2025-04-03",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Fran\u00e7aise",
+                "passport": "2466910850"
+            }
+        ],
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Balade \u00e0 v\u00e9lo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
     }
 ]

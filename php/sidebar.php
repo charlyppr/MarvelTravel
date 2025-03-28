@@ -17,7 +17,7 @@ function isActive($page, $current_page)
 
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <a href="<?php echo $base_url; ?>/index.php" class="logo-container">
+        <a href="../index.php" class="logo-container">
             <div class="logo-gauche">
                 <span class="logo mar">MAR</span>
                 <span class="logo tra">TRA</span>
