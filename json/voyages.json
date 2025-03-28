@@ -130,7 +130,7 @@
   {
     "id": 5,
     "titre": "Asgard",
-    "image": "../img/destinations/newyork.jpg",
+    "image": "../img/destinations/asgaard.png",
     "prix": 2499.95,
     "resume": "Explorez le royaume mythologique d'Asgard et découvrez ses merveilles, entre majestueux palais et paysages épiques.",
     "dates": {
