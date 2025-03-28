@@ -44,8 +44,8 @@
     color: var(--color-text-light);
     padding: 30px 100px;
     margin-bottom: 50px;
-    max-width: 1200px;
-    margin: 0 auto 50px;
+    /* max-width: 1200px; */
+    /* margin: 0 auto 50px; */
     animation: fadeIn 0.6s ease;
 }
 

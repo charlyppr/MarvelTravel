@@ -100,7 +100,7 @@
 /* ===== STYLES DE BASE ===== */
 .content-container-div {
     width: 100%;
-    padding: var(--spacing-xxl);
+    padding: var(--spacing-xl);
     animation: fadeIn 0.5s ease;
 }
 
