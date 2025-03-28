@@ -1,6 +1,6 @@
 /* Variables spécifiques à la sidebar */
 :root {
-    --sidebar-width: 280px;
+    --sidebar-width: 260px;
     --sidebar-collapsed-width: 80px;
     --sidebar-background: rgba(25, 25, 25, 0.85);
     --sidebar-border: rgba(242, 219, 175, 0.1);
@@ -78,9 +78,9 @@
 
 /* ===== HEADER ===== */
 .sidebar-header {
-    padding: 20px;
+    /* padding: 20px; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-bottom: 1px solid var(--sidebar-border);
 }
@@ -157,7 +157,7 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 50px;
     padding: 20px 0;
     scrollbar-width: thin;
     scrollbar-color: var(--color-accent-faded) transparent;

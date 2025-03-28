@@ -249,7 +249,7 @@ input:-webkit-autofill:focus {
 
 .content-container-div {
     width: calc(100% - 280px);
-    margin-left: 280px;
+    margin-left: 260px;
     transition: width var(--transition-medium), margin-left var(--transition-medium);
 }
 
