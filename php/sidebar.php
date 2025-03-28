@@ -119,7 +119,7 @@ function isActive($page, $current_page)
 
                 <button class="user-action logout-action" id="logout-button">
                     <img src="../img/svg/log-out.svg" alt="Déconnexion">
-                    <span>Se déconnecter</span>
+                    <span><a href='logout.php'>Se déconnecter</a></span>
                 </button>
 
                 <?php if (!$is_admin_page && !$is_admin_user): ?>
