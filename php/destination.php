@@ -149,7 +149,7 @@ $is_search_mode = !empty($search_destination) || !empty($search_date) || $search
                     <h1 class="titre">Le choix est vôtre</h1>
                 </div>
                 <div class="all-destination-cards">
-                    <?php for ($i = 5; $i < count($voyages); $i++): ?>
+                    <?php for ($i = 4; $i < count($voyages); $i++): ?>
                         <?php $voyage = $voyages[$i]; ?>
                         <a href='etapes/etape1.php?id=<?php echo htmlspecialchars($voyage['id']) - 1; ?>' class='card-all'>
                             <img src='<?php echo htmlspecialchars($voyage['image']); ?>'
