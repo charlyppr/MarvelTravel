@@ -104,7 +104,7 @@ $displayed_voyages = 0;
                                         <img src="../img/svg/list.svg" alt="Vue tableau">
                                     </a>
                                     <a href="?view=cards&sort=<?php echo $sort; ?>&filter=<?php echo $filter; ?><?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>"
-                                        class="view-toggle <?php echo $view == 'cards' ? 'active' : ''; ?>"
+                                        class="view-toggle <?php echo $view == 'cards' ? 'active3' : ''; ?>"
                                         title="Vue cartes">
                                         <img src="../img/svg/grid.svg" alt="Vue cartes">
                                     </a>
