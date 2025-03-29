@@ -83,7 +83,7 @@ $prix_total_formatte = number_format($prix_total, 2, ',', ' ');
             </div>
 
             <div class="booking-progress">
-                <div class="progress-step active">
+                <div class="progress-step active4">
                     <div class="step-indicator">1</div>
                     <div class="step-label">Dates</div>
                 </div>

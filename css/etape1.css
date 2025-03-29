@@ -178,7 +178,7 @@ body {
     font-size: 14px;
 }
 
-.progress-step.active .step-indicator {
+.progress-step.active4 .step-indicator {
     background: var(--gradient-primary);
     color: var(--color-text-light);
     box-shadow: 0 0 20px rgba(226, 54, 54, 0.3);

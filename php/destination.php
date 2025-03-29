@@ -75,7 +75,8 @@ $is_search_mode = !empty($search_destination) || !empty($search_date) || $search
                 <div class="filtres-container">
                     <div class="filtre">
                         <img src="../img/svg/globe.svg" alt="globe">
-                        <input type="search" name="destination" placeholder="Destination" value="<?php echo htmlspecialchars($search_destination); ?>">
+                        <input type="search" name="destination" placeholder="Destination"
+                            value="<?php echo htmlspecialchars($search_destination); ?>">
                     </div>
                     <img src="../img/svg/line-haut.svg" alt="separateur">
                     <div class="filtre">
@@ -85,7 +86,8 @@ $is_search_mode = !empty($search_destination) || !empty($search_date) || $search
                     <img src="../img/svg/line-haut.svg" alt="separateur">
                     <div class="filtre">
                         <img src="../img/svg/budget.svg" alt="budget euro">
-                        <input type="number" name="budget" id="budget" placeholder="Budget" value="<?php echo $search_budget > 0 ? htmlspecialchars($search_budget) : ''; ?>">
+                        <input type="number" name="budget" id="budget" placeholder="Budget"
+                            value="<?php echo $search_budget > 0 ? htmlspecialchars($search_budget) : ''; ?>">
                     </div>
                     <img src="../img/svg/line-haut.svg" alt="separateur">
                 </div>
