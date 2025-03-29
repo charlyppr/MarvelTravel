@@ -125,6 +125,21 @@
         "date_inscription": "2025-03-26 20:40:58",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-03-29 02:01:43"
+        "last_login": "2025-03-29 15:46:59"
+    },
+    {
+        "civilite": "Mme",
+        "first_name": "Baba",
+        "last_name": "Oreum",
+        "email": "baba@gmail.com",
+        "password": "$2y$10$9Dn6hBrC4vm2KwQE0UHQ9u.x56urvKiulC.6h79Qb\/2IrUMpQIETi",
+        "date_naissance": "2004-01-10",
+        "nationalite": "Australienne",
+        "role": "user",
+        "passport_id": "7572971153",
+        "date_inscription": "2025-03-29 02:32:51",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
     }
 ]
