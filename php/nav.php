@@ -56,15 +56,15 @@ if ($is_in_root) {
     <div class="menu">
         <ul>
             <a href="<?php echo $base_url; ?>/index.php"
-                class="menu-li <?php echo $current_page === 'index.php' ? 'active' : ''; ?>">
+                class="menu-li <?php echo $current_page === 'index.php' ? 'active-nav' : ''; ?>">
                 <li>Accueil</li>
             </a>
             <a href="<?php echo $base_url; ?>/php/destination.php"
-                class="menu-li <?php echo $current_page === 'destination.php' ? 'active' : ''; ?>">
+                class="menu-li <?php echo $current_page === 'destination.php' ? 'active-nav-nav' : ''; ?>">
                 <li>Destinations</li>
             </a>
             <a href="<?php echo $base_url; ?>/php/contact.php"
-                class="menu-li <?php echo $current_page === 'contact.php' ? 'active' : ''; ?>">
+                class="menu-li <?php echo $current_page === 'contact.php' ? 'active-nav-nav' : ''; ?>">
                 <li>Contact</li>
             </a>
             <?php

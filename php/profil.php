@@ -27,7 +27,7 @@ try {
                         !isset($cmd['date_debut']) || !isset($cmd['date_fin']) ||
                         !isset($cmd['montant']) || !isset($cmd['status'])
                     ) {
-                        continue; // Ignorer cette commande
+                        continue;
                     }
 
                     $commandes_utilisateur[] = $cmd;
@@ -53,10 +53,6 @@ try {
         });
     }
 } catch (Exception $e) {
-    // Journaliser l'erreur
-    error_log("Erreur dans profil.php: " . $e->getMessage());
-
-    // Ne pas arrêter l'exécution, continuer avec des tableaux vides
     $commandes_utilisateur = [];
     $total_commandes = 0;
     $montant_total = 0;
@@ -290,33 +286,8 @@ if (isset($_SESSION['error_message']))
         </div>
     </div>
 
-    <!-- Modales pour l'édition des champs -->
-    <div id="edit-profile-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Modifier mon profil</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="edit-profile-form">
-                    <input type="hidden" id="edit-field-name" name="field_name">
-                    <div class="form-group">
-                        <label for="edit-field-value" id="edit-field-label"></label>
-                        <input type="text" id="edit-field-value" name="field_value">
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="cancel-button">Annuler</button>
-                        <button type="submit" class="submit-button">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
     <script src="../js/custom-cursor.js"></script>
-    <script src="../js/modal-handlers.js"></script>
-    <script src="../js/profile-editor.js"></script>
+
 </body>
 
 </html>

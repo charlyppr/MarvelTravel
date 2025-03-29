@@ -127,11 +127,19 @@ function hasOptions($etape)
 }
 
 // Stocker les options si elles sont soumises via POST
-if (isset($_POST['options']) && is_array($_POST['options'])) {
+if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personne'])) {
+    // Les données du formulaire ont été soumises
+    
+    // Initialiser un tableau vide pour les options si aucune n'est sélectionnée
+    $options = isset($_POST['options']) ? $_POST['options'] : [];
+    
     $form_data3 = [
-        'options' => $_POST['options']
+        'options' => $options
     ];
+    
+    // Stocker les données en session
     store_form_data('etape3', $form_data3);
+    
     // Rediriger vers l'étape 4 après avoir stocké les options
     header("Location: etape4.php?id=" . $id);
     exit;

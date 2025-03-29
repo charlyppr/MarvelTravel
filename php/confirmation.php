@@ -23,21 +23,27 @@ $form_data3 = get_form_data('etape3');
 
 // Vérifier si les données nécessaires sont présentes
 if (!$voyage_id || !$form_data1 || !$form_data2) {
-    header('Location: destination.php');
-    exit;
+    if (!isset($_GET['status']) || $_GET['status'] === '') {
+        header('Location: destination.php');
+        exit;
+    }
 }
 
 // Récupérer les informations du voyage
 $json_file = "../json/voyages.json";
 if (!file_exists($json_file)) {
-    header('Location: destination.php');
-    exit;
+    if (!isset($_GET['status']) || $_GET['status'] === '') {
+        header('Location: destination.php');
+        exit;
+    }
 }
 
 $voyages = json_decode(file_get_contents($json_file), true);
 if (!isset($voyages[$voyage_id])) {
-    header('Location: destination.php');
-    exit;
+    if (!isset($_GET['status']) || $_GET['status'] === '') {
+        header('Location: destination.php');
+        exit;
+    }
 }
 
 $voyage = $voyages[$voyage_id];
@@ -63,8 +69,8 @@ if ($payment_validated) {
     // Générer un numéro de réservation unique
     $reservation_id = 'MT-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
 
-    // Enregistrer la réservation dans la session ou une base de données
-    $_SESSION['last_reservation'] = [
+    // Préparer les données de la réservation
+    $reservation_data = [
         'id' => $reservation_id,
         'voyage_id' => $voyage_id,
         'transaction_id' => $transaction_id,
@@ -76,6 +82,70 @@ if ($payment_validated) {
         'promo_code' => $promo_code,
         'reduction' => $reduction
     ];
+    
+    // Enregistrer la réservation dans la session
+    $_SESSION['last_reservation'] = $reservation_data;
+    
+    // Ajouter la commande au fichier JSON
+    $commandes_file = "../json/commandes.json";
+    
+    // Préparer les données de la commande pour le fichier JSON
+    $commande = [
+        'transaction' => $transaction_id,
+        'montant' => (float) $montant,
+        'vendeur' => $vendeur,
+        'status' => $result,
+        'control' => $control,
+        'acheteur' => $_SESSION['email'],
+        'voyage' => $voyage['titre'],
+        'date_debut' => $date_debut,
+        'date_fin' => $date_fin,
+        'nb_personne' => $nb_personne,
+        'voyageurs' => $voyageurs,
+        'date_achat' => date('Y-m-d H:i:s')
+    ];
+    
+    // Ajouter les options formatées
+    $options_formatted = [];
+    if (isset($form_data3['options']) && is_array($form_data3['options'])) {
+        foreach ($form_data3['options'] as $etape_index => $etape_options) {
+            foreach ($etape_options as $option_index => $option_data) {
+                if (isset($option_data['voyageurs']) && !empty($option_data['voyageurs'])) {
+                    // Récupérer les informations de l'étape et de l'option
+                    $etape_nom = $voyage['etapes'][$etape_index]['lieu'] ?? "Étape $etape_index";
+                    $option_nom = $voyage['etapes'][$etape_index]['options'][$option_index]['nom'] ?? "Option $option_index";
+                    $prix_unitaire = $voyage['etapes'][$etape_index]['options'][$option_index]['prix'] ?? 0;
+                    
+                    $nb_participants = count($option_data['voyageurs']);
+                    $total = $prix_unitaire * $nb_participants;
+                    
+                    $options_formatted[] = [
+                        'etape' => $etape_nom,
+                        'option' => $option_nom,
+                        'prix_unitaire' => $prix_unitaire,
+                        'nb_participants' => $nb_participants,
+                        'total' => $total
+                    ];
+                }
+            }
+        }
+    }
+    $commande['options'] = $options_formatted;
+    
+    // Lire le fichier existant ou créer un tableau vide
+    $commandes = [];
+    if (file_exists($commandes_file)) {
+        $json_content = file_get_contents($commandes_file);
+        if (!empty($json_content)) {
+            $commandes = json_decode($json_content, true) ?: [];
+        }
+    }
+    
+    // Ajouter la nouvelle commande
+    $commandes[] = $commande;
+    
+    // Écrire dans le fichier
+    file_put_contents($commandes_file, json_encode($commandes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
     // Nettoyer les données de réservation temporaires
     unset($_SESSION['current_voyage_id']);

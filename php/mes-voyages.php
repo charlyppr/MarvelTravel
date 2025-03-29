@@ -142,8 +142,8 @@ $displayed_voyages = 0;
                                         // Ajouter les métadonnées pour le tri
                                         $commande['is_upcoming'] = $is_upcoming;
                                         $commande['jours_restants'] = $is_upcoming ? $today->diff($date_debut)->days : 0;
-                                        $commande['est_recent'] = isset($commande['date_commande']) &&
-                                            (time() - strtotime($commande['date_commande'])) < 7 * 24 * 60 * 60; // 7 jours
+                                        $commande['est_recent'] = isset($commande['date_achat']) &&
+                                            (time() - strtotime($commande['date_achat'])) < 1 * 24 * 60 * 60; // 1 jour
                         
                                         // Filtrer par la recherche
                                         if (!empty($search_query)) {
@@ -193,8 +193,8 @@ $displayed_voyages = 0;
                                         break;
                                     default: // 'recent' (défaut)
                                         usort($user_commandes, function ($a, $b) {
-                                            if (isset($a['date_commande']) && isset($b['date_commande'])) {
-                                                return strtotime($b['date_commande']) - strtotime($a['date_commande']);
+                                            if (isset($a['date_achat']) && isset($b['date_achat'])) {
+                                                return strtotime($b['date_achat']) - strtotime($a['date_achat']);
                                             }
                                             return strcmp($b['transaction'], $a['transaction']);
                                         });

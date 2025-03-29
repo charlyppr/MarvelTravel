@@ -142,7 +142,7 @@ body {
 .success-icon img {
     width: 40px;
     height: 40px;
-    filter: invert(83%) sepia(20%) saturate(903%) hue-rotate(101deg) brightness(91%) contrast(87%);
+    filter: invert(50%) sepia(20%) saturate(903%) hue-rotate(101deg) brightness(91%) contrast(87%);
 }
 
 .confirmation-header h1 {
@@ -201,8 +201,8 @@ body {
     box-shadow: var(--shadow-card);
     transition: all var(--transition-medium);
     animation: slideUp 1s ease;
-    /* opacity: 0; */
-    /* animation-fill-mode: forwards; */
+    opacity: 0;
+    animation-fill-mode: forwards;
 }
 
 .confirmation-card:hover {

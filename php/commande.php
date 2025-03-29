@@ -69,8 +69,8 @@ $montant_formatte = number_format($commande['montant'], 2, ',', ' ');
 $statut_class = ($commande['status'] == 'accepted') ? 'status-success' : 'status-pending';
 $statut_texte = ($commande['status'] == 'accepted') ? 'Confirmé' : 'En attente';
 $status_icon = ($commande['status'] == 'accepted') ? 'check-circle' : 'alert-circle';
-$date_commande = isset($commande['date_commande']) ?
-    date('d/m/Y à H:i', strtotime($commande['date_commande'])) :
+$date_achat = isset($commande['date_achat']) ?
+    date('d/m/Y à H:i', strtotime($commande['date_achat'])) :
     'Non spécifiée';
 
 // Nombre de jours restants avant le départ
@@ -157,7 +157,7 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
                         </div>
                         <div class="transaction-info">
                             <div class="transaction-label">Date de réservation</div>
-                            <div class="transaction-value"><?= $date_commande ?></div>
+                            <div class="transaction-value"><?= $date_achat ?></div>
                         </div>
                         <div class="transaction-info">
                             <div class="transaction-label">Montant total</div>

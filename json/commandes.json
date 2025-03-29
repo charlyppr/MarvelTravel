@@ -1,14 +1,14 @@
 [
     {
-        "transaction": "67e5942d132b9",
-        "montant": 454.95,
+        "transaction": "0dd4386fd5a62a2218d987d3",
+        "montant": 1719.93,
         "vendeur": "MEF-2_F",
         "status": "accepted",
-        "control": "1402c5ca6bb53961f7d001a4cd98808c",
+        "control": "7878d5dc9224aabebe037d60a8fa3600",
         "acheteur": "hello@gmail.com",
-        "voyage": "New York",
-        "date_debut": "2025-03-28",
-        "date_fin": "2025-03-29",
+        "voyage": "Morag",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
         "nb_personne": 1,
         "voyageurs": [
             {
@@ -16,132 +16,22 @@
                 "nom": "Darling",
                 "prenom": "Hello",
                 "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
+                "nationalite": "Française",
                 "passport": "2466910850"
             }
         ],
+        "date_achat": "2025-03-29 16:10:36",
         "options": [
             {
-                "etape": "Times Square",
-                "option": "Shopping",
-                "prix_unitaire": 20,
+                "etape": "Ruines Templières",
+                "option": "Exploration archéologique",
+                "prix_unitaire": 139.99,
                 "nb_participants": 1,
-                "total": 20
+                "total": 139.99
             },
             {
-                "etape": "Central Park",
-                "option": "Pique-nique",
-                "prix_unitaire": 35,
-                "nb_participants": 1,
-                "total": 35
-            }
-        ]
-    },
-    {
-        "transaction": "67e59521b0e65",
-        "montant": 5829.95,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "6d67bbae2ab29b10ee277a6c135dc642",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Wakanda",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 1,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Golden City",
-                "option": "Mus\u00e9e Wakandais",
-                "prix_unitaire": 300,
-                "nb_participants": 1,
-                "total": 300
-            },
-            {
-                "etape": "Golden City",
-                "option": "March\u00e9 tribal",
-                "prix_unitaire": 250,
-                "nb_participants": 1,
-                "total": 250
-            },
-            {
-                "etape": "Mont Bashenga",
-                "option": "Visite du temple",
-                "prix_unitaire": 180,
-                "nb_participants": 1,
-                "total": 180
-            }
-        ]
-    },
-    {
-        "transaction": "67e5a61eb3399",
-        "montant": 2069.8900000000003,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "c66dc4c2b944955b1f1419b2585f8408",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Genovia",
-        "date_debut": "2025-03-28",
-        "date_fin": "2025-03-31",
-        "nb_personne": 1,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Palais Royal de Genovia",
-                "option": "Visite guid\u00e9e du palais",
-                "prix_unitaire": 99.99,
-                "nb_participants": 1,
-                "total": 99.99
-            },
-            {
-                "etape": "Palais Royal de Genovia",
-                "option": "D\u00eener royal",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Jardins de Genovia",
-                "option": "Promenade dans les jardins",
-                "prix_unitaire": 49.99,
-                "nb_participants": 1,
-                "total": 49.99
-            },
-            {
-                "etape": "Jardins de Genovia",
-                "option": "Visite des serres royales",
-                "prix_unitaire": 89.99,
-                "nb_participants": 1,
-                "total": 89.99
-            },
-            {
-                "etape": "Plage de Genovia",
-                "option": "D\u00e9tente sur la plage",
-                "prix_unitaire": 49.99,
-                "nb_participants": 1,
-                "total": 49.99
-            },
-            {
-                "etape": "Plage de Genovia",
-                "option": "Sports nautiques",
+                "etape": "Plages de Morag",
+                "option": "Détente",
                 "prix_unitaire": 79.99,
                 "nb_participants": 1,
                 "total": 79.99
@@ -149,386 +39,15 @@
         ]
     },
     {
-        "transaction": "67e5a8266b3cf",
-        "montant": 5359.849999999999,
+        "transaction": "d6f4dc7d5a89e61e8e5a655e",
+        "montant": 1061.96,
         "vendeur": "MEF-2_F",
         "status": "accepted",
-        "control": "a09abf5c30c66916c71f3262652beef6",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5a85872181",
-        "montant": 5359.849999999999,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "00eda2d112d3ce6638a0590d1e94931a",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5a8d4c4a4d",
-        "montant": 5359.849999999999,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "cb3779342e2eab57f366af1f2354fea8",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5aa4e2af13",
-        "montant": 5359.849999999999,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "5f40596c9493cc3455a94d3bd4166fc2",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5aa8022b7b",
-        "montant": 5359.849999999999,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "721d12fdf4c03a169450cf7c075ec1c8",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5aab1d1979",
-        "montant": 5359.849999999999,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "5d6247c31585c2dc1f063e6c276c2295",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5ab5347533",
-        "montant": 5359.849999999999,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "519fcc9507102dc4d3a5d09287956c3b",
-        "acheteur": "hello@gmail.com",
-        "voyage": "Sakaar",
-        "date_debut": "2025-03-29",
-        "date_fin": "2025-03-31",
-        "nb_personne": 2,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            },
-            {
-                "civilite": "M",
-                "nom": "Marmelat",
-                "prenom": "Paul",
-                "date_naissance": "2025-03-07",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "57Z385Z7835"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Combat de gladiateurs",
-                "prix_unitaire": 199.99,
-                "nb_participants": 1,
-                "total": 199.99
-            },
-            {
-                "etape": "Ar\u00e8ne de Sakaar",
-                "option": "Tournoi intergalactique",
-                "prix_unitaire": 249.99,
-                "nb_participants": 2,
-                "total": 499.98
-            },
-            {
-                "etape": "Ruin\u00e9es de Sakaar",
-                "option": "Course de v\u00e9hicules",
-                "prix_unitaire": 129.99,
-                "nb_participants": 2,
-                "total": 259.98
-            }
-        ]
-    },
-    {
-        "transaction": "67e5af4f142cb",
-        "montant": 1049.95,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "f9be63b6831412c3232e20fa1e9a0322",
+        "control": "deb8775a867a104de2f7bf6ef7337e33",
         "acheteur": "hello@gmail.com",
         "voyage": "Xandar",
-        "date_debut": "2025-03-28",
-        "date_fin": "2025-03-30",
+        "date_debut": "2025-03-31",
+        "date_fin": "2025-04-06",
         "nb_personne": 1,
         "voyageurs": [
             {
@@ -536,14 +55,29 @@
                 "nom": "Darling",
                 "prenom": "Hello",
                 "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
+                "nationalite": "Française",
                 "passport": "2466910850"
             }
         ],
+        "date_achat": "2025-03-29 16:14:18",
         "options": [
+            {
+                "etape": "Temple perdu",
+                "option": "Exploration guidée",
+                "prix_unitaire": 90,
+                "nb_participants": 1,
+                "total": 90
+            },
+            {
+                "etape": "Bibliothèque antique",
+                "option": "Lecture des manuscrits anciens",
+                "prix_unitaire": 40,
+                "nb_participants": 1,
+                "total": 40
+            },
             {
                 "etape": "Gorges du Vent",
-                "option": "Randonn\u00e9e extr\u00eame",
+                "option": "Randonnée extrême",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
@@ -551,15 +85,15 @@
         ]
     },
     {
-        "transaction": "67e5b105b67fb",
-        "montant": 1049.95,
+        "transaction": "4b7921a8a95b89740ab58fab",
+        "montant": 1349.95,
         "vendeur": "MEF-2_F",
         "status": "accepted",
-        "control": "953145b9e886428c5c5ad040d9ac28f1",
+        "control": "ba3612aefdbe1dbb4262290fa6c2451a",
         "acheteur": "hello@gmail.com",
-        "voyage": "Xandar",
-        "date_debut": "2025-03-28",
-        "date_fin": "2025-03-30",
+        "voyage": "Hala",
+        "date_debut": "2025-04-01",
+        "date_fin": "2025-04-06",
         "nb_personne": 1,
         "voyageurs": [
             {
@@ -567,75 +101,38 @@
                 "nom": "Darling",
                 "prenom": "Hello",
                 "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
+                "nationalite": "Française",
                 "passport": "2466910850"
             }
         ],
+        "date_achat": "2025-03-29 16:16:32",
         "options": [
             {
-                "etape": "Gorges du Vent",
-                "option": "Randonn\u00e9e extr\u00eame",
-                "prix_unitaire": 50,
-                "nb_participants": 1,
-                "total": 50
-            }
-        ]
-    },
-    {
-        "transaction": "67e5c86453ea8",
-        "montant": 499.95,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "0c3c73d8aa31d63f8c2a71af1293bfe5",
-        "acheteur": "hello@gmail.com",
-        "voyage": "New York",
-        "date_debut": "2025-03-28",
-        "date_fin": "2025-03-29",
-        "nb_personne": 1,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Times Square",
-                "option": "Visite guid\u00e9e",
+                "etape": "Arène de combat",
+                "option": "Spectacle de gladiateurs",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
             },
             {
-                "etape": "Times Square",
-                "option": "Shopping",
-                "prix_unitaire": 20,
+                "etape": "Observatoire stellaire",
+                "option": "Nuit sous les étoiles",
+                "prix_unitaire": 100,
                 "nb_participants": 1,
-                "total": 20
-            },
-            {
-                "etape": "Central Park",
-                "option": "Balade \u00e0 v\u00e9lo",
-                "prix_unitaire": 30,
-                "nb_participants": 1,
-                "total": 30
+                "total": 100
             }
         ]
     },
     {
-        "transaction": "67e5c99f73be8",
-        "montant": 1509.93,
+        "transaction": "b1ca17f6f4d302c6d8adf8a2",
+        "montant": 1199.95,
         "vendeur": "MEF-2_F",
         "status": "accepted",
-        "control": "cd2ce7a33093c7dd48084d8bab9bdc8e",
+        "control": "dbc33f89cbfcbe7afc509bfefe9f223c",
         "acheteur": "hello@gmail.com",
-        "voyage": "The Savage Land",
-        "date_debut": "2025-03-28",
-        "date_fin": "2025-03-31",
+        "voyage": "Hala",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
         "nb_personne": 1,
         "voyageurs": [
             {
@@ -643,101 +140,11 @@
                 "nom": "Darling",
                 "prenom": "Hello",
                 "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
+                "nationalite": "Française",
                 "passport": "2466910850"
             }
         ],
-        "options": [
-            {
-                "etape": "Jungle du Savage Land",
-                "option": "Observation des dinosaures",
-                "prix_unitaire": 159.99,
-                "nb_participants": 1,
-                "total": 159.99
-            },
-            {
-                "etape": "Temple des Anciens",
-                "option": "Visite guid\u00e9e",
-                "prix_unitaire": 149.99,
-                "nb_participants": 1,
-                "total": 149.99
-            }
-        ]
-    },
-    {
-        "transaction": "67e65d03ba5f8",
-        "montant": 464.95,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "a70ea35c3099c01be9a3b6228668fcbf",
-        "acheteur": "hello@gmail.com",
-        "voyage": "New York",
-        "date_debut": "2025-03-30",
-        "date_fin": "2025-04-03",
-        "nb_personne": 1,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Central Park",
-                "option": "Balade \u00e0 v\u00e9lo",
-                "prix_unitaire": 30,
-                "nb_participants": 1,
-                "total": 30
-            },
-            {
-                "etape": "Central Park",
-                "option": "Pique-nique",
-                "prix_unitaire": 35,
-                "nb_participants": 1,
-                "total": 35
-            }
-        ]
-    },
-    {
-        "transaction": "67e65d1f087a3",
-        "montant": 464.95,
-        "vendeur": "MEF-2_F",
-        "status": "accepted",
-        "control": "fcd49374c525c69202696849359784ee",
-        "acheteur": "hello@gmail.com",
-        "voyage": "New York",
-        "date_debut": "2025-03-30",
-        "date_fin": "2025-04-03",
-        "nb_personne": 1,
-        "voyageurs": [
-            {
-                "civilite": "M",
-                "nom": "Darling",
-                "prenom": "Hello",
-                "date_naissance": "2005-03-10",
-                "nationalite": "Fran\u00e7aise",
-                "passport": "2466910850"
-            }
-        ],
-        "options": [
-            {
-                "etape": "Central Park",
-                "option": "Balade \u00e0 v\u00e9lo",
-                "prix_unitaire": 30,
-                "nb_participants": 1,
-                "total": 30
-            },
-            {
-                "etape": "Central Park",
-                "option": "Pique-nique",
-                "prix_unitaire": 35,
-                "nb_participants": 1,
-                "total": 35
-            }
-        ]
+        "date_achat": "2025-03-29 16:29:45",
+        "options": []
     }
 ]
