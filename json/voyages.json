@@ -157,6 +157,12 @@
         "photo": "../img/avatars/tchalla.jpg",
         "texte": "Un voyage inoubliable dans mon royaume. La culture Wakandaise est unique.",
         "note": 5
+      },
+      {
+        "auteur": "Shuri",
+        "photo": "../img/avatars/shuri.jpg",
+        "texte": "La technologie Wakandaise est incroyable ! J'ai adoré explorer les montagnes sacrées.",
+        "note": 4.5
       }
     ],
     "etapes": [

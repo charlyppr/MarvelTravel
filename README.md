@@ -20,35 +20,32 @@ Le projet est organisé comme suit :
 ```
 MarvelTravel/
 ├── css/
-│   └── ...
-│  
-├── html/
-│   ├── administrateur.html
-│   ├── connexion.html
-│   ├── contact.html
-│   ├── destination.html
-│   ├── inscription.html
-│   └── profil.html
-│  
+│ └── ...
+├── php/
+│ ├── etapes/
+│ ├── footer.php
+│ ├── nav.php
+│ └── ...
+├── json/
+│ ├── voyages.json
+│ ├── commandes.json
+│ └── ...
 ├── js/
-│   └── ...
-│  
+│ └── ...
 ├── img/
-│   ├── svg/
-│   └── ...
-│  
+│ ├── svg/
+│ ├── avatars/
+│ └── ...
 ├── police/
-│   └── ...
-│  
-├── accueil.html
-│  
+│ └── ...
+├── index.php
 ├── Design.pdf
-│  
 └── Rapport.pdf
 ```
 
 - **css/** : Contient les fichiers de styles CSS.
-- **html/** : Contient les fichiers HTML pour les différentes pages du site.
+- **php/** : Contient les fichiers PHP pour le traitement des données et la logique métier
+- **json/** : Contient les fichiers de données JSON (voyages, commandes, etc.)
 - **js/** : Contient les fichiers JavaScript pour l'interactivité et les animations.
 - **img/** : Contient les images utilisées sur le site, y compris les fichiers SVG.
 - **police/** : Contient les fichiers de polices utilisés sur le site.
@@ -60,21 +57,23 @@ MarvelTravel/
 
 ## Fonctionnalités
 
-- **Accueil** : Page d'accueil avec une animation d'introduction et des sections pour les partenaires, les destinations et les raisons de voyager avec MarvelTravel.
-- **Connexion et Inscription** : Pages pour se connecter et s'inscrire avec des formulaires.
-- **Profil** : Page de profil utilisateur avec des informations personnelles et des badges.
-- **Administrateur** : Page pour les administrateurs avec des fonctionnalités de gestion des utilisateurs.
-- **Contact** : Page de contact avec un formulaire pour envoyer des messages à l'agence.
-- **Destinations** : Page listant les différentes destinations disponibles.
-
-> [!IMPORTANT] 
-> Les pages **Administrateur** et **Profil** se trouvent dans le footer pour l'instant.
-
+- **Accueil** : Page d'accueil avec présentation des destinations et témoignages
+- **Destinations** : Catalogue des destinations Marvel avec détails des étapes et options
+- **Réservation** : Système complet de réservation avec :
+  - Sélection des dates et nombre de voyageurs
+  - Gestion des informations voyageurs
+  - Système de paiement sécurisé
+- **Compte utilisateur** : 
+  - Inscription et connexion
+  - Profil personnalisé
+  - Historique des commandes
+- **Administration** : Interface de gestion pour les administrateurs
+- **Contact** : Formulaire de contact
 
 
 ## Langages utilisées
 
-- **HTML** : Structure des pages web.
+- **PHP** : Traitement côté serveur et gestion des données
 - **CSS** : Styles des pages web, y compris des animations et des transitions.
 - **JavaScript** : Interactivité et animations, y compris la gestion des événements et des animations de curseur personnalisé.
 
@@ -83,15 +82,17 @@ MarvelTravel/
 1. Clonez le dépôt :
    ```sh
    git clone https://github.com/charlyppr/MarvelTravel.git
+   ```
+2. Configurez un serveur web local PHP
+3. Placez le projet dans votre répertoire web
+4. Assurez-vous que PHP est correctement configuré
 
-2. Ouvrez le fichier accueil.html dans votre navigateur pour voir la page d'accueil.
 ## Utilisation
 
-- **Exploration** : Naviguez à travers les différentes pages pour découvrir les fonctionnalités de MarvelTravel.
-- **Compte utilisateur** : Utilisez les boutons de connexion et d'inscription pour créer un compte et vous connecter.
-- **Profil** : Accédez à la page de profil pour voir et modifier vos informations personnelles.
-- **Contact** : Utilisez la page de contact pour envoyer des messages à l'agence.
-
+- **Exploration** : Parcourez les destinations Marvel disponibles
+- **Réservation** : Suivez le processus de réservation en plusieurs étapes
+- **Compte** : Créez un compte pour gérer vos réservations
+- **Contact** : Contactez l'agence pour toute question
 
 ## Auteurs
 [Ibrahima Balde Cisse](mailto:ibrahima.balde---cisse@etu.cyu.fr)  
