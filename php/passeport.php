@@ -105,7 +105,7 @@ if (isset($_SESSION['auto_login'])) {
         <div class="passport-wrapper">
 
             <div class="congratulation-header">
-                <span class="title">Félicitations!</span>
+                <span class="title">Felicitations!</span>
                 <span class="subtitle">Votre Passeport Multiversel est prêt</span>
             </div>
 

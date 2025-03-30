@@ -188,7 +188,7 @@ foreach ($users as $user) {
                                 <p>Aucun utilisateur ne correspond au filtre sélectionné</p>
                                 <a href="administrateur.php" class="reset-search">Voir tous les utilisateurs</a>
                             <?php else: ?>
-                                <img src="../img/svg/empty-users.svg" alt="Aucun utilisateur" class="no-res-icon">
+                                <img src="../img/svg/double-person.svg" alt="Aucun utilisateur" class="no-res-icon">
                                 <p>Aucun utilisateur trouvé dans le système</p>
                             <?php endif; ?>
                         </div>

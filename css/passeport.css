@@ -110,8 +110,8 @@ body {
 }
 
 .title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.2rem;
+    font-family: 'Marvel';
+    font-size: 5rem;
     font-weight: 700;
     letter-spacing: 1px;
     background: var(--gradient-primary);
@@ -521,7 +521,7 @@ body {
     background: var(--gradient-primary);
     border-radius: 50px;
     color: white;
-    font-size: 1 rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 2rem auto 0;
     transition: var(--transition-bounce);
@@ -533,7 +533,6 @@ body {
     text-decoration: none;
     font-family: 'PP Formula Bold';
     letter-spacing: 1px;
-    text-transform: uppercase;
     max-width: 400px;
     width: 100%;
 }

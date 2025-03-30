@@ -348,5 +348,190 @@
                 "total": 25
             }
         ]
+    },
+    {
+        "transaction": "c9e4f60c19b9859189083c63",
+        "montant": 504.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "48312feab12e25809bd147328e2661a9",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-30",
+        "date_fin": "2025-05-10",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "6698892731"
+            }
+        ],
+        "date_achat": "2025-03-30 22:54:08",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Statue de la Liberté",
+                "option": "Traversée en ferry",
+                "prix_unitaire": 25,
+                "nb_participants": 1,
+                "total": 25
+            },
+            {
+                "etape": "Central Park",
+                "option": "Balade à vélo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            }
+        ]
+    },
+    {
+        "transaction": "79e2105e02985d1c2b37c57c",
+        "montant": 2402.91,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "954f30b18aac41fe1254f0d6e2bd2ea6",
+        "acheteur": "may@gmail.com",
+        "voyage": "Hala",
+        "date_debut": "2025-06-17",
+        "date_fin": "2025-07-04",
+        "nb_personne": 2,
+        "voyageurs": [
+            {
+                "civilite": "Mme",
+                "nom": "Parker",
+                "prenom": "May",
+                "date_naissance": "1979-05-20",
+                "nationalite": "Américaine",
+                "passport": "9628570870"
+            },
+            {
+                "civilite": "M",
+                "nom": "Parker",
+                "prenom": "Peter",
+                "date_naissance": "1992-06-20",
+                "nationalite": "Américaine",
+                "passport": "2678169919"
+            }
+        ],
+        "date_achat": "2025-03-30 23:03:09",
+        "options": [
+            {
+                "etape": "Capitale Kree",
+                "option": "Visite du palais impérial",
+                "prix_unitaire": 70,
+                "nb_participants": 1,
+                "total": 70
+            },
+            {
+                "etape": "Arène de combat",
+                "option": "Spectacle de gladiateurs",
+                "prix_unitaire": 50,
+                "nb_participants": 2,
+                "total": 100
+            },
+            {
+                "etape": "Observatoire stellaire",
+                "option": "Nuit sous les étoiles",
+                "prix_unitaire": 100,
+                "nb_participants": 1,
+                "total": 100
+            }
+        ]
+    },
+    {
+        "transaction": "f39b0c930e84c5c3b1ec0f62",
+        "montant": 504.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "f5b274f1a5472643967a573acdb42354",
+        "acheteur": "may@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-27",
+        "date_fin": "2025-05-03",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "Mme",
+                "nom": "Parker",
+                "prenom": "May",
+                "date_naissance": "1979-05-20",
+                "nationalite": "Américaine",
+                "passport": "9628570870"
+            }
+        ],
+        "date_achat": "2025-03-30 23:04:21",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 20,
+                "nb_participants": 1,
+                "total": 20
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    },
+    {
+        "transaction": "c94375bc17d6e97015e1a23b",
+        "montant": 4949.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "b22977220c672555d72dadacee1998eb",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-05-08",
+        "date_fin": "2025-05-11",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-30 23:11:28",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Marché tribal",
+                "prix_unitaire": 250,
+                "nb_participants": 1,
+                "total": 250
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 1,
+                "total": 150
+            }
+        ]
     }
 ]

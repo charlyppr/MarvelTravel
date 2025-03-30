@@ -10,9 +10,7 @@ $login_mail_value = $_SESSION['inscription']['email'] ?? '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_civilite = trim($_POST['login_civilite'] ?? '');
-    // Formater le prénom : première lettre en majuscule, reste en minuscule
     $login_firstname = ucfirst(strtolower(trim($_POST['login_firstname'] ?? '')));
-    // Formater le nom : première lettre en majuscule, reste en minuscule
     $login_lastname = ucfirst(strtolower(trim($_POST['login_lastname'] ?? '')));
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
@@ -48,28 +46,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'last_name' => $login_lastname,
                     'email' => $login_mail,
                     'password' => password_hash($login_pass, PASSWORD_BCRYPT),
-                    'temp_pass' => $login_pass, // Temporairement pour la démonstration - À ÉVITER EN PRODUCTION
+                    'temp_pass' => $login_pass
                 ];
 
                 // Redirection vers l'étape 2
                 header("Location: inscription-etape2.php");
                 exit();
-            } else {
-                // Sauvegarde des données en cas d'erreur pour ne pas les perdre
-                $_SESSION['inscription'] = [
-                    'civilite' => $login_civilite,
-                    'first_name' => $login_firstname,
-                    'last_name' => $login_lastname,
-                    'email' => $login_mail,
-                    // Ne pas sauvegarder le mot de passe en clair en cas d'erreur
-                ];
             }
         }
+    } else {
+        $inscri = 1; // Champs manquants
     }
 
-    // Stocker le résultat dans une session si erreur
+    // Dans tous les cas d'erreur, sauvegarder les données saisies
+    $_SESSION['inscription'] = [
+        'civilite' => $login_civilite,
+        'first_name' => $login_firstname,
+        'last_name' => $login_lastname,
+        'email' => $login_mail
+    ];
+    
+    // Stocker le code d'erreur
     $_SESSION['inscri'] = $inscri;
-    header("Location: inscription.php"); // Recharge la page
+    header("Location: inscription.php");
     exit();
 }
 ?>
@@ -117,11 +116,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="civilite-container">
                     <div class="civilite">
                         <select name="login_civilite" id="login_civilite" required>
-                            <option value="" disabled selected>Civilité</option>
-                            <option value="M" <?php echo $login_civilite_value === 'M' ? 'selected' : ''; ?>>Monsieur
-                            </option>
-                            <option value="Mme" <?php echo $login_civilite_value === 'Mme' ? 'selected' : ''; ?>>Madame
-                            </option>
+                            <option value="" disabled <?php echo empty($login_civilite_value) ? 'selected' : ''; ?>>Civilité</option>
+                            <option value="M" <?php echo $login_civilite_value === 'M' ? 'selected' : ''; ?>>Monsieur</option>
+                            <option value="Mme" <?php echo $login_civilite_value === 'Mme' ? 'selected' : ''; ?>>Madame</option>
+                            <option value="Autre" <?php echo $login_civilite_value === 'Autre' ? 'selected' : ''; ?>>Autre</option>
                         </select>
                     </div>
                 </div>
@@ -151,12 +149,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href='connexion.php'>Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
                     <?php
                     if (isset($_SESSION['inscri'])) {
-                        if ($_SESSION['inscri'] == 2) {
-                            echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
-                        } elseif ($_SESSION['inscri'] == 3) {
-                            echo "<p class='sous-titre-3'>Adresse email invalide</p>";
-                        } elseif ($_SESSION['inscri'] == 1) {
-                            echo "<p class='sous-titre-3'>Inscription réussie !</p>";
+                        switch ($_SESSION['inscri']) {
+                            case 1:
+                                echo "<p class='sous-titre-3'>Veuillez remplir tous les champs</p>";
+                                break;
+                            case 2:
+                                echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
+                                break;
+                            case 3:
+                                echo "<p class='sous-titre-3'>Adresse email invalide</p>";
+                                break;
                         }
                         unset($_SESSION['inscri']); // Supprime la variable après affichage
                     }

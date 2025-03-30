@@ -1,3 +1,24 @@
 {
-    "items": []
+    "items": [
+        {
+            "voyage_id": 3,
+            "date_debut": "2025-06-17",
+            "date_fin": "2025-06-21",
+            "nb_personnes": "1",
+            "prix_unitaire": 999.95,
+            "voyageurs": [
+                {
+                    "civilite": "M",
+                    "nom": "Titan",
+                    "prenom": "Thanos",
+                    "date_naissance": "1840-02-29",
+                    "nationalite": "Xandarienne",
+                    "passport": "1855014187"
+                }
+            ],
+            "options": [],
+            "prix_options": 0,
+            "etape_atteinte": 3
+        }
+    ]
 }

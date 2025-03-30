@@ -377,10 +377,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <label for="nationalite_<?php echo $i; ?>">Nationalité</label>
                                         <div class="form-field">
                                             <img src="../../img/svg/globe.svg" alt="Nationalité" class="field-icon">
-                                            <input type="text" name="nationalite_<?php echo $i; ?>"
-                                                id="nationalite_<?php echo $i; ?>"
-                                                value="<?php echo htmlspecialchars($nationalite); ?>"
-                                                placeholder="Ex: Française, Wakandaise..." required>
+                                            <select name="nationalite_<?php echo $i; ?>" id="nationalite_<?php echo $i; ?>" required>
+                                                <option value="" disabled <?php echo empty($nationalite) ? 'selected' : ''; ?>>Choisir une nationalité...</option>
+                                                <option value="Wakandaise" <?php echo $nationalite === 'Wakandaise' ? 'selected' : ''; ?>>Wakandaise</option>
+                                                <option value="Asgardienne" <?php echo $nationalite === 'Asgardienne' ? 'selected' : ''; ?>>Asgardienne</option>
+                                                <option value="Xandarienne" <?php echo $nationalite === 'Xandarienne' ? 'selected' : ''; ?>>Xandarienne</option>
+                                                <option value="Kree" <?php echo $nationalite === 'Kree' ? 'selected' : ''; ?>>Kree</option>
+                                                <option value="Skrull" <?php echo $nationalite === 'Skrull' ? 'selected' : ''; ?>>Skrull</option>
+                                                <option value="Française" <?php echo $nationalite === 'Française' ? 'selected' : ''; ?>>Française</option>
+                                                <option value="Américaine" <?php echo $nationalite === 'Américaine' ? 'selected' : ''; ?>>Américaine</option>
+                                                <option value="Britannique" <?php echo $nationalite === 'Britannique' ? 'selected' : ''; ?>>Britannique</option>
+                                                <option value="Allemande" <?php echo $nationalite === 'Allemande' ? 'selected' : ''; ?>>Allemande</option>
+                                                <option value="Espagnole" <?php echo $nationalite === 'Espagnole' ? 'selected' : ''; ?>>Espagnole</option>
+                                                <option value="Italienne" <?php echo $nationalite === 'Italienne' ? 'selected' : ''; ?>>Italienne</option>
+                                                <option value="Canadienne" <?php echo $nationalite === 'Canadienne' ? 'selected' : ''; ?>>Canadienne</option>
+                                                <option value="Japonaise" <?php echo $nationalite === 'Japonaise' ? 'selected' : ''; ?>>Japonaise</option>
+                                                <option value="Chinoise" <?php echo $nationalite === 'Chinoise' ? 'selected' : ''; ?>>Chinoise</option>
+                                                <option value="Russe" <?php echo $nationalite === 'Russe' ? 'selected' : ''; ?>>Russe</option>
+                                                <option value="Australienne" <?php echo $nationalite === 'Australienne' ? 'selected' : ''; ?>>Australienne</option>
+                                                <option value="Brésilienne" <?php echo $nationalite === 'Brésilienne' ? 'selected' : ''; ?>>Brésilienne</option>
+                                                <option value="Indienne" <?php echo $nationalite === 'Indienne' ? 'selected' : ''; ?>>Indienne</option>
+                                                <option value="Mexicaine" <?php echo $nationalite === 'Mexicaine' ? 'selected' : ''; ?>>Mexicaine</option>
+                                                <option value="Sud-Africaine" <?php echo $nationalite === 'Sud-Africaine' ? 'selected' : ''; ?>>Sud-Africaine</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
