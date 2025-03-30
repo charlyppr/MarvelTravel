@@ -171,5 +171,20 @@
         "blocked": false,
         "vip": false,
         "last_login": "null"
+    },
+    {
+        "civilite": "M",
+        "first_name": "Caca",
+        "last_name": "Plus",
+        "email": "trois@gmail.com",
+        "password": "$2y$10$5WX630PPn68qSiw28tUnEeqKY24gMeoV8rs8XlAHrfJGqCScD5lHu",
+        "date_naissance": "2025-03-19",
+        "nationalite": "Skrull",
+        "role": "user",
+        "passport_id": "4894714653",
+        "date_inscription": "2025-03-30 20:41:07",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
     }
 ]
