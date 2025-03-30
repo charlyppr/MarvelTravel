@@ -325,7 +325,7 @@ $displayed_voyages = 0;
                             <!-- Message si aucun voyage -->
                             <div class="no-res">
                                 <?php if (!empty($search_query)): ?>
-                                    <img src="../img/svg/search-not-found.svg" alt="Aucun résultat" class="no-res-icon">
+                                    <img src="../img/svg/empty-voyages.svg" alt="Aucun résultat" class="no-res-icon">
                                     <p>Aucun voyage ne correspond à votre recherche
                                         "<strong><?php echo htmlspecialchars($search_query); ?></strong>"</p>
                                     <a href="mes-voyages.php" class="reset-search">Effacer la recherche</a>

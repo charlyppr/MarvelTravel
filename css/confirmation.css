@@ -211,7 +211,7 @@ body {
     border-color: rgba(242, 219, 175, 0.2);
 }
 
-.voyage-summary {
+.voyage-summary, .error-card, .payment-tips {
     animation-delay: 0.1s;
 }
 
@@ -591,11 +591,11 @@ body {
 }
 
 .error-card {
-    background-color: rgba(226, 54, 54, 0.08);
-    border: 1px solid rgba(226, 54, 54, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(226, 54, 54, 0.05);
-    position: relative;
-    overflow: hidden;
+    /* background-color: rgba(226, 54, 54, 0.08); */
+    /* border: 1px solid rgba(226, 54, 54, 0.2); */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(226, 54, 54, 0.05); */
+    /* position: relative; */
+    /* overflow: hidden; */
 }
 
 .error-card::before {
@@ -692,17 +692,17 @@ body {
 }
 
 .error-card {
-    animation: slideUp 1s ease;
+    /* animation: slideUp 1s ease; */
 }
 
 /* Styles pour la carte de conseils de paiement */
 .payment-tips {
-    background-color: rgba(81, 140, 202, 0.08);
-    border: 1px solid rgba(81, 140, 202, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(81, 140, 202, 0.05);
-    position: relative;
-    overflow: hidden;
-    animation: slideUp 1.2s ease;
+    /* background-color: rgba(81, 140, 202, 0.08); */
+    /* border: 1px solid rgba(81, 140, 202, 0.2); */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(81, 140, 202, 0.05); */
+    /* position: relative; */
+    /* overflow: hidden; */
+    /* animation: slideUp 1.2s ease; */
 }
 
 .payment-tips::before {

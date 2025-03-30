@@ -90,12 +90,12 @@ $prix_total_formatte = number_format($prix_total, 2, ',', ' ');
                 <div class="progress-line"></div>
                 <div class="progress-step">
                     <div class="step-indicator">2</div>
-                    <div class="step-label">Options</div>
+                    <div class="step-label">Voyageurs</div>
                 </div>
                 <div class="progress-line"></div>
                 <div class="progress-step">
                     <div class="step-indicator">3</div>
-                    <div class="step-label">Voyageurs</div>
+                    <div class="step-label">Options</div>
                 </div>
                 <div class="progress-line"></div>
                 <div class="progress-step">
@@ -189,7 +189,7 @@ $prix_total_formatte = number_format($prix_total, 2, ',', ' ');
                                     Retour aux destinations
                                 </a>
                                 <button type="submit" class="primary-button">
-                                    Continuer vers les options
+                                    Continuer vers les voyageurs
                                     <img src="../../img/svg/arrow-right.svg" alt="Continuer">
                                 </button>
                             </div>

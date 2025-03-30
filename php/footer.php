@@ -18,10 +18,6 @@ $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : 
 $host = $_SERVER['HTTP_HOST'];
 $base_url = $protocol . "://" . $host . $relative_path . '/';
 
-// echo "Debug - base_url: " . $base_url . "<br>";
-// echo "Debug - document_root (normalisé): " . $document_root . "<br>";
-// echo "Debug - project_root (normalisé): " . $project_root . "<br>";
-// echo "Debug - relative_path: " . $relative_path . "<br>";
 ?>
 
 <footer>
@@ -37,8 +33,6 @@ $base_url = $protocol . "://" . $host . $relative_path . '/';
                     <span>Notre agence</span>
                     <ul>
                         <li><a href="<?php echo $base_url; ?>php/contact.php">Contact</a></li>
-                        <li><a href="<?php echo $base_url; ?>php/administrateur.php">Administrateur</a></li>
-                        <li><a href="<?php echo $base_url; ?>php/profil.php">Profil</a></li>
                     </ul>
                 </div>
                 <div class="footer-right-top-content">

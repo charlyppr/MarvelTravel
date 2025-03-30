@@ -349,6 +349,10 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
 
             <!-- Colonne de réservation -->
             <div class="booking-column" id="reservation">
+                <a href="destination.php" class="back-button">
+                    <img src="../img/svg/arrow-left.svg" alt="←">
+                    Retour aux destinations
+                </a>
                 <div class="booking-card">
                     <div class="booking-header">
                         <div class="booking-price">

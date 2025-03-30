@@ -146,5 +146,44 @@
         ],
         "date_achat": "2025-03-29 16:29:45",
         "options": []
+    },
+    {
+        "transaction": "a62bf31a8f017dc3f87b1d13",
+        "montant": 2366.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "d280079575013145e14330273527cc3e",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Asgard",
+        "date_debut": "2025-03-30",
+        "date_fin": "2025-04-04",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Française",
+                "passport": "2466910850"
+            }
+        ],
+        "date_achat": "2025-03-30 01:36:01",
+        "options": [
+            {
+                "etape": "Plaines d'Asgard",
+                "option": "Randonnée avec chevaux",
+                "prix_unitaire": 80,
+                "nb_participants": 1,
+                "total": 80
+            },
+            {
+                "etape": "Plaines d'Asgard",
+                "option": "Observation des étoiles",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            }
+        ]
     }
 ]

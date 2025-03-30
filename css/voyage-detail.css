@@ -68,7 +68,7 @@
 .hero-section {
     /* position: relative; */
     height: 80vh;
-    min-height: 700px;
+    /* min-height: 700px; */
     margin-bottom: var(--spacing-xxl);
     /* animation: fadeIn 0.8s ease; */
 }
@@ -83,7 +83,7 @@
     background-position: center;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
-    transform: scale(1.02);
+    /* transform: scale(1.02); */
     transition: transform 0.8s ease;
 }
 
@@ -351,7 +351,7 @@
 
 /* Structure principale */
 .main-content {
-    max-width: 1140px; /* Réduit légèrement */
+     /* Réduit légèrement */
     margin: 0 90px;
     /* padding: 0 24px; */
     position: relative;
@@ -2247,7 +2247,6 @@ img.item-icon.not-included {
 }
 
 img.item-icon.included {
-    filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(90deg) brightness(80%) contrast(100%);
 }
 
 /* Correction de la colonne de réservation */
@@ -2271,4 +2270,61 @@ img.item-icon.included {
     .content-wrapper {
         grid-template-columns: 1fr;
     }
+}
+
+a.btn-book {
+    width: -webkit-fill-available;
+}
+
+/* Ajout du style pour le bouton retour */
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all var(--transition-medium);
+    backdrop-filter: blur(10px);
+}
+
+.back-button img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(0.8);
+    transition: transform var(--transition-medium);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-cream);
+    transform: translateX(-5px);
+}
+
+.back-button:hover img {
+    filter: brightness(0) invert(1);
+    transform: translateX(-3px);
+}
+
+/* Style pour les icônes "check" en vert */
+img.item-icon.included {
+    filter: invert(83%) sepia(25%) saturate(464%) hue-rotate(93deg) brightness(230%) contrast(87%);
+    /* Cette valeur de filtre donnera une couleur verte similaire à #2ecc71 */
+}
+
+/* Style pour les icônes "x" en rouge (déjà présent, mais ajusté pour la cohérence) */
+img.item-icon.not-included {
+    filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg) brightness(80%) contrast(100%);
+}
+
+/* Animation au survol pour les deux types d'icônes */
+.details-list li:hover .item-icon.included,
+.details-list li:hover .item-icon.not-included {
+    transform: scale(1.2);
+    opacity: 1;
 }

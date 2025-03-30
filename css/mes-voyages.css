@@ -598,9 +598,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-sm);
     border-bottom: 1px solid var(--color-accent-faded);
     animation: slideDown 0.6s ease;
+    margin: 0 -30px;
 }
 
 .filter-buttons {

@@ -208,6 +208,11 @@ body {
     font-size: var(--font-size-sm);
 }
 
+.step-indicator img {
+    width: 15px;
+    filter: invert(83%) sepia(25%) saturate(464%) hue-rotate(93deg) brightness(230%) contrast(87%);
+}
+
 .progress-step.active .step-indicator {
     background: var(--gradient-primary);
     color: var(--color-text-light);

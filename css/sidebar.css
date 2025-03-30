@@ -373,8 +373,8 @@
 
 /* ===== USER SECTION ===== */
 .sidebar-user {
-    border-top: 1px solid var(--sidebar-border);
-    border-bottom: 1px solid var(--sidebar-border);
+    /* border-top: 1px solid var(--sidebar-border); */
+    /* border-bottom: 1px solid var(--sidebar-border); */
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: auto;
