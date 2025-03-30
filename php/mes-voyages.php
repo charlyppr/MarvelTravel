@@ -336,7 +336,7 @@ $displayed_voyages = 0;
                                 <?php else: ?>
                                     <img src="../img/svg/empty-voyages.svg" alt="Aucun voyage" class="no-res-icon">
                                     <p>Vous n'avez pas encore de voyages réservés</p>
-                                    <a href="../php/destinations.php" class="action-button primary-button">
+                                    <a href="../php/destination.php" class="action-button primary-button">
                                         Réserver mon premier voyage
                                         <img src="../img/svg/plane.svg" alt="Réserver">
                                     </a>

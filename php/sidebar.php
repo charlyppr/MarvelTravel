@@ -124,7 +124,7 @@ function isActive($page, $current_page)
 
                 <?php if (!$is_admin_page && !$is_admin_user): ?>
                     <button class="user-action delete-action" id="delete-account-button">
-                        <img src="../img/svg/trash-2.svg" alt="Supprimer">
+                        <img src="../img/svg/trash.svg" alt="Supprimer">
                         <span>Supprimer mon compte</span>
                     </button>
                 <?php endif; ?>

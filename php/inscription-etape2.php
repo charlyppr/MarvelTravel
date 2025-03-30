@@ -180,8 +180,6 @@ function generateUniquePassportID()
 
                     </div>
 
-                    <img src="../img/svg/line-haut.svg" alt="séparation">
-
                     <div class="nationalite">
                         <img src="../img/svg/globe.svg" alt="Globe Icon">
                         <select name="nationalite" id="nationalite" required>

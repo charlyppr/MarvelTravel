@@ -252,7 +252,7 @@ if (file_exists($messages_file)) {
                                         <div class="empty-state">
                                             <img src="../img/svg/empty-voyages.svg" alt="Aucun voyage">
                                             <p>Vous n'avez pas encore de voyages</p>
-                                            <a href="../index.php" class="action-button">Découvrir des destinations</a>
+                                            <a href="destination.php" class="action-button">Découvrir des destinations</a>
                                         </div>
                                     <?php endif; ?>
                                 </div>

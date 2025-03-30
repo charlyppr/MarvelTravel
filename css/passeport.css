@@ -1,276 +1,541 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600&display=swap');
 
-/* Styles pour la page entière */
+:root {
+    /* Couleurs principales avec dégradés modernisés */
+    --color-background: #080810;
+    --color-dark-blue: #0a0b1a;
+    --color-light-blue: #2a3965;
+    --color-red: #E23636;
+    --color-blue: #518CCA;
+    --color-accent: #F2DBAF;
+    --color-accent-rgb: 242, 219, 175;
+    --color-text-light: #FFFFFF;
+    --color-text-cream: #FFFAE7;
+    --color-text-muted: rgba(255, 250, 231, 0.7);
+    
+    /* Dégradés futuristes */
+    --gradient-primary: linear-gradient(135deg, #E23636, #518CCA);
+    --gradient-hover: linear-gradient(135deg, #F04646, #61A1E6);
+    --gradient-passport: linear-gradient(145deg, #2b0f38, #224091);
+    --gradient-data: linear-gradient(to right, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+    --gradient-glow: linear-gradient(to right, rgba(226, 54, 54, 0.5), rgba(81, 140, 202, 0.5));
+    
+    /* Effets */
+    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --shadow-intense: 0 16px 48px rgba(0, 0, 0, 0.4);
+    --shadow-neon: 0 0 25px rgba(81, 140, 202, 0.4);
+    --shadow-red-neon: 0 0 20px rgba(226, 54, 54, 0.4);
+    --shadow-button: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(226, 54, 54, 0.2);
+    
+    /* Transitions */
+    --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Structure de base avec fond spatial amélioré */
 body {
+    margin: 0;
+    /* font-family: 'Chakra Petch', sans-serif; */
+    background: var(--color-background);
+    color: var(--color-text-cream);
     overflow-x: hidden;
-    color: var(--couleur-primaire);
 }
 
 .passport-page {
+    min-height: 100vh;
+    padding: 3rem;
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* min-height: 100vh; */
-    padding: 2rem;
-    /* position: relative; */
-    /* overflow: hidden; */
-}
-
-.passport-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* width: 100%; */
-    max-width: 600px;
-    gap: 40px;
-    /* position: relative; */
-    /* z-index: 2; */
-}
-
-/* Animation de fond */
-.passport-page::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, rgba(30, 30, 50, 0.4) 0%, rgba(10, 10, 20, 0.9) 100%), 
-                url('../img/star.png');
-    z-index: -1;
-    animation: pulseBackground 15s ease-in-out infinite alternate;
-}
-
-@keyframes pulseBackground {
-    0% { filter: hue-rotate(0deg) brightness(1); }
-    50% { filter: hue-rotate(20deg) brightness(1.1); }
-    100% { filter: hue-rotate(0deg) brightness(1); }
-}
-
-/* Titre et sous-titre */
-.congratulation-header {
-    text-align: center;
-    /* margin-bottom: 1rem; */
-    animation: fadeInDown 0.8s ease-out;
-}
-
-.title {
-    font-family: 'PP Formula Bold', sans-serif;
-    font-size: 2em;
-    color: var(--couleur-primaire);
-    text-shadow: 0 0 10px rgba(242, 219, 175, 0.6);
-    /* margin-bottom: 0.5rem; */
-    /* display: block; */
-    /* letter-spacing: 1px; */
-}
-
-.subtitle {
-    font-family: 'PP Formula', sans-serif;
-    font-size: 1.2rem;
-    color: var(--couleur-secondaire);
-    opacity: 0.9;
-    display: block;
-    letter-spacing: 0.5px;
-}
-
-/* Conteneur du passeport */
-.passport-container {
-    width: 100%;
-    background: linear-gradient(145deg, #e23636 0%, #518cca 100%);
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(225, 54, 54, 0.3),
-        inset 0 0 20px rgba(255, 255, 255, 0.15);
-    color: white;
-    position: relative;
+    z-index: 1;
+    background-color: var(--color-dark-blue);
     overflow: hidden;
-    /* transform-style: preserve-3d; */
-    /* perspective: 1000px; */
-    animation: passportAppear 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    transform: translateY(20px);
 }
 
-@keyframes passportAppear {
-    0% { 
-        opacity: 0;
-        transform: translateY(50px) rotateX(10deg);
-    }
-    100% { 
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-    }
-}
-
-/* Effet holographique sur le passeport */
-.passport-container::before {
+/* Fond cosmique avancé avec animation */
+.passport-page::before,
+.passport-page::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
+}
+
+/* Couche d'étoiles et de nébuleuses */
+.passport-page::before {
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(226, 54, 54, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(81, 140, 202, 0.15) 0%, transparent 40%),
+        url('../img/star.png');
+    opacity: 0.7;
+    /* animation: starfieldMove 120s linear infinite; */
+    filter: contrast(1.2) brightness(0.8);
+    z-index: -2;
+}
+
+/* Couche de grille holographique futuriste */
+.passport-page::after {
+    background: 
+        linear-gradient(90deg, rgba(242, 219, 175, 0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(242, 219, 175, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.4;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: center bottom;
+    animation: gridPulse 15s linear infinite;
+    z-index: -1;
+}
+
+.passport-wrapper {
+    max-width: 850px;
+    width: 100%;
+    /* padding: 2.5rem; */
+    position: relative;
+    z-index: 1;
+    perspective: 1200px;
+}
+
+/* En-tête avec effet holographique */
+.congratulation-header {
+    text-align: center;
+    /* margin-bottom: 3.5rem; */
+    animation: fadeInDown 1s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: var(--gradient-primary);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 8px rgba(226, 54, 54, 0.5));
+    animation: textGradientMove 8s linear infinite;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(226, 54, 54, 0.5);
+    animation: pulseWidth 4s ease-in-out infinite;
+}
+
+.subtitle {
+    color: var(--color-text-light);
+    opacity: 0.8;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
+}
+
+/* Passeport avec effet 3D avancé et hologrammes */
+.passport-container {
+    background: var(--gradient-passport);
+    border-radius: 24px;
+    padding: 2.8rem;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(81, 140, 202, 0.2),
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(5deg);
+    animation: passportFloat 8s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    color: var(--color-text-light);
+    scale: 85%;
+}
+
+.passport-container:hover {
+    transform: perspective(1000px) rotateX(10deg) rotateY(5deg);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        0 0 100px rgba(81, 140, 202, 0.3),
+        inset 0 0 40px rgba(255, 255, 255, 0.08);
+}
+
+/* Effets holographiques multiples */
+.passport-container::before,
+.passport-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* Première couche holographique - scintillement horizontal */
+.passport-container::before {
+    background: linear-gradient(
+        90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
     );
     transform: translateX(-100%);
-    animation: holographicEffect 6s linear infinite;
+    animation: hologramSweep 6s linear infinite;
 }
 
-@keyframes holographicEffect {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+/* Seconde couche holographique - effet d'aberration chromatique */
+.passport-container::after {
+    background: 
+        linear-gradient(45deg, rgba(255,0,0,0.02) 0%, transparent 50%),
+        linear-gradient(135deg, transparent 50%, rgba(0,0,255,0.02) 100%);
+    mix-blend-mode: screen;
+    animation: chromaticPulse 7s ease-in-out infinite;
 }
 
+.passport-container:hover::before,
+.passport-container:hover::after {
+    opacity: 1;
+}
+
+/* En-tête du passeport avec symbole holographique */
 .passport-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .passport-logo {
-    font-family: 'Marvel', 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-
-.passport-title {
-    font-family: 'PP Formula Bold', 'Orbitron', sans-serif;
-    text-align: center;
-    margin: 1.5rem 0;
-    /* font-size: 1.8rem; */
-    /* font-weight: bold; */
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
-.passport-id {
-    font-family: 'Orbitron', monospace;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.4rem;
+    font-weight: 700;
     letter-spacing: 2px;
-    text-align: center;
-    margin: 1.5rem 0;
-    padding: 0.8rem;
-    background: rgb(255 255 255 / 15%);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), inset 0 0 8px rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    z-index: 2;
+    color: var(--color-text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
     position: relative;
 }
 
-.passport-data {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(5px);
-    border-radius: 12px;
-    padding: 1.5rem;
-    /* margin: 1.5rem 0; */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+.passport-logo::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-red);
+    animation: pulseDot 2s infinite alternate;
+}
+
+.passport-header div:last-child {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 1px;
+    color: var(--color-accent);
+}
+
+/* Titre du passeport avec effet de brillance */
+.passport-title {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin: 1.5rem 0;
+    letter-spacing: 3px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.passport-title::after {
+    content: '';
+    position: absolute;
+    top: 110%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+    opacity: 0.3;
+}
+
+/* ID du passeport avec effet de surbrillance */
+.passport-id {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 1rem 0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 4px;
+    margin: 1.5rem 0;
+    color: var(--color-accent);
+    text-shadow: 0 0 15px rgba(242, 219, 175, 0.5);
+    border: 1px solid rgba(242, 219, 175, 0.2);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.passport-id::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(242, 219, 175, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    animation: scanEffect 4s ease-in-out infinite;
+    mix-blend-mode: overlay;
+}
+
+/* Données du passeport avec effet vitré */
+.passport-data {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.passport-data::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: dataGlow 10s linear infinite;
 }
 
 .data-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    transition: transform 0.3s ease;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: var(--transition-smooth);
+    position: relative;
 }
 
 .data-row:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
     border-bottom: none;
 }
 
-.data-row:hover {
-    transform: translateX(5px);
-}
+
 
 .data-label {
-    font-size: 0.85rem;
-    opacity: 0.8;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .data-value {
-    font-family: 'PP Formula Bold', sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(242, 219, 175, 0.3);
 }
 
+/* Pied de page du passeport */
 .passport-footer {
     text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.8;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
     font-style: italic;
-    padding-top: 1rem;
-    letter-spacing: 0.5px;
+    padding: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Filigrane amélioré avec animation */
 .watermark {
     position: absolute;
-    opacity: 0.07;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
-    z-index: 1;
-    animation: pulse 4s ease-in-out infinite;
+    width: 240px;
+    height: 240px;
+    z-index: 0;
+    opacity: 0.04;
+    filter: blur(1px);
+    animation: rotateSlow 60s linear infinite, breathe 8s ease-in-out infinite;
 }
 
-@keyframes pulse {
-    0% { opacity: 0.05; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.09; transform: translate(-50%, -50%) scale(1.05); }
-    100% { opacity: 0.05; transform: translate(-50%, -50%) scale(1); }
+/* Checkbox des règles avec design modernisé */
+.rules-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(242, 219, 175, 0.08);
+    transition: var(--transition-bounce);
+    transform: translateY(0);
+    box-shadow: var(--shadow-soft);
 }
 
-/* Bouton Continuer */
+.rules-checkbox:hover {
+    /* background: rgba(255, 255, 255, 0.06); */
+    /* border-color: rgba(242, 219, 175, 0.15); */
+    /* transform: translateY(-5px); */
+    /* box-shadow: var(--shadow-neon); */
+}
+
+.rules-checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(242, 219, 175, 0.2);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-bounce);
+    flex-shrink: 0;
+}
+
+.rules-checkbox input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 6px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transform: scale(0);
+    transition: var(--transition-bounce);
+}
+
+.rules-checkbox input[type="checkbox"]:checked {
+    border-color: rgba(242, 219, 175, 0.5);
+    box-shadow: 0 0 15px rgba(242, 219, 175, 0.3);
+}
+
+.rules-checkbox input[type="checkbox"]:checked::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.rules-checkbox input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    /* font-weight: bold; */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.rules-checkbox input[type="checkbox"]:hover {
+    border-color: rgba(242, 219, 175, 0.4);
+    transform: scale(1.05);
+}
+
+.rules-checkbox label {
+    color: var(--color-text-cream);
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.rules-checkbox a {
+    color: var(--color-accent);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.rules-checkbox a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.rules-checkbox a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Bouton continuer modernisé avec effets */
 .continue-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-    padding: 1rem 2rem;
-    /* margin-top: 2rem; */
+    gap: 1rem;
+    padding: 1.2rem 2.5rem;
+    background: var(--gradient-primary);
     border-radius: 50px;
-    background: linear-gradient(135deg, #e23636, #518cca);
     color: white;
-    /* font-family: 'Marvel', sans-serif; */
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 
-        0 10px 20px rgba(0, 0, 0, 0.3),
-        0 0 15px rgba(226, 54, 54, 0.5),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1 rem;
+    font-weight: 600;
+    margin: 2rem auto 0;
+    transition: var(--transition-bounce);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-button);
     position: relative;
     overflow: hidden;
-    /* z-index: 2; */
-    animation: fadeInUp 0.8s ease-out 0.5s forwards;
-    opacity: 0;
-    transform: translateY(20px);
-    /* letter-spacing: 3px; */
+    text-decoration: none;
+    font-family: 'PP Formula Bold';
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    max-width: 400px;
+    width: 100%;
 }
 
 .continue-button::before {
@@ -280,67 +545,166 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
+    background: linear-gradient(
+        90deg, 
         transparent,
         rgba(255, 255, 255, 0.3),
         transparent
     );
-    transition: 0.5s;
+    transition: var(--transition-smooth);
 }
 
 .continue-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 15px 25px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(226, 54, 54, 0.6),
-        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    transform: translateY(-8px);
+    background: var(--gradient-hover);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(226, 54, 54, 0.3);
 }
 
 .continue-button:hover::before {
-    animation: shineButton 1.5s ease-in-out infinite;
-}
-
-.continue-button:active {
-    transform: translateY(0);
-    box-shadow: 
-        0 5px 15px rgba(0, 0, 0, 0.3),
-        0 0 10px rgba(226, 54, 54, 0.4),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    animation: btnSweep 1.5s ease infinite;
 }
 
 .continue-button img {
     width: 20px;
     height: 20px;
-    /* filter: brightness(2); */
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: brightness(0) invert(1);
 }
 
 .continue-button:hover img {
-    transform: translateX(5px);
+    transform: translateX(8px);
 }
 
-@keyframes shineButton {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
+/* Animations avancées */
+@keyframes scanEffect {
+    0%, 100% { opacity: 0; transform: translateY(-50%) scale(1); }
+    50% { opacity: 1; transform: translateY(0%) scale(1.2); }
 }
 
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes passportFloat {
+    0%, 100% {transform: perspective(1000px) rotateX(-1deg) rotateY(-1deg);}
+    50% {transform: perspective(1000px) rotateX(3deg) rotateY(1deg);}
+}
+
+@keyframes hologramSweep {
+    0% { transform: translateX(-100%); opacity: 0; }
+    30% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes chromaticPulse {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes textGradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseWidth {
+    0%, 100% { width: 100px; opacity: 0.7; }
+    50% { width: 150px; opacity: 1; }
 }
 
 @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-20px); }
+    0% { opacity: 0; transform: translateY(-30px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseDot {
+    0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-50%) scale(1.5); opacity: 1; }
+}
+
+@keyframes starfieldMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; transform: perspective(500px) rotateX(60deg) translateZ(0); }
+    50% { opacity: 0.5; transform: perspective(500px) rotateX(60deg) translateZ(20px); }
+}
+
+@keyframes rotateSlow {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.03; }
+    50% { opacity: 0.06; }
+}
+
+@keyframes dataGlow {
+    0% { left: -150%; opacity: 0; }
+    5% { opacity: 1; }
+    20% { left: 150%; opacity: 0; }
+    100% { left: 150%; }
+}
+
+@keyframes btnSweep {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
 /* Responsive */
-@media (max-width: 768px) {
-    .passport-page {
-        padding: 1rem;
+@media (max-width: 992px) {
+    .passport-wrapper {
+        padding: 1.5rem;
     }
     
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .passport-page {
+        padding: 2rem 1.5rem;
+    }
+    
+    .title {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .passport-container {
+        padding: 1.5rem;
+        animation: none;
+        transform: none;
+    }
+    
+    .passport-title {
+        font-size: 1.5rem;
+    }
+    
+    .passport-id {
+        font-size: 1.3rem;
+    }
+    
+    .continue-button {
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
     .title {
         font-size: 1.8rem;
     }
@@ -349,15 +713,25 @@ body {
         font-size: 1rem;
     }
     
-    .passport-container {
-        padding: 1.5rem;
-    }
-    
-    .passport-title {
-        font-size: 1.5rem;
-    }
-    
     .passport-id {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+    
+    .passport-container::before,
+    .passport-container::after {
+        animation: none;
+    }
+    
+    .data-row {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    
+    .data-label {
+        font-size: 0.7rem;
+    }
+    
+    .data-value {
+        font-size: 0.9rem;
     }
 }
