@@ -304,6 +304,12 @@ input:-webkit-autofill:focus {
 .cart-icon:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
+    
+}
+
+.cart-icon.hovered {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
 
 .cart-icon img {

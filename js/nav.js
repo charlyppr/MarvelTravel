@@ -17,21 +17,25 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', function () {
     if (window.innerWidth > 768) {
         const menuItems = document.querySelectorAll('.menu-li');
+        const cartIcon = document.querySelector('.cart-icon');
+
+        const handleHover = (hoveredElement, isEntering) => {
+            menuItems.forEach(item => {
+                if (item !== hoveredElement) {
+                    item.classList.toggle('hovered', isEntering);
+                }
+            });
+            if (hoveredElement !== cartIcon) {
+                cartIcon.classList.toggle('hovered', isEntering);
+            }
+        };
 
         menuItems.forEach(item => {
-            item.addEventListener('mouseover', () => {
-                menuItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.add('hovered');
-                    }
-                });
-            });
-
-            item.addEventListener('mouseout', () => {
-                menuItems.forEach(otherItem => {
-                    otherItem.classList.remove('hovered');
-                });
-            });
+            item.addEventListener('mouseover', () => handleHover(item, true));
+            item.addEventListener('mouseout', () => handleHover(item, false));
         });
+
+        cartIcon.addEventListener('mouseover', () => handleHover(cartIcon, true));
+        cartIcon.addEventListener('mouseout', () => handleHover(cartIcon, false));
     }
 });

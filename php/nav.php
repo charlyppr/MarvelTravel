@@ -60,11 +60,11 @@ if ($is_in_root) {
                 <li>Accueil</li>
             </a>
             <a href="<?php echo $base_url; ?>/php/destination.php"
-                class="menu-li <?php echo $current_page === 'destination.php' ? 'active-nav-nav' : ''; ?>">
+                class="menu-li <?php echo $current_page === 'destination.php' ? 'active-nav' : ''; ?>">
                 <li>Destinations</li>
             </a>
             <a href="<?php echo $base_url; ?>/php/contact.php"
-                class="menu-li <?php echo $current_page === 'contact.php' ? 'active-nav-nav' : ''; ?>">
+                class="menu-li <?php echo $current_page === 'contact.php' ? 'active-nav' : ''; ?>">
                 <li>Contact</li>
             </a>
             <div class="nav-cart">
