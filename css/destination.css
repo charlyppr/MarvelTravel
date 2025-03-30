@@ -799,14 +799,16 @@
     gap: 8px;
     background: var(--gradient-primary);
     color: var(--color-text-light);
-    font-weight: 600;
+    /* font-weight: 600; */
     font-size: 14px;
-    padding: 10px 15px;
-    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
     text-decoration: none;
     transition: all var(--transition-medium);
     position: relative;
     overflow: hidden;
+    font-family: 'PP Formula Bold';
+    justify-content: center;
 }
 
 .btn-book::after {
@@ -847,6 +849,176 @@
     .btn-book {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* Style spécifique pour les cartes "featured" */
+.destination-card.featured {
+    position: relative;
+    background: rgba(37, 37, 37, 0.7);
+    border: 1px solid rgba(242, 219, 175, 0.2);
+    transform: translateY(0);
+    transition: all var(--transition-medium);
+}
+
+.destination-card.featured:hover {
+    transform: translateY(-8px);
+    border-color: rgba(242, 219, 175, 0.4);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.feature-badge {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: 15px;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+    font-size: 12px;
+    color: var(--color-text-light);
+    font-weight: 600;
+    box-shadow: var(--shadow-field);
+}
+
+.feature-badge img {
+    width: 12px;
+    height: 12px;
+    filter: brightness(0) invert(1);
+}
+
+.card-category {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+
+.category-tag {
+    font-size: 11px;
+    background-color: rgba(81, 140, 202, 0.2);
+    color: #61A1E6;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.card-description {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 10px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-ratings-detailed {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    width: 14px;
+    height: 14px;
+}
+
+.rating-count {
+    font-size: 14px;
+    color: var(--color-accent);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.review-count {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 12px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(242, 219, 175, 0.1);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.feature-item img {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+.highlights {
+    margin: 12px 0;
+}
+
+.highlights h4 {
+    font-size: 14px;
+    color: var(--color-text-cream);
+    margin: 0 0 8px 0;
+}
+
+.highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlights-list li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-bottom: 5px;
+}
+
+.highlights-list li img {
+    width: 14px;
+    height: 14px;
+    filter: brightness(0) saturate(100%) invert(91%) sepia(16%) saturate(545%) hue-rotate(343deg) brightness(101%) contrast(88%);
+}
+
+.price-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.price-note {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    /* margin-left: 20px; */
+}
+
+/* Responsive pour les cartes featured */
+@media (max-width: 768px) {
+    .best-seller-cards {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -954,10 +1126,6 @@
 }
 
 /* ===== LAYOUT DE BASE ===== */
-body {
-    color: var(--color-text-cream);
-    /* background: linear-gradient(to bottom, rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 1)); */
-}
 
 .destinations-container {
     max-width: 1400px;
@@ -2081,7 +2249,7 @@ img.card-image {
 
 .card-link {
     text-decoration: none;
-    color: inherit;
+    /* color: inherit; */
     display: flex;
     flex-direction: column;
     /* height: 100%; */
@@ -2120,25 +2288,25 @@ img.card-image {
     right: var(--spacing-sm);
     background: linear-gradient(135deg, #E23636, #F04646);
     color: var(--color-text-light);
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: var(--border-radius-md);
     font-weight: 600;
     font-size: var(--font-size-xs);
     z-index: 2;
     box-shadow: 0 4px 10px rgba(226, 54, 54, 0.3);
     transform: translateZ(0);
-    animation: pulse 2s infinite;
+    animation: pulse 3s infinite;
 }
 
 .card-content {
     padding: var(--spacing-md);
     display: flex;
-    flex-direction: column;
     gap: var(--spacing-sm);
     flex-grow: 1;
     position: relative;
     z-index: 2;
     background: var(--color-card-bg);
+    flex-direction: column;
 }
 
 .card-header {
@@ -2183,10 +2351,11 @@ img.card-image {
 
 .meta-item {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: var(--spacing-xs);
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
+    flex-direction: row;
 }
 
 .meta-item img {
@@ -2213,12 +2382,12 @@ img.card-image {
 
 .btn-details {
     display: inline-block;
-    padding: 10px 15px;
+    padding: var(--spacing-md);
     /* background: var(--gradient-primary); */
     /* color: var(--color-text-light); */
-    /* border-radius: var(--border-radius-md); */
+    border-radius: var(--border-radius-lg);
     font-size: var(--font-size-sm);
-    font-weight: 600;
+    /* font-weight: 600; */
     text-decoration: none;
     transition: all var(--transition-medium);
     position: relative;
@@ -2578,4 +2747,14 @@ input#destination-search {
 
 input#budget-search {
     width: 100px;
+}
+
+.all-destination-cards .card-actions {
+}
+
+.all-destination-cards span.btn-details, .all-destination-cards .btn-book {
+    font-size: 12px;
+    padding: var(--spacing-sm) var(--spacing-xs);
+    border-radius: var(
+    --border-radius-md);
 }

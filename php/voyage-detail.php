@@ -24,6 +24,11 @@ if ($voyage_id < 0 || $voyage_id >= count($voyages)) {
 
 // Récupérer les détails du voyage
 $voyage = $voyages[$voyage_id];
+
+// Vérifier si les clés requises existent
+$voyage['max_personnes'] = isset($voyage['max_personnes']) ? $voyage['max_personnes'] : 10;
+$voyage['langue'] = isset($voyage['langue']) ? $voyage['langue'] : ['Français'];
+$voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
 ?>
 
 <!DOCTYPE html>
@@ -45,138 +50,380 @@ $voyage = $voyages[$voyage_id];
 
     <?php include 'nav.php'; ?>
 
-    <div class="voyage-detail-container">
-        <!-- En-tête du voyage avec image de fond -->
-        <div class="voyage-header" style="background-image: url('<?php echo htmlspecialchars($voyage['image']); ?>')">
-            <div class="voyage-header-overlay">
-                <div class="voyage-header-content">
-                    <h1><?php echo htmlspecialchars($voyage['titre']); ?></h1>
-                    <div class="voyage-meta">
-                        <div class="meta-item">
-                            <img src="../img/svg/map-pin.svg" alt="Lieu">
-                            <span><?php echo htmlspecialchars($voyage['lieu'] ?? 'Destination Marvel'); ?></span>
+    <!-- En-tête du voyage avec image de fond -->
+    <section class="hero-section">
+        <div class="hero-backdrop" style="background-image: url('<?php echo htmlspecialchars($voyage['image']); ?>')"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="breadcrumb">
+                    <a href="destination.php">Destinations</a>
+                    <img src="../img/svg/chevron-right.svg" alt="›">
+                    <span><?php echo htmlspecialchars($voyage['titre']); ?></span>
+                </div>
+
+                <h1 class="hero-title"><?php echo htmlspecialchars($voyage['titre']); ?></h1>
+                <p class="hero-subtitle"><?php echo htmlspecialchars($voyage['resume']); ?></p>
+
+                <div class="voyage-meta">
+                    <?php if (isset($voyage['rating'])): ?>
+                    <div class="meta-rating">
+                        <div class="rating-stars">
+                            <?php for($i = 1; $i <= 5; $i++): ?>
+                                <?php if($i <= floor($voyage['rating'])): ?>
+                                    <img src="../img/svg/star.svg" alt="★" class="star">
+                                <?php elseif($i - 0.5 <= $voyage['rating']): ?>
+                                    <img src="../img/svg/star-half.svg" alt="½" class="star">
+                                <?php else: ?>
+                                    <img src="../img/svg/star-empty.svg" alt="☆" class="star">
+                                <?php endif; ?>
+                            <?php endfor; ?>
                         </div>
-                        <div class="meta-item">
-                            <img src="../img/svg/calendar.svg" alt="Dates">
-                            <span><?php echo isset($voyage['dates']) ? 
-                                htmlspecialchars($voyage['dates']['debut']) . ' - ' . 
-                                htmlspecialchars($voyage['dates']['fin']) : 'Dates flexibles'; ?></span>
+                        <span class="rating-value"><?php echo $voyage['rating']; ?></span>
+                        <span class="review-count"><?php echo $voyage['reviews']; ?> avis</span>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="meta-categories">
+                        <?php foreach($voyage['categories'] as $categorie): ?>
+                            <span class="category-tag"><?php echo htmlspecialchars($categorie); ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <div class="quick-info">
+                    <div class="info-item">
+                        <img src="../img/svg/calendar.svg" alt="Durée">
+                        <div class="info-content">
+                            <span class="info-label">Durée</span>
+                            <span class="info-value"><?php echo $voyage['dates']['duree']; ?></span>
                         </div>
-                        <div class="meta-item">
-                            <img src="../img/svg/price-tag.svg" alt="Prix">
-                            <span><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></span>
+                    </div>
+                    <div class="info-item">
+                        <img src="../img/svg/difficulty.svg" alt="Difficulté">
+                        <div class="info-content">
+                            <span class="info-label">Difficulté</span>
+                            <span class="info-value"><?php echo htmlspecialchars($voyage['difficulte']); ?></span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <img src="../img/svg/tag.svg" alt="Prix">
+                        <div class="info-content">
+                            <span class="info-label">À partir de</span>
+                            <span class="info-value price"><?php echo number_format($voyage['prix'], 2, ',', ' '); ?>€</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Contenu principal du voyage -->
-        <div class="voyage-content">
-            <div class="voyage-description">
-                <h2>Description</h2>
-                <p><?php echo nl2br(htmlspecialchars($voyage['description'] ?? 'Aucune description disponible.')); ?></p>
-            </div>
+    <div class="main-content">
+        <div class="content-wrapper">
+            <!-- Colonne principale -->
+            <div class="main-column">
+                <!-- Section Aperçu -->
+                <section id="apercu" class="content-section">
+                    <div class="description-section">
+                        <h2>À propos de ce voyage</h2>
+                        <p class="description-text"><?php echo nl2br(htmlspecialchars($voyage['description'])); ?></p>
+                        
+                        <div class="highlights-container">
+                            <h3>Points forts du voyage</h3>
+                            <div class="highlights-grid">
+                                <?php foreach($voyage['highlights'] as $highlight): ?>
+                                <div class="highlight-item">
+                                    <img src="../img/svg/check-circle.svg" alt="✓">
+                                    <span><?php echo htmlspecialchars($highlight); ?></span>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
 
-            <?php if (isset($voyage['etapes']) && !empty($voyage['etapes'])): ?>
-            <div class="voyage-etapes">
-                <h2>Étapes du voyage</h2>
-                <div class="etapes-timeline">
-                    <?php foreach ($voyage['etapes'] as $index => $etape): ?>
-                    <div class="etape-item">
-                        <div class="etape-numero"><?php echo $index + 1; ?></div>
-                        <div class="etape-content">
-                            <h3><?php echo htmlspecialchars($etape['nom']); ?></h3>
-                            <p><?php echo nl2br(htmlspecialchars($etape['description'] ?? '')); ?></p>
-                            
-                            <?php if (isset($etape['options']) && !empty($etape['options'])): ?>
-                            <div class="etape-options">
-                                <h4>Options disponibles</h4>
-                                <ul>
-                                    <?php foreach ($etape['options'] as $option): ?>
-                                    <li>
-                                        <span class="option-nom"><?php echo htmlspecialchars($option['nom']); ?></span>
-                                        <span class="option-prix"><?php echo number_format($option['prix'], 2, ',', ' ') . '€'; ?></span>
-                                    </li>
-                                    <?php endforeach; ?>
-                                </ul>
+                    <?php if (isset($voyage['univers']) && !empty($voyage['univers']['films'])): ?>
+                    <div class="universe-section">
+                        <h2>L'univers Marvel</h2>
+                        <div class="universe-content">
+                            <?php if(isset($voyage['univers']['image'])): ?>
+                            <div class="universe-media">
+                                <img src="<?php echo htmlspecialchars($voyage['univers']['image']); ?>" alt="Univers Marvel" class="universe-image">
                             </div>
                             <?php endif; ?>
+                            <div class="universe-details">
+                                <div class="films-section">
+                                    <h3>Films associés</h3>
+                                    <div class="films-grid">
+                                        <?php foreach($voyage['univers']['films'] as $film): ?>
+                                        <span class="film-tag"><?php echo htmlspecialchars($film); ?></span>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <?php if (isset($voyage['univers']['personnages']) && is_array($voyage['univers']['personnages'])): ?>
+                                <div class="characters-section">
+                                    <h3>Personnages principaux</h3>
+                                    <div class="characters-grid">
+                                        <?php 
+                                        // Handle both array formats
+                                        foreach($voyage['univers']['personnages'] as $key => $personnage): 
+                                            if(is_array($personnage)):
+                                        ?>
+                                            <div class="character-card">
+                                                <img src="<?php echo htmlspecialchars($personnage['image']); ?>" 
+                                                     alt="<?php echo htmlspecialchars($personnage['nom']); ?>">
+                                                <span><?php echo htmlspecialchars($personnage['nom']); ?></span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="character-card">
+                                                <span><?php echo htmlspecialchars($personnage); ?></span>
+                                            </div>
+                                        <?php endif; endforeach; ?>
+                                    </div>
+                                </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <?php endif; ?>
+                    <?php endif; ?>
+                </section>
 
-            <!-- Informations complémentaires -->
-            <div class="voyage-infos">
-                <h2>Informations complémentaires</h2>
-                <div class="infos-grid">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="../img/svg/users.svg" alt="Capacité">
+                <!-- Section Programme -->
+                <section id="programme" class="content-section">
+                    <h2>Programme jour par jour</h2>
+                    <div class="programme-timeline">
+                        <?php foreach($voyage['etapes'] as $index => $etape): ?>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <span class="day-badge">Jour <?php echo $index + 1; ?></span>
+                                <h3><?php echo htmlspecialchars($etape['lieu']); ?></h3>
+                            </div>
+                            <div class="timeline-content">
+                                <?php if(isset($etape['image'])): ?>
+                                <div class="timeline-media">
+                                    <img src="<?php echo htmlspecialchars($etape['image']); ?>" 
+                                         alt="<?php echo htmlspecialchars($etape['lieu']); ?>">
+                                </div>
+                                <?php endif; ?>
+                                
+                                <div class="timeline-details">
+                                    <div class="time-info">
+                                        <img src="../img/svg/clock.svg" alt="Durée">
+                                        <span><?php echo htmlspecialchars($etape['duree']); ?></span>
+                                    </div>
+                                    <p class="timeline-description">
+                                        <?php echo nl2br(htmlspecialchars($etape['description'])); ?>
+                                    </p>
+                                    
+                                    <?php if (!empty($etape['activites'])): ?>
+                                    <div class="activities-list">
+                                        <h4>Au programme</h4>
+                                        <ul>
+                                            <?php foreach($etape['activites'] as $activite): ?>
+                                            <li><?php echo htmlspecialchars($activite); ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($etape['options'])): ?>
+                                    <div class="options-list">
+                                        <h4>Options disponibles</h4>
+                                        <?php foreach($etape['options'] as $option): ?>
+                                        <div class="option-item">
+                                            <div class="option-info">
+                                                <h5><?php echo htmlspecialchars($option['nom']); ?></h5>
+                                                <p><?php echo htmlspecialchars($option['description']); ?></p>
+                                            </div>
+                                            <div class="option-price">
+                                                +<?php echo number_format($option['prix'], 2, ',', ' '); ?>€
+                                            </div>
+                                        </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="info-content">
-                            <h4>Capacité</h4>
-                            <p><?php echo htmlspecialchars($voyage['capacite'] ?? 'Illimitée'); ?> personnes</p>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
+
+                <!-- Section Détails -->
+                <section id="details" class="content-section">
+                    <h2>Détails pratiques</h2>
+                    
+                    <div class="details-container">
+                        <div class="details-tabs">
+                            <button class="tab-button active" data-tab="inclus">Ce qui est inclus</button>
+                            <button class="tab-button" data-tab="non-inclus">Non inclus</button>
+                        </div>
+
+                        <div class="details-content">
+                            <div class="tab-content active" id="inclus-content">
+                                <div class="details-grid">
+                                    <?php foreach(array_chunk($voyage['inclus'], ceil(count($voyage['inclus'])/2)) as $items): ?>
+                                    <div class="details-column">
+                                        <ul class="details-list included">
+                                            <?php foreach($items as $item): ?>
+                                            <li>
+                                                <img src="../img/svg/check.svg" alt="✓" class="item-icon included">
+                                                <span><?php echo htmlspecialchars($item); ?></span>
+                                            </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="non-inclus-content">
+                                <div class="details-grid">
+                                    <?php foreach(array_chunk($voyage['non_inclus'], ceil(count($voyage['non_inclus'])/2)) as $items): ?>
+                                    <div class="details-column">
+                                        <ul class="details-list not-included">
+                                            <?php foreach($items as $item): ?>
+                                            <li>
+                                                <img src="../img/svg/x.svg" alt="✕" class="item-icon not-included">
+                                                <span><?php echo htmlspecialchars($item); ?></span>
+                                            </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="../img/svg/clock.svg" alt="Durée">
+                </section>
+
+                <!-- Section Avis -->
+                <?php if (!empty($voyage['temoignages'])): ?>
+                <section id="avis" class="content-section">
+                    <div class="reviews-header">
+                        <h2>Avis des voyageurs</h2>
+                        <?php if (isset($voyage['rating'])): ?>
+                    <div class="meta-rating">
+                        <div class="rating-stars">
+                            <?php for($i = 1; $i <= 5; $i++): ?>
+                                <?php if($i <= floor($voyage['rating'])): ?>
+                                    <img src="../img/svg/star.svg" alt="★" class="star">
+                                <?php elseif($i - 0.5 <= $voyage['rating']): ?>
+                                    <img src="../img/svg/star-half.svg" alt="½" class="star">
+                                <?php else: ?>
+                                    <img src="../img/svg/star-empty.svg" alt="☆" class="star">
+                                <?php endif; ?>
+                            <?php endfor; ?>
                         </div>
-                        <div class="info-content">
-                            <h4>Durée</h4>
-                            <p><?php 
-                                if (isset($voyage['dates'])) {
-                                    $debut = new DateTime($voyage['dates']['debut']);
-                                    $fin = new DateTime($voyage['dates']['fin']);
-                                    $duree = $debut->diff($fin)->days;
-                                    echo $duree . ' jours';
-                                } else {
-                                    echo 'Variable';
-                                }
-                            ?></p>
-                        </div>
+                        <span class="rating-value"><?php echo $voyage['rating']; ?></span>
+                        <span class="review-count"><?php echo $voyage['reviews']; ?> avis</span>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="../img/svg/star.svg" alt="Difficulté">
-                        </div>
-                        <div class="info-content">
-                            <h4>Difficulté</h4>
-                            <p><?php echo htmlspecialchars($voyage['difficulte'] ?? 'Modérée'); ?></p>
-                        </div>
+                    <?php endif; ?>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="../img/svg/globe.svg" alt="Langue">
+
+                    <div class="reviews-grid">
+                        <?php foreach($voyage['temoignages'] as $temoignage): ?>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img src="<?php echo htmlspecialchars($temoignage['photo']); ?>" 
+                                     alt="<?php echo htmlspecialchars($temoignage['auteur']); ?>" 
+                                     class="reviewer-avatar">
+                                <div class="reviewer-info">
+                                    <h4><?php echo htmlspecialchars($temoignage['auteur']); ?></h4>
+                                    <?php if(isset($temoignage['date'])): ?>
+                                    <span class="review-date"><?php echo htmlspecialchars($temoignage['date']); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <?php for($i = 1; $i <= 5; $i++): ?>
+                                    <img src="../img/svg/star<?php echo $i <= $temoignage['note'] ? '' : '-empty'; ?>.svg" 
+                                         alt="<?php echo $i <= $temoignage['note'] ? '★' : '☆'; ?>">
+                                <?php endfor; ?>
+                            </div>
+                            <p class="review-text"><?php echo htmlspecialchars($temoignage['texte']); ?></p>
                         </div>
-                        <div class="info-content">
-                            <h4>Langue</h4>
-                            <p><?php echo htmlspecialchars($voyage['langue'] ?? 'Français, Anglais'); ?></p>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
-                </div>
+                </section>
+                <?php endif; ?>
             </div>
 
-            <!-- Bouton de réservation -->
-            <div class="voyage-actions">
-                <a href="etapes/etape1.php?id=<?php echo $voyage_id; ?>" class="btn-reserver">
-                    Réserver ce voyage
-                    <img src="../img/svg/arrow-right.svg" alt="Réserver">
-                </a>
-                <a href="destination.php" class="btn-retour">
-                    <img src="../img/svg/arrow-left.svg" alt="Retour">
-                    Retour aux destinations
-                </a>
+            <!-- Colonne de réservation -->
+            <div class="booking-column" id="reservation">
+                <div class="booking-card">
+                    <div class="booking-header">
+                        <div class="booking-price">
+                            <span class="price-amount"><?php echo number_format($voyage['prix'], 2, ',', ' '); ?>€</span>
+                            <span class="price-per">par personne</span>
+                        </div>
+                        <?php if (isset($voyage['disponibilite'])): ?>
+                        <div class="availability-badge <?php echo strtolower(str_replace(' ', '-', $voyage['disponibilite'])); ?>">
+                            <?php echo htmlspecialchars($voyage['disponibilite']); ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="booking-dates">
+                        <div class="date-row">
+                            <div class="date-item">
+                                <label>Départ</label>
+                                <span class="date"><?php echo $voyage['dates']['debut']; ?></span>
+                            </div>
+                            <div class="date-item">
+                                <label>Retour</label>
+                                <span class="date"><?php echo $voyage['dates']['fin']; ?></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="booking-features">
+                        <div class="feature-item">
+                            <img src="../img/svg/users.svg" alt="Groupe">
+                            <span><?php echo $voyage['max_personnes']; ?> personnes max</span>
+                        </div>
+                        <div class="feature-item">
+                            <img src="../img/svg/calendar.svg" alt="Durée">
+                            <span><?php echo $voyage['dates']['duree']; ?></span>
+                        </div>
+                    </div>
+
+                    <a href="etapes/etape1.php?id=<?php echo $voyage_id; ?>" class="btn-book">
+                        Réserver maintenant
+                    </a>
+
+                    <div class="booking-note">
+                        <img src="../img/svg/info.svg" alt="Info">
+                        <p>Réservation sans frais d'annulation jusqu'à 30 jours avant le départ</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <?php include 'footer.php'; ?>
 
+    <script>
+        // Ajoutez ce code à la section script existante
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId + '-content').classList.add('active');
+                });
+            });
+        });
+    </script>
+    
     <script src="../js/nav.js"></script>
     <script src="../js/custom-cursor.js"></script>
 </body>

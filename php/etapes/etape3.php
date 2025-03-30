@@ -126,10 +126,9 @@ function hasOptions($etape)
     return !empty($etape['options']);
 }
 
-// Stocker les options si elles sont soumises via POST
-if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personne'])) {
-    // Les données du formulaire ont été soumises
-    
+// Gérer la soumission du formulaire des options
+if (isset($_POST['submit_options'])) {
+    // On sait que c'est une soumission du formulaire de l'étape 3
     // Initialiser un tableau vide pour les options si aucune n'est sélectionnée
     $options = isset($_POST['options']) ? $_POST['options'] : [];
     
@@ -293,6 +292,7 @@ if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb
                     <input type="hidden" name="date_debut" value="<?php echo htmlspecialchars($date_debut); ?>">
                     <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
                     <input type="hidden" name="nb_personne" value="<?php echo $nb_personne; ?>">
+                    <input type="hidden" name="submit_options" value="1">
 
                     <?php foreach ($voyageurs as $index => $voyageur): ?>
                         <input type="hidden" name="civilite_<?php echo $index + 1; ?>"
@@ -445,7 +445,7 @@ if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb
                                     <img src="../../img/svg/arrow-left.svg" alt="Retour">
                                     Retour aux voyageurs
                                 </a>
-                                <button type="submit" class="primary-button">
+                                <button type="submit" name="submit_options" class="primary-button">
                                     Continuer vers le paiement
                                     <img src="../../img/svg/arrow-right.svg" alt="Continuer">
                                 </button>
