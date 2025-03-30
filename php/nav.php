@@ -67,6 +67,44 @@ if ($is_in_root) {
                 class="menu-li <?php echo $current_page === 'contact.php' ? 'active-nav-nav' : ''; ?>">
                 <li>Contact</li>
             </a>
+            <div class="nav-cart">
+                <a href="<?php 
+                    if ($is_in_root) {
+                        echo 'php/panier.php';
+                    } elseif ($is_in_subdirectory) {
+                        echo '../panier.php';
+                    } else {
+                        echo 'panier.php';
+                    }
+                ?>" class="cart-icon">
+                    <img src="<?php 
+                        if ($is_in_root) {
+                            echo 'img/svg/cart.svg';
+                        } elseif ($is_in_subdirectory) {
+                            echo '../../img/svg/cart.svg';
+                        } else {
+                            echo '../img/svg/cart.svg';
+                        }
+                    ?>" alt="Panier">
+                    <?php
+                    // Adapter le chemin selon l'emplacement
+                    $json_path = $is_in_root ? 'json/panier.json' : 
+                                ($is_in_subdirectory ? '../../json/panier.json' : '../json/panier.json');
+                    
+                    // Charger le panier depuis le JSON
+                    $panierJson = file_get_contents($json_path);
+                    $panier = json_decode($panierJson, true);
+                    
+                    // Compter le nombre d'articles dans le panier
+                    $nb_articles = isset($panier['items']) ? count($panier['items']) : 0;
+                    
+                    // Afficher la pastille seulement s'il y a des articles
+                    if ($nb_articles > 0): 
+                    ?>
+                        <span class="cart-count"><?php echo $nb_articles; ?></span>
+                    <?php endif; ?>
+                </a>
+            </div>
             <?php
             if (isset($_SESSION['user'])) {
                 // Utilisation du préfixe pour les chemins relatifs

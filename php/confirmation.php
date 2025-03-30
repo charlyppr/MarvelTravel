@@ -147,6 +147,22 @@ if ($payment_validated) {
     // Écrire dans le fichier
     file_put_contents($commandes_file, json_encode($commandes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
+    // Supprimer le voyage du panier
+    $panierJson = file_get_contents('../json/panier.json');
+    $panier = json_decode($panierJson, true);
+    
+    // Rechercher et supprimer le voyage correspondant
+    if (isset($panier['items'])) {
+        foreach ($panier['items'] as $index => $item) {
+            if ($item['voyage_id'] === $voyage_id) {
+                array_splice($panier['items'], $index, 1);
+                break;
+            }
+        }
+        // Sauvegarder le panier mis à jour
+        file_put_contents('../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+    }
+
     // Nettoyer les données de réservation temporaires
     unset($_SESSION['current_voyage_id']);
     unset($_SESSION['promo_code']);

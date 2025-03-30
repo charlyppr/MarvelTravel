@@ -9,19 +9,55 @@ if ($id === null) {
     exit;
 }
 
-// Vérifier si l'utilisateur consulte une nouvelle destination
-// et effacer les données si c'est le cas
+// Vérifier si l'utilisateur change de voyage
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
 if ($current_voyage_id !== $id) {
+    // Si l'ID est différent, on efface toutes les données de réservation
     clear_reservation_data();
     $_SESSION['current_voyage_id'] = $id;
 }
 
-// Récupération des données sauvegardées en session
-$form_data = get_form_data('etape1');
-$date_debut_value = $form_data ? $form_data['date_debut'] : '';
-$date_fin_value = $form_data ? $form_data['date_fin'] : '';
-$nb_personne_value = $form_data ? $form_data['nb_personne'] : 1;
+// Charger le panier pour récupérer les données
+$panierJson = file_get_contents('../../json/panier.json');
+$panier = json_decode($panierJson, true);
+
+// Récupérer les données du voyage dans le panier si on vient du panier
+$panier_data = null;
+if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
+    $cart_index = (int)$_GET['cart_index'];
+    if (isset($panier['items'][$cart_index])) {
+        $panier_data = $panier['items'][$cart_index];
+    }
+}
+
+// Récupération des données
+if ($panier_data && $panier_data['voyage_id'] === $id) {
+    // Si on vient du panier et que c'est le bon voyage, utiliser ces données
+    $dates = explode(' au ', $panier_data['date']);
+    $date_debut_value = $dates[0];
+    $date_fin_value = $dates[1];
+    $nb_personne_value = $panier_data['nb_personnes'];
+} else {
+    // Vérifier d'abord s'il y a des données en session de l'étape 1
+    $form_data = get_form_data('etape1');
+    if ($form_data) {
+        $date_debut_value = $form_data['date_debut'];
+        $date_fin_value = $form_data['date_fin'];
+        $nb_personne_value = $form_data['nb_personne'];
+    } else {
+        // Si pas de données en session, utiliser les valeurs par défaut
+        $date_debut_value = '';
+        $date_fin_value = '';
+        $nb_personne_value = 1;
+    }
+}
+
+// Stocker ces valeurs en session
+store_form_data('etape1', [
+    'date_debut' => $date_debut_value,
+    'date_fin' => $date_fin_value,
+    'nb_personne' => $nb_personne_value
+]);
 
 $json_file = "../../json/voyages.json";
 $voyages = json_decode(file_get_contents($json_file), true);
@@ -51,6 +87,72 @@ $date_min = date('Y-m-d');
 $prix_base = $voyage['prix'];
 $prix_total = $prix_base * $nb_personne_value;
 $prix_total_formatte = number_format($prix_total, 2, ',', ' ');
+
+// Traitement du formulaire
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validation des données
+    $date_debut = $_POST['date_debut'];
+    $date_fin = $_POST['date_fin'];
+    $nb_personne = $_POST['nb_personne'];
+    
+    // Stocker les données pour les étapes suivantes
+    store_form_data('etape1', [
+        'date_debut' => $date_debut,
+        'date_fin' => $date_fin,
+        'nb_personne' => $nb_personne
+    ]);
+    
+    // Ajouter au panier UNIQUEMENT si on ne vient pas du panier
+    if (!isset($_GET['from_cart'])) {
+        // Charger le panier existant
+        $panierJson = file_get_contents('../../json/panier.json');
+        $panier = json_decode($panierJson, true);
+
+        // Vérifier si le voyage existe déjà avec les mêmes dates
+        $voyage_existe = false;
+        if (isset($panier['items'])) {
+            foreach ($panier['items'] as $item) {
+                if ($item['voyage_id'] === $id && 
+                    $item['date'] === $date_debut . ' au ' . $date_fin) {
+                    $voyage_existe = true;
+                    break;
+                }
+            }
+        }
+
+        // Ajouter seulement si le voyage n'existe pas déjà
+        if (!$voyage_existe) {
+            // Créer le nouvel élément
+            $nouvel_item = [
+                'voyage_id' => $id,
+                'date' => $date_debut . ' au ' . $date_fin,
+                'nb_personnes' => $nb_personne,
+                'prix_unitaire' => $voyage['prix']
+            ];
+
+            // Ajouter l'élément au panier
+            if (!isset($panier['items'])) {
+                $panier['items'] = [];
+            }
+            $panier['items'][] = $nouvel_item;
+
+            // Sauvegarder le panier
+            file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+        }
+    }
+
+    // Stocker les infos pour étape 2
+    $_SESSION['reservation'] = [
+        'voyage_id' => $id,
+        'date_debut' => $date_debut,
+        'date_fin' => $date_fin,
+        'nb_personnes' => $nb_personne
+    ];
+    
+    // Rediriger vers l'étape 2 avec le bon chemin
+    header('Location: etape2.php?id=' . $id . (isset($_GET['from_cart']) ? '&from_cart=1&cart_index=' . $_GET['cart_index'] : ''));
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -133,7 +235,7 @@ $prix_total_formatte = number_format($prix_total, 2, ',', ' ');
             </div>
 
             <div class="booking-form-container">
-                <form action="etape2.php?id=<?php echo $id; ?>" method="post" id="reservationForm" class="booking-form">
+                <form action="etape1.php?id=<?php echo $id; ?>" method="post" id="reservationForm" class="booking-form">
                     <div class="card form-card">
                         <div class="card-header">
                             <img src="../../img/svg/calendar.svg" alt="Dates" class="card-icon">

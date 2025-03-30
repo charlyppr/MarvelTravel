@@ -185,5 +185,129 @@
                 "total": 50
             }
         ]
+    },
+    {
+        "transaction": "9dd56e560c6d77d0aa5dea3b",
+        "montant": 5549.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "40451ffd817bcf617704ff92c2637a63",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-04-01",
+        "date_fin": "2025-04-03",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Française",
+                "passport": "2466910850"
+            }
+        ],
+        "date_achat": "2025-03-30 15:41:27",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Musée Wakandais",
+                "prix_unitaire": 300,
+                "nb_participants": 1,
+                "total": 300
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 1,
+                "total": 150
+            }
+        ]
+    },
+    {
+        "transaction": "0e04b488fde9d90b962e4d85",
+        "montant": 5066.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "baf2483d025096512841ae32f39c36b1",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Française",
+                "passport": "2466910850"
+            }
+        ],
+        "date_achat": "2025-03-30 16:07:13",
+        "options": [
+            {
+                "etape": "Mont Bashenga",
+                "option": "Randonnée",
+                "prix_unitaire": 200,
+                "nb_participants": 1,
+                "total": 200
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Visite du temple",
+                "prix_unitaire": 180,
+                "nb_participants": 1,
+                "total": 180
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 1,
+                "total": 150
+            }
+        ]
+    },
+    {
+        "transaction": "c462513c13ddb34665a607ed",
+        "montant": 1649.93,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "7ca6db89c5fcfd709982f96eca89e66b",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Genovia",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-20",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Française",
+                "passport": "2466910850"
+            }
+        ],
+        "date_achat": "2025-03-30 16:10:14",
+        "options": [
+            {
+                "etape": "Palais Royal de Genovia",
+                "option": "Visite guidée du palais",
+                "prix_unitaire": 99.99,
+                "nb_participants": 1,
+                "total": 99.99
+            },
+            {
+                "etape": "Plage de Genovia",
+                "option": "Détente sur la plage",
+                "prix_unitaire": 49.99,
+                "nb_participants": 1,
+                "total": 49.99
+            }
+        ]
     }
 ]

@@ -41,22 +41,22 @@ try {
         }
     }
 
-    // Trier les commandes par date (plus récente en premier)
-    if (!empty($commandes_utilisateur)) {
-        usort($commandes_utilisateur, function ($a, $b) {
-            // Vérifier si date_commande existe
-            if (isset($a['date_commande']) && isset($b['date_commande'])) {
-                return strtotime($b['date_commande']) - strtotime($a['date_commande']);
-            }
-            // Fallback sur transaction (qui est un uniqid)
-            return strcmp($b['transaction'], $a['transaction']);
-        });
-    }
 } catch (Exception $e) {
     $commandes_utilisateur = [];
     $total_commandes = 0;
     $montant_total = 0;
     $destinations_visitees = [];
+}
+
+// Après la récupération des commandes et avant l'affichage HTML, ajouter le tri :
+if (count($commandes_utilisateur) > 0) {
+    // Trier les commandes par date de création (du plus récent au plus ancien)
+    usort($commandes_utilisateur, function($a, $b) {
+        // Si la commande a un champ 'created_at', utilisez-le
+        if (isset($a['date_achat']) && isset($b['date_achat'])) {
+            return strtotime($b['date_achat']) - strtotime($a['date_achat']);
+        }
+    });
 }
 
 // Indicateur de succès pour les messages flash après modification

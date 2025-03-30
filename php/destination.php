@@ -22,9 +22,7 @@ $voyages_array = json_decode(file_get_contents($json_file), true);
 // Restructurer le tableau pour qu'il soit indexé correctement par ID
 $voyages = [];
 foreach ($voyages_array as $voyage) {
-    // Utiliser l'index correspondant à l'ID-1 pour garder la compatibilité avec le code existant
-    // (Les IDs commencent à 1 mais les tableaux en PHP commencent à 0)
-    $voyages[$voyage['id']-1] = $voyage;
+    $voyages[$voyage['id']] = $voyage;
 }
 
 // Traitement de la recherche
@@ -171,8 +169,8 @@ $best_voyages = array_slice($voyages, 0, 4);
                     <span class="search-tag-title">Populaires:</span>
                     <a href="?recherche=New+York" class="search-tag">New York</a>
                     <a href="?recherche=Wakanda" class="search-tag">Wakanda</a>
-                    <a href="?recherche=Tokyo" class="search-tag">Tokyo</a>
-                    <a href="?recherche=Londres" class="search-tag">Londres</a>
+                    <a href="?recherche=Asgard" class="search-tag">Asgard</a>
+                    <a href="?recherche=Xandar" class="search-tag">Xandar</a>
                 </div>
             </div>
         </div>
@@ -196,131 +194,133 @@ $best_voyages = array_slice($voyages, 0, 4);
     </section>
 
     <!-- Section Best-Sellers -->
-    <section class="best-seller-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-title-group">
-                    <span class="section-subtitle">Top destinations</span>
-                    <h2 class="section-title">Meilleures destinations</h2>
-                </div>
-                <a href="#toutes-destinations" class="view-all-link">
-                    <span>Voir toutes les destinations</span>
-                    <img src="../img/svg/arrow-right.svg" alt="Voir tout">
-                </a>
-            </div>
-
-            <div class="best-seller-cards">
-                <?php foreach ($best_voyages as $key => $voyage): ?>
-                    <div class="destination-card featured">
-                        <a href="voyage-detail.php?id=<?php echo $key; ?>" class="card-link">
-                            <div class="card-image-container">
-                                <img src="<?php echo $voyage['image']; ?>"
-                                     alt="<?php echo htmlspecialchars($voyage['titre']); ?>" class="card-image">
-                                <?php if (isset($voyage['promo']) && $voyage['promo']): ?>
-                                    <div class="promo-badge">-<?php echo $voyage['promo']; ?>%</div>
-                                <?php endif; ?>
-                                <div class="card-overlay"></div>
-                                
-                                <!-- Badge pour les "best-sellers" -->
-                                <div class="feature-badge">
-                                    <img src="../img/svg/crown.svg" alt="Top destination">
-                                    <span>Top destination</span>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <h3 class="card-title"><?php echo htmlspecialchars($voyage['titre']); ?></h3>
-                                    <div class="card-category">
-                                        <?php 
-                                        // Afficher les catégories du voyage
-                                        $categories = isset($voyage['categories']) ? $voyage['categories'] : ['Aventure'];
-                                        foreach(array_slice($categories, 0, 2) as $cat): ?>
-                                            <span class="category-tag"><?php echo htmlspecialchars($cat); ?></span>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                
-                                <!-- Ajout d'une courte description -->
-                                <p class="card-description">
-                                    <?php 
-                                    $description = isset($voyage['description']) ? $voyage['description'] : 'Une expérience unique dans l\'univers Marvel';
-                                    echo htmlspecialchars(substr($description, 0, 120)) . '...'; 
-                                    ?>
-                                </p>
-                                
-                                <!-- Évaluation détaillée -->
-                                <div class="card-ratings-detailed">
-                                    <?php if (isset($voyage['rating'])): ?>
-                                        <div class="rating-stars">
-                                            <?php for($i = 1; $i <= 5; $i++): ?>
-                                                <?php if($i <= floor($voyage['rating'])): ?>
-                                                    <img src="../img/svg/star.svg" alt="★" class="star">
-                                                <?php elseif($i - 0.5 <= $voyage['rating']): ?>
-                                                    <img src="../img/svg/star-half.svg" alt="½" class="star">
-                                                <?php else: ?>
-                                                    <img src="../img/svg/star-empty.svg" alt="☆" class="star">
-                                                <?php endif; ?>
-                                            <?php endfor; ?>
-                                        </div>
-                                        <div class="rating-count">
-                                            <span><?php echo $voyage['rating']; ?></span>
-                                            <span class="review-count">(<?php echo isset($voyage['reviews']) ? $voyage['reviews'] : rand(10, 50); ?> avis)</span>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                                
-                                <!-- Caractéristiques principales -->
-                                <div class="card-features">
-                                    <div class="feature-item">
-                                        <img src="../img/svg/clock.svg" alt="Durée">
-                                        <span><?php echo isset($voyage['duree']) ? $voyage['duree'] : '7 jours'; ?></span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <img src="../img/svg/map-pin.svg" alt="Étapes">
-                                        <span><?php echo isset($voyage['etapes']) ? count($voyage['etapes']) : 0; ?> étapes</span>
-                                    </div>
-                                    <?php if (isset($voyage['famille']) && $voyage['famille']): ?>
-                                    <div class="feature-item">
-                                        <img src="../img/svg/users.svg" alt="Famille">
-                                        <span>Adapté aux familles</span>
-                                    </div>
-                                    <?php endif; ?>
-                                </div>
-                                
-                                <!-- Points forts -->
-                                <div class="highlights">
-                                    <h4>Points forts</h4>
-                                    <ul class="highlights-list">
-                                        <?php 
-                                        $highlights = isset($voyage['highlights']) ? $voyage['highlights'] : ['Expérience immersive', 'Guide expert'];
-                                        foreach(array_slice($highlights, 0, 2) as $highlight): ?>
-                                            <li><img src="../img/svg/check.svg" alt="✓"> <?php echo htmlspecialchars($highlight); ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                                
-                                <div class="card-meta">
-                                    <div class="meta-item price-meta">
-                                        <img src="../img/svg/tag.svg" alt="Prix">
-                                        <span class="price-value"><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></span>
-                                        <span class="price-note">par personne</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="card-actions">
-                                    <span class="btn-details">Voir les détails</span>
-                                    <a href="etapes/etape1.php?id=<?php echo $key; ?>" class="btn-book">
-                                        <span>Réserver</span>
-                                        <img src="../img/svg/ticket.svg" alt="Réserver">
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
+    <?php if (empty($recherche) && empty($date_debut) && empty($date_fin) && $budget <= 0): ?>
+        <section class="best-seller-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <span class="section-subtitle">Top destinations</span>
+                        <h2 class="section-title">Meilleures destinations</h2>
                     </div>
-                <?php endforeach; ?>
+                    <a href="destination.php#toutes-destinations" class="view-all-link">
+                        <span>Voir toutes les destinations</span>
+                        <img src="../img/svg/arrow-right.svg" alt="Voir tout">
+                    </a>
+                </div>
+
+                <div class="best-seller-cards">
+                    <?php foreach ($best_voyages as $key => $voyage): ?>
+                        <div class="destination-card featured">
+                            <a href="voyage-detail.php?id=<?php echo $key; ?>" class="card-link">
+                                <div class="card-image-container">
+                                    <img src="<?php echo $voyage['image']; ?>"
+                                         alt="<?php echo htmlspecialchars($voyage['titre']); ?>" class="card-image">
+                                    <?php if (isset($voyage['promo']) && $voyage['promo']): ?>
+                                        <div class="promo-badge">-<?php echo $voyage['promo']; ?>%</div>
+                                    <?php endif; ?>
+                                    <div class="card-overlay"></div>
+                                    
+                                    <!-- Badge pour les "best-sellers" -->
+                                    <div class="feature-badge">
+                                        <img src="../img/svg/crown.svg" alt="Top destination">
+                                        <span>Top destination</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-header">
+                                        <h3 class="card-title"><?php echo htmlspecialchars($voyage['titre']); ?></h3>
+                                        <div class="card-category">
+                                            <?php 
+                                            // Afficher les catégories du voyage
+                                            $categories = isset($voyage['categories']) ? $voyage['categories'] : ['Aventure'];
+                                            foreach(array_slice($categories, 0, 2) as $cat): ?>
+                                                <span class="category-tag"><?php echo htmlspecialchars($cat); ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Ajout d'une courte description -->
+                                    <p class="card-description">
+                                        <?php 
+                                        $description = isset($voyage['description']) ? $voyage['description'] : 'Une expérience unique dans l\'univers Marvel';
+                                        echo htmlspecialchars(substr($description, 0, 120)) . '...'; 
+                                        ?>
+                                    </p>
+                                    
+                                    <!-- Évaluation détaillée -->
+                                    <div class="card-ratings-detailed">
+                                        <?php if (isset($voyage['rating'])): ?>
+                                            <div class="rating-stars">
+                                                <?php for($i = 1; $i <= 5; $i++): ?>
+                                                    <?php if($i <= floor($voyage['rating'])): ?>
+                                                        <img src="../img/svg/star.svg" alt="★" class="star">
+                                                    <?php elseif($i - 0.5 <= $voyage['rating']): ?>
+                                                        <img src="../img/svg/star-half.svg" alt="½" class="star">
+                                                    <?php else: ?>
+                                                        <img src="../img/svg/star-empty.svg" alt="☆" class="star">
+                                                    <?php endif; ?>
+                                                <?php endfor; ?>
+                                            </div>
+                                            <div class="rating-count">
+                                                <span><?php echo $voyage['rating']; ?></span>
+                                                <span class="review-count">(<?php echo isset($voyage['reviews']) ? $voyage['reviews'] : rand(10, 50); ?> avis)</span>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    
+                                    <!-- Caractéristiques principales -->
+                                    <div class="card-features">
+                                        <div class="feature-item">
+                                            <img src="../img/svg/clock.svg" alt="Durée">
+                                            <span><?php echo isset($voyage['duree']) ? $voyage['duree'] : '7 jours'; ?></span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <img src="../img/svg/map-pin.svg" alt="Étapes">
+                                            <span><?php echo isset($voyage['etapes']) ? count($voyage['etapes']) : 0; ?> étapes</span>
+                                        </div>
+                                        <?php if (isset($voyage['famille']) && $voyage['famille']): ?>
+                                        <div class="feature-item">
+                                            <img src="../img/svg/users.svg" alt="Famille">
+                                            <span>Adapté aux familles</span>
+                                        </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    
+                                    <!-- Points forts -->
+                                    <div class="highlights">
+                                        <h4>Points forts</h4>
+                                        <ul class="highlights-list">
+                                            <?php 
+                                            $highlights = isset($voyage['highlights']) ? $voyage['highlights'] : ['Expérience immersive', 'Guide expert'];
+                                            foreach(array_slice($highlights, 0, 2) as $highlight): ?>
+                                                <li><img src="../img/svg/check.svg" alt="✓"> <?php echo htmlspecialchars($highlight); ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="card-meta">
+                                        <div class="meta-item price-meta">
+                                            <img src="../img/svg/tag.svg" alt="Prix">
+                                            <span class="price-value"><?php echo number_format($voyage['prix'], 2, ',', ' ') . '€'; ?></span>
+                                            <span class="price-note">par personne</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-actions">
+                                        <span class="btn-details">Voir les détails</span>
+                                        <a href="etapes/etape1.php?id=<?php echo $key; ?>" class="btn-book">
+                                            <span>Réserver</span>
+                                            <img src="../img/svg/ticket.svg" alt="Réserver">
+                                        </a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif; ?>
 
     <!-- Toutes les destinations / Résultats de recherche -->
     <section id="toutes-destinations" class="all-destination-section">
@@ -445,7 +445,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                 <div class="cta-content">
                     <h2>Prêt à vivre votre prochaine aventure ?</h2>
                     <p>Rejoignez les milliers de voyageurs qui ont déjà vécu l'expérience Marvel Travel</p>
-                    <a href="#toutes-destinations" class="cta-button">
+                    <a href="destination.php#toutes-destinations" class="cta-button">
                         <span>Explorer les destinations</span>
                         <img src="../img/svg/arrow-right.svg" alt="Explorer">
                     </a>

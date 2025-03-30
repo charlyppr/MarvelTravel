@@ -420,3 +420,7 @@ input:focus, textarea:focus {
         font-size: 14px;
     }
 }
+
+.cart-icon img {
+    filter: brightness(1) invert(0) !important;
+}

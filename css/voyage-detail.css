@@ -1956,7 +1956,7 @@
     .rating-summary {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+    gap: 10px;
     }
     
     .reviewer-avatar {
@@ -2230,22 +2230,22 @@ img.item-icon.not-included {
     .booking-card {
         padding: 20px;
     }
-
+    
     .date-row {
         grid-template-columns: 1fr;
         gap: 12px;
     }
-
+    
     .booking-note {
         padding: 12px;
     }
-}
-
+    }
+    
 .booking-price {
     display: flex;
-    flex-direction: column;
-}
-
+        flex-direction: column;
+    }
+    
 img.item-icon.included {
 }
 
@@ -2327,4 +2327,4 @@ img.item-icon.not-included {
 .details-list li:hover .item-icon.not-included {
     transform: scale(1.2);
     opacity: 1;
-}
+} 

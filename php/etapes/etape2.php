@@ -86,7 +86,7 @@ $prix_base = $voyage['prix'];
 $prix_total = $prix_base * $nb_personne;
 
 // Calculer quelques éléments supplémentaires pour le résumé
-$prix_par_jour = $prix_base * $nb_personne / $duree_sejour;
+$prix_par_jour = $duree_sejour > 0 ? ($prix_base * $nb_personne / $duree_sejour) : 0;
 ?>
 
 <!DOCTYPE html>

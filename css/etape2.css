@@ -333,11 +333,12 @@ body {
 }
 
 .detail-value {
-    font-weight: 500;
+    /* font-weight: 500; */
     color: var(--color-text-cream);
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
+    font-size: var(--font-size-sm);
 }
 
 .detail-tag {
@@ -347,6 +348,7 @@ body {
     padding: 2px 8px;
     border-radius: var(--border-radius-xs);
     font-weight: 500;
+    flex: none;
 }
 
 .instructions-panel {
