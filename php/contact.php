@@ -1,6 +1,47 @@
 <?php
 require('session.php');
 $_SESSION['current_url'] = current_url();
+
+// Variables pour le message de confirmation
+$message_status = '';
+$message_text = '';
+
+// Traitement du formulaire lors de la soumission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupération et nettoyage des données
+    $nom = htmlspecialchars(trim($_POST['nom']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $objet = htmlspecialchars(trim($_POST['objet']));
+    $message = htmlspecialchars(trim($_POST['message']));
+    
+    // Création du nouveau message
+    $nouveau_message = [
+        'nom' => $nom,
+        'email' => $email,
+        'objet' => $objet,
+        'message' => $message,
+        'date' => date('Y-m-d H:i:s')
+    ];
+    
+    // Lecture du fichier messages.json
+    $messages = [];
+    if (file_exists('../json/messages.json')) {
+        $messages_json = file_get_contents('../json/messages.json');
+        $messages = json_decode($messages_json, true) ?: [];
+    }
+    
+    // Ajout du nouveau message
+    $messages[] = $nouveau_message;
+    
+    // Sauvegarde dans le fichier
+    if (file_put_contents('../json/messages.json', json_encode($messages, JSON_PRETTY_PRINT))) {
+        $message_status = 'success';
+        $message_text = 'Votre message a bien été envoyé !';
+    } else {
+        $message_status = 'error';
+        $message_text = 'Une erreur est survenue lors de l\'envoi du message.';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,7 +67,7 @@ $_SESSION['current_url'] = current_url();
             <div class="left">
                 <div class="contact-info">
                     <span class="contact-title">Contactez - nous</span>
-                    <span class="contact-description">Envoyer-nous un mail, ou complétez le formulaire pour qu’on puisse
+                    <span class="contact-description">Envoyer-nous un mail, ou complétez le formulaire pour qu'on puisse
                         vous aider</span>
                     <a href="mailto:contact@marveltravel.com" class="contact-email">contact@marveltravel.com</a>
                 </div>
@@ -35,18 +76,18 @@ $_SESSION['current_url'] = current_url();
                     <div class="support-info">
                         <span class="support-title">Support client </span>
                         <span class="support-description">Un problème avec ta réservation ? Un portail dimensionnel qui
-                            s’est refermé trop tôt ? On est là pour toi ! Contacte-nous, et on réglera ça.</span>
+                            s'est refermé trop tôt ? On est là pour toi ! Contacte-nous, et on réglera ça.</span>
                     </div>
 
                     <div class="support-info">
                         <span class="support-title">Feedback et Suggestions</span>
-                        <span class="support-description">Tu as une idée de voyage intergalactique ou tu penses qu’on
+                        <span class="support-description">Tu as une idée de voyage intergalactique ou tu penses qu'on
                             devrait ajouter une escale à Wakanda ? On adore les bonnes idées !</span>
                     </div>
 
                     <div class="support-info">
                         <span class="support-title">Partenariat</span>
-                        <span class="support-description">Tu veux t’associer avec nous pour créer des expériences
+                        <span class="support-description">Tu veux t'associer avec nous pour créer des expériences
                             héroïques ? On est prêts à unir nos forces, faisons équipe, comme les Avengers, mais en
                             costard !</span>
                     </div>
@@ -61,18 +102,24 @@ $_SESSION['current_url'] = current_url();
                     <span class="form-description">Un problème, une idée, vous pouvez tout nous dire</span>
                 </div>
 
-                <form action="message.php" method="post" class="contact-form">
+                <form action="contact.php" method="post" class="contact-form">
+                    <?php if ($message_status): ?>
+                        <div class="alert alert-<?php echo $message_status; ?>">
+                            <?php echo $message_text; ?>
+                        </div>
+                    <?php endif; ?>
+                    
                     <?php
                     if (!isset($_SESSION['user'])) {
                         echo '<div class="form-row">
                             <input type="text" name="nom" id="nom" placeholder="Prénom" required autocomplete="nom">
-                            <input type="text" name="email" id="email" placeholder="Email" required autocomplete="email">
+                            <input type="email" name="email" id="email" placeholder="Email" required autocomplete="email">
                         </div>';
 
                     } else {
                         echo '<div class="form-row">
                             <input type="text" name="nom" value="' . $_SESSION['first_name'] . '" >
-                            <input type="text" name="email" value="' . $_SESSION['email'] . '" readonly>
+                            <input type="email" name="email" value="' . $_SESSION['email'] . '" readonly>
                         </div>';
                     } ?>
                     <div class="form-row">

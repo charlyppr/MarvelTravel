@@ -1,6 +1,14 @@
 <?php
 require_once('session.php');
 
+// Rediriger l'utilisateur vers la connexion s'il n'est pas connecté
+if (!isset($_SESSION['user'])) {
+    $_SESSION['error'] = "Vous devez être connecté pour accéder à votre panier.";
+    $_SESSION['current_url'] = current_url();
+    header("Location: connexion.php");
+    exit;
+}
+
 // Charger le panier depuis le JSON
 $panierJson = file_get_contents('../json/panier.json');
 $panier = json_decode($panierJson, true);
@@ -91,7 +99,15 @@ $voyages = json_decode($voyagesJson, true);
                             $voyage = null;
                             if (isset($voyages[$item['voyage_id']])) {
                                 $voyage = $voyages[$item['voyage_id']];
-                                $total += $voyage['prix'] * $item['nb_personnes'];
+                                // Calculer le prix de base + options
+                                $prix_item = $voyage['prix'] * $item['nb_personnes'] + ($item['prix_options'] ?? 0);
+                                
+                                // Appliquer la réduction si un code promo est présent
+                                if (isset($item['reduction'])) {
+                                    $prix_item = $prix_item - $item['reduction'];
+                                }
+                                
+                                $total += $prix_item;
                             }
                             
                             if($voyage):
@@ -105,24 +121,96 @@ $voyages = json_decode($voyagesJson, true);
                                 <div class="item-info">
                                     <div class="info-row">
                                         <span class="info-label">Date:</span>
-                                        <span class="info-value"><?php echo $item['date']; ?></span>
+                                        <span class="info-value">
+                                            <?php 
+                                            if (isset($item['date_debut']) && isset($item['date_fin'])) {
+                                                echo date('d/m/Y', strtotime($item['date_debut'])) . ' au ' . date('d/m/Y', strtotime($item['date_fin'])); 
+                                            } else {
+                                                echo $item['date']; // Pour compatibilité avec ancien format
+                                            }
+                                            ?>
+                                        </span>
                                     </div>
+                                    
                                     <div class="info-row">
-                                        <span class="info-label">Personnes:</span>
-                                        <span class="info-value"><?php echo $item['nb_personnes']; ?></span>
+                                        <span class="info-label">Voyageurs:</span>
+                                        <span class="info-value">
+                                            <?php 
+                                            if (isset($item['voyageurs']) && !empty($item['voyageurs'])) {
+                                                foreach ($item['voyageurs'] as $i => $voyageur) {
+                                                    echo $voyageur['prenom'] . ' ' . $voyageur['nom'];
+                                                    if ($i < count($item['voyageurs']) - 1) echo ', ';
+                                                }
+                                            } else {
+                                                echo $item['nb_personnes'] . ' personne(s)';
+                                            }
+                                            ?>
+                                        </span>
                                     </div>
+                                    
                                     <div class="info-row">
-                                        <span class="info-label">Prix unitaire:</span>
-                                        <span class="info-value"><?php echo number_format($voyage['prix'], 2, ',', ' '); ?> €</span>
-                                    </div>
-                                    <div class="info-row total-row">
-                                        <span class="info-label">Total:</span>
+                                        <span class="info-label">Prix base:</span>
                                         <span class="info-value"><?php echo number_format($voyage['prix'] * $item['nb_personnes'], 2, ',', ' '); ?> €</span>
                                     </div>
+                                    
+                                    <?php if (isset($item['prix_options']) && $item['prix_options'] > 0): ?>
+                                    <div class="info-row">
+                                        <span class="info-label">Options:</span>
+                                        <span class="info-value"><?php echo number_format($item['prix_options'], 2, ',', ' '); ?> €</span>
+                                    </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (isset($item['reduction']) && $item['reduction'] > 0): ?>
+                                    <div class="info-row reduction-row">
+                                        <span class="info-label">Réduction:</span>
+                                        <span class="info-value">-<?php echo number_format($item['reduction'], 2, ',', ' '); ?> €</span>
+                                    </div>
+                                    <?php endif; ?>
+                                    
+                                    <div class="info-row total-row">
+                                        <span class="info-label">Total:</span>
+                                        <span class="info-value">
+                                            <?php 
+                                            $total_item = $voyage['prix'] * $item['nb_personnes'] + ($item['prix_options'] ?? 0);
+                                            if (isset($item['reduction'])) {
+                                                $total_item -= $item['reduction'];
+                                            }
+                                            echo number_format($total_item, 2, ',', ' '); 
+                                            ?> €
+                                        </span>
+                                    </div>
+                                    
+                                    <?php if (isset($item['etape_atteinte'])): ?>
+                                    <div class="info-row progress-row">
+                                        <span class="info-label">Progression:</span>
+                                        <span class="info-value etape-<?php echo $item['etape_atteinte']; ?>">
+                                            Étape <?php echo $item['etape_atteinte']; ?> sur 4
+                                        </span>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="item-actions">
-                                <a href="etapes/etape1.php?id=<?php echo $voyage['id']; ?>&from_cart=1&cart_index=<?php echo $index; ?>" class="continue-btn">
+                                <?php
+                                // Déterminer la bonne URL en fonction de l'étape atteinte
+                                $etape_url = 'etapes/etape1.php'; // URL par défaut
+                                if (isset($item['etape_atteinte'])) {
+                                    switch ($item['etape_atteinte']) {
+                                        case 2:
+                                            $etape_url = 'etapes/etape2.php';
+                                            break;
+                                        case 3:
+                                            $etape_url = 'etapes/etape3.php';
+                                            break;
+                                        case 4:
+                                            $etape_url = 'etapes/etape4.php';
+                                            break;
+                                        default:
+                                            $etape_url = 'etapes/etape1.php';
+                                    }
+                                }
+                                ?>
+                                <a href="<?php echo $etape_url; ?>?id=<?php echo $voyage['id']; ?>&from_cart=1&cart_index=<?php echo $index; ?><?php echo isset($item['reduction']) ? '&promo_code=MARVEL10' : ''; ?>" class="continue-btn">
                                     Continuer
                                     <img src="../img/svg/arrow-right.svg" alt="Continuer">
                                 </a>

@@ -3,21 +3,44 @@ require_once('../session.php');
 require_once('../getapikey.php');
 check_auth('../connexion.php');
 
-// Récupérer l'ID du voyage
-$id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT) : null;
 
-// Redirection si l'ID n'est pas valide
-if ($id === null || $id === false) {
+// Récupérer l'ID du voyage en premier
+$id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+
+// Vérification de la validité de l'ID
+if ($id === null) {
     header('Location: ../destination.php');
     exit;
 }
 
-// Vérification du changement de voyage
+// Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
 if ($current_voyage_id !== $id) {
+    // ID différent, on efface les données de réservation
     clear_reservation_data();
     $_SESSION['current_voyage_id'] = $id;
 }
+
+// Mettre à jour l'étape dans le panier
+$panierJson = file_get_contents('../../json/panier.json');
+if ($panierJson !== false) {
+    $panier = json_decode($panierJson, true);
+    
+    // Chercher le voyage correspondant dans le panier
+    if (isset($panier['items'])) {
+        foreach ($panier['items'] as $index => $item) {
+            if ($item['voyage_id'] === $id) {
+                // Mettre à jour l'étape
+                $panier['items'][$index]['etape_atteinte'] = 4;
+                
+                // Sauvegarder le panier mis à jour
+                file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+                break;
+            }
+        }
+    }
+}
+
 
 // Récupération des données du voyage
 $json_file = "../../json/voyages.json";
@@ -28,7 +51,7 @@ if (!file_exists($json_file)) {
 
 $voyages = json_decode(file_get_contents($json_file), true);
 
-// Vérifier que l'ID est valide
+// Vérifier que l'ID du voyage est valide
 if (!isset($voyages[$id])) {
     header('Location: ../destination.php');
     exit;
@@ -118,23 +141,44 @@ $promo_code = '';
 $promo_message = '';
 $promo_status = '';
 
-// Traitement des données d'options ou du code promo si POST est défini
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Si on vient directement de l'étape 3 avec le bouton Continuer
-    if (isset($_POST['submit_to_etape4'])) {
-        // Traiter immédiatement les options
-        if (isset($_POST['options'])) {
-            $options_data = $_POST['options'];
+// Vérifier si un code promo est présent dans l'URL (venant du panier)
+if (isset($_GET['promo_code'])) {
+    $promo_code = htmlspecialchars(trim($_GET['promo_code']));
+    if ($promo_code === 'MARVEL10') {
+        // Code promo valide, appliquer 10% de réduction
+        $reduction = $prix_total_base * 0.1;
+        $prix_total = $prix_total_base - $reduction;
+        $promo_message = "Code promo appliqué ! -10% sur votre commande";
+        $promo_status = "success";
 
-            // Stockage des options en session avant tout autre traitement
-            $form_data3 = ['options' => $options_data];
-            store_form_data('etape3', $form_data3);
+        // Stocker le code promo en session
+        $_SESSION['promo_code'] = $promo_code;
+        $_SESSION['promo_reduction'] = $reduction;
+        
+        // Mettre à jour le panier avec la réduction
+        $panierJson = file_get_contents('../../json/panier.json');
+        $panier = json_decode($panierJson, true);
+        
+        // Déterminer l'index de l'item dans le panier
+        $item_index = null;
+        if (isset($panier['items'])) {
+            foreach ($panier['items'] as $index => $item) {
+                if ($item['voyage_id'] === $id) {
+                    $item_index = $index;
+                    break;
+                }
+            }
+        }
 
-            // Rafraîchir les données dans le script
-            $form_data3 = get_form_data('etape3');
+        if ($item_index !== null) {
+            $panier['items'][$item_index]['reduction'] = $reduction;
+            file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
         }
     }
+}
 
+// Traitement des données d'options ou du code promo si POST est défini
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Traitement du code promo
     if (isset($_POST['apply_promo']) && isset($_POST['promo_code'])) {
         $promo_code = htmlspecialchars(trim($_POST['promo_code']));
@@ -147,9 +191,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $promo_message = "Code promo appliqué ! -10% sur votre commande";
             $promo_status = "success";
 
-            // Stocker le code promo en session pour le conserver
+            // Stocker le code promo en session
             $_SESSION['promo_code'] = $promo_code;
             $_SESSION['promo_reduction'] = $reduction;
+            
+            // Déterminer l'index de l'item dans le panier
+            $item_index = null;
+            if (isset($panier['items'])) {
+                foreach ($panier['items'] as $index => $item) {
+                    if ($item['voyage_id'] === $id) {
+                        $item_index = $index;
+                        break;
+                    }
+                }
+            }
+
+            if ($item_index !== null) {
+                $panier['items'][$item_index]['reduction'] = $reduction;
+                file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+            }
         } else {
             // Code promo invalide
             $promo_message = "Code promo invalide";

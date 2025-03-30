@@ -87,22 +87,20 @@ if ($is_in_root) {
                         }
                     ?>" alt="Panier">
                     <?php
-                    // Adapter le chemin selon l'emplacement
-                    $json_path = $is_in_root ? 'json/panier.json' : 
-                                ($is_in_subdirectory ? '../../json/panier.json' : '../json/panier.json');
-                    
-                    // Charger le panier depuis le JSON
-                    $panierJson = file_get_contents($json_path);
-                    $panier = json_decode($panierJson, true);
-                    
-                    // Compter le nombre d'articles dans le panier
-                    $nb_articles = isset($panier['items']) ? count($panier['items']) : 0;
-                    
-                    // Afficher la pastille seulement s'il y a des articles
-                    if ($nb_articles > 0): 
+                    // N'afficher le compteur que si l'utilisateur est connecté
+                    if (isset($_SESSION['user'])) {
+                        $panier_path = dirname(dirname(__FILE__)) . '/json/panier.json';
+                        if (file_exists($panier_path)) {
+                            $panierJson = file_get_contents($panier_path);
+                            if ($panierJson !== false) {
+                                $panier = json_decode($panierJson, true);
+                                if (isset($panier['items']) && count($panier['items']) > 0) {
+                                    echo '<span class="cart-count">' . count($panier['items']) . '</span>';
+                                }
+                            }
+                        }
+                    }
                     ?>
-                        <span class="cart-count"><?php echo $nb_articles; ?></span>
-                    <?php endif; ?>
                 </a>
             </div>
             <?php

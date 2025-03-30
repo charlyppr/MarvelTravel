@@ -21,21 +21,47 @@ if ($current_voyage_id !== $id) {
 $panierJson = file_get_contents('../../json/panier.json');
 $panier = json_decode($panierJson, true);
 
+// Simplifier la gestion du panier - Mettre à jour l'étape atteinte
+if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
+    $cart_index = (int)$_GET['cart_index'];
+    
+    // Charger le panier existant
+    $panierJson = file_get_contents('../../json/panier.json');
+    if ($panierJson !== false) {
+        $panier = json_decode($panierJson, true);
+        
+        // Vérifier que l'élément existe dans le panier
+        if (isset($panier['items'][$cart_index])) {
+            // Forcer l'étape atteinte à 1
+            $panier['items'][$cart_index]['etape_atteinte'] = 1;
+            // Stocker les données pour les étapes
+            store_form_data('etape1', [
+                'date_debut' => $panier['items'][$cart_index]['date_debut'],
+                'date_fin' => $panier['items'][$cart_index]['date_fin'],
+                'nb_personne' => $panier['items'][$cart_index]['nb_personnes']
+            ]);
+            // Sauvegarder le panier mis à jour
+            file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+        }
+    }
+}
+
 // Récupérer les données du voyage dans le panier si on vient du panier
 $panier_data = null;
 if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
-    $cart_index = (int)$_GET['cart_index'];
+    $cart_index = (int) $_GET['cart_index'];
     if (isset($panier['items'][$cart_index])) {
         $panier_data = $panier['items'][$cart_index];
+        $panier['items'][$cart_index]['etape_atteinte'] = 1;
+        file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
     }
 }
 
 // Récupération des données
 if ($panier_data && $panier_data['voyage_id'] === $id) {
     // Si on vient du panier et que c'est le bon voyage, utiliser ces données
-    $dates = explode(' au ', $panier_data['date']);
-    $date_debut_value = $dates[0];
-    $date_fin_value = $dates[1];
+    $date_debut_value = $panier_data['date_debut'];
+    $date_fin_value = $panier_data['date_fin'];
     $nb_personne_value = $panier_data['nb_personnes'];
 } else {
     // Vérifier d'abord s'il y a des données en session de l'étape 1
@@ -94,63 +120,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date_debut = $_POST['date_debut'];
     $date_fin = $_POST['date_fin'];
     $nb_personne = $_POST['nb_personne'];
-    
+
     // Stocker les données pour les étapes suivantes
     store_form_data('etape1', [
         'date_debut' => $date_debut,
         'date_fin' => $date_fin,
         'nb_personne' => $nb_personne
     ]);
-    
-    // Ajouter au panier UNIQUEMENT si on ne vient pas du panier
+
+
+    // Ajouter au panier de manière simplifiée
     if (!isset($_GET['from_cart'])) {
         // Charger le panier existant
         $panierJson = file_get_contents('../../json/panier.json');
         $panier = json_decode($panierJson, true);
+        if (!$panier) {
+            $panier = ["items" => []];
+        }
 
-        // Vérifier si le voyage existe déjà avec les mêmes dates
-        $voyage_existe = false;
+        // Créer le nouvel élément avec la structure complète mais simplifiée
+        $nouvel_item = [
+            'voyage_id' => $id,
+            'date_debut' => $date_debut,
+            'date_fin' => $date_fin,
+            'nb_personnes' => $nb_personne,
+            'prix_unitaire' => $voyage['prix'],
+            'voyageurs' => $voyageurs,
+            'options' => [],
+            'prix_options' => 0,
+            'etape_atteinte' => 1
+        ];
+
+        // Vérifier si le voyage existe déjà
+        $item_index = null;
         if (isset($panier['items'])) {
-            foreach ($panier['items'] as $item) {
-                if ($item['voyage_id'] === $id && 
-                    $item['date'] === $date_debut . ' au ' . $date_fin) {
-                    $voyage_existe = true;
+            foreach ($panier['items'] as $index => $item) {
+                if ($item['voyage_id'] === $id) {
+                    $item_index = $index;
                     break;
                 }
             }
         }
 
-        // Ajouter seulement si le voyage n'existe pas déjà
-        if (!$voyage_existe) {
-            // Créer le nouvel élément
-            $nouvel_item = [
-                'voyage_id' => $id,
-                'date' => $date_debut . ' au ' . $date_fin,
-                'nb_personnes' => $nb_personne,
-                'prix_unitaire' => $voyage['prix']
-            ];
-
-            // Ajouter l'élément au panier
-            if (!isset($panier['items'])) {
-                $panier['items'] = [];
-            }
+        // Mettre à jour ou ajouter l'item
+        if ($item_index !== null) {
+            $panier['items'][$item_index] = $nouvel_item;
+        } else {
             $panier['items'][] = $nouvel_item;
-
-            // Sauvegarder le panier
-            file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
         }
+
+        // Sauvegarder le panier
+        file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
     }
 
-    // Stocker les infos pour étape 2
-    $_SESSION['reservation'] = [
-        'voyage_id' => $id,
-        'date_debut' => $date_debut,
-        'date_fin' => $date_fin,
-        'nb_personnes' => $nb_personne
-    ];
-    
     // Rediriger vers l'étape 2 avec le bon chemin
-    header('Location: etape2.php?id=' . $id . (isset($_GET['from_cart']) ? '&from_cart=1&cart_index=' . $_GET['cart_index'] : ''));
+    header(
+        'Location: etape2.php?id=' . $id .
+        ((isset($_GET['from_cart']) && isset($_GET['cart_index'])) ?
+            '&from_cart=1&cart_index=' . $_GET['cart_index'] :
+            (isset($_POST['from_cart']) && isset($_POST['cart_index']) ?
+                '&from_cart=1&cart_index=' . $_POST['cart_index'] : '')
+        )
+    );
     exit;
 }
 ?>
@@ -176,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="reservation-container">
         <div class="booking-header">
             <div class="breadcrumb">
-                <a href="../destination.php" class="breadcrumb-link">
+                <a href="../destination.php?id=<?php echo $id; ?>" class="breadcrumb-link">
                     <img src="../../img/svg/arrow-left.svg" alt="Retour">
                     <span>Destinations</span>
                 </a>
@@ -236,6 +267,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="booking-form-container">
                 <form action="etape1.php?id=<?php echo $id; ?>" method="post" id="reservationForm" class="booking-form">
+                    <?php if (isset($_GET['from_cart']) && isset($_GET['cart_index'])): ?>
+                        <input type="hidden" name="from_cart" value="1">
+                        <input type="hidden" name="cart_index" value="<?php echo $_GET['cart_index']; ?>">
+                    <?php endif; ?>
+
+                    <?php if (!empty($voyageurs_data)): ?>
+                        <?php foreach ($voyageurs_data as $index => $voyageur): ?>
+                            <input type="hidden" name="civilite_<?php echo $index + 1; ?>"
+                                value="<?php echo htmlspecialchars($voyageur['civilite']); ?>">
+                            <input type="hidden" name="nom_<?php echo $index + 1; ?>"
+                                value="<?php echo htmlspecialchars($voyageur['nom']); ?>">
+                            <input type="hidden" name="prenom_<?php echo $index + 1; ?>"
+                                value="<?php echo htmlspecialchars($voyageur['prenom']); ?>">
+                            <input type="hidden" name="date_naissance_<?php echo $index + 1; ?>"
+                                value="<?php echo htmlspecialchars($voyageur['date_naissance']); ?>">
+                            <input type="hidden" name="nationalite_<?php echo $index + 1; ?>"
+                                value="<?php echo htmlspecialchars($voyageur['nationalite']); ?>">
+                            <input type="hidden" name="passport_<?php echo $index + 1; ?>"
+                                value="<?php echo htmlspecialchars($voyageur['passport']); ?>">
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     <div class="card form-card">
                         <div class="card-header">
                             <img src="../../img/svg/calendar.svg" alt="Dates" class="card-icon">
@@ -286,7 +338,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="form-actions">
-                                <a href="../destination.php" class="secondary-button">
+                                <a href="../destination.php?id=<?php echo $id; ?>" class="secondary-button">
                                     <img src="../../img/svg/arrow-left.svg" alt="Retour">
                                     Retour aux destinations
                                 </a>

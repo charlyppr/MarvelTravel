@@ -258,14 +258,97 @@ body {
 }
 
 .voyages-card {
+    overflow-y: auto;
     grid-column: span 8;
-    --order: 3;
+    /* --order: 3; */
 }
 
-.messages-card {
-    grid-column: span 4;
-    --order: 4;
+/* Messages styles */
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
+
+.message-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-medium);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.message-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-accent-faded);
+    transform: translateY(-2px);
+}
+
+.message-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.message-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-direction: row;
+}
+
+.message-subject {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-text-cream);
+}
+
+.message-date {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.message-preview {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+.message-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.message-time {
+    font-size: 12px;
+    color: var(--color-accent);
+    font-weight: 500;
+}
+
 
 /* Style des cartes avec effet de verre et hover amélioré */
 .card {
@@ -1092,4 +1175,8 @@ body {
         width: calc(100% - 32px);
         right: 16px;
     }
+}
+
+.card.messages-card {
+    grid-column: span 4;
 }

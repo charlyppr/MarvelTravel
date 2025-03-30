@@ -412,7 +412,7 @@ if ($payment_validated) {
             </div>
 
             <div class="confirmation-actions">
-                <a href="etapes/etape4.php?id=<?php echo $voyage_id; ?>" class="action-button retry-button">
+                <a href="etapes/etape4.php?id=<?php echo $voyage_id; ?><?php echo !empty($promo_code) ? '&promo_code=' . urlencode($promo_code) : ''; ?>" class="action-button retry-button">
                     <img src="../img/svg/refresh.svg" alt="Réessayer">
                     Réessayer le paiement
                 </a>

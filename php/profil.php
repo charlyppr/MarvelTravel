@@ -59,15 +59,24 @@ if (count($commandes_utilisateur) > 0) {
     });
 }
 
-// Indicateur de succès pour les messages flash après modification
-$success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : null;
-$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : null;
+// Récupérer les messages de l'utilisateur
+$messages = [];
+$messages_file = '../json/messages.json';
+if (file_exists($messages_file)) {
+    $messages_json = file_get_contents($messages_file);
+    $all_messages = json_decode($messages_json, true) ?: [];
+    
+    // Filtrer les messages pour ne garder que ceux de l'utilisateur connecté
+    $messages = array_filter($all_messages, function($msg) {
+        return $msg['email'] === $_SESSION['email'];
+    });
+    
+    // Trier les messages par date (du plus récent au plus ancien)
+    usort($messages, function($a, $b) {
+        return strtotime($b['date']) - strtotime($a['date']);
+    });
+}
 
-// Supprimer les messages après les avoir récupérés
-if (isset($_SESSION['success_message']))
-    unset($_SESSION['success_message']);
-if (isset($_SESSION['error_message']))
-    unset($_SESSION['error_message']);
 ?>
 
 <!DOCTYPE html>
@@ -88,22 +97,6 @@ if (isset($_SESSION['error_message']))
 
     <div class="main-container">
         <?php include 'sidebar.php'; ?>
-
-        <?php if ($success_message): ?>
-            <div class="notification success">
-                <img src="../img/svg/check-circle.svg" alt="Succès">
-                <p><?= htmlspecialchars($success_message) ?></p>
-                <button class="close-notification">&times;</button>
-            </div>
-        <?php endif; ?>
-
-        <?php if ($error_message): ?>
-            <div class="notification error">
-                <img src="../img/svg/alert-circle.svg" alt="Erreur">
-                <p><?= htmlspecialchars($error_message) ?></p>
-                <button class="close-notification">&times;</button>
-            </div>
-        <?php endif; ?>
 
         <div class="content-container-div">
             <div class="content-container">
@@ -274,10 +267,38 @@ if (isset($_SESSION['error_message']))
                             </div>
 
                             <div class="card-content">
-                                <div class="empty-state">
-                                    <img src="../img/svg/filter-empty.svg" alt="Aucun message">
-                                    <p>Vous n'avez pas de messages</p>
-                                </div>
+                                <?php if (!empty($messages)): ?>
+                                    <div class="messages-list">
+                                        <?php 
+                                        $count = 0;
+                                        foreach ($messages as $msg): 
+                                            if ($count >= 3) break; // Limite à 3 messages
+                                            $count++;
+                                        ?>
+                                            <div class="message-item">
+                                                <div class="message-icon">
+                                                    <img src="../img/svg/mail.svg" alt="Message">
+                                                </div>
+                                                <div class="message-details">
+                                                    <div class="message-header">
+                                                        <span class="message-subject"><?= htmlspecialchars($msg['objet']) ?></span>
+                                                        <span class="message-date"><?= date('d/m/Y', strtotime($msg['date'])) ?></span>
+                                                    </div>
+                                                    <span class="message-preview"><?= htmlspecialchars(substr($msg['message'], 0, 100)) ?>...</span>
+                                                    <div class="message-meta">
+                                                        <span class="message-time"><?= date('H:i', strtotime($msg['date'])) ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        
+                                    </div>
+                                <?php else: ?>
+                                    <div class="empty-state">
+                                        <img src="../img/svg/filter-empty.svg" alt="Aucun message">
+                                        <p>Vous n'avez pas de messages</p>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

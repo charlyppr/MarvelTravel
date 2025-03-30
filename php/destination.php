@@ -71,6 +71,54 @@ $voyages_page = array_slice($voyages_filtered, $offset, $voyages_per_page);
 
 // Sélectionner les 4 premiers voyages pour la section "Meilleures destinations"
 $best_voyages = array_slice($voyages, 0, 4);
+
+// Récupérer l'ID du voyage si présent dans l'URL
+$voyage_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+
+// Si un ID de voyage est présent, vérifier s'il y a des données de réservation
+if ($voyage_id !== null) {
+    // Vérifier si l'ID du voyage est déjà en session
+    $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
+    
+    // Si l'ID n'est pas en session ou est différent, charger les données du panier
+    if ($current_voyage_id !== $voyage_id) {
+        // Chercher dans le panier
+        $panierJson = file_get_contents('../json/panier.json');
+        if ($panierJson !== false) {
+            $panier = json_decode($panierJson, true);
+            if (isset($panier['items'])) {
+                foreach ($panier['items'] as $item) {
+                    if ($item['voyage_id'] === $voyage_id) {
+                        // Stocker l'ID du voyage en session
+                        $_SESSION['current_voyage_id'] = $voyage_id;
+                        
+                        // Stocker les données de l'étape 1
+                        store_form_data('etape1', [
+                            'date_debut' => $item['date_debut'],
+                            'date_fin' => $item['date_fin'],
+                            'nb_personne' => $item['nb_personnes']
+                        ]);
+                        
+                        // Stocker les données de l'étape 2 si disponibles
+                        if (isset($item['voyageurs']) && !empty($item['voyageurs'])) {
+                            store_form_data('etape2', [
+                                'voyageurs' => $item['voyageurs']
+                            ]);
+                        }
+                        
+                        // Stocker les données de l'étape 3 si disponibles
+                        if (isset($item['options'])) {
+                            store_form_data('etape3', [
+                                'options' => $item['options']
+                            ]);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>

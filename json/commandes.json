@@ -309,5 +309,44 @@
                 "total": 49.99
             }
         ]
+    },
+    {
+        "transaction": "0f2680b67aab564592ed29b2",
+        "montant": 427.46,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "b0348832392008cbc064fe728682e723",
+        "acheteur": "hello@gmail.com",
+        "voyage": "New York",
+        "date_debut": "",
+        "date_fin": "",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Française",
+                "passport": "2466910850"
+            }
+        ],
+        "date_achat": "2025-03-30 19:14:38",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Statue de la Liberté",
+                "option": "Traversée en ferry",
+                "prix_unitaire": 25,
+                "nb_participants": 1,
+                "total": 25
+            }
+        ]
     }
 ]

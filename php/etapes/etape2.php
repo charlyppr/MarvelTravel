@@ -10,8 +10,28 @@ if ($id === null) {
     exit;
 }
 
-// Vérifier si l'utilisateur consulte une nouvelle destination
-// et effacer les données si c'est le cas
+
+$panierJson = file_get_contents('../../json/panier.json');
+if ($panierJson !== false) {
+    $panier = json_decode($panierJson, true);
+
+    // Chercher le voyage correspondant dans le panier
+    if (isset($panier['items'])) {
+        foreach ($panier['items'] as $index => $item) {
+            if ($item['voyage_id'] === $id) {
+                // Mettre à jour l'étape
+                $panier['items'][$index]['etape_atteinte'] = 2;
+
+                // Sauvegarder le panier mis à jour
+                file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+                break;
+            }
+        }
+    }
+}
+
+
+// Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
 if ($current_voyage_id !== $id) {
     // ID différent, on efface les données de réservation
@@ -20,22 +40,12 @@ if ($current_voyage_id !== $id) {
 }
 
 // Récupération des données de l'étape 1
-if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personne'])) {
-    // Si on reçoit des données POST, on les stocke en session
-    $form_data = [
-        'date_debut' => $_POST['date_debut'],
-        'date_fin' => $_POST['date_fin'],
-        'nb_personne' => $_POST['nb_personne']
-    ];
-    store_form_data('etape1', $form_data);
-} else {
-    // Sinon, on tente de récupérer les données de la session
-    $form_data = get_form_data('etape1');
-    if (!$form_data) {
-        header('Location: ../destination.php');
-        exit;
-    }
+$form_data = get_form_data('etape1');
+if (!$form_data) {
+    header('Location: ../destination.php');
+    exit;
 }
+
 
 $date_debut = $form_data['date_debut'];
 $date_fin = $form_data['date_fin'];
@@ -57,7 +67,7 @@ if (!isset($voyages[$id])) {
 
 $voyage = $voyages[$id];
 
-// Récupérer les données des voyageurs (si elles existent)
+// Récupérer les données des voyageurs
 $voyageursData = [];
 if ($form_data2 = get_form_data('etape2')) {
     $voyageursData = $form_data2['voyageurs'];
@@ -87,6 +97,61 @@ $prix_total = $prix_base * $nb_personne;
 
 // Calculer quelques éléments supplémentaires pour le résumé
 $prix_par_jour = $duree_sejour > 0 ? ($prix_base * $nb_personne / $duree_sejour) : 0;
+
+// Traitement du formulaire
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupération des voyageurs
+    $voyageurs = [];
+    for ($i = 1; $i <= $nb_personne; $i++) {
+        if (isset($_POST['nom_' . $i]) && isset($_POST['prenom_' . $i])) {
+            $voyageurs[] = [
+                'civilite' => $_POST['civilite_' . $i],
+                'nom' => $_POST['nom_' . $i],
+                'prenom' => $_POST['prenom_' . $i],
+                'date_naissance' => $_POST['date_naissance_' . $i],
+                'nationalite' => $_POST['nationalite_' . $i],
+                'passport' => $_POST['passport_' . $i]
+            ];
+        }
+    }
+
+    // Stocker les données pour l'étape suivante
+    $form_data = [
+        'voyageurs' => $voyageurs
+    ];
+    store_form_data('etape2', $form_data);
+
+    // Mettre à jour le panier
+    $panierJson = file_get_contents('../../json/panier.json');
+    $panier = json_decode($panierJson, true);
+
+    // Déterminer l'index de l'item dans le panier
+    $item_index = null;
+    if (isset($panier['items'])) {
+        foreach ($panier['items'] as $index => $item) {
+            if ($item['voyage_id'] === $id) {
+                $item_index = $index;
+                break;
+            }
+        }
+    }
+
+    // Mettre à jour le panier si on a trouvé l'item
+    if ($item_index !== null) {
+        // Mettre à jour les informations des voyageurs
+        $panier['items'][$item_index]['voyageurs'] = $voyageurs;
+
+        // Sauvegarder le panier mis à jour
+        $success = file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+        if ($success === false) {
+            error_log("Impossible d'écrire dans le fichier panier.json");
+        }
+    }
+
+    // Rediriger vers l'étape 3
+    header('Location: etape3.php?id=' . $id);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -186,40 +251,49 @@ $prix_par_jour = $duree_sejour > 0 ? ($prix_base * $nb_personne / $duree_sejour)
                                 <div class="detail-value"><?php echo number_format($prix_total, 2, ',', ' '); ?> €</div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="instructions-panel">
-                        <h2 class="instructions-title">Informations importantes</h2>
-                        <p class="instructions-text">
-                            Pour chaque voyageur, veuillez saisir les informations telles qu'elles apparaissent sur le
-                            passeport multiversel. Ces informations sont nécessaires pour la validation de votre voyage
-                            inter-dimensions et garantir votre sécurité à travers le multivers Marvel.
-                        </p>
-                        <div class="instructions-note">
-                            <img src="../../img/svg/alert-circle.svg" alt="Note" class="note-icon">
-                            <p>Les informations doivent correspondre exactement à celles de vos documents d'identité.
-                                Toute erreur peut entraîner des complications lors du passage entre les dimensions.</p>
+                        <div class="instructions-panel">
+                            <h2 class="instructions-title">Informations importantes</h2>
+                            <p class="instructions-text">
+                                Pour chaque voyageur, veuillez saisir les informations telles qu'elles apparaissent sur
+                                le
+                                passeport multiversel. Ces informations sont nécessaires pour la validation de votre
+                                voyage
+                                inter-dimensions et garantir votre sécurité à travers le multivers Marvel.
+                            </p>
+                            <div class="instructions-note">
+                                <img src="../../img/svg/alert-circle.svg" alt="Note" class="note-icon">
+                                <p>Les informations doivent correspondre exactement à celles de vos documents
+                                    d'identité.
+                                    Toute erreur peut entraîner des complications lors du passage entre les dimensions.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="travelers-form-container">
-                <form action="etape3.php?id=<?php echo $id; ?>" method="post" id="travelersForm" class="travelers-form">
+                <form action="etape2.php?id=<?php echo $id; ?>" method="post" id="travelersForm" class="travelers-form">
+                    <?php if (isset($_GET['from_cart']) && isset($_GET['cart_index'])): ?>
+                        <input type="hidden" name="from_cart" value="1">
+                        <input type="hidden" name="cart_index" value="<?php echo $_GET['cart_index']; ?>">
+                    <?php endif; ?>
                     <input type="hidden" name="date_debut" value="<?php echo htmlspecialchars($date_debut); ?>">
                     <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
                     <input type="hidden" name="nb_personne" value="<?php echo $nb_personne; ?>">
 
                     <?php for ($i = 1; $i <= $nb_personne; $i++): ?>
                         <?php
-                        // Récupérer les données du voyageur si elles existent
+                        // Initialiser les variables avec des valeurs par défaut
                         $civilite = '';
                         $nom = '';
                         $prenom = '';
                         $date_naissance = '';
                         $nationalite = '';
                         $passport = '';
-
+                        
+                        // Si des données existent pour ce voyageur, les utiliser
                         if (isset($voyageursData[$i - 1])) {
                             $civilite = $voyageursData[$i - 1]['civilite'];
                             $nom = $voyageursData[$i - 1]['nom'];
@@ -359,7 +433,8 @@ $prix_par_jour = $duree_sejour > 0 ? ($prix_base * $nb_personne / $duree_sejour)
                             </div>
 
                             <div class="form-actions">
-                                <a href="etape1.php?id=<?php echo $id; ?>" class="secondary-button">
+                                <a href="etape1.php?id=<?php echo $id; ?><?php echo isset($_GET['from_cart']) && isset($_GET['cart_index']) ? '&from_cart=1&cart_index=' . $_GET['cart_index'] : ''; ?>"
+                                    class="secondary-button">
                                     <img src="../../img/svg/arrow-left.svg" alt="Retour">
                                     Modifier les dates
                                 </a>

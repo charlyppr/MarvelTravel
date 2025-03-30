@@ -11,8 +11,7 @@ if ($id === null) {
     exit;
 }
 
-// Vérifier si l'utilisateur consulte une nouvelle destination
-// et effacer les données si c'est le cas
+// Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
 if ($current_voyage_id !== $id) {
     // ID différent, on efface les données de réservation
@@ -24,7 +23,7 @@ if ($current_voyage_id !== $id) {
 $json_file = "../../json/voyages.json";
 $voyages = json_decode(file_get_contents($json_file), true);
 
-// Vérifier que l'ID est valide
+// Vérifier que l'ID du voyage est valide
 if (!isset($voyages[$id])) {
     header('Location: ../destination.php');
     exit;
@@ -32,62 +31,23 @@ if (!isset($voyages[$id])) {
 
 $voyage = $voyages[$id];
 
-// Récupération des données des étapes précédentes
-if (isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personne'])) {
-    // Si on reçoit des données POST, on les stocke en session
-    $form_data1 = [
-        'date_debut' => $_POST['date_debut'],
-        'date_fin' => $_POST['date_fin'],
-        'nb_personne' => $_POST['nb_personne']
-    ];
-    store_form_data('etape1', $form_data1);
+// Récupérer les données des étapes précédentes
+$form_data1 = get_form_data('etape1');
+$form_data2 = get_form_data('etape2');
 
-    // Récupération des infos voyageurs depuis l'étape 2
-    $voyageurs = [];
-    for ($i = 1; $i <= $form_data1['nb_personne']; $i++) {
-        if (isset($_POST['nom_' . $i]) && isset($_POST['prenom_' . $i])) {
-            $voyageurs[] = [
-                'civilite' => $_POST['civilite_' . $i],
-                'nom' => $_POST['nom_' . $i],
-                'prenom' => $_POST['prenom_' . $i],
-                'date_naissance' => $_POST['date_naissance_' . $i],
-                'nationalite' => $_POST['nationalite_' . $i],
-                'passport' => $_POST['passport_' . $i]
-            ];
-        }
-    }
+// Ajouter cette ligne pour récupérer les options précédemment sélectionnées
+$optionsData = get_form_data('etape3')['options'] ?? [];
 
-    $form_data2 = [
-        'voyageurs' => $voyageurs
-    ];
-    store_form_data('etape2', $form_data2);
-
-    // Initialiser les variables ici également
-    $date_debut = $form_data1['date_debut'];
-    $date_fin = $form_data1['date_fin'];
-    $nb_personne = (int) $form_data1['nb_personne'];
-
-} else {
-    // Sinon, on tente de récupérer les données de la session
-    $form_data1 = get_form_data('etape1');
-    $form_data2 = get_form_data('etape2');
-
-    if (!$form_data1 || !$form_data2) {
-        header('Location: ../destination.php');
-        exit;
-    }
-
-    $date_debut = $form_data1['date_debut'];
-    $date_fin = $form_data1['date_fin'];
-    $nb_personne = (int) $form_data1['nb_personne'];
-    $voyageurs = $form_data2['voyageurs'];
+if (!$form_data1 || !$form_data2) {
+    header('Location: ../destination.php');
+    exit;
 }
 
-// Récupérer les options précédemment sélectionnées (si elles existent)
-$optionsData = [];
-if ($form_data3 = get_form_data('etape3')) {
-    $optionsData = $form_data3['options'];
-}
+$date_debut = $form_data1['date_debut'];
+$date_fin = $form_data1['date_fin'];
+$nb_personne = (int) $form_data1['nb_personne'];
+$voyageurs = $form_data2['voyageurs'];
+
 
 // Calculer les dates en format lisible
 $date_debut_obj = new DateTime($date_debut);
@@ -103,7 +63,7 @@ $duree_sejour = $interval->days;
 $prix_base = $voyage['prix'] * $nb_personne;
 $prix_options = 0;
 
-// Calculer le prix des options déjà sélectionnées (s'il y en a)
+// Calculer le prix des options déjà sélectionnées
 if (!empty($optionsData)) {
     foreach ($optionsData as $etape_index => $etape_options) {
         foreach ($etape_options as $option_index => $option_data) {
@@ -121,16 +81,60 @@ if (!empty($optionsData)) {
 $prix_total_avec_options = $prix_base + $prix_options;
 
 // Fonction pour vérifier si une étape a des options disponibles
-function hasOptions($etape)
-{
+function hasOptions($etape) {
     return !empty($etape['options']);
+}
+
+// Mettre à jour l'étape dans le panier
+$panierJson = file_get_contents('../../json/panier.json');
+if ($panierJson !== false) {
+    $panier = json_decode($panierJson, true);
+    
+    // Chercher le voyage correspondant dans le panier
+    if (isset($panier['items'])) {
+        foreach ($panier['items'] as $index => $item) {
+            if ($item['voyage_id'] === $id) {
+                // Mettre à jour l'étape
+                $panier['items'][$index]['etape_atteinte'] = 3;
+                
+                // Sauvegarder le panier mis à jour
+                file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+                break;
+            }
+        }
+    }
+}
+
+// Au début du fichier
+$cart_index = isset($_GET['cart_index']) ? $_GET['cart_index'] : null;
+$panier = json_decode(file_get_contents('../../json/panier.json'), true);
+
+// Récupérer les options existantes
+$options_selectionnees = [];
+if ($cart_index !== null && isset($panier['items'][$cart_index]['options'])) {
+    $options_selectionnees = $panier['items'][$cart_index]['options'];
 }
 
 // Gérer la soumission du formulaire des options
 if (isset($_POST['submit_options'])) {
-    // On sait que c'est une soumission du formulaire de l'étape 3
-    // Initialiser un tableau vide pour les options si aucune n'est sélectionnée
-    $options = isset($_POST['options']) ? $_POST['options'] : [];
+    $options = [];
+    
+    // Parcourir toutes les options soumises
+    if (isset($_POST['options']) && is_array($_POST['options'])) {
+        foreach ($_POST['options'] as $etape_index => $etape_options) {
+            if (!isset($options[$etape_index])) {
+                $options[$etape_index] = [];
+            }
+            
+            foreach ($etape_options as $option_index => $option_data) {
+                if (isset($option_data['voyageurs']) && is_array($option_data['voyageurs'])) {
+                    $options[$etape_index][$option_index] = [
+                        'voyageurs' => array_map('intval', $option_data['voyageurs'])
+                    ];
+                }
+            }
+        }
+    }
     
     $form_data3 = [
         'options' => $options
@@ -139,7 +143,52 @@ if (isset($_POST['submit_options'])) {
     // Stocker les données en session
     store_form_data('etape3', $form_data3);
     
-    // Rediriger vers l'étape 4 après avoir stocké les options
+    // Mettre à jour le panier
+    $panierJson = file_get_contents('../../json/panier.json');
+    $panier = json_decode($panierJson, true);
+    
+    // Déterminer l'index de l'item dans le panier
+    $item_index = null;
+    if (isset($panier['items'])) {
+        foreach ($panier['items'] as $index => $item) {
+            if ($item['voyage_id'] === $id) {
+                $item_index = $index;
+                break;
+            }
+        }
+    }
+
+    if ($item_index !== null) {
+        // Mettre à jour les options dans le panier
+        $panier['items'][$item_index]['options'] = $options;
+        
+        // Calculer le prix des options
+        $prix_options_total = 0;
+        if (!empty($options)) {
+            foreach ($options as $etape_index => $etape_options) {
+                foreach ($etape_options as $option_index => $option_data) {
+                    if (isset($option_data['voyageurs']) && is_array($option_data['voyageurs'])) {
+                        $nb_participants = count($option_data['voyageurs']);
+                        if ($nb_participants > 0 && isset($voyage['etapes'][$etape_index]['options'][$option_index]['prix'])) {
+                            $option_prix = $voyage['etapes'][$etape_index]['options'][$option_index]['prix'];
+                            $prix_options_total += $option_prix * $nb_participants;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Mettre à jour le prix des options et l'étape atteinte
+        $panier['items'][$item_index]['prix_options'] = $prix_options_total;
+        
+        // Sauvegarder le panier mis à jour
+        $success = file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
+        if ($success === false) {
+            error_log("Impossible d'écrire dans le fichier panier.json");
+        }
+    }
+    
+    // Rediriger vers l'étape 4
     header("Location: etape4.php?id=" . $id);
     exit;
 }
@@ -441,7 +490,7 @@ if (isset($_POST['submit_options'])) {
                             </div>
                             
                             <div class="form-actions">
-                                <a href="etape2.php?id=<?php echo $id; ?>" class="secondary-button">
+                                <a href="etape2.php?id=<?php echo $id; ?>&back=1" class="secondary-button">
                                     <img src="../../img/svg/arrow-left.svg" alt="Retour">
                                     Retour aux voyageurs
                                 </a>
