@@ -533,5 +533,427 @@
                 "total": 150
             }
         ]
+    },
+    {
+        "transaction": "ff126f7ef04bc96abf88ea23",
+        "montant": 5529.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "a8344fda136d4e1beccb85a4628afdfe",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-03-31",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 11:48:04",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Marché tribal",
+                "prix_unitaire": 250,
+                "nb_participants": 1,
+                "total": 250
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Visite du temple",
+                "prix_unitaire": 180,
+                "nb_participants": 1,
+                "total": 180
+            }
+        ]
+    },
+    {
+        "transaction": "ff126f7ef04bc96abf88ea23",
+        "montant": 5529.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "a8344fda136d4e1beccb85a4628afdfe",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 11:48:08",
+        "options": []
+    },
+    {
+        "transaction": "ff126f7ef04bc96abf88ea23",
+        "montant": 5529.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "a8344fda136d4e1beccb85a4628afdfe",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 11:48:33",
+        "options": []
+    },
+    {
+        "transaction": "ff126f7ef04bc96abf88ea23",
+        "montant": 5529.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "a8344fda136d4e1beccb85a4628afdfe",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 12:03:58",
+        "options": []
+    },
+    {
+        "transaction": "c9b92b529441037e33db813c",
+        "montant": 5099.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "0ac6d0e003e6404041cbabb8c6c07b66",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 12:12:25",
+        "options": []
+    },
+    {
+        "transaction": "ce1a2a0896bf8976f9d08096",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "1cfdfb72c5716398d4111417ee2ab3a3",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-05",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 12:20:23",
+        "options": []
+    },
+    {
+        "transaction": "0121ded6bfea79831affa9f5",
+        "montant": 434.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "2535f744835c0c4b404f063b0310fee6",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "",
+        "date_fin": "",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 13:33:03",
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    },
+    {
+        "transaction": "0121ded6bfea79831affa9f5",
+        "montant": 434.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "2535f744835c0c4b404f063b0310fee6",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 13:33:17",
+        "options": []
+    },
+    {
+        "transaction": "0121ded6bfea79831affa9f5",
+        "montant": 434.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "2535f744835c0c4b404f063b0310fee6",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 13:33:18",
+        "options": []
+    },
+    {
+        "transaction": "b749cda9f21955cc9f66b542",
+        "montant": 429.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "22c3f49ae6ea86c187a9b3b070c86d5f",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 13:51:55",
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Balade à vélo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            }
+        ]
+    },
+    {
+        "transaction": "b749cda9f21955cc9f66b542",
+        "montant": 429.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "22c3f49ae6ea86c187a9b3b070c86d5f",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 13:54:08",
+        "options": []
+    },
+    {
+        "transaction": "22520bb09e7967ad51efbbdd",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "eb872e7503e92b79558e4cf1b95925b4",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-03",
+        "date_fin": "2025-04-05",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 14:04:06",
+        "options": []
+    },
+    {
+        "transaction": "22520bb09e7967ad51efbbdd",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "eb872e7503e92b79558e4cf1b95925b4",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 14:04:20",
+        "options": []
+    },
+    {
+        "transaction": "22520bb09e7967ad51efbbdd",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "eb872e7503e92b79558e4cf1b95925b4",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 14:04:22",
+        "options": []
+    },
+    {
+        "transaction": "782c6280a160a72505222076",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "7b0c8ed5181aac7fd833515dd5d608fb",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "",
+        "date_fin": "",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 14:04:49",
+        "options": []
+    },
+    {
+        "transaction": "782c6280a160a72505222076",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "7b0c8ed5181aac7fd833515dd5d608fb",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 14:04:55",
+        "options": []
+    },
+    {
+        "transaction": "782c6280a160a72505222076",
+        "montant": 399.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "7b0c8ed5181aac7fd833515dd5d608fb",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": null,
+        "date_debut": null,
+        "date_fin": null,
+        "nb_personne": 0,
+        "voyageurs": null,
+        "date_achat": "2025-03-31 14:04:59",
+        "options": []
+    },
+    {
+        "transaction": "0abceecfb3cbf8b10555760d",
+        "reservation_id": "MT-1B22092E",
+        "montant": 424.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "bf6216ac3033fcc6388c223aef52f436",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 15:09:07",
+        "options": [
+            {
+                "etape": "Statue de la Liberté",
+                "option": "Traversée en ferry",
+                "prix_unitaire": 25,
+                "nb_participants": 1,
+                "total": 25
+            }
+        ]
+    },
+    {
+        "transaction": "b4510a9bda122742f702b57a",
+        "reservation_id": "MT-5FB42C79",
+        "montant": 1232.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "66fe43eb3fcc241a4ba74568041b0418",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Hala",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 15:10:24",
+        "options": [
+            {
+                "etape": "Capitale Kree",
+                "option": "Visite du palais impérial",
+                "prix_unitaire": 70,
+                "nb_participants": 1,
+                "total": 70
+            },
+            {
+                "etape": "Observatoire stellaire",
+                "option": "Nuit sous les étoiles",
+                "prix_unitaire": 100,
+                "nb_participants": 1,
+                "total": 100
+            }
+        ]
     }
 ]

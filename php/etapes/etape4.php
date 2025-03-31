@@ -16,6 +16,9 @@ if ($id === null) {
 // Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
 if ($current_voyage_id !== $id) {
+    // Debug: Afficher les IDs pour vérification
+    error_log("Changement de voyage détecté. ID actuel: " . var_export($current_voyage_id, true) . ", Nouvel ID: " . var_export($id, true));
+
     // ID différent, on efface les données de réservation
     clear_reservation_data();
     $_SESSION['current_voyage_id'] = $id;
@@ -298,6 +301,28 @@ $prix_total_api = number_format($prix_total, 2, '.', '');
 $transaction = substr(bin2hex(random_bytes(12)), 0, 24);
 $vendeur = 'MEF-2_F';
 
+// S'assurer que toutes les données essentielles sont en session avant d'aller au paiement
+$_SESSION['current_voyage_id'] = $id;
+$_SESSION['current_transaction'] = $transaction;
+$_SESSION['payment_amount'] = $prix_total_api;
+$_SESSION['payment_started'] = true;
+
+// Sauvegarder explicitement les données pour confirmation.php
+$_SESSION['reservation_pending'] = [
+    'voyage_id' => $id,
+    'voyage_titre' => $voyage['titre'],
+    'voyage_image' => $voyage['image'],
+    'transaction_id' => $transaction,
+    'montant' => $prix_total_api,
+    'date_debut' => $date_debut,
+    'date_fin' => $date_fin,
+    'nb_personne' => $nb_personne,
+    'voyageurs' => $voyageurs,
+    'promo_code' => $promo_code,
+    'reduction' => $reduction,
+    'created_at' => time()
+];
+
 // Déterminer le chemin de base pour l'URL de retour
 $script_name = $_SERVER['SCRIPT_NAME'];
 $project_root = str_replace('\\', '/', dirname(dirname(dirname(__FILE__)))); // Chemin absolu du projet
@@ -311,7 +336,8 @@ $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : 
 $host = $_SERVER['HTTP_HOST'];
 $base_url = $protocol . "://" . $host . $relative_path;
 
-$retour = "{$base_url}/php/confirmation.php?transaction={$transaction}";
+// Inclure le voyage_id et autres paramètres essentiels dans l'URL de retour
+$retour = "{$base_url}/php/confirmation.php?transaction={$transaction}&voyage_id={$id}";
 
 $api_key = getAPIKey($vendeur);
 $control = md5($api_key . "#" . $transaction . "#" . $prix_total_api . "#" . $vendeur . "#" . $retour . "#");
