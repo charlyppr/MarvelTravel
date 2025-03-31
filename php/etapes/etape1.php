@@ -21,28 +21,25 @@ if ($current_voyage_id !== $id) {
 $panierJson = file_get_contents('../../json/panier.json');
 $panier = json_decode($panierJson, true);
 
+// Récupérer l'email de l'utilisateur connecté
+$userEmail = $_SESSION['email'];
+
 // Simplifier la gestion du panier - Mettre à jour l'étape atteinte
 if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
-    $cart_index = (int)$_GET['cart_index'];
-    
-    // Charger le panier existant
-    $panierJson = file_get_contents('../../json/panier.json');
-    if ($panierJson !== false) {
-        $panier = json_decode($panierJson, true);
-        
-        // Vérifier que l'élément existe dans le panier
-        if (isset($panier['items'][$cart_index])) {
-            // Forcer l'étape atteinte à 1
-            $panier['items'][$cart_index]['etape_atteinte'] = 1;
-            // Stocker les données pour les étapes
-            store_form_data('etape1', [
-                'date_debut' => $panier['items'][$cart_index]['date_debut'],
-                'date_fin' => $panier['items'][$cart_index]['date_fin'],
-                'nb_personne' => $panier['items'][$cart_index]['nb_personnes']
-            ]);
-            // Sauvegarder le panier mis à jour
-            file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
-        }
+    $cart_index = (int) $_GET['cart_index'];
+
+    // Vérifier que l'élément existe dans le panier de l'utilisateur
+    if (isset($panier[$userEmail]['items'][$cart_index])) {
+        // Forcer l'étape atteinte à 1
+        $panier[$userEmail]['items'][$cart_index]['etape_atteinte'] = 1;
+        // Stocker les données pour les étapes
+        store_form_data('etape1', [
+            'date_debut' => $panier[$userEmail]['items'][$cart_index]['date_debut'],
+            'date_fin' => $panier[$userEmail]['items'][$cart_index]['date_fin'],
+            'nb_personne' => $panier[$userEmail]['items'][$cart_index]['nb_personnes']
+        ]);
+        // Sauvegarder le panier mis à jour
+        file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
     }
 }
 
@@ -50,9 +47,9 @@ if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
 $panier_data = null;
 if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
     $cart_index = (int) $_GET['cart_index'];
-    if (isset($panier['items'][$cart_index])) {
-        $panier_data = $panier['items'][$cart_index];
-        $panier['items'][$cart_index]['etape_atteinte'] = 1;
+    if (isset($panier[$userEmail]['items'][$cart_index])) {
+        $panier_data = $panier[$userEmail]['items'][$cart_index];
+        $panier[$userEmail]['items'][$cart_index]['etape_atteinte'] = 1;
         file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
     }
 }
@@ -134,8 +131,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Charger le panier existant
         $panierJson = file_get_contents('../../json/panier.json');
         $panier = json_decode($panierJson, true);
-        if (!$panier) {
-            $panier = ["items" => []];
+
+        // S'assurer que le panier est un tableau et que l'utilisateur y a une entrée
+        if (!is_array($panier)) {
+            $panier = [];
+        }
+        if (!isset($panier[$userEmail])) {
+            $panier[$userEmail] = ['items' => []];
         }
 
         // Créer le nouvel élément avec la structure complète mais simplifiée
@@ -153,8 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Vérifier si le voyage existe déjà
         $item_index = null;
-        if (isset($panier['items'])) {
-            foreach ($panier['items'] as $index => $item) {
+        if (isset($panier[$userEmail]['items'])) {
+            foreach ($panier[$userEmail]['items'] as $index => $item) {
                 if ($item['voyage_id'] === $id) {
                     $item_index = $index;
                     break;
@@ -164,9 +166,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Mettre à jour ou ajouter l'item
         if ($item_index !== null) {
-            $panier['items'][$item_index] = $nouvel_item;
+            $panier[$userEmail]['items'][$item_index] = $nouvel_item;
         } else {
-            $panier['items'][] = $nouvel_item;
+            $panier[$userEmail]['items'][] = $nouvel_item;
         }
 
         // Sauvegarder le panier

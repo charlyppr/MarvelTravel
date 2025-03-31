@@ -13,11 +13,26 @@ if (!isset($_SESSION['user'])) {
 $panierJson = file_get_contents('../json/panier.json');
 $panier = json_decode($panierJson, true);
 
+// Si le panier n'est pas dans le bon format, l'initialiser
+if (!isset($panier) || !is_array($panier)) {
+    $panier = [];
+}
+
+// Récupérer l'email de l'utilisateur connecté
+$userEmail = $_SESSION['email'];
+
+// Initialiser le panier de l'utilisateur s'il n'existe pas
+if (!isset($panier[$userEmail])) {
+    $panier[$userEmail] = [
+        'items' => []
+    ];
+}
+
 // Supprimer un voyage du panier
 if (isset($_GET['remove'])) {
     $index = $_GET['remove'];
-    if (isset($panier['items'][$index])) {
-        array_splice($panier['items'], $index, 1);
+    if (isset($panier[$userEmail]['items'][$index])) {
+        array_splice($panier[$userEmail]['items'], $index, 1);
         file_put_contents('../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
     }
     header('Location: panier.php');
@@ -26,11 +41,14 @@ if (isset($_GET['remove'])) {
 
 // Vider le panier
 if (isset($_GET['empty'])) {
-    $panier['items'] = [];
+    $panier[$userEmail]['items'] = [];
     file_put_contents('../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
     header('Location: panier.php');
     exit;
 }
+
+// Utiliser seulement le panier de l'utilisateur courant pour la suite du script
+$userPanier = $panier[$userEmail];
 
 // Charger les voyages
 $voyagesJson = file_get_contents('../json/voyages.json');
@@ -71,7 +89,7 @@ $voyages = json_decode($voyagesJson, true);
                     <img src="../img/svg/cart.svg" alt="Panier" class="card-icon">
                     <h2 class="destination-title">Votre panier de voyages</h2>
                 </div>
-                <?php if(count($panier['items']) > 0): ?>
+                <?php if(count($userPanier['items']) > 0): ?>
                 <a href="panier.php?empty=1" class="empty-cart-btn">
                     <img src="../img/svg/trash.svg" alt="Vider">
                     Vider le panier
@@ -80,7 +98,7 @@ $voyages = json_decode($voyagesJson, true);
             </div>
             
             <div class="card-content">
-                <?php if(count($panier['items']) === 0): ?>
+                <?php if(count($userPanier['items']) === 0): ?>
                     <div class="empty-cart">
                         <img src="../img/svg/empty-cart.svg" alt="Panier vide" class="empty-cart-img">
                         <h2>Votre panier est vide</h2>
@@ -94,7 +112,7 @@ $voyages = json_decode($voyagesJson, true);
                     <div class="cart-items">
                         <?php 
                         $total = 0;
-                        foreach($panier['items'] as $index => $item): 
+                        foreach($userPanier['items'] as $index => $item): 
                             // Trouver le voyage correspondant
                             $voyage = null;
                             if (isset($voyages[$item['voyage_id']])) {
@@ -210,7 +228,7 @@ $voyages = json_decode($voyagesJson, true);
                                     }
                                 }
                                 ?>
-                                <a href="<?php echo $etape_url; ?>?id=<?php echo $voyage['id']; ?>&from_cart=1&cart_index=<?php echo $index; ?><?php echo isset($item['reduction']) ? '&promo_code=MARVEL10' : ''; ?>" class="continue-btn">
+                                <a href="<?php echo $etape_url; ?>?id=<?php echo $item['voyage_id']; ?>&from_cart=1&cart_index=<?php echo $index; ?><?php echo isset($item['reduction']) ? '&promo_code=MARVEL10' : ''; ?>" class="continue-btn">
                                     Continuer
                                     <img src="../img/svg/arrow-right.svg" alt="Continuer">
                                 </a>
@@ -257,4 +275,4 @@ $voyages = json_decode($voyagesJson, true);
     <script src="../js/nav.js"></script>
     <script src="../js/custom-cursor.js"></script>
 </body>
-</html> 
+</html>

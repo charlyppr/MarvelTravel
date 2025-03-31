@@ -21,18 +21,29 @@ if ($current_voyage_id !== $id) {
     $_SESSION['current_voyage_id'] = $id;
 }
 
+// Récupérer l'email de l'utilisateur connecté
+$userEmail = $_SESSION['email'];
+
 // Mettre à jour l'étape dans le panier
 $panierJson = file_get_contents('../../json/panier.json');
 if ($panierJson !== false) {
     $panier = json_decode($panierJson, true);
-    
+
+    // S'assurer que le panier est un tableau et que l'utilisateur y a une entrée
+    if (!is_array($panier)) {
+        $panier = [];
+    }
+    if (!isset($panier[$userEmail])) {
+        $panier[$userEmail] = ['items' => []];
+    }
+
     // Chercher le voyage correspondant dans le panier
-    if (isset($panier['items'])) {
-        foreach ($panier['items'] as $index => $item) {
+    if (isset($panier[$userEmail]['items'])) {
+        foreach ($panier[$userEmail]['items'] as $index => $item) {
             if ($item['voyage_id'] === $id) {
                 // Mettre à jour l'étape
-                $panier['items'][$index]['etape_atteinte'] = 4;
-                
+                $panier[$userEmail]['items'][$index]['etape_atteinte'] = 4;
+
                 // Sauvegarder le panier mis à jour
                 file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
                 break;
@@ -154,11 +165,11 @@ if (isset($_GET['promo_code'])) {
         // Stocker le code promo en session
         $_SESSION['promo_code'] = $promo_code;
         $_SESSION['promo_reduction'] = $reduction;
-        
+
         // Mettre à jour le panier avec la réduction
         $panierJson = file_get_contents('../../json/panier.json');
         $panier = json_decode($panierJson, true);
-        
+
         // Déterminer l'index de l'item dans le panier
         $item_index = null;
         if (isset($panier['items'])) {
@@ -194,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Stocker le code promo en session
             $_SESSION['promo_code'] = $promo_code;
             $_SESSION['promo_reduction'] = $reduction;
-            
+
             // Déterminer l'index de l'item dans le panier
             $item_index = null;
             if (isset($panier['items'])) {

@@ -31,11 +31,56 @@ if (!isset($voyages[$id])) {
 
 $voyage = $voyages[$id];
 
+// Récupérer l'email de l'utilisateur connecté
+$userEmail = $_SESSION['email'];
+
+// Utiliser un identifiant de secours si l'email n'est pas disponible
+if (empty($userEmail)) {
+    $userEmail = 'user_' . $_SESSION['user'];
+}
+
+// Vérifier si on vient du panier
+$from_cart = isset($_GET['from_cart']) && isset($_GET['cart_index']);
+$cart_index = $from_cart ? (int) $_GET['cart_index'] : null;
+
+// Charger le panier
+$panierJson = file_get_contents('../../json/panier.json');
+$panier = json_decode($panierJson, true);
+
+// Si on vient du panier, récupérer les données directement du panier
+if ($from_cart && isset($panier[$userEmail]['items'][$cart_index])) {
+    $item = $panier[$userEmail]['items'][$cart_index];
+    
+    // Vérifier que c'est bien le même voyage
+    if ($item['voyage_id'] === $id) {
+        // Stocker les données de l'étape 1 en session
+        store_form_data('etape1', [
+            'date_debut' => $item['date_debut'],
+            'date_fin' => $item['date_fin'],
+            'nb_personne' => $item['nb_personnes']
+        ]);
+        
+        // Stocker les données de l'étape 2 en session si disponibles
+        if (isset($item['voyageurs']) && is_array($item['voyageurs'])) {
+            store_form_data('etape2', [
+                'voyageurs' => $item['voyageurs']
+            ]);
+        }
+        
+        // Stocker les données des options si disponibles
+        if (isset($item['options']) && is_array($item['options'])) {
+            store_form_data('etape3', [
+                'options' => $item['options']
+            ]);
+        }
+    }
+}
+
 // Récupérer les données des étapes précédentes
 $form_data1 = get_form_data('etape1');
 $form_data2 = get_form_data('etape2');
 
-// Ajouter cette ligne pour récupérer les options précédemment sélectionnées
+// recuperer les options
 $optionsData = get_form_data('etape3')['options'] ?? [];
 
 if (!$form_data1 || !$form_data2) {
@@ -85,17 +130,28 @@ function hasOptions($etape) {
     return !empty($etape['options']);
 }
 
+// Récupérer l'email de l'utilisateur connecté
+$userEmail = $_SESSION['email'];
+
 // Mettre à jour l'étape dans le panier
 $panierJson = file_get_contents('../../json/panier.json');
 if ($panierJson !== false) {
     $panier = json_decode($panierJson, true);
     
+    // S'assurer que le panier est un tableau et que l'utilisateur y a une entrée
+    if (!is_array($panier)) {
+        $panier = [];
+    }
+    if (!isset($panier[$userEmail])) {
+        $panier[$userEmail] = ['items' => []];
+    }
+    
     // Chercher le voyage correspondant dans le panier
-    if (isset($panier['items'])) {
-        foreach ($panier['items'] as $index => $item) {
+    if (isset($panier[$userEmail]['items'])) {
+        foreach ($panier[$userEmail]['items'] as $index => $item) {
             if ($item['voyage_id'] === $id) {
                 // Mettre à jour l'étape
-                $panier['items'][$index]['etape_atteinte'] = 3;
+                $panier[$userEmail]['items'][$index]['etape_atteinte'] = 3;
                 
                 // Sauvegarder le panier mis à jour
                 file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
@@ -107,12 +163,11 @@ if ($panierJson !== false) {
 
 // Au début du fichier
 $cart_index = isset($_GET['cart_index']) ? $_GET['cart_index'] : null;
-$panier = json_decode(file_get_contents('../../json/panier.json'), true);
 
 // Récupérer les options existantes
 $options_selectionnees = [];
-if ($cart_index !== null && isset($panier['items'][$cart_index]['options'])) {
-    $options_selectionnees = $panier['items'][$cart_index]['options'];
+if ($cart_index !== null && isset($panier[$userEmail]['items'][$cart_index]['options'])) {
+    $options_selectionnees = $panier[$userEmail]['items'][$cart_index]['options'];
 }
 
 // Gérer la soumission du formulaire des options
@@ -147,10 +202,18 @@ if (isset($_POST['submit_options'])) {
     $panierJson = file_get_contents('../../json/panier.json');
     $panier = json_decode($panierJson, true);
     
+    // S'assurer que le panier est un tableau et que l'utilisateur y a une entrée
+    if (!is_array($panier)) {
+        $panier = [];
+    }
+    if (!isset($panier[$userEmail])) {
+        $panier[$userEmail] = ['items' => []];
+    }
+    
     // Déterminer l'index de l'item dans le panier
     $item_index = null;
-    if (isset($panier['items'])) {
-        foreach ($panier['items'] as $index => $item) {
+    if (isset($panier[$userEmail]['items'])) {
+        foreach ($panier[$userEmail]['items'] as $index => $item) {
             if ($item['voyage_id'] === $id) {
                 $item_index = $index;
                 break;
@@ -160,7 +223,7 @@ if (isset($_POST['submit_options'])) {
 
     if ($item_index !== null) {
         // Mettre à jour les options dans le panier
-        $panier['items'][$item_index]['options'] = $options;
+        $panier[$userEmail]['items'][$item_index]['options'] = $options;
         
         // Calculer le prix des options
         $prix_options_total = 0;
@@ -179,7 +242,7 @@ if (isset($_POST['submit_options'])) {
         }
         
         // Mettre à jour le prix des options et l'étape atteinte
-        $panier['items'][$item_index]['prix_options'] = $prix_options_total;
+        $panier[$userEmail]['items'][$item_index]['prix_options'] = $prix_options_total;
         
         // Sauvegarder le panier mis à jour
         $success = file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));

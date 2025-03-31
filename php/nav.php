@@ -94,8 +94,9 @@ if ($is_in_root) {
                             $panierJson = file_get_contents($panier_path);
                             if ($panierJson !== false) {
                                 $panier = json_decode($panierJson, true);
-                                if (isset($panier['items']) && count($panier['items']) > 0) {
-                                    echo '<span class="cart-count">' . count($panier['items']) . '</span>';
+                                $userEmail = $_SESSION['email'];
+                                if (isset($panier[$userEmail]) && isset($panier[$userEmail]['items']) && count($panier[$userEmail]['items']) > 0) {
+                                    echo '<span class="cart-count">' . count($panier[$userEmail]['items']) . '</span>';
                                 }
                             }
                         }

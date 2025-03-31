@@ -10,17 +10,27 @@ if ($id === null) {
     exit;
 }
 
+// Récupérer l'email de l'utilisateur connecté
+$userEmail = $_SESSION['email'];
 
 $panierJson = file_get_contents('../../json/panier.json');
 if ($panierJson !== false) {
     $panier = json_decode($panierJson, true);
 
+    // S'assurer que le panier est un tableau et que l'utilisateur y a une entrée
+    if (!is_array($panier)) {
+        $panier = [];
+    }
+    if (!isset($panier[$userEmail])) {
+        $panier[$userEmail] = ['items' => []];
+    }
+
     // Chercher le voyage correspondant dans le panier
-    if (isset($panier['items'])) {
-        foreach ($panier['items'] as $index => $item) {
+    if (isset($panier[$userEmail]['items'])) {
+        foreach ($panier[$userEmail]['items'] as $index => $item) {
             if ($item['voyage_id'] === $id) {
                 // Mettre à jour l'étape
-                $panier['items'][$index]['etape_atteinte'] = 2;
+                $panier[$userEmail]['items'][$index]['etape_atteinte'] = 2;
 
                 // Sauvegarder le panier mis à jour
                 file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
@@ -30,7 +40,6 @@ if ($panierJson !== false) {
     }
 }
 
-
 // Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
 if ($current_voyage_id !== $id) {
@@ -39,13 +48,32 @@ if ($current_voyage_id !== $id) {
     $_SESSION['current_voyage_id'] = $id;
 }
 
+// Vérifier si on vient du panier
+$from_cart = isset($_GET['from_cart']) && isset($_GET['cart_index']);
+$cart_index = $from_cart ? (int) $_GET['cart_index'] : null;
+
+// Si on vient du panier, récupérer les données directement du panier
+if ($from_cart && isset($panier[$userEmail]['items'][$cart_index])) {
+    $item = $panier[$userEmail]['items'][$cart_index];
+
+    // Vérifier que c'est bien le même voyage
+    if ($item['voyage_id'] === $id) {
+        // Stocker les données de l'étape 1 en session
+        store_form_data('etape1', [
+            'date_debut' => $item['date_debut'],
+            'date_fin' => $item['date_fin'],
+            'nb_personne' => $item['nb_personnes']
+        ]);
+    }
+}
+
 // Récupération des données de l'étape 1
 $form_data = get_form_data('etape1');
 if (!$form_data) {
+    // Si toujours pas de données malgré tentative de récupération depuis le panier
     header('Location: ../destination.php');
     exit;
 }
-
 
 $date_debut = $form_data['date_debut'];
 $date_fin = $form_data['date_fin'];
@@ -125,10 +153,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $panierJson = file_get_contents('../../json/panier.json');
     $panier = json_decode($panierJson, true);
 
+    // S'assurer que le panier est un tableau et que l'utilisateur y a une entrée
+    if (!is_array($panier)) {
+        $panier = [];
+    }
+    if (!isset($panier[$userEmail])) {
+        $panier[$userEmail] = ['items' => []];
+    }
+
     // Déterminer l'index de l'item dans le panier
     $item_index = null;
-    if (isset($panier['items'])) {
-        foreach ($panier['items'] as $index => $item) {
+    if (isset($panier[$userEmail]['items'])) {
+        foreach ($panier[$userEmail]['items'] as $index => $item) {
             if ($item['voyage_id'] === $id) {
                 $item_index = $index;
                 break;
@@ -139,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Mettre à jour le panier si on a trouvé l'item
     if ($item_index !== null) {
         // Mettre à jour les informations des voyageurs
-        $panier['items'][$item_index]['voyageurs'] = $voyageurs;
+        $panier[$userEmail]['items'][$item_index]['voyageurs'] = $voyageurs;
 
         // Sauvegarder le panier mis à jour
         $success = file_put_contents('../../json/panier.json', json_encode($panier, JSON_PRETTY_PRINT));
@@ -292,7 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $date_naissance = '';
                         $nationalite = '';
                         $passport = '';
-                        
+
                         // Si des données existent pour ce voyageur, les utiliser
                         if (isset($voyageursData[$i - 1])) {
                             $civilite = $voyageursData[$i - 1]['civilite'];
@@ -377,12 +413,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <label for="nationalite_<?php echo $i; ?>">Nationalité</label>
                                         <div class="form-field">
                                             <img src="../../img/svg/globe.svg" alt="Nationalité" class="field-icon">
-                                            <select name="nationalite_<?php echo $i; ?>" id="nationalite_<?php echo $i; ?>" required>
+                                            <select name="nationalite_<?php echo $i; ?>" id="nationalite_<?php echo $i; ?>"
+                                                required>
                                                 <option value="" disabled <?php echo empty($nationalite) ? 'selected' : ''; ?>>Choisir une nationalité...</option>
                                                 <option value="Wakandaise" <?php echo $nationalite === 'Wakandaise' ? 'selected' : ''; ?>>Wakandaise</option>
                                                 <option value="Asgardienne" <?php echo $nationalite === 'Asgardienne' ? 'selected' : ''; ?>>Asgardienne</option>
                                                 <option value="Xandarienne" <?php echo $nationalite === 'Xandarienne' ? 'selected' : ''; ?>>Xandarienne</option>
-                                                <option value="Kree" <?php echo $nationalite === 'Kree' ? 'selected' : ''; ?>>Kree</option>
+                                                <option value="Kree" <?php echo $nationalite === 'Kree' ? 'selected' : ''; ?>>
+                                                    Kree</option>
                                                 <option value="Skrull" <?php echo $nationalite === 'Skrull' ? 'selected' : ''; ?>>Skrull</option>
                                                 <option value="Française" <?php echo $nationalite === 'Française' ? 'selected' : ''; ?>>Française</option>
                                                 <option value="Américaine" <?php echo $nationalite === 'Américaine' ? 'selected' : ''; ?>>Américaine</option>
