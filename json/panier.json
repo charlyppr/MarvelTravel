@@ -102,8 +102,23 @@
                         "passport": "6698892731"
                     }
                 ],
-                "options": [],
-                "prix_options": 0,
+                "options": {
+                    "1": [
+                        {
+                            "voyageurs": [
+                                0
+                            ]
+                        }
+                    ],
+                    "2": [
+                        {
+                            "voyageurs": [
+                                0
+                            ]
+                        }
+                    ]
+                },
+                "prix_options": 90,
                 "etape_atteinte": 3
             }
         ]

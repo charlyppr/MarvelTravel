@@ -2,11 +2,17 @@
 require_once "session.php";
 check_none_auth($_SESSION['current_url'] ?? "../index.php");
 
+// Récupérer l'email saisi précédemment (s'il existe)
+$login_mail_value = $_SESSION['login_mail'] ?? '';
+
 $message = ""; // Initialisation du message
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
+    
+    // Mémoriser l'email saisi pour le réafficher en cas d'erreur
+    $_SESSION['login_mail'] = $login_mail;
 
     $json_file = "../json/users.json";
     $connexion = 1; // 1 = erreur par défaut
@@ -29,6 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['date_naissance'] = $user['date_naissance'] ?? '';
                     $_SESSION['nationalite'] = $user['nationalite'] ?? '';
                     $_SESSION['passport_id'] = $user['passport_id'] ?? '';
+
+                    // En cas de connexion réussie, supprimer l'email mémorisé
+                    unset($_SESSION['login_mail']);
 
                     // Mise à jour de la date de dernière connexion
                     $user['last_login'] = date("Y-m-d H:i:s");
@@ -62,9 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: connexion.php"); // Redirection pour éviter le re-submit du formulaire
     exit();
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form class="form" action="connexion.php" method="post">
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
-                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email">
+                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email" 
+                           value="<?php echo htmlspecialchars($login_mail_value); ?>">
                 </div>
 
                 <div class="mdp">
