@@ -40,14 +40,6 @@ if ($panierJson !== false) {
     }
 }
 
-// Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
-$current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
-if ($current_voyage_id !== $id) {
-    // ID différent, on efface les données de réservation
-    clear_reservation_data();
-    $_SESSION['current_voyage_id'] = $id;
-}
-
 // Vérifier si on vient du panier
 $from_cart = isset($_GET['from_cart']) && isset($_GET['cart_index']);
 $cart_index = $from_cart ? (int) $_GET['cart_index'] : null;

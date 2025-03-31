@@ -13,17 +13,6 @@ if ($id === null) {
     exit;
 }
 
-// Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
-$current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
-if ($current_voyage_id !== $id) {
-    // Debug: Afficher les IDs pour vérification
-    error_log("Changement de voyage détecté. ID actuel: " . var_export($current_voyage_id, true) . ", Nouvel ID: " . var_export($id, true));
-
-    // ID différent, on efface les données de réservation
-    clear_reservation_data();
-    $_SESSION['current_voyage_id'] = $id;
-}
-
 // Récupérer l'email de l'utilisateur connecté
 $userEmail = $_SESSION['email'];
 

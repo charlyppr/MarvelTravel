@@ -11,14 +11,6 @@ if ($id === null) {
     exit;
 }
 
-// Vérifier si l'utilisateur consulte une nouvelle destination et effacer les données si c'est le cas
-$current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
-if ($current_voyage_id !== $id) {
-    // ID différent, on efface les données de réservation
-    clear_reservation_data();
-    $_SESSION['current_voyage_id'] = $id;
-}
-
 // Récupération des données du voyage
 $json_file = "../../json/voyages.json";
 $voyages = json_decode(file_get_contents($json_file), true);

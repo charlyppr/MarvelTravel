@@ -2,11 +2,11 @@
     "thanoslebg@gmail.com": {
         "items": [
             {
-                "voyage_id": 1,
+                "voyage_id": 0,
                 "date_debut": "2025-04-02",
                 "date_fin": "2025-04-05",
                 "nb_personnes": "1",
-                "prix_unitaire": 5099.95,
+                "prix_unitaire": 399.95,
                 "voyageurs": [
                     {
                         "civilite": "M",
@@ -19,7 +19,7 @@
                 ],
                 "options": [],
                 "prix_options": 0,
-                "etape_atteinte": 4
+                "etape_atteinte": 3
             }
         ]
     },
