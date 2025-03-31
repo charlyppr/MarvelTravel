@@ -457,7 +457,6 @@ $best_voyages = array_slice($voyages, 0, 4);
     <?php include 'footer.php'; ?>
 
     <script src="../js/nav.js"></script>
-    <script src="../js/custom-cursor.js"></script>
 
 </body>
 

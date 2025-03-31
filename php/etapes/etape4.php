@@ -673,7 +673,6 @@ $control = md5($api_key . "#" . $transaction . "#" . $prix_total_api . "#" . $ve
     </div>
 
     <script src="../../js/nav.js"></script>
-    <script src="../../js/custom-cursor.js"></script>
 </body>
 
 </html>

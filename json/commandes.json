@@ -1,42 +1,82 @@
 [
-  {
-    "transaction": "b4510a9bda122742f702b57a",
-    "reservation_id": "MT-5FB42C79",
-    "montant": 1232.96,
-    "vendeur": "MEF-2_F",
-    "status": "accepted",
-    "control": "66fe43eb3fcc241a4ba74568041b0418",
-    "acheteur": "thanoslebg@gmail.com",
-    "voyage": "Hala",
-    "date_debut": "2025-04-02",
-    "date_fin": "2025-04-06",
-    "nb_personne": 1,
-    "voyageurs": [
-      {
-        "civilite": "M",
-        "nom": "Titan",
-        "prenom": "Thanos",
-        "date_naissance": "1840-02-29",
-        "nationalite": "Xandarienne",
-        "passport": "1855014187"
-      }
-    ],
-    "date_achat": "2025-03-31 15:10:24",
-    "options": [
-      {
-        "etape": "Capitale Kree",
-        "option": "Visite du palais impérial",
-        "prix_unitaire": 70,
-        "nb_participants": 1,
-        "total": 70
-      },
-      {
-        "etape": "Observatoire stellaire",
-        "option": "Nuit sous les étoiles",
-        "prix_unitaire": 100,
-        "nb_participants": 1,
-        "total": 100
-      }
-    ]
-  }
+    {
+        "transaction": "b4510a9bda122742f702b57a",
+        "reservation_id": "MT-5FB42C79",
+        "montant": 1232.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "66fe43eb3fcc241a4ba74568041b0418",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Hala",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-06",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 15:10:24",
+        "options": [
+            {
+                "etape": "Capitale Kree",
+                "option": "Visite du palais impérial",
+                "prix_unitaire": 70,
+                "nb_participants": 1,
+                "total": 70
+            },
+            {
+                "etape": "Observatoire stellaire",
+                "option": "Nuit sous les étoiles",
+                "prix_unitaire": 100,
+                "nb_participants": 1,
+                "total": 100
+            }
+        ]
+    },
+    {
+        "transaction": "6272b840148c9495a3e50db7",
+        "reservation_id": "MT-E8B25216",
+        "montant": 454.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "cee9f115b35e830b7c663f3bf39816c2",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-02",
+        "date_fin": "2025-04-05",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-03-31 15:34:12",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 20,
+                "nb_participants": 1,
+                "total": 20
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    }
 ]

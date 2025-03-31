@@ -10,7 +10,7 @@ $message = ""; // Initialisation du message
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
-    
+
     // Mémoriser l'email saisi pour le réafficher en cas d'erreur
     $_SESSION['login_mail'] = $login_mail;
 
@@ -110,8 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form class="form" action="connexion.php" method="post">
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
-                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email" 
-                           value="<?php echo htmlspecialchars($login_mail_value); ?>">
+                    <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email"
+                        value="<?php echo htmlspecialchars($login_mail_value); ?>">
                 </div>
 
                 <div class="mdp">
@@ -143,8 +143,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
-
-    <script src="../js/custom-cursor.js"></script>
 </body>
 
 </html>

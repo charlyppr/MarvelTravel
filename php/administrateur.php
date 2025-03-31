@@ -46,8 +46,8 @@ foreach ($users as $user) {
                 <!-- En-tête avec recherche et navigation -->
                 <div class="header">
                     <form class="search-bar" method="GET" action="">
-                        <input type="text" placeholder="Rechercher un voyageur par nom ou email" name="search" id="search"
-                            value="<?php echo htmlspecialchars($search_query); ?>">
+                        <input type="text" placeholder="Rechercher un voyageur par nom ou email" name="search"
+                            id="search" value="<?php echo htmlspecialchars($search_query); ?>">
                         <button type="submit" style="background: none; border: none; cursor: pointer;">
                             <img src="../img/svg/loupe.svg" alt="Rechercher">
                         </button>
@@ -102,7 +102,8 @@ foreach ($users as $user) {
                                 </tr>
                             </thead>
 
-                            <tbody class="<?php echo ($displayed_users === 0 && !empty($search_query)) ? 'no-height' : ''; ?>">
+                            <tbody
+                                class="<?php echo ($displayed_users === 0 && !empty($search_query)) ? 'no-height' : ''; ?>">
                                 <?php
                                 $displayed_users = 0;
 
@@ -114,9 +115,11 @@ foreach ($users as $user) {
                                         $search_term = strtolower($search_query);
 
                                         // Filtrer par le statut
-                                        if (($filter == 'active' && $user['blocked']) ||
+                                        if (
+                                            ($filter == 'active' && $user['blocked']) ||
                                             ($filter == 'blocked' && !$user['blocked']) ||
-                                            ($filter == 'vip' && !$user['vip'])) {
+                                            ($filter == 'vip' && !$user['vip'])
+                                        ) {
                                             continue;
                                         }
 
@@ -149,7 +152,7 @@ foreach ($users as $user) {
                                         echo '<button class="action-button edit-button" title="Modifier l\'utilisateur" onclick="editUser(' . $index . ')">';
                                         echo '<img src="../img/svg/edit.svg" alt="Modifier">';
                                         echo '</button>';
-                                        
+
                                         if ($user['blocked']) {
                                             echo '<button class="action-button block-button" title="Débloquer l\'utilisateur" onclick="toggleBlock(' . $index . ', false)">';
                                             echo '<img src="../img/svg/unlock.svg" alt="Débloquer">';
@@ -158,7 +161,7 @@ foreach ($users as $user) {
                                             echo '<img src="../img/svg/lock.svg" alt="Bloquer">';
                                         }
                                         echo '</button>';
-                                        
+
                                         if ($user['vip']) {
                                             echo '<button class="action-button vip-button" title="Retirer VIP" onclick="toggleVIP(' . $index . ', false)">';
                                             echo '<img src="../img/svg/star-off.svg" alt="Retirer VIP">';
@@ -176,12 +179,13 @@ foreach ($users as $user) {
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <?php if ($displayed_users === 0): ?>
                         <div class="no-res">
                             <?php if (!empty($search_query)): ?>
                                 <img src="../img/svg/empty-search.svg" alt="Aucun résultat" class="no-res-icon">
-                                <p>Aucun utilisateur ne correspond à votre recherche "<strong><?php echo htmlspecialchars($search_query); ?></strong>"</p>
+                                <p>Aucun utilisateur ne correspond à votre recherche
+                                    "<strong><?php echo htmlspecialchars($search_query); ?></strong>"</p>
                                 <a href="administrateur.php" class="reset-search">Effacer la recherche</a>
                             <?php elseif ($filter != 'all'): ?>
                                 <img src="../img/svg/filter-empty.svg" alt="Aucun résultat" class="no-res-icon">
@@ -197,8 +201,6 @@ foreach ($users as $user) {
             </div>
         </div>
     </div>
-
-    <script src="../js/custom-cursor.js"></script>
 
 </body>
 

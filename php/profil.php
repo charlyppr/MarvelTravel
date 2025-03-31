@@ -51,7 +51,7 @@ try {
 // Après la récupération des commandes et avant l'affichage HTML, ajouter le tri :
 if (count($commandes_utilisateur) > 0) {
     // Trier les commandes par date de création (du plus récent au plus ancien)
-    usort($commandes_utilisateur, function($a, $b) {
+    usort($commandes_utilisateur, function ($a, $b) {
         // Si la commande a un champ 'created_at', utilisez-le
         if (isset($a['date_achat']) && isset($b['date_achat'])) {
             return strtotime($b['date_achat']) - strtotime($a['date_achat']);
@@ -65,14 +65,14 @@ $messages_file = '../json/messages.json';
 if (file_exists($messages_file)) {
     $messages_json = file_get_contents($messages_file);
     $all_messages = json_decode($messages_json, true) ?: [];
-    
+
     // Filtrer les messages pour ne garder que ceux de l'utilisateur connecté
-    $messages = array_filter($all_messages, function($msg) {
+    $messages = array_filter($all_messages, function ($msg) {
         return $msg['email'] === $_SESSION['email'];
     });
-    
+
     // Trier les messages par date (du plus récent au plus ancien)
-    usort($messages, function($a, $b) {
+    usort($messages, function ($a, $b) {
         return strtotime($b['date']) - strtotime($a['date']);
     });
 }
@@ -269,29 +269,34 @@ if (file_exists($messages_file)) {
                             <div class="card-content">
                                 <?php if (!empty($messages)): ?>
                                     <div class="messages-list">
-                                        <?php 
+                                        <?php
                                         $count = 0;
-                                        foreach ($messages as $msg): 
-                                            if ($count >= 3) break; // Limite à 3 messages
+                                        foreach ($messages as $msg):
+                                            if ($count >= 3)
+                                                break; // Limite à 3 messages
                                             $count++;
-                                        ?>
+                                            ?>
                                             <div class="message-item">
                                                 <div class="message-icon">
                                                     <img src="../img/svg/mail.svg" alt="Message">
                                                 </div>
                                                 <div class="message-details">
                                                     <div class="message-header">
-                                                        <span class="message-subject"><?= htmlspecialchars($msg['objet']) ?></span>
-                                                        <span class="message-date"><?= date('d/m/Y', strtotime($msg['date'])) ?></span>
+                                                        <span
+                                                            class="message-subject"><?= htmlspecialchars($msg['objet']) ?></span>
+                                                        <span
+                                                            class="message-date"><?= date('d/m/Y', strtotime($msg['date'])) ?></span>
                                                     </div>
-                                                    <span class="message-preview"><?= htmlspecialchars(substr($msg['message'], 0, 100)) ?>...</span>
+                                                    <span
+                                                        class="message-preview"><?= htmlspecialchars(substr($msg['message'], 0, 100)) ?>...</span>
                                                     <div class="message-meta">
-                                                        <span class="message-time"><?= date('H:i', strtotime($msg['date'])) ?></span>
+                                                        <span
+                                                            class="message-time"><?= date('H:i', strtotime($msg['date'])) ?></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
-                                        
+
                                     </div>
                                 <?php else: ?>
                                     <div class="empty-state">
@@ -306,8 +311,6 @@ if (file_exists($messages_file)) {
             </div>
         </div>
     </div>
-
-    <script src="../js/custom-cursor.js"></script>
 
 </body>
 

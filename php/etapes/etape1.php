@@ -357,7 +357,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="../../js/nav.js"></script>
-    <script src="../../js/custom-cursor.js"></script>
     <script>
         // Mettre à jour dynamiquement le nombre de personnes et le prix total
         document.getElementById('nb_personne').addEventListener('input', function () {

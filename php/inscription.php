@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'last_name' => $login_lastname,
         'email' => $login_mail
     ];
-    
+
     // Stocker le code d'erreur
     $_SESSION['inscri'] = $inscri;
     header("Location: inscription.php");
@@ -116,10 +116,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="civilite-container">
                     <div class="civilite">
                         <select name="login_civilite" id="login_civilite" required>
-                            <option value="" disabled <?php echo empty($login_civilite_value) ? 'selected' : ''; ?>>Civilité</option>
-                            <option value="M" <?php echo $login_civilite_value === 'M' ? 'selected' : ''; ?>>Monsieur</option>
-                            <option value="Mme" <?php echo $login_civilite_value === 'Mme' ? 'selected' : ''; ?>>Madame</option>
-                            <option value="Autre" <?php echo $login_civilite_value === 'Autre' ? 'selected' : ''; ?>>Autre</option>
+                            <option value="" disabled <?php echo empty($login_civilite_value) ? 'selected' : ''; ?>>
+                                Civilité</option>
+                            <option value="M" <?php echo $login_civilite_value === 'M' ? 'selected' : ''; ?>>Monsieur
+                            </option>
+                            <option value="Mme" <?php echo $login_civilite_value === 'Mme' ? 'selected' : ''; ?>>Madame
+                            </option>
+                            <option value="Autre" <?php echo $login_civilite_value === 'Autre' ? 'selected' : ''; ?>>Autre
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -168,8 +172,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
     </div>
-
-    <script src="../js/custom-cursor.js"></script>
 
 </body>
 

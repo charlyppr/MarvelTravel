@@ -631,6 +631,5 @@ if (isset($_POST['submit_options'])) {
     </script>
 
     <script src="../../js/nav.js"></script>
-    <script src="../../js/custom-cursor.js"></script>
 </body>
 </html>

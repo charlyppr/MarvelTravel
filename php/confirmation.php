@@ -541,7 +541,6 @@ $_SESSION['confirmation_viewed'] = true;
     </div>
 
     <script src="../js/nav.js"></script>
-    <script src="../js/custom-cursor.js"></script>
 </body>
 
 </html>

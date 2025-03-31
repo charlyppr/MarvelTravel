@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars(trim($_POST['email']));
     $objet = htmlspecialchars(trim($_POST['objet']));
     $message = htmlspecialchars(trim($_POST['message']));
-    
+
     // Création du nouveau message
     $nouveau_message = [
         'nom' => $nom,
@@ -22,17 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'message' => $message,
         'date' => date('Y-m-d H:i:s')
     ];
-    
+
     // Lecture du fichier messages.json
     $messages = [];
     if (file_exists('../json/messages.json')) {
         $messages_json = file_get_contents('../json/messages.json');
         $messages = json_decode($messages_json, true) ?: [];
     }
-    
+
     // Ajout du nouveau message
     $messages[] = $nouveau_message;
-    
+
     // Sauvegarde dans le fichier
     if (file_put_contents('../json/messages.json', json_encode($messages, JSON_PRETTY_PRINT))) {
         $message_status = 'success';
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <?php echo $message_text; ?>
                         </div>
                     <?php endif; ?>
-                    
+
                     <?php
                     if (!isset($_SESSION['user'])) {
                         echo '<div class="form-row">
@@ -191,7 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php include "footer.php"; ?>
 
-    <script src="../js/custom-cursor.js"></script>
     <script src="../js/nav.js"></script>
 </body>
 

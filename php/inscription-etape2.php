@@ -187,22 +187,33 @@ function generateUniquePassportID()
                             <option value="Wakandaise" <?php echo $nationalite_value === 'Wakandaise' ? 'selected' : ''; ?>>Wakandaise</option>
                             <option value="Asgardienne" <?php echo $nationalite_value === 'Asgardienne' ? 'selected' : ''; ?>>Asgardienne</option>
                             <option value="Xandarienne" <?php echo $nationalite_value === 'Xandarienne' ? 'selected' : ''; ?>>Xandarienne</option>
-                            <option value="Kree" <?php echo $nationalite_value === 'Kree' ? 'selected' : ''; ?>>Kree</option>
-                            <option value="Skrull" <?php echo $nationalite_value === 'Skrull' ? 'selected' : ''; ?>>Skrull</option>
-                            <option value="Française" <?php echo $nationalite_value === 'Française' ? 'selected' : ''; ?>>Française</option>
+                            <option value="Kree" <?php echo $nationalite_value === 'Kree' ? 'selected' : ''; ?>>Kree
+                            </option>
+                            <option value="Skrull" <?php echo $nationalite_value === 'Skrull' ? 'selected' : ''; ?>>Skrull
+                            </option>
+                            <option value="Française" <?php echo $nationalite_value === 'Française' ? 'selected' : ''; ?>>
+                                Française</option>
                             <option value="Américaine" <?php echo $nationalite_value === 'Américaine' ? 'selected' : ''; ?>>Américaine</option>
                             <option value="Britannique" <?php echo $nationalite_value === 'Britannique' ? 'selected' : ''; ?>>Britannique</option>
-                            <option value="Allemande" <?php echo $nationalite_value === 'Allemande' ? 'selected' : ''; ?>>Allemande</option>
-                            <option value="Espagnole" <?php echo $nationalite_value === 'Espagnole' ? 'selected' : ''; ?>>Espagnole</option>
-                            <option value="Italienne" <?php echo $nationalite_value === 'Italienne' ? 'selected' : ''; ?>>Italienne</option>
+                            <option value="Allemande" <?php echo $nationalite_value === 'Allemande' ? 'selected' : ''; ?>>
+                                Allemande</option>
+                            <option value="Espagnole" <?php echo $nationalite_value === 'Espagnole' ? 'selected' : ''; ?>>
+                                Espagnole</option>
+                            <option value="Italienne" <?php echo $nationalite_value === 'Italienne' ? 'selected' : ''; ?>>
+                                Italienne</option>
                             <option value="Canadienne" <?php echo $nationalite_value === 'Canadienne' ? 'selected' : ''; ?>>Canadienne</option>
-                            <option value="Japonaise" <?php echo $nationalite_value === 'Japonaise' ? 'selected' : ''; ?>>Japonaise</option>
-                            <option value="Chinoise" <?php echo $nationalite_value === 'Chinoise' ? 'selected' : ''; ?>>Chinoise</option>
-                            <option value="Russe" <?php echo $nationalite_value === 'Russe' ? 'selected' : ''; ?>>Russe</option>
+                            <option value="Japonaise" <?php echo $nationalite_value === 'Japonaise' ? 'selected' : ''; ?>>
+                                Japonaise</option>
+                            <option value="Chinoise" <?php echo $nationalite_value === 'Chinoise' ? 'selected' : ''; ?>>
+                                Chinoise</option>
+                            <option value="Russe" <?php echo $nationalite_value === 'Russe' ? 'selected' : ''; ?>>Russe
+                            </option>
                             <option value="Australienne" <?php echo $nationalite_value === 'Australienne' ? 'selected' : ''; ?>>Australienne</option>
                             <option value="Brésilienne" <?php echo $nationalite_value === 'Brésilienne' ? 'selected' : ''; ?>>Brésilienne</option>
-                            <option value="Indienne" <?php echo $nationalite_value === 'Indienne' ? 'selected' : ''; ?>>Indienne</option>
-                            <option value="Mexicaine" <?php echo $nationalite_value === 'Mexicaine' ? 'selected' : ''; ?>>Mexicaine</option>
+                            <option value="Indienne" <?php echo $nationalite_value === 'Indienne' ? 'selected' : ''; ?>>
+                                Indienne</option>
+                            <option value="Mexicaine" <?php echo $nationalite_value === 'Mexicaine' ? 'selected' : ''; ?>>
+                                Mexicaine</option>
                             <option value="Sud-Africaine" <?php echo $nationalite_value === 'Sud-Africaine' ? 'selected' : ''; ?>>Sud-Africaine</option>
                         </select>
                     </div>
@@ -218,7 +229,6 @@ function generateUniquePassportID()
         </div>
     </div>
 
-    <script src="../js/custom-cursor.js"></script>
 </body>
 
 </html>

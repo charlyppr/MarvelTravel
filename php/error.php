@@ -65,7 +65,6 @@ $error_message = $error_messages[$error_type] ?? $error_messages['unknown'];
     </div>
 
     <script src="../js/nav.js"></script>
-    <script src="../js/custom-cursor.js"></script>
 </body>
 
 </html>

@@ -372,9 +372,6 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
         </div>
     </div>
 
-
-    <script src="../js/custom-cursor.js"></script>
-    <script src="../js/modal-handlers.js"></script>
 </body>
 
 </html>

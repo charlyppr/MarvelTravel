@@ -358,9 +358,6 @@ $displayed_voyages = 0;
             </div>
         </div>
     </div>
-
-    <script src="../js/custom-cursor.js"></script>
-    <script src="../js/modal-handlers.js"></script>
     <script>
         // Mettre à jour le compteur de voyages
         document.getElementById('voyage-count').textContent = "<?php echo $total_voyages; ?> au total";

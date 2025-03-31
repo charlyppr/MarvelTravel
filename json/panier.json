@@ -1,27 +1,6 @@
 {
     "thanoslebg@gmail.com": {
-        "items": [
-            {
-                "voyage_id": 0,
-                "date_debut": "2025-04-02",
-                "date_fin": "2025-04-05",
-                "nb_personnes": "1",
-                "prix_unitaire": 399.95,
-                "voyageurs": [
-                    {
-                        "civilite": "M",
-                        "nom": "Titan",
-                        "prenom": "Thanos",
-                        "date_naissance": "1840-02-29",
-                        "nationalite": "Xandarienne",
-                        "passport": "1855014187"
-                    }
-                ],
-                "options": [],
-                "prix_options": 0,
-                "etape_atteinte": 3
-            }
-        ]
+        "items": []
     },
     "caryl@gmail.com": {
         "items": [

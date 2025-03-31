@@ -151,29 +151,30 @@ if (isset($_SESSION['auto_login'])) {
             <div class="rules-checkbox">
                 <input type="checkbox" id="rules-accept" required>
                 <label for="rules-accept">
-                    J'accepte les <a href="#" target="_blank">règles de Marvel Travel</a> et je m'engage à respecter les lois du multivers
+                    J'accepte les <a href="#" target="_blank">règles de Marvel Travel</a> et je m'engage à respecter les
+                    lois du multivers
                 </label>
             </div>
 
-            <a href="?auto_login=1" class="continue-button" id="continue-btn" style="opacity: 0.5; pointer-events: none;">
+            <a href="?auto_login=1" class="continue-button" id="continue-btn"
+                style="opacity: 0.5; pointer-events: none;">
                 Entrer dans le multivers
                 <img src="../img/svg/fleche-droite.svg" alt="fleche">
             </a>
         </div>
     </div>
 
-    <script src="../js/custom-cursor.js"></script>
     <script>
-    document.getElementById('rules-accept').addEventListener('change', function() {
-        const continueBtn = document.getElementById('continue-btn');
-        if (this.checked) {
-            continueBtn.style.opacity = '1';
-            continueBtn.style.pointerEvents = 'auto';
-        } else {
-            continueBtn.style.opacity = '0.5';
-            continueBtn.style.pointerEvents = 'none';
-        }
-    });
+        document.getElementById('rules-accept').addEventListener('change', function () {
+            const continueBtn = document.getElementById('continue-btn');
+            if (this.checked) {
+                continueBtn.style.opacity = '1';
+                continueBtn.style.pointerEvents = 'auto';
+            } else {
+                continueBtn.style.opacity = '0.5';
+                continueBtn.style.pointerEvents = 'none';
+            }
+        });
     </script>
 </body>
 
