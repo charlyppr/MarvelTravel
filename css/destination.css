@@ -2527,33 +2527,29 @@ img.card-image {
 }
 
 .sort-select {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-text-light);
-    padding: 8px var(--spacing-md);
-    border-radius: var(--border-radius-md);
-    font-size: var(--font-size-sm);
+    background-color: #000; /* Fond noir */
+    color: var(--color-text-light); /* Texte clair pour contraste */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */
+    padding: 10px 15px; /* Espacement interne */
+    border-radius: var(--border-radius-md); /* Coins arrondis */
+    font-size: var(--font-size-sm); /* Taille de police */
     cursor: pointer;
-    transition: all var(--transition-medium);
-    min-width: 160px;
-    font-family: 'PP Formula', sans-serif;
-    -webkit-appearance: none;
-    appearance: none;
-    background-image: url('../img/svg/chevron-down.svg');
+    appearance: none; /* Supprime le style par défaut */
+    background-image: url('../img/svg/chevron-down.svg'); /* Icône de flèche */
     background-repeat: no-repeat;
-    background-position: calc(100% - 12px) center;
-    background-size: 14px;
+    background-position: right 10px center; /* Position de l'icône */
+    background-size: 12px; /* Taille de l'icône */
+    transition: all var(--transition-fast); /* Transition fluide */
 }
 
 .sort-select:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.8); /* Fond légèrement plus clair au survol */
+    border-color: var(--color-accent-faded); /* Accentuation de la bordure */
 }
 
 .sort-select:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 2px rgba(242, 219, 175, 0.2);
+    outline: none; /* Supprime le contour par défaut */
+    box-shadow: 0 0 0 2px var(--color-accent); /* Met en évidence le focus */
 }
 
 /* Message aucun rÃ©sultat */
