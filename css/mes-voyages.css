@@ -1,103 +1,8 @@
-/* Variables pour une cohérence visuelle à travers l'application */
-:root {
-    /* Couleurs de base */
-    --color-background: #121212;
-    --color-text-light: #FFFFFF;
-    --color-text-cream: #FFFAE7;
-    --color-text-dark: #0D0D0D;
-    --color-text-muted: rgba(255, 250, 231, 0.7);
-    
-    /* Accents et dégradés */
-    --color-accent: #F2DBAF;
-    --color-accent-light: rgba(242, 219, 175, 0.8);
-    --color-accent-faded: rgba(242, 219, 175, 0.15);
-    --gradient-primary: linear-gradient(135deg, #E23636, #518CCA);
-    --gradient-hover: linear-gradient(135deg, #F04646, #61A1E6);
-    
-    /* Arrière-plans pour les cartes */
-    --color-card-bg: rgba(37, 37, 37, 0.7);
-    --color-card-hover: rgba(47, 47, 47, 0.9);
-    --color-field-bg: rgba(255, 255, 255, 0.07);
-    
-    /* États et feedbacks */
-    --color-success: #68E3B7;
-    --color-success-bg: rgba(43, 132, 107, 0.3);
-    --color-success-border: rgba(104, 227, 183, 0.3);
-    --color-pending: #FF9999;
-    --color-pending-bg: rgba(175, 31, 36, 0.3);
-    --color-pending-border: rgba(255, 153, 153, 0.3);
-    --link-color: #7BB5E8;
-    --link-hover: #A0CFFF;
-    
-    /* Ombres et effets */
-    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.3);
-    --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
-    --shadow-field: 0 4px 8px rgba(0, 0, 0, 0.15);
-    --shadow-button: 0 4px 15px rgba(13, 13, 13, 0.15);
-    
-    /* Bordures */
-    --border-radius-xs: 6px;
-    --border-radius-sm: 12px;
-    --border-radius-md: 16px;
-    --border-radius-lg: 24px;
-    --border-radius-xl: 30px;
-    
-    /* Espacement */
-    --spacing-xxs: 5px;
-    --spacing-xs: 10px;
-    --spacing-sm: 15px;
-    --spacing-md: 20px;
-    --spacing-lg: 30px;
-    --spacing-xl: 40px;
-    --spacing-xxl: 60px;
-    
-    /* Transitions */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideUp {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-@keyframes slideDown {
-    from { 
-        opacity: 0; 
-        transform: translateY(-20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-@keyframes shimmer {
-    0% { background-position: -100% 0; }
-    100% { background-position: 200% 0; }
-}
-
 /* ===== STYLES DE BASE ===== */
+img {
+    width: 20px;
+}
+
 .content-container-div {
     width: 100%;
     padding: var(--spacing-xl);
@@ -590,7 +495,6 @@
 
 .reset-search:hover {
     color: var(--link-hover);
-    /* text-decoration: underline; */
 }
 
 /* ===== FONCTIONNALITÉS SUPPLÉMENTAIRES ===== */
@@ -700,7 +604,6 @@
 }
 
 /* Styles pour les nouvelles fonctionnalités */
-
 .view-options {
     display: flex;
     align-items: center;
@@ -787,7 +690,6 @@
 .table-container {
     overflow-x: auto;
     margin: 0 -30px;
-    /* padding: 0 10px; */
 }
 
 .actions-container {
@@ -797,53 +699,6 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 1200px) {
-    .tab-voyages {
-        min-width: 800px;
-    }
-    
-    .main-content {
-        overflow-x: auto;
-    }
-}
-
-@media (max-width: 992px) {
-    .content-container-div {
-        padding: var(--spacing-md);
-    }
-    
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-md);
-    }
-    
-    .search-bar {
-        width: 100%;
-    }
-    
-    .filters-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-        padding-bottom: var(--spacing-sm);
-    }
-
-    .view-options {
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .sort-select {
-        flex: 1;
-        margin-right: var(--spacing-sm);
-    }
-    
-    .voyage-card {
-        margin: 0 -5px;
-    }
-}
-
 @media (max-width: 768px) {
     .main-content {
         padding: var(--spacing-md);
@@ -885,47 +740,4 @@
         justify-content: flex-start;
         padding-bottom: var(--spacing-xs);
     }
-}
-
-@media (max-width: 576px) {
-    .content-container-div {
-        padding: var(--spacing-xs);
-    }
-    
-    .titre-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-xs);
-    }
-    
-    .titre-content span:last-child {
-        margin-top: var(--spacing-xxs);
-    }
-    
-    .filters-bar {
-        padding: var(--spacing-xs) 0;
-    }
-    
-    .filter-button {
-        font-size: 12px;
-        padding: 6px 12px;
-    }
-    
-    .sort-select {
-        width: 100%;
-        margin-top: var(--spacing-xs);
-    }
-
-    .countdown {
-        font-size: 11px;
-    }
-    
-    .badge {
-        font-size: 9px;
-        padding: 1px 5px;
-    }
-}
-
-img {
-    width: 20px;
 }

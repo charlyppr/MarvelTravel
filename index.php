@@ -10,7 +10,6 @@ $_SESSION['current_url'] = current_url();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/accueil.css">
-        <link rel="stylesheet" href="css/intro.css">
         <link rel="shortcut icon" href="img/svg/spiderman-pin.svg" type="image/x-icon">
 
         <title>Marvel Travel • Accueil</title>
@@ -19,16 +18,6 @@ $_SESSION['current_url'] = current_url();
 
     <body>
         <div class="default"></div>
-
-        <div class="intro">
-            <div class="logo-container-intro">
-                <div class="logo-gauche-intro">
-                    <span class="logo-intro mar-intro">MAR</span>
-                    <span class="logo-intro tra-intro">TRA</span>
-                </div>
-                <span class="logo-intro vel-intro">VEL</span>
-            </div>
-        </div>
 
         <?php include 'php/nav.php'; ?>
 
@@ -172,10 +161,7 @@ $_SESSION['current_url'] = current_url();
 
         <?php include 'php/footer.php'; ?>
 
-        <!-- <script src="js/intro.js"></script> -->
-        <script src="js/custom-cursor.js"></script>
         <script src="js/nav.js"></script>
-        <!-- <script src="js/accueil.js"></script> -->
         <script src="js/defilement-logo.js"></script>
         <script src="js/scroll-to.js"></script>
 

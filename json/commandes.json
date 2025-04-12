@@ -78,5 +78,176 @@
                 "total": 35
             }
         ]
+    },
+    {
+        "transaction": "83269eb0dd52ab1de8cb1c7f",
+        "reservation_id": "MT-01CD7B67",
+        "montant": 836.91,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "7196d3bfcfdb192e480d375ae61adf11",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-10",
+        "date_fin": "2025-04-12",
+        "nb_personne": 2,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "6698892731"
+            },
+            {
+                "civilite": "M",
+                "nom": "Parker",
+                "prenom": "Peter",
+                "date_naissance": "2025-01-22",
+                "nationalite": "Américaine",
+                "passport": "57Z385Z783"
+            }
+        ],
+        "date_achat": "2025-04-01 11:14:50",
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Balade à vélo",
+                "prix_unitaire": 30,
+                "nb_participants": 2,
+                "total": 60
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 2,
+                "total": 70
+            }
+        ]
+    },
+    {
+        "transaction": "8f879a72ad991c6e6af738be",
+        "reservation_id": "MT-7216FE25",
+        "montant": 10421.91,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "c12486c06b5e51d129f56d94f3a5bc82",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-04-16",
+        "date_fin": "2025-04-27",
+        "nb_personne": 2,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            },
+            {
+                "civilite": "M",
+                "nom": "Marmelat",
+                "prenom": "Paul",
+                "date_naissance": "2025-02-26",
+                "nationalite": "Asgardienne",
+                "passport": "57Z385Z783"
+            }
+        ],
+        "date_achat": "2025-04-01 12:01:55",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Musée Wakandais",
+                "prix_unitaire": 300,
+                "nb_participants": 2,
+                "total": 600
+            },
+            {
+                "etape": "Golden City",
+                "option": "Marché tribal",
+                "prix_unitaire": 250,
+                "nb_participants": 1,
+                "total": 250
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Randonnée",
+                "prix_unitaire": 200,
+                "nb_participants": 1,
+                "total": 200
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Visite du temple",
+                "prix_unitaire": 180,
+                "nb_participants": 1,
+                "total": 180
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 1,
+                "total": 150
+            }
+        ]
+    },
+    {
+        "transaction": "e948b197d40fe35f93c93e31",
+        "reservation_id": "MT-6243F676",
+        "montant": 485.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "6e8758ebf2a348dc10e3583a60cfc94c",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-04-16",
+        "date_fin": "2025-04-26",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "1855014187"
+            }
+        ],
+        "date_achat": "2025-04-12 17:16:55",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Statue de la Liberté",
+                "option": "Traversée en ferry",
+                "prix_unitaire": 25,
+                "nb_participants": 1,
+                "total": 25
+            },
+            {
+                "etape": "Central Park",
+                "option": "Balade à vélo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
     }
 ]

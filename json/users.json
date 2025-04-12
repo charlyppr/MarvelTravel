@@ -12,7 +12,7 @@
         "date_inscription": "2025-03-30 22:51:49",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-03-31 00:35:06"
+        "last_login": "2025-04-01 11:12:46"
     },
     {
         "civilite": "M",
@@ -57,6 +57,21 @@
         "date_inscription": "2025-03-30 23:10:07",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-03-31 00:38:54"
+        "last_login": "2025-04-01 12:03:15"
+    },
+    {
+        "civilite": "Mme",
+        "first_name": "Hello",
+        "last_name": "Darling",
+        "email": "hello@gmail.com",
+        "password": "$2y$10$NlrbELiUtNpbNURASjAMUel1EHi5rHwC2bfJQwvbVsNulLmgtfXZ6",
+        "date_naissance": "2025-03-12",
+        "nationalite": "Asgardienne",
+        "role": "user",
+        "passport_id": "8852876946",
+        "date_inscription": "2025-04-01 12:02:37",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
     }
 ]

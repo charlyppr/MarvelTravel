@@ -55,30 +55,8 @@
     opacity: 1;
 }
 
-/* Overlay pour mobile */
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99;
-    display: none;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: opacity var(--transition-sidebar);
-    opacity: 0;
-}
-
-.sidebar-overlay.visible {
-    display: block;
-    opacity: 1;
-}
-
 /* ===== HEADER ===== */
 .sidebar-header {
-    /* padding: 20px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,11 +91,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.vel {
-    /* color: #518CCA; */
-    /* -webkit-text-fill-color: #518CCA; */
 }
 
 .travel {
@@ -177,10 +150,6 @@
 }
 
 /* Sections */
-.sidebar-section {
-    /* padding: 0 20px; */
-}
-
 .sidebar-heading {
     font-size: 12px;
     text-transform: uppercase;
@@ -373,8 +342,6 @@
 
 /* ===== USER SECTION ===== */
 .sidebar-user {
-    /* border-top: 1px solid var(--sidebar-border); */
-    /* border-bottom: 1px solid var(--sidebar-border); */
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: auto;
@@ -535,57 +502,4 @@
     font-size: 12px;
     color: var(--color-text-muted);
     white-space: nowrap;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1200px) {
-    .sidebar {
-        width: var(--sidebar-width);
-    }
-}
-
-@media (max-width: 992px) {
-    .sidebar {
-        transform: translateX(-100%);
-        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .sidebar.active {
-        transform: translateX(0);
-    }
-    
-    .mobile-toggle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .mobile-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .mobile-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .mobile-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-}
-
-@media (max-width: 576px) {
-    .sidebar {
-        width: 85%;
-    }
-    
-    .user-profile {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-    
-    .user-info {
-        width: 100%;
-    }
 }
