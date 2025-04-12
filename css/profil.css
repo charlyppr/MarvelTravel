@@ -96,7 +96,7 @@ body {
     position: relative;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
-    background-clip: border-box;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

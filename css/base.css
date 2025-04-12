@@ -204,6 +204,71 @@ a {
     text-align: center;
 }
 
+/* Profile Dropdown Styles */
+.profile-dropdown-container {
+    position: relative;
+}
+
+.profile-icon-container {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: var(--spacing-md);
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(30, 30, 30, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    width: 180px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--couleur-primaire) !important;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.dropdown-item img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(0.9);
+}
+
+.dropdown-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
 /* --------- Eviter un background sur les input --------- */
 
 input:-webkit-autofill,
@@ -402,6 +467,7 @@ input:-webkit-autofill:focus {
     width: calc(100% - 280px);
     margin-left: 260px;
     transition: width var(--transition-medium), margin-left var(--transition-medium);
+    padding: var(--spacing-xl);
 }
 
 body.sidebar-open {

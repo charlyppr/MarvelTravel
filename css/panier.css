@@ -387,7 +387,7 @@
     align-items: center;
     padding: var(--spacing-xs) 0;
     font-size: 16px;
-    color: var(--color-secondary);
+    color: var(--color-accent);
 }
 
 .summary-row.total {

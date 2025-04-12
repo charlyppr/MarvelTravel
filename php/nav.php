@@ -83,32 +83,49 @@ if ($is_in_root) {
                 class="menu-li <?php echo $current_page === 'contact.php' ? 'active-nav' : ''; ?>">
                 <li>Contact</li>
             </a>
-            <div class="nav-cart">
-                <a href="<?php echo $base_url; ?>/php/panier.php" class="cart-icon">
-                    <img src="<?php echo getAssetPath('svg/cart.svg'); ?>" alt="Panier">
-                    <?php
-                    // N'afficher le compteur que si l'utilisateur est connecté
-                    if (isset($_SESSION['user'])) {
+            
+            <?php
+            if (isset($_SESSION['user'])) {
+                ?>
+                <div class="profile-dropdown-container">
+                    <a href="<?php echo $base_url; ?>/php/profil.php" class="profile-icon-container">
+                        <img src="<?php echo getAssetPath('svg/spiderman-pin.svg'); ?>" alt="Profil" class="profile-icon">
+                        <?php
+                        // Afficher le badge de notification du panier s'il y a des articles
                         $panier_path = $project_root . '/json/panier.json';
+                        $has_items = false;
+                        $items_count = 0;
+                        
                         if (file_exists($panier_path)) {
                             $panierJson = file_get_contents($panier_path);
                             if ($panierJson !== false) {
                                 $panier = json_decode($panierJson, true);
                                 $userEmail = $_SESSION['email'];
                                 if (isset($panier[$userEmail]) && isset($panier[$userEmail]['items']) && count($panier[$userEmail]['items']) > 0) {
-                                    echo '<span class="cart-count">' . count($panier[$userEmail]['items']) . '</span>';
+                                    $has_items = true;
+                                    $items_count = count($panier[$userEmail]['items']);
+                                    echo '<span class="cart-count">' . $items_count . '</span>';
                                 }
                             }
                         }
-                    }
-                    ?>
-                </a>
-            </div>
+                        ?>
+                    </a>
+                    <div class="profile-dropdown">
+                        <a href="<?php echo $base_url; ?>/php/profil.php" class="dropdown-item">
+                            <img src="<?php echo getAssetPath('svg/users.svg'); ?>" alt="Profil">
+                            <span>Profil</span>
+                        </a>
+                        <a href="<?php echo $base_url; ?>/php/panier.php" class="dropdown-item">
+                            <img src="<?php echo getAssetPath('svg/cart.svg'); ?>" alt="Panier">
+                            <span>Panier<?php echo $has_items ? ' (' . $items_count . ')' : ''; ?></span>
+                        </a>
+                        <a href="<?php echo $base_url; ?>/php/reglages.php" class="dropdown-item">
+                            <img src="<?php echo getAssetPath('svg/settings.svg'); ?>" alt="Réglages">
+                            <span>Réglages</span>
+                        </a>
+                    </div>
+                </div>
             <?php
-            if (isset($_SESSION['user'])) {
-                // Utilisation du préfixe pour les chemins relatifs
-                echo "<a href='{$base_url}/php/profil.php' class='menu-li'>
-                      <img src='" . getAssetPath('svg/spiderman-pin.svg') . "' alt='Profil' style='width: 40px; height: 40px;'></a>";
             } else {
                 echo "<a href='{$base_url}/php/connexion.php' class='nav-button'>
                       <li>Se connecter</li></a>";
@@ -117,3 +134,22 @@ if ($is_in_root) {
         </ul>
     </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const profileContainer = document.querySelector('.profile-dropdown-container');
+    const navElement = document.querySelector('.nav');
+    
+    if (profileContainer) {
+        profileContainer.addEventListener('mouseenter', function() {
+            navElement.style.maskImage = 'none';
+            document.querySelector('.profile-dropdown').style.display = 'flex';
+        });
+        
+        profileContainer.addEventListener('mouseleave', function() {
+            navElement.style.maskImage = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%)';
+            document.querySelector('.profile-dropdown').style.display = 'none';
+        });
+    }
+});
+</script>
