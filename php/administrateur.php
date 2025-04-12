@@ -29,6 +29,7 @@ foreach ($users as $user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Administrateur</title>
 
+    <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/administrateur.css">
     <link rel="stylesheet" href="../css/sidebar.css">

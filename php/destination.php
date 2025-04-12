@@ -80,6 +80,8 @@ $best_voyages = array_slice($voyages, 0, 4);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos destinations • Marvel Travel</title>
+
+    <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/destination.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">

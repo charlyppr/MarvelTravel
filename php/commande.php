@@ -85,6 +85,8 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voyage à <?= htmlspecialchars($commande['voyage']) ?> - Marvel Travel</title>
+
+    <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/commande.css">
     <link rel="stylesheet" href="../css/sidebar.css">

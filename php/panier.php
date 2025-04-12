@@ -62,6 +62,8 @@ $voyages = json_decode($voyagesJson, true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Panier • Marvel Travel</title>
+
+    <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/panier.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">

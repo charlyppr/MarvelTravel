@@ -287,6 +287,8 @@ $_SESSION['confirmation_viewed'] = true;
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <title><?php echo $payment_validated ? 'Confirmation de réservation' : 'Échec du paiement'; ?> • Marvel Travel
     </title>
+
+    <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/confirmation.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">

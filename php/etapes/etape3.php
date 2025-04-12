@@ -258,6 +258,7 @@ if (isset($_POST['submit_options'])) {
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>Options du voyage - <?php echo htmlspecialchars($voyage['titre']); ?> • Marvel Travel</title>
 
+    <link rel="stylesheet" href="../../css/root.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/etape3.css">
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
