@@ -92,15 +92,12 @@ body {
 
 .profile-greeting .titre {
     font-size: 36px;
-    /* font-weight: 800; */
     color: var(--color-text-cream);
-    /* margin: 0; */
     position: relative;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
+    background-clip: border-box;
     -webkit-text-fill-color: transparent;
-    /* text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-    /* letter-spacing: -0.5px; */
 }
 
 .profile-greeting .titre::after {

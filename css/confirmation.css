@@ -484,14 +484,6 @@ body {
     text-shadow: 0 2px 10px rgba(226, 54, 54, 0.2);
 }
 
-.error-card {
-    /* background-color: rgba(226, 54, 54, 0.08); */
-    /* border: 1px solid rgba(226, 54, 54, 0.2); */
-    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(226, 54, 54, 0.05); */
-    /* position: relative; */
-    /* overflow: hidden; */
-}
-
 .error-card::before {
     content: '';
     position: absolute;
@@ -583,20 +575,6 @@ body {
     margin: 0 auto var(--spacing-lg);
     font-size: var(--font-size-md);
     line-height: 1.5;
-}
-
-.error-card {
-    /* animation: slideUp 1s ease; */
-}
-
-/* Styles pour la carte de conseils de paiement */
-.payment-tips {
-    /* background-color: rgba(81, 140, 202, 0.08); */
-    /* border: 1px solid rgba(81, 140, 202, 0.2); */
-    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(81, 140, 202, 0.05); */
-    /* position: relative; */
-    /* overflow: hidden; */
-    /* animation: slideUp 1.2s ease; */
 }
 
 .payment-tips::before {

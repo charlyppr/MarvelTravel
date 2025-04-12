@@ -165,20 +165,8 @@ body {
     font-size: 5.4rem;
     line-height: 0.9;
     color: var(--color-text-light);
-    /* background: var(--gradient-primary); */
-    /* -webkit-background-clip: text; */
-    /* background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
-    /* background-size: 200% auto; */
-    /* animation: textGradientMove 8s linear infinite; */
-    /* filter: drop-shadow(0 0 5px rgba(81, 140, 202, 0.5)); */
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     transition: var(--transition-medium);
-}
-
-.logo-container:hover .logo-gauche span {
-    /* text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); */
-    /* color: var(--color-accent); */
 }
 
 /* ===================== FORMULAIRES ===================== */
