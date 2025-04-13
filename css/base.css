@@ -453,6 +453,57 @@ input:-webkit-autofill:focus {
     width: 100%;
 }
 
+/* Styles pour le bouton de thème */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.theme-toggle {
+    background: rgba(68, 68, 68, 0.5);
+    border: 1px solid rgba(242, 219, 175, 0.2);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(242, 219, 175, 0.1);
+    transform: translateY(-2px);
+}
+
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-icon.active {
+    opacity: 1;
+}
+
+.light-icon {
+    filter: invert(92%) sepia(18%) saturate(407%) hue-rotate(344deg) brightness(97%) contrast(92%);
+}
+
+.dark-icon {
+    filter: invert(92%) sepia(18%) saturate(407%) hue-rotate(344deg) brightness(97%) contrast(92%);
+}
+
+/* Ajustement du menu pour intégrer le bouton de thème */
+.menu ul {
+    display: flex;
+    align-items: center;
+}
 
 /* ----------------- SIDEBAR ------------------ */
 
@@ -621,8 +672,6 @@ body.sidebar-open {
     fill: #AF1F24;
 }
 
-
-
 /* ------------------------- REDIRECTION TEXTE ------------------------- */
 
 .redir-text {
@@ -649,7 +698,6 @@ body.sidebar-open {
 .redir-text:hover::after {
     width: 100%;
 }
-
 
 /* ------------------------- FOOTER ------------------------- */
 
@@ -720,7 +768,6 @@ body.sidebar-open {
     flex-direction: column;
 }
 
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -758,7 +805,6 @@ body.sidebar-open {
 /* Style des input*/
 
 /* ------------------------- Media ------------------------- */
-
 
 @media (max-width: 768px) {
     .titre {

@@ -131,6 +131,14 @@ if ($is_in_root) {
                       <li>Se connecter</li></a>";
             }
             ?>
+            
+            <!-- Bouton pour basculer entre les thèmes clair et sombre -->
+            <div class="theme-toggle-container">
+                <button class="theme-toggle" aria-label="Changer de thème">
+                    <img src="<?php echo getAssetPath('svg/sun.svg'); ?>" alt="Thème clair" class="theme-icon light-icon">
+                    <img src="<?php echo getAssetPath('svg/moon.svg'); ?>" alt="Thème sombre" class="theme-icon dark-icon active">
+                </button>
+            </div>
         </ul>
     </div>
 </header>
@@ -149,6 +157,19 @@ document.addEventListener('DOMContentLoaded', function() {
         profileContainer.addEventListener('mouseleave', function() {
             navElement.style.maskImage = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%)';
             document.querySelector('.profile-dropdown').style.display = 'none';
+        });
+    }
+    
+    // Sélectionner le bouton de thème
+    const themeToggle = document.querySelector('.theme-toggle');
+    const lightIcon = document.querySelector('.light-icon');
+    const darkIcon = document.querySelector('.dark-icon');
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            // Pour l'instant, on change juste visuellement les icônes
+            lightIcon.classList.toggle('active');
+            darkIcon.classList.toggle('active');
         });
     }
 });
