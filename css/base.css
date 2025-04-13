@@ -464,14 +464,14 @@ input:-webkit-autofill:focus {
     background: rgba(68, 68, 68, 0.5);
     border: 1px solid rgba(242, 219, 175, 0.2);
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .theme-toggle:hover {
