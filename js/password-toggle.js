@@ -1,22 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Sélectionne tous les boutons de toggle de mot de passe
     const toggleButtons = document.querySelectorAll('.password-toggle-btn');
     
-    // Pour chaque bouton de toggle
     toggleButtons.forEach(button => {
+        // Au chargement de la page, l'œil est barré car le mot de passe est masqué par défaut
+        button.classList.add('hide-password');
+        
         button.addEventListener('click', function() {
-            // Trouve le champ de mot de passe associé au bouton
-            const passwordField = this.closest('.password-field-container').querySelector('input');
+            const input = this.parentElement.querySelector('input');
             
-            // Alterne entre les types "password" et "text"
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                // Change l'icône pour indiquer que le mot de passe est visible
-                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            // Bascule entre les types de champ
+            if (input.type === 'password') {
+                input.type = 'text';
+                this.classList.remove('hide-password'); // Œil normal quand le mot de passe est visible
             } else {
-                passwordField.type = 'password';
-                // Change l'icône pour indiquer que le mot de passe est caché
-                this.innerHTML = '<i class="fas fa-eye"></i>';
+                input.type = 'password';
+                this.classList.add('hide-password'); // Œil barré quand le mot de passe est masqué
             }
         });
     });

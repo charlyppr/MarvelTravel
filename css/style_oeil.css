@@ -50,6 +50,30 @@
     transition: filter 0.2s ease;
 }
 
+/* Utiliser le même œil pour les deux états */
+.password-toggle-btn.hide-password::before {
+    background-image: url('../img/svg/oeil.svg'); /* Utiliser la même image */
+}
+
+/* Ajouter une barre diagonale avec un pseudo-élément */
+.password-toggle-btn.hide-password::after {
+    content: '';
+    position: absolute;
+    width: 22px; /* Légèrement plus large que l'icône */
+    height: 2px; /* Épaisseur de la barre */
+    background-color: white; /* Base blanche pour appliquer le filtre */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    filter: brightness(0) invert(0.7); /* Même filtre que l'icône d'œil */
+    transition: filter 0.2s ease; /* Animation cohérente avec l'icône */
+}
+
+/* S'assurer que le filtre de survol s'applique aussi à la barre */
+.password-toggle-btn:hover::after {
+    filter: brightness(0) invert(1); /* Même effet au survol que l'icône */
+}
+
 .password-toggle-btn:hover::before {
     filter: brightness(0) invert(1); /* Plus brillant au survol */
 }
