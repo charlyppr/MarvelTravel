@@ -91,7 +91,7 @@ if (file_exists($messages_file)) {
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">  
 </head>
 
 <body>
@@ -312,10 +312,5 @@ if (file_exists($messages_file)) {
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Ajout du script pour gérer l'affichage/masquage du mot de passe -->
-    <script src="../assets/js/password-toggle.js"></script>
-</body>
-
+    </div>   
 </html>
