@@ -85,6 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
+    <!-- Ajout de Font Awesome pour l'icône œil -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -116,9 +118,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         value="<?php echo htmlspecialchars($login_mail_value); ?>">
                 </div>
 
-                <div class="mdp">
+                <div class="mdp password-field-container">
                     <img src="../img/svg/lock.svg" alt="Lock Icon">
                     <input type="password" id="password" name="login_pass" placeholder="Mot de passe" required>
+                    <button type="button" class="password-toggle-btn" title="Afficher le mot de passe">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
 
                 <a href="#" class="redir-text">Mot de passe oublié dans la galaxie ?</a>
@@ -145,6 +150,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+    
+    <!-- Ajout du script pour gérer l'affichage/masquage du mot de passe -->
+    <script src="../js/password-toggle.js"></script>
 </body>
 
 </html>

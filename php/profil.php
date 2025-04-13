@@ -169,7 +169,7 @@ if (file_exists($messages_file)) {
 
                                     <div class="profile-field">
                                         <div class="field-label">Mot de passe</div>
-                                        <div class="field-value">
+                                        <div class="field-value password-field-container">
                                             <span>••••••••••</span>
                                             <button class="edit-button" data-field="password">
                                                 <img src="../img/svg/edit.svg" alt="Modifier">
@@ -314,6 +314,8 @@ if (file_exists($messages_file)) {
         </div>
     </div>
 
+    <!-- Ajout du script pour gérer l'affichage/masquage du mot de passe -->
+    <script src="../assets/js/password-toggle.js"></script>
 </body>
 
 </html>
