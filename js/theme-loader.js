@@ -1,7 +1,3 @@
-/**
- * Theme Loader - Gestion des thèmes et préférences d'affichage
- */
-
 document.addEventListener("DOMContentLoaded", function () {
   // Fonction pour obtenir la valeur d'un cookie
   function getCookie(name) {

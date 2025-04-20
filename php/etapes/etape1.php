@@ -196,8 +196,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>Réserver <?php echo htmlspecialchars($voyage['titre']); ?> • Marvel Travel</title>
 
-    <link rel="stylesheet" href="../../css/root.css">
-    <link rel="stylesheet" href="../../css/base.css">
+    <script src="../../js/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="../../css/theme.css" id="theme">
+
     <link rel="stylesheet" href="../../css/etape1.css">
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>

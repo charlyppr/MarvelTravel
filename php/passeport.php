@@ -92,8 +92,10 @@ if (isset($_SESSION['auto_login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Votre Passeport Multiversel</title>
 
-    <link rel="stylesheet" href="../css/root.css">
-    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="../css/theme.css" id="theme">
+
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="stylesheet" href="../css/passeport.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">

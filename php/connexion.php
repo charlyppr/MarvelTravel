@@ -81,8 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Connexion</title>
 
-    <link rel="stylesheet" href="../css/root.css">
-    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="../css/theme.css" id="theme">
+
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
@@ -152,4 +154,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 <script src="../js/password-toggle.js"></script>
+
 </html>

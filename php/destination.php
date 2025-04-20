@@ -82,13 +82,9 @@ $best_voyages = array_slice($voyages, 0, 4);
     <title>Nos destinations • Marvel Travel</title>
 
     <script src="../js/theme-loader.js"></script>
-    <link rel="stylesheet" href="../css/root.css">
-    <link rel="stylesheet" href="../css/root-light.css">
-    <link rel="stylesheet" href="../css/root-dark.css">
-    <link rel="stylesheet" href="../css/accessibility.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/base-light.css">
-    <link rel="stylesheet" href="../css/base-dark.css">
+
+    <link rel="stylesheet" href="../css/theme.css" id="theme">
+
     <link rel="stylesheet" href="../css/destination.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
     

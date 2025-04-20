@@ -18,8 +18,10 @@ $displayed_voyages = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Mes voyages</title>
 
-    <link rel="stylesheet" href="../css/root.css">
-    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="../css/theme.css" id="theme">
+
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="stylesheet" href="../css/mes-voyages.css">
     <link rel="stylesheet" href="../css/sidebar.css">

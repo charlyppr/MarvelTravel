@@ -1,9 +1,3 @@
-/**
- * Styles spécifiques pour le thème clair
- * Ce fichier contient les modifications nécessaires pour adapter base.css au thème clair
- */
-
-/* Styles de base */
 body {
     background-color: var(--color-background);
     color: var(--color-text-light);

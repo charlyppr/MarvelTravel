@@ -89,10 +89,7 @@ if (file_exists($messages_file)) {
 
     <script src="../js/theme-loader.js"></script>
 
-    <link rel="stylesheet" href="../css/theme-dark.css" id="theme-dark">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/base-light.css">
-    <link rel="stylesheet" href="../css/base-dark.css">
+    <link rel="stylesheet" href="../css/theme.css" id="theme">
 
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="stylesheet" href="../css/sidebar.css">

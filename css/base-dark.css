@@ -1,9 +1,3 @@
-/**
- * Styles spécifiques pour le thème sombre
- * Ce fichier contient les modifications nécessaires pour adapter base.css au thème sombre
- */
-
-/* Styles de base */
 body {
     background-color: var(--color-background);
     color: var(--color-text-light);

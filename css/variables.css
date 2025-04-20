@@ -34,7 +34,7 @@
     --font-size-xxl: 32px;
 }
 
-/* ===== THÈME SOMBRE (PAR DÉFAUT) ===== */
+/* ===== THÈME SOMBRE ===== */
 :root, .dark-theme {
     /* Couleurs de base */
     --color-background: #121212;
@@ -107,7 +107,7 @@
 }
 
 /* ===== THÈME CLAIR ===== */
-.light-theme {
+:root, .light-theme {
     /* Couleurs de base */
     --color-background: #FFFAE7;
     --color-text-light: #0D0D0D;
