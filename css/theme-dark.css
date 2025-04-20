@@ -1,0 +1,271 @@
+/**
+ * THÈME SOMBRE - Marvel Travel
+ * Ce fichier contient tous les styles spécifiques au thème sombre
+ */
+
+/* Import des variables et styles de base */
+@import 'variables.css';
+@import 'base-styles.css';
+
+/* ===== STYLES SPÉCIFIQUES AU THÈME SOMBRE ===== */
+
+/* Styles de base */
+body {
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+}
+
+a {
+    color: var(--couleur-primaire);
+}
+
+.trait {
+    background-color: var(--couleur-primaire);
+}
+
+.default {
+    background-color: var(--couleur-accent);
+}
+
+.titre {
+    color: var(--couleur-primaire);
+}
+
+.sous-titre {
+    color: var(--couleur-secondaire);
+}
+
+.sous-titre-2 {
+    color: var(--couleur-secondaire);
+}
+
+/* Navigation */
+.nav {
+    background-color: rgba(18, 18, 18, 0.8);
+    mask-image: linear-gradient(to bottom, rgba(18, 18, 18, 1) 70%, rgba(18, 18, 18, 0.5) 85%, rgba(18, 18, 18, 0) 100%);
+}
+
+.logo-gauche span {
+    color: var(--couleur-primaire);
+}
+
+.vel {
+    color: var(--couleur-primaire);
+}
+
+.logo-container:hover .logo-gauche span, 
+.logo-container:hover .vel {
+    color: var(--couleur-accent) !important;
+}
+
+.menu-li {
+    color: var(--couleur-primaire);
+}
+
+.nav-button {
+    color: var(--couleur-tertiaire);
+    background-color: var(--couleur-primaire);
+}
+
+.nav-button:hover {
+    background-color: var(--couleur-secondaire);
+}
+
+.cart-icon {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cart-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cart-icon img {
+    filter: brightness(0) invert(1);
+}
+
+.active-nav::after {
+    background-color: var(--couleur-primaire);
+}
+
+/* Menu déroulant */
+.profile-dropdown {
+    background-color: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-item {
+    color: var(--couleur-primaire) !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-item img {
+    filter: brightness(0) invert(0.9);
+}
+
+/* Barre latérale */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+}
+
+.sidebar-item {
+    color: var(--couleur-primaire);
+}
+
+.sidebar-item:hover {
+    background-color: var(--sidebar-item-hover);
+}
+
+.sidebar-item.active {
+    background-color: var(--sidebar-active);
+}
+
+.categorie-text {
+    color: var(--couleur-primaire);
+}
+
+.active-text {
+    color: var(--couleur-tertiaire);
+}
+
+.info-admin .nom-admin {
+    color: var(--couleur-secondaire);
+}
+
+.info-admin .mail-admin {
+    color: var(--couleur-primaire);
+}
+
+.deconnexion * {
+    color: var(--couleur-primaire);
+}
+
+.deconnexion:hover * {
+    color: var(--couleur-accent);
+    fill: var(--couleur-accent);
+}
+
+/* Cartes et conteneurs */
+.card, 
+.settings-card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-accent-faded);
+    box-shadow: var(--shadow-card);
+}
+
+.card:hover, 
+.settings-card:hover {
+    background-color: var(--color-card-hover);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(242, 219, 175, 0.2);
+}
+
+.card-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--color-accent-faded);
+}
+
+/* Boutons et interactions */
+button, 
+.button, 
+.action-button {
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-tertiaire);
+}
+
+button:hover, 
+.button:hover, 
+.action-button:hover {
+    background-color: var(--couleur-secondaire);
+}
+
+.action-button.primary {
+    background: var(--gradient-primary);
+    color: var(--color-text-light);
+}
+
+.action-button.primary:hover {
+    background: var(--gradient-hover);
+}
+
+/* Formulaires */
+input, 
+select, 
+textarea {
+    background-color: var(--color-field-bg);
+    color: var(--couleur-primaire);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input:focus, 
+select:focus, 
+textarea:focus {
+    border-color: var(--color-accent);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+/* Notifications et états */
+.notification {
+    background-color: var(--color-glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification.success {
+    border-color: var(--color-success-border);
+    background-color: var(--color-success-bg);
+}
+
+.notification.warning {
+    border-color: var(--color-warning-border);
+    background-color: var(--color-warning-bg);
+}
+
+.notification.error {
+    border-color: var(--color-error-border);
+    background-color: var(--color-error-bg);
+}
+
+/* Pied de page */
+.footer-content {
+    background-color: var(--couleur-secondaire);
+}
+
+.footer-right-top-content {
+    color: var(--couleur-accent);
+}
+
+.footer-right-top-content a {
+    color: var(--couleur-tertiaire);
+}
+
+.footer-right-top-content a:hover {
+    color: var(--couleur-accent);
+}
+
+.copyright {
+    color: var(--couleur-tertiaire);
+}
+
+/* Médias queries */
+@media (max-width: 768px) {
+    .menu {
+        background-color: rgba(18, 18, 18, 0.8);
+    }
+
+    .menu-li {
+        color: var(--couleur-primaire);
+    }
+
+    .active::after {
+        background-color: var(--couleur-primaire);
+    }
+}

@@ -5,7 +5,7 @@ check_none_auth($_SESSION['current_url'] ?? "../index.php");
 // Récupérer l'email saisi précédemment (s'il existe)
 $login_mail_value = $_SESSION['login_mail'] ?? '';
 
-$message = ""; // Initialisation du message
+$message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['login_mail'] = $login_mail;
 
     $json_file = "../json/users.json";
-    $connexion = 1; // 1 = erreur par défaut
+    $connexion = 1;
 
     if (!empty($login_mail) && !empty($login_pass)) {
         if (file_exists($json_file)) {
@@ -85,9 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style_oeil.css">
-    <!-- Ajout de Font Awesome pour l'icône œil -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -123,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img src="../img/svg/lock.svg" alt="Lock Icon">
                     <input type="password" id="password" name="login_pass" placeholder="Mot de passe" required>
                     <button type="button" class="password-toggle-btn" title="Afficher le mot de passe">
-                        <i class="fas fa-eye"></i>
+                        <img src="../img/svg/eye-slash.svg" alt="Afficher le mot de passe" class="eye-icon">
                     </button>
                 </div>
 
@@ -144,16 +141,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         } elseif ($_SESSION['connexion'] == 1) {
                             echo "<p>Identifiant ou mot de passe incorrect</p>";
                         }
-                        unset($_SESSION['connexion']); // Suppression de la variable après affichage
+                        unset($_SESSION['connexion']);
                     }
                     ?>
                 </div>
             </form>
         </div>
     </div>
-    
-    <!-- Ajout du script pour gérer l'affichage/masquage du mot de passe -->
-    <script src="../js/password-toggle.js"></script>
+
 </body>
 
+<script src="../js/password-toggle.js"></script>
 </html>

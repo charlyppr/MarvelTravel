@@ -1,0 +1,278 @@
+/**
+ * Styles spécifiques pour le thème clair
+ * Ce fichier contient les modifications nécessaires pour adapter base.css au thème clair
+ */
+
+/* Styles de base */
+body {
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+}
+
+a {
+    color: var(--color-text-light);
+}
+
+.default {
+    background-color: var(--couleur-accent);
+}
+
+.trait {
+    background-color: var(--color-text-light);
+}
+
+.titre {
+    color: var(--color-text-light);
+}
+
+.sous-titre {
+    color: var(--couleur-sous-titre);
+}
+
+.sous-titre-2 {
+    color: var(--couleur-sous-titre);
+}
+
+/* Styles de la barre de navigation */
+.nav {
+    background-color: rgba(255, 250, 231, 0.8);
+    mask-image: linear-gradient(to bottom, rgba(255, 250, 231, 1) 70%, rgba(255, 250, 231, 0.5) 85%, rgba(255, 250, 231, 0) 100%);
+}
+
+.logo-gauche span {
+    color: var(--color-text-light);
+}
+
+.vel {
+    color: var(--color-text-light);
+}
+
+.logo-container:hover .logo-gauche span, .logo-container:hover .vel {
+    color: var(--couleur-accent) !important;
+}
+
+.menu-li {
+    color: var(--color-text-light);
+}
+
+.nav-button {
+    color: var(--couleur-tertiaire);
+    background-color: var(--couleur-primaire);
+}
+
+.nav-button:hover {
+    background-color: var(--couleur-secondaire);
+}
+
+.cart-icon {
+    background: rgba(13, 13, 13, 0.1);
+}
+
+.cart-icon:hover {
+    background: rgba(13, 13, 13, 0.2);
+}
+
+.cart-icon img {
+    filter: brightness(0) invert(0);
+}
+
+.active-nav::after {
+    background-color: var(--color-text-light);
+}
+
+/* Styles du menu déroulant */
+.profile-dropdown {
+    background-color: rgba(255, 250, 231, 0.9);
+    border: 1px solid rgba(13, 13, 13, 0.1);
+}
+
+.dropdown-item {
+    color: var(--color-text-light) !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(13, 13, 13, 0.1);
+}
+
+.dropdown-item img {
+    filter: brightness(0) invert(0);
+}
+
+/* Styles de la barre latérale */
+.sidebar {
+    background-color: rgba(242, 242, 242, 0.8);
+}
+
+.categorie-text {
+    color: var(--color-text-light);
+}
+
+.active-text {
+    color: var(--couleur-tertiaire);
+}
+
+.info-admin .nom-admin {
+    color: var(--couleur-sous-titre);
+}
+
+.info-admin .mail-admin {
+    color: var(--color-text-light);
+}
+
+.deconnexion * {
+    color: var(--color-text-light);
+}
+
+.deconnexion:hover * {
+    color: var(--couleur-accent);
+    fill: var(--couleur-accent);
+}
+
+/* Styles de redirection */
+.redir-text {
+    color: var(--color-text-light);
+}
+
+.redir-text::after {
+    background-color: var(--color-text-light);
+}
+
+/* Styles du pied de page */
+.footer-content {
+    background-color: var(--couleur-secondaire);
+}
+
+.footer-right-top-content {
+    color: var(--couleur-accent);
+}
+
+.footer-right-top-content a {
+    color: var(--couleur-tertiaire);
+}
+
+.footer-right-top-content a:hover {
+    color: var(--couleur-accent);
+}
+
+.copyright {
+    color: var(--couleur-tertiaire);
+}
+
+/* Styles pour les médias */
+@media (max-width: 768px) {
+    .menu {
+        background-color: rgba(255, 250, 231, 0.8);
+    }
+
+    .menu-li {
+        color: var(--color-text-light);
+    }
+
+    .active::after {
+        background-color: var(--color-text-light);
+    }
+
+    .nav-button {
+        background-color: var(--couleur-primaire);
+        color: var(--couleur-tertiaire);
+    }
+}
+
+/* Styles pour les cartes et conteneurs */
+.card, .settings-card {
+    background-color: var(--color-card-bg);
+    box-shadow: var(--shadow-card);
+}
+
+.card:hover, .settings-card:hover {
+    box-shadow: var(--shadow-card-hover);
+}
+
+/* Styles pour les boutons */
+button, .button, .action-button {
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-tertiaire);
+}
+
+button:hover, .button:hover, .action-button:hover {
+    background-color: var(--couleur-secondaire);
+}
+
+/* Styles pour les inputs */
+input, select, textarea {
+    background-color: var(--color-field-bg);
+    color: var(--color-text-light);
+    border: 1px solid rgba(13, 13, 13, 0.1);
+}
+
+/* Styles pour les notifications */
+.notification {
+    background-color: var(--color-glass);
+    border: 1px solid rgba(13, 13, 13, 0.1);
+}
+
+.notification.success {
+    border-color: var(--color-success);
+}
+
+.notification.error {
+    border-color: var(--color-pending);
+}
+
+/* Styles pour les sélecteurs de thème */
+.theme-toggle {
+    background: rgba(13, 13, 13, 0.1);
+    border: 1px solid rgba(13, 13, 13, 0.2);
+}
+
+.theme-toggle:hover {
+    background: rgba(13, 13, 13, 0.2);
+}
+
+/* Styles pour les interrupteurs */
+.toggle-label {
+    background-color: var(--color-field-bg);
+}
+
+.toggle-label:before {
+    background-color: var(--couleur-tertiaire);
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: var(--couleur-accent);
+}
+
+/* Styles pour les sélecteurs de taille de police */
+.size-option {
+    background-color: var(--color-field-bg);
+}
+
+.size-option:hover {
+    background-color: var(--color-accent-faded);
+}
+
+.size-option.selected {
+    background-color: var(--color-accent-faded);
+    border: 1px solid var(--couleur-accent);
+}
+
+/* Styles pour les boutons d'action */
+.action-button {
+    background-color: var(--color-field-bg);
+    border: 1px solid var(--couleur-accent);
+    color: var(--color-text-light);
+}
+
+.action-button:hover {
+    background-color: var(--color-accent-faded);
+}
+
+/* Styles pour le bouton de sauvegarde */
+.save-button {
+    background-color: var(--couleur-accent);
+    color: var(--couleur-tertiaire);
+}
+
+.save-button:hover {
+    background-color: var(--color-accent-light);
+} 

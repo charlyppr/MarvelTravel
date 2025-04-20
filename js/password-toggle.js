@@ -2,19 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleButtons = document.querySelectorAll('.password-toggle-btn');
     
     toggleButtons.forEach(button => {
-        // Au chargement de la page, l'œil est barré car le mot de passe est masqué par défaut
-        button.classList.add('hide-password');
-        
         button.addEventListener('click', function() {
             const input = this.parentElement.querySelector('input');
+            const eyeIcon = this.querySelector('.eye-icon');
             
-            // Bascule entre les types de champ
             if (input.type === 'password') {
                 input.type = 'text';
-                this.classList.remove('hide-password'); // Œil normal quand le mot de passe est visible
+                eyeIcon.src = '../img/svg/eye.svg';
+                eyeIcon.alt = 'Masquer le mot de passe';
+                this.title = 'Masquer le mot de passe';
             } else {
                 input.type = 'password';
-                this.classList.add('hide-password'); // Œil barré quand le mot de passe est masqué
+                eyeIcon.src = '../img/svg/eye-slash.svg';
+                eyeIcon.alt = 'Afficher le mot de passe';
+                this.title = 'Afficher le mot de passe';
             }
         });
     });

@@ -87,11 +87,16 @@ if (file_exists($messages_file)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Profil</title>
 
-    <link rel="stylesheet" href="../css/root.css">
+    <script src="../js/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="../css/theme-dark.css" id="theme-dark">
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base-light.css">
+    <link rel="stylesheet" href="../css/base-dark.css">
+
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">  
+    <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -312,5 +317,6 @@ if (file_exists($messages_file)) {
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
+
 </html>

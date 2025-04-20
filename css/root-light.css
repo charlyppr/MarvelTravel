@@ -1,0 +1,137 @@
+:root {
+    /* Couleurs de base */
+    --color-background: #FFFAE7;
+    --color-text-light: #0D0D0D;
+    --color-text-cream: #121212;
+    --color-text-dark: #FFFFFF;
+    --color-text-muted: rgba(13, 13, 13, 0.7);
+    --couleur-primaire: #0D0D0D;
+    --couleur-secondaire: #AF1F24;
+    --couleur-tertiaire: #FFFAE7;
+    --couleur-accent: #E23636;
+    --couleur-sous-titre: #AF1F24;
+    
+    /* Accents et dégradés */
+    --color-accent: #AF1F24;
+    --color-accent-light: rgba(175, 31, 36, 0.8);
+    --color-accent-faded: rgba(175, 31, 36, 0.15);
+    --gradient-primary: linear-gradient(135deg, #E23636, #518CCA);
+    --gradient-hover: linear-gradient(135deg, #F04646, #61A1E6);
+    
+    /* Arrière-plans pour les cartes */
+    --color-card-bg: rgba(242, 242, 242, 0.95);
+    --color-card-hover: rgba(230, 230, 230, 0.98);
+    --color-field-bg: rgba(0, 0, 0, 0.05);
+    --color-glass: rgba(255, 255, 255, 0.8);
+    --color-glass-dark: rgba(0, 0, 0, 0.1);
+    
+    /* États et feedbacks */
+    --color-success: #2B846B;
+    --color-success-bg: rgba(104, 227, 183, 0.2);
+    --color-success-border: rgba(43, 132, 107, 0.3);
+    --color-pending: #AF1F24;
+    --color-pending-bg: rgba(255, 153, 153, 0.2);
+    --color-pending-border: rgba(175, 31, 36, 0.3);
+    --link-color: #518CCA;
+    --link-hover: #3A6B99;
+
+    /* Dégradés */
+    --gradient-primary: linear-gradient(135deg, #E23636, #518CCA);
+    --gradient-hover: linear-gradient(135deg, #F04646, #61A1E6);
+    --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 240, 240, 0.8) 100%);
+    --gradient-field: linear-gradient(to right, rgba(81, 140, 202, 0.05), rgba(226, 54, 54, 0.05));
+    
+    /* Ombres et effets */
+    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.1);
+    --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --shadow-field: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-button: 0 4px 15px rgba(13, 13, 13, 0.1);
+
+    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-intense: 0 16px 48px rgba(0, 0, 0, 0.12);
+    --shadow-small: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-large: 0 12px 32px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.12);
+    --shadow-neon: 0 0 15px rgba(226, 54, 54, 0.2);
+    --shadow-blue-neon: 0 0 15px rgba(81, 140, 202, 0.2);
+    --shadow-red-neon: 0 0 20px rgba(226, 54, 54, 0.3);
+    
+    /* Bordures, espacement et transitions restent les mêmes */
+    --border-radius-xs: 6px;
+    --border-radius-sm: 12px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    --border-radius-xl: 30px;
+    --border-radius-xxl: 40px;
+    
+    --spacing-xxs: 5px;
+    --spacing-xs: 10px;
+    --spacing-sm: 15px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-xxl: 60px;
+    
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elastic: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    --gradient-overlay: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
+}
+
+/* Styles spécifiques au thème clair */
+.light-theme {
+    background-color: FFFAE7;
+    background-image: url('../img/Star.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--couleur-primaire);
+}
+
+.light-theme .default {
+    background-color: var(--couleur-accent);
+}
+
+.light-theme a {
+    color: var(--couleur-primaire);
+}
+
+.light-theme .trait {
+    background-color: var(--couleur-primaire);
+    opacity: 0.2;
+}
+
+/* Ajustements spécifiques pour certains éléments dans le thème clair */
+.light-theme .card,
+.light-theme .settings-card {
+    background-color: var(--color-card-bg);
+    box-shadow: var(--shadow-card);
+}
+
+.light-theme .card:hover,
+.light-theme .settings-card:hover {
+    box-shadow: var(--shadow-card-hover);
+}
+
+.light-theme input,
+.light-theme select,
+.light-theme textarea {
+    background-color: var(--color-field-bg);
+    color: var(--couleur-primaire);
+}
+
+.light-theme .notification {
+    background-color: var(--color-glass);
+}
+
+.light-theme .notification.success {
+    border-color: var(--color-success);
+}
+
+.light-theme .notification.error {
+    border-color: var(--color-pending);
+}

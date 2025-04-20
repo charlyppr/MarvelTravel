@@ -29,13 +29,14 @@ $host = $_SERVER['HTTP_HOST'];
 $base_url = $protocol . "://" . $host . $relative_path;
 
 // Fonction helper pour générer les chemins d'assets
-function getAssetPath($file) {
+function getAssetPath($file)
+{
     global $project_root, $script_filename;
-    
+
     // Obtenir le chemin du script courant par rapport à la racine du projet
     $current_script = str_replace('\\', '/', dirname($script_filename));
     $depth = substr_count(substr($current_script, strlen($project_root)), '/');
-    
+
     // Construire le chemin relatif en fonction de la profondeur
     return str_repeat('../', $depth) . "img/" . $file;
 }
@@ -83,7 +84,7 @@ if ($is_in_root) {
                 class="menu-li <?php echo $current_page === 'contact.php' ? 'active-nav' : ''; ?>">
                 <li>Contact</li>
             </a>
-            
+
             <?php
             if (isset($_SESSION['user'])) {
                 ?>
@@ -95,7 +96,7 @@ if ($is_in_root) {
                         $panier_path = $project_root . '/json/panier.json';
                         $has_items = false;
                         $items_count = 0;
-                        
+
                         if (file_exists($panier_path)) {
                             $panierJson = file_get_contents($panier_path);
                             if ($panierJson !== false) {
@@ -125,45 +126,31 @@ if ($is_in_root) {
                         </a>
                     </div>
                 </div>
-            <?php
+                <?php
             } else {
                 echo "<a href='{$base_url}/php/connexion.php' class='nav-button'>
                       <li>Se connecter</li></a>";
             }
             ?>
-            
-            <!-- Bouton pour basculer entre les thèmes clair et sombre -->
-            <div class="theme-toggle-container">
-                <button class="theme-toggle" aria-label="Changer de thème">
-                    <img src="<?php echo getAssetPath('svg/sun.svg'); ?>" alt="Thème clair" class="theme-icon light-icon">
-                    <img src="<?php echo getAssetPath('svg/moon.svg'); ?>" alt="Thème sombre" class="theme-icon dark-icon active">
-                </button>
-            </div>
         </ul>
     </div>
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const profileContainer = document.querySelector('.profile-dropdown-container');
-    const navElement = document.querySelector('.nav');
-    
-    if (profileContainer) {
-        profileContainer.addEventListener('mouseenter', function() {
-            navElement.style.maskImage = 'none';
-            document.querySelector('.profile-dropdown').style.display = 'flex';
-        });
-        
-        profileContainer.addEventListener('mouseleave', function() {
-            navElement.style.maskImage = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%)';
-            document.querySelector('.profile-dropdown').style.display = 'none';
-        });
-    }
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileContainer = document.querySelector('.profile-dropdown-container');
+        const navElement = document.querySelector('.nav');
 
-// Inclusion du fichier JavaScript pour le bouton de thème
-</script>
-<script 
-    src="<?php echo getAssetPath('../js/bouton_theme.js'); ?>">
+        if (profileContainer) {
+            profileContainer.addEventListener('mouseenter', function () {
+                navElement.style.maskImage = 'none';
+                document.querySelector('.profile-dropdown').style.display = 'flex';
+            });
 
+            profileContainer.addEventListener('mouseleave', function () {
+                navElement.style.maskImage = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%)';
+                document.querySelector('.profile-dropdown').style.display = 'none';
+            });
+        }
+    });
 </script>

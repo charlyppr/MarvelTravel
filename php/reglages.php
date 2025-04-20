@@ -2,76 +2,53 @@
 require('session.php');
 check_auth('connexion.php');
 
-// Récupérer les préférences utilisateur ou utiliser des valeurs par défaut
-$user_prefs = [];
-$prefs_file = '../json/preferences.json';
+// Initialisation des variables
+$message = '';
+$theme = 'dark'; // Thème par défaut
+$highContrast = false;
+$fontSize = 'normal';
+$dyslexicFont = false;
+$reduceMotion = false;
 
-if (file_exists($prefs_file)) {
-    $prefs_json = file_get_contents($prefs_file);
-    $all_prefs = json_decode($prefs_json, true) ?: [];
-    
-    // Récupérer les préférences de l'utilisateur connecté
-    foreach ($all_prefs as $pref) {
-        if (isset($pref['email']) && $pref['email'] === $_SESSION['email']) {
-            $user_prefs = $pref;
-            break;
-        }
-    }
+// Récupération des préférences depuis les cookies
+if (isset($_COOKIE['theme'])) {
+    $theme = $_COOKIE['theme'];
 }
 
-// Valeurs par défaut si aucune préférence n'existe
-$theme = $user_prefs['theme'] ?? 'auto';
-$fontSize = $user_prefs['fontSize'] ?? 'normal';
-$highContrast = $user_prefs['highContrast'] ?? false;
-$reduceMotion = $user_prefs['reduceMotion'] ?? false;
-$dyslexicFont = $user_prefs['dyslexicFont'] ?? false;
+if (isset($_COOKIE['highContrast'])) {
+    $highContrast = $_COOKIE['highContrast'] === 'true';
+}
 
-// Traiter le formulaire si soumis
-$message = '';
+if (isset($_COOKIE['fontSize'])) {
+    $fontSize = $_COOKIE['fontSize'];
+}
+
+if (isset($_COOKIE['dyslexicFont'])) {
+    $dyslexicFont = $_COOKIE['dyslexicFont'] === 'true';
+}
+
+if (isset($_COOKIE['reduceMotion'])) {
+    $reduceMotion = $_COOKIE['reduceMotion'] === 'true';
+}
+
+// Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
-    $new_prefs = [
-        'email' => $_SESSION['email'],
-        'theme' => $_POST['theme'] ?? 'auto',
-        'fontSize' => $_POST['fontSize'] ?? 'normal',
-        'highContrast' => isset($_POST['highContrast']),
-        'reduceMotion' => isset($_POST['reduceMotion']),
-        'dyslexicFont' => isset($_POST['dyslexicFont']),
-        'updated_at' => date('Y-m-d H:i:s')
-    ];
+    // Récupération des valeurs du formulaire
+    $theme = $_POST['theme'] ?? 'dark';
+    $highContrast = isset($_POST['highContrast']);
+    $fontSize = $_POST['fontSize'] ?? 'normal';
+    $dyslexicFont = isset($_POST['dyslexicFont']);
+    $reduceMotion = isset($_POST['reduceMotion']);
     
-    // Mettre à jour ou ajouter les préférences dans le fichier
-    $updated = false;
-    if (file_exists($prefs_file)) {
-        $all_prefs = json_decode(file_get_contents($prefs_file), true) ?: [];
-        
-        foreach ($all_prefs as $key => $pref) {
-            if (isset($pref['email']) && $pref['email'] === $_SESSION['email']) {
-                $all_prefs[$key] = $new_prefs;
-                $updated = true;
-                break;
-            }
-        }
-        
-        if (!$updated) {
-            $all_prefs[] = $new_prefs;
-        }
-    } else {
-        $all_prefs = [$new_prefs];
-    }
+    // Définition des cookies
+    setcookie('theme', $theme, time() + (30 * 24 * 60 * 60), '/');
+    setcookie('highContrast', $highContrast ? 'true' : 'false', time() + (30 * 24 * 60 * 60), '/');
+    setcookie('fontSize', $fontSize, time() + (30 * 24 * 60 * 60), '/');
+    setcookie('dyslexicFont', $dyslexicFont ? 'true' : 'false', time() + (30 * 24 * 60 * 60), '/');
+    setcookie('reduceMotion', $reduceMotion ? 'true' : 'false', time() + (30 * 24 * 60 * 60), '/');
     
-    // Enregistrer les préférences
-    if (file_put_contents($prefs_file, json_encode($all_prefs, JSON_PRETTY_PRINT))) {
-        $message = 'Vos préférences ont été enregistrées avec succès.';
-        
-        // Mettre à jour les variables pour l'affichage
-        $theme = $new_prefs['theme'];
-        $fontSize = $new_prefs['fontSize'];
-        $highContrast = $new_prefs['highContrast'];
-        $reduceMotion = $new_prefs['reduceMotion'];
-        $dyslexicFont = $new_prefs['dyslexicFont'];
-    } else {
-        $message = 'Une erreur est survenue lors de l\'enregistrement de vos préférences.';
-    }
+    // Message de succès
+    $message = 'Vos préférences ont été enregistrées avec succès !';
 }
 ?>
 
@@ -83,19 +60,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Travel • Réglages</title>
 
-    <link rel="stylesheet" href="../css/root.css">
     <script src="../js/theme-loader.js"></script>
+    
+    <link rel="stylesheet" href="../css/theme-dark.css" id="theme-dark">
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base-light.css">
+    <link rel="stylesheet" href="../css/base-dark.css">
+
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/reglages.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body class="<?= $theme === 'dark' ? 'dark-theme' : ($theme === 'light' ? 'light-theme' : '') ?> 
-            <?= $fontSize === 'large' ? 'large-text' : ($fontSize === 'larger' ? 'larger-text' : '') ?>
-            <?= $highContrast ? 'high-contrast' : '' ?>
-            <?= $reduceMotion ? 'reduce-motion' : '' ?>
-            <?= $dyslexicFont ? 'dyslexic-font' : '' ?>">
+<body>
     <div class="default"></div>
 
     <div class="main-container">
@@ -271,7 +248,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
         </div>
     </div>
 
-    <script src="../js/reglages.js"></script>
 </body>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des boutons de réinitialisation
+    const resetButton = document.querySelector('.reset-button');
+    if (resetButton) {
+        resetButton.addEventListener('click', function() {
+            // Réinitialiser les cookies
+            document.cookie = "theme=dark;path=/;max-age=" + (30 * 24 * 60 * 60);
+            document.cookie = "highContrast=false;path=/;max-age=" + (30 * 24 * 60 * 60);
+            document.cookie = "fontSize=normal;path=/;max-age=" + (30 * 24 * 60 * 60);
+            document.cookie = "dyslexicFont=false;path=/;max-age=" + (30 * 24 * 60 * 60);
+            document.cookie = "reduceMotion=false;path=/;max-age=" + (30 * 24 * 60 * 60);
+            
+            // Recharger la page
+            window.location.reload();
+        });
+    }
+    
+    // Gestion des options de thème en temps réel
+    const themeOptions = document.querySelectorAll('input[name="theme"]');
+    themeOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            let theme = this.value;
+            
+            // Nettoyer les classes existantes
+            document.body.classList.remove('light-theme', 'dark-theme', 'auto-theme');
+            
+            // Si auto, déterminer en fonction des préférences système
+            if (theme === 'auto') {
+                const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                theme = prefersDarkMode ? 'dark' : 'light';
+            }
+            
+            // Appliquer la nouvelle classe
+            document.body.classList.add(`${theme}-theme`);
+        });
+    });
+    
+    // Gestion des autres options d'accessibilité
+    const highContrastToggle = document.getElementById('highContrast');
+    if (highContrastToggle) {
+        highContrastToggle.addEventListener('change', function() {
+            document.body.classList.toggle('high-contrast', this.checked);
+        });
+    }
+    
+    const fontSizeOptions = document.querySelectorAll('input[name="fontSize"]');
+    fontSizeOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            document.body.classList.remove('font-size-normal', 'font-size-large', 'font-size-larger');
+            document.body.classList.add(`font-size-${this.value}`);
+        });
+    });
+    
+    const dyslexicFontToggle = document.getElementById('dyslexicFont');
+    if (dyslexicFontToggle) {
+        dyslexicFontToggle.addEventListener('change', function() {
+            document.body.classList.toggle('dyslexic-font', this.checked);
+        });
+    }
+    
+    const reduceMotionToggle = document.getElementById('reduceMotion');
+    if (reduceMotionToggle) {
+        reduceMotionToggle.addEventListener('change', function() {
+            document.body.classList.toggle('reduce-motion', this.checked);
+        });
+    }
+});
+</script>
 </html>

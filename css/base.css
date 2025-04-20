@@ -499,7 +499,6 @@ input:-webkit-autofill:focus {
     filter: invert(92%) sepia(18%) saturate(407%) hue-rotate(344deg) brightness(97%) contrast(92%);
 }
 
-/* Ajustement du menu pour intégrer le bouton de thème */
 .menu ul {
     display: flex;
     align-items: center;

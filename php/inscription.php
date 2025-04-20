@@ -84,11 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
-    <link rel="stylesheet" href="../css/style_oeil.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
-     <!-- Ajout de Font Awesome pour l'icône œil -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 
 <body>
@@ -149,7 +145,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img src="../img/svg/lock.svg" alt="Lock Icon">
                     <input type="password" id="mdp" name="login_pass" placeholder="Mot de passe" required>
                     <button type="button" class="password-toggle-btn" title="Afficher le mot de passe">
-                    <i class="fas fa-eye"></i>
+                        <img src="../img/svg/eye-slash.svg" alt="Afficher le mot de passe" class="eye-icon">
+                    </button>
                 </div>
 
                 <button class="next-button" type="submit">Suivant<img src="../img/svg/fleche-droite.svg"

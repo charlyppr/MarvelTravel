@@ -613,6 +613,44 @@ input:focus {
     animation: pinFloat 6.5s ease-in-out infinite reverse 0.5s;
 }
 
+
+/* ===================== OEUIL ===================== */
+
+.password-field-container,
+.mdp {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field-container input[type="password"],
+.password-field-container input[type="text"],
+.mdp input[type="password"],
+.mdp input[type="text"] {
+    padding-right: 40px;
+    width: 100%;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+.password-toggle-btn:hover {
+    opacity: 1;
+}
+
 /* ===================== ANIMATIONS ===================== */
 @keyframes cardAppear {
     0% { opacity: 0; transform: translateY(30px); }
