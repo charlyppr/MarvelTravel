@@ -6,7 +6,14 @@ check_auth('connexion.php');
 $search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'recent';
-$view = isset($_GET['view']) ? $_GET['view'] : 'table';
+
+if (isset($_GET['view'])) {
+    $view = $_GET['view'];
+    $_SESSION['preferred_view'] = $view;
+} else {
+    $view = isset($_SESSION['preferred_view']) ? $_SESSION['preferred_view'] : 'cards';
+}
+
 $displayed_voyages = 0;
 ?>
 

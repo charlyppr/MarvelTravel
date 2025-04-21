@@ -20,7 +20,6 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    border-radius: var(--border-radius-lg);
     overflow: hidden;
     transition: transform 0.8s ease;
 }
@@ -151,7 +150,7 @@
     animation: FadeIn 1s ease 0.2s backwards;
 }
 
-/* Meta informations améliorées */
+/* Meta informations amÃ©liorÃ©es */
 .voyage-meta {
     display: flex;
     flex-wrap: wrap;
@@ -196,7 +195,7 @@
 }
 
 .category-tag {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-field-bg);
     color: var(--color-text-cream);
     padding: 10px 20px;
     border-radius: var(--border-radius-xl);
@@ -208,12 +207,12 @@
 }
 
 .category-tag:hover {
-    background: rgba(242, 219, 175, 0.2);
+    background: var(--color-accent-faded);
     border-color: var(--color-accent);
     transform: translateY(-2px);
 }
 
-/* Quick Info amélioré */
+/* Quick Info amÃ©liorÃ© */
 .quick-info {
     display: flex;
     gap: var(--spacing-lg);
@@ -225,12 +224,13 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-field-bg);
     padding: 16px 24px;
     border-radius: var(--border-radius-lg);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-fast);
+    color: var(--color-text-muted);
 }
 
 .info-item:hover {
@@ -259,7 +259,7 @@
     z-index: 5;
 }
 
-/* Navigation flottante améliorée */
+/* Navigation flottante amÃ©liorÃ©e */
 .floating-nav {
     position: sticky;
     top: 10px;
@@ -362,7 +362,7 @@
     align-items: start;
 }
 
-/* Section Aperçu améliorée */
+/* Section AperÃ§u amÃ©liorÃ©e */
 #apercu {
     animation: fadeIn 0.8s ease;
 }
@@ -421,9 +421,9 @@
     text-shadow: 0 0 10px rgba(242, 219, 175, 0.3);
 }
 
-/* Description section modernisée et minimaliste */
+/* Description section modernisÃ©e et minimaliste */
 .description-section {
-    background: var(--color-card-hover);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-xl);
     padding: 36px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -521,7 +521,7 @@
 }
 
 .highlights-container {
-    background: var(--color-card-bg);
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-lg);
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -530,7 +530,7 @@
 }
 
 .highlights-container:hover {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--color-card-hover);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     border-color: rgba(242, 219, 175, 0.1);
@@ -561,7 +561,7 @@
     align-items: center;
     gap: 14px;
     padding: 14px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-md);
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     border-left: 2px solid transparent;
@@ -635,7 +635,7 @@
 .universe-content {
     display: grid;
     gap: 32px;
-    background: var(--color-card-hover);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-xl);
     padding: 32px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -820,7 +820,7 @@
     text-align: center;
     gap: 8px;
     padding: 16px 12px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--color-field-bg);
     border-radius: var(--border-radius-lg);
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     border: 1px solid transparent;
@@ -862,7 +862,7 @@
     color: var(--color-text-muted);
 }
 
-/* Programme section optimisée */
+/* Programme section optimisÃ©e */
 #programme {
     margin-top: 48px;
     animation: fadeIn 0.8s ease;
@@ -997,7 +997,7 @@
     transform: translateX(3px);
 }
 
-/* Structure du contenu améliorée */
+/* Structure du contenu amÃ©liorÃ©e */
 .timeline-content {
     padding: 24px;
     display: grid;
@@ -1065,7 +1065,7 @@
     font-size: 15px;
 }
 
-/* Sections activités et options */
+/* Sections activitÃ©s et options */
 .activities-list,
 .options-list {
     background: var(--color-card-hover);
@@ -1104,7 +1104,7 @@
     display: block;
 }
 
-/* Style optimisé pour les listes d'activités */
+/* Style optimisÃ© pour les listes d'activitÃ©s */
 .activities-list ul {
     margin: 0;
     padding-left: 22px;
@@ -1126,7 +1126,7 @@
 }
 
 .activities-list li::before {
-    content: '•';
+    content: 'â€¢';
     position: absolute;
     left: -12px;
     color: var(--color-accent);
@@ -1139,7 +1139,7 @@
     transform: translateX(3px);
 }
 
-/* Style optimisé pour les options */
+/* Style optimisÃ© pour les options */
 .options-list {
     display: flex;
     flex-direction: column;
@@ -1220,7 +1220,7 @@
     border-color: rgba(242, 219, 175, 0.2);
 }
 
-/* Section Détails */
+/* Section DÃ©tails */
 #details {
     margin-block: var(--spacing-xxl);
     animation: fadeIn 0.8s ease;
@@ -1257,7 +1257,7 @@
 }
 
 .details-container {
-    background: var(--color-card-hover);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1360,7 +1360,7 @@
     color: var(--color-text-cream);
 }
 
-/* Utilisation de classes CSS pour les icônes au lieu d'images */
+/* Utilisation de classes CSS pour les icÃ´nes au lieu d'images */
 .item-icon {
     width: 15px;
     height: 15px;
@@ -1426,7 +1426,7 @@
     width: 100px;
 }
 
-/* Suppression de l'en-tête spécial et intégration dans le flux standard */
+/* Suppression de l'en-tÃªte spÃ©cial et intÃ©gration dans le flux standard */
 .reviews-header {
     display: flex;
     justify-content: space-between;
@@ -1526,7 +1526,7 @@
 }
 
 .review-card {
-    background: var(--color-card-hover);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     padding: 24px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1660,13 +1660,13 @@ img.item-icon.not-included {
 
 /* Booking Card */
 .booking-card {
-    background: var(--color-card-hover);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     padding: 32px;
     border: 1px solid rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     overflow: hidden;
 }
@@ -1703,7 +1703,7 @@ img.item-icon.not-included {
     opacity: 0.8;
 }
 
-/* En-tête de la carte */
+/* En-tÃªte de la carte */
 .booking-header {
     display: flex;
     flex-direction: column;
@@ -1754,7 +1754,7 @@ img.item-icon.not-included {
 
 /* Dates */
 .booking-dates {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--color-field-bg);
     border-radius: var(--border-radius-lg);
     padding: 20px;
     margin-bottom: 24px;
@@ -1763,7 +1763,7 @@ img.item-icon.not-included {
 }
 
 .booking-dates:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-accent-faded);
     transform: translateY(-3px);
 }
 
@@ -1791,7 +1791,7 @@ img.item-icon.not-included {
     transition: all 0.3s ease;
 }
 
-/* Caractéristiques */
+/* CaractÃ©ristiques */
 .booking-features {
     display: flex;
     flex-direction: column;
@@ -1804,14 +1804,14 @@ img.item-icon.not-included {
     align-items: center;
     gap: 12px;
     padding: 12px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--color-field-bg);
     border-radius: var(--border-radius-md);
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
 }
 
 .feature-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-accent-faded);
     transform: translateX(5px);
     border-color: rgba(255, 255, 255, 0.1);
 }
@@ -1836,7 +1836,7 @@ img.item-icon.not-included {
 }
 
 .feature-item:hover span {
-    color: var(--color-text-cream);
+    color: var(--color-text-footer);
 }
 
 /* Note d'information */
@@ -1870,7 +1870,7 @@ img.item-icon.not-included {
     line-height: 1.5;
 }
 
-/* États spéciaux de disponibilité */
+/* Ã‰tats spÃ©ciaux de disponibilitÃ© */
 .availability-badge.limited {
     background: rgba(243, 156, 18, 0.1);
     color: #f39c12;
@@ -1885,7 +1885,7 @@ img.item-icon.not-included {
 
 .booking-column {
     position: sticky;
-    top: 100px;
+    top: 110px;
     height: fit-content;
     z-index: 10;
     margin-bottom: var(--spacing-xxl);
@@ -1906,7 +1906,7 @@ a.btn-book {
     margin-bottom: 16px;
     padding: 8px 12px;
     border-radius: var(--border-radius-md);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-field-bg);
     border: 1px solid rgba(255, 255, 255, 0.07);
     transition: all var(--transition-medium);
     backdrop-filter: blur(10px);
@@ -1920,8 +1920,8 @@ a.btn-book {
 }
 
 .back-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-cream);
+    background: var(--color-accent-faded);
+    color: var(--color-text-light);
     transform: translateX(-5px);
 }
 
@@ -1930,7 +1930,6 @@ a.btn-book {
     transform: translateX(-3px);
 }
 
-/* Style pour les icônes "check" en vert */
 img.item-icon.included {
     filter: invert(83%) sepia(25%) saturate(464%) hue-rotate(93deg) brightness(230%) contrast(87%);
 }
@@ -1939,7 +1938,7 @@ img.item-icon.not-included {
     filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg) brightness(80%) contrast(100%);
 }
 
-/* Animation au survol pour les deux types d'icônes */
+/* Animation au survol pour les deux types d'icÃ´nes */
 .details-list li:hover .item-icon.included,
 .details-list li:hover .item-icon.not-included {
     transform: scale(1.2);

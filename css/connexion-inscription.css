@@ -56,11 +56,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.2rem;
+    gap: var(--spacing-md);
     padding: 3rem 2.5rem;
     width: 100%;
-    max-width: 460px;
+    max-width: 610px;
     background: var(--gradient-card);
     border-radius: var(--border-radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -98,6 +97,7 @@ body {
     width: 100%;
     text-align: center;
     animation: fadeInDown 0.8s ease-out;
+    background-color: transparent;
 }
 
 .titre-2 {
@@ -130,7 +130,6 @@ body {
     color: var(--color-text-muted);
     margin: 0;
     line-height: 1.4;
-    color: var(--color-red);
     font-family: 'PP Formula Bold';
 }
 
@@ -141,6 +140,7 @@ body {
     gap: 5px;
     position: relative;
     z-index: 2;
+    padding: 0;
 }
 
 .logo-container:hover {
@@ -174,7 +174,8 @@ body {
     display: flex;
     gap: 20px;
     align-items: flex-end;
-    margin-block: 2rem;
+    margin-block: var(--spacing-md);
+    width: 100%;
 }
 
 .form {
@@ -255,7 +256,6 @@ input {
 }
 
 input::placeholder {
-    color: rgba(255, 250, 231, 0.4);
     transition: var(--transition-medium);
 }
 
@@ -285,7 +285,7 @@ input:focus {
     align-items: center;
     padding: 0 1.2rem;
     position: relative;
-    /* width: 100%; */
+    width: 100%;
     gap: 10px;
     background: rgba(42, 57, 101, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -496,7 +496,7 @@ input:focus {
     width: 100%;
     display: flex;
     justify-content: center;
-    color: var(--color-red);
+    color: var(--color-error);
     margin-top: 0.5rem;
     flex-direction: column;
     align-items: center;
@@ -508,7 +508,7 @@ input:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 11px;
     font-weight: 300;
     color: var(--color-text-muted);
     text-decoration: none;
@@ -555,14 +555,13 @@ input:focus {
 
 .redir-text:hover {
     color: var(--color-accent);
-    text-decoration: underline;
 }
 
 /* ===================== DÉCORATIONS ET EFFETS ===================== */
 .retour {
     position: absolute;
     top: 2rem;
-    left: 2rem;
+    left: 3rem;
     z-index: 10;
     opacity: 0.6;
     transition: var(--transition-bounce);

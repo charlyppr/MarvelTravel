@@ -47,12 +47,7 @@ function isActive($page, $current_page)
                     <!-- Menu pour les pages utilisateur -->
                     <a href="profil.php" class="nav-link <?= isActive('profil', $current_page) ?>">
                         <div class="nav-icon">
-                            <svg width="20" height="20" viewBox="0 0 163 175" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                class="icon-img">
-                                <path
-                                    d="M17.9736 174.814H144.868C156.106 174.814 162.842 169.366 162.842 160.373C162.842 135.709 131.137 101.903 81.4209 101.903C31.6678 101.903 0 135.709 0 160.373C0 169.366 6.73547 174.814 17.9736 174.814ZM81.458 84.9999C102.929 84.9999 120.494 66.0819 120.494 42.0149C120.494 18.6194 102.743 0 81.458 0C60.1725 0 42.4594 18.8433 42.4594 42.1269C42.4594 66.0819 60.0237 84.9999 81.458 84.9999Z"
-                                    fill="currentColor" />
-                            </svg>
+                            <img src="../img/svg/person.svg" alt="Personne" class="icon-img">
                             <div class="icon-highlight"></div>
                         </div>
                         <span class="nav-text">Profil</span>
@@ -106,7 +101,7 @@ function isActive($page, $current_page)
             <div class="user-profile">
                 <div class="avatar-container">
                     <div class="user-avatar">
-                        <img src="../img/svg/spiderman-pin.svg" alt="Photo de profil">
+                        <img src="../img/svg/spiderman-pin.svg" alt="Photo de profil" class="no-invert">
                     </div>
                     <div class="user-status online"></div>
                 </div>
@@ -132,7 +127,7 @@ function isActive($page, $current_page)
 
                 <?php if (!$is_admin_page && !$is_admin_user): ?>
                     <button class="user-action delete-action" id="delete-account-button">
-                        <img src="../img/svg/trash.svg" alt="Supprimer">
+                        <img src="../img/svg/trash.svg" alt="Supprimer" class="no-invert">
                         <span>Supprimer mon compte</span>
                     </button>
                 <?php endif; ?>
@@ -142,7 +137,7 @@ function isActive($page, $current_page)
 
     <div class="sidebar-footer">
         <div class="sidebar-brand">
-            <img src="../img/svg/spiderman-pin.svg" alt="Marvel Travel" class="brand-icon">
+            <img src="../img/svg/spiderman-pin.svg" alt="Marvel Travel" class="brand-icon no-invert">
             <span class="brand-text">© Marvel Travel 2025</span>
         </div>
     </div>

@@ -80,7 +80,8 @@ function clear_form_data($step)
     }
 }
 
-function remove_query_param($param) {
+function remove_query_param($param)
+{
     $params = $_GET;
     unset($params[$param]);
     return '?' . http_build_query($params);

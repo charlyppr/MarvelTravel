@@ -37,7 +37,7 @@
 /* ===== THÈME SOMBRE ===== */
 :root, .dark-theme {
     /* Couleurs de base */
-    --color-background: #121212;
+    --color-background: #0D0D0D;
     --color-text-light: #FFFFFF;
     --color-text-cream: #FFFAE7;
     --color-text-dark: #0D0D0D;
@@ -48,6 +48,7 @@
     --couleur-accent: #AF1F24;
     --couleur-sous-titre: #F2DBAF;
     --color-footer: #F2DBAF;
+    --color-text-footer: #0D0D0D;
     
     /* Accents et dégradés */
     --color-accent: #F2DBAF;
@@ -59,7 +60,7 @@
     --color-card-hover: rgba(47, 47, 47, 0.9);
     --color-field-bg: rgba(255, 255, 255, 0.07);
     --color-glass: rgba(255, 255, 255, 0.08);
-    --color-glass-dark: rgba(0, 0, 0, 0.6);
+    --color-glass-dark: rgb(64 64 64 / 60%);
     
     /* États et feedbacks */
     --color-success: #68E3B7;
@@ -120,7 +121,8 @@
     --couleur-tertiaire: #FFFAE7;
     --couleur-accent: #E23636;
     --couleur-sous-titre: #AF1F24;
-    --color-footer: #000000;
+    --color-footer: #f2dbaf;
+    --color-text-footer: #0D0D0D;
     
     /* Accents et dégradés */
     --color-accent: #AF1F24;

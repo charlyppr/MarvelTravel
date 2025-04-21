@@ -81,7 +81,7 @@ body {
     background: var(--gradient-primary);
     background-size: 200% auto;
     -webkit-background-clip: text;
-    background-clip: border-box;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
     position: relative;
@@ -96,13 +96,12 @@ body {
     position: absolute;
     bottom: -0.8rem;
     left: 50%;
-    transform: translateX(-50%);
     width: 100px;
+    transform: translateX(-50%);
     height: 3px;
     background: var(--gradient-primary);
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(226, 54, 54, 0.5);
-    animation: pulseWidth 4s ease-in-out infinite;
 }
 
 .subtitle {
@@ -475,10 +474,9 @@ body {
     gap: 1rem;
     padding: 1.2rem 2.5rem;
     background: var(--gradient-primary);
-    border-radius: 50px;
+    border-radius: var(--border-radius-lg);
     color: white;
     font-size: 1rem;
-    font-weight: 600;
     margin: 2rem auto 0;
     transition: var(--transition-bounce);
     border: none;
@@ -488,7 +486,6 @@ body {
     overflow: hidden;
     text-decoration: none;
     font-family: 'PP Formula Bold';
-    letter-spacing: 1px;
     max-width: 400px;
     width: 100%;
 }

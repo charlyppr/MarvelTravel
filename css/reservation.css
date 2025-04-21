@@ -720,7 +720,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .autofill-button:hover {
-    background-color: rgba(242, 219, 175, 0.2);
     transform: translateY(-2px);
 }
 

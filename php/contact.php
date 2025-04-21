@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="right">
-                <img class="spiderman-pin" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
+                <img class="spiderman-pin no-invert" src="../img/svg/spiderman-pin.svg" alt="spiderman-pin">
 
                 <div class="header">
                     <span class="form-title">Un message pour nous ?</span>
@@ -132,8 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <textarea name="message" id="message" placeholder="Message" required></textarea>
 
                     <div class="button-div">
-                        <button type="submit" class="button-form">Envoyer<img src="../img/svg/avion.svg"
-                                alt="avion"></button>
+                        <button type="submit" class="button-form">Envoyer<img src="../img/svg/avion.svg" alt="avion"
+                                class="no-invert"></button>
                     </div>
                 </form>
             </div>
@@ -168,30 +168,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="questions-list">
                 <div class="question">
                     <span class="question-title">Comment fonctionnent les voyages avec Marvel Travel ?</span>
-                    <img src="../img/svg/chevron.svg" alt="chevron">
+                    <img src="../img/svg/chevron.svg" alt="chevron" class="no-invert">
                 </div>
 
                 <div class="question">
                     <span class="question-title">Y a-t-il des réductions ou des offres spéciales chez Marvel Travel
                         ?</span>
-                    <img src="../img/svg/chevron.svg" alt="chevron">
+                    <img src="../img/svg/chevron.svg" alt="chevron" class="no-invert">
                 </div>
 
                 <div class="question">
                     <span class="question-title">En quoi consiste Infinity Green ?</span>
-                    <img src="../img/svg/chevron.svg" alt="chevron">
+                    <img src="../img/svg/chevron.svg" alt="chevron" class="no-invert">
                 </div>
 
                 <div class="question">
                     <span class="question-title">Les voyages avec Marvel Travel sont-ils sécurisés ?</span>
-                    <img src="../img/svg/chevron.svg" alt="chevron">
+                    <img src="../img/svg/chevron.svg" alt="chevron" class="no-invert">
                 </div>
             </div>
         </div>
 
     </section>
 
-    <img class="shield" src="../img/svg/shield.svg" alt="shield">
+    <img class="shield no-invert" src="../img/svg/shield.svg" alt="shield">
 
     <?php include "footer.php"; ?>
 

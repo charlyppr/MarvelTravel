@@ -137,20 +137,21 @@
     gap: var(--spacing-xs);
     padding: var(--spacing-sm);
     border-radius: var(--border-radius-md);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--color-glass-dark);
     border: 1px solid rgba(242, 219, 175, 0.1);
     cursor: pointer;
     transition: all var(--transition-fast);
+    justify-content: center;
 }
 
 .theme-option:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-card-bg);
     transform: translateY(-3px);
 }
 
 .theme-option.selected {
     border-color: var(--color-accent);
-    background-color: rgba(242, 219, 175, 0.1);
+    background-color: var(--color-accent-faded);
 }
 
 .theme-option input[type="radio"] {
@@ -167,7 +168,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-glass-dark);
     transition: all var(--transition-fast);
 }
 
@@ -176,7 +177,7 @@
 }
 
 .theme-option.selected .option-icon {
-    background-color: rgba(242, 219, 175, 0.2);
+    background-color: var(--color-accent-light);
     box-shadow: 0 0 15px rgba(242, 219, 175, 0.3);
 }
 
@@ -256,7 +257,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-accent-faded);
     border-radius: 30px;
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -295,7 +296,7 @@
     gap: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius-md);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-glass-dark);
     border: 1px solid rgba(242, 219, 175, 0.1);
     color: var(--couleur-primaire);
     font-family: inherit;
@@ -336,7 +337,7 @@
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-lg);
     background: var(--gradient-primary);
     color: var(--color-text-cream);
     font-family: inherit;

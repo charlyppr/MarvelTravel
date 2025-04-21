@@ -27,7 +27,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: var(--spacing-xl);
     align-items: center;
     margin-top: var(--spacing-md);
 }
@@ -41,7 +40,7 @@
     background: url('../img/hero-bg.jpg') no-repeat center center;
     background-size: cover;
     z-index: -2;
-    mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 95%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent -100%, transparent -20%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 30%, rgb(0, 0, 0) 70%, transparent 100%);
 }
 
 .hero-backdrop::after {
@@ -51,7 +50,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* background: linear-gradient(to bottom, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)); */
+    background: linear-gradient(to bottom, rgb(18 18 18 / 65%), rgb(18 18 18 / 59%));
     backdrop-filter: blur(5px);
     z-index: -1;
 }
@@ -287,13 +286,13 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-md);
     margin-top: var(--spacing-sm);
     animation: fadeIn 1.2s ease;
 }
 
 .search-tag-title {
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
     font-size: var(--font-size-sm);
 }
 

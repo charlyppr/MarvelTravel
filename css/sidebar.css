@@ -181,12 +181,12 @@
 }
 
 .nav-link:hover {
-    background-color: var(--nav-item-hover);
+    background-color: var(--color-accent-faded);
     transform: translateX(5px);
 }
 
 .nav-link.active {
-    background-color: var(--nav-item-active);
+    background-color: var(--color-card-hover);
     border: 1px solid var(--color-accent-faded);
 }
 
@@ -293,7 +293,6 @@
     align-items: center;
     padding: 10px 12px;
     border-radius: var(--border-radius-md);
-    background-color: rgba(255, 255, 255, 0.03);
     text-decoration: none;
     color: var(--color-text-light);
     transition: all var(--transition-sidebar);
@@ -301,9 +300,8 @@
 }
 
 .quick-link:hover {
-    background-color: rgba(242, 219, 175, 0.07);
+    background-color: var(--color-accent-faded);
     transform: translateX(5px);
-    border-color: var(--color-accent-faded);
 }
 
 .quick-link-icon {

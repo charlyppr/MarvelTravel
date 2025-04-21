@@ -1,0 +1,27 @@
+/* En mode clair, on inverse la couleur des SVG par défaut */
+.light-theme img[src*=".svg"]:not(.no-invert) {
+    filter: invert(1);
+}
+
+/* Exception pour les logos ou SVG colorés qui ne devraient pas être inversés */
+.light-theme img.no-invert,
+.light-theme img[src*="logo"],
+.light-theme img[src*="spiderman-pin"],
+.light-theme img[src*="trash"],
+.light-theme img[src*="amex"],
+.light-theme img[src*="visa"],
+.light-theme img[src*="mastercard"],
+.light-theme img[src*="asgard"],
+.light-theme img[src*="paypal"],
+.light-theme img[src*="wakanda"] {
+    filter: none !important;
+}
+
+/* En mode sombre, on conserve les couleurs d'origine */
+.dark-theme img[src*=".svg"] {
+    filter: none;
+}
+
+img[src*=".svg"] {
+    transition: filter 0.3s ease;
+}

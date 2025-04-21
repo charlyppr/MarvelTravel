@@ -30,42 +30,6 @@ img {
     animation: slideDown 0.6s ease;
 }
 
-.redir-text {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-size: 15px;
-    padding: 10px 18px;
-    border-radius: 50px;
-    background-color: var(--color-glass-dark);
-    transition: all var(--transition-medium);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
-    position: relative;
-    z-index: 2;
-    font-weight: 500;
-}
-
-.redir-text:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    transform: translateX(3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.redir-text img {
-    width: 18px;
-    height: 18px;
-    opacity: 0.9;
-    transition: transform var(--transition-fast);
-}
-
-.redir-text:hover img {
-    transform: translateX(3px);
-    opacity: 1;
-}
-
 .search-bar {
     display: flex;
     align-items: center;
@@ -73,7 +37,7 @@ img {
     border-radius: var(--border-radius-xl);
     padding: 12px 18px;
     width: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-accent-faded);
     transition: all var(--transition-medium);
     backdrop-filter: blur(5px);
 }
@@ -82,6 +46,7 @@ img {
     border-color: var(--color-accent-faded);
     box-shadow: 0 0 0 1px rgba(242, 219, 175, 0.1);
     transform: translateY(-2px);
+    background-color: var(--color-accent-faded);
 }
 
 .search-bar input {
@@ -191,7 +156,7 @@ img {
     font-size: 14px;
     color: var(--color-accent);
     padding: 6px 12px;
-    background-color: rgba(242, 219, 175, 0.1);
+    background-color: var(--color-accent-faded);
     border-radius: var(--border-radius-xl);
     font-weight: 500;
 }
@@ -227,7 +192,7 @@ img {
 }
 
 .tab-voyages tbody tr:hover {
-    background-color: rgba(242, 219, 175, 0.07);
+    background-color: var(--color-card-hover);
     transform: translateY(-2px);
 }
 
@@ -318,7 +283,7 @@ img {
 
 .voyage-card {
     background-color: var(--color-card-bg);
-    border: 1px solid rgba(242, 219, 175, 0.1);
+    border: 1px solid var(--color-accent-faded);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-md);
     transition: all var(--transition-medium);
@@ -350,7 +315,8 @@ img {
 .voyage-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-card-hover);
-    border-color: rgba(242, 219, 175, 0.2);
+    border-color: var(--color-accent);
+    background-color: var(--color-accent-faded);
 }
 
 .voyage-card:hover::before {
@@ -362,7 +328,7 @@ img {
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--spacing-sm);
-    border-bottom: 1px solid rgba(242, 219, 175, 0.1);
+    border-bottom: 1px solid var(--color-glass-dark);
     padding-bottom: var(--spacing-sm);
     position: relative;
     z-index: 2;
@@ -416,7 +382,7 @@ img {
     display: inline-block;
     width: 14px;
     height: 14px;
-    background-image: url('../img/svg/dollar-sign.svg');
+    background-image: url('../img/svg/euro.svg');
     background-size: cover;
     filter: brightness(0) invert(0.7);
 }
@@ -473,6 +439,7 @@ img {
     align-items: center;
     gap: var(--spacing-md);
     padding: var(--spacing-xl);
+    color: var(--color-accent);
 }
 
 .no-res-icon {
@@ -516,7 +483,7 @@ img {
 .filter-button {
     padding: 8px 16px;
     border-radius: var(--border-radius-md);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--color-card-hover);
     color: var(--color-text-muted);
     border: 1px solid transparent;
     cursor: pointer;
@@ -526,8 +493,8 @@ img {
 }
 
 .filter-button:hover {
-    background-color: rgba(242, 219, 175, 0.1);
-    color: var(--color-text-cream);
+    background-color: var(--color-accent-faded);
+    color: var(--color-text-light);
 }
 
 .filter-button.active3 {
@@ -537,7 +504,7 @@ img {
 }
 
 .sort-select {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--color-accent-faded);
     color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.1);
     padding: 8px 16px;
@@ -636,11 +603,11 @@ img {
 }
 
 .view-toggle:hover {
-    background-color: rgba(242, 219, 175, 0.1);
+    background-color: var(--color-accent-faded);
 }
 
 .view-toggle.active3 {
-    background-color: rgba(242, 219, 175, 0.15);
+    background-color: var(--color-accent-faded);
     border-color: rgba(242, 219, 175, 0.3);
 }
 

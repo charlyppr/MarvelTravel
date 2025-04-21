@@ -127,7 +127,7 @@ if (file_exists($messages_file)) {
                             <div class="card-content">
                                 <div class="profile-header-info">
                                     <div class="profile-avatar">
-                                        <img src="../img/svg/spiderman-pin.svg" alt="photo de profil">
+                                        <img src="../img/svg/spiderman-pin.svg" alt="photo de profil" class="no-invert">
                                         <div class="profile-status online"></div>
                                     </div>
                                     <div class="profile-name">
@@ -248,7 +248,7 @@ if (file_exists($messages_file)) {
                                         <?php if ($total_commandes > 3): ?>
                                             <a href="mes-voyages.php" class="voir-plus-btn">
                                                 <span>Voir tous mes voyages</span>
-                                                <img src="../img/svg/fleche-droite.svg" alt="Voir plus">
+                                                <img src="../img/svg/fleche-droite.svg" alt="Voir plus" class="no-invert">
                                             </a>
                                         <?php endif; ?>
 
