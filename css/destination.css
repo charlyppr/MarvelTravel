@@ -1804,27 +1804,23 @@ img.card-image {
 }
 
 .sort-select {
-    background-color: #000; /* Fond noir */
-    color: var(--color-text-cream); /* Texte clair pour contraste */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */
-    padding: 10px 15px; /* Espacement interne */
-    border-radius: var(--border-radius-md); /* Coins arrondis */
-    font-size: var(--font-size-sm); /* Taille de police */
+    background-color: #000;
+    color: var(--color-text-cream);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
     cursor: pointer;
-    appearance: none; /* Supprime le style par défaut */
-    background-image: url('../img/svg/chevron-down.svg'); /* Icône de flèche */
+    appearance: none;
+    background-image: url('../img/svg/chevron-down.svg');
     background-repeat: no-repeat;
-    background-position: right 10px center; /* Position de l'icône */
-    background-size: 12px; /* Taille de l'icône */
-    transition: all var(--transition-fast); /* Transition fluide */
-}
-
-.sort-select:hover {
-    /* border-color: var(--color-accent-faded); */ /* Accentuation de la bordure */
+    background-position: right 10px center;
+    background-size: 12px;
+    transition: all var(--transition-fast);
 }
 
 .sort-select:focus {
-    outline: none; /* Supprime le contour par défaut */
+    outline: none;
 }
 
 /* Message aucun résultat */
@@ -1964,8 +1960,6 @@ img.card-image {
 .page-arrow:hover img {
     opacity: 1;
 }
-
-
 
 input#destination-search {
     width: 200px;

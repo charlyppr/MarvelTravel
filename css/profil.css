@@ -15,7 +15,6 @@ body {
     gap: 50px;
 }
 
-/* Notifications améliorées */
 .notification {
     position: fixed;
     top: 24px;
@@ -314,6 +313,10 @@ body {
     z-index: 2;
 }
 
+.card.messages-card {
+    grid-column: span 4;
+}
+
 /* Profile card styles with glassmorphism */
 .profile-header-info {
     display: flex;
@@ -496,9 +499,10 @@ body {
 }
 
 .profile-input:disabled {
-    cursor: default;
-    color: var(--color-text-light);
-    opacity: 0.9;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border: none;
 }
 
 .field-actions {
@@ -558,30 +562,64 @@ body {
     background-color: rgba(226, 54, 54, 0.3) !important;
 }
 
-/* Style du bouton de soumission des modifications */
+/* Style des boutons d'action - SECTION CORRIGÉE */
 .profile-action-container {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     width: 100%;
+    gap: 15px;
 }
 
-.profile-submit-button {
+/* Styles communs pour les boutons d'action */
+.profile-submit-button,
+.profile-cancel-button {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 14px 28px;
-    font-size: 16px;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--color-text-light);
-    background: var(--gradient-primary);
-    border: none;
     border-radius: var(--border-radius-md);
     cursor: pointer;
-    transition: all var(--transition-medium);
-    box-shadow: 0 5px 15px rgba(226, 54, 54, 0.2);
+    transition: all var(--transition-medium), 
+                opacity 0.3s ease, 
+                transform 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+}
+
+/* Classes pour l'animation d'apparition */
+.profile-submit-button.visible,
+.profile-cancel-button.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Style commun pour les icônes des boutons */
+.profile-submit-button .button-icon,
+.profile-cancel-button .button-icon {
+    width: 15px;
+    height: 15px;
+    transition: transform var(--transition-fast);
+}
+
+.profile-submit-button:hover .button-icon,
+.profile-cancel-button:hover .button-icon {
+    transform: translateY(-2px);
+}
+
+/* Styles spécifiques pour le bouton de sauvegarde */
+.profile-submit-button {
+    background: var(--gradient-primary);
+    border: none;
+    box-shadow: 0 5px 15px rgba(226, 54, 54, 0.2);
 }
 
 .profile-submit-button::before {
@@ -612,13 +650,38 @@ body {
     transform: translateY(-2px);
 }
 
-.profile-submit-button .button-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform var(--transition-fast);
+/* Styles spécifiques pour le bouton d'annulation */
+.profile-cancel-button {
+    background: var(--color-error-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.profile-submit-button:hover .button-icon {
+.profile-cancel-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    transition: left 0.5s ease;
+}
+
+.profile-cancel-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: var(--color-error);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-cancel-button:hover::before {
+    left: 100%;
+}
+
+.profile-cancel-button:active {
     transform: translateY(-2px);
 }
 
@@ -626,53 +689,6 @@ body {
 .password-field-container .profile-input {
     font-family: monospace;
     letter-spacing: 2px;
-}
-
-/* Responsive design amélioré */
-@media screen and (max-width: 992px) {
-    .profile-details {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .profile-details {
-        grid-template-columns: 1fr;
-    }
-    
-    .field-value {
-        height: 50px;
-    }
-    
-    .profile-input {
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .field-label {
-        font-size: 13px;
-    }
-    
-    .field-value {
-        padding: 4px 12px;
-    }
-    
-    .field-actions button {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .field-actions button img {
-        width: 14px;
-        height: 14px;
-    }
-    
-    .profile-submit-button {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 20px;
-    }
 }
 
 /* Statistics styles with improved visuals */
@@ -931,7 +947,6 @@ body {
     transform: translateX(5px);
 }
 
-/* Empty state styles with soft animations */
 .empty-state {
     display: flex;
     flex-direction: column;
@@ -983,318 +998,4 @@ body {
 
 .action-button:active {
     transform: translateY(-1px);
-}
-
-/* Modals with modern animations */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity var(--transition-medium);
-}
-
-.modal.active {
-    display: flex;
-    animation: fadeIn 0.3s forwards;
-}
-
-.modal-content {
-    width: 100%;
-    max-width: 500px;
-    background-color: var(--color-card-bg);
-    border-radius: var(--border-radius-lg);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--color-accent-faded);
-    overflow: hidden;
-    transform: scale(0.95);
-    opacity: 0;
-    animation: modalOpen 0.4s 0.1s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-}
-
-@keyframes modalOpen {
-    0% { transform: scale(0.95); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--color-accent-faded);
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 20px;
-    color: var(--color-text-cream);
-    font-weight: 600;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--color-text-muted);
-    font-size: 24px;
-    transition: all var(--transition-fast);
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.close-modal:hover {
-    color: var(--color-text-light);
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.modal-body {
-    padding: 24px;
-}
-
-.form-group {
-    margin-bottom: 24px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--color-text-muted);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: var(--border-radius-md);
-    border: 1px solid var(--color-accent-faded);
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--color-text-cream);
-    font-size: 16px;
-    transition: all var(--transition-fast);
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(242, 219, 175, 0.25);
-    background-color: rgba(255, 255, 255, 0.08);
-}
-
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-}
-
-.cancel-button,
-.submit-button {
-    padding: 12px 20px;
-    border-radius: var(--border-radius-md);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    font-size: 15px;
-}
-
-.cancel-button {
-    background-color: transparent;
-    color: var(--color-text-cream);
-    border: 1px solid var(--color-accent-faded);
-}
-
-.cancel-button:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    transform: translateY(-2px);
-}
-
-.submit-button {
-    background: var(--gradient-primary);
-    color: var(--color-text-light);
-    border: none;
-}
-
-.submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(226, 54, 54, 0.3);
-    background: var(--gradient-hover);
-}
-
-/* Media queries with better responsive behavior */
-@media screen and (max-width: 1200px) {
-    .dashboard-grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 20px;
-    }
-    
-    .profile-card {
-        grid-column: span 6;
-    }
-    
-    .stats-card {
-        grid-column: span 6;
-    }
-    
-    .voyages-card {
-        grid-column: span 4;
-    }
-    
-    .messages-card {
-        grid-column: span 2;
-    }
-    
-    .profile-details {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    
-    .profile-card,
-    .stats-card,
-    .voyages-card,
-    .messages-card {
-        grid-column: span 1;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .stat-item:nth-child(3) {
-        grid-column: span 1;
-    }
-    
-    .profile-details {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .content-container-div {
-        padding: 16px;
-    }
-    
-    .profile-header {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-    }
-    
-    .profile-greeting .titre {
-        font-size: 28px;
-    }
-    
-    .subtitle {
-        font-size: 16px;
-    }
-    
-    .profile-header-info {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: center;
-        gap: 16px;
-    }
-    
-    .profile-avatar {
-        align-self: center;
-    }
-    
-    .profile-name {
-        align-items: center;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .stat-item:nth-child(3) {
-        grid-column: span 2;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .profile-details {
-        grid-template-columns: 1fr;
-    }
-    
-    .voyage-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .voyage-meta {
-        align-items: flex-start;
-        flex-direction: row;
-        gap: 12px;
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .notification {
-        width: calc(100% - 32px);
-        right: 16px;
-    }
-}
-
-.card.messages-card {
-    grid-column: span 4;
-}
-
-/* Étendre l’input sur toute la largeur du field-value */
-.profile-input {
-    width: 100%;
-    box-sizing: border-box;
-    height: var(--spacing-xxl);
-}
-
-.profile-input:disabled {
-    color: #666;
-    cursor: not-allowed;
-    opacity: 0.7;
-    border: none;
-}
-
-.profile-input:not(:disabled), .profile-input:focus {
-    border: none;
-}
-
-.profile-input:focus {
-    outline: none;
-}
-
-.field-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.field-actions button {
-    display: inline-flex;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.2s ease;
 }

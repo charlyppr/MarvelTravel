@@ -278,6 +278,11 @@ if (file_exists($messages_file)) {
                                             <img src="../img/svg/save.svg" alt="Soumettre" class="button-icon">
                                             <span>Sauvegarder les modifications</span>
                                         </button>
+                                        <button type="button" id="cancel-all-btn" class="profile-cancel-button"
+                                            style="display:none">
+                                            <img src="../img/svg/x.svg" alt="Annuler" class="button-icon">
+                                            <span>Annuler tout</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -439,7 +444,9 @@ if (file_exists($messages_file)) {
 
         document.addEventListener('DOMContentLoaded', () => {
             const validated = new Set();
+            const editingFields = new Set(); // Nouvel ensemble pour suivre les champs en cours d'édition
             const submitBtn = document.getElementById('submit-profile-btn');
+            const cancelAllBtn = document.getElementById('cancel-all-btn');
 
             function toggleEditingClass(field, isEditing) {
                 const fieldValue = document.querySelector(`.field-value:has(#${field})`);
@@ -452,12 +459,77 @@ if (file_exists($messages_file)) {
                 }
             }
 
+            function updateActionButtons() {
+                if (validated.size > 0) {
+                    // Afficher les boutons avec animation
+                    submitBtn.style.display = 'inline-flex';
+                    cancelAllBtn.style.display = 'inline-flex';
+
+                    // Délai court pour permettre au navigateur de traiter le changement de display
+                    setTimeout(() => {
+                        submitBtn.classList.add('visible');
+                        cancelAllBtn.classList.add('visible');
+                    }, 10);
+                } else {
+                    // Cacher les boutons avec animation
+                    submitBtn.classList.remove('visible');
+                    cancelAllBtn.classList.remove('visible');
+
+                    // Attendre que l'animation soit terminée avant de les cacher complètement
+                    setTimeout(() => {
+                        submitBtn.style.display = 'none';
+                        cancelAllBtn.style.display = 'none';
+                    }, 300); // Durée de la transition
+                }
+            }
+
+            // Fonction pour réinitialiser tous les champs modifiés
+            function resetAllFields() {
+                // Réinitialiser les champs validés
+                validated.forEach(field => {
+                    const input = document.getElementById(field);
+                    input.value = input.dataset.originalValue;
+                    input.disabled = true;
+                    toggleEditingClass(field, false);
+                });
+
+                // Réinitialiser les champs en cours d'édition
+                editingFields.forEach(field => {
+                    const input = document.getElementById(field);
+                    const editBtn = document.querySelector(`.field-edit[data-field="${field}"]`);
+                    const validateBtn = document.querySelector(`.field-validate[data-field="${field}"]`);
+                    const cancelBtn = document.querySelector(`.field-cancel[data-field="${field}"]`);
+
+                    input.value = input.dataset.originalValue;
+                    input.disabled = true;
+                    toggleEditingClass(field, false);
+
+                    if (editBtn) editBtn.style.display = 'inline-flex';
+                    if (validateBtn) validateBtn.style.display = 'none';
+                    if (cancelBtn) cancelBtn.style.display = 'none';
+                });
+
+                validated.clear();
+                editingFields.clear();
+                updateActionButtons();
+            }
+
+            // Gestionnaire pour le bouton d'annulation globale
+            cancelAllBtn.addEventListener('click', resetAllFields);
+
             document.querySelectorAll('.field-edit').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const field = btn.dataset.field;
                     const input = document.getElementById(field);
                     const validate = document.querySelector(`.field-validate[data-field="${field}"]`);
                     const cancel = document.querySelector(`.field-cancel[data-field="${field}"]`);
+
+                    // Stocker la valeur originale si c'est la première fois qu'on édite
+                    if (!editingFields.has(field)) {
+                        // Conserver la valeur originale avant toute modification
+                        input.setAttribute('data-original-value', input.value);
+                        editingFields.add(field);
+                    }
 
                     input.disabled = false;
                     input.focus();
@@ -466,30 +538,48 @@ if (file_exists($messages_file)) {
                     validate.style.display = 'inline-flex';
                     cancel.style.display = 'inline-flex';
 
-                    validate.addEventListener('click', () => {
-                        if (input.value.trim() === '') {
-                            alert('Ce champ ne peut pas être vide');
-                            return;
-                        }
-                        input.dataset.originalValue = input.value;
-                        input.disabled = true;
-                        toggleEditingClass(field, false);
-                        validate.style.display = 'none';
-                        cancel.style.display = 'none';
-                        btn.style.display = 'inline-flex';
-                        validated.add(field);
-                        submitBtn.style.display = 'inline-flex';
-                    });
-
-                    cancel.addEventListener('click', () => {
-                        input.value = input.dataset.originalValue;
-                        input.disabled = true;
-                        toggleEditingClass(field, false);
-                        validate.style.display = 'none';
-                        cancel.style.display = 'none';
-                        btn.style.display = 'inline-flex';
-                    });
+                    // Ne pas afficher le bouton d'annulation global avant validation
                 });
+            });
+
+            // Délégation d'événements pour le clic sur les boutons "validate" et "cancel"
+            document.addEventListener('click', (event) => {
+                const validateBtn = event.target.closest('.field-validate');
+                const cancelBtn = event.target.closest('.field-cancel');
+
+                if (validateBtn) {
+                    const field = validateBtn.dataset.field;
+                    const input = document.getElementById(field);
+                    if (input.value.trim() === '') {
+                        alert('Ce champ ne peut pas être vide');
+                        return;
+                    }
+                    const originalValue = input.getAttribute('data-original-value');
+                    const hasChanged = originalValue !== input.value;
+                    input.disabled = true;
+                    toggleEditingClass(field, false);
+                    validateBtn.style.display = 'none';
+                    document.querySelector(`.field-cancel[data-field="${field}"]`).style.display = 'none';
+                    document.querySelector(`.field-edit[data-field="${field}"]`).style.display = 'inline-flex';
+                    if (hasChanged) validated.add(field);
+                    else validated.delete(field);
+                    updateActionButtons();
+                }
+
+                if (cancelBtn) {
+                    const field = cancelBtn.dataset.field;
+                    const input = document.getElementById(field);
+                    input.value = input.dataset.originalValue;
+                    input.disabled = true;
+                    toggleEditingClass(field, false);
+                    cancelBtn.style.display = 'none';
+                    document.querySelector(`.field-validate[data-field="${field}"]`).style.display = 'none';
+                    document.querySelector(`.field-edit[data-field="${field}"]`).style.display = 'inline-flex';
+                    editingFields.delete(field);
+                    if (editingFields.size === 0 && validated.size === 0) {
+                        cancelAllBtn.style.display = 'none';
+                    }
+                }
             });
 
             document.querySelectorAll('.profile-input').forEach(input => {

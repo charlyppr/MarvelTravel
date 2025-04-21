@@ -83,15 +83,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     <script src="../js/theme-loader.js"></script>
 
     <link rel="stylesheet" href="../css/theme.css" id="theme">
-    <link rel="stylesheet" href="../css/svg-theme-adapter.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
+
     <link rel="stylesheet" href="../css/reglages.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
 
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
-
 </head>
 
 <body>
+    <?php if ($message): ?>
+        <div class="notification <?= strpos($message, 'succès') !== false ? 'success' : 'error' ?>">
+            <img src="../img/svg/<?= strpos($message, 'succès') !== false ? 'check-circle.svg' : 'alert-circle.svg' ?>"
+                alt="Notification">
+            <span><?= $message ?></span>
+            <button class="close-notification">&times;</button>
+        </div>
+    <?php endif; ?>
+
     <div class="main-container">
         <?php include 'sidebar.php'; ?>
 
@@ -108,14 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
                             <img src="../img/svg/fleche-redir.svg" alt="flèche">
                         </a>
                     </div>
-
-                    <?php if ($message): ?>
-                        <div class="notification <?= strpos($message, 'succès') !== false ? 'success' : 'error' ?>">
-                            <img src="../img/svg/<?= strpos($message, 'succès') !== false ? 'check-circle.svg' : 'alert-circle.svg' ?>"
-                                alt="Notification">
-                            <span><?= $message ?></span>
-                        </div>
-                    <?php endif; ?>
 
                     <form method="POST" action="" class="settings-form">
                         <div class="settings-grid">
@@ -276,6 +276,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Animation des notifications
+        const notifications = document.querySelectorAll('.notification');
+        if (notifications.length > 0) {
+            notifications.forEach(notification => {
+                // Ajouter un bouton de fermeture s'il n'existe pas déjà
+                if (!notification.querySelector('.close-notification')) {
+                    const closeButton = document.createElement('button');
+                    closeButton.className = 'close-notification';
+                    closeButton.innerHTML = '&times;';
+                    notification.appendChild(closeButton);
+                }
+
+                // Gérer la fermeture au clic
+                notification.querySelector('.close-notification').addEventListener('click', () => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                });
+
+                // Fermeture automatique après 5 secondes
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 5000);
+            });
+        }
+
         // Fonction simplifiée pour définir un cookie
         function setCookie(name, value, days) {
             const expires = new Date();
