@@ -193,8 +193,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../../js/theme-loader.js"></script>
 
     <link rel="stylesheet" href="../../css/theme.css" id="theme">
+    <link rel="stylesheet" href="../../css/reservation.css">
 
-    <link rel="stylesheet" href="../../css/etape2.css">
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 

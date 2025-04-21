@@ -39,7 +39,7 @@ body {
 
 .left {
     display: flex;
-    flex-basis: 50%;
+    flex-basis: 40%;
     flex-direction: column;
     justify-content: space-evenly;
     gap: 30px;
@@ -93,6 +93,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: fit-content;
 }
 
 .support-title {
@@ -115,7 +116,7 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 45px;
-    padding: 40px;
+    padding: 50px;
     border-radius: 20px;
     background: linear-gradient(#fff4df 15%, #f9ebcb 65%);
     border: 1px solid #fffae778;
@@ -153,13 +154,13 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    width: 100%;
 }
 
 input, textarea {
     font-family: 'PP Formula', sans-serif;
     font-size: 14px;
-    font-weight: 200;
-    padding-left: 20px;
+    padding-left: 15px;
     height: 50px;
     width: 100%;
     display: flex;

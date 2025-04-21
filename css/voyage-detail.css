@@ -521,7 +521,7 @@
 }
 
 .highlights-container {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -576,7 +576,7 @@
 .highlight-item img {
     width: 20px;
     height: 20px;
-    filter: brightness(0) saturate(100%) invert(88%) sepia(19%) saturate(751%) hue-rotate(328deg) brightness(103%) contrast(99%);
+    filter: brightness(0) saturate(100%) invert(87%) sepia(19%) saturate(751%) hue-rotate(328deg) brightness(80%) contrast(99%);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -923,7 +923,7 @@
 }
 
 .timeline-card {
-    background: var(--color-card-hover);
+    background: var(--color-card-bg);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -961,7 +961,7 @@
 }
 
 .timeline-header {
-    background: rgba(35, 35, 35, 0.6);
+    background: var(--color-card-hover);
     padding: 18px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
@@ -988,7 +988,7 @@
 .timeline-header h3 {
     font-size: 20px;
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     margin: 0;
     transition: all 0.3s ease;
 }
@@ -1068,7 +1068,7 @@
 /* Sections activités et options */
 .activities-list,
 .options-list {
-    background: rgba(35, 35, 35, 0.5);
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-md);
     padding: 20px;
     margin-top: 16px;
@@ -1082,7 +1082,6 @@
 
 .activities-list:hover,
 .options-list:hover {
-    background: rgba(40, 40, 40, 0.6);
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     border-color: rgba(255, 255, 255, 0.1);
@@ -1097,10 +1096,10 @@
 .options-list h4 {
     font-size: 17px;
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     margin: 0;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--color-text-muted);
     width: 100%;
     display: block;
 }
@@ -1152,7 +1151,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--color-accent-faded);
     transition: all 0.3s ease;
     width: 100%;
 }
@@ -1175,7 +1174,7 @@
     font-size: 16px;
     font-weight: 600;
     margin: 0 0 6px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     transition: all 0.3s ease;
 }
 
@@ -1190,8 +1189,8 @@
 .option-price {
     font-size: 16px;
     font-weight: 600;
-    color: var(--color-card-hover);
-    background: rgba(242, 219, 175, 0.1);
+    color: var(--color-text-muted);
+    background: var(--color-accent-faded);
     padding: 6px 12px;
     border-radius: var(--border-radius-md);
     white-space: nowrap;
@@ -1211,7 +1210,7 @@
 }
 
 .option-item:hover .option-info p {
-    color: var(--color-text-cream);
+    color: var(--color-text-muted);
 }
 
 .option-item:hover .option-price {
@@ -1282,7 +1281,7 @@
     gap: 10px;
     margin-bottom: 25px;
     padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid var(--color-accent-faded);
 }
 
 .tab-button {
@@ -1300,7 +1299,7 @@
 }
 
 .tab-button:hover {
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .tab-button.active {
@@ -1503,7 +1502,7 @@
 }
 
 .review-count {
-    color: var(--color-text-muted);
+    color: var(--color-text-cream);
     font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;

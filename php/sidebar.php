@@ -68,6 +68,14 @@ function isActive($page, $current_page)
 
                     </a>
 
+                    <a href="reglages.php" class="nav-link <?= isActive('reglages', $current_page) ?>">
+                        <div class="nav-icon">
+                            <img src="../img/svg/settings.svg" alt="Réglages" class="icon-img">
+                            <div class="icon-highlight"></div>
+                        </div>
+                        <span class="nav-text">Réglages</span>
+                    </a>
+
                 <?php endif; ?>
             </nav>
         </div>

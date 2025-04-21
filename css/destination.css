@@ -128,7 +128,7 @@
 .search-form {
     background: rgba(37, 37, 37, 0.5);
     border-radius: var(--border-radius-xl);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 
                 0 0 80px rgba(226, 54, 54, 0.1), 
@@ -337,7 +337,7 @@
     text-align: center;
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
-    background: rgba(37, 37, 37, 0.5);
+    background: var(--color-card-hover);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     min-width: 150px;
@@ -1821,13 +1821,11 @@ img.card-image {
 }
 
 .sort-select:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Fond légèrement plus clair au survol */
-    border-color: var(--color-accent-faded); /* Accentuation de la bordure */
+    /* border-color: var(--color-accent-faded); */ /* Accentuation de la bordure */
 }
 
 .sort-select:focus {
     outline: none; /* Supprime le contour par défaut */
-    box-shadow: 0 0 0 2px var(--color-accent); /* Met en évidence le focus */
 }
 
 /* Message aucun résultat */
@@ -1914,7 +1912,7 @@ img.card-image {
     width: 40px;
     height: 40px;
     border-radius: var(--border-radius-md);
-    background: var(--color-text-muted);
+    background: var(--color-text-light);
     color: var(--color-text-dark);
     text-decoration: none;
     font-size: var(--font-size-sm);
@@ -1944,7 +1942,7 @@ img.card-image {
     width: 40px;
     height: 40px;
     border-radius: var(--border-radius-md);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-accent-light);
     color: var(--color-text-light);
     text-decoration: none;
     transition: all var(--transition-medium);
@@ -1959,7 +1957,7 @@ img.card-image {
 }
 
 .page-arrow:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-accent);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
