@@ -47,6 +47,7 @@
     --couleur-tertiaire: #0D0D0D;
     --couleur-accent: #AF1F24;
     --couleur-sous-titre: #F2DBAF;
+    --color-footer: #F2DBAF;
     
     /* Accents et dégradés */
     --color-accent: #F2DBAF;
@@ -111,7 +112,7 @@
     /* Couleurs de base */
     --color-background: #FFFAE7;
     --color-text-light: #0D0D0D;
-    --color-text-cream: #121212;
+    --color-text-cream: #FFFAE7;
     --color-text-dark: #FFFFFF;
     --color-text-muted: rgba(13, 13, 13, 0.7);
     --couleur-primaire: #0D0D0D;
@@ -119,6 +120,7 @@
     --couleur-tertiaire: #FFFAE7;
     --couleur-accent: #E23636;
     --couleur-sous-titre: #AF1F24;
+    --color-footer: #000000;
     
     /* Accents et dégradés */
     --color-accent: #AF1F24;

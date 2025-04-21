@@ -43,7 +43,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
 }
 
 .header-content {
@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     text-decoration: none;
     opacity: 0.9;
     transition: opacity var(--transition-fast);
@@ -294,7 +294,7 @@
     margin: 0;
     font-size: 18px;
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .card-content {
@@ -384,7 +384,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     font-weight: 600;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
@@ -398,7 +398,7 @@
 .traveler-name {
     font-weight: 600;
     font-size: 14px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .traveler-type {
@@ -442,9 +442,7 @@
     top: 5px;
     bottom: 5px;
     width: 2px;
-    background: linear-gradient(to bottom, 
-        var(--color-primary-light) 0%, 
-        var(--color-secondary-light) 100%);
+    background: linear-gradient(to bottom,var(--couleur-primaire) 0%,var(--couleur-secondaire) 100%);
     border-radius: 1px;
 }
 
@@ -486,7 +484,7 @@
 
 .etape-name {
     font-weight: 500;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     font-size: 15px;
 }
 
@@ -502,7 +500,7 @@
 }
 
 .etape-badge.end {
-    background-color: var(--color-text-cream);
+    background-color: var(--color-text-light);
 }
 
 /* ===== OPTIONS ===== */
@@ -544,7 +542,7 @@
 .option-name {
     font-weight: 600;
     font-size: 14px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .option-desc {
@@ -608,7 +606,7 @@
 
 .primary-button {
     background: var(--gradient-primary);
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     box-shadow: 0 4px 15px rgba(226, 54, 54, 0.3);
 }
 
@@ -631,7 +629,7 @@
 
 .secondary-button {
     background-color: rgba(242, 219, 175, 0.1);
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.2);
 }
 
@@ -658,7 +656,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(30, 30, 30, 0.8);
+    background: var(--color-glass-dark);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-md) var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
@@ -685,7 +683,7 @@
 
 .transaction-value {
     font-size: 15px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     font-weight: 600;
 }
 
@@ -707,7 +705,7 @@
 }
 
 .summary-header h2 {
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     font-size: 24px;
     margin-bottom: var(--spacing-xl);
     font-weight: 700;
@@ -776,7 +774,7 @@
 
 .payment-value {
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .payment-row.total .payment-label,
@@ -798,7 +796,7 @@
 }
 
 .tips-section h2 {
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     font-size: 22px;
     margin-bottom: var(--spacing-xl);
     font-weight: 700;
@@ -823,7 +821,7 @@
 }
 
 .tip-item {
-    background-color: rgba(37, 37, 37, 0.7);
+    background-color: var(--color-glass-dark);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-md);
     display: flex;

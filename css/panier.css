@@ -253,7 +253,7 @@
 .item-details h3 {
     margin: 0 0 var(--spacing-sm);
     font-size: 18px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     position: relative;
     display: inline-block;
 }
@@ -289,7 +289,7 @@
 
 .info-value {
     font-weight: 500;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .total-row {
@@ -393,7 +393,7 @@
 .summary-row.total {
     font-size: 22px;
     font-weight: bold;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .price-total {
@@ -452,7 +452,7 @@
 
 .primary-button {
     background: var(--gradient-primary);
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     box-shadow: 0 4px 15px rgba(226, 54, 54, 0.3);
 }
 
@@ -464,7 +464,7 @@
 
 .secondary-button {
     background-color: rgba(242, 219, 175, 0.1);
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.2);
 }
 

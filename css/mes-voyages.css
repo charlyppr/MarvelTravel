@@ -35,11 +35,11 @@ img {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     font-size: 15px;
     padding: 10px 18px;
     border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--color-glass-dark);
     transition: all var(--transition-medium);
     border: 1px solid rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px);
@@ -172,7 +172,7 @@ img {
 .titre-content span:first-child {
     font-size: 24px;
     font-weight: 700;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     position: relative;
 }
 
@@ -234,7 +234,7 @@ img {
 .tab-voyages td {
     padding: var(--spacing-md);
     font-size: 14px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     border-bottom: 1px solid rgba(242, 219, 175, 0.05);
 }
 
@@ -258,9 +258,9 @@ img {
 }
 
 .status img {
-    width: 16px;
-    height: 16px;
-    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.3));
+    width: 10px;
+    height: 10px;
+    /* filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.3)); */
 }
 
 .status-ok {
@@ -538,7 +538,7 @@ img {
 
 .sort-select {
     background-color: rgba(255, 255, 255, 0.05);
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.1);
     padding: 8px 16px;
     border-radius: var(--border-radius-md);

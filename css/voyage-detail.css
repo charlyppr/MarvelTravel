@@ -98,7 +98,7 @@
 }
 
 .breadcrumb a {
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     text-decoration: none;
     opacity: 0.9;
     transition: all var(--transition-fast);
@@ -124,7 +124,7 @@
     margin-bottom: var(--spacing-md);
     line-height: 1.1;
     position: relative;
-    background: linear-gradient(to right, var(--color-text-light) 0%, var(--color-accent) 100%);
+    background: linear-gradient(to right, var(--color-text-cream) 0%, var(--color-accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -146,7 +146,7 @@
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: var(--spacing-xl);
-    color: var(--color-text-muted);
+    color: var(--color-text-cream);
     max-width: 700px;
     animation: FadeIn 1s ease 0.2s backwards;
 }
@@ -196,8 +196,8 @@
 }
 
 .category-tag {
-    background: var(--color-accent-faded);
-    color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-cream);
     padding: 10px 20px;
     border-radius: var(--border-radius-xl);
     font-size: 14px;
@@ -423,7 +423,7 @@
 
 /* Description section modernisée et minimaliste */
 .description-section {
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.7), rgba(25, 25, 25, 0.6));
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-xl);
     padding: 36px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -539,7 +539,7 @@
 .highlights-container h3 {
     font-size: 20px;
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     margin-block: 0 22px;
     position: relative;
     display: inline-block;
@@ -587,12 +587,12 @@
 .highlight-item span {
     font-size: 13px;
     line-height: 1.5;
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
     transition: color 0.3s ease;
 }
 
 .highlight-item:hover span {
-    color: var(--color-text-cream);
+    color: var(--color-text-muted);
 }
 
 /* Universe section */
@@ -635,7 +635,7 @@
 .universe-content {
     display: grid;
     gap: 32px;
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.7), rgba(25, 25, 25, 0.6));
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-xl);
     padding: 32px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -749,7 +749,7 @@
 .characters-section h3 {
     font-size: 20px;
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     margin-bottom: 18px;
     position: relative;
     display: inline-block;
@@ -854,12 +854,12 @@
 .character-card span {
     font-size: 14px;
     font-weight: 500;
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
     transition: color 0.3s ease;
 }
 
 .character-card:hover span {
-    color: var(--color-text-cream);
+    color: var(--color-text-muted);
 }
 
 /* Programme section optimisée */
@@ -923,7 +923,7 @@
 }
 
 .timeline-card {
-    background: rgba(30, 30, 30, 0.7);
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -975,7 +975,7 @@
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     box-shadow: 0 3px 8px rgba(226, 54, 54, 0.25);
     transition: all 0.3s ease;
 }
@@ -1190,7 +1190,7 @@
 .option-price {
     font-size: 16px;
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-card-hover);
     background: rgba(242, 219, 175, 0.1);
     padding: 6px 12px;
     border-radius: var(--border-radius-md);
@@ -1258,7 +1258,7 @@
 }
 
 .details-container {
-    background: linear-gradient(135deg, rgba(35, 35, 35, 0.7), rgba(30, 30, 30, 0.6));
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-lg);
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1304,7 +1304,7 @@
 }
 
 .tab-button.active {
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .tab-button.active::after {
@@ -1348,7 +1348,7 @@
     padding-bottom: 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
 }
 
 .details-list li:last-child {
@@ -1527,7 +1527,7 @@
 }
 
 .review-card {
-    background: linear-gradient(135deg, rgba(35, 35, 35, 0.7), rgba(30, 30, 30, 0.6));
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-lg);
     padding: 24px;
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1595,7 +1595,7 @@
 
 .reviewer-info h4 {
     font-size: 16px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     margin: 0 0 4px;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -1636,7 +1636,7 @@
 }
 
 .review-text {
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
     line-height: 1.7;
     font-size: 15px;
     margin: 0;
@@ -1647,7 +1647,7 @@
 }
 
 .review-card:hover .review-text {
-    color: var(--color-text-cream);
+    color: var(--color-text-muted);
 }
 
 
@@ -1661,13 +1661,13 @@ img.item-icon.not-included {
 
 /* Booking Card */
 .booking-card {
-    background: linear-gradient(135deg, rgba(35, 35, 35, 0.7), rgba(25, 25, 25, 0.6));
+    background: var(--color-card-hover);
     border-radius: var(--border-radius-lg);
     padding: 32px;
     border: 1px solid rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); */
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     overflow: hidden;
 }
@@ -1708,10 +1708,15 @@ img.item-icon.not-included {
 .booking-header {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     margin-bottom: 24px;
     padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid var(--color-text-muted);
+}
+
+.booking-price {
+    display: flex;
+    flex-direction: column;
 }
 
 .price-amount {
@@ -1769,6 +1774,12 @@ img.item-icon.not-included {
     gap: 16px;
 }
 
+.date-item {
+    display: flex
+;
+    flex-direction: column;
+}
+
 .date-item label {
     font-size: 13px;
     color: var(--color-text-muted);
@@ -1777,7 +1788,7 @@ img.item-icon.not-included {
 
 .date-item .date {
     font-size: 13px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     transition: all 0.3s ease;
 }
 
@@ -1785,7 +1796,7 @@ img.item-icon.not-included {
 .booking-features {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 24px;
 }
 

@@ -282,6 +282,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Appliquer la nouvelle classe
             document.body.classList.add(`${theme}-theme`);
+            
+            // Mettre à jour la classe 'selected' sur les options de thème
+            document.querySelectorAll('.theme-option').forEach(optionEl => {
+                optionEl.classList.remove('selected');
+            });
+            this.closest('.theme-option').classList.add('selected');
         });
     });
     

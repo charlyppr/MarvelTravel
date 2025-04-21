@@ -17,8 +17,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <!-- Charger le fichier de thème approprié -->
     <link rel="stylesheet" href="css/theme.css" id="theme">
-    <link rel="stylesheet" href="css/base-light.css">
-    <link rel="stylesheet" href="css/base-dark.css">
+
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="img/svg/spiderman-pin.svg" type="image/x-icon">
 
@@ -26,7 +25,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
 </head>
 
-<body class="<?php echo $theme; ?>-theme">
+<body>
     <div class="default"></div>
 
     <?php include 'php/nav.php'; ?>

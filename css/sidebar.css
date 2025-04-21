@@ -2,7 +2,7 @@
 :root {
     --sidebar-width: 260px;
     --sidebar-collapsed-width: 80px;
-    --sidebar-background: rgba(25, 25, 25, 0.85);
+    --sidebar-background: rgba(195, 195, 195, 0.85);
     --sidebar-border: rgba(242, 219, 175, 0.1);
     --sidebar-heading-color: rgba(255, 250, 231, 0.5);
     --nav-item-hover: rgba(242, 219, 175, 0.1);
@@ -22,7 +22,7 @@
     left: 0;
     height: 100vh;
     width: var(--sidebar-width);
-    background-color: var(--sidebar-background);
+    background-color: var(--color-card-bg);
     border-right: 1px solid var(--sidebar-border);
     display: flex;
     flex-direction: column;
@@ -61,6 +61,7 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid var(--sidebar-border);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-logo {
@@ -153,7 +154,7 @@
 .sidebar-heading {
     font-size: 12px;
     text-transform: uppercase;
-    color: var(--sidebar-heading-color);
+    color: var(--color-text-light);
     letter-spacing: 1px;
     margin-bottom: 15px;
     font-weight: 500;
@@ -172,23 +173,10 @@
     padding: 10px 12px;
     border-radius: var(--border-radius-md);
     text-decoration: none;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     transition: all var(--transition-sidebar);
     position: relative;
     overflow: hidden;
-}
-
-.nav-link::before {
-    /* content: ''; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--gradient-primary);
-    transform: scaleY(0);
-    transition: transform var(--transition-sidebar);
-    border-radius: 0 2px 2px 0;
 }
 
 .nav-link:hover {
@@ -305,7 +293,7 @@
     border-radius: var(--border-radius-md);
     background-color: rgba(255, 255, 255, 0.03);
     text-decoration: none;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     transition: all var(--transition-sidebar);
     border: 1px solid transparent;
 }
@@ -398,7 +386,7 @@
 .user-name {
     font-weight: 600;
     font-size: 16px;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -484,6 +472,7 @@
 .sidebar-footer {
     padding: 15px 20px;
     border-top: 1px solid var(--sidebar-border);
+    background-color: var(--color-card-hover);
 }
 
 .sidebar-brand {
@@ -502,4 +491,138 @@
     font-size: 12px;
     color: var(--color-text-muted);
     white-space: nowrap;
+}
+
+
+
+/* ----------------- SIDEBAR ------------------ */
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.content-container-div {
+    width: calc(100% - 280px);
+    margin-left: 260px;
+    transition: width var(--transition-medium), margin-left var(--transition-medium);
+    padding: var(--spacing-xl);
+}
+
+body.sidebar-open {
+    overflow: hidden;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: fit-content;
+}
+
+.trait {
+    width: 90%;    
+    height: 1px;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.categories-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    min-width: max-content;
+}
+
+.categorie-img {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categorie-img img {
+    width: 20px;
+    height: 20px;
+}
+
+.active-img {
+    filter: invert(1);
+}
+
+.active-text {
+    font-family: 'PP Formula Bold';
+}
+
+.sidebar-bottom-deco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: fit-content;
+}
+
+.photo-admin {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+
+.info-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    min-width: max-content;
+}
+
+.info-admin .nom-admin {
+    font-size: 1.2em;
+}
+
+.info-admin .mail-admin {
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+.deconnexion {
+    display: flex;
+    gap: 10px;
+}
+
+.deconnexion * {
+    font-size: 12px;
+    text-align: center;
+    width: max-content;
+
+    transition: all 0.3s ease;
 }

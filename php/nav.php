@@ -143,12 +143,10 @@ if ($is_in_root) {
 
         if (profileContainer) {
             profileContainer.addEventListener('mouseenter', function () {
-                navElement.style.maskImage = 'none';
                 document.querySelector('.profile-dropdown').style.display = 'flex';
             });
 
             profileContainer.addEventListener('mouseleave', function () {
-                navElement.style.maskImage = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%)';
                 document.querySelector('.profile-dropdown').style.display = 'none';
             });
         }
