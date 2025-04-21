@@ -124,6 +124,20 @@ if ($is_in_root) {
                             <img src="<?php echo getAssetPath('svg/settings.svg'); ?>" alt="Réglages">
                             <span>Réglages</span>
                         </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a href="#" class="dropdown-item theme-toggle-btn" id="themeToggleBtn">
+                            <img src="<?php echo getAssetPath('svg/' . ((isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'moon.svg' : 'sun.svg')); ?>"
+                                alt="Thème" id="themeIcon">
+                            <span
+                                id="themeText"><?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'Mode sombre' : 'Mode clair'; ?></span>
+                        </a>
+
+                        <a href="<?php echo $base_url; ?>/php/logout.php" class="dropdown-item logout">
+                            <img src="<?php echo getAssetPath('svg/log-out.svg'); ?>" alt="Déconnexion">
+                            <span>Déconnexion</span>
+                        </a>
                     </div>
                 </div>
                 <?php

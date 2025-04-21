@@ -109,7 +109,7 @@ $voyages = json_decode($voyagesJson, true);
                         <p>Explorez nos destinations et ajoutez des voyages à votre panier</p>
                         <a href="destination.php" class="primary-button">
                             Découvrir nos voyages
-                            <img src="../img/svg/plane.svg" alt="Découvrir">
+                            <img src="../img/svg/plane.svg" alt="Découvrir" class="no-invert">
                         </a>
                     </div>
                 <?php else: ?>

@@ -533,8 +533,8 @@ body {
 }
 
 .secondary-button {
-    background-color: var(--color-text-muted);
-    color: var(--color-text-dark);
+    background-color: var(--color-accent-faded);
+    color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.2);
 }
 
