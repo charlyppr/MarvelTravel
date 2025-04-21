@@ -166,9 +166,8 @@ button,
 input, 
 select, 
 textarea {
-    background-color: var(--color-field-bg);
+    background-color: transparent;
     color: var(--couleur-primaire);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 input:focus, 

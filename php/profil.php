@@ -59,6 +59,20 @@ if (count($commandes_utilisateur) > 0) {
     });
 }
 
+// Vérifier s'il y a des messages de succès ou d'erreur à afficher
+$success_message = '';
+$error_message = '';
+
+if (isset($_SESSION['success'])) {
+    $success_message = $_SESSION['success'];
+    unset($_SESSION['success']);
+}
+
+if (isset($_SESSION['error'])) {
+    $error_message = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
+
 // Récupérer les messages de l'utilisateur
 $messages = [];
 $messages_file = '../json/messages.json';
@@ -99,6 +113,22 @@ if (file_exists($messages_file)) {
 <body>
     <div class="default"></div>
 
+    <?php if (!empty($success_message)): ?>
+        <div class="notification success">
+            <img src="../img/svg/check-circle.svg" alt="Succès">
+            <p><?= $success_message ?></p>
+            <button class="close-notification">&times;</button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($error_message)): ?>
+        <div class="notification error">
+            <img src="../img/svg/alert-circle.svg" alt="Erreur">
+            <p><?= $error_message ?></p>
+            <button class="close-notification">&times;</button>
+        </div>
+    <?php endif; ?>
+
     <div class="main-container">
         <?php include 'sidebar.php'; ?>
 
@@ -125,60 +155,131 @@ if (file_exists($messages_file)) {
                             </div>
 
                             <div class="card-content">
-                                <div class="profile-header-info">
-                                    <div class="profile-avatar">
-                                        <img src="../img/svg/spiderman-pin.svg" alt="photo de profil" class="no-invert">
-                                        <div class="profile-status online"></div>
-                                    </div>
-                                    <div class="profile-name">
-                                        <h2><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h2>
-                                        <span class="profile-email"><?= $_SESSION['email'] ?></span>
-                                    </div>
-                                </div>
-
-                                <div class="separator"></div>
-
-                                <div class="profile-details">
-                                    <div class="profile-field">
-                                        <div class="field-label">Prénom</div>
-                                        <div class="field-value">
-                                            <span><?= $_SESSION['first_name'] ?></span>
-                                            <button class="edit-button" data-field="first_name">
-                                                <img src="../img/svg/edit.svg" alt="Modifier">
-                                            </button>
+                                <form id="profileForm" method="post" action="update-profile.php">
+                                    <div class="profile-header-info">
+                                        <div class="profile-avatar">
+                                            <img src="../img/svg/spiderman-pin.svg" alt="photo de profil"
+                                                class="no-invert">
+                                            <div class="profile-status online"></div>
+                                        </div>
+                                        <div class="profile-name">
+                                            <h2><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h2>
+                                            <span class="profile-email"><?= $_SESSION['email'] ?></span>
                                         </div>
                                     </div>
 
-                                    <div class="profile-field">
-                                        <div class="field-label">Nom</div>
-                                        <div class="field-value">
-                                            <span><?= $_SESSION['last_name'] ?></span>
-                                            <button class="edit-button" data-field="last_name">
-                                                <img src="../img/svg/edit.svg" alt="Modifier">
-                                            </button>
+                                    <div class="separator"></div>
+
+                                    <div class="profile-details">
+                                        <div class="profile-field">
+                                            <div class="field-label">Prénom</div>
+                                            <div class="field-value">
+                                                <div class="input-wrapper">
+                                                    <input type="text" name="first_name" id="first_name"
+                                                        class="profile-input" value="<?= $_SESSION['first_name'] ?>"
+                                                        data-original-value="<?= $_SESSION['first_name'] ?>" disabled>
+                                                    <span class="input-highlight"></span>
+                                                </div>
+                                                <div class="field-actions">
+                                                    <button type="button" class="field-edit" data-field="first_name">
+                                                        <img src="../img/svg/edit.svg" alt="Modifier">
+                                                    </button>
+                                                    <button type="button" class="field-validate" data-field="first_name"
+                                                        style="display:none">
+                                                        <img src="../img/svg/check.svg" alt="Valider">
+                                                    </button>
+                                                    <button type="button" class="field-cancel" data-field="first_name"
+                                                        style="display:none">
+                                                        <img src="../img/svg/x.svg" alt="Annuler">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="profile-field">
+                                            <div class="field-label">Nom</div>
+                                            <div class="field-value">
+                                                <div class="input-wrapper">
+                                                    <input type="text" name="last_name" id="last_name"
+                                                        class="profile-input" value="<?= $_SESSION['last_name'] ?>"
+                                                        data-original-value="<?= $_SESSION['last_name'] ?>" disabled>
+                                                    <span class="input-highlight"></span>
+                                                </div>
+                                                <div class="field-actions">
+                                                    <button type="button" class="field-edit" data-field="last_name">
+                                                        <img src="../img/svg/edit.svg" alt="Modifier">
+                                                    </button>
+                                                    <button type="button" class="field-validate" data-field="last_name"
+                                                        style="display:none">
+                                                        <img src="../img/svg/check.svg" alt="Valider">
+                                                    </button>
+                                                    <button type="button" class="field-cancel" data-field="last_name"
+                                                        style="display:none">
+                                                        <img src="../img/svg/x.svg" alt="Annuler">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="profile-field">
+                                            <div class="field-label">Email</div>
+                                            <div class="field-value">
+                                                <div class="input-wrapper">
+                                                    <input type="email" name="email" id="email" class="profile-input"
+                                                        value="<?= $_SESSION['email'] ?>"
+                                                        data-original-value="<?= $_SESSION['email'] ?>" disabled>
+                                                    <span class="input-highlight"></span>
+                                                </div>
+                                                <div class="field-actions">
+                                                    <button type="button" class="field-edit" data-field="email">
+                                                        <img src="../img/svg/edit.svg" alt="Modifier">
+                                                    </button>
+                                                    <button type="button" class="field-validate" data-field="email"
+                                                        style="display:none">
+                                                        <img src="../img/svg/check.svg" alt="Valider">
+                                                    </button>
+                                                    <button type="button" class="field-cancel" data-field="email"
+                                                        style="display:none">
+                                                        <img src="../img/svg/x.svg" alt="Annuler">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="profile-field">
+                                            <div class="field-label">Mot de passe</div>
+                                            <div class="field-value password-field-container">
+                                                <div class="input-wrapper">
+                                                    <input type="password" name="password" id="password"
+                                                        class="profile-input" placeholder="••••••••"
+                                                        data-original-value="" disabled>
+                                                    <span class="input-highlight"></span>
+                                                </div>
+                                                <div class="field-actions">
+                                                    <button type="button" class="field-edit" data-field="password">
+                                                        <img src="../img/svg/edit.svg" alt="Modifier">
+                                                    </button>
+                                                    <button type="button" class="field-validate" data-field="password"
+                                                        style="display:none">
+                                                        <img src="../img/svg/check.svg" alt="Valider">
+                                                    </button>
+                                                    <button type="button" class="field-cancel" data-field="password"
+                                                        style="display:none">
+                                                        <img src="../img/svg/x.svg" alt="Annuler">
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="profile-field">
-                                        <div class="field-label">Email</div>
-                                        <div class="field-value">
-                                            <span><?= $_SESSION['email'] ?></span>
-                                            <button class="edit-button" data-field="email">
-                                                <img src="../img/svg/edit.svg" alt="Modifier">
-                                            </button>
-                                        </div>
+                                    <div class="profile-action-container">
+                                        <button type="submit" id="submit-profile-btn" class="profile-submit-button"
+                                            style="display:none">
+                                            <img src="../img/svg/save.svg" alt="Soumettre" class="button-icon">
+                                            <span>Sauvegarder les modifications</span>
+                                        </button>
                                     </div>
-
-                                    <div class="profile-field">
-                                        <div class="field-label">Mot de passe</div>
-                                        <div class="field-value password-field-container">
-                                            <span>••••••••••</span>
-                                            <button class="edit-button" data-field="password">
-                                                <img src="../img/svg/edit.svg" alt="Modifier">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
 
@@ -315,5 +416,104 @@ if (file_exists($messages_file)) {
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.close-notification').forEach(button => {
+            button.addEventListener('click', () => {
+                const notification = button.closest('.notification');
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            });
+        });
+
+        setTimeout(() => {
+            document.querySelectorAll('.notification').forEach(notification => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            });
+        }, 5000);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const validated = new Set();
+            const submitBtn = document.getElementById('submit-profile-btn');
+
+            function toggleEditingClass(field, isEditing) {
+                const fieldValue = document.querySelector(`.field-value:has(#${field})`);
+                if (fieldValue) {
+                    if (isEditing) {
+                        fieldValue.classList.add('editing');
+                    } else {
+                        fieldValue.classList.remove('editing');
+                    }
+                }
+            }
+
+            document.querySelectorAll('.field-edit').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const field = btn.dataset.field;
+                    const input = document.getElementById(field);
+                    const validate = document.querySelector(`.field-validate[data-field="${field}"]`);
+                    const cancel = document.querySelector(`.field-cancel[data-field="${field}"]`);
+
+                    input.disabled = false;
+                    input.focus();
+                    toggleEditingClass(field, true);
+                    btn.style.display = 'none';
+                    validate.style.display = 'inline-flex';
+                    cancel.style.display = 'inline-flex';
+
+                    validate.addEventListener('click', () => {
+                        if (input.value.trim() === '') {
+                            alert('Ce champ ne peut pas être vide');
+                            return;
+                        }
+                        input.dataset.originalValue = input.value;
+                        input.disabled = true;
+                        toggleEditingClass(field, false);
+                        validate.style.display = 'none';
+                        cancel.style.display = 'none';
+                        btn.style.display = 'inline-flex';
+                        validated.add(field);
+                        submitBtn.style.display = 'inline-flex';
+                    });
+
+                    cancel.addEventListener('click', () => {
+                        input.value = input.dataset.originalValue;
+                        input.disabled = true;
+                        toggleEditingClass(field, false);
+                        validate.style.display = 'none';
+                        cancel.style.display = 'none';
+                        btn.style.display = 'inline-flex';
+                    });
+                });
+            });
+
+            document.querySelectorAll('.profile-input').forEach(input => {
+                input.addEventListener('focus', () => {
+                    const wrapper = input.closest('.input-wrapper');
+                    if (wrapper) wrapper.classList.add('focused');
+                });
+
+                input.addEventListener('blur', () => {
+                    const wrapper = input.closest('.input-wrapper');
+                    if (wrapper) wrapper.classList.remove('focused');
+                });
+            });
+
+            const profileForm = document.getElementById('profileForm');
+
+            profileForm.addEventListener('submit', (event) => {
+                document.querySelectorAll('.profile-input').forEach(input => {
+                    input.disabled = false;
+                });
+            });
+        });
+    </script>
+
+</body>
 
 </html>

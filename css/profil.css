@@ -75,7 +75,6 @@ body {
     align-items: flex-start;
     margin-bottom: var(--spacing-md);
     position: relative;
-    /* overflow: hidden; */
 }
 
 
@@ -144,7 +143,6 @@ body {
 .voyages-card {
     overflow-y: auto;
     grid-column: span 8;
-    /* --order: 3; */
 }
 
 /* Messages styles */
@@ -404,19 +402,23 @@ body {
 .profile-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 24px;
 }
 
 .profile-field {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .field-label {
     font-size: 14px;
     color: var(--color-text-muted);
     font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: all var(--transition-medium);
 }
 
 .field-value {
@@ -424,56 +426,253 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: var(--color-glass-dark);
-    padding: 14px 16px;
+    padding: 4px 16px;
     border-radius: var(--border-radius-md);
-    transition: all var(--transition-fast);
+    transition: all var(--transition-medium);
     border: 1px solid transparent;
+    height: 54px;
+    overflow: hidden;
+    position: relative;
+}
+
+.field-value::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    pointer-events: none;
 }
 
 .field-value:hover {
-    background-color: var(--color-accent-faded);
-    border-color: var(--color-accent-faded);
+    border-color: rgba(242, 219, 175, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-field);
+}
+
+.field-value:hover::before {
+    opacity: 1;
+}
+
+.field-value.editing {
+    background-color: rgba(242, 219, 175, 0.08);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 15px rgba(242, 219, 175, 0.15);
     transform: translateY(-2px);
 }
 
-.field-value span {
+.input-wrapper {
+    flex-grow: 1;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper.focused::after {
+    width: 100%;
+}
+
+.profile-input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
     font-size: 16px;
     font-weight: 500;
     color: var(--color-text-light);
+    padding: 0;
+    transition: all var(--transition-medium);
 }
 
-.edit-button {
-    background-color: transparent;
+.profile-input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.6;
+}
+
+.profile-input:disabled {
+    cursor: default;
+    color: var(--color-text-light);
+    opacity: 0.9;
+}
+
+.field-actions {
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.field-actions button {
+    background: none;
     border: none;
     cursor: pointer;
-    opacity: 0.6;
-    transition: all var(--transition-fast);
-    padding: 8px;
-    border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    opacity: 0.7;
+    background-color: transparent;
 }
 
-.edit-button:hover {
+.field-actions button:hover {
     opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.field-actions button:active {
+    transform: translateY(-1px);
+}
+
+.field-actions button img {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--transition-fast);
+}
+
+.field-edit:hover img {
     transform: rotate(15deg);
-    background-color: rgba(255, 255, 255, 0.15);
 }
 
-.edit-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-accent-faded);
+.field-validate {
+    background-color: rgba(43, 132, 107, 0.15) !important;
 }
 
-.edit-button img {
+.field-validate:hover {
+    background-color: rgba(43, 132, 107, 0.3) !important;
+}
+
+.field-cancel {
+    background-color: rgba(226, 54, 54, 0.15) !important;
+}
+
+.field-cancel:hover {
+    background-color: rgba(226, 54, 54, 0.3) !important;
+}
+
+/* Style du bouton de soumission des modifications */
+.profile-action-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-submit-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-light);
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    box-shadow: 0 5px 15px rgba(226, 54, 54, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    transition: left 0.5s ease;
+}
+
+.profile-submit-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(226, 54, 54, 0.4);
+    background: var(--gradient-hover);
+}
+
+.profile-submit-button:hover::before {
+    left: 100%;
+}
+
+.profile-submit-button:active {
+    transform: translateY(-2px);
+}
+
+.profile-submit-button .button-icon {
     width: 18px;
     height: 18px;
-    transition: filter var(--transition-fast);
+    transition: transform var(--transition-fast);
 }
 
-.edit-button:hover img {
-    filter: drop-shadow(0 0 3px rgba(242, 219, 175, 0.5));
+.profile-submit-button:hover .button-icon {
+    transform: translateY(-2px);
+}
+
+/* Gestion des effets password */
+.password-field-container .profile-input {
+    font-family: monospace;
+    letter-spacing: 2px;
+}
+
+/* Responsive design amélioré */
+@media screen and (max-width: 992px) {
+    .profile-details {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .field-value {
+        height: 50px;
+    }
+    
+    .profile-input {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .field-label {
+        font-size: 13px;
+    }
+    
+    .field-value {
+        padding: 4px 12px;
+    }
+    
+    .field-actions button {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .field-actions button img {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .profile-submit-button {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
 }
 
 /* Statistics styles with improved visuals */
@@ -503,7 +702,7 @@ body {
 .stat-item:hover {
     transform: translateY(-4px);
     background-color: var(--color-accent-faded);
-    border-color: var(--color-accent-faded);
+    border-color: var (--color-accent-faded);
     box-shadow: var(--shadow-field);
 }
 
@@ -580,7 +779,7 @@ body {
 .voyage-item:hover {
     transform: translateX(5px);
     background-color: var(--color-accent-faded);
-    border-color: var(--color-accent-faded);
+    border-color: var (--color-accent-faded);
     box-shadow: var(--shadow-field);
 }
 
@@ -641,7 +840,6 @@ body {
 
 .voyage-status::before {
     content: '';
-    /* display: inline-block; */
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -751,8 +949,6 @@ body {
     height: 90px;
     opacity: 0.8;
     margin-bottom: 5px;
-    /* animation: pulse 3s infinite ease-in-out; */
-    /* filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3)); */
 }
 
 .empty-state p {
@@ -775,7 +971,6 @@ body {
     transition: all var(--transition-medium);
     border: none;
     cursor: pointer;
-    /* letter-spacing: 0.5px; */
     margin-top: 10px;
     gap: 10px;
 }
@@ -1063,4 +1258,43 @@ body {
 
 .card.messages-card {
     grid-column: span 4;
+}
+
+/* Étendre l’input sur toute la largeur du field-value */
+.profile-input {
+    width: 100%;
+    box-sizing: border-box;
+    height: var(--spacing-xxl);
+}
+
+.profile-input:disabled {
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border: none;
+}
+
+.profile-input:not(:disabled), .profile-input:focus {
+    border: none;
+}
+
+.profile-input:focus {
+    outline: none;
+}
+
+.field-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.field-actions button {
+    display: inline-flex;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
 }
