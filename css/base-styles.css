@@ -130,11 +130,11 @@ html, body {
 
 body {
     font-family: 'PP Formula', sans-serif;
-    background-image: url('../img/star.png');
+    /* background-image: url('../img/star.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     margin: 0;
     padding: 0;
     user-select: none;
