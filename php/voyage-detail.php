@@ -375,19 +375,6 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
                         <?php endif; ?>
                     </div>
 
-                    <div class="booking-dates">
-                        <div class="date-row">
-                            <div class="date-item">
-                                <label>Départ</label>
-                                <span class="date"><?php echo $voyage['dates']['debut']; ?></span>
-                            </div>
-                            <div class="date-item">
-                                <label>Retour</label>
-                                <span class="date"><?php echo $voyage['dates']['fin']; ?></span>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="booking-features">
                         <div class="feature-item">
                             <img src="../img/svg/users.svg" alt="Groupe">
@@ -395,7 +382,7 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
                         </div>
                         <div class="feature-item">
                             <img src="../img/svg/calendar.svg" alt="Durée">
-                            <span><?php echo $voyage['dates']['duree']; ?></span>
+                            <span><?php echo $voyage['dates']['duree']; ?> recommandée</span>
                         </div>
                     </div>
 

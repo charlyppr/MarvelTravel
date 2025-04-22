@@ -9,12 +9,37 @@ if ($id === null) {
     exit;
 }
 
-// Vérifier si l'utilisateur change de voyage
+// Vérifier si nous venons d'une réinitialisation de recherche
+$from_reset = isset($_GET['reset']) && $_GET['reset'] == 1;
+
+// Récupérer les dates depuis l'URL si disponibles
+$url_date_debut = isset($_GET['date_debut']) ? $_GET['date_debut'] : '';
+$url_date_fin = isset($_GET['date_fin']) ? $_GET['date_fin'] : '';
+
+// Vérifier si l'utilisateur change de voyage ou si l'URL contient des paramètres explicites
 $current_voyage_id = isset($_SESSION['current_voyage_id']) ? $_SESSION['current_voyage_id'] : null;
-if ($current_voyage_id !== $id) {
-    // Si l'ID est différent, on efface toutes les données de réservation
+$reset_session = false;
+
+// Si l'URL contient des paramètres de date (même vides), cela indique une nouvelle recherche
+$date_params_in_url = isset($_GET['date_debut']) || isset($_GET['date_fin']);
+
+// Effacer les données de session si:
+// - Changement de voyage
+// - Nouvelle requête avec des paramètres de date explicites
+// - Vient d'une réinitialisation de recherche
+if ($current_voyage_id !== $id || $date_params_in_url || $from_reset) {
     clear_reservation_data();
     $_SESSION['current_voyage_id'] = $id;
+
+    // Si des dates sont passées dans l'URL et que ce n'est pas une réinitialisation, les stocker en session
+    if ($date_params_in_url && !$from_reset) {
+        $form_data = [
+            'date_debut' => $url_date_debut,
+            'date_fin' => $url_date_fin,
+            'nb_personne' => 1 // Valeur par défaut
+        ];
+        store_form_data('etape1', $form_data);
+    }
 }
 
 // Charger le panier pour récupérer les données
@@ -54,21 +79,31 @@ if (isset($_GET['from_cart']) && isset($_GET['cart_index'])) {
     }
 }
 
-// Récupération des données
-if ($panier_data && $panier_data['voyage_id'] === $id) {
+// Récupération des données avec priorité à l'URL ou à la réinitialisation
+if ($from_reset) {
+    // Si on vient d'une réinitialisation explicite, utiliser des valeurs vides
+    $date_debut_value = '';
+    $date_fin_value = '';
+    $nb_personne_value = 1;
+} else if ($panier_data && $panier_data['voyage_id'] === $id) {
     // Si on vient du panier et que c'est le bon voyage, utiliser ces données
     $date_debut_value = $panier_data['date_debut'];
     $date_fin_value = $panier_data['date_fin'];
     $nb_personne_value = $panier_data['nb_personnes'];
+} else if ($date_params_in_url) {
+    // Si l'URL contient des paramètres de date, les utiliser en priorité
+    $date_debut_value = $url_date_debut;
+    $date_fin_value = $url_date_fin;
+    $nb_personne_value = 1;
 } else {
-    // Vérifier d'abord s'il y a des données en session de l'étape 1
+    // Sinon, vérifier s'il y a des données en session
     $form_data = get_form_data('etape1');
     if ($form_data) {
         $date_debut_value = $form_data['date_debut'];
         $date_fin_value = $form_data['date_fin'];
         $nb_personne_value = $form_data['nb_personne'];
     } else {
-        // Si pas de données en session, utiliser les valeurs par défaut
+        // Valeurs par défaut
         $date_debut_value = '';
         $date_fin_value = '';
         $nb_personne_value = 1;

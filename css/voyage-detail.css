@@ -9,7 +9,7 @@
 /* Hero Section */
 .hero-section {
     height: 80vh;
-    /* margin-bottom: var(--spacing-xxl); */
+    margin-bottom: var(--spacing-xxl);
 }
 
 .hero-backdrop {
@@ -1767,16 +1767,10 @@ img.item-icon.not-included {
     transform: translateY(-3px);
 }
 
-.date-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
 .date-item {
-    display: flex
-;
-    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .date-item label {

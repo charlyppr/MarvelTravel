@@ -103,7 +103,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                     travers le monde</p>
 
                 <div class="search-container">
-                    <form action="destination.php" method="GET" class="search-form">
+                    <form action="destination.php#toutes-destinations" method="GET" class="search-form">
                         <div class="search-tabs">
                             <button type="button" class="search-tab active">Tous les voyages</button>
                             <button type="button" class="search-tab">Aventures</button>
@@ -118,33 +118,134 @@ $best_voyages = array_slice($voyages, 0, 4);
                                 <div class="field-content">
                                     <label for="destination-search">Destination</label>
                                     <input type="search" id="destination-search" name="recherche"
-                                        placeholder="Où voulez-vous aller?" value="<?= htmlspecialchars($recherche) ?>">
+                                        placeholder="Où voulez-vous aller?" value="<?= htmlspecialchars($recherche) ?>" autocomplete="off">
+                                    
+                                    <!-- Ajout du conteneur de suggestions -->
+                                    <div class="destination-suggestions" id="destination-suggestions">
+                                        <div class="destination-suggestions-div">
+                                            <h3>Suggestions de destinations</h3>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>New York, États-Unis</h4>
+                                                    <p>Célèbre pour des sites comme : Tour Stark, Central Park</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Wakanda, Afrique</h4>
+                                                    <p>Pour sa technologie de pointe et culture unique</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Asgard, Royaume des Dieux</h4>
+                                                    <p>Destination mythologique prisée</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Xandar, Nova Corps</h4>
+                                                    <p>Célèbre pour des sites comme : Bibliothèque Antique</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Hala, Planète Kree</h4>
+                                                    <p>Pour ses spectacles d'arène et architecture</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
 
                             <div class="search-divider"></div>
 
-                            <div class="search-field">
-                                <div class="field-icon">
-                                    <img src="../img/svg/calendar.svg" alt="Dates" class="field-icon-img">
-                                </div>
-                                <div class="field-content">
-                                    <label for="date-debut">Départ</label>
-                                    <input type="date" id="date-debut" name="date_debut"
-                                        value="<?= htmlspecialchars($date_debut) ?>">
-                                </div>
-                            </div>
+                            <div class="search-field calendar-field">
+                                <div class="field-content date-inputs-container">
+                                    <div class="date-inputs">
+                                        <div class="field-icon">
+                                            <img src="../img/svg/calendar.svg" alt="Dates" class="field-icon-img">
+                                        </div>
 
-                            <div class="search-divider"></div>
+                                        <div class="field-content"> 
+                                            <label for="date-inputs">Arrivée</label>
+                                            <input type="text" id="date-debut-visible" readonly placeholder="Arrivée" class="date-input" value="<?php echo !empty($date_debut) ? date('d M', strtotime($date_debut)) : ''; ?>" autocomplete="off">
+                                        </div>
+                                    </div>
 
-                            <div class="search-field">
-                                <div class="field-icon">
-                                    <img src="../img/svg/calendar.svg" alt="Dates" class="field-icon-img">
+                                    <div class="search-divider"></div>
+
+                                    <div class="date-inputs">
+                                        <div class="field-icon">
+                                            <img src="../img/svg/calendar.svg" alt="Dates" class="field-icon-img">
+                                        </div>
+                                        <div class="field-content">
+                                            <label for="date-inputs">Départ</label>
+                                            <input type="text" id="date-fin-visible" readonly placeholder="Départ" class="date-input" value="<?php echo !empty($date_fin) ? date('d M', strtotime($date_fin)) : ''; ?>" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <!-- Hidden inputs to store the actual values -->
+                                    <input type="hidden" id="date-debut" name="date_debut" value="<?= htmlspecialchars($date_debut) ?>" autocomplete="off">
+                                    <input type="hidden" id="date-fin" name="date_fin" value="<?= htmlspecialchars($date_fin) ?>" autocomplete="off">
                                 </div>
-                                <div class="field-content">
-                                    <label for="date-fin">Retour</label>
-                                    <input type="date" id="date-fin" name="date_fin"
-                                        value="<?= htmlspecialchars($date_fin) ?>">
+                                
+                                <!-- Calendar Dropdown -->
+                                <div class="calendar-dropdown" id="calendar-dropdown">
+                                    <div class="calendar-header">
+                                    <div class="calendar-div">
+                                        <button type="button" class="prev-month">
+                                            <img src="../img/svg/chevron-left.svg" alt="Mois précédent">
+                                        </button>
+                                        <div class="calendar-months">
+                                            <div class="month-container">
+                                                <h3 class="month-name">Avril 2025</h3>
+                                                <div class="calendar-grid">
+                                                    <div class="calendar-day-header">Lun.</div>
+                                                    <div class="calendar-day-header">Mar.</div>
+                                                    <div class="calendar-day-header">Mer.</div>
+                                                    <div class="calendar-day-header">Jeu.</div>
+                                                    <div class="calendar-day-header">Ven.</div>
+                                                    <div class="calendar-day-header">Sam.</div>
+                                                    <div class="calendar-day-header">Dim.</div>
+                                                    <!-- Calendar days will be filled by JavaScript -->
+                                                </div>
+                                            </div>
+                                            <div class="month-container">
+                                                <h3 class="month-name">Mai 2025</h3>
+                                                <div class="calendar-grid">
+                                                    <div class="calendar-day-header">Lun.</div>
+                                                    <div class="calendar-day-header">Mar.</div>
+                                                    <div class="calendar-day-header">Mer.</div>
+                                                    <div class="calendar-day-header">Jeu.</div>
+                                                    <div class="calendar-day-header">Ven.</div>
+                                                    <div class="calendar-day-header">Sam.</div>
+                                                    <div class="calendar-day-header">Dim.</div>
+                                                    <!-- Calendar days will be filled by JavaScript -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="next-month">
+                                            <img src="../img/svg/chevron-right.svg" alt="Mois suivant">
+                                        </button>
+                                    </div>
+                                    <div class="calendar-footer">
+                                        <button type="button" class="reset-dates" id="reset-dates" style="<?php echo (empty($date_debut) && empty($date_fin)) ? 'display: none;' : ''; ?>">
+                                            Réinitialiser
+                                        </button>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -157,7 +258,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                 <div class="field-content">
                                     <label for="budget-search">Budget</label>
                                     <input type="number" id="budget-search" name="budget" placeholder="Max" min="0"
-                                        value="<?= $budget > 0 ? htmlspecialchars($budget) : '' ?>">
+                                        value="<?= $budget > 0 ? htmlspecialchars($budget) : '' ?>" autocomplete="off">
                                 </div>
                             </div>
 
@@ -196,6 +297,23 @@ $best_voyages = array_slice($voyages, 0, 4);
         </div>
     </section>
 
+    <?php
+    // Prépare les paramètres de date pour les liens de réservation
+    $date_params = '';
+    // Si on vient d'une réinitialisation, propager le paramètre reset
+    if (isset($_GET['reset']) && $_GET['reset'] == 1) {
+        $date_params .= '&reset=1';
+    } else {
+        // Sinon, propager les dates normalement
+        if (!empty($date_debut)) {
+            $date_params .= '&date_debut=' . urlencode($date_debut);
+        }
+        if (!empty($date_fin)) {
+            $date_params .= '&date_fin=' . urlencode($date_fin);
+        }
+    }
+    ?>
+    
     <!-- Section Best-Sellers -->
     <?php if (empty($recherche) && empty($date_debut) && empty($date_fin) && $budget <= 0): ?>
         <section class="best-seller-section">
@@ -311,7 +429,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                     
                                     <div class="card-actions">
                                         <span class="btn-details">Voir les détails</span>
-                                        <a href="etapes/etape1.php?id=<?php echo $key; ?>" class="btn-book">
+                                        <a href="etapes/etape1.php?id=<?php echo $key . $date_params; ?>" class="btn-book">
                                             <span>Réserver</span>
                                             <img src="../img/svg/ticket.svg" alt="Réserver">
                                         </a>
@@ -337,7 +455,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                             destination<?php echo count($voyages_filtered) > 1 ? 's' : ''; ?>
                             trouvée<?php echo count($voyages_filtered) > 1 ? 's' : ''; ?>
                         </h2>
-                        <a href="destination.php" class="reset-search">Réinitialiser la recherche</a>
+                        <a href="destination.php?date_debut=&date_fin=" class="reset-search">Réinitialiser la recherche</a>
                     <?php else: ?>
                         <span class="section-subtitle">Explorez</span>
                         <h2 class="section-title">Toutes nos destinations</h2>
@@ -403,7 +521,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                     </div>
                                     <div class="card-actions">
                                         <span class="btn-details">Voir les détails</span>
-                                        <a href="etapes/etape1.php?id=<?php echo $real_index; ?>" class="btn-book">
+                                        <a href="etapes/etape1.php?id=<?php echo $real_index . $date_params; ?>" class="btn-book">
                                             <span>Réserver</span>
                                             <img src="../img/svg/ticket.svg" alt="Réserver">
                                         </a>
@@ -460,6 +578,8 @@ $best_voyages = array_slice($voyages, 0, 4);
     <?php include 'footer.php'; ?>
 
     <script src="../js/nav.js"></script>
+    <script src="../js/calendar.js"></script>
+    <script src="../js/destination.js"></script>
 
 </body>
 
