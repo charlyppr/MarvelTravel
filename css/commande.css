@@ -628,7 +628,7 @@
 }
 
 .secondary-button {
-    background-color: rgba(242, 219, 175, 0.1);
+    background-color: var(--color-glass-dark);
     color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.2);
 }

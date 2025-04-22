@@ -76,9 +76,9 @@
     top: 20px;
     right: 20px;
     z-index: 1000;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-lg);
+    backdrop-filter: blur(15px);
     opacity: 1;
     animation: fadeIn 0.3s ease forwards;
     transition: opacity 0.3s ease;
@@ -90,23 +90,13 @@
     margin-right: 12px;
 }
 
-.notification span {
-    flex: 1;
-}
-
 .notification.success {
-    background-color: #e7f7ed;
-    border-left: 4px solid #00a86b;
-    color: #00a86b;
-}
-
-.notification.success img {
-    filter: invert(78%) sepia(22%) saturate(1042%) hue-rotate(113deg) brightness(90%) contrast(86%);
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
 }
 
 .notification.error {
     background-color: #feeef0;
-    border-left: 4px solid #dc3545;
     color: #dc3545;
 }
 

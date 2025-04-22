@@ -16,7 +16,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: var(--spacing-xxl);
+    margin-bottom: var(--spacing-lg);
     animation: slideDown 0.7s ease;
 }
 
@@ -52,7 +52,7 @@ body {
     color: var(--color-text-muted);
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-md);
-    max-width: 600px;
+    /* max-width: 600px; */
 }
 
 .reservation-number {
@@ -81,9 +81,11 @@ body {
 
 /* ===== CONFIRMATION CONTENT ===== */
 .confirmation-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    display: flex;
     gap: var(--spacing-lg);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* ===== CONFIRMATION CARDS ===== */
@@ -94,19 +96,16 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow-card);
     transition: all var(--transition-medium);
-    animation: slideUp 1s ease;
-    opacity: 0;
-    animation-fill-mode: forwards;
+    /* animation: slideUp 1s ease; */
+    /* opacity: 0; */
+    /* animation-fill-mode: forwards; */
+    width: 350px;
 }
 
 .confirmation-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-card-hover);
     border-color: rgba(242, 219, 175, 0.2);
-}
-
-.voyage-summary, .error-card, .payment-tips {
-    animation-delay: 0.1s;
 }
 
 .payment-summary {
@@ -165,7 +164,7 @@ body {
     margin: 0;
     font-size: var(--font-size-md);
     font-weight: 600;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .card-content {
@@ -197,7 +196,7 @@ body {
 .voyage-details h3 {
     font-size: var(--font-size-lg);
     margin: 0 0 var(--spacing-sm) 0;
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .detail-row {
@@ -222,6 +221,7 @@ body {
 .detail-item .value {
     font-size: var(--font-size-sm);
     font-weight: 500;
+    color: var(--color-accent);
 }
 
 /* ===== PAYMENT DETAILS ===== */
@@ -248,7 +248,7 @@ body {
 }
 
 .payment-row span:last-child {
-    font-weight: 500;
+    color: var(--color-text-light);
 }
 
 .payment-row.discount {
@@ -282,7 +282,7 @@ body {
     height: 36px;
     border-radius: 50%;
     background: var(--gradient-primary);
-    color: var(--color-text-light);
+    color: var(--color-text-cream);
     font-weight: 600;
     font-size: var(--font-size-md);
     display: flex;
@@ -294,7 +294,7 @@ body {
 .step-content h4 {
     margin: 0 0 var(--spacing-xs) 0;
     font-size: var(--font-size-md);
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
 }
 
 .step-content p {
@@ -370,13 +370,13 @@ body {
 }
 
 .home-button {
-    background-color: rgba(242, 219, 175, 0.1);
-    color: var(--color-text-cream);
+    background-color: var(--color-glass-dark);
+    color: var(--color-text-light);
     border: 1px solid rgba(242, 219, 175, 0.2);
 }
 
 .home-button:hover {
-    background-color: rgba(242, 219, 175, 0.15);
+    background-color: var(--color-glass);
     transform: translateY(-2px);
     border-color: rgba(242, 219, 175, 0.3);
 }
@@ -454,7 +454,7 @@ body {
 }
 
 .error-icon {
-    margin-bottom: var(--spacing-md);
+    /* margin-bottom: var(--spacing-md); */
     width: 80px;
     height: 80px;
     background: rgba(226, 54, 54, 0.15);
@@ -471,7 +471,7 @@ body {
     width: 40px;
     height: 40px;
     filter: invert(40%) sepia(60%) saturate(2000%) hue-rotate(335deg) brightness(100%) contrast(90%);
-    animation: pulse 2s infinite;
+    /* animation: pulse 2s infinite; */
 }
 
 .error-header h1 {
@@ -520,6 +520,8 @@ body {
     margin-bottom: var(--spacing-sm);
     position: relative;
     padding-left: var(--spacing-md);
+    color: var(--color-text-light);
+    max-width: 300px;
 }
 
 .error-reasons li::before {
@@ -570,8 +572,8 @@ body {
 }
 
 .error-header .confirmation-subtitle {
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 600px;
+    color: var(--color-text-light);
+    width: fit-content;
     margin: 0 auto var(--spacing-lg);
     font-size: var(--font-size-md);
     line-height: 1.5;
@@ -627,7 +629,6 @@ body {
 .tip-icon img {
     width: 20px;
     height: 20px;
-    /* filter: invert(60%) sepia(11%) saturate(1352%) hue-rotate(177deg) brightness(88%) contrast(87%); */
 }
 
 .tip-content {

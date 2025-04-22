@@ -249,5 +249,92 @@
                 "total": 35
             }
         ]
+    },
+    {
+        "transaction": "4a78c3dfafa5310bb80608f3",
+        "reservation_id": "MT-6F436533",
+        "montant": 5174.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "d641089d86883d283e1803e3df3f120c",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-05-14",
+        "date_fin": "2025-05-17",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "Mme",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2025-03-12",
+                "nationalite": "Asgardienne",
+                "passport": "8852876946"
+            }
+        ],
+        "date_achat": "2025-04-22 19:40:19",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Musée Wakandais",
+                "prix_unitaire": 300,
+                "nb_participants": 1,
+                "total": 300
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Randonnée",
+                "prix_unitaire": 200,
+                "nb_participants": 1,
+                "total": 200
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 1,
+                "total": 150
+            }
+        ]
+    },
+    {
+        "transaction": "6f601599d3a585e9f85ae69b",
+        "reservation_id": "MT-3B0ACF79",
+        "montant": 5549.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "b6e1644b208a6a0cc44c7cdb39c662fd",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-05-12",
+        "date_fin": "2025-05-16",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "Mme",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2025-03-12",
+                "nationalite": "Asgardienne",
+                "passport": "8852876946"
+            }
+        ],
+        "date_achat": "2025-04-22 19:52:06",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Musée Wakandais",
+                "prix_unitaire": 300,
+                "nb_participants": 1,
+                "total": 300
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 1,
+                "total": 150
+            }
+        ]
     }
 ]
