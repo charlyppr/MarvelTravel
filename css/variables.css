@@ -133,7 +133,7 @@
     --color-card-bg: rgba(242, 242, 242, 0.95);
     --color-card-hover: rgba(230, 230, 230, 0.98);
     --color-field-bg: rgba(0, 0, 0, 0.05);
-    --color-glass: rgba(255, 255, 255, 0.8);
+    --color-glass: rgb(255 255 255 / 55%);
     --color-glass-dark: rgba(0, 0, 0, 0.1);
     
     /* États et feedbacks */

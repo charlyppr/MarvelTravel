@@ -3,6 +3,42 @@
         "items": []
     },
     "caryl@gmail.com": {
-        "items": []
+        "items": [
+            {
+                "voyage_id": 0,
+                "date_debut": "2025-04-23",
+                "date_fin": "2025-04-27",
+                "nb_personnes": "1",
+                "prix_unitaire": 399.95,
+                "voyageurs": [
+                    {
+                        "civilite": "M",
+                        "nom": "Lebreton",
+                        "prenom": "Caryl",
+                        "date_naissance": "2000-07-18",
+                        "nationalite": "Asgardienne",
+                        "passport": "6698892731"
+                    }
+                ],
+                "options": [
+                    {
+                        "1": {
+                            "voyageurs": [
+                                0
+                            ]
+                        }
+                    },
+                    [
+                        {
+                            "voyageurs": [
+                                0
+                            ]
+                        }
+                    ]
+                ],
+                "prix_options": 45,
+                "etape_atteinte": 3
+            }
+        ]
     }
 }

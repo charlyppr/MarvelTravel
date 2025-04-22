@@ -148,7 +148,7 @@ body {
 /* ===== CONTENU DE RÉSERVATION ===== */
 .booking-content {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 3fr;
     gap: var(--spacing-xl);
 }
 
@@ -362,7 +362,7 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    /* transform: translateY(-8px); */
     box-shadow: var(--shadow-card-hover);
     border-color: rgba(242, 219, 175, 0.2);
 }
@@ -1143,7 +1143,7 @@ select {
 
 .option-item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
+    /* padding-bottom: 0; */
     margin-bottom: 0;
 }
 

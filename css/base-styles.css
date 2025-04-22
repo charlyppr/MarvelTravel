@@ -250,7 +250,7 @@ button, input, select, textarea {
     padding: 10px;
     display: none;
     flex-direction: column;
-    gap: 15px;
+    gap: 5px;
     z-index: 1000;
     animation: fadeIn 0.3s ease;
 }
@@ -259,9 +259,10 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: var(--spacing-xs);
     border-radius: 8px;
     transition: all 0.2s ease;
+    justify-content: flex-start;
 }
 
 .dropdown-item img {
@@ -270,7 +271,7 @@ button, input, select, textarea {
 }
 
 .dropdown-item span {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
 }
 
 /* Ajouts pour le switch de thème et bouton déconnexion */
@@ -311,7 +312,21 @@ button, input, select, textarea {
 
 /* Improved theme toggle styles */
 .theme-transition {
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
+    transition: background-color 0.5s ease, 
+                color 0.5s ease, 
+                border-color 0.5s ease, 
+                box-shadow 0.5s ease,
+                background-image 0.5s ease,
+                filter 0.5s ease !important;
+}
+
+body.theme-transition * {
+    transition: background-color 0.5s ease, 
+                color 0.5s ease, 
+                border-color 0.5s ease, 
+                box-shadow 0.5s ease,
+                background-image 0.5s ease,
+                filter 0.5s ease !important;
 }
 
 .dropdown-item.theme-toggle {
@@ -366,11 +381,8 @@ button, input, select, textarea {
 .theme-toggle-btn {
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.theme-toggle-btn:hover {
-    background-color: rgba(242, 219, 175, 0.1);
-    transform: translateY(-2px);
+    display: flex;
+    justify-content: space-between;
 }
 
 .theme-toggle-btn img {
@@ -385,7 +397,54 @@ button, input, select, textarea {
 
 /* Animation pour le changement de thème */
 .theme-transition {
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
+    transition: background-color 0.5s ease, 
+                color 0.5s ease, 
+                border-color 0.5s ease, 
+                box-shadow 0.5s ease,
+                background-image 0.5s ease,
+                filter 0.5s ease !important;
+}
+
+body.theme-transition * {
+    transition: background-color 0.5s ease, 
+                color 0.5s ease, 
+                border-color 0.5s ease, 
+                box-shadow 0.5s ease,
+                background-image 0.5s ease,
+                filter 0.5s ease !important;
+}
+
+/* Style des icônes de thème */
+.theme-icon-wrapper {
+    padding: var(--spacing-xxs);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.theme-icon-wrapper.active {
+    background-color: var(--color-glass-dark);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.theme-icon-wrapper:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.theme-icon-wrapper:hover .theme-icon {
+    transform: rotate(15deg);
 }
 
 /* --------- Eviter un background sur les input --------- */
@@ -537,6 +596,44 @@ input:-webkit-autofill:focus {
     align-items: center;
 }
 
+.theme-toggle-container {
+    display: flex;
+    justify-content: space-between;
+}
+.theme-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 5px;
+}
+
+.theme-icon-wrapper {
+    padding: var(--spacing-xxs);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.theme-icon-wrapper.active {
+    background-color: var(--color-glass-dark);
+}
+
+.theme-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.theme-toggle-container {
+    cursor: default;
+}
+
+.theme-toggle-container:hover {
+    background-color: transparent !important;
+}
+
 /* ------------------------- REDIRECTION TEXTE ------------------------- */
 
 
@@ -546,7 +643,7 @@ input:-webkit-autofill:focus {
     gap: 10px;
     text-decoration: none;
     color: var(--color-text-light);
-    font-size: 15px;
+    font-size: var(--font-size-sm);
     padding: 10px 18px;
     border-radius: 50px;
     background-color: var(--color-field-bg);
@@ -555,7 +652,6 @@ input:-webkit-autofill:focus {
     backdrop-filter: blur(5px);
     position: relative;
     z-index: 2;
-    font-weight: 500;
 }
 
 .redir-text:hover {

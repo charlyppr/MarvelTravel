@@ -91,8 +91,6 @@ $best_voyages = array_slice($voyages, 0, 4);
 </head>
 
 <body>
-    <div class="default"></div>
-
     <?php include 'nav.php'; ?>
 
     <!-- Section d'en-tête avec bannière et recherche -->

@@ -111,7 +111,25 @@ if ($is_in_root) {
                         }
                         ?>
                     </a>
-                    <div class="profile-dropdown">
+                    <div class="profile-dropdown" style="display: none;">
+                        <div class="dropdown-item theme-toggle-container">
+                            <span id="themeText">Thème</span>
+                            <div class="theme-icons">
+                                <div id="sunIcon"
+                                    class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'active' : ''; ?>">
+                                    <img src="<?php echo getAssetPath('svg/sun.svg'); ?>" alt="Mode clair"
+                                        class="theme-icon">
+                                </div>
+                                <div id="moonIcon"
+                                    class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? '' : 'active'; ?>">
+                                    <img src="<?php echo getAssetPath('svg/moon.svg'); ?>" alt="Mode sombre"
+                                        class="theme-icon">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+
                         <a href="<?php echo $base_url; ?>/php/profil.php" class="dropdown-item">
                             <img src="<?php echo getAssetPath('svg/users.svg'); ?>" alt="Profil">
                             <span>Profil</span>
@@ -126,13 +144,6 @@ if ($is_in_root) {
                         </a>
 
                         <div class="dropdown-divider"></div>
-
-                        <a href="#" class="dropdown-item theme-toggle-btn" id="themeToggleBtn">
-                            <img src="<?php echo getAssetPath('svg/' . ((isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'moon.svg' : 'sun.svg')); ?>"
-                                alt="Thème" id="themeIcon">
-                            <span
-                                id="themeText"><?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'Mode sombre' : 'Mode clair'; ?></span>
-                        </a>
 
                         <a href="<?php echo $base_url; ?>/php/logout.php" class="dropdown-item logout">
                             <img src="<?php echo getAssetPath('svg/log-out.svg'); ?>" alt="Déconnexion">
@@ -162,6 +173,46 @@ if ($is_in_root) {
 
             profileContainer.addEventListener('mouseleave', function () {
                 document.querySelector('.profile-dropdown').style.display = 'none';
+            });
+        }
+
+        function setCookie(name, value, days = 365) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function changeTheme(newTheme) {
+            setCookie('theme', newTheme);
+
+            document.body.classList.remove('light-theme', 'dark-theme');
+            document.body.classList.add(newTheme + '-theme');
+
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+
+            if (newTheme === 'light') {
+                sunIcon.classList.add('active');
+                moonIcon.classList.remove('active');
+            } else {
+                moonIcon.classList.add('active');
+                sunIcon.classList.remove('active');
+            }
+        }
+
+        const sunIconWrapper = document.getElementById('sunIcon');
+        const moonIconWrapper = document.getElementById('moonIcon');
+
+        if (sunIconWrapper) {
+            sunIconWrapper.addEventListener('click', function (e) {
+                changeTheme('light');
+            });
+        }
+
+        if (moonIconWrapper) {
+            moonIconWrapper.addEventListener('click', function (e) {
+                changeTheme('dark');
             });
         }
     });

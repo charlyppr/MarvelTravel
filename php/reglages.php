@@ -341,6 +341,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
             option.addEventListener('change', function () {
                 let theme = this.value;
 
+                // Ajouter la classe de transition avant de changer le thème
+                document.body.classList.add('theme-transition');
+
                 // Nettoyer les classes existantes
                 document.body.classList.remove('light-theme', 'dark-theme', 'auto-theme');
 
@@ -358,6 +361,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
                     optionEl.classList.remove('selected');
                 });
                 this.closest('.theme-option').classList.add('selected');
+
+                // Supprimer la classe de transition après un délai pour permettre la transition complète
+                setTimeout(() => {
+                    document.body.classList.remove('theme-transition');
+                }, 600); // Délai légèrement supérieur à la durée de transition (0.5s)
             });
         });
 

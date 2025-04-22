@@ -12,7 +12,7 @@ body {
 .content {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 
 .notification {
@@ -74,6 +74,24 @@ body {
     align-items: flex-start;
     margin-bottom: var(--spacing-md);
     position: relative;
+    opacity
+Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.
+Learn more
+Don't show: 0;
+    animation: fadeIn 0.5s ease forwards;
+    opacity
+Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.
+Learn more
+Don't show: 0;
+    animation: fadeIn 0.5s ease forwards;
+    opacity
+Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.
+Learn more
+Don't show: 0;
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.1s;
 }
 
 
@@ -125,18 +143,15 @@ body {
 
 .dashboard-grid > .card {
     animation: fadeIn 0.5s ease forwards;
-    animation-delay: calc(var(--order) * 0.1s);
     opacity: 0;
 }
 
 .profile-card {
     grid-column: span 7;
-    --order: 1;
 }
 
 .stats-card {
     grid-column: span 5;
-    --order: 2;
 }
 
 .voyages-card {
@@ -278,10 +293,10 @@ body {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 20px 24px;
+    padding: var(--spacing-sm);
     border-bottom: 1px solid var(--color-accent-faded);
     position: relative;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--color-card-hover);
 }
 
 .header-icon {
@@ -291,13 +306,8 @@ body {
     transition: transform var(--transition-fast);
 }
 
-.card:hover .header-icon {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 3px rgba(242, 219, 175, 0.5));
-}
-
 .titre-card {
-    font-size: 20px;
+    font-size: var(--font-size-md);
     font-weight: 700;
     color: var(--color-text-light);
     position: relative;
@@ -305,7 +315,7 @@ body {
 }
 
 .card-content {
-    padding: 24px;
+    padding: var(--spacing-sm);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -322,13 +332,12 @@ body {
     display: flex;
     align-items: center;
     gap: 24px;
-    margin-bottom: 5px;
 }
 
 .profile-avatar {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     transition: transform var(--transition-bounce);
 }
 
@@ -370,29 +379,17 @@ body {
 
 .profile-name h2 {
     margin: 0;
-    font-size: var(--font-size-lg);
-    font-weight: 700;
+    font-size: var(--font-size-md);
     color: var(--color-text-light);
     letter-spacing: -0.5px;
 }
 
 .profile-email {
     color: var(--color-text-muted);
-    font-size: 15px;
+    font-size: var(--font-size-sm);
     display: flex;
     align-items: center;
     gap: 5px;
-}
-
-.profile-email::before {
-    content: '';
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    background-image: url('../img/svg/mail.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.7;
 }
 
 .separator {
@@ -405,7 +402,7 @@ body {
 .profile-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: var(--spacing-sm);
 }
 
 .profile-field {
@@ -415,7 +412,7 @@ body {
 }
 
 .field-label {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -486,7 +483,7 @@ body {
     background: transparent;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--color-text-light);
     padding: 0;
@@ -705,36 +702,19 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 16px;
-    background-color: var(--color-glass-dark);
+    padding: var(--spacing-sm);
     border-radius: var(--border-radius-md);
     transition: all var(--transition-fast);
     border: 1px solid transparent;
     position: relative;
-    overflow: hidden;
     justify-content: center;
+    background-color: var(--color-glass-dark);
 }
 
 .stat-item:hover {
     transform: translateY(-4px);
     background-color: var(--color-accent-faded);
-    border-color: var (--color-accent-faded);
     box-shadow: var(--shadow-field);
-}
-
-.stat-item:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 100%);
-    animation: shimmer 2s infinite;
-    z-index: 1;
 }
 
 .stat-item:nth-child(3) {
@@ -742,8 +722,7 @@ body {
 }
 
 .stat-value {
-    font-size: 28px;
-    font-weight: 800;
+    font-size: var(--font-size-xl);
     color: var(--color-text-light);
     margin-bottom: 8px;
     position: relative;
@@ -752,7 +731,7 @@ body {
 }
 
 .stat-label {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     position: relative;
     z-index: 2;
@@ -770,7 +749,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: var(--spacing-sm);
     background-color: var(--color-glass-dark);
     border-radius: var(--border-radius-md);
     text-decoration: none;
@@ -781,7 +760,7 @@ body {
 }
 
 .voyage-item::before {
-    content: '';
+    /* content: ''; */
     position: absolute;
     left: 0;
     top: 0;
@@ -793,9 +772,8 @@ body {
 }
 
 .voyage-item:hover {
-    transform: translateX(5px);
+    /* transform: translateX(5px); */
     background-color: var(--color-accent-faded);
-    border-color: var (--color-accent-faded);
     box-shadow: var(--shadow-field);
 }
 
@@ -885,9 +863,8 @@ body {
 
 .voyage-price {
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--font-size-lg);
     color: var(--color-accent);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Voir plus button with pulsing effect */
@@ -960,16 +937,15 @@ body {
 }
 
 .empty-state img {
-    width: 90px;
-    height: 90px;
-    opacity: 0.8;
-    margin-bottom: 5px;
+    width: 70px;
+    height: 70px;
+    opacity: 0.6;
 }
 
 .empty-state p {
     color: var(--color-text-muted);
     margin: 0;
-    font-size: 16px;
+    font-size: var(--font-size-sm);
     max-width: 250px;
 }
 
@@ -977,23 +953,20 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 24px;
+    padding: var(--spacing-sm);
     background: var(--gradient-primary);
     border-radius: var(--border-radius-md);
     color: var(--color-text-cream);
     text-decoration: none;
-    font-weight: 600;
     transition: all var(--transition-medium);
     border: none;
     cursor: pointer;
-    margin-top: 10px;
     gap: 10px;
 }
 
 .action-button:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-field);
-    background: var(--gradient-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .action-button:active {
