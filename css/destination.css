@@ -336,7 +336,7 @@
     text-align: center;
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
-    background: var(--color-glass);
+    background: var(--color-glass-dark);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     min-width: 150px;
@@ -398,7 +398,6 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
-    opacity: 0;
     animation: slideUp 0.6s ease-out forwards;
 }
 

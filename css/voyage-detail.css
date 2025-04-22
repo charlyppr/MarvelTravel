@@ -9,7 +9,7 @@
 /* Hero Section */
 .hero-section {
     height: 80vh;
-    margin-bottom: var(--spacing-xxl);
+    /* margin-bottom: var(--spacing-xxl); */
 }
 
 .hero-backdrop {

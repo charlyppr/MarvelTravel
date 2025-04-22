@@ -279,7 +279,7 @@ $displayed_users = 0;
 
                         // Afficher une notification
                         showNotification(isBlocked ? 'Utilisateur débloqué avec succès' : 'Utilisateur bloqué avec succès', 'success');
-                    }, 300);
+                    }, 1000);
                 });
             });
 

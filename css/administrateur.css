@@ -528,6 +528,10 @@ img {
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .toggle-status:hover, .toggle-vip:hover {
