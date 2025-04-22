@@ -312,12 +312,18 @@ $displayed_users = 0;
 
                         // Afficher une notification
                         showNotification(isVip ? 'Statut VIP retiré avec succès' : 'Statut VIP ajouté avec succès', 'success');
-                    }, 300);
+                    }, 1000);
                 });
             });
 
             // Fonction pour afficher les notifications
             function showNotification(message, type = 'success') {
+                // Supprimer une notification existante si elle est déjà présente
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+
                 const notification = document.createElement('div');
                 notification.className = `notification notification-${type}`;
                 notification.textContent = message;
