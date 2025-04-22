@@ -165,6 +165,17 @@ if ($is_in_root) {
     document.addEventListener('DOMContentLoaded', function () {
         const profileContainer = document.querySelector('.profile-dropdown-container');
         const navElement = document.querySelector('.nav');
+        const themeIcons = document.querySelector('.theme-icons');
+        
+        // Set initial theme background state
+        if (themeIcons) {
+            if (document.body.classList.contains('light-theme') || 
+                (document.cookie.includes('theme=light'))) {
+                themeIcons.classList.add('light-active');
+            } else {
+                themeIcons.classList.add('dark-active');
+            }
+        }
 
         if (profileContainer) {
             profileContainer.addEventListener('mouseenter', function () {
@@ -191,14 +202,28 @@ if ($is_in_root) {
 
             const sunIcon = document.getElementById('sunIcon');
             const moonIcon = document.getElementById('moonIcon');
+            const themeIcons = document.querySelector('.theme-icons');
 
+            // Add transition effect
+            document.body.classList.add('theme-transition');
+            
+            // Update active states
             if (newTheme === 'light') {
                 sunIcon.classList.add('active');
                 moonIcon.classList.remove('active');
+                themeIcons.classList.add('light-active');
+                themeIcons.classList.remove('dark-active');
             } else {
                 moonIcon.classList.add('active');
                 sunIcon.classList.remove('active');
+                themeIcons.classList.add('dark-active');
+                themeIcons.classList.remove('light-active');
             }
+            
+            // Remove transition class after animation
+            setTimeout(() => {
+                document.body.classList.remove('theme-transition');
+            }, 1000);
         }
 
         const sunIconWrapper = document.getElementById('sunIcon');

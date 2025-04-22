@@ -274,7 +274,7 @@ button, input, select, textarea {
     font-size: var(--font-size-xs);
 }
 
-/* Ajouts pour le switch de thème et bouton déconnexion */
+/* Ajouts pour le switch de thÃ¨me et bouton dÃ©connexion */
 .dropdown-divider {
     height: 1px;
     margin: 5px 0;
@@ -377,7 +377,7 @@ body.theme-transition * {
     box-shadow: 0 0 3px var(--color-accent);
 }
 
-/* Style du bouton de changement de thème simplifié */
+/* Style du bouton de changement de thÃ¨me simplifiÃ© */
 .theme-toggle-btn {
     cursor: pointer;
     transition: all 0.3s ease;
@@ -395,7 +395,7 @@ body.theme-transition * {
     transform: rotate(25deg);
 }
 
-/* Animation pour le changement de thème */
+/* Animation pour le changement de thÃ¨me */
 .theme-transition {
     transition: background-color 0.5s ease, 
                 color 0.5s ease, 
@@ -414,7 +414,7 @@ body.theme-transition * {
                 filter 0.5s ease !important;
 }
 
-/* Style des icônes de thème */
+/* Style des icÃ´nes de thÃ¨me */
 .theme-icon-wrapper {
     padding: var(--spacing-xxs);
     border-radius: 50%;
@@ -605,6 +605,27 @@ input:-webkit-autofill:focus {
     align-items: center;
     gap: 8px;
     margin-left: 5px;
+    position: relative;
+}
+
+.theme-icons::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: var(--color-glass-dark);
+    border-radius: 50%;
+    z-index: -1;
+    transition: all 0.3s ease;
+    transform: translateX(0);
+}
+
+.theme-icons.light-active::before {
+    transform: translateX(-3px);
+}
+
+.theme-icons.dark-active::before {
+    transform: translateX(36px);
 }
 
 .theme-icon-wrapper {
@@ -613,17 +634,32 @@ input:-webkit-autofill:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
+    opacity: 0.6;
+    position: relative;
+    z-index: 2;
 }
 
 .theme-icon-wrapper.active {
-    background-color: var(--color-glass-dark);
+    background-color: transparent;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.theme-icon-wrapper:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .theme-icon {
     width: 16px;
     height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.theme-icon-wrapper:hover .theme-icon {
+    transform: rotate(15deg);
 }
 
 .theme-toggle-container {
