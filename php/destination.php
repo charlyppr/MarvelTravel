@@ -86,6 +86,7 @@ $best_voyages = array_slice($voyages, 0, 4);
     <link rel="stylesheet" href="../css/theme.css" id="theme">
 
     <link rel="stylesheet" href="../css/destination.css">
+    <link rel="stylesheet" href="../css/calendar.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
     
 </head>
@@ -196,7 +197,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                             <input type="text" id="date-fin-visible" readonly placeholder="Départ" class="date-input" value="<?php echo !empty($date_fin) ? date('d M', strtotime($date_fin)) : ''; ?>" autocomplete="off">
                                         </div>
                                     </div>
-                                    <!-- Hidden inputs to store the actual values -->
+
                                     <input type="hidden" id="date-debut" name="date_debut" value="<?= htmlspecialchars($date_debut) ?>" autocomplete="off">
                                     <input type="hidden" id="date-fin" name="date_fin" value="<?= htmlspecialchars($date_fin) ?>" autocomplete="off">
                                 </div>
@@ -210,7 +211,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                         </button>
                                         <div class="calendar-months">
                                             <div class="month-container">
-                                                <h3 class="month-name">Avril 2025</h3>
+                                                <h3 class="month-name"></h3>
                                                 <div class="calendar-grid">
                                                     <div class="calendar-day-header">Lun.</div>
                                                     <div class="calendar-day-header">Mar.</div>
@@ -219,11 +220,10 @@ $best_voyages = array_slice($voyages, 0, 4);
                                                     <div class="calendar-day-header">Ven.</div>
                                                     <div class="calendar-day-header">Sam.</div>
                                                     <div class="calendar-day-header">Dim.</div>
-                                                    <!-- Calendar days will be filled by JavaScript -->
                                                 </div>
                                             </div>
                                             <div class="month-container">
-                                                <h3 class="month-name">Mai 2025</h3>
+                                                <h3 class="month-name"></h3>
                                                 <div class="calendar-grid">
                                                     <div class="calendar-day-header">Lun.</div>
                                                     <div class="calendar-day-header">Mar.</div>
@@ -232,7 +232,6 @@ $best_voyages = array_slice($voyages, 0, 4);
                                                     <div class="calendar-day-header">Ven.</div>
                                                     <div class="calendar-day-header">Sam.</div>
                                                     <div class="calendar-day-header">Dim.</div>
-                                                    <!-- Calendar days will be filled by JavaScript -->
                                                 </div>
                                             </div>
                                         </div>
@@ -271,10 +270,10 @@ $best_voyages = array_slice($voyages, 0, 4);
 
                 <div class="search-tags">
                     <span class="search-tag-title">Populaires:</span>
-                    <a href="?recherche=New+York" class="search-tag">New York</a>
-                    <a href="?recherche=Wakanda" class="search-tag">Wakanda</a>
-                    <a href="?recherche=Asgard" class="search-tag">Asgard</a>
-                    <a href="?recherche=Xandar" class="search-tag">Xandar</a>
+                    <a href="?recherche=New+York#toutes-destinations" class="search-tag">New York</a>
+                    <a href="?recherche=Wakanda#toutes-destinations" class="search-tag">Wakanda</a>
+                    <a href="?recherche=Asgard#toutes-destinations" class="search-tag">Asgard</a>
+                    <a href="?recherche=Xandar#toutes-destinations" class="search-tag">Xandar</a>
                 </div>
             </div>
         </div>
@@ -298,13 +297,10 @@ $best_voyages = array_slice($voyages, 0, 4);
     </section>
 
     <?php
-    // Prépare les paramètres de date pour les liens de réservation
     $date_params = '';
-    // Si on vient d'une réinitialisation, propager le paramètre reset
     if (isset($_GET['reset']) && $_GET['reset'] == 1) {
         $date_params .= '&reset=1';
     } else {
-        // Sinon, propager les dates normalement
         if (!empty($date_debut)) {
             $date_params .= '&date_debut=' . urlencode($date_debut);
         }
@@ -535,20 +531,20 @@ $best_voyages = array_slice($voyages, 0, 4);
                 <?php if ($total_pages > 1): ?>
                     <div class="pagination">
                         <?php if ($page > 1): ?>
-                            <a href="?page=<?php echo ($page - 1) . $search_params; ?>" class="page-arrow">
+                            <a href="?page=<?php echo ($page - 1) . $search_params; ?>#toutes-destinations" class="page-arrow">
                                 <img src="../img/svg/chevron-left.svg" alt="Page précédente">
                             </a>
                         <?php endif; ?>
 
                         <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                            <a href="?page=<?php echo $i . $search_params; ?>" 
+                            <a href="?page=<?php echo $i . $search_params; ?>#toutes-destinations" 
                                class="page-number <?php echo $i == $page ? 'active' : ''; ?>">
                                 <?php echo $i; ?>
                             </a>
                         <?php endfor; ?>
 
                         <?php if ($page < $total_pages): ?>
-                            <a href="?page=<?php echo ($page + 1) . $search_params; ?>" class="page-arrow">
+                            <a href="?page=<?php echo ($page + 1) . $search_params; ?>#toutes-destinations" class="page-arrow">
                                 <img src="../img/svg/chevron-right.svg" alt="Page suivante">
                             </a>
                         <?php endif; ?>

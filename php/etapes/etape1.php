@@ -235,6 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link rel="stylesheet" href="../../css/theme.css" id="theme">
     <link rel="stylesheet" href="../../css/reservation.css">
+    <link rel="stylesheet" href="../../css/calendar.css">
 
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
@@ -336,20 +337,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="card-content">
                             <div class="form-group">
-                                <label for="date_debut">Date de début</label>
+                                <label for="date-debut-visible">Date d'arrivée</label>
                                 <div class="form-field">
                                     <img src="../../img/svg/calendar.svg" alt="Date" class="field-icon">
-                                    <input type="date" name="date_debut" id="date_debut" min="<?php echo $date_min; ?>"
-                                        value="<?php echo $date_debut_value; ?>" required>
+                                    <input type="text" id="date-debut-visible" class="date-input"
+                                        placeholder="Sélectionner une date" readonly>
+                                    <input type="hidden" name="date_debut" id="date-debut"
+                                        min="<?php echo $date_min; ?>" value="<?php echo $date_debut_value; ?>"
+                                        required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="date_fin">Date de fin</label>
+                                <label for="date-fin-visible">Date de départ</label>
                                 <div class="form-field">
                                     <img src="../../img/svg/calendar.svg" alt="Date" class="field-icon">
-                                    <input type="date" name="date_fin" id="date_fin" min="<?php echo $date_min; ?>"
+                                    <input type="text" id="date-fin-visible" class="date-input"
+                                        placeholder="Sélectionner une date" readonly>
+                                    <input type="hidden" name="date_fin" id="date-fin" min="<?php echo $date_min; ?>"
                                         value="<?php echo $date_fin_value; ?>" required>
+                                </div>
+                            </div>
+
+                            <!-- Calendar Dropdown -->
+                            <div class="calendar-dropdown" id="calendar-dropdown">
+                                <div class="calendar-header">
+                                    <div class="calendar-div">
+                                        <button type="button" class="prev-month">
+                                            <img src="../../img/svg/chevron-left.svg" alt="Mois précédent">
+                                        </button>
+                                        <div class="calendar-months">
+                                            <div class="month-container">
+                                                <h3 class="month-name"></h3>
+                                                <div class="calendar-grid">
+                                                    <div class="calendar-day-header">Lun.</div>
+                                                    <div class="calendar-day-header">Mar.</div>
+                                                    <div class="calendar-day-header">Mer.</div>
+                                                    <div class="calendar-day-header">Jeu.</div>
+                                                    <div class="calendar-day-header">Ven.</div>
+                                                    <div class="calendar-day-header">Sam.</div>
+                                                    <div class="calendar-day-header">Dim.</div>
+                                                </div>
+                                            </div>
+                                            <div class="month-container">
+                                                <h3 class="month-name"></h3>
+                                                <div class="calendar-grid">
+                                                    <div class="calendar-day-header">Lun.</div>
+                                                    <div class="calendar-day-header">Mar.</div>
+                                                    <div class="calendar-day-header">Mer.</div>
+                                                    <div class="calendar-day-header">Jeu.</div>
+                                                    <div class="calendar-day-header">Ven.</div>
+                                                    <div class="calendar-day-header">Sam.</div>
+                                                    <div class="calendar-day-header">Dim.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="next-month">
+                                            <img src="../../img/svg/chevron-right.svg" alt="Mois suivant">
+                                        </button>
+                                    </div>
+                                    <div class="calendar-footer">
+                                        <button type="button" class="reset-dates" id="reset-dates"
+                                            style="<?php echo (empty($date_debut) && empty($date_fin)) ? 'display: none;' : ''; ?>">
+                                            Réinitialiser
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -410,7 +462,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 maximumFractionDigits: 2
             }).format(prixTotal).replace('€', '') + ' €';
         });
+
+        // Initialisation du calendrier personnalisé
+        document.addEventListener('DOMContentLoaded', function () {
+            // Si des valeurs sont déjà définies dans les champs cachés, initialiser les champs visibles
+            const dateDebutInput = document.getElementById('date-debut');
+            const dateFinInput = document.getElementById('date-fin');
+            const dateDebutVisible = document.getElementById('date-debut-visible');
+            const dateFinVisible = document.getElementById('date-fin-visible');
+
+            if (dateDebutInput && dateDebutInput.value) {
+                // Convertir la date au format lisible
+                const date = new Date(dateDebutInput.value);
+                const options = { day: 'numeric', month: 'short' };
+                dateDebutVisible.value = date.toLocaleDateString('fr-FR', options);
+            }
+
+            if (dateFinInput && dateFinInput.value) {
+                // Convertir la date au format lisible
+                const date = new Date(dateFinInput.value);
+                const options = { day: 'numeric', month: 'short' };
+                dateFinVisible.value = date.toLocaleDateString('fr-FR', options);
+            }
+
+            // S'assurer que le formulaire de réservation soumet les valeurs des champs cachés
+            document.getElementById('reservationForm').addEventListener('submit', function (e) {
+                // Vérifier que les dates sont remplies
+                if (!dateDebutInput.value || !dateFinInput.value) {
+                    e.preventDefault();
+                    alert('Veuillez sélectionner des dates d\'arrivée et de départ.');
+                }
+            });
+        });
     </script>
+
+    <script src="../../js/calendar.js"></script>
+    <script src="../../js/destination.js"></script>
 </body>
 
 </html>
