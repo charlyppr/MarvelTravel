@@ -571,6 +571,18 @@ body {
 /* Styles pour l'affichage de la destination */
 .booking-form-container {
     animation: slideUp 0.7s ease;
+    border
+Shorthand property for setting border width, style, and color.
+Learn more
+Don't show: 1px solid var(--color-accent-faded);';
+    border
+Shorthand property for setting border width, style, and color.
+Learn more
+Don't show: 1px solid var(--color-accent-faded);';
+    border
+Shorthand property for setting border width, style, and color.
+Learn more
+Don't show: 1px solid var(--color-accent-faded);';
 }
 
 .destination-highlights {

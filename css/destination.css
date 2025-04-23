@@ -457,6 +457,7 @@
   transform: translateY(0);
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
+  transition: opacity 0.3s ease, transform 0.3s ease, transform-origin 0.3s ease;
 }
 
 .destination-card:hover {
@@ -561,7 +562,7 @@
 .destination-card.featured {
   position: relative;
   /* background: rgba(37, 37, 37, .7); */
-  border: 1px solid var(--color-card-bg);
+  border: 1px solid var(--color-card-hover);
   transform: translateY(0);
   transition: all var(--transition-medium);
 }
@@ -973,7 +974,6 @@ img.card-image {
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.6s ease forwards;
-  opacity: 0;
 }
 
 .destination-card.featured {
@@ -1021,7 +1021,7 @@ img.card-image {
   flex-grow: 1;
   position: relative;
   z-index: 2;
-  background: var(--color-card-bg);
+  background: var(--color-card-hover);
   flex-direction: column;
 }
 
@@ -1147,23 +1147,29 @@ img.card-image {
 }
 
 .sort-select {
-  background-color: #000;
-  color: var(--color-text-cream);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 10px 15px;
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-sm);
-  cursor: pointer;
   appearance: none;
-  background-image: url(../img/svg/chevron-down.svg);
+  background-color: var(--color-field-bg);
+  /* border: 1px solid var(--color-border); */
+  border-radius: 8px;
+  padding: 8px 35px 8px 15px;
+  font-size: 14px;
+  color: var(--color-text-light);
+  background-image: url('../img/svg/chevron-down.svg');
   background-repeat: no-repeat;
   background-position: right 10px center;
-  background-size: 12px;
-  transition: all var(--transition-fast);
+  background-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-select:hover {
+  border-color: var(--color-accent);
 }
 
 .sort-select:focus {
-  outline: 0;
+  outline: none;
+  border-color: var(--color-accent);
+  /* box-shadow: 0 0 0 2px var(--color-accent-faded); */
 }
 
 .no-results {
@@ -1376,6 +1382,18 @@ input#budget-search {
 
 .suggestion-item:nth-child(6) .suggestion-icon {
   background-color: #b045b224;
+}
+
+.suggestion-item:nth-child(8) .suggestion-icon {
+  background-color: #94755c30;
+}
+
+.suggestion-item:nth-child(9) .suggestion-icon {
+  background-color: #599a642b;
+}
+
+.suggestion-item:nth-child(10) .suggestion-icon {
+  background-color: #97a5ae29;
 }
 
 .suggestion-icon img {

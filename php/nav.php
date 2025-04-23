@@ -76,7 +76,7 @@ if ($is_in_root) {
                 class="menu-li <?php echo $current_page === 'index.php' ? 'active-nav' : ''; ?>">
                 <li>Accueil</li>
             </a>
-            <a href="<?php echo $base_url; ?>/php/destination.php"
+            <a href="<?php echo $base_url; ?>/php/destination.php?category=all"
                 class="menu-li <?php echo $current_page === 'destination.php' ? 'active-nav' : ''; ?>">
                 <li>Destinations</li>
             </a>
@@ -145,7 +145,7 @@ if ($is_in_root) {
 
                         <div class="dropdown-divider"></div>
 
-                        <a href="<?php echo $base_url; ?>/php/logout.php" class="dropdown-item logout">
+                        <a href="#" id="nav-logout-button" class="dropdown-item logout">
                             <img src="<?php echo getAssetPath('svg/log-out.svg'); ?>" alt="Déconnexion">
                             <span>Déconnexion</span>
                         </a>
@@ -161,15 +161,32 @@ if ($is_in_root) {
     </div>
 </header>
 
+<!-- Modal de confirmation de déconnexion -->
+<div id="nav-logout-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Confirmation de déconnexion</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="cancel-nav-logout" class="btn-secondary">Annuler</button>
+            <a href="<?php echo $base_url; ?>/php/logout.php" class="btn-primary">Se déconnecter</a>
+        </div>
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const profileContainer = document.querySelector('.profile-dropdown-container');
         const navElement = document.querySelector('.nav');
         const themeIcons = document.querySelector('.theme-icons');
-        
+
         // Set initial theme background state
         if (themeIcons) {
-            if (document.body.classList.contains('light-theme') || 
+            if (document.body.classList.contains('light-theme') ||
                 (document.cookie.includes('theme=light'))) {
                 themeIcons.classList.add('light-active');
             } else {
@@ -206,7 +223,7 @@ if ($is_in_root) {
 
             // Add transition effect
             document.body.classList.add('theme-transition');
-            
+
             // Update active states
             if (newTheme === 'light') {
                 sunIcon.classList.add('active');
@@ -219,7 +236,7 @@ if ($is_in_root) {
                 themeIcons.classList.add('dark-active');
                 themeIcons.classList.remove('light-active');
             }
-            
+
             // Remove transition class after animation
             setTimeout(() => {
                 document.body.classList.remove('theme-transition');
@@ -240,5 +257,37 @@ if ($is_in_root) {
                 changeTheme('dark');
             });
         }
+
+        // Gestion du modal de déconnexion
+        const navLogoutModal = document.getElementById('nav-logout-modal');
+        const navLogoutBtn = document.getElementById('nav-logout-button');
+        const closeNavModalBtn = document.querySelector('#nav-logout-modal .close-modal');
+        const cancelNavLogoutBtn = document.getElementById('cancel-nav-logout');
+
+        if (navLogoutBtn) {
+            navLogoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLogoutModal.style.display = 'flex';
+            });
+        }
+
+        if (closeNavModalBtn) {
+            closeNavModalBtn.addEventListener('click', function () {
+                navLogoutModal.style.display = 'none';
+            });
+        }
+
+        if (cancelNavLogoutBtn) {
+            cancelNavLogoutBtn.addEventListener('click', function () {
+                navLogoutModal.style.display = 'none';
+            });
+        }
+
+        // Fermer le modal si on clique à l'extérieur
+        window.addEventListener('click', function (event) {
+            if (event.target === navLogoutModal) {
+                navLogoutModal.style.display = 'none';
+            }
+        });
     });
 </script>

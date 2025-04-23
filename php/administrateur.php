@@ -4,10 +4,8 @@ require('session.php');
 check_admin_auth('connexion.php');
 $_SESSION['current_url'] = current_url();
 
-// Paramètres de filtrage et tri
-$search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
+// Paramètres de filtrage uniquement (le tri et la recherche seront gérés en JS)
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'recent';
 
 $displayed_users = 0;
 
@@ -41,19 +39,15 @@ $displayed_users = 0;
                 <div class="content">
                     <!-- En-tête avec recherche et navigation -->
                     <div class="header">
-                        <form class="search-bar" method="GET" action="">
-                            <input type="text" placeholder="Chercher un voyageur" name="search" id="search"
-                                value="<?php echo htmlspecialchars($search_query); ?>">
-                            <button type="submit" style="background: none; border: none; cursor: pointer;">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Chercher un voyageur" id="search">
+                            <button type="button" style="background: none; border: none; cursor: pointer;">
                                 <img src="../img/svg/loupe.svg" alt="loupe">
                             </button>
-                            <!-- Conserver les autres paramètres lors de la recherche -->
-                            <input type="hidden" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
-                            <input type="hidden" name="sort" value="<?php echo htmlspecialchars($sort); ?>">
-                        </form>
+                        </div>
 
-                        <a href="profil.php" class="redir-text">
-                            <span>Quitter le mode administrateur</span>
+                        <a href="../index.php" class="redir-text">
+                            <span>Retour à l'accueil</span>
                             <img src="../img/svg/fleche-redir.svg" alt="fleche">
                         </a>
                     </div>
@@ -62,43 +56,37 @@ $displayed_users = 0;
                         <!-- Titre et compteur -->
                         <div class="titre-content">
                             <span>Voyageurs</span>
-                            <span id="users-count"></span>
+                            <span id="voyage-count"></span>
                         </div>
 
                         <!-- Barre de filtres et options de tri -->
                         <div class="filters-bar">
                             <div class="filter-buttons">
-                                <a href="?filter=all<?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>&sort=<?php echo $sort; ?>"
+                                <a href="?filter=all"
                                     class="filter-button <?php echo $filter == 'all' ? 'active3' : ''; ?>">
                                     Tous
                                 </a>
-                                <a href="?filter=active<?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>&sort=<?php echo $sort; ?>"
+                                <a href="?filter=active"
                                     class="filter-button <?php echo $filter == 'active' ? 'active3' : ''; ?>">
                                     Actifs
                                 </a>
-                                <a href="?filter=blocked<?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>&sort=<?php echo $sort; ?>"
+                                <a href="?filter=blocked"
                                     class="filter-button <?php echo $filter == 'blocked' ? 'active3' : ''; ?>">
                                     Bloqués
                                 </a>
-                                <a href="?filter=vip<?php echo !empty($search_query) ? '&search=' . urlencode($search_query) : ''; ?>&sort=<?php echo $sort; ?>"
+                                <a href="?filter=vip"
                                     class="filter-button <?php echo $filter == 'vip' ? 'active3' : ''; ?>">
                                     VIP
                                 </a>
                             </div>
 
                             <div class="view-options">
-                                <select name="sort" class="sort-select" id="sort-select"
-                                    onchange="updateSort(this.value)">
-                                    <option value="recent" <?php echo $sort == 'recent' ? 'selected' : ''; ?>>Plus récents
-                                    </option>
-                                    <option value="name-asc" <?php echo $sort == 'name-asc' ? 'selected' : ''; ?>>Nom
-                                        (A-Z)</option>
-                                    <option value="name-desc" <?php echo $sort == 'name-desc' ? 'selected' : ''; ?>>Nom
-                                        (Z-A)</option>
-                                    <option value="date-asc" <?php echo $sort == 'date-asc' ? 'selected' : ''; ?>>Date
-                                        d'inscription (ancien)</option>
-                                    <option value="date-desc" <?php echo $sort == 'date-desc' ? 'selected' : ''; ?>>Date
-                                        d'inscription (récent)</option>
+                                <select id="sort-select" class="sort-select">
+                                    <option value="recent">Plus récents</option>
+                                    <option value="name-asc">Nom (A-Z)</option>
+                                    <option value="name-desc">Nom (Z-A)</option>
+                                    <option value="date-asc">Date d'inscription (ancien)</option>
+                                    <option value="date-desc">Date d'inscription (récent)</option>
                                 </select>
                             </div>
                         </div>
@@ -114,16 +102,14 @@ $displayed_users = 0;
                                     </tr>
                                 </thead>
 
-                                <tbody
-                                    class="<?php echo ($displayed_users === 0 && !empty($search_query)) ? 'no-height' : ''; ?>">
+                                <tbody>
                                     <?php
                                     $json_file = "../json/users.json";
                                     $users = json_decode(file_get_contents($json_file), true) ?? [];
-                                    $displayed_users = 0;
                                     $total_users = 0;
+                                    $displayed_users = 0;
 
-                                    // Filtrer et trier les utilisateurs
-                                    $filtered_users = [];
+                                    // Filtrer les utilisateurs par le filtre sélectionné
                                     foreach ($users as $user) {
                                         if ($user['role'] === 'user') {
                                             $total_users++;
@@ -137,98 +123,58 @@ $displayed_users = 0;
                                                 continue;
                                             }
 
-                                            // Filtrer par la recherche
-                                            $full_name = strtolower($user['first_name'] . ' ' . $user['last_name']);
-                                            $email = strtolower($user['email'] ?? '');
-                                            $search_term = strtolower($search_query);
+                                            $displayed_users++;
 
-                                            // Si une recherche est active et que l'utilisateur ne correspond pas, passer au suivant
-                                            if (!empty($search_query) && strpos($full_name, $search_term) === false && strpos($email, $search_term) === false) {
-                                                continue;
+                                            echo '<tr data-email="' . htmlspecialchars($user['email']) . '">';
+                                            echo '<td class="nom">' . $user['first_name'] . ' ' . $user['last_name'] . '</td>';
+                                            echo '<td>';
+                                            // Bouton interactif pour le statut bloqué/actif
+                                            if ($user['blocked']) {
+                                                echo '<div class="status status-pending toggle-status" data-status="blocked">';
+                                                echo 'Bloqué<img src="../img/svg/block.svg" alt="block">';
+                                                echo '<span class="tooltip">Cliquez pour débloquer</span>';
+                                                echo '</div>';
+                                            } else {
+                                                echo '<div class="status status-ok toggle-status" data-status="active">';
+                                                echo 'Actif<img src="../img/svg/check.svg" alt="check">';
+                                                echo '<span class="tooltip">Cliquez pour bloquer</span>';
+                                                echo '</div>';
                                             }
-
-                                            $filtered_users[] = $user;
+                                            echo '</td>';
+                                            echo '<td>';
+                                            // Bouton interactif pour le statut VIP/non VIP
+                                            if ($user['vip']) {
+                                                echo '<div class="status vip-badge toggle-vip" data-vip="1">';
+                                                echo 'VIP<img src="../img/svg/etoile.svg" alt="etoile">';
+                                                echo '<span class="tooltip">Cliquez pour retirer le VIP</span>';
+                                                echo '</div>';
+                                            } else {
+                                                echo '<div class="status novip-badge toggle-vip" data-vip="0">';
+                                                echo 'Non<img src="../img/svg/no.svg" alt="croix">';
+                                                echo '<span class="tooltip">Cliquez pour ajouter le VIP</span>';
+                                                echo '</div>';
+                                            }
+                                            echo '</td>';
+                                            echo '<td class="date">' . $user['date_inscription'] . '</td>';
+                                            echo '</tr>';
                                         }
-                                    }
-
-                                    // Trier les utilisateurs
-                                    switch ($sort) {
-                                        case 'name-asc':
-                                            usort($filtered_users, function ($a, $b) {
-                                                return strcasecmp($a['last_name'], $b['last_name']);
-                                            });
-                                            break;
-                                        case 'name-desc':
-                                            usort($filtered_users, function ($a, $b) {
-                                                return strcasecmp($b['last_name'], $a['last_name']);
-                                            });
-                                            break;
-                                        case 'date-asc':
-                                            usort($filtered_users, function ($a, $b) {
-                                                return strtotime($a['date_inscription']) - strtotime($b['date_inscription']);
-                                            });
-                                            break;
-                                        case 'date-desc':
-                                            usort($filtered_users, function ($a, $b) {
-                                                return strtotime($b['date_inscription']) - strtotime($a['date_inscription']);
-                                            });
-                                            break;
-                                        default: // recent (défaut)
-                                            usort($filtered_users, function ($a, $b) {
-                                                return strtotime($b['date_inscription']) - strtotime($a['date_inscription']);
-                                            });
-                                    }
-
-                                    $displayed_users = count($filtered_users);
-
-                                    foreach ($filtered_users as $user) {
-                                        echo '<tr data-email="' . htmlspecialchars($user['email']) . '">';
-                                        echo '<td class="nom">' . $user['first_name'] . ' ' . $user['last_name'] . '</td>';
-                                        echo '<td>';
-                                        // Bouton interactif pour le statut bloqué/actif
-                                        if ($user['blocked']) {
-                                            echo '<div class="status status-pending toggle-status" data-status="blocked">';
-                                            echo 'Bloqué<img src="../img/svg/block.svg" alt="block">';
-                                            echo '<span class="tooltip">Cliquez pour débloquer</span>';
-                                            echo '</div>';
-                                        } else {
-                                            echo '<div class="status status-ok toggle-status" data-status="active">';
-                                            echo 'Actif<img src="../img/svg/check.svg" alt="check">';
-                                            echo '<span class="tooltip">Cliquez pour bloquer</span>';
-                                            echo '</div>';
-                                        }
-                                        echo '</td>';
-                                        echo '<td>';
-                                        // Bouton interactif pour le statut VIP/non VIP
-                                        if ($user['vip']) {
-                                            echo '<div class="status vip-badge toggle-vip" data-vip="1">';
-                                            echo 'VIP<img src="../img/svg/etoile.svg" alt="etoile">';
-                                            echo '<span class="tooltip">Cliquez pour retirer le VIP</span>';
-                                            echo '</div>';
-                                        } else {
-                                            echo '<div class="status novip-badge toggle-vip" data-vip="0">';
-                                            echo 'Non<img src="../img/svg/no.svg" alt="croix">';
-                                            echo '<span class="tooltip">Cliquez pour ajouter le VIP</span>';
-                                            echo '</div>';
-                                        }
-                                        echo '</td>';
-                                        echo '<td class="date">' . $user['date_inscription'] . '</td>';
-                                        echo '</tr>';
                                     }
                                     ?>
                                 </tbody>
                             </table>
                         </div>
 
+                        <!-- Message de recherche sans résultats (caché par défaut) -->
+                        <div class="no-res" id="search-no-results" style="display: none;">
+                            <img src="../img/svg/empty-voyages.svg" alt="Aucun résultat" class="no-res-icon">
+                            <p>Aucun utilisateur ne correspond à votre recherche "<strong id="search-term"></strong>"
+                            </p>
+                            <button class="reset-search" id="reset-search">Effacer la recherche</button>
+                        </div>
+
                         <?php if ($displayed_users === 0): ?>
                             <div class="no-res">
-                                <?php if (!empty($search_query)): ?>
-                                    <img src="../img/svg/empty-voyages.svg" alt="Aucun résultat" class="no-res-icon">
-                                    <p>Aucun utilisateur ne correspond à votre recherche
-                                        "<strong><?php echo htmlspecialchars($search_query); ?></strong>"
-                                    </p>
-                                    <a href="administrateur.php" class="reset-search">Effacer la recherche</a>
-                                <?php elseif ($filter != 'all'): ?>
+                                <?php if ($filter != 'all'): ?>
                                     <img src="../img/svg/filter-empty.svg" alt="Aucun résultat" class="no-res-icon">
                                     <p>Aucun utilisateur ne correspond au filtre sélectionné</p>
                                     <a href="administrateur.php" class="reset-search">Voir tous les utilisateurs</a>
@@ -248,7 +194,7 @@ $displayed_users = 0;
         document.addEventListener('DOMContentLoaded', function () {
             // Afficher le nombre d'utilisateurs
             const userCount = document.querySelectorAll('tbody tr').length;
-            document.getElementById('users-count').textContent = userCount + ' voyageurs';
+            document.getElementById('voyage-count').textContent = userCount + ' voyageurs';
 
             // Gestion des clics sur les status (bloqué/actif)
             document.querySelectorAll('.toggle-status').forEach(statusElement => {
@@ -339,15 +285,9 @@ $displayed_users = 0;
                     setTimeout(() => notification.remove(), 500);
                 }, 3000);
             }
-
-            // Gestion du tri
-            window.updateSort = function (value) {
-                const currentUrl = new URL(window.location);
-                currentUrl.searchParams.set('sort', value);
-                window.location.href = currentUrl.toString();
-            };
         });
     </script>
+    <script src="../js/mes-voyages.js"></script>
 </body>
 
 </html>

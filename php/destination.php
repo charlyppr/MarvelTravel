@@ -53,30 +53,40 @@ if ($budget > 0) {
 }
 
 // Filtrer les voyages selon les critères de recherche
-$voyages_filtered = $voyages;
-if (!empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0 || ($category != 'all')) {
-    $voyages_filtered = array_filter($voyages, function ($voyage) use ($recherche, $date_debut, $date_fin, $budget, $category) {
-        $titre_match = empty($recherche) || stripos($voyage['titre'], $recherche) !== false;
-        $budget_match = $budget <= 0 || $voyage['prix'] <= $budget;
-        
-        // Filtrer par catégorie si une catégorie spécifique est sélectionnée
-        $category_match = true;
-        if ($category != 'all') {
-            $category_match = false;
-            if (isset($voyage['categories'])) {
-                foreach ($voyage['categories'] as $cat) {
-                    if (strtolower($cat) == strtolower($category)) {
-                        $category_match = true;
-                        break;
-                    }
+$voyages_filtered = array_filter($voyages, function ($voyage) use ($recherche, $date_debut, $date_fin, $budget, $category) {
+    // Recherche dans le titre ou dans les catégories
+    $titre_match = empty($recherche) || stripos($voyage['titre'], $recherche) !== false;
+    $categorie_match = false;
+    
+    // Recherche dans les catégories du voyage
+    if (!empty($recherche) && isset($voyage['categories'])) {
+        foreach ($voyage['categories'] as $cat) {
+            if (stripos($cat, $recherche) !== false) {
+                $categorie_match = true;
+                break;
+            }
+        }
+    }
+    
+    $budget_match = $budget <= 0 || $voyage['prix'] <= $budget;
+    
+    // Filtrer par catégorie si une catégorie spécifique est sélectionnée
+    $category_match = true;
+    if ($category != 'all') {
+        $category_match = false;
+        if (isset($voyage['categories'])) {
+            foreach ($voyage['categories'] as $cat) {
+                if (strtolower($cat) == strtolower($category)) {
+                    $category_match = true;
+                    break;
                 }
             }
         }
+    }
 
-        // Considérer la recherche comme réussie si le texte correspond et le budget est dans la plage et la catégorie correspond
-        return $titre_match && $budget_match && $category_match;
-    });
-}
+    // Considérer la recherche comme réussie si le texte correspond au titre OU aux catégories
+    return ($titre_match || $categorie_match) && $budget_match && $category_match;
+});
 
 // Pagination pour les résultats de recherche ou tous les voyages
 $voyages_per_page = 6;
@@ -87,7 +97,12 @@ $page = min($page, $total_pages);
 $offset = ($page - 1) * $voyages_per_page;
 
 // Obtenir les voyages pour la page actuelle
-$voyages_page = array_slice($voyages_filtered, $offset, $voyages_per_page);
+// Si une catégorie est sélectionnée ou une recherche est effectuée, afficher tous les voyages
+if ($category != 'all' || !empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0) {
+    $voyages_page = $voyages_filtered;
+} else {
+    $voyages_page = array_slice($voyages_filtered, $offset, $voyages_per_page);
+}
 
 // Sélectionner les 4 premiers voyages pour la section "Meilleures destinations"
 $best_voyages = array_slice($voyages, 0, 4);
@@ -126,9 +141,8 @@ $best_voyages = array_slice($voyages, 0, 4);
                 <div class="search-container">
                     <form action="destination.php#toutes-destinations" method="GET" class="search-form">
                         <div class="search-tabs">
-                            <a href="?category=all#toutes-destinations" class="search-tab <?php echo ($category == 'all' || empty($category)) ? 'active' : ''; ?>">Tous les voyages</a>
-                            <a href="?category=aventure#toutes-destinations" class="search-tab <?php echo ($category == 'aventure') ? 'active' : ''; ?>">Aventures</a>
-                            <a href="?category=experience#toutes-destinations" class="search-tab <?php echo ($category == 'experience') ? 'active' : ''; ?>">Expériences</a>
+                            <a href="?category=all#toutes-destinations" class="search-tab <?php echo ($category == 'all' && !empty($_GET)) ? 'active' : ''; ?>">Tous les voyages</a>
+                            <a href="?category=all#best-seller" class="search-tab <?php echo ($category == 'best-sellers') ? 'active' : ''; ?>">Best-sellers</a>
                             <div class="tab-indicator"></div>
                             <input type="hidden" name="category" value="<?php echo htmlspecialchars($category); ?>">
                         </div>
@@ -140,9 +154,9 @@ $best_voyages = array_slice($voyages, 0, 4);
                                     <img src="../img/svg/map-pin.svg" alt="Destination" class="field-icon-img">
                                 </div>
                                 <div class="field-content">
-                                    <label for="destination-search">Destination</label>
+                                    <label for="destination-search">Destination ou catégorie</label>
                                     <input type="search" id="destination-search" name="recherche"
-                                        placeholder="Où voulez-vous aller?" value="<?= htmlspecialchars($recherche) ?>" autocomplete="off">
+                                        placeholder="Dite nous tout" value="<?= htmlspecialchars($recherche) ?>" autocomplete="off">
                                     
                                     <div class="destination-suggestions" id="destination-suggestions">
                                         <div class="destination-suggestions-div">
@@ -185,6 +199,32 @@ $best_voyages = array_slice($voyages, 0, 4);
                                                 <div class="suggestion-content">
                                                     <h4>Hala, Planète Kree</h4>
                                                     <p>Pour ses spectacles d'arène et architecture</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <h3 style="margin-top: 15px;">Catégories populaires</h3>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/aventure-icon.png" alt="Aventure Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Aventure</h4>
+                                                    <p>Voyages d'action et d'exploration</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/nature-icon.png" alt="Nature Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Nature</h4>
+                                                    <p>Découvrez des paysages époustouflants</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/ville-icon.png" alt="Ville Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Urbain</h4>
+                                                    <p>Explorez les métropoles de l'univers Marvel</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -294,8 +334,9 @@ $best_voyages = array_slice($voyages, 0, 4);
                     <span class="search-tag-title">Populaires:</span>
                     <a href="?recherche=New+York#toutes-destinations" class="search-tag">New York</a>
                     <a href="?recherche=Wakanda#toutes-destinations" class="search-tag">Wakanda</a>
-                    <a href="?recherche=Asgard#toutes-destinations" class="search-tag">Asgard</a>
-                    <a href="?recherche=Xandar#toutes-destinations" class="search-tag">Xandar</a>
+                    <a href="?recherche=Aventure#toutes-destinations" class="search-tag">Aventure</a>
+                    <a href="?recherche=Nature#toutes-destinations" class="search-tag">Nature</a>
+                    <a href="?recherche=Culture#toutes-destinations" class="search-tag">Culture</a>
                 </div>
             </div>
         </div>
@@ -333,15 +374,15 @@ $best_voyages = array_slice($voyages, 0, 4);
     ?>
     
     <!-- Section Best-Sellers -->
-    <?php if (empty($recherche) && empty($date_debut) && empty($date_fin) && $budget <= 0): ?>
-        <section class="best-seller-section">
+    <?php if (empty($_GET) || ($category == 'all' && empty($recherche) && empty($date_debut) && empty($date_fin) && $budget <= 0)): ?>
+        <section class="best-seller-section" id="best-seller">
             <div class="container">
                 <div class="section-header">
                     <div class="section-title-group">
                         <span class="section-subtitle">Top destinations</span>
                         <h2 class="section-title">Meilleures destinations</h2>
                     </div>
-                    <a href="destination.php#toutes-destinations" class="view-all-link">
+                    <a href="#toutes-destinations" class="view-all-link">
                         <span>Voir toutes les destinations</span>
                         <img src="../img/svg/arrow-right.svg" alt="Voir tout">
                     </a>
@@ -461,12 +502,13 @@ $best_voyages = array_slice($voyages, 0, 4);
         </section>
     <?php endif; ?>
 
+
     <!-- Toutes les destinations / Résultats de recherche -->
     <section id="toutes-destinations" class="all-destination-section">
         <div class="container">
             <div class="section-header">
                 <div class="section-title-group">
-                    <?php if (!empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0): ?>
+                    <?php if (!empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0 || $category != 'all'): ?>
                         <span class="section-subtitle">Résultats de recherche</span>
                         <h2 class="section-title">
                             <?php echo count($voyages_filtered); ?>
@@ -480,6 +522,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                     <?php endif; ?>
                 </div>
 
+                <?php if (!empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0 || $category != 'all'): ?>
                 <div class="sort-filter">
                     <label for="sort">Trier par:</label>
                     <select id="sort" class="sort-select">
@@ -489,6 +532,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                         <option value="name-asc">Nom: A-Z</option>
                     </select>
                 </div>
+                <?php endif; ?>
             </div>
 
             <?php if (empty($voyages_page)): ?>
@@ -500,11 +544,10 @@ $best_voyages = array_slice($voyages, 0, 4);
                 </div>
             <?php else: ?>
                 <div class="all-destination-cards">
-                    <?php foreach ($voyages_page as $real_index => $voyage):
-                        // Récupérer l'index réel dans le tableau d'origine
-                        $indexes = array_keys($voyages_filtered);
-                        $real_index = $indexes[$offset + $real_index];
-                        ?>
+                    <?php foreach ($voyages_page as $voyage): 
+                        // Récupérer l'ID du voyage directement depuis le tableau du voyage
+                        $real_index = $voyage['id'];
+                    ?>
                         <div class="destination-card" style="--card-index: <?php echo $real_index; ?>">
                             <a href="voyage-detail.php?id=<?php echo $real_index; ?>" class="card-link">
                                 <div class="card-image-container">
@@ -550,7 +593,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                     <?php endforeach; ?>
                 </div>
 
-                <?php if ($total_pages > 1): ?>
+                <?php if ($category == 'all' && empty($recherche) && empty($date_debut) && empty($date_fin) && $budget <= 0): ?>
                     <div class="pagination">
                         <?php if ($page > 1): ?>
                             <a href="?page=<?php echo ($page - 1) . $search_params; ?>#toutes-destinations" class="page-arrow">
@@ -575,7 +618,6 @@ $best_voyages = array_slice($voyages, 0, 4);
             <?php endif; ?>
         </div>
     </section>
-
 
     <!-- Call to action -->
     <section class="cta-section">

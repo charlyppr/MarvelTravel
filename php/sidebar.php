@@ -43,6 +43,14 @@ function isActive($page, $current_page)
                         </div>
                         <span class="nav-text">Dashboard</span>
                     </a>
+
+                    <a href="admin-statistiques.php" class="nav-link <?= isActive('admin-statistiques', $current_page) ?>">
+                        <div class="nav-icon">
+                            <img src="../img/svg/chart-bar.svg" alt="Statistiques" class="icon-img">
+                            <div class="icon-highlight"></div>
+                        </div>
+                        <span class="nav-text">Statistiques</span>
+                    </a>
                 <?php else: ?>
                     <!-- Menu pour les pages utilisateur -->
                     <a href="profil.php" class="nav-link <?= isActive('profil', $current_page) ?>">
@@ -75,7 +83,27 @@ function isActive($page, $current_page)
             </nav>
         </div>
 
-        <?php if (!$is_admin_page): ?>
+        <?php if ($is_admin_page): ?>
+            <div class="sidebar-section sidebar-quick-links">
+                <h3 class="sidebar-heading">Raccourcis admin</h3>
+
+                <div class="nav-menu">
+                    <a href="admin-nouvel-utilisateur.php" class="quick-link">
+                        <div class="quick-link-icon">
+                            <img src="../img/svg/user-plus.svg" alt="Ajouter utilisateur">
+                        </div>
+                        <span class="quick-link-text">Nouvel utilisateur</span>
+                    </a>
+
+                    <a href="admin-nouvelle-destination.php" class="quick-link">
+                        <div class="quick-link-icon">
+                            <img src="../img/svg/map-pin.svg" alt="Nouvelle destination">
+                        </div>
+                        <span class="quick-link-text">Nouvelle destination</span>
+                    </a>
+                </div>
+            </div>
+        <?php elseif (!$is_admin_page): ?>
             <div class="sidebar-section sidebar-quick-links">
                 <h3 class="sidebar-heading">Raccourcis</h3>
 
@@ -113,7 +141,12 @@ function isActive($page, $current_page)
             </div>
 
             <div class="user-actions">
-                <?php if ($_SESSION['role'] == 'admin' && $current_page !== 'administrateur'): ?>
+                <?php if ($is_admin_page): ?>
+                    <a href="profil.php" class="user-action admin-link">
+                        <img src="../img/svg/person.svg" alt="Profil">
+                        <span>Retour au profil</span>
+                    </a>
+                <?php elseif ($_SESSION['role'] == 'admin' && $current_page !== 'administrateur'): ?>
                     <a href="administrateur.php" class="user-action admin-link">
                         <img src="../img/svg/settings.svg" alt="Admin">
                         <span>Administration</span>
@@ -122,7 +155,7 @@ function isActive($page, $current_page)
 
                 <button class="user-action logout-action" id="logout-button">
                     <img src="../img/svg/log-out.svg" alt="Déconnexion">
-                    <span><a href='logout.php'>Se déconnecter</a></span>
+                    <span>Se déconnecter</span>
                 </button>
 
                 <?php if (!$is_admin_page && !$is_admin_user): ?>
@@ -142,3 +175,52 @@ function isActive($page, $current_page)
         </div>
     </div>
 </div>
+
+<!-- Modal de confirmation de déconnexion -->
+<div id="logout-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Confirmation de déconnexion</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="cancel-logout" class="btn-secondary">Annuler</button>
+            <a href="logout.php" class="btn-primary">Se déconnecter</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Éléments du modal
+        const modal = document.getElementById('logout-modal');
+        const logoutBtn = document.getElementById('logout-button');
+        const closeBtn = document.querySelector('.close-modal');
+        const cancelBtn = document.getElementById('cancel-logout');
+
+        // Ouvrir le modal quand on clique sur le bouton de déconnexion
+        logoutBtn.addEventListener('click', function () {
+            modal.style.display = 'flex';
+        });
+
+        // Fermer le modal sur le bouton de fermeture
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Fermer le modal sur le bouton Annuler
+        cancelBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Fermer le modal si on clique à l'extérieur
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>

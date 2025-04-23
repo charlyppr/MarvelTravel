@@ -382,21 +382,6 @@
   margin-bottom: var(--spacing-sm);
 }
 
-.reset-search {
-  color: var(--link-color);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color var(--transition-fast);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: var(--spacing-xs);
-}
-
-.reset-search:hover {
-  color: var(--link-hover);
-}
-
 @media screen and (max-width: 768px) {
   * {
     margin: 0;

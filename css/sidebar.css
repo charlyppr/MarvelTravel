@@ -409,7 +409,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: all var(--transition-sidebar);
-    color: var(--color-text-cream);
+    color: var(--color-text-light);
     font-size: 14px;
     font-family: inherit;
     text-decoration: none;
