@@ -152,6 +152,7 @@
   cursor: pointer;
   transition: all var(--transition-fast);
   justify-content: center;
+  color: var(--color-text-light);
 }
 
 .theme-option:hover {

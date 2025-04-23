@@ -79,7 +79,7 @@ function isActive($page, $current_page)
             <div class="sidebar-section sidebar-quick-links">
                 <h3 class="sidebar-heading">Raccourcis</h3>
 
-                <div class="quick-links">
+                <div class="nav-menu">
                     <a href="../php/destination.php" class="quick-link">
                         <div class="quick-link-icon">
                             <img src="../img/svg/plane.svg" alt="Réserver">

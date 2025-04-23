@@ -82,20 +82,6 @@
   filter: drop-shadow(0 0 2px rgba(242, 219, 175, 0.5));
 }
 
-.redir-text {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  font-weight: 500;
-}
-
-.redir-text:hover {
-  transform: translateX(3px);
-}
-
 .main-content {
   background-color: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
