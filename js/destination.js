@@ -213,3 +213,134 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// Effet de déplacement sur les onglets de catégorie
+document.addEventListener("DOMContentLoaded", function () {
+  const tabs = document.querySelectorAll(".search-tab");
+  const indicator = document.querySelector(".tab-indicator");
+  const tabsContainer = document.querySelector(".search-tabs");
+
+  // Fonction pour positionner l'indicateur
+  function positionIndicator(tab) {
+    if (!tab || !indicator || !tabsContainer) return;
+
+    const rect = tab.getBoundingClientRect();
+    const tabsRect = tabsContainer.getBoundingClientRect();
+
+    indicator.style.width = rect.width + "px";
+    indicator.style.left = rect.left - tabsRect.left + "px";
+  }
+
+  // Positionner l'indicateur sous l'onglet actif au chargement
+  const activeTab = document.querySelector(".search-tab.active");
+  if (activeTab && indicator) {
+    positionIndicator(activeTab);
+    indicator.style.opacity = "1";
+  }
+
+  // Ajouter les événements de survol sur chaque onglet
+  tabs.forEach((tab) => {
+    tab.addEventListener("mouseenter", function () {
+      positionIndicator(this);
+      indicator.style.opacity = "1";
+    });
+  });
+
+  // Quand on quitte la zone des onglets, remettre l'indicateur sous l'onglet actif
+  if (tabsContainer) {
+    tabsContainer.addEventListener("mouseleave", function () {
+      if (activeTab) {
+        positionIndicator(activeTab);
+      } else {
+        indicator.style.opacity = "0";
+      }
+    });
+  }
+});
+
+// Effet de déplacement sur les champs de recherche
+document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll(".search-field input");
+  const fieldsContainer = document.querySelector(".search-fields-container");
+  const focusIndicator = document.querySelector(".field-focus-indicator");
+  const calendarDropdown = document.getElementById("calendar-dropdown");
+
+  // Variable pour garder une référence au dernier champ de date actif
+  let lastActiveDateField = null;
+
+  // Fonction pour positionner l'indicateur de focus
+  function positionFocusIndicator(field) {
+    if (!field || !focusIndicator || !fieldsContainer) return;
+
+    const fieldRect = field.closest(".search-field").getBoundingClientRect();
+    const containerRect = fieldsContainer.getBoundingClientRect();
+
+    focusIndicator.style.width = fieldRect.width + "px";
+    focusIndicator.style.height = fieldRect.height + "px";
+    focusIndicator.style.left = fieldRect.left - containerRect.left + "px";
+    focusIndicator.style.top = fieldRect.top - containerRect.top + "px";
+    focusIndicator.style.opacity = "1";
+  }
+
+  // Ajouter les gestionnaires d'événements pour chaque input
+  if (inputs && focusIndicator) {
+    inputs.forEach((input) => {
+      // Quand l'input reçoit le focus
+      input.addEventListener("focus", function () {
+        positionFocusIndicator(this);
+
+        // Si c'est un champ de date, enregistrer la référence
+        if (
+          this.id === "date-debut-visible" ||
+          this.id === "date-fin-visible"
+        ) {
+          lastActiveDateField = this;
+        }
+      });
+    });
+
+    // Quand un input perd le focus
+    document.addEventListener("focusout", function (e) {
+      if (inputs && Array.from(inputs).includes(e.target)) {
+        // Vérifier si le calendrier est ouvert
+        setTimeout(() => {
+          const calendarIsOpen =
+            calendarDropdown && calendarDropdown.classList.contains("active");
+
+          // Ne pas cacher l'indicateur si le calendrier est ouvert
+          if (calendarIsOpen && lastActiveDateField) {
+            // Maintenir l'indicateur sur le dernier champ de date actif
+            positionFocusIndicator(lastActiveDateField);
+          }
+          // Sinon vérifier si un autre input a le focus
+          else if (!Array.from(inputs).includes(document.activeElement)) {
+            focusIndicator.style.opacity = "0";
+            lastActiveDateField = null;
+          }
+        }, 10);
+      }
+    });
+  }
+
+  // Écouter la fermeture du calendrier pour réinitialiser l'indicateur si nécessaire
+  if (calendarDropdown) {
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === "class") {
+          const isActive = calendarDropdown.classList.contains("active");
+
+          // Si le calendrier vient d'être fermé
+          if (!isActive && lastActiveDateField) {
+            // Vérifier si un input a le focus
+            if (!Array.from(inputs).includes(document.activeElement)) {
+              focusIndicator.style.opacity = "0";
+              lastActiveDateField = null;
+            }
+          }
+        }
+      });
+    });
+
+    observer.observe(calendarDropdown, { attributes: true });
+  }
+});

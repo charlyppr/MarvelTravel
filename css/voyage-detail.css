@@ -9,7 +9,7 @@
 
 .hero-section {
   height: 80vh;
-  margin-bottom: var(--spacing-xxl);
+  /* margin-bottom: var(--spacing-xxl); */
 }
 
 .hero-backdrop {
@@ -167,16 +167,16 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-accent-faded);
   padding: 10px 20px;
   border-radius: var(--border-radius-xl);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-accent-faded);
   transition: all var(--transition-fast);
 }
 
 .meta-rating:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-accent-faded);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
@@ -231,7 +231,7 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all var(--transition-fast);
-  color: var(--color-text-muted);
+  color: inherit;
 }
 
 .info-item:hover {
@@ -1127,7 +1127,7 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--color-text-muted);
-  background: var(--color-accent-faded);
+  background: var(--color-glass-dark);
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
   white-space: nowrap;
@@ -1423,11 +1423,11 @@
 }
 
 .review-count {
-  color: var(--color-text-cream);
+  color: var(--color-accent-light);
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-field-bg);
   padding: 8px 14px;
   border-radius: var(--border-radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1447,7 +1447,7 @@
 }
 
 .review-card {
-  background: var(--color-card-bg);
+  background: var(--color-card-hover);
   border-radius: var(--border-radius-lg);
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1455,7 +1455,6 @@
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1571,7 +1570,7 @@
   color: var(--color-text-muted);
 }
 span.rating-value {
-  color: var(--color-text-cream);
+  color: var(--color-accent);
 }
 img.item-icon.not-included {
   filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg)

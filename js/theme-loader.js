@@ -14,29 +14,30 @@ function setCookie(name, value, days = 365) {
   document.cookie = `${name}=${value};${expires};path=/`;
 }
 
+// Variable globale pour stocker le thème actuel
+let currentTheme = "dark";
+
 // Fonction pour appliquer le thème - rendue globale
 function applyTheme(theme) {
-  // Ajouter la classe de transition avant de changer le thème
-  document.body.classList.add("theme-transition");
+  // Sauvegarder le thème choisi par l'utilisateur
+  currentTheme = theme;
 
   // Supprimer toutes les classes de thème
   document.body.classList.remove("light-theme", "dark-theme", "auto-theme");
 
   // Si le thème est 'auto', déterminer le thème en fonction des préférences du système
+  let appliedTheme = theme;
   if (theme === "auto") {
     const prefersDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-    theme = prefersDarkMode ? "dark" : "light";
+    appliedTheme = prefersDarkMode ? "dark" : "light";
+    // Ajouter également la classe auto-theme pour indiquer que c'est le mode auto qui est actif
+    document.body.classList.add("auto-theme");
   }
 
   // Appliquer la classe du thème au body
-  document.body.classList.add(`${theme}-theme`);
-
-  // Supprimer la classe de transition après un délai
-  setTimeout(() => {
-    document.body.classList.remove("theme-transition");
-  }, 500);
+  document.body.classList.add(`${appliedTheme}-theme`);
 }
 
 // Fonction pour basculer le thème
@@ -47,6 +48,15 @@ function toggleTheme(newTheme) {
   // Appliquer le thème immédiatement
   applyTheme(newTheme);
 }
+
+// Listener pour les changements de préférences système
+const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+colorSchemeQuery.addEventListener("change", (e) => {
+  // Ne mettre à jour que si le mode auto est activé
+  if (currentTheme === "auto") {
+    applyTheme("auto");
+  }
+});
 
 // Au chargement du document, appliquer le thème et les préférences d'accessibilité
 document.addEventListener("DOMContentLoaded", function () {

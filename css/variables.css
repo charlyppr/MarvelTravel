@@ -127,13 +127,13 @@
     /* Accents et dégradés */
     --color-accent: #AF1F24;
     --color-accent-light: rgba(175, 31, 36, 0.8);
-    --color-accent-faded: rgba(175, 31, 36, 0.15);
+    --color-accent-faded: #af1f2447;
     
     /* Arrière-plans pour les cartes */
-    --color-card-bg: rgba(242, 242, 242, 0.95);
-    --color-card-hover: rgba(230, 230, 230, 0.98);
+    --color-card-bg: #f2dbaf54;
+    --color-card-hover: #f2dbafbd;
     --color-field-bg: rgba(0, 0, 0, 0.05);
-    --color-glass: rgb(255 255 255 / 55%);
+    --color-glass: #fffae785;
     --color-glass-dark: rgba(0, 0, 0, 0.1);
     
     /* États et feedbacks */

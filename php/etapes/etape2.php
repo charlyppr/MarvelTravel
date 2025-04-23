@@ -445,9 +445,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <input type="text" name="passport_<?php echo $i; ?>"
                                                 id="passport_<?php echo $i; ?>"
                                                 value="<?php echo htmlspecialchars($passport); ?>"
-                                                placeholder="XXX XXX XXX X" maxlength="10" required>
+                                                placeholder="XXX XXX XXX X" required>
                                         </div>
-                                        <div class="field-help">Format : XXX XXX XXX X (lettres)</div>
+                                        <div class="field-help">Format : XXX XXX XXX X (lettres)</div>>
                                     </div>
                                 </div>
                             </div>
@@ -536,9 +536,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     if (userData.passport) {
                         document.getElementById('passport_1').value = userData.passport;
+                        // Formater le passeport après l'avoir rempli avec les données utilisateur
+                        formatPassport(document.getElementById('passport_1'));
                     }
                 });
             }
+
+            // Formatage des numéros de passeport
+            const formatPassport = function (input) {
+                // Supprimer tout ce qui n'est pas un chiffre
+                let value = input.value.replace(/[^\d]/g, '');
+
+                // Limiter à 10 chiffres
+                value = value.slice(0, 10);
+
+                // Formater avec des espaces (XXX XXX XXX X)
+                let formattedValue = '';
+                for (let i = 0; i < value.length; i++) {
+                    if (i === 3 || i === 6 || i === 9) {
+                        formattedValue += ' ';
+                    }
+                    formattedValue += value[i];
+                }
+
+                // Mettre à jour la valeur dans l'input
+                input.value = formattedValue;
+            };
+
+            // Appliquer le formatage à tous les champs de passeport
+            const passportInputs = document.querySelectorAll('input[id^="passport_"]');
+            passportInputs.forEach(input => {
+                // Formater au chargement si une valeur existe déjà
+                if (input.value) {
+                    formatPassport(input);
+                }
+
+                // Ajouter des écouteurs d'événements pour les interactions utilisateur
+                input.addEventListener('input', function () {
+                    formatPassport(this);
+                });
+
+                input.addEventListener('keydown', function (e) {
+                    // Permettre la navigation, la suppression et les chiffres
+                    if (
+                        e.key === 'Backspace' ||
+                        e.key === 'Delete' ||
+                        e.key === 'ArrowLeft' ||
+                        e.key === 'ArrowRight' ||
+                        e.key === 'Tab' ||
+                        (e.key >= '0' && e.key <= '9')
+                    ) {
+                        return true;
+                    }
+
+                    // Bloquer tous les autres caractères
+                    e.preventDefault();
+                    return false;
+                });
+            });
         });
     </script>
 

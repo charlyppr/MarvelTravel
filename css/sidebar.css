@@ -61,7 +61,7 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid var(--sidebar-border);
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--color-card-hover);
 }
 
 .sidebar-logo {
@@ -181,7 +181,7 @@
 }
 
 .nav-link:hover {
-    background-color: var(--color-accent-faded);
+    background-color: var(--color-field-bg);
     /* transform: translateX(5px); */
 }
 
@@ -299,7 +299,7 @@
 }
 
 .quick-link:hover {
-    background-color: var(--color-accent-faded);
+    background-color: var(--color-field-bg);
     /* transform: translateX(5px); */
 }
 

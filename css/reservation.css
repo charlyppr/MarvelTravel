@@ -135,9 +135,9 @@ body {
 .progress-step.active4 .step-indicator {
     background: var(--gradient-primary);
     color: var(--color-text-cream);
-    box-shadow: 0 0 20px rgba(226, 54, 54, 0.3);
+    /* box-shadow: 0 0 20px rgba(226, 54, 54, 0.3); */
     border: none;
-    animation: pulse 2s infinite;
+    /* animation: pulse 2s infinite; */
 }
 
 .progress-line.active4 {
@@ -357,7 +357,7 @@ body {
     display: flex;
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-md);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--color-card-hover);
     border-bottom: 1px solid var(--color-accent-faded);
     gap: var(--spacing-sm);
     border-top-right-radius: var(--spacing-md);
@@ -1150,7 +1150,7 @@ select {
 
 .promo-code-container {
     margin: var(--spacing-md) 0;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xxs);
     background-color: rgba(255, 255, 255, 0.03);
     border-radius: var(--border-radius-md);
     border: 1px dashed var(--color-accent-faded);

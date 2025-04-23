@@ -16,25 +16,13 @@
 }
 
 .date-input {
-  background: transparent;
-  border: none;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-md);
-  padding: 0;
-  outline: none;
-  font-family: "PP Formula", sans-serif;
   cursor: pointer;
-  width: 90px;
+  width: 100px;
 }
 
 .date-separator {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
-}
-
-.date-input::placeholder {
-  color: var(--color-text-muted);
-  opacity: 0.7;
 }
 
 .date-range-input {
@@ -66,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-background);
+  /* background: var(--color-background); */
   padding: var(--spacing-xl) var(--spacing-md);
   border-radius: var(--border-radius-lg);
   flex-direction: column;
@@ -126,13 +114,15 @@
   font-size: 0.9rem;
   margin: 2px 0;
   color: var(--color-text-light);
+  border:1px solid transparent;
   transition: all 0.2s ease;
 }
 
 .calendar-day:hover {
-  background: var(--color-text-muted);
+  background: var(--color-accent-faded);
+  border:1px solid var(--color-accent-light);
   transform: translateY(-2px);
-  color: var(--color-card-bg);
+  color: var(--color-text-light);
 }
 
 .calendar-day.empty {
@@ -142,14 +132,13 @@
 
 .calendar-day.start-date,
 .calendar-day.end-date {
-  background: var(--gradient-primary) !important;
-  color: white;
+  background: var(--color-accent) !important;
+  color: var(--color-text-dark);
   z-index: 2;
-  box-shadow: 0 4px 10px rgba(226, 54, 54, 0.3);
 }
 
 .calendar-day.in-range {
-  background: rgba(226, 54, 54, 0.15);
+  background: var(--color-accent-faded);
   border-radius: 0;
   position: relative;
 }
@@ -160,10 +149,6 @@
 
 .calendar-day.end-date {
   border-radius: 0 50% 50% 0;
-}
-
-.calendar-day.start-date.end-date {
-  border-radius: 50%;
 }
 
 .prev-month,
@@ -214,7 +199,7 @@
   background: var(--gradient-primary);
   color: white;
   border: none;
-  box-shadow: 0 4px 15px rgba(226, 54, 54, 0.3);
+  box-shadow: var(--shadow-field);
 }
 
 .apply-dates {
@@ -234,7 +219,7 @@
 
 .reset-dates:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(226, 54, 54, 0.4);
+  box-shadow: var(--shadow-hover);
 }
 
 .reset-dates::after,
@@ -288,11 +273,10 @@
   background: var(--gradient-primary);
   color: white;
   border-color: transparent;
-  box-shadow: 0 4px 10px rgba(226, 54, 54, 0.3);
 }
 
 .calendar-day.today {
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-accent-faded);
   position: relative;
 }
 
@@ -317,17 +301,18 @@
 }
 
 .calendar-day.preview-in-range {
-  background: rgba(226, 54, 54, 0.1);
+  background: var(--color-accent-faded);
   border-radius: 0;
   width: 100%;
-  transition: background-color 0.1s ease;
+  transition: background-color 0s ease;
 }
 
 .calendar-day.preview-end-date {
-  background: rgba(226, 54, 54, 0.2);
+  background: var(--color-accent);
   border-radius: 0 50% 50% 0;
-  color: var(--color-text-light);
+  color: var(--color-text-dark);
   position: relative;
+  transition: transform 0s ease;
 }
 
 .calendar-day.preview-end-date::after {
@@ -338,6 +323,5 @@
   right: 0;
   bottom: 0;
   border-radius: 0 50% 50% 0;
-  border: 1px dashed rgba(226, 54, 54, 0.5);
   pointer-events: none;
 }

@@ -25,6 +25,9 @@ foreach ($voyages_array as $voyage) {
     $voyages[$voyage['id']] = $voyage;
 }
 
+// Récupérer la catégorie sélectionnée
+$category = isset($_GET['category']) ? $_GET['category'] : 'all';
+
 // Traitement de la recherche
 $recherche = isset($_GET['recherche']) ? trim($_GET['recherche']) : '';
 $date_debut = isset($_GET['date_debut']) ? $_GET['date_debut'] : '';
@@ -33,6 +36,9 @@ $budget = isset($_GET['budget']) ? (int) $_GET['budget'] : 0;
 
 // Construction des paramètres de recherche pour les liens de pagination
 $search_params = '';
+if (!empty($category) && $category != 'all') {
+    $search_params .= '&category=' . urlencode($category);
+}
 if (!empty($recherche)) {
     $search_params .= '&recherche=' . urlencode($recherche);
 }
@@ -48,13 +54,27 @@ if ($budget > 0) {
 
 // Filtrer les voyages selon les critères de recherche
 $voyages_filtered = $voyages;
-if (!empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0) {
-    $voyages_filtered = array_filter($voyages, function ($voyage) use ($recherche, $date_debut, $date_fin, $budget) {
+if (!empty($recherche) || !empty($date_debut) || !empty($date_fin) || $budget > 0 || ($category != 'all')) {
+    $voyages_filtered = array_filter($voyages, function ($voyage) use ($recherche, $date_debut, $date_fin, $budget, $category) {
         $titre_match = empty($recherche) || stripos($voyage['titre'], $recherche) !== false;
         $budget_match = $budget <= 0 || $voyage['prix'] <= $budget;
+        
+        // Filtrer par catégorie si une catégorie spécifique est sélectionnée
+        $category_match = true;
+        if ($category != 'all') {
+            $category_match = false;
+            if (isset($voyage['categories'])) {
+                foreach ($voyage['categories'] as $cat) {
+                    if (strtolower($cat) == strtolower($category)) {
+                        $category_match = true;
+                        break;
+                    }
+                }
+            }
+        }
 
-        // Considérer la recherche comme réussie si le texte correspond et le budget est dans la plage
-        return $titre_match && $budget_match;
+        // Considérer la recherche comme réussie si le texte correspond et le budget est dans la plage et la catégorie correspond
+        return $titre_match && $budget_match && $category_match;
     });
 }
 
@@ -106,12 +126,15 @@ $best_voyages = array_slice($voyages, 0, 4);
                 <div class="search-container">
                     <form action="destination.php#toutes-destinations" method="GET" class="search-form">
                         <div class="search-tabs">
-                            <button type="button" class="search-tab active">Tous les voyages</button>
-                            <button type="button" class="search-tab">Aventures</button>
-                            <button type="button" class="search-tab">Expériences</button>
+                            <a href="?category=all#toutes-destinations" class="search-tab <?php echo ($category == 'all' || empty($category)) ? 'active' : ''; ?>">Tous les voyages</a>
+                            <a href="?category=aventure#toutes-destinations" class="search-tab <?php echo ($category == 'aventure') ? 'active' : ''; ?>">Aventures</a>
+                            <a href="?category=experience#toutes-destinations" class="search-tab <?php echo ($category == 'experience') ? 'active' : ''; ?>">Expériences</a>
+                            <div class="tab-indicator"></div>
+                            <input type="hidden" name="category" value="<?php echo htmlspecialchars($category); ?>">
                         </div>
 
                         <div class="search-fields-container">
+                            <div class="field-focus-indicator"></div>
                             <div class="search-field">
                                 <div class="field-icon">
                                     <img src="../img/svg/map-pin.svg" alt="Destination" class="field-icon-img">
@@ -121,13 +144,12 @@ $best_voyages = array_slice($voyages, 0, 4);
                                     <input type="search" id="destination-search" name="recherche"
                                         placeholder="Où voulez-vous aller?" value="<?= htmlspecialchars($recherche) ?>" autocomplete="off">
                                     
-                                    <!-- Ajout du conteneur de suggestions -->
                                     <div class="destination-suggestions" id="destination-suggestions">
                                         <div class="destination-suggestions-div">
                                             <h3>Suggestions de destinations</h3>
                                             
                                             <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/ny-icon.png" alt="New York Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>New York, États-Unis</h4>
                                                     <p>Célèbre pour des sites comme : Tour Stark, Central Park</p>
@@ -135,7 +157,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                             </div>
                                             
                                             <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/wakanda-icon.png" alt="Wakanda Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Wakanda, Afrique</h4>
                                                     <p>Pour sa technologie de pointe et culture unique</p>
@@ -143,7 +165,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                             </div>
                                             
                                             <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/asgard-icon.png" alt="Asgard Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Asgard, Royaume des Dieux</h4>
                                                     <p>Destination mythologique prisée</p>
@@ -151,7 +173,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                             </div>
                                             
                                             <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/xandar-icon.png" alt="Xandar Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Xandar, Nova Corps</h4>
                                                     <p>Célèbre pour des sites comme : Bibliothèque Antique</p>
@@ -159,7 +181,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                             </div>
                                             
                                             <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"></div>
+                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/hala-icon.png" alt="Hala Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Hala, Planète Kree</h4>
                                                     <p>Pour ses spectacles d'arène et architecture</p>
@@ -177,7 +199,7 @@ $best_voyages = array_slice($voyages, 0, 4);
                                 <div class="field-content date-inputs-container">
                                     <div class="date-inputs">
                                         <div class="field-icon">
-                                            <img src="../img/svg/calendar.svg" alt="Dates" class="field-icon-img">
+                                            <img src="../img/svg/arrival.svg" alt="Dates" class="field-icon-img">
                                         </div>
 
                                         <div class="field-content"> 
@@ -189,8 +211,8 @@ $best_voyages = array_slice($voyages, 0, 4);
                                     <div class="search-divider"></div>
 
                                     <div class="date-inputs">
-                                        <div class="field-icon">
-                                            <img src="../img/svg/calendar.svg" alt="Dates" class="field-icon-img">
+                                        <div class="field-icon date-fin-icon">
+                                            <img src="../img/svg/departure.svg" alt="Dates" class="field-icon-img">
                                         </div>
                                         <div class="field-content">
                                             <label for="date-inputs">Départ</label>
@@ -471,7 +493,7 @@ $best_voyages = array_slice($voyages, 0, 4);
 
             <?php if (empty($voyages_page)): ?>
                 <div class="no-results">
-                    <img src="../img/svg/search-not-found.svg" alt="Aucun résultat" class="no-results-icon">
+                    <img src="../img/svg/filter-empty.svg" alt="Aucun résultat" class="no-results-icon">
                     <h3>Aucune destination trouvée</h3>
                     <p>Essayez de modifier vos critères de recherche</p>
                     <a href="destination.php" class="btn-reset">Voir toutes les destinations</a>

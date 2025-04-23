@@ -26,26 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mettre à jour l'affichage des dates
   updateInputDisplay();
-  
- 
 
   // Écouteurs d'événements
-  dateDebutVisible.addEventListener("click", function() {
-    editMode = 'start';
+  dateDebutVisible.addEventListener("click", function () {
+    editMode = "start";
     toggleCalendar();
   });
-  
-  dateFinVisible.addEventListener("click", function() {
+
+  dateFinVisible.addEventListener("click", function () {
     // Si aucune date de début n'est sélectionnée, agir comme si on cliquait sur le champ de date de début
     if (!selectedStartDate) {
-      editMode = 'start';
+      editMode = "start";
       toggleCalendar();
       return;
     }
-    
-    editMode = 'end';
+
+    editMode = "end";
     toggleCalendar();
-    
+
     // Appliquer prévisualisation pour tous les jours après la date de début
     if (selectedStartDate) {
       setTimeout(() => {
@@ -53,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 100);
     }
   });
-  
+
   prevMonthBtn.addEventListener("click", showPreviousMonths);
   nextMonthBtn.addEventListener("click", showNextMonths);
 
@@ -80,8 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
         form.submit();
       }
     }
-
-    initCalendars();
   }
 
   // Fonction pour réinitialiser les dates
@@ -94,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Effacer les dates sélectionnées
     selectedStartDate = null;
     selectedEndDate = null;
-    editMode = 'start'; // Mode de sélection de date d'arrivée
+    editMode = "start"; // Mode de sélection de date d'arrivée
 
     // Effacer les valeurs des champs
     dateDebutInput.value = "";
@@ -111,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e) {
       // Ne pas fermer le calendrier lors de la réinitialisation
       initCalendars();
-      
+
       // Mettre à jour le message d'instruction
       updateSelectionMessage("Sélectionnez la date d'arrivée");
     }
@@ -170,11 +166,22 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderMonth(container, date) {
     // Mettre à jour le nom du mois
     const monthNames = [
-      "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre",
     ];
-    container.querySelector(".month-name").textContent = 
-      `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+    container.querySelector(".month-name").textContent = `${
+      monthNames[date.getMonth()]
+    } ${date.getFullYear()}`;
 
     // Récupérer la grille pour afficher les jours
     const grid = container.querySelector(".calendar-grid");
@@ -221,10 +228,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Vérifier si ce jour est dans le passé
       const isPastDay = currentDayDate < today;
-      
+
       // Vérifier si cette date est avant la date de début en mode édition de fin
-      const isBeforeStartDateInEndMode = editMode === 'end' && selectedStartDate && currentDayDate < selectedStartDate;
-      
+      const isBeforeStartDateInEndMode =
+        editMode === "end" &&
+        selectedStartDate &&
+        currentDayDate < selectedStartDate;
+
       if (isPastDay || isBeforeStartDateInEndMode) {
         dayElement.classList.add("past-day");
         // Rendre non-cliquable
@@ -237,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Ajouter des événements de survol pour l'aperçu de la plage sélectionnée
-        if ((selectedStartDate && !selectedEndDate) || editMode === 'end') {
+        if ((selectedStartDate && !selectedEndDate) || editMode === "end") {
           dayElement.addEventListener("mouseover", () => {
             // Afficher l'aperçu uniquement si la date survolée est après la date de début
             if (currentDayDate > selectedStartDate) {
@@ -280,36 +290,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function handleDayClick(date) {
-    if (editMode === 'end' && selectedStartDate) {
+    if (editMode === "end" && selectedStartDate) {
       // Mode édition de date de fin
       if (date < selectedStartDate) {
         // Si on clique sur une date avant la date d'arrivée, modifier la date d'arrivée
         selectedStartDate = date;
         selectedEndDate = null;
-        
+
         // Mettre à jour l'affichage
         updateSelectionMessage("Sélectionnez la date de fin");
-        
+
         // Réappliquer les aperçus
         renderCalendars();
         setTimeout(() => {
           applyEndDatePreview();
         }, 100);
-        
+
         return;
       }
-      
+
       // Empêcher de sélectionner la même date pour l'arrivée et le départ
       if (isSameDate(date, selectedStartDate)) {
         return; // Ignorer la sélection si c'est la même date
       }
-      
+
       // Mettre à jour la date de fin
       selectedEndDate = date;
-      
+
       // Mettre à jour les champs
       applyDates();
-      
+
       // Fermer le calendrier
       calendarDropdown.classList.remove("active");
       editMode = null;
@@ -334,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (isSameDate(date, selectedStartDate)) {
         return; // Ignorer la sélection si c'est la même date
       }
-      
+
       // Compléter la sélection
       selectedEndDate = date;
 
@@ -470,8 +480,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const [monthStr, yearStr] = monthName.split(" ");
 
       const monthNames = [
-        "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre",
       ];
       const monthIndex = monthNames.indexOf(monthStr);
       const year = parseInt(yearStr);
@@ -526,54 +546,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fonction pour prévisualiser les dates pour le mode d'édition de date de fin
   function applyEndDatePreview() {
-    if (editMode !== 'end' || !selectedStartDate) return;
-    
-    const allDays = document.querySelectorAll(".calendar-day:not(.empty):not(.past-day)");
-    
-    allDays.forEach((dayElement) => {
-      // Ignorer les jours vides
-      if (dayElement.classList.contains("empty")) return;
-
-      // Obtenir le numéro du jour
-      const dayNumber = parseInt(dayElement.textContent);
-      if (isNaN(dayNumber)) return;
-
-      // Trouver le conteneur de mois auquel appartient ce jour
-      const monthContainer = dayElement.closest(".month-container");
-      const monthName = monthContainer.querySelector(".month-name").textContent;
-      const [monthStr, yearStr] = monthName.split(" ");
-
-      const monthNames = [
-        "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-      ];
-      const monthIndex = monthNames.indexOf(monthStr);
-      const year = parseInt(yearStr);
-
-      if (monthIndex === -1 || isNaN(year)) return;
-
-      // Créer un objet date pour ce jour
-      const currentDate = new Date(year, monthIndex, dayNumber);
-      
-      // Ajouter les événements d'aperçu pour tous les jours après la date de début
-      if (currentDate > selectedStartDate) {
-        dayElement.addEventListener("mouseover", () => {
-          highlightRange(selectedStartDate, currentDate);
-        });
-
-        dayElement.addEventListener("mouseout", () => {
-          clearHighlights();
-          renderCalendars();
-        });
-
-        // Si c'est le jour juste après la date de début, simuler un survol
-        if (currentDate.getTime() === new Date(selectedStartDate.getTime() + 24*60*60*1000).getTime()) {
-          // Simuler un hover sur cette date pour montrer un aperçu initial
-          setTimeout(() => {
-            highlightRange(selectedStartDate, currentDate);
-          }, 50);
-        }
-      }
-    });
+    if (editMode !== "end" || !selectedStartDate) return;
   }
 });
