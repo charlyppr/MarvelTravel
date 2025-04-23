@@ -64,7 +64,7 @@
         "first_name": "Hello",
         "last_name": "Darling",
         "email": "hello@gmail.com",
-        "password": "$2y$10$NlrbELiUtNpbNURASjAMUel1EHi5rHwC2bfJQwvbVsNulLmgtfXZ6",
+        "password": "$2y$10$GlWrASqjfdzuOUDSFSLFduIf8zaRplEKyAQzz3qvYx588\/tYD09Wi",
         "date_naissance": "2025-03-12",
         "nationalite": "Asgardienne",
         "role": "user",
@@ -72,6 +72,6 @@
         "date_inscription": "2025-04-01 12:02:37",
         "blocked": false,
         "vip": true,
-        "last_login": "2025-04-22 19:39:08"
+        "last_login": "2025-04-23 01:12:24"
     }
 ]

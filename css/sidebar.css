@@ -277,7 +277,6 @@
     justify-content: center;
     z-index: 3;
     border: 2px solid var(--sidebar-background);
-    animation: pulse 2s infinite;
 }
 
 /* ===== QUICK LINKS ===== */

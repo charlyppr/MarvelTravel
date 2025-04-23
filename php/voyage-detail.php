@@ -43,7 +43,6 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
 
     <link rel="stylesheet" href="../css/theme.css" id="theme">
 
-    <link rel="stylesheet" href="../css/destination.css">
     <link rel="stylesheet" href="../css/voyage-detail.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>

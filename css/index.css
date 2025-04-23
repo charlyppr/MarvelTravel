@@ -1,367 +1,346 @@
-/* ------------------------- GENERAL ------------------------- */
-
-.landing, .partenaires, .pourquoi-nous, .destinations, .comment {
-    margin-bottom: 150px;
+.comment,
+.destinations,
+.landing,
+.partenaires,
+.pourquoi-nous {
+  margin-bottom: 150px;
 }
 
-/* ------------------------- PREMIERE PAGE ------------------------- */
-
-
-
 .landing-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 150px;
-    margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 150px;
+  margin-top: 100px;
 }
 
 .hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 700px;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero-text h1 {
-    text-transform: uppercase;
-    font-family: Marvel;
-    font-weight: normal;
-    font-size: 7rem;
-    color: var(--couleur-secondaire);
-    z-index: 1;
-    letter-spacing: 2px;
-
-    text-shadow: 0 -2px 10px var(--couleur-secondaire),
-                0 0 60px rgba(238, 102, 102, 0.4),
-                0 0 80px rgba(141, 254, 2, 0.4);
-
+  text-transform: uppercase;
+  font-family: Marvel;
+  font-weight: 400;
+  font-size: 7rem;
+  color: var(--couleur-secondaire);
+  z-index: 1;
+  letter-spacing: 2px;
+  text-shadow: 0 -2px 10px var(--couleur-secondaire),
+    0 0 60px rgba(238, 102, 102, 0.4), 0 0 80px rgba(141, 254, 2, 0.4);
 }
 
 .flou {
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    opacity: .7;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  opacity: 0.7;
 }
 
 .pierre {
-    position: absolute;
-    max-width: 100%;
-    height: auto;
-    transition: transform 0.1s ease-out;
-    transform-origin: center;
+  position: absolute;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.1s ease-out;
+  transform-origin: center;
 }
 
 .rouge {
-    margin-top: 19em;
-    max-width: 100%;
-    z-index: 2;
+  margin-top: 19em;
+  max-width: 100%;
+  z-index: 2;
 }
 
 .bleu {
-    margin-top: 10em;
-    margin-right: 60em;
+  margin-top: 10em;
+  margin-right: 60em;
 }
 
 .vert {
-    margin-bottom: 15em;
-    margin-right: 45em;
-    z-index: -1;
+  margin-bottom: 15em;
+  margin-right: 45em;
+  z-index: -1;
 }
 
 .violet {
-    margin-bottom: 15em;
-    margin-left: 45em;
-    z-index: 2;
+  margin-bottom: 15em;
+  margin-left: 45em;
+  z-index: 2;
 }
 
 .orange {
-    margin-top: 10em;
-    margin-left: 50em;
+  margin-top: 10em;
+  margin-left: 50em;
 }
 
 .more-text {
-    text-transform: uppercase;
-    font-weight: 200;
+  text-transform: uppercase;
+  font-weight: 200;
 }
 
 .more-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 15px;
-    color: var(--couleur-primaire);
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--couleur-primaire);
+  cursor: pointer;
 }
 
 .more-svg {
-    animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-}
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-/* ------------------------- PARTENAIRES ------------------------- */
+  50% {
+    transform: translateY(-5px);
+  }
+}
 
 .companie-logo-container {
-    display: flex;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%; 
-    gap: 150px;
-    margin: 5em 0;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  gap: 150px;
+  margin: 5em 0;
 }
-  
-.companie-logo {
-    height: 100px;
-    filter: saturate(0);
 
-    transition: ease-in-out .3s;
+.companie-logo {
+  height: 100px;
+  filter: saturate(0);
+  transition: ease-in-out 0.3s;
 }
 
 .companie-logo:hover {
-    filter: saturate(1);
+  filter: saturate(1);
 }
-
-
-/* ------------------------- POURQUOI NOUS ------------------------- */
 
 .pourquoi-nous-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4em;
 }
 
-
-.pourquoi-nous-text{
-    margin: 0 10%;
+.pourquoi-nous-text {
+  margin: 0 10%;
 }
-
-
-/* ------------------------- DESTINATIONS ------------------------- */
 
 .card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    max-width: 250px;
-    height: auto;
-    box-shadow: 0px 0px 20px #f2dbaf30;
-    transition: transform 0.2s linear;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  max-width: 250px;
+  height: auto;
+  box-shadow: 0 0 20px #f2dbaf30;
+  transition: transform 0.2s linear;
 }
 
 .card img {
-    border-radius: 20px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all ease-in-out .3s;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all ease-in-out 0.3s;
 }
 
 .card:hover img {
-    transform: scale(1.04);
+  transform: scale(1.04);
 }
 
 .destinations-exemples {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin: 0 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 50px;
 }
 
-
 .destinations-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4em;
 }
 
 .destinations-exemples .ville {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: var(--couleur-secondaire);
-    font-size: 1.2rem;
-    padding: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: var(--couleur-secondaire);
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
 .destinations-exemples .film {
-    position: absolute;
-    color: var(--couleur-primaire);
-    font-family: 'Marvel', sans-serif;
-    font-size: 2.5em;
-    text-align: center;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-
+  position: absolute;
+  color: var(--couleur-primaire);
+  font-family: Marvel, sans-serif;
+  font-size: 2.5em;
+  text-align: center;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
 }
 
-.destinations-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: 0 10%;
+.destinations-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 0 10%;
 }
 
-
-/* ------------------------- COMMENT CA MARCHE ------------------------- */
-
-.comment-all{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10em;
+.comment-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10em;
 }
 
-.comment-text{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin: 0 10%;
+.comment-text {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 0 10%;
 }
 
-.etapes{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+.etapes {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .etapes div {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .etapes span {
-    font-size: 1rem;
-    font-weight: 200;
-    color: var(--couleur-secondaire);
+  font-size: 1rem;
+  font-weight: 200;
+  color: var(--couleur-secondaire);
 }
 
 .etapes .chiffre {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--couleur-primaire);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--couleur-primaire);
 }
 
 .decouvrir-button {
-    font-family: 'PP Formula Bold', sans-serif;
-    padding: 15px 20px;
-    border-radius: 15px;
-    background-color: var(--couleur-primaire);
-    color: var(--couleur-tertiaire);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px #f2dbafcb;
-
-    transition: all 0.3s ease-out;
+  font-family: "PP Formula Bold", sans-serif;
+  padding: 15px 20px;
+  border-radius: 15px;
+  background-color: var(--couleur-primaire);
+  color: var(--couleur-tertiaire);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 0 #f2dbafcb;
+  transition: all 0.3s ease-out;
 }
 
 .decouvrir-button:hover {
-    background-color: var(--couleur-secondaire);
-    color: var(--couleur-accent);
-    transform: translate(0, -5px);
-    box-shadow: 0px 0px 10px #f2dbafcb;
+  background-color: var(--couleur-secondaire);
+  color: var(--couleur-accent);
+  transform: translate(0, -5px);
+  box-shadow: 0 0 10px #f2dbafcb;
 }
 
 .decouvrir-button:active {
-    transform: translate(0, 0);
-    box-shadow: 0px 0px 0px #f2dbafcb;
-
-    transition: all 0.2s ease-out;
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 #f2dbafcb;
+  transition: all 0.2s ease-out;
 }
 
-
 @media screen and (max-width: 768px) {
-    .landing {
-        height: 100vh;
-    }
+  .landing {
+    height: 100vh;
+  }
 
-    .landing-container {
-        justify-content: center !important;
-        height: 100%;
-        gap: 0px !important;
-    }
+  .landing-container {
+    justify-content: center !important;
+    height: 100%;
+    gap: 0 !important;
+  }
 
-    .hero-text h1 {
-        font-size: 4em !important;
-        padding: 20px;
-    }
+  .hero-text h1 {
+    font-size: 4em !important;
+    padding: 20px;
+  }
 
-    .more-text {
-        font-size: 12px;
-    }
+  .more-text {
+    font-size: 12px;
+  }
 
-    .companie-logo-container {
-        gap: 70px;
-    }
+  .companie-logo-container {
+    gap: 70px;
+  }
 
-    .companie-logo {
-        height: 70px;
-    }
+  .companie-logo {
+    height: 70px;
+  }
 
-    .card {
-        max-width: 200px;
-    }
+  .card {
+    max-width: 200px;
+  }
 
-    .destinations-exemples .film {
-        font-size: 1.5em;
-    }
+  .destinations-exemples .film {
+    font-size: 1.5em;
+  }
 
-    .destinations-text{
-        gap: 10px;
-    }
+  .destinations-text {
+    gap: 10px;
+  }
 
-    .comment-all{
-        gap: 5em;
-    }
+  .comment-all {
+    gap: 5em;
+  }
 
-    .comment-text{
-        gap: 30px;
-    }
+  .comment-text {
+    gap: 30px;
+  }
 
-    .etapes{
-        gap: 20px;
-    }
+  .etapes {
+    gap: 20px;
+  }
 
-    .etapes .chiffre {
-        font-size: 1.5rem;
-    }
+  .etapes .chiffre {
+    font-size: 1.5rem;
+  }
 
-    .etapes span {
-        font-size: 0.8rem;
-    }
+  .etapes span {
+    font-size: 0.8rem;
+  }
 
-    .decouvrir-button {
-        font-size: 12px;
-    }
+  .decouvrir-button {
+    font-size: 12px;
+  }
 }
