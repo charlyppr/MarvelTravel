@@ -29,253 +29,199 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Fonction pour extraire le prix d'un élément (pour la page de voyages)
-    function getPrice(element) {
-        const priceElement = element.querySelector('.price');
-        if (priceElement) {
-            const priceText = priceElement.textContent.trim();
-            return parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-        }
-        return 0;
+    // Fonction de tri pour les voyages
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+            sortVoyages(this.value);
+        });
     }
-
-    // Fonction pour extraire la date d'un élément
-    function getDate(element) {
-        const dateElement = element.querySelector('.dates, .date');
-        if (dateElement) {
-            const dateText = dateElement.textContent.trim();
-            if (isAdminPage) {
-                // Format pour la page d'administrateur: "YYYY-MM-DD" ou texte
-                return dateText;
+    
+    function sortVoyages(sortType) {
+        // Déterminer si on est en vue cartes ou en vue tableau
+        const isCardView = voyagesContainer && voyagesContainer.children.length > 0;
+        const isTableView = tableContainer && tableContainer.querySelector('tbody') && 
+                        tableContainer.querySelector('tbody').children.length > 0;
+        
+        if (!isCardView && !isTableView) return;
+        
+        let elements = isCardView 
+            ? Array.from(voyagesContainer.querySelectorAll('.voyage-card')) 
+            : Array.from(tableContainer.querySelector('tbody').querySelectorAll('tr'));
+            
+        elements.sort(function(a, b) {
+            switch (sortType) {
+                case 'recent':
+                    // Tri par date d'achat (plus récent en premier)
+                    const dateA = a.dataset.dateAchat || '';
+                    const dateB = b.dataset.dateAchat || '';
+                    return dateB.localeCompare(dateA);
+                
+                case 'price-asc':
+                case 'price-desc':
+                    // Tri par prix
+                    let priceA, priceB;
+                    
+                    if (isCardView) {
+                        priceA = parseFloat(a.querySelector('.price').textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+                        priceB = parseFloat(b.querySelector('.price').textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+                    } else {
+                        priceA = parseFloat(a.querySelector('.price').textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+                        priceB = parseFloat(b.querySelector('.price').textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+                    }
+                    
+                    return sortType === 'price-asc' ? priceA - priceB : priceB - priceA;
+                
+                case 'date-asc':
+                case 'date-desc':
+                    // Tri par date de début du voyage
+                    let dateDebutA, dateDebutB;
+                    
+                    if (isCardView) {
+                        dateDebutA = a.querySelector('.dates').textContent.trim().split(' au ')[0];
+                        dateDebutB = b.querySelector('.dates').textContent.trim().split(' au ')[0];
+                    } else {
+                        dateDebutA = a.querySelector('.dates').textContent.trim().split(' au ')[0];
+                        dateDebutB = b.querySelector('.dates').textContent.trim().split(' au ')[0];
+                    }
+                    
+                    // Convertir les dates (format DD/MM/YYYY) en objets Date
+                    const datePartsA = dateDebutA.split('/');
+                    const datePartsB = dateDebutB.split('/');
+                    
+                    if (datePartsA.length === 3 && datePartsB.length === 3) {
+                        const dateObjA = new Date(datePartsA[2], datePartsA[1] - 1, datePartsA[0]);
+                        const dateObjB = new Date(datePartsB[2], datePartsB[1] - 1, datePartsB[0]);
+                        
+                        return sortType === 'date-asc' 
+                            ? dateObjA.getTime() - dateObjB.getTime()
+                            : dateObjB.getTime() - dateObjA.getTime();
+                    }
+                    
+                    return 0;
+                
+                default:
+                    return 0;
+            }
+        });
+        
+        // Réorganiser les éléments selon le tri
+        if (isCardView) {
+            elements.forEach(el => voyagesContainer.appendChild(el));
+        } else if (isTableView) {
+            const tbody = tableContainer.querySelector('tbody');
+            elements.forEach(el => tbody.appendChild(el));
+        }
+    }
+    
+    // Fonction de recherche
+    if (searchInput) {
+        // Événement de saisie dans le champ de recherche
+        searchInput.addEventListener('input', performSearch);
+        
+        // Événement clic sur le bouton de recherche
+        if (searchButton) {
+            searchButton.addEventListener('click', function() {
+                performSearch();
+            });
+        }
+        
+        // Événement clic sur le bouton de réinitialisation
+        if (resetSearchButton) {
+            resetSearchButton.addEventListener('click', function() {
+                searchInput.value = '';
+                performSearch();
+            });
+        }
+        
+        // Événement touche Entrée dans le champ de recherche
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+                e.preventDefault();
+            }
+        });
+    }
+    
+    function performSearch() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        // Déterminer si on est en vue cartes ou en vue tableau
+        const isCardView = voyagesContainer && voyagesContainer.children.length > 0;
+        const isTableView = tableContainer && tableContainer.querySelector('tbody') && 
+                        tableContainer.querySelector('tbody').children.length > 0;
+        
+        if (!isCardView && !isTableView) return;
+        
+        let elements = isCardView 
+            ? Array.from(voyagesContainer.querySelectorAll('.voyage-card')) 
+            : Array.from(tableContainer.querySelector('tbody').querySelectorAll('tr'));
+        
+        let matchCount = 0;
+        
+        // Parcourir tous les éléments et les filtrer
+        elements.forEach(function(element) {
+            let match = false;
+            
+            if (searchTerm === '') {
+                // Si le terme de recherche est vide, afficher tous les éléments
+                match = true;
             } else {
-                // Format pour la page de voyages: "DD/MM/YYYY"
-                const dateMatch = dateText.match(/(\d{2}\/\d{2}\/\d{4})/);
-                if (dateMatch) {
-                    const [day, month, year] = dateMatch[1].split('/');
-                    return new Date(year, month - 1, day);
+                // Rechercher dans le contenu textuel de l'élément
+                const content = element.textContent.toLowerCase();
+                
+                // Vérifier si le terme de recherche est présent dans le contenu
+                if (content.includes(searchTerm)) {
+                    match = true;
                 }
             }
-        }
-        return isAdminPage ? '' : new Date(0);
-    }
-
-    // Fonction pour extraire le nom d'un élément (pour la page d'administrateur)
-    function getName(element) {
-        const nameElement = element.querySelector('.nom');
-        return nameElement ? nameElement.textContent.trim().toLowerCase() : '';
-    }
-
-    // Fonction pour extraire la date d'achat/inscription d'un élément
-    function getPurchaseDate(element) {
-        if (isAdminPage) {
-            const dateElement = element.querySelector('.date');
-            if (dateElement) {
-                const dateText = dateElement.textContent.trim();
-                // Format YYYY-MM-DD
-                return dateText;
-            }
-            return '';
-        } else {
-            const recentBadge = element.querySelector('.badge-new');
-            return recentBadge ? new Date() : new Date(0);
-        }
-    }
-
-    // Fonction pour trier les éléments
-    function sortElements(sortValue) {
-        const container = isAdminPage ? tableContainer : (voyagesContainer || tableContainer);
-        if (!container) return;
-
-        const elements = isAdminPage ? 
-                        Array.from(container.querySelectorAll('tbody tr')) : 
-                        Array.from(container.children);
-        if (elements.length === 0) return;
-
-        elements.sort((a, b) => {
-            switch (sortValue) {
-                case 'price-asc':
-                    return getPrice(a) - getPrice(b);
-                case 'price-desc':
-                    return getPrice(b) - getPrice(a);
-                case 'date-asc':
-                    if (isAdminPage) {
-                        return getDate(a).localeCompare(getDate(b));
-                    } else {
-                        return getDate(a) - getDate(b);
-                    }
-                case 'date-desc':
-                    if (isAdminPage) {
-                        return getDate(b).localeCompare(getDate(a));
-                    } else {
-                        return getDate(b) - getDate(a);
-                    }
-                case 'name-asc':
-                    return getName(a).localeCompare(getName(b));
-                case 'name-desc':
-                    return getName(b).localeCompare(getName(a));
-                case 'recent':
-                default:
-                    if (isAdminPage) {
-                        return getPurchaseDate(b).localeCompare(getPurchaseDate(a));
-                    } else {
-                        return getPurchaseDate(b) - getPurchaseDate(a);
-                    }
-            }
-        });
-
-        // Réorganiser les éléments dans le DOM
-        const parent = isAdminPage ? container.querySelector('tbody') : container;
-        elements.forEach(element => {
-            parent.appendChild(element);
-        });
-    }
-
-    // Fonction pour rechercher des éléments
-    function searchElements(searchTerm) {
-        searchTerm = searchTerm.toLowerCase().trim();
-        
-        // Mise à jour de l'affichage du terme recherché
-        if (searchTermDisplay) {
-            searchTermDisplay.textContent = searchTerm;
-        }
-        
-        if (!searchTerm) {
-            // Si la recherche est vide, afficher tous les éléments
-            showAllElements();
-            return;
-        }
-
-        const container = isAdminPage ? tableContainer : (voyagesContainer || tableContainer);
-        if (!container) return;
-
-        const elements = isAdminPage ? 
-                        Array.from(container.querySelectorAll('tbody tr')) : 
-                        Array.from(container.querySelectorAll('.voyage-card, tbody tr'));
-        let visibleCount = 0;
-
-        elements.forEach(element => {
-            let isMatch = false;
             
-            if (isAdminPage) {
-                // Recherche pour la page d'administrateur
-                const nameElement = element.querySelector('.nom');
-                const name = nameElement ? nameElement.textContent.toLowerCase() : '';
-                const emailAttr = element.getAttribute('data-email');
-                const email = emailAttr ? emailAttr.toLowerCase() : '';
-                
-                isMatch = name.includes(searchTerm) || email.includes(searchTerm);
-            } else {
-                // Recherche pour la page de voyages
-                const destinationElement = element.querySelector('.destination');
-                const destination = destinationElement ? destinationElement.textContent.toLowerCase() : '';
-                
-                const datesElement = element.querySelector('.dates');
-                const dates = datesElement ? datesElement.textContent.toLowerCase() : '';
-                
-                const travelersElement = element.querySelector('.travelers');
-                const travelers = travelersElement ? travelersElement.textContent.toLowerCase() : '';
-                
-                isMatch = destination.includes(searchTerm) || 
-                          dates.includes(searchTerm) || 
-                          travelers.includes(searchTerm);
-            }
-            
-            // Afficher ou masquer l'élément
-            if (isMatch) {
+            // Afficher ou masquer l'élément selon qu'il correspond ou non
+            if (match) {
                 element.style.display = '';
-                visibleCount++;
+                matchCount++;
             } else {
                 element.style.display = 'none';
             }
         });
         
-        // Afficher un message si aucun résultat
-        if (visibleCount === 0 && searchNoResults) {
-            container.style.display = 'none';
-            searchNoResults.style.display = 'flex';
-        } else {
-            if (container) container.style.display = '';
-            if (searchNoResults) searchNoResults.style.display = 'none';
-        }
-        
-        // Mettre à jour le compteur
-        if (voyageCountElement) {
-            if (isAdminPage) {
-                voyageCountElement.textContent = `${visibleCount} voyageurs`;
+        // Afficher ou masquer le message "aucun résultat"
+        if (searchNoResults) {
+            if (matchCount === 0 && searchTerm !== '') {
+                searchNoResults.style.display = 'flex';
+                if (searchTermDisplay) {
+                    searchTermDisplay.textContent = searchTerm;
+                }
+                
+                // Masquer les conteneurs principaux
+                if (isCardView) voyagesContainer.style.display = 'none';
+                if (isTableView) tableContainer.style.display = 'none';
             } else {
-                voyageCountElement.textContent = `${visibleCount} sur ${elements.length} au total`;
+                searchNoResults.style.display = 'none';
+                
+                // Afficher les conteneurs principaux
+                if (isCardView) voyagesContainer.style.display = '';
+                if (isTableView) tableContainer.style.display = '';
             }
         }
-    }
-    
-    // Fonction pour réinitialiser la recherche
-    function showAllElements() {
-        const container = isAdminPage ? tableContainer : (voyagesContainer || tableContainer);
-        if (!container) return;
         
-        // Afficher tous les éléments
-        const selector = isAdminPage ? 'tbody tr' : '.voyage-card, tbody tr';
-        const elements = container.querySelectorAll(selector);
-        elements.forEach(element => {
-            element.style.display = '';
-        });
-        
-        // Masquer le message "aucun résultat"
-        if (searchNoResults) searchNoResults.style.display = 'none';
-        
-        // Afficher à nouveau le conteneur principal
-        if (container) container.style.display = '';
-        
-        // Réinitialiser le champ de recherche
-        if (searchInput) searchInput.value = '';
-        
-        // Mettre à jour le compteur
+        // Mettre à jour le compteur de voyages visibles
         if (voyageCountElement) {
-            if (isAdminPage) {
-                voyageCountElement.textContent = `${elements.length} voyageurs`;
+            if (searchTerm === '') {
+                // Si pas de recherche, afficher le total
+                if (isAdminPage) {
+                    const totalUsers = elements.length;
+                    voyageCountElement.textContent = `${totalUsers} voyageurs`;
+                } else {
+                    voyageCountElement.textContent = `${elements.length} au total`;
+                }
             } else {
-                voyageCountElement.textContent = `${elements.length} au total`;
+                // Si recherche active, afficher le nombre de résultats
+                if (isAdminPage) {
+                    voyageCountElement.textContent = `${matchCount} voyageur${matchCount > 1 ? 's' : ''} trouvé${matchCount > 1 ? 's' : ''}`;
+                } else {
+                    voyageCountElement.textContent = `${matchCount} résultat${matchCount > 1 ? 's' : ''}`;
+                }
             }
         }
-    }
-
-    // Initialiser le tri au chargement de la page
-    if (sortSelect) {
-        sortElements(sortSelect.value || 'recent');
-    }
-
-    // Gérer le changement de tri
-    if (sortSelect) {
-        sortSelect.addEventListener('change', function() {
-            sortElements(this.value);
-        });
-    }
-    
-    // Gérer la recherche
-    if (searchInput) {
-        // Rechercher en temps réel à chaque saisie
-        searchInput.addEventListener('input', function() {
-            searchElements(this.value);
-        });
-        
-        // Rechercher lors du clic sur le bouton
-        if (searchButton) {
-            searchButton.addEventListener('click', function() {
-                searchElements(searchInput.value);
-            });
-        }
-        
-        // Gérer la touche Entrée dans le champ de recherche
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                searchElements(this.value);
-            }
-        });
-    }
-    
-    // Gérer le bouton de réinitialisation de la recherche
-    if (resetSearchButton) {
-        resetSearchButton.addEventListener('click', showAllElements);
     }
 }); 

@@ -616,7 +616,7 @@ function createTicketHTML(container, data) {
             <div class="eco-info">
               <svg class="eco-icon" viewBox="0 0 24 24"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" /></svg>
               <div class="eco-text">
-                En choisissant nos voyages, vous contribuez à une action <strong>éco-responsable</strong> grâce à <strong>Infinity Green</strong>, notre programme dédié à l'environnement. Vous participez activement à la réduction de l'impact écologique de vos trajets interdimensionnels.
+                <strong>En choisissant nos voyages</strong>, vous contribuez à une action <strong>éco-responsable</strong> grâce à <strong>Infinity Green</strong>, notre programme dédié à l'environnement. Vous participez activement à la réduction de l'impact écologique de vos trajets interdimensionnels, en soutenant des initiatives telles que la <strong>reforestation wakandaise</strong> et le <strong>recyclage énergétique</strong>, tout en profitant de technologies vertes innovantes.
               </div>
             </div>
           </div>

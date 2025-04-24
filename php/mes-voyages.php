@@ -148,6 +148,14 @@ $displayed_voyages = 0;
                                 }
 
                                 $displayed_voyages = count($user_commandes);
+                                
+                                // Préparation pour le tri par défaut (Plus récents)
+                                // Tri des commandes par date d'achat (plus récent en premier)
+                                usort($user_commandes, function($a, $b) {
+                                    $time_a = isset($a['date_achat']) ? strtotime($a['date_achat']) : 0;
+                                    $time_b = isset($b['date_achat']) ? strtotime($b['date_achat']) : 0;
+                                    return $time_b - $time_a; // Ordre décroissant (plus récent en premier)
+                                });
                             }
                         }
                         ?>
@@ -178,7 +186,7 @@ $displayed_voyages = 0;
                                                 $row_class = 'row-highlight';
                                             }
                                             ?>
-                                            <tr class="<?php echo $row_class; ?>">
+                                            <tr class="<?php echo $row_class; ?>" data-date-achat="<?php echo isset($commande['date_achat']) ? $commande['date_achat'] : ''; ?>">
                                                 <td class="destination">
                                                     <?php echo htmlspecialchars($commande['voyage']); ?>
                                                     <?php if ($commande['est_recent']): ?>
@@ -231,7 +239,8 @@ $displayed_voyages = 0;
                                     }
                                     ?>
                                     <a href="commande.php?transaction=<?php echo $commande['transaction']; ?>"
-                                        class="voyage-card <?php echo $card_class; ?>">
+                                        class="voyage-card <?php echo $card_class; ?>" 
+                                        data-date-achat="<?php echo isset($commande['date_achat']) ? $commande['date_achat'] : ''; ?>">
                                         <div class="voyage-header">
                                             <h3 class="destination">
                                                 <?php echo htmlspecialchars($commande['voyage']); ?>
