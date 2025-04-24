@@ -259,6 +259,15 @@ $displayed_voyages = 0;
                                                     <span class="countdown">Départ dans <?php echo $commande['jours_restants']; ?>
                                                         jour<?php echo $commande['jours_restants'] > 1 ? 's' : ''; ?></span>
                                                 <?php endif; ?>
+                                                <?php if ($commande['status'] == 'accepted'): ?>
+                                                <span class="ticket-action">
+                                                    <button class="generate-ticket-btn small" data-transaction="<?php echo $commande['transaction']; ?>"
+                                                        title="Télécharger mon billet">
+                                                        <img src="../img/svg/download.svg" alt="Billet">
+                                                        Billet
+                                                    </button>
+                                                </span>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="voyage-action">
                                                 Voir détails
@@ -302,6 +311,7 @@ $displayed_voyages = 0;
         </div>
     </div>
     <script src="../js/mes-voyages.js"></script>
+    <script src="../js/ticket-generator.js"></script>
 </body>
 
 </html>

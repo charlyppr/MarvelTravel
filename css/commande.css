@@ -177,6 +177,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: pulse 4s infinite;
   backdrop-filter: blur(5px);
+  border: none;
 }
 
 .reservation-details {
@@ -201,6 +202,14 @@
   color: var(--color-text-cream);
   position: relative;
   font-weight: 600;
+}
+
+.ticket-top-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  padding: 10px 15px;
 }
 
 .transaction-badge {
@@ -579,7 +588,6 @@
   transition: all var(--transition-medium);
   border: none;
   box-shadow: var(--shadow-button);
-  position: relative;
   overflow: hidden;
 }
 
@@ -640,8 +648,8 @@
 }
 
 .secondary-button img {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   filter: brightness(0) invert(1);
   opacity: 0.8;
   transition: transform var(--transition-fast);

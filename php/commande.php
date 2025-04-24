@@ -108,6 +108,12 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
                     <header class="reservation-header">
                         <div class="hero-banner" style="background-image: url('<?= htmlspecialchars($image_path) ?>')">
                             <div class="overlay">
+                                <?php if ($commande['status'] == 'accepted'): ?>
+                                <button class="action-button secondary-button generate-ticket-btn ticket-top-btn" data-transaction="<?= $commande['transaction'] ?>">
+                                    Télécharger mon billet
+                                    <img src="../img/svg/download.svg" alt="Télécharger">
+                                </button>
+                                <?php endif; ?>
                                 <div class="header-content">
                                     <div class="breadcrumb">
                                         <a href="mes-voyages.php" class="breadcrumb-link">
@@ -370,6 +376,12 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
                             Réserver un nouveau voyage
                             <img src="../img/svg/plane.svg" alt="Voyage">
                         </a>
+                        <?php if ($commande['status'] == 'accepted'): ?>
+                            <button class="action-button secondary-button generate-ticket-btn" data-transaction="<?= $commande['transaction'] ?>">
+                                Télécharger mon billet
+                                <img src="../img/svg/download.svg" alt="Télécharger">
+                            </button>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -377,5 +389,7 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
     </div>
 
 </body>
+
+<script src="../js/ticket-generator.js"></script>
 
 </html>

@@ -70,6 +70,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     // Message de succès
     $message = 'Vos préférences ont été enregistrées avec succès !';
 }
+
+// Traitement de l'exportation des données
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export_data'])) {
+    // Connexion à la base de données ou récupération depuis le fichier JSON
+    $json_file = '../json/users.json';
+    $users = [];
+
+    if (file_exists($json_file)) {
+        $users = json_decode(file_get_contents($json_file), true);
+    }
+
+    // Recherche de l'utilisateur connecté
+    $user_data = null;
+    foreach ($users as $user) {
+        if ($user['email'] === $_SESSION['email']) {
+            $user_data = $user;
+            break;
+        }
+    }
+
+    if ($user_data) {
+        // Suppression des données sensibles
+        unset($user_data['password']);
+
+        // Ajout des préférences d'accessibilité
+        $user_data['preferences'] = [
+            'theme' => $theme,
+            'highContrast' => $highContrast,
+            'fontSize' => $fontSize,
+            'dyslexicFont' => $dyslexicFont,
+            'reduceMotion' => $reduceMotion
+        ];
+
+        // Ajout de la date d'exportation
+        $user_data['export_date'] = date('Y-m-d H:i:s');
+
+        // Configuration des entêtes pour le téléchargement
+        header('Content-Type: application/json');
+        header('Content-Disposition: attachment; filename="marvel_travel_data_' . $user_data['last_name'] . '_' . date('Y-m-d') . '.json"');
+        header('Cache-Control: no-cache, no-store, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+
+        // Génération du JSON et envoi au navigateur
+        echo json_encode($user_data, JSON_PRETTY_PRINT);
+        exit;
+    } else {
+        $message = "Erreur : impossible de récupérer vos données.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -237,7 +287,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
                                 <div class="card-content">
                                     <div class="setting-group">
                                         <div class="setting-label">Télécharger mes données</div>
-                                        <button type="button" class="action-button download-button">
+                                        <button type="submit" name="export_data" value="1"
+                                            class="action-button download-button">
                                             <img src="../img/svg/download.svg" alt="Télécharger">
                                             <span>Exporter mes données</span>
                                         </button>
@@ -403,6 +454,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
         if (reduceMotionToggle) {
             reduceMotionToggle.addEventListener('change', function () {
                 document.body.classList.toggle('reduce-motion', this.checked);
+            });
+        }
+
+        // Gestion du bouton d'exportation des données
+        const downloadButton = document.querySelector('.download-button');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', function (e) {
+                // Empêcher le comportement par défaut
+                e.preventDefault();
+
+                // Créer un formulaire dédié pour l'exportation
+                const exportForm = document.createElement('form');
+                exportForm.method = 'POST';
+                exportForm.action = '';
+
+                const exportInput = document.createElement('input');
+                exportInput.type = 'hidden';
+                exportInput.name = 'export_data';
+                exportInput.value = '1';
+
+                exportForm.appendChild(exportInput);
+                document.body.appendChild(exportForm);
+                exportForm.submit();
             });
         }
     });

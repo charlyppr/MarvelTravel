@@ -387,40 +387,6 @@ body {
   transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
-  .confirmation-container {
-    padding: var(--spacing-md);
-  }
-
-  .confirmation-header h1 {
-    font-size: var(--font-size-xl);
-  }
-
-  .reservation-number {
-    flex-direction: column;
-    padding: var(--spacing-sm);
-  }
-
-  .detail-row {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .steps-list li {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .confirmation-actions {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .action-button {
-    width: 100%;
-  }
-}
-
 .payment-status {
   display: flex;
   align-items: center;
@@ -652,4 +618,38 @@ body {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   line-height: 1.5;
+}
+
+.ticket-qrcode {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.ticket-qrcode h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--color-text-light);
+}
+
+.qrcode-container {
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qrcode-image {
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+.qrcode-info {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: 8px;
 }

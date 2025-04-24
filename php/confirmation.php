@@ -277,6 +277,27 @@ if ($payment_validated) {
 // 11. Marquer cette page comme vue pour éviter les rechargements
 $_SESSION['confirmation_viewed'] = true;
 
+// 12. Préparer les données pour le QR code
+$qrCodeData = '';
+if ($payment_validated) {
+    // Créer une chaîne JSON avec les informations essentielles du voyage
+    $qrData = [
+        'reservation_id' => $reservation_id,
+        'voyage' => $voyage['titre'],
+        'client' => $_SESSION['first_name'] . ' ' . $_SESSION['last_name'],
+        'email' => $_SESSION['email'],
+        'date_debut' => $date_debut,
+        'date_fin' => $date_fin,
+        'nb_personne' => $nb_personne,
+        'montant' => $montant,
+        'transaction_id' => $transaction_id,
+        'timestamp' => time()
+    ];
+
+    // Convertir en JSON et encoder pour l'URL
+    $qrCodeData = urlencode(json_encode($qrData));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -291,9 +312,16 @@ $_SESSION['confirmation_viewed'] = true;
     <script src="../js/theme-loader.js"></script>
 
     <link rel="stylesheet" href="../css/theme.css" id="theme">
-
     <link rel="stylesheet" href="../css/confirmation.css">
+
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="../js/ticket-generator.js"></script>
+
 </head>
 
 <body>
@@ -419,13 +447,13 @@ $_SESSION['confirmation_viewed'] = true;
                 </div>
 
                 <div class="confirmation-actions">
-                    <a href="#" class="action-button download-button">
-                        <img src="../img/svg/download.svg" alt="Télécharger">
-                        Télécharger le récapitulatif
-                    </a>
                     <a href="destination.php" class="action-button home-button">
                         <img src="../img/svg/home.svg" alt="Accueil">
                         Retour à l'accueil
+                    </a>
+                    <a href="commande.php?transaction=<?php echo $transaction_id; ?>" class="action-button download-button">
+                        <img src="../img/svg/file-text.svg" alt="Voir détails">
+                        Voir le détail de ma commande
                     </a>
                 </div>
             </div>

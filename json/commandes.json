@@ -431,5 +431,125 @@
                 "total": 300
             }
         ]
+    },
+    {
+        "transaction": "1745611707682af086201634",
+        "reservation_id": "MT-DC312370",
+        "montant": 1349.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "b66f5494ba9ce0388e7901c26d18864f",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "Hala",
+        "date_debut": "2025-05-14",
+        "date_fin": "2025-05-23",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "669 889 273 1"
+            }
+        ],
+        "date_achat": "2025-04-24 20:18:42",
+        "options": [
+            {
+                "etape": "Arène de combat",
+                "option": "Spectacle de gladiateurs",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Observatoire stellaire",
+                "option": "Nuit sous les étoiles",
+                "prix_unitaire": 100,
+                "nb_participants": 1,
+                "total": 100
+            }
+        ]
+    },
+    {
+        "transaction": "cdf786add058ff72d16f4b53",
+        "reservation_id": "MT-EBCB1024",
+        "montant": 1369.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "1f184f531c850d5182f9dcef9219cfde",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "Hala",
+        "date_debut": "2025-05-19",
+        "date_fin": "2025-05-23",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "669 889 273 1"
+            }
+        ],
+        "date_achat": "2025-04-24 20:21:49",
+        "options": [
+            {
+                "etape": "Capitale Kree",
+                "option": "Visite du palais impérial",
+                "prix_unitaire": 70,
+                "nb_participants": 1,
+                "total": 70
+            },
+            {
+                "etape": "Observatoire stellaire",
+                "option": "Nuit sous les étoiles",
+                "prix_unitaire": 100,
+                "nb_participants": 1,
+                "total": 100
+            }
+        ]
+    },
+    {
+        "transaction": "51f7c8ff497b780a859cf4bc",
+        "reservation_id": "MT-E13AEB79",
+        "montant": 479.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "41b82750b020169ce36b04740b81629d",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-05-16",
+        "date_fin": "2025-05-22",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "669 889 273 1"
+            }
+        ],
+        "date_achat": "2025-04-24 20:23:24",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Central Park",
+                "option": "Balade à vélo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            }
+        ]
     }
 ]
