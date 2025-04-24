@@ -909,9 +909,8 @@
   justify-content: center;
   padding: var(--spacing-sm);
   background: var(--gradient-primary);
-  border-radius: var(--border-radius-md);
-  color: var(--color-text-cream);
-  text-decoration: none;
+  border-radius: var(--border-radius-lg);
+  color: var(--color-text-light);
   transition: all var(--transition-medium);
   border: none;
   cursor: pointer;

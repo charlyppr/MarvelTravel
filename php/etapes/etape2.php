@@ -447,7 +447,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 value="<?php echo htmlspecialchars($passport); ?>"
                                                 placeholder="XXX XXX XXX X" required>
                                         </div>
-                                        <div class="field-help">Format : XXX XXX XXX X (lettres)</div>>
+                                        <div class="field-help">Format : XXX XXX XXX X (lettres)</div>
                                     </div>
                                 </div>
                             </div>

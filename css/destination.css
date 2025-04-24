@@ -785,13 +785,11 @@
 
 .cta-container {
   position: relative;
-  z-index: 2;
   border-radius: var(--border-radius-lg);
-  padding: 60px;
+  padding: var(--spacing-xxl);
   text-align: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* backdrop-filter: blur(10px); */
+  border: 1px solid var(--color-accent-faded);
   box-shadow: var(--shadow-large);
   max-width: 900px;
   background-color: var(--color-card-bg);
@@ -831,7 +829,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   transition: all var(--transition-medium);
-  box-shadow: 0 5px 15px rgba(226, 54, 54, 0.3);
+  box-shadow: var(--shadow-field);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -857,7 +855,7 @@
 
 .cta-button:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(226, 54, 54, 0.4);
+  box-shadow: var(--shadow-hover);
 }
 
 .cta-button:hover::before {

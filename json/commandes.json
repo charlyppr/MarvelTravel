@@ -376,5 +376,60 @@
                 "total": 20
             }
         ]
+    },
+    {
+        "transaction": "38884fd8df8146bda9b79842",
+        "reservation_id": "MT-2C820F66",
+        "montant": 9944.91,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "9b65387793175a32f382b9a69bfba464",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-05-20",
+        "date_fin": "2025-05-23",
+        "nb_personne": 2,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "669 889 273 1"
+            },
+            {
+                "civilite": "Mme",
+                "nom": "Marmelat",
+                "prenom": "Paul",
+                "date_naissance": "2005-03-10",
+                "nationalite": "Xandarienne",
+                "passport": "573 857 835 7"
+            }
+        ],
+        "date_achat": "2025-04-23 23:22:27",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Musée Wakandais",
+                "prix_unitaire": 300,
+                "nb_participants": 1,
+                "total": 300
+            },
+            {
+                "etape": "Golden City",
+                "option": "Marché tribal",
+                "prix_unitaire": 250,
+                "nb_participants": 1,
+                "total": 250
+            },
+            {
+                "etape": "Lac de Vibranium",
+                "option": "Plongée sous-marine",
+                "prix_unitaire": 150,
+                "nb_participants": 2,
+                "total": 300
+            }
+        ]
     }
 ]

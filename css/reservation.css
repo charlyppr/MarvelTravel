@@ -16,7 +16,6 @@ body {
     flex-direction: column;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-xxl);
-    animation: slideDown 0.6s ease;
 }
 
 .breadcrumb {
@@ -295,7 +294,6 @@ body {
     border: 1px solid var(--color-accent-faded);
     margin-top: var(--spacing-sm);
     transition: all var(--transition-fast);
-    animation: slideUp 0.9s ease;
 }
 
 .info-title {
@@ -397,7 +395,6 @@ body {
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--color-accent-faded);
     transition: all var(--transition-medium);
-    animation: slideUp 0.9s ease;
 }
 
 .instructions-panel:hover {
@@ -568,23 +565,6 @@ body {
 }
 
 /* ===== STYLES SPÉCIFIQUES À L'ÉTAPE 1 ===== */
-/* Styles pour l'affichage de la destination */
-.booking-form-container {
-    animation: slideUp 0.7s ease;
-    border
-Shorthand property for setting border width, style, and color.
-Learn more
-Don't show: 1px solid var(--color-accent-faded);';
-    border
-Shorthand property for setting border width, style, and color.
-Learn more
-Don't show: 1px solid var(--color-accent-faded);';
-    border
-Shorthand property for setting border width, style, and color.
-Learn more
-Don't show: 1px solid var(--color-accent-faded);';
-}
-
 .destination-highlights {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
     position: absolute;
@@ -673,10 +653,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* ===== STYLES SPÉCIFIQUES À L'ÉTAPE 2 ===== */
-.travelers-form-container {
-    animation: slideUp 0.9s ease;
-}
-
 .travelers-form {
     display: flex;
     flex-direction: column;
@@ -761,10 +737,6 @@ select {
 }
 
 /* ===== STYLES SPÉCIFIQUES À L'ÉTAPE 3 ===== */
-.options-container {
-    animation: slideUp 0.9s ease;
-}
-
 .options-form {
     display: flex;
     flex-direction: column;
@@ -1067,7 +1039,6 @@ select {
 
 /* ===== STYLES SPÉCIFIQUES À L'ÉTAPE 4 ===== */
 .payment-container {
-    animation: slideUp 0.8s ease;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
@@ -1236,7 +1207,7 @@ select {
 
 .promo-message.error {
     display: block;
-    color: var(--color-error);
+    color: var(--color-text-light);
     background-color: var(--color-error-bg);
     border: 1px solid var(--color-error-border);
 }

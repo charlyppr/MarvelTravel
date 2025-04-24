@@ -263,13 +263,6 @@ textarea {
   display: none;
 }
 
-.container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
-
 .trait {
   width: 90%;
   height: 1px;
@@ -311,13 +304,6 @@ textarea {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-}
-
-.glass-effect {
-  background: var(--color-glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-effect-dark {
@@ -813,9 +799,9 @@ input:-webkit-autofill:focus {
   display: flex;
   flex-direction: column;
   padding: 50px 70px;
-  background-color: var(--couleur-secondaire);
   gap: 100px;
   z-index: 3;
+  transition: all var(--transition-slow);
 }
 
 .footer-top {
@@ -960,7 +946,7 @@ input:-webkit-autofill:focus {
 .close-modal {
   font-size: 24px;
   font-weight: bold;
-  color: var(--color-card-hover);
+  color: var(--color-text-light);
   cursor: pointer;
 }
 

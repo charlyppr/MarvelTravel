@@ -274,7 +274,7 @@
 }
 
 .card-header {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--color-card-hover);
   padding: var(--spacing-sm) var(--spacing-md);
   display: flex;
   align-items: center;
@@ -514,8 +514,8 @@
   padding: var(--spacing-xs);
   border-radius: var(--border-radius-sm);
   transition: all var(--transition-fast);
-  border: 1px solid rgba(242, 219, 175, 0.1);
-  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-card-hover);
+  background-color: var(--color-card-bg);
 }
 
 .option-item:hover {
@@ -606,14 +606,14 @@
 
 .primary-button {
   background: var(--gradient-primary);
-  color: var(--color-text-cream);
-  box-shadow: 0 4px 15px rgba(226, 54, 54, 0.3);
+  color: var(--color-text-light);
+  /* box-shadow: 0 4px 15px rgba(226, 54, 54, 0.3); */
 }
 
 .primary-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(226, 54, 54, 0.4);
-  background: var(--gradient-hover);
+  transform: translateY(-2px);
+  /* box-shadow: 0 6px 20px rgba(226, 54, 54, 0.4); */
+  background: var(--gradient-primary);
 }
 
 .primary-button img {
@@ -743,7 +743,7 @@
   display: flex;
   justify-content: space-between;
   padding: var(--spacing-xs) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--color-glass-dark);
   transition: background-color var(--transition-fast),
     transform var(--transition-fast);
 }

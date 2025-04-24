@@ -21,11 +21,12 @@
   gap: var(--spacing-md);
   padding: var(--spacing-lg);
   width: 100%;
-  max-width: 550px;
+  max-width: 560px;
   background-color: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   border: 1px solid var(--color-accent-faded);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */
+  animation: fadeIn 1s ease;
   transition: all 0.3s ease;
 }
 
@@ -75,6 +76,7 @@
   gap: 5px;
   /* margin-bottom: 1.5rem; */
   transition: transform 0.3s ease;
+  animation: fadeIn 1s ease;
 }
 
 .logo-container:hover {
