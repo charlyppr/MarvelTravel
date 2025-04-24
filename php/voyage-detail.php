@@ -122,28 +122,30 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
     </section>
 
     <?php if (!empty($voyage['galerie']) && is_array($voyage['galerie'])): ?>
-    <section class="gallery-carousel">
-        <div class="carousel-container">
-            <div class="carousel-track">
-                <?php foreach ($voyage['galerie'] as $index => $image): ?>
-                    <div class="carousel-slide">
-                        <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($voyage['titre']); ?> - Photo <?php echo $index + 1; ?>">
-                    </div>
-                <?php endforeach; ?>
+        <section class="gallery-carousel">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <?php foreach ($voyage['galerie'] as $index => $image): ?>
+                        <div class="carousel-slide">
+                            <img src="<?php echo htmlspecialchars($image); ?>"
+                                alt="<?php echo htmlspecialchars($voyage['titre']); ?> - Photo <?php echo $index + 1; ?>">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <button class="carousel-button prev-button">
+                    <img src="../img/svg/arrow-left.svg" alt="Précédent">
+                </button>
+                <button class="carousel-button next-button">
+                    <img src="../img/svg/arrow-right.svg" alt="Suivant">
+                </button>
+                <div class="carousel-dots">
+                    <?php foreach ($voyage['galerie'] as $index => $image): ?>
+                        <span class="dot <?php echo ($index === 0) ? 'active' : ''; ?>"
+                            data-index="<?php echo $index; ?>"></span>
+                    <?php endforeach; ?>
+                </div>
             </div>
-            <button class="carousel-button prev-button">
-                <img src="../img/svg/arrow-left.svg" alt="Précédent">
-            </button>
-            <button class="carousel-button next-button">
-                <img src="../img/svg/arrow-right.svg" alt="Suivant">
-            </button>
-            <div class="carousel-dots">
-                <?php foreach ($voyage['galerie'] as $index => $image): ?>
-                    <span class="dot <?php echo ($index === 0) ? 'active' : ''; ?>" data-index="<?php echo $index; ?>"></span>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
+        </section>
     <?php endif; ?>
 
     <div class="main-content">
@@ -454,62 +456,62 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
                 const nextButton = carousel.querySelector('.next-button');
                 const prevButton = carousel.querySelector('.prev-button');
                 const dots = Array.from(carousel.querySelectorAll('.dot'));
-                
+
                 let currentIndex = 0;
-                
+
                 // Function to move to specific slide
                 const moveToSlide = (index) => {
                     // Update track position for sliding animation
                     track.style.transform = `translateX(-${index * 100}%)`;
-                    
+
                     // Update active dot
                     dots.forEach((dot, i) => {
                         dot.classList.toggle('active', i === index);
                     });
-                    
+
                     // Update current index
                     currentIndex = index;
                 };
-                
+
                 // Event listeners for buttons
                 nextButton.addEventListener('click', () => {
                     const nextIndex = (currentIndex + 1) % slides.length;
                     moveToSlide(nextIndex);
                 });
-                
+
                 prevButton.addEventListener('click', () => {
                     const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
                     moveToSlide(prevIndex);
                 });
-                
+
                 // Event listeners for dots
                 dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
                         moveToSlide(index);
                     });
                 });
-                
+
                 // Auto-play functionality
                 let intervalId;
-                
+
                 const startAutoPlay = () => {
                     intervalId = setInterval(() => {
                         const nextIndex = (currentIndex + 1) % slides.length;
                         moveToSlide(nextIndex);
-                    }, 5000); // Change slide every 5 seconds
+                    }, 5000);
                 };
-                
+
                 const stopAutoPlay = () => {
                     clearInterval(intervalId);
                 };
-                
+
                 // Start autoplay
                 startAutoPlay();
-                
+
                 // Pause autoplay on hover
                 carousel.addEventListener('mouseenter', stopAutoPlay);
                 carousel.addEventListener('mouseleave', startAutoPlay);
-                
+
                 // Initialize first slide
                 moveToSlide(0);
             }
