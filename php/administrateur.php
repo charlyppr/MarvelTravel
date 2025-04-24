@@ -83,10 +83,9 @@ $displayed_users = 0;
                             <div class="view-options">
                                 <select id="sort-select" class="sort-select">
                                     <option value="recent">Plus récents</option>
+                                    <option value="oldest">Plus anciens</option>
                                     <option value="name-asc">Nom (A-Z)</option>
                                     <option value="name-desc">Nom (Z-A)</option>
-                                    <option value="date-asc">Date d'inscription (ancien)</option>
-                                    <option value="date-desc">Date d'inscription (récent)</option>
                                 </select>
                             </div>
                         </div>
@@ -285,9 +284,118 @@ $displayed_users = 0;
                     setTimeout(() => notification.remove(), 500);
                 }, 3000);
             }
+
+            // Fonctionnalité de tri
+            const sortSelect = document.getElementById('sort-select');
+            sortSelect.addEventListener('change', function() {
+                sortTable(this.value);
+            });
+
+            function sortTable(sortBy) {
+                const tableBody = document.querySelector('.tab-voyageurs tbody');
+                const rows = Array.from(tableBody.querySelectorAll('tr'));
+                
+                rows.sort((a, b) => {
+                    switch(sortBy) {
+                        case 'recent':
+                            // Tri par date d'inscription (plus récent d'abord)
+                            const dateA = new Date(a.querySelector('.date').textContent);
+                            const dateB = new Date(b.querySelector('.date').textContent);
+                            return dateB - dateA;
+                        case 'oldest':
+                            // Tri par date d'inscription (plus ancien d'abord)
+                            const dateC = new Date(a.querySelector('.date').textContent);
+                            const dateD = new Date(b.querySelector('.date').textContent);
+                            return dateC - dateD;
+                        case 'name-asc':
+                            // Tri par nom (A-Z)
+                            return a.querySelector('.nom').textContent.localeCompare(b.querySelector('.nom').textContent);
+                        case 'name-desc':
+                            // Tri par nom (Z-A)
+                            return b.querySelector('.nom').textContent.localeCompare(a.querySelector('.nom').textContent);
+                        default:
+                            return 0;
+                    }
+                });
+                
+                // Vider et remplir le tableau avec les lignes triées
+                tableBody.innerHTML = '';
+                rows.forEach(row => tableBody.appendChild(row));
+                
+                // Mise à jour du compteur après le tri
+                updateUserCount();
+            }
+            
+            // Fonctionnalité de recherche
+            const searchInput = document.getElementById('search');
+            const searchButton = searchInput.nextElementSibling;
+            const searchNoResults = document.getElementById('search-no-results');
+            const searchTerm = document.getElementById('search-term');
+            const resetSearch = document.getElementById('reset-search');
+            
+            // Fonction de recherche
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                const rows = document.querySelectorAll('.tab-voyageurs tbody tr');
+                let hasResults = false;
+                
+                rows.forEach(row => {
+                    const name = row.querySelector('.nom').textContent.toLowerCase();
+                    const email = row.getAttribute('data-email').toLowerCase();
+                    
+                    // Si la requête contient @ ou ressemble à un email, chercher dans l'email aussi
+                    // Sinon chercher uniquement dans le nom
+                    const matchFound = query.includes('@') 
+                        ? email.includes(query) 
+                        : name.includes(query);
+                    
+                    if (matchFound || query === '') {
+                        row.style.display = '';
+                        hasResults = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // Afficher le message "aucun résultat" si nécessaire
+                if (!hasResults && query !== '') {
+                    searchNoResults.style.display = 'flex';
+                    searchTerm.textContent = query;
+                } else {
+                    searchNoResults.style.display = 'none';
+                }
+                
+                // Mise à jour du compteur après la recherche
+                updateUserCount();
+            }
+            
+            // Événements de recherche
+            searchInput.addEventListener('input', performSearch);
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Réinitialiser la recherche
+            resetSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                performSearch();
+                searchInput.focus();
+            });
+            
+            // Fonction pour mettre à jour le compteur d'utilisateurs visibles
+            function updateUserCount() {
+                const visibleUsers = document.querySelectorAll('.tab-voyageurs tbody tr[style=""]').length || 
+                                     document.querySelectorAll('.tab-voyageurs tbody tr:not([style*="display: none"])').length;
+                document.getElementById('voyage-count').textContent = visibleUsers + ' voyageurs';
+            }
+            
+            // Tri initial
+            sortTable('recent');
         });
     </script>
-    <script src="../js/mes-voyages.js"></script>
 </body>
 
 </html>

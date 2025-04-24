@@ -277,27 +277,6 @@ if ($payment_validated) {
 // 11. Marquer cette page comme vue pour éviter les rechargements
 $_SESSION['confirmation_viewed'] = true;
 
-// 12. Préparer les données pour le QR code
-$qrCodeData = '';
-if ($payment_validated) {
-    // Créer une chaîne JSON avec les informations essentielles du voyage
-    $qrData = [
-        'reservation_id' => $reservation_id,
-        'voyage' => $voyage['titre'],
-        'client' => $_SESSION['first_name'] . ' ' . $_SESSION['last_name'],
-        'email' => $_SESSION['email'],
-        'date_debut' => $date_debut,
-        'date_fin' => $date_fin,
-        'nb_personne' => $nb_personne,
-        'montant' => $montant,
-        'transaction_id' => $transaction_id,
-        'timestamp' => time()
-    ];
-
-    // Convertir en JSON et encoder pour l'URL
-    $qrCodeData = urlencode(json_encode($qrData));
-}
-
 ?>
 
 <!DOCTYPE html>

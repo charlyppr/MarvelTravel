@@ -166,12 +166,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Si le terme de recherche est vide, afficher tous les éléments
                 match = true;
             } else {
-                // Rechercher dans le contenu textuel de l'élément
-                const content = element.textContent.toLowerCase();
+                // Recherche ciblée dans des éléments spécifiques
+                const destination = isCardView 
+                    ? element.querySelector('.destination').textContent.toLowerCase()
+                    : element.querySelector('.destination').textContent.toLowerCase();
+                    
+                const dates = isCardView 
+                    ? element.querySelector('.dates').textContent.toLowerCase()
+                    : element.querySelector('.dates').textContent.toLowerCase();
                 
-                // Vérifier si le terme de recherche est présent dans le contenu
-                if (content.includes(searchTerm)) {
-                    match = true;
+                // Si le terme contient des chiffres ou "/" ou "-", rechercher dans les dates
+                // Sinon, rechercher prioritairement dans la destination
+                if (/[\d\/\-]/.test(searchTerm)) {
+                    match = dates.includes(searchTerm);
+                } else {
+                    match = destination.includes(searchTerm);
                 }
             }
             
