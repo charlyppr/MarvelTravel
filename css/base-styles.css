@@ -14,6 +14,11 @@
   src: url("../police/PPFormula-Light.otf");
 }
 
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("../police/OpenDyslexic-Regular.otf");
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {

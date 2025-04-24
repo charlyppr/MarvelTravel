@@ -2,11 +2,11 @@
   {
     "id": 0,
     "titre": "New York",
-    "image": "../img/destinations/newyork.jpg",
+    "image": "../img/destinations/new-york.jpg",
     "galerie": [
-      "../img/destinations/newyork_1.jpg",
-      "../img/destinations/newyork_2.jpg",
-      "../img/destinations/newyork_3.jpg"
+      "../img/destinations-more/new-york-1.jpg",
+      "../img/destinations-more/new-york-2.jpg",
+      "../img/destinations-more/new-york-3.jpg"
     ],
     "prix": 399.95,
     "prix_initial": null,
@@ -456,7 +456,7 @@
   },
   {
     "id": 5,
-    "titre": "Genovia",
+    "titre": "Genosha",
     "image": "../img/destinations/genosha.jpg",
     "galerie": [],
     "prix": 1499.95,
@@ -772,7 +772,7 @@
   {
     "id": 9,
     "titre": "Kree Homeworld",
-    "image": "../img/destinations/KRee_Homeworld.jpg",
+    "image": "../img/destinations/kree-homeworld.jpg",
     "galerie": [],
     "prix": 1799.95,
     "prix_initial": null,
@@ -848,7 +848,7 @@
   {
     "id": 10,
     "titre": "The Savage Land",
-    "image": "../img/destinations/the_savage_land.jpg",
+    "image": "../img/destinations/the-savage-land.jpg",
     "galerie": [],
     "prix": 1199.95,
     "prix_initial": null,
@@ -921,7 +921,7 @@
   {
     "id": 11,
     "titre": "The Negative Zone",
-    "image": "../img/destinations/The_negative_zone.jpg",
+    "image": "../img/destinations/the-negative-zone.jpg",
     "galerie": [],
     "prix": 2299.95,
     "prix_initial": null,
@@ -997,7 +997,7 @@
   {
     "id": 12,
     "titre": "Morag",
-    "image": "../img/destinations/Morag.jpg",
+    "image": "../img/destinations/morag.jpg",
     "galerie": [],
     "prix": 1499.95,
     "prix_initial": null,
@@ -1073,7 +1073,7 @@
   {
     "id": 13,
     "titre": "The Sanctum Sanctorum",
-    "image": "../img/destinations/sanctum_sanctorum.jpg",
+    "image": "../img/destinations/sanctum-sanctorum.jpg",
     "galerie": [],
     "prix": 2499.95,
     "prix_initial": null,

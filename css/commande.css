@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: var(--color-text-cream);
+  color: var(--color-text-light);
 }
 
 .header-content {
@@ -62,7 +62,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--color-text-cream);
+  color: var(--color-text-light);
   text-decoration: none;
   opacity: 0.9;
   transition: opacity var(--transition-fast);
@@ -210,6 +210,8 @@
   right: 20px;
   z-index: 10;
   padding: 10px 15px;
+  background-color: var(--color-card-hover) !important;
+  backdrop-filter: blur(5px);
 }
 
 .transaction-badge {
@@ -638,7 +640,7 @@
 .secondary-button {
   background-color: var(--color-glass-dark);
   color: var(--color-text-light);
-  border: 1px solid rgba(242, 219, 175, 0.2);
+  border: 1px solid var(--color-accent-faded);
 }
 
 .secondary-button:hover {

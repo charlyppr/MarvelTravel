@@ -10,6 +10,7 @@
 .hero-section {
   height: 80vh;
   /* margin-bottom: var(--spacing-xxl); */
+  margin-bottom: 160px; /* Espace pour le carrousel qui remonte */
 }
 
 .hero-backdrop {
@@ -157,7 +158,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-xxl);
   animation: FadeIn 1s ease 0.4s backwards;
   flex-direction: row;
   align-items: center;
@@ -217,7 +218,7 @@
 .quick-info {
   display: flex;
   gap: var(--spacing-lg);
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-xxl);
   animation: FadeIn 1s ease 0.6s backwards;
 }
 
@@ -225,13 +226,13 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  background: var(--color-field-bg);
+  background: var(--color-glass-dark);
   padding: 16px 24px;
   border-radius: var(--border-radius-lg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-accent-faded);
   transition: all var(--transition-fast);
-  color: inherit;
+  color: var(--color-text-light);
 }
 
 .info-item:hover {
@@ -257,6 +258,7 @@
   margin: 0 90px;
   position: relative;
   z-index: 5;
+  margin-top: var(--spacing-xl); /* Espace après le carrousel */
 }
 
 .voyage-nav ul {
@@ -1840,4 +1842,163 @@ img.item-icon.not-included {
 .details-list li:hover .item-icon.not-included {
   transform: scale(1.2);
   opacity: 1;
+}
+
+/* Styles pour le carrousel de photos */
+.gallery-carousel {
+    /* background-color: var(--color-background); */
+    margin-bottom: 100px;
+    position: relative;
+    z-index: 5;
+    margin-top: -220px; /* Remonte davantage pour chevaucher le hero */
+    padding: 0 var(--spacing-xl);
+}
+
+.gallery-carousel::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--color-background));
+    z-index: -1;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--border-radius-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.carousel-container:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    transform: translateY(-5px);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    height: 450px;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-slide::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.05);
+    transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0.8;
+}
+
+.carousel-container:hover .carousel-slide img {
+    transform: scale(1);
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-card-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    /* opacity: 0.7; */
+}
+
+.carousel-button:hover {
+    background-color: var(--color-accent-faded);
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(226, 54, 54, 0.3);
+}
+
+.carousel-button img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    transition: transform 0.3s ease;
+}
+
+.carousel-button:hover img {
+    transform: scale(1.2);
+}
+
+.prev-button {
+    left: 15px;
+}
+
+.next-button {
+    right: 15px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding: 8px 16px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--color-background);
+    transform: scale(1.2);
+    box-shadow: var(--shadow-intense);
 }

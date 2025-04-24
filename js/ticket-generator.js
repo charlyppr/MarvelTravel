@@ -2,7 +2,7 @@
 function generateTicket(transactionId) {
   // Afficher un indicateur de chargement
   showLoadingIndicator();
-  
+
   fetch(`../php/get-transaction.php?transaction=${transactionId}`)
     .then((response) => {
       if (!response.ok) {
@@ -28,8 +28,10 @@ function generateTicket(transactionId) {
       createTicketHTML(ticketContainer, data);
 
       // Ajouter un style explicite pour supprimer les marges sur le frame
-      const ticketElements = ticketContainer.querySelectorAll('.a, .ticket-wrapper, .ticket');
-      ticketElements.forEach(element => {
+      const ticketElements = ticketContainer.querySelectorAll(
+        ".a, .ticket-wrapper, .ticket"
+      );
+      ticketElements.forEach((element) => {
         element.style.margin = "0";
         element.style.padding = "0";
         element.style.width = "100%";
@@ -51,52 +53,56 @@ function generateTicket(transactionId) {
         removeContainer: true,
         backgroundColor: null,
         imageTimeout: 0,
-        letterRendering: true
-      }).then((canvas) => {
-        // Utiliser une qualité d'image réduite mais suffisante (0.8 au lieu de 1.0)
-        const imgData = canvas.toDataURL("image/jpeg", 0.85);
-        
-        // Optimisation des paramètres PDF
-        const pdf = new jspdf.jsPDF({
-          orientation: "portrait",
-          unit: "mm",
-          format: [210, 297], // Format A4 explicite
-          compress: true,
-          putOnlyUsedFonts: true,
-          precision: 16 // Réduit de 30 à 16 pour de meilleures performances
+        letterRendering: true,
+      })
+        .then((canvas) => {
+          // Utiliser une qualité d'image réduite mais suffisante (0.8 au lieu de 1.0)
+          const imgData = canvas.toDataURL("image/jpeg", 0.85);
+
+          // Optimisation des paramètres PDF
+          const pdf = new jspdf.jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: [210, 297], // Format A4 explicite
+            compress: true,
+            putOnlyUsedFonts: true,
+            precision: 16, // Réduit de 30 à 16 pour de meilleures performances
+          });
+
+          // Définir les dimensions
+          const pdfWidth = 210; // Taille A4 en mm
+          const pdfHeight = 297; // Taille A4 en mm
+
+          // Réinitialiser toute configuration de marge potentielle
+          pdf.setDrawColor(0);
+          pdf.setFillColor(255, 255, 255);
+          pdf.setLineWidth(0);
+
+          // Ajouter l'image au PDF, en utilisant une position précise
+          pdf.addImage(
+            imgData,
+            "JPEG", // Utiliser JPEG au lieu de PNG pour réduire la taille
+            -1,
+            -1,
+            pdfWidth,
+            pdfHeight
+          );
+
+          // Fermer l'indicateur de chargement
+          hideLoadingIndicator();
+
+          pdf.save(`marvel-travel-ticket-${data.reservation_id}.pdf`);
+
+          // Nettoyer après la génération
+          document.body.removeChild(ticketContainer);
+        })
+        .catch((error) => {
+          hideLoadingIndicator();
+          console.error("Erreur lors de la génération du PDF:", error);
+          alert(
+            "Une erreur est survenue lors de la génération du PDF. Veuillez réessayer."
+          );
         });
-        
-        // Définir les dimensions
-        const pdfWidth = 210;  // Taille A4 en mm
-        const pdfHeight = 297; // Taille A4 en mm
-        
-        // Réinitialiser toute configuration de marge potentielle 
-        pdf.setDrawColor(0);
-        pdf.setFillColor(255, 255, 255);
-        pdf.setLineWidth(0);
-        
-        // Ajouter l'image au PDF, en utilisant une position précise
-        pdf.addImage(
-          imgData,
-          "JPEG", // Utiliser JPEG au lieu de PNG pour réduire la taille
-          -1,
-          -1,
-          pdfWidth,
-          pdfHeight
-        );
-        
-        // Fermer l'indicateur de chargement
-        hideLoadingIndicator();
-        
-        pdf.save(`marvel-travel-ticket-${data.reservation_id}.pdf`);
-        
-        // Nettoyer après la génération
-        document.body.removeChild(ticketContainer);
-      }).catch(error => {
-        hideLoadingIndicator();
-        console.error("Erreur lors de la génération du PDF:", error);
-        alert("Une erreur est survenue lors de la génération du PDF. Veuillez réessayer.");
-      });
     })
     .catch((error) => {
       hideLoadingIndicator();
@@ -121,14 +127,14 @@ function createTicketHTML(container, data) {
     montant: data.montant,
     transaction_id: data.transaction,
   };
-  
+
   // URL optimisée pour le QR code avec taille réduite
   const qrCodeData = encodeURIComponent(JSON.stringify(qrData));
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${qrCodeData}`;
-  
+
   const voyageurPrincipal = data.voyageurs[0];
   const duree = getDurationInDays(data.date_debut, data.date_fin);
-  
+
   // Nouveau design moderne et premium pour le billet avec styles optimisés
   const html = `
     <style>
@@ -520,13 +526,17 @@ function createTicketHTML(container, data) {
           <div class="left-column">
             <!-- Destination Card -->
             <div class="destination-card">
-              <img class="destination-image" src="${getDestinationImage(data.voyage)}" alt="${data.voyage}">
+              <img class="destination-image" src="${getDestinationImage(
+                data.voyage
+              )}" alt="${data.voyage}">
               <div class="destination-overlay">
                 <div class="destination-name">${data.voyage}</div>
                 <div class="destination-details">
                   <div class="detail-item">
                     <svg viewBox="0 0 24 24"><path d="M7,11H9V13H7V11M11,11H13V13H11V11M15,11H17V13H15V11M19,4H18V2H16V4H8V2H6V4H5C3.89,4 3,4.9 3,6V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V6A2,2 0 0,0 19,4M19,20H5V9H19V20Z" /></svg>
-                    ${formatDate(data.date_debut)} → ${formatDate(data.date_fin)}
+                    ${formatDate(data.date_debut)} → ${formatDate(
+    data.date_fin
+  )}
                   </div>
                   <div class="detail-item">
                     <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M17,13.8V14A1,1 0 0,1 16,15H12.5A1.5,1.5 0 0,1 11,13.5A1.5,1.5 0 0,1 12.5,12H15V11H12A1,1 0 0,1 11,10V9.2C11,9.08 11,9 11.12,8.88C11.24,8.76 11.32,8.76 11.44,8.76H15.56C15.68,8.76 15.76,8.76 15.88,8.88C16,9 16,9.08 16,9.2V10A1,1 0 0,1 15,11H12.5A1.5,1.5 0 0,1 11,9.5A1.5,1.5 0 0,1 12.5,8H15V7H11.12C11,7 10.92,7 10.8,6.88C10.68,6.76 10.68,6.68 10.68,6.56V5.56C10.68,5.44 10.68,5.36 10.8,5.24C10.92,5.12 11,5.12 11.12,5.12H15.88C16,5.12 16.08,5.12 16.2,5.24C16.32,5.36 16.32,5.44 16.32,5.56V6.56C16.32,6.68 16.32,6.76 16.2,6.88C16.08,7 16,7 15.88,7H13.38V8H16A1,1 0 0,1 17,9V9.8C17,9.92 17,10 16.88,10.12C16.76,10.24 16.68,10.24 16.56,10.24H12.12C12,10.24 11.92,10.24 11.8,10.12C11.68,10 11.68,9.92 11.68,9.8V9.68H11.62V10.12C11.62,10.24 11.62,10.32 11.74,10.44C11.86,10.56 11.94,10.56 12.06,10.56H16.31V12H13.69V13.56H15.88C16,13.56 16.08,13.56 16.2,13.68C16.32,13.8 16.32,13.88 16.32,14L16.31,13.8H17" /></svg>
@@ -534,7 +544,9 @@ function createTicketHTML(container, data) {
                   </div>
                   <div class="detail-item">
                     <svg viewBox="0 0 24 24"><path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" /></svg>
-                    ${data.voyageurs.length} voyageur${data.voyageurs.length > 1 ? 's' : ''}
+                    ${data.voyageurs.length} voyageur${
+    data.voyageurs.length > 1 ? "s" : ""
+  }
                   </div>
                 </div>
               </div>
@@ -561,11 +573,15 @@ function createTicketHTML(container, data) {
                 </div>
                 <div class="info-item">
                   <div class="info-label">Date de naissance</div>
-                  <div class="info-value">${formatDate(voyageurPrincipal.date_naissance)}</div>
+                  <div class="info-value">${formatDate(
+                    voyageurPrincipal.date_naissance
+                  )}</div>
                 </div>
                 <div class="info-item" style="grid-column: span 2;">
                   <div class="info-label">N° de passeport</div>
-                  <div class="info-value passport-value">${formatPassport(voyageurPrincipal.passport)}</div>
+                  <div class="info-value passport-value">${formatPassport(
+                    voyageurPrincipal.passport
+                  )}</div>
                 </div>
               </div>
               
@@ -588,7 +604,9 @@ function createTicketHTML(container, data) {
                   </div>
                   <div class="purchase-item">
                     <div class="info-label">Prix</div>
-                    <div class="info-value price-value">${formatPrice(data.montant)} €</div>
+                    <div class="info-value price-value">${formatPrice(
+                      data.montant
+                    )} €</div>
                   </div>
                 </div>
               </div>
@@ -638,15 +656,15 @@ function createTicketHTML(container, data) {
       </div>
     </div>
   `;
-  
+
   container.innerHTML = html;
 }
 
 // Afficher un indicateur de chargement
 function showLoadingIndicator() {
   // Créer un élément pour l'indicateur de chargement
-  const loadingIndicator = document.createElement('div');
-  loadingIndicator.id = 'ticket-loading-indicator';
+  const loadingIndicator = document.createElement("div");
+  loadingIndicator.id = "ticket-loading-indicator";
   loadingIndicator.style.cssText = `
     position: fixed;
     top: 0;
@@ -659,7 +677,7 @@ function showLoadingIndicator() {
     align-items: center;
     z-index: 9999;
   `;
-  
+
   loadingIndicator.innerHTML = `
     <div style="text-align: center;">
       <div style="border: 4px solid #f3f3f3; border-top: 4px solid #af1f24; border-radius: 50%; width: 40px; height: 40px; margin: 0 auto; animation: spin 2s linear infinite;"></div>
@@ -672,13 +690,13 @@ function showLoadingIndicator() {
       }
     </style>
   `;
-  
+
   document.body.appendChild(loadingIndicator);
 }
 
 // Cacher l'indicateur de chargement
 function hideLoadingIndicator() {
-  const loadingIndicator = document.getElementById('ticket-loading-indicator');
+  const loadingIndicator = document.getElementById("ticket-loading-indicator");
   if (loadingIndicator) {
     document.body.removeChild(loadingIndicator);
   }
@@ -696,13 +714,24 @@ function getDurationInDays(startDate, endDate) {
 // Obtient une image correspondant à la destination
 function getDestinationImage(destination) {
   const destinations = {
-    "New York": "../img/destinations/newyork.jpg",
-    Wakanda: "../img/destinations/wakanda.jpg",
-    Asgard: "../img/destinations/asgard.jpg",
-    Knowhere: "../img/destinations/knowhere.jpg",
+    "Asgard": "../img/destinations/asgard.jpg",
+    "Atlantis": "../img/destinations/atlantis.jpg",
+    "The Battleworld": "../img/destinations/battleworld.jpg",
+    "Genosha": "../img/destinations/genosha.jpg",
+    "Hala": "../img/destinations/hala.jpg",
+    "Kree Homeworld": "../img/destinations/kree-homeworld.jpg",
+    "Morag": "../img/destinations/morag.jpg",
+    "New York": "../img/destinations/new-york.jpg",
+    "Sakaar": "../img/destinations/sakaar.jpg",
+    "The Sanctum Sanctorum": "../img/destinations/sanctum-sanctorum.jpg",
+    "The Negative Zone": "../img/destinations/the-negative-zone.jpg",
+    "The Savage Land": "../img/destinations/the-savage-land.jpg",
+    "Titan": "../img/destinations/titan.jpg",
+    "Wakanda": "../img/destinations/wakanda.jpg",
+    "Xandar": "../img/destinations/xandar.jpg",
   };
 
-  return destinations[destination] || "../img/destinations/default.jpg";
+  return destinations[destination];
 }
 
 // Format le numéro de passeport avec espaces
@@ -743,13 +772,19 @@ function formatPrice(price) {
 document.addEventListener("DOMContentLoaded", () => {
   // Préchargement des bibliothèques nécessaires pour accélérer la génération
   Promise.all([
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"),
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
-  ]).then(() => {
-    console.log("Bibliothèques PDF préchargées avec succès");
-  }).catch(error => {
-    console.warn("Erreur lors du préchargement des bibliothèques:", error);
-  });
+    loadScript(
+      "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    ),
+    loadScript(
+      "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ),
+  ])
+    .then(() => {
+      console.log("Bibliothèques PDF préchargées avec succès");
+    })
+    .catch((error) => {
+      console.warn("Erreur lors du préchargement des bibliothèques:", error);
+    });
 
   const ticketButtons = document.querySelectorAll(".generate-ticket-btn");
   ticketButtons.forEach((button) => {
@@ -757,7 +792,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Empêcher la propagation de l'événement et le comportement par défaut
       e.preventDefault();
       e.stopPropagation();
-      
+
       const transactionId = e.currentTarget.dataset.transaction;
       if (transactionId) {
         // Vérifier si les bibliothèques sont déjà chargées
@@ -766,8 +801,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           // Si les bibliothèques ne sont pas encore chargées, les charger puis générer
           Promise.all([
-            loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"),
-            loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
+            loadScript(
+              "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            ),
+            loadScript(
+              "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+            ),
           ]).then(() => {
             generateTicket(transactionId);
           });

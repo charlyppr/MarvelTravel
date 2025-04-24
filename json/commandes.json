@@ -551,5 +551,45 @@
                 "total": 30
             }
         ]
+    },
+    {
+        "transaction": "b221e610ff097317471cdae0",
+        "reservation_id": "MT-4BC49CF2",
+        "montant": 2749.93,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "059a755610bb91870deb60e09799c461",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "The Sanctum Sanctorum",
+        "date_debut": "2025-05-12",
+        "date_fin": "2025-05-20",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "669 889 273 1"
+            }
+        ],
+        "date_achat": "2025-04-24 21:11:30",
+        "options": [
+            {
+                "etape": "Hall du Sanctum",
+                "option": "Visite guidée",
+                "prix_unitaire": 149.99,
+                "nb_participants": 1,
+                "total": 149.99
+            },
+            {
+                "etape": "Salle des Portails",
+                "option": "Séance de méditation mystique",
+                "prix_unitaire": 99.99,
+                "nb_participants": 1,
+                "total": 99.99
+            }
+        ]
     }
 ]

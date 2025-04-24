@@ -847,7 +847,6 @@
   font-weight: 600;
   gap: 10px;
   transition: all var(--transition-medium);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   letter-spacing: 0.5px;
