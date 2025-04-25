@@ -97,6 +97,7 @@ body {
   box-shadow: var(--shadow-card);
   transition: all var(--transition-medium);
   width: 350px;
+  color: var(--color-text-light);
 }
 
 .confirmation-card:hover {
@@ -467,7 +468,7 @@ body {
 .error-message {
   font-size: var(--font-size-md);
   margin-bottom: var(--spacing-md);
-  color: var(--color-text-cream);
+  /* color: var(--color-text-light); */
   font-weight: 500;
   line-height: 1.5;
 }
@@ -475,7 +476,7 @@ body {
 .error-reasons {
   margin: 0 0 var(--spacing-md) var(--spacing-md);
   padding: 0;
-  color: rgba(255, 255, 255, 0.7);
+  /* color: rgba(255, 255, 255, 0.7); */
   list-style-type: none;
 }
 

@@ -631,5 +631,52 @@
                 "total": 159.99
             }
         ]
+    },
+    {
+        "transaction": "7cadd745524ced0e07fc5048",
+        "reservation_id": "MT-A47744F8",
+        "montant": 5201.96,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "1865eeb72f6a86b202ffec9d1f3944e7",
+        "acheteur": "thanoslebg@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-05-20",
+        "date_fin": "2025-05-23",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Titan",
+                "prenom": "Thanos",
+                "date_naissance": "1840-02-29",
+                "nationalite": "Xandarienne",
+                "passport": "185 501 418 7"
+            }
+        ],
+        "date_achat": "2025-04-25 18:46:14",
+        "options": [
+            {
+                "etape": "Golden City",
+                "option": "Musée Wakandais",
+                "prix_unitaire": 300,
+                "nb_participants": 1,
+                "total": 300
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Randonnée",
+                "prix_unitaire": 200,
+                "nb_participants": 1,
+                "total": 200
+            },
+            {
+                "etape": "Mont Bashenga",
+                "option": "Visite du temple",
+                "prix_unitaire": 180,
+                "nb_participants": 1,
+                "total": 180
+            }
+        ]
     }
 ]
