@@ -15,10 +15,8 @@ function setCookie(name, value, days = 365) {
 }
 
 // Variable globale pour stocker le thème actuel
-// Check if currentTheme is already defined before declaring it
-if (typeof window.currentTheme === 'undefined') {
-  window.currentTheme = "dark";
-}
+window.currentTheme = "dark";
+
 
 // Fonction pour appliquer le thème - rendue globale
 function applyTheme(theme) {
@@ -53,15 +51,13 @@ function toggleTheme(newTheme) {
 }
 
 // Listener pour les changements de préférences système
-if (typeof window.colorSchemeQuery === 'undefined') {
-  window.colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  window.colorSchemeQuery.addEventListener("change", (e) => {
-    // Ne mettre à jour que si le mode auto est activé
-    if (window.currentTheme === "auto") {
-      applyTheme("auto");
-    }
-  });
-}
+window.colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+window.colorSchemeQuery.addEventListener("change", (e) => {
+  // Ne mettre à jour que si le mode auto est activé
+  if (window.currentTheme === "auto") {
+    applyTheme("auto");
+  }
+});
 
 // Au chargement du document, appliquer le thème et les préférences d'accessibilité
 document.addEventListener("DOMContentLoaded", function () {

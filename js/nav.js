@@ -1,25 +1,33 @@
-if (typeof window.navBarElement === 'undefined') {
-  window.navBarElement = document.querySelector(".nav");
-}
-
-if (typeof window.lastScrollTop === 'undefined') {
-  window.lastScrollTop = 0;
-}
-
-window.addEventListener("scroll", () => {
-  if (window.innerWidth > 768) {
-    let scrollTop = document.documentElement.scrollTop;
-    if (scrollTop > window.lastScrollTop) {
-      window.navBarElement.style.transform = "translateY(-100%)";
-    } else {
-      window.navBarElement.style.transform = "translateY(0)";
-    }
-    window.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  }
-});
-
-// Menu hover effect
 document.addEventListener("DOMContentLoaded", function () {
+  window.navBarElement = document.querySelector(".nav");
+  let lastScrollTop = 0;
+  let isInitialLoad = true;
+
+  // Ensure nav is visible on page load
+  window.navBarElement.style.transform = "translateY(0)";
+
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth > 768) {
+      let scrollTop = document.documentElement.scrollTop;
+      
+      // Skip the first scroll event after page load
+      if (isInitialLoad) {
+        lastScrollTop = scrollTop;
+        isInitialLoad = false;
+        return;
+      }
+      
+      if (scrollTop > lastScrollTop) {
+        window.navBarElement.style.transform = "translateY(-100%)";
+      } else {
+        window.navBarElement.style.transform = "translateY(0)";
+      }
+      
+      // Ensure we update the last scroll position correctly
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }
+  });
+
   // Menu hover effects
   if (window.innerWidth > 768) {
     const menuItems = document.querySelectorAll(".menu-li");
