@@ -42,6 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message_text = 'Une erreur est survenue lors de l\'envoi du message.';
     }
 }
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -58,8 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <?php include 'nav.php'; ?>
 

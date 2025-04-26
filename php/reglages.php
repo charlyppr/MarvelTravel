@@ -120,6 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export_data'])) {
         $message = "Erreur : impossible de récupérer vos données.";
     }
 }
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export_data'])) {
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
+<body class="<?php echo $theme; ?>-theme">
     <?php if ($message): ?>
         <div class="notification <?= strpos($message, 'succès') !== false ? 'success' : 'error' ?>">
             <img src="../img/svg/<?= strpos($message, 'succès') !== false ? 'check-circle.svg' : 'alert-circle.svg' ?>"

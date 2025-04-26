@@ -76,6 +76,9 @@ $date_achat = isset($commande['date_achat']) ?
 // Nombre de jours restants avant le départ
 $today = new DateTime();
 $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -95,8 +98,7 @@ $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <div class="main-container">
         <?php include 'sidebar.php'; ?>

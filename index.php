@@ -25,7 +25,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
 </head>
 
-<body>
+<body class="<?php echo $theme; ?>-theme">
     <div class="default"></div>
 
     <?php include 'php/nav.php'; ?>

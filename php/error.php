@@ -12,6 +12,9 @@ $error_messages = [
 ];
 
 $error_message = $error_messages[$error_type] ?? $error_messages['unknown'];
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +33,7 @@ $error_message = $error_messages[$error_type] ?? $error_messages['unknown'];
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <?php include 'nav.php'; ?>
 

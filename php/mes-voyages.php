@@ -13,6 +13,9 @@ if (isset($_GET['view'])) {
 }
 
 $displayed_voyages = 0;
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +36,7 @@ $displayed_voyages = 0;
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <div class="main-container">
         <?php include 'sidebar.php'; ?>

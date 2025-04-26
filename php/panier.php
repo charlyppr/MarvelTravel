@@ -54,6 +54,8 @@ $userPanier = $panier[$userEmail];
 $voyagesJson = file_get_contents('../json/voyages.json');
 $voyages = json_decode($voyagesJson, true);
 
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +72,7 @@ $voyages = json_decode($voyagesJson, true);
     <link rel="stylesheet" href="../css/panier.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
     
     <?php include 'nav.php'; ?>
     

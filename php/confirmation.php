@@ -280,6 +280,8 @@ if ($payment_validated) {
 // 11. Marquer cette page comme vue pour éviter les rechargements
 $_SESSION['confirmation_viewed'] = true;
 
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -306,8 +308,7 @@ $_SESSION['confirmation_viewed'] = true;
 
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <?php include 'nav.php'; ?>
 

@@ -330,6 +330,9 @@ $retour = "{$base_url}/php/confirmation.php?transaction={$transaction}&voyage_id
 
 $api_key = getAPIKey($vendeur);
 $control = md5($api_key . "#" . $transaction . "#" . $prix_total_api . "#" . $vendeur . "#" . $retour . "#");
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -348,8 +351,7 @@ $control = md5($api_key . "#" . $transaction . "#" . $prix_total_api . "#" . $ve
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <?php include '../nav.php'; ?>
 

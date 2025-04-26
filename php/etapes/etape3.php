@@ -248,6 +248,8 @@ if (isset($_POST['submit_options'])) {
     exit;
 }
 
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -266,8 +268,7 @@ if (isset($_POST['submit_options'])) {
     <link rel="shortcut icon" href="../../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <?php include '../nav.php'; ?>
 

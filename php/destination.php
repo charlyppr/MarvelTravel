@@ -106,6 +106,9 @@ if ($category != 'all' || !empty($recherche) || !empty($date_debut) || !empty($d
 
 // Sélectionner les 4 premiers voyages pour la section "Meilleures destinations"
 $best_voyages = array_slice($voyages, 0, 4);
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -126,7 +129,7 @@ $best_voyages = array_slice($voyages, 0, 4);
     
 </head>
 
-<body>
+<body class="<?php echo $theme; ?>-theme">
     <?php include 'nav.php'; ?>
 
     <!-- Section d'en-tête avec bannière et recherche -->

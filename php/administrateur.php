@@ -9,6 +9,8 @@ $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 
 $displayed_users = 0;
 
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +30,7 @@ $displayed_users = 0;
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <div class="main-container">
         <?php include 'sidebar.php'; ?>

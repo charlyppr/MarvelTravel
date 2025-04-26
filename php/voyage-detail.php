@@ -29,6 +29,9 @@ $voyage = $voyages[$voyage_id];
 $voyage['max_personnes'] = isset($voyage['max_personnes']) ? $voyage['max_personnes'] : 10;
 $voyage['langue'] = isset($voyage['langue']) ? $voyage['langue'] : ['Français'];
 $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
+
+// Récupérer le thème depuis le cookie
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +50,7 @@ $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="default"></div>
+<body class="<?php echo $theme; ?>-theme">
 
     <?php include 'nav.php'; ?>
 
