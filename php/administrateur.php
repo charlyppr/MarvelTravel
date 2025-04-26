@@ -155,7 +155,10 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 echo '</div>';
                                             }
                                             echo '</td>';
-                                            echo '<td class="date">' . $user['date_inscription'] . '</td>';
+                                            // Formatage de la date au format français (JJ/MM/AAAA)
+                                            $date_inscription = new DateTime($user['date_inscription']);
+                                            $date_formatted = $date_inscription->format('d/m/Y');
+                                            echo '<td class="date" data-date="' . $user['date_inscription'] . '">' . $date_formatted . '</td>';
                                             echo '</tr>';
                                         }
                                     }
@@ -300,13 +303,13 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     switch(sortBy) {
                         case 'recent':
                             // Tri par date d'inscription (plus récent d'abord)
-                            const dateA = new Date(a.querySelector('.date').textContent);
-                            const dateB = new Date(b.querySelector('.date').textContent);
+                            const dateA = new Date(a.querySelector('.date').getAttribute('data-date'));
+                            const dateB = new Date(b.querySelector('.date').getAttribute('data-date'));
                             return dateB - dateA;
                         case 'oldest':
                             // Tri par date d'inscription (plus ancien d'abord)
-                            const dateC = new Date(a.querySelector('.date').textContent);
-                            const dateD = new Date(b.querySelector('.date').textContent);
+                            const dateC = new Date(a.querySelector('.date').getAttribute('data-date'));
+                            const dateD = new Date(b.querySelector('.date').getAttribute('data-date'));
                             return dateC - dateD;
                         case 'name-asc':
                             // Tri par nom (A-Z)

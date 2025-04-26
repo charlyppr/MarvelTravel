@@ -2,10 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-lg);
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0.1s;
+  margin-bottom: var(--spacing-xxl);
+  animation: slideDown 0.6s ease;
 }
 
 .settings-greeting {
@@ -34,7 +32,6 @@
   overflow: hidden;
   transition: transform var(--transition-medium),
     box-shadow var(--transition-medium), border-color var(--transition-medium);
-  opacity: 0;
   animation: fadeIn 0.5s ease forwards;
 }
 
@@ -338,9 +335,7 @@
   display: flex;
   justify-content: center;
   margin-top: var(--spacing-lg);
-  opacity: 0;
   animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0.5s;
 }
 
 .save-button {

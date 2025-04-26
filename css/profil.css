@@ -7,7 +7,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  /* gap: 30px; */
 }
 
 .notification {
@@ -66,10 +66,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-xxl);
   position: relative;
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0.1s;
+  animation: slideDown 0.6s ease;
 }
 
 .profile-greeting {
@@ -118,7 +117,6 @@
 
 .dashboard-grid > .card {
   animation: fadeIn 0.5s ease forwards;
-  opacity: 0;
 }
 
 .profile-card {
@@ -558,7 +556,6 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  opacity: 0;
   transform: translateY(10px);
   pointer-events: none;
 }
