@@ -567,9 +567,9 @@
     "titre": "Sakaar",
     "image": "../img/destinations/sakaar.jpg",
     "galerie": [
-      "../img/destinations-more/Sakaar-1.jpg",
+      "../img/destinations-more/Sakaar_1.jpg",
       "../img/destinations-more/Sakaar_2.jpg",
-      "../img/destinations-more/Sakaar_3.jpg"
+      "../img/destinations-more/Sakaar-3.jpg"
     ],
     "prix": 2199.95,
     "prix_initial": null,
@@ -646,7 +646,11 @@
     "id": 7,
     "titre": "Atlantis",
     "image": "../img/destinations/atlantis.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Atlantis-1.jpg",
+      "../img/destinations-more/Atlantis-2.jpg",
+      "../img/destinations-more/Atlantis-3.jpg"
+    ],
     "prix": 5599.95,
     "prix_initial": null,
     "promo": null,
@@ -719,7 +723,11 @@
     "id": 8,
     "titre": "Titan",
     "image": "../img/destinations/titan.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Titan-1.jpg",
+      "../img/destinations-more/Titan-2.jpg",
+      "../img/destinations-more/Titan-3.jpg"
+    ],
     "prix": 3099.95,
     "prix_initial": null,
     "promo": null,
@@ -795,7 +803,11 @@
     "id": 9,
     "titre": "Kree Homeworld",
     "image": "../img/destinations/kree-homeworld.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Kree-1.jpg",
+      "../img/destinations-more/Kree-2.jpg",
+      "../img/destinations-more/Kree-3.jpg"
+    ],
     "prix": 1799.95,
     "prix_initial": null,
     "promo": null,
@@ -871,7 +883,11 @@
     "id": 10,
     "titre": "The Savage Land",
     "image": "../img/destinations/the-savage-land.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/savage-1.jpg",
+      "../img/destinations-more/savage-2.jpg",
+      "../img/destinations-more/savage-3.jpg"
+    ],
     "prix": 1199.95,
     "prix_initial": null,
     "promo": null,
@@ -944,7 +960,11 @@
     "id": 11,
     "titre": "The Negative Zone",
     "image": "../img/destinations/the-negative-zone.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Negative-1.jpg",
+      "../img/destinations-more/Negative-2.jpg",
+      "../img/destinations-more/Negative-3.jpg"
+    ],
     "prix": 2299.95,
     "prix_initial": null,
     "promo": null,
@@ -1020,7 +1040,11 @@
     "id": 12,
     "titre": "Morag",
     "image": "../img/destinations/morag.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/morag-1.jpg",
+      "../img/destinations-more/morag-2.jpg",
+      "../img/destinations-more/morag-3.jpg"
+    ],
     "prix": 1499.95,
     "prix_initial": null,
     "promo": null,
@@ -1096,7 +1120,11 @@
     "id": 13,
     "titre": "The Sanctum Sanctorum",
     "image": "../img/destinations/sanctum-sanctorum.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/sanctum-1.jpg",
+      "../img/destinations-more/sanctum-2.jpg",
+      "../img/destinations-more/sanctum-3.jpg"
+    ],
     "prix": 2499.95,
     "prix_initial": null,
     "promo": null,
@@ -1172,7 +1200,11 @@
     "id": 14,
     "titre": "The Battleworld",
     "image": "../img/destinations/battleworld.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/battleworld-1.jpg",
+      "../img/destinations-more/battleworld-2.jpg",
+      "../img/destinations-more/battleworld-3.jpg",
+    ],
     "prix": 3999.95,
     "prix_initial": null,
     "promo": null,
