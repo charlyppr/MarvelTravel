@@ -473,9 +473,9 @@
     "titre": "Genosha",
     "image": "../img/destinations/genosha.jpg",
     "galerie": [
-      "../img/destinations-more/Genosha-1.jpg.png",
-      "../img/destinations-more/Genosha-2.jpg",
-      "../img/destinations-more/Genosha-3.jpg"
+      "../img/destinations-more/Genosha-1.jpg",
+      "../img/destinations-more/Genosha_2.jpg",
+      "../img/destinations-more/Genosha_3.jpg"
     ],
     "prix": 1499.95,
     "prix_initial": null,
@@ -566,7 +566,11 @@
     "id": 6,
     "titre": "Sakaar",
     "image": "../img/destinations/sakaar.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Sakaar-1.jpg",
+      "../img/destinations-more/Sakaar_2.jpg",
+      "../img/destinations-more/Sakaar_3.jpg"
+    ],
     "prix": 2199.95,
     "prix_initial": null,
     "promo": null,
