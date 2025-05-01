@@ -114,7 +114,7 @@
     "titre": "Wakanda",
     "image": "../img/destinations/wakanda.jpg",
     "galerie": [
-      "../img/destinations-more/Wakanda-1.jpg",
+      "../img/destinations-more/Wakanda_1.jpg",
       "../img/destinations-more/Wakanda-2.jpg",
       "../img/destinations-more/Wakanda-3.jpg"],
     "prix": 5099.95,
@@ -217,7 +217,10 @@
     "id": 2,
     "titre": "Hala",
     "image": "../img/destinations/hala.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Hala-1.jpg",
+      "../img/destinations-more/Hala-2.jpg",
+      "../img/destinations-more/Hala-3.jpg"],
     "prix": 1199.95,
     "prix_initial": null,
     "promo": null,
@@ -295,7 +298,11 @@
     "id": 3,
     "titre": "Xandar",
     "image": "../img/destinations/xandar.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Xandar-1.jpg",
+      "../img/destinations-more/Xandar-2.jpg",
+      "../img/destinations-more/Xandar-3.jpg"
+    ],
     "prix": 999.95,
     "prix_initial": null,
     "promo": null,
@@ -373,7 +380,11 @@
     "id": 4,
     "titre": "Asgard",
     "image": "../img/destinations/asgard.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Asgard-1.jpg",
+      "../img/destinations-more/Asgard-2.jpg",
+      "../img/destinations-more/Asgard-3.jpg"
+    ],
     "prix": 2499.95,
     "prix_initial": null,
     "promo": null,
@@ -461,7 +472,11 @@
     "id": 5,
     "titre": "Genosha",
     "image": "../img/destinations/genosha.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Genosha-1.jpg.png",
+      "../img/destinations-more/Genosha-2.jpg",
+      "../img/destinations-more/Genosha-3.jpg"
+    ],
     "prix": 1499.95,
     "prix_initial": null,
     "promo": null,
