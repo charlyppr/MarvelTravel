@@ -113,7 +113,10 @@
     "id": 1,
     "titre": "Wakanda",
     "image": "../img/destinations/wakanda.jpg",
-    "galerie": [],
+    "galerie": [
+      "../img/destinations-more/Wakanda-1.jpg",
+      "../img/destinations-more/Wakanda-2.jpg",
+      "../img/destinations-more/Wakanda-3.jpg"],
     "prix": 5099.95,
     "prix_initial": null,
     "promo": null,
