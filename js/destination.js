@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const dateDebutInput = document.getElementById("date-debut-visible");
   const calendarDropdown = document.getElementById("calendar-dropdown");
-  const sortSelect = document.getElementById('sort');
+  const sortSelect = document.getElementById("sort");
 
   // Variables pour suivre l'état de sélection des dates
   let startDateSelected = false;
@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function scrollToElement(element, offset = 200) {
     if (element) {
       const rect = element.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = document.documentElement.scrollTop;
       const targetPosition = scrollTop + rect.top - offset;
 
       window.scrollTo({
@@ -29,23 +28,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fonction pour extraire le prix d'une carte
   const getPrice = (card) => {
-    const priceElement = card.querySelector('.price-value');
+    const priceElement = card.querySelector(".price-value");
     if (priceElement) {
       const priceText = priceElement.textContent.trim();
-      return parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
+      return parseFloat(priceText.replace(/[^\d,]/g, "").replace(",", "."));
     }
     return 0;
   };
 
   // Fonction pour extraire le titre d'une carte
   const getTitle = (card) => {
-    const titleElement = card.querySelector('.card-title');
-    return titleElement ? titleElement.textContent.trim().toLowerCase() : '';
+    const titleElement = card.querySelector(".card-title");
+    return titleElement ? titleElement.textContent.trim().toLowerCase() : "";
   };
 
   // Fonction pour extraire la note d'une carte
   const getRating = (card) => {
-    const ratingElement = card.querySelector('.card-rating span, .rating-count span');
+    const ratingElement = card.querySelector(
+      ".card-rating span, .rating-count span"
+    );
     if (ratingElement) {
       const ratingText = ratingElement.textContent.trim();
       return parseFloat(ratingText);
@@ -56,22 +57,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fonction pour trier les cartes
   function sortCards(sortValue) {
     // Sélectionner uniquement les cartes dans la section "toutes les destinations"
-    const container = document.querySelector('#toutes-destinations .all-destination-cards');
+    const container = document.querySelector(
+      "#toutes-destinations .all-destination-cards"
+    );
     if (!container) return;
 
-    const cards = Array.from(container.querySelectorAll('.destination-card'));
+    const cards = Array.from(container.querySelectorAll(".destination-card"));
     if (cards.length === 0) return;
 
     // Trier les cartes selon la valeur sélectionnée
     cards.sort((a, b) => {
       switch (sortValue) {
-        case 'price-asc':
+        case "price-asc":
           return getPrice(a) - getPrice(b);
-        case 'price-desc':
+        case "price-desc":
           return getPrice(b) - getPrice(a);
-        case 'name-asc':
+        case "name-asc":
           return getTitle(a).localeCompare(getTitle(b));
-        case 'popular':
+        case "popular":
           return getRating(b) - getRating(a);
         default:
           return 0;
@@ -79,18 +82,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Réorganiser les cartes dans le DOM
-    cards.forEach(card => {
+    cards.forEach((card) => {
       container.appendChild(card);
     });
   }
 
   // Initialiser le tri par popularité au chargement
-  sortCards('popular');
+  sortCards("popular");
 
   // Mettre à jour le select pour refléter le tri initial
   if (sortSelect) {
-    sortSelect.value = 'popular';
-    sortSelect.addEventListener('change', function() {
+    sortSelect.value = "popular";
+    sortSelect.addEventListener("change", function () {
       sortCards(this.value);
     });
   }
