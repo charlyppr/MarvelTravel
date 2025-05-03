@@ -1,0 +1,101 @@
+.maintenance-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--spacing-xxl, 2rem);
+    margin-left: 260px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Contenu principal */
+.maintenance-content {
+    max-width: 600px;
+    background-color: var(--color-card-bg, #fff);
+    border-radius: var(--border-radius-lg, 16px);
+    box-shadow: var(--shadow-card, 0 10px 30px rgba(0, 0, 0, 0.1));
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(242, 219, 175, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-medium, 0.3s);
+    animation: slideDown 0.6s ease;
+}
+
+/* Icône de maintenance */
+.maintenance-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    background: var(--color-glass-dark, rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-bounce, 0.3s);
+}
+
+.maintenance-icon img {
+    width: 60px;
+    height: 60px;
+}
+
+/* Titre de maintenance */
+.maintenance-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-light, #fff);
+    position: relative;
+    background: var(--gradient-primary, linear-gradient(135deg, #e23636, #ff9800));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Message de maintenance */
+.maintenance-message {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-muted, #888);
+    line-height: 1.6;
+}
+
+/* Date de disponibilité */
+.maintenance-date {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #888);
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Bouton de retour */
+.maintenance-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0.8rem 2rem;
+    background: var(--gradient-primary);
+    border-radius: 50px;
+    color: var(--color-text-cream, #f2dbaf);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-medium, 0.3s);
+    border: none;
+    position: relative;
+}
+
+.maintenance-btn:hover {
+    transform: translateY(-4px);
+    background: var(--gradient-primary);
+}
+
+.maintenance-btn:hover::before {
+    left: 100%;
+}
+
+.maintenance-btn:active {
+    transform: translateY(0px);
+}

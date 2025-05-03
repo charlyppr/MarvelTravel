@@ -1,9 +1,23 @@
 .input-warning {
     color: var(--color-error);
     font-size: 0.85rem;
-    margin-top: 0.2rem;
     animation: fadeIn 0.3s ease;
     line-height: 1.4;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    z-index: 9999;
+    background-color: var(--color-card-bg);
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    border-left: 4px solid var(--color-error);
+    pointer-events: all;
+}
+
+.field-value {
+    position: relative;
 }
 
 .input-valid {
@@ -33,7 +47,7 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-5px);
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
@@ -77,4 +91,8 @@
 .strength-strong .strength-indicator {
     width: 100%;
     background-color: #2ECC40; /* Green */
+}
+
+.profile-field {
+    position: relative;
 } 

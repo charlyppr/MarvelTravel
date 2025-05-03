@@ -13,8 +13,8 @@
 }
 
 .settings-greeting .subtitle {
-  color: var(--couleur-secondaire);
-  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
 }
 
 .settings-grid {

@@ -185,7 +185,7 @@
     /* transform: translateX(5px); */
 }
 
-.nav-link.active {
+.nav-link.active, .quick-link.active {
     background-color: var(--color-card-hover);
     border: 1px solid var(--color-accent-faded);
 }

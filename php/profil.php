@@ -110,6 +110,26 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <link rel="stylesheet" href="../css/profil.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
+    
+    <!-- Style pour les boutons désactivés -->
+    <style>
+        .disabled-button {
+            opacity: 0.5;
+            cursor: not-allowed !important;
+            pointer-events: none;
+        }
+        
+        .field-validate {
+            transition: opacity 0.3s ease;
+        }
+        
+        .field-validate.disabled-button img {
+            filter: grayscale(100%);
+        }
+    </style>
+    
+    <!-- Charger le script de validation après avoir défini notre propre script -->
+    <script src="../js/form-validation.js"></script>
 </head>
 
 <body class="<?php echo $theme; ?>-theme">
@@ -259,6 +279,9 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 <div class="field-actions">
                                                     <button type="button" class="field-edit" data-field="password">
                                                         <img src="../img/svg/edit.svg" alt="Modifier">
+                                                    </button>
+                                                    <button type="button" class="password-toggle" id="password-toggle" style="display:none">
+                                                        <img src="../img/svg/eye.svg" alt="Afficher" id="toggle-icon">
                                                     </button>
                                                     <button type="button" class="field-validate" data-field="password"
                                                         style="display:none">
@@ -424,6 +447,20 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     </div>
 
     <script>
+        // Script pour réactiver le bouton de sauvegarde
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sélectionner le bouton de soumission du profil
+            const submitProfileBtn = document.getElementById('submit-profile-btn');
+            
+            if (submitProfileBtn) {
+                // Supprimer les attributs de désactivation ajoutés par form-validation.js
+                setTimeout(() => {
+                    submitProfileBtn.classList.remove('disabled-button');
+                    submitProfileBtn.disabled = false;
+                }, 100);
+            }
+        });
+    
         document.querySelectorAll('.close-notification').forEach(button => {
             button.addEventListener('click', () => {
                 const notification = button.closest('.notification');
@@ -445,7 +482,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
         document.addEventListener('DOMContentLoaded', () => {
             const validated = new Set();
-            const editingFields = new Set(); // Nouvel ensemble pour suivre les champs en cours d'édition
+            const editingFields = new Set();
             const submitBtn = document.getElementById('submit-profile-btn');
             const cancelAllBtn = document.getElementById('cancel-all-btn');
 
@@ -465,6 +502,10 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     // Afficher les boutons avec animation
                     submitBtn.style.display = 'inline-flex';
                     cancelAllBtn.style.display = 'inline-flex';
+                    
+                    // S'assurer que le bouton n'est pas désactivé
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('disabled-button');
 
                     // Délai court pour permettre au navigateur de traiter le changement de display
                     setTimeout(() => {
@@ -484,6 +525,49 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 }
             }
 
+            // Fonction pour vérifier la validité d'un champ
+            function validateField(field) {
+                const input = document.getElementById(field);
+                const validateBtn = document.querySelector(`.field-validate[data-field="${field}"]`);
+                
+                if (!input || !validateBtn) return false;
+
+                let isValid = true;
+                
+                if (field === 'email') {
+                    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    isValid = emailRegex.test(input.value.trim());
+                } else if (field === 'password') {
+                    // Si le champ est vide ou ne respecte pas les critères
+                    if (input.value === '') {
+                        isValid = false;
+                    } else {
+                        const criteriaCount = [
+                            input.value.length >= 8,
+                            /[a-z]/.test(input.value),
+                            /[A-Z]/.test(input.value),
+                            /[0-9]/.test(input.value),
+                            /[^A-Za-z0-9]/.test(input.value)
+                        ].filter(Boolean).length;
+                        isValid = criteriaCount === 5;
+                    }
+                } else {
+                    // Pour les autres champs, vérifier simplement qu'ils ne sont pas vides
+                    isValid = input.value.trim() !== '';
+                }
+                
+                // Mettre à jour l'état du bouton de validation
+                if (isValid) {
+                    validateBtn.classList.remove('disabled-button');
+                    validateBtn.disabled = false;
+                } else {
+                    validateBtn.classList.add('disabled-button');
+                    validateBtn.disabled = true;
+                }
+                
+                return isValid;
+            }
+
             // Fonction pour réinitialiser tous les champs modifiés
             function resetAllFields() {
                 // Réinitialiser les champs validés
@@ -492,6 +576,14 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     input.value = input.dataset.originalValue;
                     input.disabled = true;
                     toggleEditingClass(field, false);
+                    
+                    // Supprimer les avertissements pour ce champ
+                    if (typeof removeWarning === 'function') {
+                        removeWarning(input);
+                    }
+                    
+                    // Retirer les classes de validation
+                    input.parentElement.classList.remove('input-valid', 'input-invalid');
                 });
 
                 // Réinitialiser les champs en cours d'édition
@@ -508,6 +600,14 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     if (editBtn) editBtn.style.display = 'inline-flex';
                     if (validateBtn) validateBtn.style.display = 'none';
                     if (cancelBtn) cancelBtn.style.display = 'none';
+                    
+                    // Supprimer les avertissements pour ce champ
+                    if (typeof removeWarning === 'function') {
+                        removeWarning(input);
+                    }
+                    
+                    // Retirer les classes de validation
+                    input.parentElement.classList.remove('input-valid', 'input-invalid');
                 });
 
                 validated.clear();
@@ -538,8 +638,64 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     btn.style.display = 'none';
                     validate.style.display = 'inline-flex';
                     cancel.style.display = 'inline-flex';
+                    
+                    // Afficher le bouton de toggle pour le mot de passe
+                    if (field === 'password') {
+                        document.getElementById('password-toggle').style.display = 'flex';
+                    }
+                    
+                    // Vérifier initialement la validité et mettre à jour l'état du bouton
+                    validateField(field);
+                    
+                    // Si c'est un champ email ou mot de passe, déclencher la validation
+                    if (field === 'email' || field === 'password') {
+                        const event = new Event('input');
+                        input.dispatchEvent(event);
+                    }
+                });
+            });
 
-                    // Ne pas afficher le bouton d'annulation global avant validation
+            // Ajouter la fonctionnalité de toggle du mot de passe
+            const passwordToggle = document.getElementById('password-toggle');
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (passwordToggle && passwordInput && toggleIcon) {
+                passwordToggle.addEventListener('click', function() {
+                    // Changer le type de l'input
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Changer l'icône
+                    toggleIcon.src = type === 'password' ? '../img/svg/eye.svg' : '../img/svg/eye-slash.svg';
+                    toggleIcon.alt = type === 'password' ? 'Afficher' : 'Masquer';
+                });
+            }
+
+            // Ajouter des écouteurs d'événements pour tous les champs de saisie
+            document.querySelectorAll('.profile-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    const field = this.id;
+                    validateField(field);
+                });
+                
+                input.addEventListener('keyup', function() {
+                    const field = this.id;
+                    validateField(field);
+                });
+            });
+
+            // Masquer le bouton toggle lors de l'annulation
+            document.querySelectorAll('.field-cancel').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const field = this.dataset.field;
+                    if (field === 'password') {
+                        document.getElementById('password-toggle').style.display = 'none';
+                        // Réinitialiser le type et l'icône
+                        passwordInput.setAttribute('type', 'password');
+                        toggleIcon.src = '../img/svg/eye.svg';
+                        toggleIcon.alt = 'Afficher';
+                    }
                 });
             });
 
@@ -548,13 +704,15 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 const validateBtn = event.target.closest('.field-validate');
                 const cancelBtn = event.target.closest('.field-cancel');
 
-                if (validateBtn) {
+                if (validateBtn && !validateBtn.disabled) {
                     const field = validateBtn.dataset.field;
                     const input = document.getElementById(field);
-                    if (input.value.trim() === '') {
-                        alert('Ce champ ne peut pas être vide');
+                    
+                    // Vérifier une dernière fois si le champ est valide
+                    if (!validateField(field)) {
                         return;
                     }
+                    
                     const originalValue = input.getAttribute('data-original-value');
                     const hasChanged = originalValue !== input.value;
                     input.disabled = true;
@@ -562,6 +720,14 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     validateBtn.style.display = 'none';
                     document.querySelector(`.field-cancel[data-field="${field}"]`).style.display = 'none';
                     document.querySelector(`.field-edit[data-field="${field}"]`).style.display = 'inline-flex';
+                    
+                    // Cacher le bouton toggle pour le mot de passe
+                    if (field === 'password') {
+                        document.getElementById('password-toggle').style.display = 'none';
+                        // Réinitialiser à type password
+                        input.setAttribute('type', 'password');
+                    }
+                    
                     if (hasChanged) validated.add(field);
                     else validated.delete(field);
                     updateActionButtons();
@@ -579,6 +745,36 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     editingFields.delete(field);
                     if (editingFields.size === 0 && validated.size === 0) {
                         cancelAllBtn.style.display = 'none';
+                    }
+                    
+                    // Supprimer les indications d'erreur et les avertissements
+                    if (field === 'email' || field === 'password') {
+                        // Retirer les classes de validation
+                        input.parentElement.classList.remove('input-valid', 'input-invalid');
+                        
+                        // Utiliser la fonction removeWarning de form-validation.js pour supprimer les messages
+                        if (typeof removeWarning === 'function') {
+                            removeWarning(input);
+                        } else {
+                            // Fallback: suppression manuelle des éléments
+                            let nextElem = input.parentElement.nextElementSibling;
+                            while (nextElem) {
+                                if (nextElem.classList.contains('input-warning') || 
+                                    nextElem.classList.contains('password-strength-meter')) {
+                                    nextElem.remove();
+                                    nextElem = input.parentElement.nextElementSibling;
+                                } else {
+                                    nextElem = nextElem.nextElementSibling;
+                                }
+                            }
+                            
+                            // Supprimer également les messages dans le conteneur parent
+                            const parentField = input.closest('.profile-field');
+                            if (parentField) {
+                                const warnings = parentField.querySelectorAll('.input-warning');
+                                warnings.forEach(warning => warning.remove());
+                            }
+                        }
                     }
                 }
             });
@@ -598,9 +794,54 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             const profileForm = document.getElementById('profileForm');
 
             profileForm.addEventListener('submit', (event) => {
+                // Vérifier toutes les validations avant soumission
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+                
+                let isValid = true;
+                
+                // Si email est en édition, vérifier sa validité
+                if (editingFields.has('email')) {
+                    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    if (!emailRegex.test(emailInput.value.trim())) {
+                        isValid = false;
+                        event.preventDefault();
+                    }
+                }
+                
+                // Si mot de passe est en édition, vérifier sa validité
+                if (editingFields.has('password') && passwordInput.value !== '') {
+                    const criteriaCount = [
+                        passwordInput.value.length >= 8,
+                        /[a-z]/.test(passwordInput.value),
+                        /[A-Z]/.test(passwordInput.value),
+                        /[0-9]/.test(passwordInput.value),
+                        /[^A-Za-z0-9]/.test(passwordInput.value)
+                    ].filter(Boolean).length;
+                    
+                    if (criteriaCount < 5) {
+                        isValid = false;
+                        event.preventDefault();
+                    }
+                }
+                
+                if (isValid) {
+                    // Activer tous les champs pour l'envoi du formulaire
+                    document.querySelectorAll('.profile-input').forEach(input => {
+                        input.disabled = false;
+                    });
+                }
+            });
+            
+            // Ajout d'un gestionnaire de clic sur le bouton de soumission
+            submitBtn.addEventListener('click', (event) => {
+                // Activer tous les champs avant la soumission
                 document.querySelectorAll('.profile-input').forEach(input => {
                     input.disabled = false;
                 });
+                
+                // Forcer la soumission du formulaire
+                profileForm.submit();
             });
         });
     </script>

@@ -216,29 +216,26 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <section class="infinity-green">
         <div class="container">
             <div class="section-title-wrapper">
-                <h2 class="section-title">Infinity Green</h2>
+                <h2 class="section-title">Marvel Travel s'engage</h2>
             </div>
             
             <div class="infinity-green-content">
                 <div class="infinity-green-image">
                     <div class="image-placeholder">
-                        Image à ajouter plus tard
+                        <img src="img/infinity-green.webp" alt="Infinity Green">
                     </div>
                 </div>
                 
                 <div class="infinity-green-description">
-                    <div class="infinity-green-logo">
-                        <img src="img/svg/infinity-logo.svg" alt="Infinity Green Logo">
-                    </div>
                                 
                     <div class="infinity-features">
                         <div class="infinity-feature-item">
                             <div class="infinity-icon">
-                                <img src="img/svg/eco-icon.svg" alt="Éco-responsable">
+                                <img src="img/svg/carbon-icon.svg" alt="Éco-responsable">
                             </div>
                             <div class="infinity-feature-content">
-                                <h4 class="infinity-feature-title">Voyages éco-responsables</h4>
-                                <p class="infinity-feature-text">Nos voyages sont conçus pour minimiser l'impact environnemental tout en maximisant l'expérience.</p>
+                                <h4 class="infinity-feature-title">Neutralité carbone</h4>
+                                <p class="infinity-feature-text">Voyages interdimensionnels garantis sans émission nette de carbone, grâce à des technologies de propulsion vertes et la compensation par reforestation.</p>
                             </div>
                         </div>
                         
@@ -258,11 +255,11 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         
                         <div class="infinity-feature-item">
                             <div class="infinity-icon">
-                                <img src="img/svg/carbon-icon.svg" alt="Carbone">
+                                <img src="img/svg/green-tech.svg" alt="Technologies Écologiques">
                             </div>
                             <div class="infinity-feature-content">
-                                <h4 class="infinity-feature-title">Compensation carbone</h4>
-                                <p class="infinity-feature-text">100% des émissions de CO2 générées par nos voyages sont compensées via des projets certifiés.</p>
+                                <h4 class="infinity-feature-title">Technologies Écologiques</h4>
+                                <p class="infinity-feature-text">Utilisation de moteurs interdimensionnels à zéro émission et optimisation de l'énergie pour réduire l'empreinte écologique.</p>
                             </div>
                         </div>
                     </div>

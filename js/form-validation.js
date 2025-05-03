@@ -16,48 +16,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Create warning message element
     function createWarning(message, inputElement) {
-        // Check if warning already exists for this input
-        let existingWarning = inputElement.parentElement.nextElementSibling;
-        
-        // Si l'élément suivant est le compteur de force, prendre l'élément d'après
-        if (existingWarning && existingWarning.classList.contains('password-strength-meter')) {
-            existingWarning = existingWarning.nextElementSibling;
+        // Ensure the field-value has position relative (for absolute positioning)
+        const fieldValue = inputElement.closest('.field-value');
+        if (fieldValue) {
+            fieldValue.style.position = 'relative';
         }
         
-        if (existingWarning && existingWarning.classList.contains('input-warning')) {
+        // Find the parent field element
+        const parentField = inputElement.closest('.profile-field');
+        if (!parentField) {
+            // Fallback if no parent field found
+            return null;
+        }
+        
+        // Check if warning already exists
+        let existingWarning = parentField.querySelector('.input-warning');
+        if (existingWarning) {
+            // Update existing warning instead of creating a new one
             existingWarning.innerHTML = message;
             return existingWarning;
         }
         
+        // Create new warning if none exists
         const warningElement = document.createElement('div');
         warningElement.className = 'input-warning';
         warningElement.innerHTML = message;
         
-        // Si c'est un mot de passe, insérer après le compteur de force
-        const strengthMeter = inputElement.parentElement.nextElementSibling;
-        if (inputElement.type === 'password' && strengthMeter && strengthMeter.classList.contains('password-strength-meter')) {
-            strengthMeter.after(warningElement);
-        } else {
-            // Sinon, insérer après le parent de l'input
-            inputElement.parentElement.after(warningElement);
-        }
+        // Append the warning to the parent field
+        parentField.appendChild(warningElement);
         
         return warningElement;
     }
     
     // Remove warning message
     function removeWarning(inputElement) {
-        // Si c'est un mot de passe, vérifier après le compteur de force
-        let existingWarning;
-        const nextElement = inputElement.parentElement.nextElementSibling;
+        // Find the parent field element
+        const parentField = inputElement.closest('.profile-field');
+        if (!parentField) return;
         
-        if (inputElement.type === 'password' && nextElement && nextElement.classList.contains('password-strength-meter')) {
-            existingWarning = nextElement.nextElementSibling;
-        } else {
-            existingWarning = nextElement;
-        }
-        
-        if (existingWarning && existingWarning.classList.contains('input-warning')) {
+        // Find and remove any existing warnings
+        const existingWarning = parentField.querySelector('.input-warning');
+        if (existingWarning) {
             existingWarning.remove();
         }
     }

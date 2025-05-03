@@ -3,7 +3,7 @@
 $current_page = basename($_SERVER['SCRIPT_NAME'], '.php');
 
 // Vérifier si l'utilisateur est sur la page administrateur
-$is_admin_page = ($current_page === 'administrateur');
+$is_admin_page = (strpos($current_page, 'admin') !== false);
 $is_admin_user = ($_SESSION['role'] === 'admin');
 
 // Fonctions d'aide pour les classes CSS
@@ -88,14 +88,14 @@ function isActive($page, $current_page)
                 <h3 class="sidebar-heading">Raccourcis admin</h3>
 
                 <div class="nav-menu">
-                    <a href="admin-nouvel-utilisateur.php" class="quick-link">
+                    <a href="admin-nouvel-utilisateur.php" class="quick-link <?= isActive('admin-nouvel-utilisateur', $current_page) ?>">
                         <div class="quick-link-icon">
                             <img src="../img/svg/user-plus.svg" alt="Ajouter utilisateur">
                         </div>
                         <span class="quick-link-text">Nouvel utilisateur</span>
                     </a>
 
-                    <a href="admin-nouvelle-destination.php" class="quick-link">
+                    <a href="admin-nouvelle-destination.php" class="quick-link <?= isActive('admin-nouvelle-destination', $current_page) ?>">
                         <div class="quick-link-icon">
                             <img src="../img/svg/map-pin.svg" alt="Nouvelle destination">
                         </div>
