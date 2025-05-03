@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .main-icon { fill: #a05dca; }
+    .highlight { fill: #8933b9; }
+  </style>
+  <!-- Circular background -->
+  <circle cx="50" cy="50" r="48" fill="#301934" stroke="#a05dca" stroke-width="2"/>
+  
+  <!-- Stylized Black Panther mask -->
+  <path class="main-icon" d="M50 20 C40 20 30 30 25 45 C25 45 30 40 35 42 C40 44 36 52 40 55 C44 58 50 60 50 60 C50 60 56 58 60 55 C64 52 60 44 65 42 C70 40 75 45 75 45 C70 30 60 20 50 20 Z"/>
+  
+  <!-- Simplified vibranium pattern -->
+  <path class="highlight" d="M38 60 L35 70 L50 80 L65 70 L62 60 L50 65 Z"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="35" cy="42" r="3" fill="#301934"/>
+  <circle cx="65" cy="42" r="3" fill="#301934"/>
+</svg> 

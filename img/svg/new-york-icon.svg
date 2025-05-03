@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .main-icon { fill: #a05dca; }
+    .highlight { fill: #8933b9; }
+    .web { stroke: #a05dca; stroke-width: 2; fill: none; }
+  </style>
+  <!-- Circular background -->
+  <circle cx="50" cy="50" r="48" fill="#301934" stroke="#a05dca" stroke-width="2"/>
+  
+  <!-- Stylized NYC skyline -->
+  <path class="main-icon" d="M15 70 L25 70 L25 50 L30 50 L30 60 L35 60 L35 40 L40 40 L40 55 L45 55 L45 35 L50 25 L55 35 L55 50 L60 50 L60 45 L65 45 L65 55 L70 55 L70 40 L75 40 L75 65 L85 65 L85 70 Z"/>
+  
+  <!-- Spider web elements -->
+  <path class="web" d="M50 25 L70 15"/>
+  <path class="web" d="M50 25 L80 30"/>
+  <path class="web" d="M50 25 L30 15"/>
+  <path class="web" d="M50 25 L20 30"/>
+  
+  <!-- Spider-Man mask eyes -->
+  <ellipse cx="40" cy="30" rx="5" ry="3" transform="rotate(-20 40 30)" class="highlight"/>
+  <ellipse cx="60" cy="30" rx="5" ry="3" transform="rotate(20 60 30)" class="highlight"/>
+</svg> 

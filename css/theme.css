@@ -5,27 +5,23 @@
 
 /* Styles de base */
 a {
-  color: var(--couleur-primaire);
+  color: var(--color-text-light);
 }
 
 .trait {
-  background-color: var(--couleur-primaire);
-}
-
-.default {
-  background-color: var(--couleur-accent);
+  background-color: var(--color-text-light);
 }
 
 .titre {
-  color: var(--couleur-primaire);
+  color: var(--color-text-light);
 }
 
 .sous-titre {
-  color: var(--couleur-secondaire);
+  color: var(--color-accent);
 }
 
 .sous-titre-2 {
-  color: var(--couleur-secondaire);
+  color: var(--color-accent-faded);
 }
 
 /* Navigation */
@@ -39,16 +35,16 @@ a {
 
 .logo-container:hover .logo-gauche span,
 .logo-container:hover .vel {
-  color: var(--couleur-accent) !important;
+  color: var(--color-accent) !important;
 }
 
 .nav-button {
-  color: var(--couleur-tertiaire);
-  background-color: var(--couleur-primaire);
+  color: var(--color-text-light);
+  background-color: var(--color-card-hover);
 }
 
 .nav-button:hover {
-  background-color: var(--couleur-secondaire);
+  background-color: var(--color-card-bg);
 }
 
 .cart-icon {
@@ -64,7 +60,7 @@ a {
 }
 
 .active-nav::after {
-  background-color: var(--couleur-primaire);
+  background-color: var(--color-accent);
 }
 
 /* Menu déroulant */
@@ -90,7 +86,7 @@ a {
 }
 
 .sidebar-item {
-  color: var(--couleur-primaire);
+  color: var(--color-text-light);
 }
 
 .sidebar-item:hover {
@@ -102,36 +98,36 @@ a {
 }
 
 .categorie-text {
-  color: var(--couleur-primaire);
+  color: var(--color-text-light);
 }
 
 .active-text {
-  color: var(--couleur-tertiaire);
+  color: var(--color-text-light);
 }
 
 .info-admin .nom-admin {
-  color: var(--couleur-secondaire);
+  color: var(--color-accent-faded);
 }
 
 .info-admin .mail-admin {
-  color: var(--couleur-primaire);
+  color: var(--color-accent);
 }
 
 .deconnexion * {
-  color: var(--couleur-primaire);
+  color: var(--color-accent);
 }
 
 .deconnexion:hover * {
-  color: var(--couleur-accent);
-  fill: var(--couleur-accent);
+  color: var(--color-accent);
+  fill: var(--color-accent);
 }
 
 /* Boutons et interactions */
 button,
 .button,
 .action-button {
-  background-color: var(--couleur-primaire);
-  color: var(--couleur-tertiaire);
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
 }
 
 .action-button.primary {
@@ -148,7 +144,7 @@ input,
 select,
 textarea {
   background-color: transparent;
-  color: var(--couleur-primaire);
+  color: var(--color-text-light);
 }
 
 input:focus,
@@ -190,7 +186,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .footer-right-top-content {
-  color: var(--couleur-accent);
+  color: var(--color-accent);
 }
 
 .footer-right-top-content a {
@@ -198,7 +194,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .footer-right-top-content a:hover {
-  color: var(--couleur-accent);
+  color: var(--color-accent);
 }
 
 .copyright {
@@ -212,10 +208,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   .menu-li {
-    color: var(--couleur-primaire);
+    color: var(--color-text-light);
   }
 
   .active::after {
-    background-color: var(--couleur-primaire);
+    background-color: var(--color-accent);
   }
 }

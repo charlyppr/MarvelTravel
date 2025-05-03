@@ -23,6 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $users = json_decode(file_get_contents($json_file), true) ?? [];
             foreach ($users as $user) {
                 if ($user['email'] === $login_mail && password_verify($login_pass, $user['password'])) {
+                    // Vérifier si l'utilisateur est bloqué
+                    if (isset($user['blocked']) && $user['blocked'] === true) {
+                        $_SESSION['login_mail'] = $login_mail;
+                        $_SESSION['connexion'] = 2; // Code spécifique pour utilisateur bloqué
+                        exit();
+                    }
+                    
                     session_start();
                     $_SESSION['user'] = $login_mail;
                     $_SESSION['role'] = $user['role'];
@@ -63,13 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $_SESSION['first_name'] = $user['first_name'];
-    $_SESSION['last_name'] = $user['last_name'];
-    $_SESSION['email'] = $user['email'];
-    $_SESSION['connexion'] = $connexion;
-    $_SESSION['role'] = $user['role'];
-    header("Location: connexion.php"); // Redirection pour éviter le re-submit du formulaire
-    exit();
+    // Gérer l'échec de connexion
+    $_SESSION['connexion'] = 1; // Code pour connexion échouée
+
 }
 
 // Récupérer le thème depuis le cookie
@@ -89,6 +92,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <link rel="stylesheet" href="../css/theme.css" id="theme">
 
     <link rel="stylesheet" href="../css/connexion-inscription.css">
+    <link rel="stylesheet" href="../css/form-validation.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -115,6 +119,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             </div>
 
             <form class="form" action="connexion.php" method="post">
+                
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
                     <input type="email" id="email" name="login_mail" placeholder="Email" required autocomplete="email"
@@ -145,6 +150,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             echo "<a href='../index.php'>Connexion réussi !&nbsp<span>Retour à l'acceuil</span></a>";
                         } elseif ($_SESSION['connexion'] == 1) {
                             echo "<p>Identifiant ou mot de passe incorrect</p>";
+                        } elseif ($_SESSION['connexion'] == 2) {
+                            echo "<p>Votre compte a été bloqué. Veuillez contacter l'administrateur.</p>";
                         }
                         unset($_SESSION['connexion']);
                     }
@@ -157,5 +164,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 </body>
 
 <script src="../js/password-toggle.js"></script>
+<script src="../js/form-validation.js"></script>
 
 </html>

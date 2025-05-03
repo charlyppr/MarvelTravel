@@ -20,159 +20,197 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="img/svg/spiderman-pin.svg" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 
     <title>Marvel Travel • Accueil</title>
 
 </head>
 
 <body class="<?php echo $theme; ?>-theme">
-    <div class="default"></div>
 
     <?php include 'php/nav.php'; ?>
 
-    <section class="landing">
-
-        <div class="landing-container">
-            <div class="hero">
-                <img src="img/pierres/rouge.png" alt="pierre rouge" class="pierre rouge">
-                <img src="img/pierres/bleu.png" alt="pierre bleu" class="pierre bleu">
-                <img src="img/pierres/vert.png" alt="pierre verte" class="pierre vert">
-                <img src="img/pierres/violet.png" alt="pierre violette" class="pierre violet">
-                <img src="img/pierres/orange.png" alt="pierre orange" class="pierre orange">
-                <div class="hero-text">
-                    <h1>Explorer l'infini, un monde a la fois</h1>
-                </div>
-                <img src="img/flou.png" alt="flou" class="flou">
-            </div>
-
-
-            <div class="more-container">
-                <div class="more-text">Voir plus</div>
-                <img class="more-svg" alt="fleche bas" src="img/svg/fleche_bas.svg">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Voyagez dans l'univers Marvel</h1>
+            <p>Découvrez des destinations uniques inspirées par vos super-héros préférés et vivez des aventures extraordinaires.</p>
+            <div class="hero-cta">
+                <a href="php/destination.php" class="cta-button">Planifier mon voyage</a>
+                <a href="#" class="secondary-link">Découvrir les destinations <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
             </div>
         </div>
-
-    </section>
-
-    <section class="partenaires">
-        <div class="partenaires-container">
-            <div class="sous-titre-2">
-                <span>Nos partenaires</span>
-            </div>
-
-            <div class="companie-logo-container">
-                <img src="img/companies/nasa.png" alt="nasa" class="companie-logo">
-                <img src="img/companies/nova.png" alt="nova" class="companie-logo">
-                <img src="img/companies/oscorp.png" alt="oscorp" class="companie-logo">
-                <img src="img/companies/pym.png" alt="pym" class="companie-logo">
-                <img src="img/companies/ravager.png" alt="ravager" class="companie-logo">
-                <img src="img/companies/saber.png" alt="saber" class="companie-logo">
-                <img src="img/companies/shield.png" alt="shield" class="companie-logo">
-                <img src="img/companies/stark.png" alt="stark" class="companie-logo">
-                <img src="img/companies/xmen.png" alt="xmen" class="companie-logo">
-                <img src="img/companies/TVA.png" alt="tva" class="companie-logo">
-            </div>
-        </div>
-    </section>
-
-
-    <section class="pourquoi-nous">
-        <div class="pourquoi-nous-container">
-            <div class="pourquoi-nous-text">
-                <div class="titre">
-                    <span>Pourquoi voyager avec nous ?</span>
+        <div class="hero-image">
+            <div class="card-stack">
+                <!-- Carte Marvel principale fixe en dessous -->
+                <div class="marvel-main-card">
+                    <div class="marvel-logo"></div>
                 </div>
-                <div class="sous-titre">
-                    <span>Des destinations légendaires. <br>
-                        Une immersion totale dans le Multivers.
-                    </span>
+                
+                <!-- Cartes de destinations qui défilent au-dessus -->
+                <div class="destination-card" data-title="Wakanda" data-img="img/destinations/wakanda.jpg">
+                    <img src="img/destinations/wakanda.jpg" alt="Wakanda" />
+                </div>
+                <div class="destination-card" data-title="Asgard" data-img="img/destinations/asgard.jpg">
+                    <img src="img/destinations/asgard.jpg" alt="Asgard" />
+                </div>
+                <div class="destination-card" data-title="Atlantis" data-img="img/destinations/atlantis.jpg">
+                    <img src="img/destinations/atlantis.jpg" alt="Atlantis" />
+                </div>
+                <div class="destination-card" data-title="Titan" data-img="img/destinations/titan.jpg">
+                    <img src="img/destinations/titan.jpg" alt="Titan" />
+                </div>
+                <div class="destination-card" data-title="Genosha" data-img="img/destinations/genosha.jpg">
+                    <img src="img/destinations/genosha.jpg" alt="Genosha" />
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Destinations uniques</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Voyageurs satisfaits</span>
                 </div>
             </div>
         </div>
-
     </section>
 
-    <section class="destinations">
-
-        <div class="destinations-container">
-            <div class="destinations-text">
-                <div class="titre">
-                    <span style="color: #F2DBAF;">Nos destinations</span>
-                </div>
-                <div class="sous-titre">
-                    <span style="color: #FFFAE7;">De New York à Asgard... <br>
-                        ...jusqu'aux confins de la Galaxie.</span>
-                </div>
+    <!-- Section confiance -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="trust-title">Ils nous font confiance</h2>
+            <div class="companies-grid">
+                <div class="company-logo"><img src="img/companies/stark.png" alt="Stark Industries"></div>
+                <div class="company-logo"><img src="img/companies/oscorp.png" alt="Oscorp"></div>
+                <div class="company-logo"><img src="img/companies/pym.png" alt="Pym Technologies"></div>
+                <div class="company-logo"><img src="img/companies/nova.png" alt="Nova Corp"></div>
+                <div class="company-logo"><img src="img/companies/ravager.png" alt="Ravagers"></div>
             </div>
-
-            <div class="destinations-exemples">
-                <div class="card">
-                    <img src="img/destinations/NY.png" alt="new york">
-                    <span class="ville">New York</span>
-                    <span class="film">AVENGERS</span>
-                </div>
-
-                <div class="card">
-                    <img src="img/destinations/WAK.png" alt="wakanda">
-                    <span class="ville">Wakanda</span>
-                    <span class="film">BLACK PANTER</span>
-                </div>
-
-                <div class="card">
-                    <img src="img/destinations/ASG.png" alt="asgard">
-                    <span class="ville">Asgard</span>
-                    <span class="film">THOR</span>
-                </div>
-
-                <div class="card">
-                    <img src="img/destinations/KNOW.png" alt="knowhere">
-                    <span class="ville">Knowhere</span>
-                    <span class="film">GARDIENS DE LA GALAXIE</span>
-                </div>
-            </div>
-
-            <span class="sous-titre-2">Et bien d'autres ...</span>
         </div>
-
     </section>
 
-    <section class="comment">
-        <div class="comment-all">
-            <div class="comment-text">
-                <div class="titre">
-                    <span>Comment ça marche ?</span>
-                </div>
-
-                <div class="etapes">
-                    <div>
-                        <span class="chiffre">1</span>
-                        <img src="img/svg/line.svg" alt="trait">
-                        <span>Choisissez votre monde</span>
+    <!-- Section à propos -->
+    <section class="about-section">
+        <div class="about-card">
+            <div class="about-content">
+                <h2 class="about-title">Chez Marvel Travel, nous vous invitons à explorer un monde où le voyage n'est pas seulement vécu—il est ressenti.</h2>
+                
+                <p class="about-text">
+                    Découvrez l'attrait d'une aventure extraordinaire, vivez l'instant magique où le rêve devient réalité. 
+                    Ces moments uniques sont le fruit de notre passion pour l'univers Marvel et d'une expertise développée 
+                    depuis des années. En combinant votre amour pour les super-héros avec notre expertise en voyages, 
+                    nous créons des expériences inoubliables qui résonnent vraiment avec l'univers qui nous entoure.
+                </p>
+                
+                <video class="signature-video" autoplay muted playsinline>
+                    <source src="img/signature.webm" type="video/webm">
+                    <img src="img/svg/signature.svg" alt="Signature" class="signature-img">
+                </video>
+                
+                <div class="signature-footer">
+                    <div class="signature-info">
+                        <p class="signature-name">Paul, Ibrahima, Charly</p>
+                        <p class="signature-title">Fondateurs</p>
                     </div>
-                    <div>
-                        <span class="chiffre">2</span>
-                        <img src="img/svg/line.svg" alt="trait">
-                        <span>Activez votre passeport multiversel</span>
+                    <a href="#" class="story-button">Notre Histoire <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Destinations Populaires -->
+    <section class="popular-destinations">
+        <div class="container">
+            <h2 class="section-title">Destinations Populaires</h2>
+            <div class="destinations-grid">
+                <div class="destination-item postcard">
+                    <div class="postcard-image">
+                        <img src="img/destinations/wakanda.jpg" alt="Wakanda">
                     </div>
-                    <div>
-                        <span class="chiffre">3</span>
-                        <img src="img/svg/line.svg" alt="trait">
-                        <span>Et voilà !</span>
+                    <div class="postcard-content">
+                        <h3 class="destination-name">Wakanda Forever</h3>
+                        <p class="destination-description">
+                            Découvrez la nation africaine cachée, avec son vibranium, ses tribus locales et sa Cité d'Or futuriste. 
+                            Un voyage idéal pour les passionnés de culture et de technologie.
+                        </p>
+                        <a href="php/voyage-detail.php?id=1" class="postcard-link">Découvrir <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
                     </div>
                 </div>
+                
+                <div class="destination-item postcard">
+                    <div class="postcard-image">
+                        <img src="img/destinations/asgard.jpg" alt="Asgard">
+                    </div>
+                    <div class="postcard-content">
+                        <h3 class="destination-name">Asgard</h3>
+                        <p class="destination-description">
+                            Explorez le royaume doré d'Asgard, avec le Bifrost, le palais d'Odin et les célébrations asgardiennes. 
+                            Idéal pour les passionnés de mythologie et d'aventure.
+                        </p>
+                        <a href="php/voyage-detail.php?id=4" class="postcard-link">Découvrir <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                    </div>
+                </div>
+                
+                <div class="destination-item postcard">
+                    <div class="postcard-image">
+                        <img src="img/destinations/new-york.jpg" alt="New York">
+                    </div>
+                    <div class="postcard-content">
+                        <h3 class="destination-name">New York</h3>
+                        <p class="destination-description">
+                            Explorez New York avec Marvel. Vous verrez la Tour Stark, le Sanctum Sanctorum et les sites de Spider-Man. 
+                            Une aventure urbaine dans les lieux de vos super-héros préférés.
+                        </p>
+                        <a href="php/voyage-detail.php?id=0" class="postcard-link">Découvrir <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                    </div>
+                </div>
             </div>
-
-            <a href="php/destination.php" class="decouvrir-button">Découvrir les mondes !</a>
+            <div class="destinations-cta">
+                <a href="php/destination.php" class="view-all-button">Voir toutes les destinations <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+            </div>
         </div>
-
     </section>
 
+    <!-- Section Nos Guides Experts -->
+    <section class="guides-experts">
+        <div class="container">
+            <h2 class="section-title">Notre équipe</h2>
+            
+            <div class="guides-description">
+                <p>Nous sommes une équipe unie d'experts du voyage soigneusement sélectionnés. Nous nous faisons confiance et nous nous fixons des normes élevées, ce qui garantit que chaque voyage que nous organisons est vraiment exceptionnel.</p>
+            </div>
+            
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="guide-photo">
+                        <img src="img/avatars/ibrahima.jpg" alt="Ibrahima">
+                    </div>
+                    <h3 class="guide-name">Ibrahima</h3>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-photo">
+                        <img src="img/avatars/paul.jpg" alt="Paul">
+                    </div>
+                    <h3 class="guide-name">Paul</h3>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-photo">
+                        <img src="img/avatars/charly.jpg" alt="Charly">
+                    </div>
+                    <h3 class="guide-name">Charly</h3>
+                </div>               
+            </div>
+        </div>
+    </section>
 
     <?php include 'php/footer.php'; ?>
 
     <script src="js/nav.js"></script>
-    <script src="js/defilement-logo.js"></script>
-    <script src="js/scroll-to.js"></script>
+    <script src="js/index-cards.js"></script>
 
 </body>
 

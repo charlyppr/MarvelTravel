@@ -121,7 +121,7 @@
 .nationalite {
   height: 50px;
   background-color: var(--color-field-bg);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-lg);
   border: 1px solid var(--color-accent-faded);
   transition: all 0.3s ease;
 }
@@ -418,7 +418,7 @@ input:focus {
 
 .hulk-pin {
   position: absolute;
-  transform: rotate(-10deg) translate(-360px, 460px);
+  transform: rotate(-10deg) translate(-370px, 500px);
 }
 
 .shield-pin {

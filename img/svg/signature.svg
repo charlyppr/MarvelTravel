@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  <path 
+    d="M10,50 C20,40 30,60 40,50 C45,45 50,40 55,45 C60,50 65,55 70,50 C75,45 80,40 85,45 C90,50 95,55 100,50 C110,40 120,60 130,50 C135,45 140,40 145,45 C150,50 155,55 160,45 C165,35 170,25 175,35 C180,45 185,55 190,50 C195,45 200,40 205,45 C210,50 215,55 220,50 C230,40 240,60 250,55 C260,50 270,45 280,50"
+    fill="none" 
+    stroke="#e62429" 
+    stroke-width="2.5" 
+    stroke-linecap="round" 
+    filter="url(#shadow)"
+  />
+  <!-- Le trait barrant le T -->
+  <path 
+    d="M30,35 C50,33 70,38 90,30" 
+    fill="none" 
+    stroke="#e62429" 
+    stroke-width="2.5" 
+    stroke-linecap="round" 
+    filter="url(#shadow)"
+  />
+  <!-- Le point sur le i de Stark -->
+  <circle 
+    cx="190" 
+    cy="30" 
+    r="3" 
+    fill="#e62429" 
+    filter="url(#shadow)"
+  />
+  <!-- S stylisé de Stark -->
+  <path 
+    d="M150,60 C140,65 160,70 150,75 C140,80 130,75 140,70" 
+    fill="none" 
+    stroke="#e62429" 
+    stroke-width="2.5" 
+    stroke-linecap="round" 
+    filter="url(#shadow)"
+  />
+</svg> 
