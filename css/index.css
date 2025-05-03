@@ -8,15 +8,7 @@
     overflow: hidden;
     font-family: "PP Formula", sans-serif;
     margin-top: -15px;
-}
-
-.dark-theme .hero {
-    background: linear-gradient(to bottom, var(--color-background) 0%, #202020 100%);
-    color: var(--color-text-light);
-}
-
-.light-theme .hero {
-    background: linear-gradient(to bottom, var(--color-background) 0%, #f2dbaf54 100%);
+    background: linear-gradient(to bottom, var(--color-background) 0%, var(--color-card-bg) 100%);
     color: var(--color-text-light);
 }
 
