@@ -164,7 +164,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             <span class="titre">Réglages</span>
                             <p class="subtitle">Personnalisez votre expérience Marvel Travel</p>
                         </div>
-                        <a href="../index.php" class="redir-text">
+                        <a href="destination.php" class="redir-text">
                             <span>Retour à l'accueil</span>
                             <img src="../img/svg/fleche-redir.svg" alt="flèche">
                         </a>

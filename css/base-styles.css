@@ -1052,7 +1052,7 @@ footer {
   width: 100%;
   max-width: 400px;
   animation: modalFadeIn 0.3s ease;
-  box-shadow: var(--shadow-neon);
+  /* box-shadow: var(--shadow-neon); */
 }
 
 @keyframes modalFadeIn {

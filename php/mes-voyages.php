@@ -53,8 +53,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </button>
                         </div>
 
-                        <a href="profil.php" class="redir-text">
-                            <span>Retour au profil</span>
+                        <a href="destination.php" class="redir-text">
+                            <span>Retour à l'accueil</span>
                             <img src="../img/svg/fleche-redir.svg" alt="Retour">
                         </a>
                     </div>
