@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_mail = trim($_POST['login_mail'] ?? '');
     $login_pass = trim($_POST['login_pass'] ?? '');
 
-    // Validation des données
+    // Server-side validation still occurs for security
     $inscri = 0;
 
     if ($login_civilite && $login_firstname && $login_lastname && $login_mail && $login_pass) {
@@ -66,10 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'email' => $login_mail
     ];
 
-    // Stocker le code d'erreur
+    // Stocker le code d'erreur - mais la validation JS sera prioritaire pour l'UI
     $_SESSION['inscri'] = $inscri;
-    header("Location: inscription.php");
-    exit();
+    
+    // Ne pas rediriger si JavaScript est activé, la validation JS empêchera la soumission
+    // La redirection ne se produit que si JavaScript est désactivé
+    if (isset($_POST['nojs'])) {
+        header("Location: inscription.php");
+        exit();
+    }
 }
 
 // Récupérer le thème depuis le cookie
@@ -89,6 +94,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <link rel="stylesheet" href="../css/theme.css" id="theme">
 
     <link rel="stylesheet" href="../css/connexion-inscription.css">
+    <link rel="stylesheet" href="../css/form-validation.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -116,7 +122,9 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             </div>
 
             <form class="form" action="inscription.php" method="post">
-
+                <input type="hidden" name="nojs" value="1">
+                <script>document.forms[0].elements.nojs.value = 0;</script>
+                
                 <div class="civilite-container">
                     <div class="civilite">
                         <select name="login_civilite" id="login_civilite" required>
@@ -180,6 +188,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </div>
     <script src="../js/password-toggle.js"></script>
+    <script src="../js/form-validation.js"></script>
 </body>
 
 </html>

@@ -4,15 +4,15 @@
         "first_name": "Caryl",
         "last_name": "Lebreton",
         "email": "caryl@gmail.com",
-        "password": "$2y$10$y5YTe.HY7yPBsiRIo1henOpCRO6NPQ35ortcIul4zK0oWL1DR\/5FG",
-        "date_naissance": "2000-07-18",
+        "password": "$2y$10$MdMeiumYbrvuXJFkuWn8TenVnM7SacmZF5vkdfgrqMyNFTaowRghu",
+        "date_naissance": "2000-01-01",
         "nationalite": "Asgardienne",
         "role": "admin",
-        "passport_id": "6698892731",
-        "date_inscription": "2025-03-30 22:51:49",
+        "passport_id": "1271684619",
+        "date_inscription": "2025-05-02 19:06:37",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-02 15:47:17"
+        "last_login": "2025-05-03 00:53:35"
     },
     {
         "civilite": "M",
@@ -64,14 +64,14 @@
         "first_name": "Hello",
         "last_name": "Darling",
         "email": "hello@gmail.com",
-        "password": "$2y$10$GlWrASqjfdzuOUDSFSLFduIf8zaRplEKyAQzz3qvYx588\/tYD09Wi",
-        "date_naissance": "2025-03-12",
-        "nationalite": "Asgardienne",
+        "password": "$2y$10$lfY5Klr0oL9XfJE3HGkq2.\/BpHT8Nnn7CcOqsQz0ejwMf7HRKamkS",
+        "date_naissance": "2025-05-01",
+        "nationalite": "Britannique",
         "role": "user",
-        "passport_id": "8852876946",
-        "date_inscription": "2025-04-01 12:02:37",
+        "passport_id": "5008294612",
+        "date_inscription": "2025-05-02 19:12:16",
         "blocked": false,
-        "vip": true,
-        "last_login": "2025-04-23 19:03:56"
+        "vip": false,
+        "last_login": "null"
     }
 ]

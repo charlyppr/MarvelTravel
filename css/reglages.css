@@ -268,7 +268,7 @@
   border-radius: 30px;
   cursor: pointer;
   transition: all var(--transition-fast);
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  /* border: 1px solid rgba(242, 219, 175, 0.1); */
 }
 
 .toggle-label:before {

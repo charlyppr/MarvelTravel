@@ -165,45 +165,51 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         <div class="destination-suggestions-div">
                                             <h3>Suggestions de destinations</h3>
                                             
+                                            <?php 
+                                            // Parcourir tous les voyages et générer dynamiquement les suggestions
+                                            foreach ($voyages_array as $voyage):
+                                                // Détermine l'icône à utiliser - utilise une icône par défaut si non spécifiée
+                                                $icon_name = strtolower(str_replace(' ', '-', $voyage['titre']));
+                                                $icon_path = "../img/icone-voyage/{$icon_name}-icon.png";
+                                                // Vérifier si l'icône existe, sinon utiliser une icône par défaut
+                                                $icon_path = file_exists($_SERVER['DOCUMENT_ROOT'] . str_replace('../', '/', $icon_path)) 
+                                                    ? $icon_path 
+                                                    : "../img/icone-voyage/default-icon.png";
+                                                
+                                                // Déterminer l'information complémentaire à afficher
+                                                $info_text = "";
+                                                if (isset($voyage['resume']) && !empty($voyage['resume'])) {
+                                                    $info_text = $voyage['resume'];
+                                                } elseif (isset($voyage['categories']) && !empty($voyage['categories'])) {
+                                                    $info_text = "Catégories : " . implode(", ", array_slice($voyage['categories'], 0, 2));
+                                                } else {
+                                                    $info_text = "Une destination unique dans l'univers Marvel";
+                                                }
+                                                
+                                                // Déterminer le suffixe de localisation
+                                                $location_suffix = "";
+                                                if (isset($voyage['localisation']['type'])) {
+                                                    switch ($voyage['localisation']['type']) {
+                                                        case 'earth':
+                                                            $location_suffix = ", Terre";
+                                                            break;
+                                                        case 'space':
+                                                            $location_suffix = ", Espace";
+                                                            break;
+                                                        case 'dimension':
+                                                            $location_suffix = ", Dimension alternative";
+                                                            break;
+                                                    }
+                                                }
+                                            ?>
                                             <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/ny-icon.png" alt="New York Icon"></div>
+                                                <div class="suggestion-icon city-icon"><img src="<?php echo $icon_path; ?>" alt="<?php echo htmlspecialchars($voyage['titre']); ?> Icon"></div>
                                                 <div class="suggestion-content">
-                                                    <h4>New York, États-Unis</h4>
-                                                    <p>Célèbre pour des sites comme : Tour Stark, Central Park</p>
+                                                    <h4><?php echo htmlspecialchars($voyage['titre']) . $location_suffix; ?></h4>
+                                                    <p><?php echo htmlspecialchars($info_text); ?></p>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/wakanda-icon.png" alt="Wakanda Icon"></div>
-                                                <div class="suggestion-content">
-                                                    <h4>Wakanda, Afrique</h4>
-                                                    <p>Pour sa technologie de pointe et culture unique</p>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/asgard-icon.png" alt="Asgard Icon"></div>
-                                                <div class="suggestion-content">
-                                                    <h4>Asgard, Royaume des Dieux</h4>
-                                                    <p>Destination mythologique prisée</p>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/xandar-icon.png" alt="Xandar Icon"></div>
-                                                <div class="suggestion-content">
-                                                    <h4>Xandar, Nova Corps</h4>
-                                                    <p>Célèbre pour des sites comme : Bibliothèque Antique</p>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="suggestion-item">
-                                                <div class="suggestion-icon city-icon"><img src="../img/icone-voyage/hala-icon.png" alt="Hala Icon"></div>
-                                                <div class="suggestion-content">
-                                                    <h4>Hala, Planète Kree</h4>
-                                                    <p>Pour ses spectacles d'arène et architecture</p>
-                                                </div>
-                                            </div>
+                                            <?php endforeach; ?>
                                             
                                             <h3 style="margin-top: 15px;">Catégories populaires</h3>
                                             

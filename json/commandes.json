@@ -678,5 +678,45 @@
                 "total": 180
             }
         ]
+    },
+    {
+        "transaction": "ac8701f0185a1551159c5da5",
+        "reservation_id": "MT-C226BFD2",
+        "montant": 469.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "9562a74a66fa9f54253fa6852993a0d9",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-05-12",
+        "date_fin": "2025-05-22",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-07-18",
+                "nationalite": "Asgardienne",
+                "passport": "669 889 273 1"
+            }
+        ],
+        "date_achat": "2025-04-28 11:19:00",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 20,
+                "nb_participants": 1,
+                "total": 20
+            }
+        ]
     }
 ]
