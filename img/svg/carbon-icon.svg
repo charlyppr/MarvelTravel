@@ -1,0 +1,15 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="24" cy="24" r="20" fill="#EFEBE9"/>
+  <path d="M24 12V16" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 14L30 18" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M37 20L33 22" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M37 28L33 26" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 34L30 30" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M24 36V32" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M16 34L18 30" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M11 28L15 26" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M11 20L15 22" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <path d="M16 14L18 18" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="24" cy="24" r="8" fill="#8D6E63"/>
+  <text x="21" y="28" font-family="sans-serif" font-size="10" fill="white">CO₂</text>
+</svg> 

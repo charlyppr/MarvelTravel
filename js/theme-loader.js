@@ -43,11 +43,19 @@ function applyTheme(theme) {
 
 // Fonction pour basculer le thème
 function toggleTheme(newTheme) {
+  // Ajouter la classe de transition pour une animation fluide
+  document.body.classList.add("theme-transition");
+  
   // Sauvegarder le thème dans un cookie
   setCookie("theme", newTheme);
 
   // Appliquer le thème immédiatement
   applyTheme(newTheme);
+  
+  // Supprimer la classe de transition après la fin de l'animation
+  setTimeout(() => {
+    document.body.classList.remove("theme-transition");
+  }, 500); // Durée légèrement supérieure à la transition CSS (0.5s)
 }
 
 // Listener pour les changements de préférences système

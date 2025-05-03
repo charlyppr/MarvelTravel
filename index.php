@@ -12,10 +12,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Charger le script de thème en premier -->
     <script src="js/theme-loader.js"></script>
 
-    <!-- Charger le fichier de thème approprié -->
     <link rel="stylesheet" href="css/theme.css" id="theme">
 
     <link rel="stylesheet" href="css/index.css">
@@ -37,7 +35,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             <p>Découvrez des destinations uniques inspirées par vos super-héros préférés et vivez des aventures extraordinaires.</p>
             <div class="hero-cta">
                 <a href="php/destination.php" class="cta-button">Planifier mon voyage</a>
-                <a href="#" class="secondary-link">Découvrir les destinations <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                <a href="#popular-destinations" class="secondary-link">Découvrir les destinations 
+                    <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
             </div>
         </div>
         <div class="hero-image">
@@ -80,7 +79,9 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <!-- Section confiance -->
     <section class="trust-section">
         <div class="container">
-            <h2 class="trust-title">Ils nous font confiance</h2>
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Ils nous font confiance</h2>
+            </div>
             <div class="companies-grid">
                 <div class="company-logo"><img src="img/companies/stark.png" alt="Stark Industries"></div>
                 <div class="company-logo"><img src="img/companies/oscorp.png" alt="Oscorp"></div>
@@ -114,16 +115,18 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         <p class="signature-name">Paul, Ibrahima, Charly</p>
                         <p class="signature-title">Fondateurs</p>
                     </div>
-                    <a href="#" class="story-button">Notre Histoire <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                    <a href="#" class="story-button">Notre Histoire <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Section Destinations Populaires -->
-    <section class="popular-destinations">
+    <section class="popular-destinations" id="popular-destinations">
         <div class="container">
-            <h2 class="section-title">Destinations Populaires</h2>
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Destinations Populaires</h2>
+            </div>
             <div class="destinations-grid">
                 <div class="destination-item postcard">
                     <div class="postcard-image">
@@ -135,7 +138,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             Découvrez la nation africaine cachée, avec son vibranium, ses tribus locales et sa Cité d'Or futuriste. 
                             Un voyage idéal pour les passionnés de culture et de technologie.
                         </p>
-                        <a href="php/voyage-detail.php?id=1" class="postcard-link">Découvrir <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                        <a href="php/voyage-detail.php?id=1" class="postcard-link">Découvrir <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
                     </div>
                 </div>
                 
@@ -149,7 +152,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             Explorez le royaume doré d'Asgard, avec le Bifrost, le palais d'Odin et les célébrations asgardiennes. 
                             Idéal pour les passionnés de mythologie et d'aventure.
                         </p>
-                        <a href="php/voyage-detail.php?id=4" class="postcard-link">Découvrir <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                        <a href="php/voyage-detail.php?id=4" class="postcard-link">Découvrir <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
                     </div>
                 </div>
                 
@@ -163,12 +166,12 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             Explorez New York avec Marvel. Vous verrez la Tour Stark, le Sanctum Sanctorum et les sites de Spider-Man. 
                             Une aventure urbaine dans les lieux de vos super-héros préférés.
                         </p>
-                        <a href="php/voyage-detail.php?id=0" class="postcard-link">Découvrir <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                        <a href="php/voyage-detail.php?id=0" class="postcard-link">Découvrir <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
                     </div>
                 </div>
             </div>
             <div class="destinations-cta">
-                <a href="php/destination.php" class="view-all-button">Voir toutes les destinations <span class="arrow"><svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_505_3993)"><path d="M29.6545 12.0471C29.6545 11.6384 29.4829 11.2388 29.1704 10.9385L18.7505 0.510739C18.3848 0.145018 18.0171 0 17.636 0C16.79 0 16.1675 0.609126 16.1675 1.4265C16.1675 1.84496 16.3279 2.21165 16.6047 2.48411L20.708 6.63524L26.2373 11.7383L26.7114 10.8359L21.5515 10.562H1.50145C0.615717 10.562 0 11.1667 0 12.0471C0 12.9153 0.615717 13.5322 1.50145 13.5322H21.5515L26.7114 13.2461L26.2373 12.3559L20.708 17.4568L16.6047 21.5957C16.3379 21.8704 16.1675 22.2449 16.1675 22.6655C16.1675 23.4807 16.79 24.0898 17.636 24.0898C18.0171 24.0898 18.3747 23.9348 18.7004 23.6313L29.1704 13.1457C29.4829 12.8533 29.6545 12.4558 29.6545 12.0471Z" fill="white" fill-opacity="0.85"/></g><defs><clipPath id="clip0_505_3993"><rect width="30.0085" height="24.1328" fill="white"/></clipPath></defs></svg></span></a>
+                <a href="php/destination.php" class="view-all-button">Voir toutes les destinations <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
             </div>
         </div>
     </section>
@@ -176,7 +179,9 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <!-- Section Nos Guides Experts -->
     <section class="guides-experts">
         <div class="container">
-            <h2 class="section-title">Notre équipe</h2>
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Notre équipe</h2>
+            </div>
             
             <div class="guides-description">
                 <p>Nous sommes une équipe unie d'experts du voyage soigneusement sélectionnés. Nous nous faisons confiance et nous nous fixons des normes élevées, ce qui garantit que chaque voyage que nous organisons est vraiment exceptionnel.</p>
@@ -185,21 +190,21 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             <div class="guides-grid">
                 <div class="guide-card">
                     <div class="guide-photo">
-                        <img src="img/avatars/ibrahima.jpg" alt="Ibrahima">
+                        <img src="img/avatars/ibra.png" alt="Ibrahima">
                     </div>
                     <h3 class="guide-name">Ibrahima</h3>
                 </div>
                 
                 <div class="guide-card">
                     <div class="guide-photo">
-                        <img src="img/avatars/paul.jpg" alt="Paul">
+                        <img src="img/avatars/paul.png" alt="Paul">
                     </div>
                     <h3 class="guide-name">Paul</h3>
                 </div>
                 
                 <div class="guide-card">
                     <div class="guide-photo">
-                        <img src="img/avatars/charly.jpg" alt="Charly">
+                        <img src="img/avatars/charly.png" alt="Charly">
                     </div>
                     <h3 class="guide-name">Charly</h3>
                 </div>               
@@ -207,9 +212,80 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </section>
 
+    <!-- Section Infinity Green -->
+    <section class="infinity-green">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Infinity Green</h2>
+            </div>
+            
+            <div class="infinity-green-content">
+                <div class="infinity-green-image">
+                    <div class="image-placeholder">
+                        Image à ajouter plus tard
+                    </div>
+                </div>
+                
+                <div class="infinity-green-description">
+                    <div class="infinity-green-logo">
+                        <img src="img/svg/infinity-logo.svg" alt="Infinity Green Logo">
+                    </div>
+                                
+                    <div class="infinity-features">
+                        <div class="infinity-feature-item">
+                            <div class="infinity-icon">
+                                <img src="img/svg/eco-icon.svg" alt="Éco-responsable">
+                            </div>
+                            <div class="infinity-feature-content">
+                                <h4 class="infinity-feature-title">Voyages éco-responsables</h4>
+                                <p class="infinity-feature-text">Nos voyages sont conçus pour minimiser l'impact environnemental tout en maximisant l'expérience.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-separator"></div>
+                        
+                        <div class="infinity-feature-item">
+                            <div class="infinity-icon">
+                                <img src="img/svg/community-icon.svg" alt="Communauté">
+                            </div>
+                            <div class="infinity-feature-content">
+                                <h4 class="infinity-feature-title">Soutien aux communautés</h4>
+                                <p class="infinity-feature-text">Nous travaillons directement avec les populations locales pour assurer un tourisme bénéfique pour tous.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-separator"></div>
+                        
+                        <div class="infinity-feature-item">
+                            <div class="infinity-icon">
+                                <img src="img/svg/carbon-icon.svg" alt="Carbone">
+                            </div>
+                            <div class="infinity-feature-content">
+                                <h4 class="infinity-feature-title">Compensation carbone</h4>
+                                <p class="infinity-feature-text">100% des émissions de CO2 générées par nos voyages sont compensées via des projets certifiés.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="contact-cta-content">
+                <div class="section-title-wrapper">
+                    <h2 class="section-title">Des questions ?</h2>
+                </div>
+                <p class="contact-cta-text">Notre équipe est disponible pour répondre à toutes vos questions concernant nos voyages et services</p>
+                <a href="php/contact.php" class="cta-button">Contactez-nous <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
+            </div>
+        </div>
+    </section>
+
     <?php include 'php/footer.php'; ?>
 
-    <script src="js/nav.js"></script>
     <script src="js/index-cards.js"></script>
 
 </body>

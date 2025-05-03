@@ -244,7 +244,7 @@ body {
   margin: 0;
   padding: 0;
   user-select: none;
-  transition: all 0.5s ease-in-out;
+  transition: all var(--transition-theme);
 }
 
 a {
@@ -407,15 +407,11 @@ textarea {
 
 /* Improved theme toggle styles */
 .theme-transition {
-  transition: background-color 0.5s ease, color 0.5s ease,
-    border-color 0.5s ease, box-shadow 0.5s ease, background-image 0.5s ease,
-    filter 0.5s ease !important;
+  transition: all var(--transition-theme);
 }
 
 body.theme-transition * {
-  transition: background-color 0.5s ease, color 0.5s ease,
-    border-color 0.5s ease, box-shadow 0.5s ease, background-image 0.5s ease,
-    filter 0.5s ease !important;
+  transition: all var(--transition-theme) !important;
 }
 
 .dropdown-item.theme-toggle {
@@ -484,35 +480,67 @@ body.theme-transition * {
   transform: rotate(25deg);
 }
 
-/* Animation pour le changement de theme */
-.theme-transition {
-  transition: background-color 0.5s ease, color 0.5s ease,
-    border-color 0.5s ease, box-shadow 0.5s ease, background-image 0.5s ease,
-    filter 0.5s ease !important;
-}
-
-body.theme-transition * {
-  transition: background-color 0.5s ease, color 0.5s ease,
-    border-color 0.5s ease, box-shadow 0.5s ease, background-image 0.5s ease,
-    filter 0.5s ease !important;
-}
-
 /* Style des icones de theme */
+.theme-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+/* Removing the ::before circle background */
+/* Deleting the following code:
+.theme-icons::before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background-color: var(--color-glass-dark);
+  border-radius: 50%;
+  z-index: -1;
+  transition: var(--transition-fast);
+  left: 0;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.theme-icons.light-active::before {
+  left: -5px;
+}
+
+.theme-icons.dark-active::before {
+  left: 27px;
+}
+*/
+
+/* Style spécifique pour le thème dans la nav et dans le dropdown */
+.theme-toggle-nav .theme-icons,
+.profile-dropdown .theme-icons {
+  padding: 5px;
+  border-radius: 30px;
+  background-color: var(--color-glass-dark);
+}
+
 .theme-icon-wrapper {
-  padding: var(--spacing-xxs);
+  padding: 8px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   cursor: pointer;
-  opacity: 0.6;
+  position: relative;
+  z-index: 2;
 }
 
 .theme-icon-wrapper.active {
-  background-color: var(--color-glass-dark);
-  opacity: 1;
+  background-color: var(--color-accent-faded);
+  box-shadow: 0 0 8px var(--color-accent-faded);
   transform: scale(1.1);
+}
+
+.theme-icon-wrapper:not(.active) {
+  opacity: 0.5;
 }
 
 .theme-icon-wrapper:hover {
@@ -623,7 +651,7 @@ input:-webkit-autofill:focus {
 }
 
 .nav-button:hover {
-  transform: translate(0, -5px);
+  transform: translate(0, -2px);
 }
 
 .nav-button:active {
@@ -680,13 +708,12 @@ input:-webkit-autofill:focus {
 .theme-icons {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-left: 5px;
+  gap: 5px;
   position: relative;
 }
 
 .theme-icons::before {
-  content: "";
+  /* content: ""; */
   position: absolute;
   width: 35px;
   height: 35px;
@@ -694,15 +721,24 @@ input:-webkit-autofill:focus {
   border-radius: 50%;
   z-index: -1;
   transition: var(--transition-fast);
-  transform: translateX(0);
+  left: 0;
+  transform: translateY(-50%);
+  top: 50%;
 }
 
 .theme-icons.light-active::before {
-  transform: translateX(-3px);
+  left: -5px;
 }
 
 .theme-icons.dark-active::before {
-  transform: translateX(36px);
+  left: 27px;
+}
+
+/* Style spécifique pour le thème dans la nav et dans le dropdown */
+.theme-toggle-nav .theme-icons::before,
+.profile-dropdown .theme-icons::before {
+  transform: translateY(-50%);
+  top: 50%;
 }
 
 .theme-icon-wrapper {
@@ -791,6 +827,12 @@ input:-webkit-autofill:focus {
 
 /* ------------------------- FOOTER ------------------------- */
 
+footer {
+  background-color: var(--color-footer);
+  color: var(--color-text-footer);
+  transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
 .footer-content {
   position: relative;
   bottom: 0;
@@ -817,14 +859,14 @@ input:-webkit-autofill:focus {
 
 .footer-right-top {
   display: flex;
-  gap: 75px;
+  gap: 70px;
 }
 
 .footer-right-top-content {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  color: var(--couleur-accent);
+  color: var(--color-text-footer);
   font-weight: 100;
 }
 
@@ -841,13 +883,17 @@ input:-webkit-autofill:focus {
   margin: 0;
   padding: 0;
   margin-bottom: 20px;
+  font-size: var(--font-size-sm);
 }
 
 .footer-right-top-content a {
   font-weight: 800;
-  color: var(--couleur-tertiaire);
-
+  color: var(--link-color);
   transition: all 0.3s ease;
+}
+
+.footer-right-top-content a:hover {
+  color: var(--color-accent);
 }
 
 .footer-right-top-content ul:nth-child(1) {
@@ -874,6 +920,7 @@ input:-webkit-autofill:focus {
 .copyright {
   font-size: 0.8em;
   font-weight: 200;
+  color: var(--color-text-footer);
 }
 
 .paiements {
@@ -887,6 +934,97 @@ input:-webkit-autofill:focus {
   width: 30px;
   height: 30px;
   filter: saturate(0);
+}
+
+/* Newsletter container */
+.newsletter-container {
+  margin-top: 20px;
+}
+
+.newsletter-container p {
+  margin-bottom: 10px;
+  font-size: 0.9em;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.newsletter-form input {
+  padding: 8px 12px;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-accent-faded);
+  background-color: var(--color-field-bg);
+  color: var(--color-text-light);
+  flex-grow: 1;
+  outline: none;
+}
+
+.newsletter-form button {
+  padding: 8px 12px;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  background: var(--gradient-primary);
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.newsletter-form button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Team members styling */
+.team-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.team-member span {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.social-links img {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition-fast);
+}
+
+.social-links a:hover img {
+  transform: scale(1.2);
+}
+
+/* Support info */
+.support-info {
+  margin-top: 10px;
+  font-size: 0.85em;
+}
+
+.support-info a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.support-info a:hover {
+  color: var(--link-hover);
 }
 
 /* -------------------------- modal ------------------------- */
@@ -1074,7 +1212,9 @@ input:-webkit-autofill:focus {
   }
 
   .footer-right-top {
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
   }
 
   .footer-bottom {
@@ -1085,6 +1225,23 @@ input:-webkit-autofill:focus {
 
   .footer-right-bottom {
     text-align: center;
+  }
+
+  .newsletter-form {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .team-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .support-info {
+    text-align: center;
+    margin-top: 20px;
   }
 
   .rouge,

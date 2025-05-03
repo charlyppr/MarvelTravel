@@ -99,9 +99,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (destinationInput && suggestionsContainer) {
+    // Fonction pour limiter l'affichage des suggestions
+    function limitSuggestions(isSearching = false) {
+      // Sélectionner toutes les suggestions de destination
+      const destinationItems = document.querySelectorAll('.suggestion-item:not(.category-suggestion)');
+      // Sélectionner les items de catégorie
+      const categoryItems = document.querySelectorAll('.suggestion-item.category-suggestion');
+      
+      // Si on n'est pas en train de rechercher, limiter à 5 destinations
+      if (!isSearching) {
+        destinationItems.forEach((item, index) => {
+          item.style.display = index < 5 ? 'flex' : 'none';
+        });
+      } else {
+        // En mode recherche, montrer toutes les destinations correspondantes
+        destinationItems.forEach(item => {
+          item.style.display = 'flex';
+        });
+      }
+      
+      // Toujours limiter à 3 catégories
+      categoryItems.forEach((item, index) => {
+        item.style.display = index < 3 ? 'flex' : 'none';
+      });
+    }
+
     // Afficher les suggestions au clic sur l'input
     destinationInput.addEventListener("click", function (e) {
       suggestionsContainer.style.display = "block";
+      // Limiter les suggestions initiales
+      limitSuggestions(false);
       // Faire défiler jusqu'aux suggestions
       setTimeout(() => scrollToElement(suggestionsContainer), 100);
       e.stopPropagation(); // Empêcher la propagation pour éviter la fermeture immédiate
@@ -110,6 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Afficher les suggestions quand l'input reçoit le focus
     destinationInput.addEventListener("focus", function () {
       suggestionsContainer.style.display = "block";
+      // Limiter les suggestions initiales
+      limitSuggestions(false);
       // Faire défiler jusqu'aux suggestions
       setTimeout(() => scrollToElement(suggestionsContainer), 100);
     });
@@ -189,21 +218,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Gérer la recherche en temps réel
     destinationInput.addEventListener("input", function () {
-      const searchTerm = this.value.toLowerCase();
+      const searchTerm = this.value.toLowerCase().trim();
 
-      // Si l'entrée est vide, afficher toutes les suggestions
+      // Si l'entrée est vide, afficher les suggestions limitées
       if (searchTerm === "") {
         document.querySelectorAll(".suggestion-item").forEach((item) => {
           item.style.display = "flex";
         });
         suggestionsContainer.style.display = "block";
+        limitSuggestions(false);
         return;
       }
 
       // Filtrer les suggestions
       let hasMatches = false;
-      document.querySelectorAll(".suggestion-item").forEach((item) => {
+      
+      // Séparons les destinations et les catégories pour une meilleure gestion
+      const destinationItems = document.querySelectorAll('.suggestion-item:not(.category-suggestion)');
+      const categoryItems = document.querySelectorAll('.suggestion-item.category-suggestion');
+      
+      // Filtrer les destinations
+      destinationItems.forEach((item) => {
         const itemName = item.querySelector("h4").textContent.toLowerCase();
+        const itemDesc = item.querySelector("p").textContent.toLowerCase();
+        
+        if (itemName.includes(searchTerm) || itemDesc.includes(searchTerm)) {
+          item.style.display = "flex";
+          hasMatches = true;
+        } else {
+          item.style.display = "none";
+        }
+      });
+      
+      // Filtrer les catégories
+      categoryItems.forEach((item) => {
+        const itemName = item.querySelector("h4").textContent.toLowerCase();
+        
         if (itemName.includes(searchTerm)) {
           item.style.display = "flex";
           hasMatches = true;
@@ -214,6 +264,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Afficher ou masquer le conteneur de suggestions
       suggestionsContainer.style.display = hasMatches ? "block" : "none";
+      
+      // En mode recherche avec des résultats, ne pas limiter les résultats correspondants
+      // (pas d'appel à limitSuggestions car nous voulons tous les résultats correspondants)
     });
   }
 

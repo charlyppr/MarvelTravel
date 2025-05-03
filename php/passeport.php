@@ -98,9 +98,10 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <script src="../js/theme-loader.js"></script>
 
     <link rel="stylesheet" href="../css/theme.css" id="theme">
-
+    <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="stylesheet" href="../css/passeport.css">
+    <link rel="stylesheet" href="../css/legal-pages.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 
@@ -156,7 +157,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             <div class="rules-checkbox">
                 <input type="checkbox" id="rules-accept" required>
                 <label for="rules-accept">
-                    J'accepte les <a href="#" target="_blank">règles de Marvel Travel</a> et je m'engage à respecter les
+                    J'accepte les <a href="#" id="show-cgv">règles de Marvel Travel</a> et je m'engage à respecter les
                     lois du multivers
                 </label>
             </div>
@@ -169,7 +170,22 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </div>
 
+    <!-- Modal des CGV -->
+    <div id="cgv-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="titre">Conditions Générales de Vente</h1>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <?php include 'cgv-light.php'; ?>
+            </div>
+        </div>
+    </div>
+
+
     <script>
+        // Gestion de la case à cocher
         document.getElementById('rules-accept').addEventListener('change', function () {
             const continueBtn = document.getElementById('continue-btn');
             if (this.checked) {
@@ -179,6 +195,37 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 continueBtn.style.opacity = '0.5';
                 continueBtn.style.pointerEvents = 'none';
             }
+        });
+
+        // Gestion du modal CGV
+        const modal = document.getElementById('cgv-modal');
+        const showCGVBtn = document.getElementById('show-cgv');
+        const closeModal = document.querySelector('.close-modal');
+
+        // Ouvrir le modal
+        showCGVBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Empêcher le défilement de la page
+        });
+
+        // Fermer le modal avec le bouton X
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Réactiver le défilement
+        });
+
+        // Fermer le modal en cliquant en dehors
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Empêcher la fermeture en cliquant sur le contenu
+        document.querySelector('.modal-content').addEventListener('click', function(event) {
+            event.stopPropagation();
         });
     </script>
 </body>

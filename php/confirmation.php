@@ -551,7 +551,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         <?php endif; ?>
     </div>
 
-    <script src="../js/nav.js"></script>
 </body>
 
 </html>

@@ -526,7 +526,100 @@ body {
     transform: translateX(8px);
 }
 
-/* Animations */
+/* Styles du modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    margin: 2% auto;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    background-color: var(--color-background);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-accent-faded);
+    animation: modalAppear 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-glass-dark);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    z-index: 10;
+}
+
+.modal-header .titre {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-modal {
+    color: var(--color-text-light);
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--color-accent);
+}
+
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+}
+
+/* Style pour le contenu des CGV à l'intérieur du modal */
+.modal-body .container {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+.modal-body .legal-content {
+    padding: 0;
+    min-height: auto;
+}
+
+.modal-body .titre {
+    display: none;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes scanEffect {
     0%, 100% { opacity: 0; transform: translateY(-50%) scale(1); }
     50% { opacity: 1; transform: translateY(0%) scale(1.2); }
@@ -605,37 +698,4 @@ body {
 @keyframes btnSweep {
     0% { left: -100%; }
     100% { left: 100%; }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .passport-page {
-        padding: 2rem 1.5rem;
-    }
-    
-    .title {
-        font-size: 2.2rem;
-    }
-    
-    .subtitle {
-        font-size: 1.1rem;
-    }
-    
-    .passport-container {
-        padding: 1.5rem;
-        animation: none;
-        transform: none;
-    }
-    
-    .passport-title {
-        font-size: 1.5rem;
-    }
-    
-    .passport-id {
-        font-size: 1.3rem;
-    }
-    
-    .continue-button {
-        padding: 1rem 1.5rem;
-    }
 }

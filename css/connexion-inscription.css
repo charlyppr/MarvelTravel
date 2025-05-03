@@ -256,7 +256,7 @@ input:focus {
 .date-input {
   background-color: var(--color-field-bg);
   border: 1px solid var(--color-accent-faded);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-lg);
   height: 50px;
   display: flex;
   align-items: center;

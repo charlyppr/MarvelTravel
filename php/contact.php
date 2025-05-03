@@ -78,19 +78,19 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
 
                         <div class="support-section">
-                            <div class="support-info">
+                            <div class="support-info-card">
                                 <h3 class="support-title">Support client</h3>
                                 <p class="support-description">Un problème avec ta réservation ? Un portail dimensionnel
                                     qui s'est refermé trop tôt ? On est là pour toi !</p>
                             </div>
 
-                            <div class="support-info">
+                            <div class="support-info-card">
                                 <h3 class="support-title">Feedback et Suggestions</h3>
                                 <p class="support-description">Tu as une idée de voyage intergalactique ou tu penses
                                     qu'on devrait ajouter une escale à Wakanda ?</p>
                             </div>
 
-                            <div class="support-info">
+                            <div class="support-info-card">
                                 <h3 class="support-title">Partenariat</h3>
                                 <p class="support-description">Tu veux t'associer avec nous pour créer des expériences
                                     héroïques ? On est prêts à unir nos forces, faisons équipe !</p>
@@ -189,7 +189,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
                 </div>
 
-                <div class="faq">
+                <div class="faq" id="faq">
                     <div class="faq-info">
                         <h2 class="faq-titre">FAQ</h2>
                         <p class="location-description">Des questions ? On y répond !</p>
@@ -256,7 +256,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <?php include "footer.php"; ?>
 
-    <script src="../js/nav.js"></script>
     <script src="../js/faq.js"></script>
 </body>
 

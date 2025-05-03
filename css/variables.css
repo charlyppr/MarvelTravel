@@ -24,6 +24,7 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-elastic: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-sidebar: 0.3s ease;
+  --transition-theme: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Tailles de police */
   --font-size-xs: 12px;
@@ -43,8 +44,8 @@
   --color-text-cream: #fffae7;
   --color-text-dark: #0d0d0d;
   --color-text-muted: rgba(255, 250, 231, 0.7);
-  --color-footer: #f2dbaf;
-  --color-text-footer: #0d0d0d;
+  --color-footer: #181818;
+  --color-text-footer: #fffae7;
 
   /* Accents et dégradés */
   --color-accent: #f2dbaf;

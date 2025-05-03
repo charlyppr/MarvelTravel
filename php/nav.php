@@ -85,6 +85,20 @@ if ($is_in_root) {
                 <li>Contact</li>
             </a>
 
+            <!-- Bouton de thème pour tous les utilisateurs -->
+            <?php if (!isset($_SESSION['user'])) { ?>
+                <div class="theme-toggle-nav">
+                    <div class="theme-icons">
+                        <div id="sunIcon" class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'active' : ''; ?>">
+                            <img src="<?php echo getAssetPath('svg/sun.svg'); ?>" alt="Mode clair" class="theme-icon">
+                        </div>
+                        <div id="moonIcon" class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? '' : 'active'; ?>">
+                            <img src="<?php echo getAssetPath('svg/moon.svg'); ?>" alt="Mode sombre" class="theme-icon">
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
             <?php
             if (isset($_SESSION['user'])) {
                 ?>
@@ -178,6 +192,5 @@ if ($is_in_root) {
     </div>
 </div>
 
-<!-- Inclure les fichiers JavaScript -->
 <script src="<?php echo $prefix_path; ?>js/theme-loader.js"></script>
 <script src="<?php echo $prefix_path; ?>js/nav.js"></script>

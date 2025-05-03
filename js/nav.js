@@ -59,10 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Theme icons functionality
-  const themeIcons = document.querySelector('.theme-icons');
-  
-  if (themeIcons) {
+  // Theme toggle functionality - Maintenant accessible à tous les utilisateurs
+  function handleThemeToggle() {
     // Use the getCookie function from theme-loader.js if available
     function getThemeCookie(name) {
       if (typeof getCookie === 'function') {
@@ -75,61 +73,70 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     
-    const currentThemeValue = getThemeCookie('theme') || 'dark';
+    // Recherche tous les groupes d'icônes de thème sur la page (navbar et dropdown si connecté)
+    const allThemeIcons = document.querySelectorAll('.theme-icons');
     
-    if (currentThemeValue === 'light') {
-      themeIcons.classList.add('light-active');
-    } else {
-      themeIcons.classList.add('dark-active');
-    }
+    if (allThemeIcons.length > 0) {
+      const currentThemeValue = getThemeCookie('theme') || 'dark';
+      
+      // Mettre à jour l'état visuel de tous les sélecteurs de thème
+      updateThemeIcons(currentThemeValue);
 
-    // Handle theme icon clicks
-    const sunIconWrapper = document.getElementById('sunIcon');
-    const moonIconWrapper = document.getElementById('moonIcon');
+      function changeTheme(newTheme) {
+        // Use the functions from theme-loader.js if available
+        if (typeof toggleTheme === 'function') {
+          toggleTheme(newTheme);
+        } else {
+          // Fallback if theme-loader.js is not loaded
+          document.cookie = `theme=${newTheme};path=/;max-age=31536000`;
+          document.body.classList.remove('light-theme', 'dark-theme');
+          document.body.classList.add(newTheme + '-theme');
+        }
 
-    function changeTheme(newTheme) {
-      // Use the functions from theme-loader.js if available
-      if (typeof toggleTheme === 'function') {
-        toggleTheme(newTheme);
-      } else {
-        // Fallback if theme-loader.js is not loaded
-        document.cookie = `theme=${newTheme};path=/;max-age=31536000`;
-        document.body.classList.remove('light-theme', 'dark-theme');
-        document.body.classList.add(newTheme + '-theme');
+        // Update UI for theme icons
+        updateThemeIcons(newTheme);
+
+        // Add transition effect
+        document.body.classList.add('theme-transition');
+        setTimeout(() => {
+          document.body.classList.remove('theme-transition');
+        }, 1000);
       }
 
-      // Update UI for theme icons
-      if (newTheme === 'light') {
-        sunIconWrapper.classList.add('active');
-        moonIconWrapper.classList.remove('active');
-        themeIcons.classList.add('light-active');
-        themeIcons.classList.remove('dark-active');
-      } else {
-        moonIconWrapper.classList.add('active');
-        sunIconWrapper.classList.remove('active');
-        themeIcons.classList.add('dark-active');
-        themeIcons.classList.remove('light-active');
+      // Function to update all theme icons based on current theme
+      function updateThemeIcons(theme) {
+        const allSunIcons = document.querySelectorAll('#sunIcon');
+        const allMoonIcons = document.querySelectorAll('#moonIcon');
+        
+        if (theme === 'light') {
+          allSunIcons.forEach(icon => icon.classList.add('active'));
+          allMoonIcons.forEach(icon => icon.classList.remove('active'));
+        } else {
+          allMoonIcons.forEach(icon => icon.classList.add('active'));
+          allSunIcons.forEach(icon => icon.classList.remove('active'));
+        }
       }
 
-      // Add transition effect
-      document.body.classList.add('theme-transition');
-      setTimeout(() => {
-        document.body.classList.remove('theme-transition');
-      }, 1000);
-    }
-
-    if (sunIconWrapper) {
-      sunIconWrapper.addEventListener('click', function() {
-        changeTheme('light');
+      // Ajouter des écouteurs d'événements à tous les boutons de thème
+      const allSunIcons = document.querySelectorAll('#sunIcon'); 
+      const allMoonIcons = document.querySelectorAll('#moonIcon');
+      
+      allSunIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          changeTheme('light');
+        });
       });
-    }
-
-    if (moonIconWrapper) {
-      moonIconWrapper.addEventListener('click', function() {
-        changeTheme('dark');
+      
+      allMoonIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          changeTheme('dark');
+        });
       });
     }
   }
+  
+  // Appeler la fonction de gestion du thème
+  handleThemeToggle();
 
   // Simple theme toggle button functionality
   const themeToggleBtn = document.getElementById("themeToggleBtn");

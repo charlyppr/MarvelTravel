@@ -3,6 +3,7 @@
 @import "base-styles.css";
 @import "svg-theme-adapter.css";
 
+
 /* Styles de base */
 a {
   color: var(--color-text-light);
@@ -76,7 +77,7 @@ a {
 }
 
 .dropdown-item:hover {
-  background-color: var(--color-accent-faded);
+  background-color: var(--color-card-hover);
 }
 
 /* Barre latérale */
@@ -201,17 +202,3 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color: var(--color-text-footer);
 }
 
-/* Médias queries */
-@media (max-width: 768px) {
-  .menu {
-    background-color: rgba(18, 18, 18, 0.8);
-  }
-
-  .menu-li {
-    color: var(--color-text-light);
-  }
-
-  .active::after {
-    background-color: var(--color-accent);
-  }
-}

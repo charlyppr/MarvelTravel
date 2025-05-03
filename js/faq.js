@@ -11,13 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Vérifier si la question est déjà active
       const isActive = faqItem.classList.contains("active");
 
-      // Fermer toutes les autres questions ouvertes
-      document.querySelectorAll(".faq-item.active").forEach((item) => {
-        if (item !== faqItem) {
-          item.classList.remove("active");
-        }
-      });
-
       // Basculer l'état actif de la question cliquée
       if (isActive) {
         faqItem.classList.remove("active");

@@ -213,7 +213,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                             
                                             <h3 style="margin-top: 15px;">Catégories populaires</h3>
                                             
-                                            <div class="suggestion-item">
+                                            <div class="suggestion-item category-suggestion">
                                                 <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/aventure-icon.png" alt="Aventure Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Aventure</h4>
@@ -221,7 +221,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 </div>
                                             </div>
                                             
-                                            <div class="suggestion-item">
+                                            <div class="suggestion-item category-suggestion">
                                                 <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/nature-icon.png" alt="Nature Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Nature</h4>
@@ -229,11 +229,44 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 </div>
                                             </div>
                                             
-                                            <div class="suggestion-item">
+                                            <div class="suggestion-item category-suggestion">
                                                 <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/ville-icon.png" alt="Ville Icon"></div>
                                                 <div class="suggestion-content">
                                                     <h4>Urbain</h4>
                                                     <p>Explorez les métropoles de l'univers Marvel</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Nouvelles catégories ajoutées -->
+                                            <div class="suggestion-item category-suggestion">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/aventure-icon.png" alt="Espace Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Espace</h4>
+                                                    <p>Voyages intersidéraux et mondes lointains</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item category-suggestion">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/nature-icon.png" alt="Culture Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Culture</h4>
+                                                    <p>Immersion dans les civilisations Marvel</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item category-suggestion">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/ville-icon.png" alt="Combat Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Combat</h4>
+                                                    <p>Expériences de combat et entraînement</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="suggestion-item category-suggestion">
+                                                <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/aventure-icon.png" alt="Détente Icon"></div>
+                                                <div class="suggestion-content">
+                                                    <h4>Détente</h4>
+                                                    <p>Relaxation et vacances paisibles</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -646,7 +679,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <?php include 'footer.php'; ?>
 
-    <script src="../js/nav.js"></script>
     <script src="../js/calendar.js"></script>
     <script src="../js/destination.js"></script>
 
