@@ -340,7 +340,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
                         <div class="card-content">
                             <div class="form-group">
-                                <label for="date-debut-visible">Date d'arrivée</label>
+                                <label for="date-debut-visible">Date de départ</label>
                                 <div class="form-field">
                                     <img src="../../img/svg/calendar.svg" alt="Date" class="field-icon">
                                     <input type="text" id="date-debut-visible" class="date-input"
@@ -352,7 +352,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
 
                             <div class="form-group">
-                                <label for="date-fin-visible">Date de départ</label>
+                                <label for="date-fin-visible">Date d'arrivé</label>
                                 <div class="form-field">
                                     <img src="../../img/svg/calendar.svg" alt="Date" class="field-icon">
                                     <input type="text" id="date-fin-visible" class="date-input"
