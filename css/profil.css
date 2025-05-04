@@ -220,7 +220,7 @@
 .card {
   background-color: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
-  /* overflow: hidden; */
+  overflow: hidden;
   box-shadow: var(--shadow-card);
   transition: all var(--transition-medium);
   display: flex;
@@ -247,7 +247,7 @@
   transition: opacity var(--transition-medium);
   pointer-events: none;
   z-index: 1;
-  border-radius: var(--border-radius-md);
+  /* border-radius: var(--border-radius-md); */
 }
 
 .card:hover {

@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Créer un nouvel indicateur
         const meter = document.createElement('div');
         meter.className = 'password-strength-meter';
+        meter.style.display = 'none'; // Caché par défaut
         
         const indicator = document.createElement('div');
         indicator.className = 'strength-indicator';
@@ -253,8 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Événements pour les champs mot de passe
     passwordInputs.forEach(input => {
-        // Créer l'indicateur de force
-        getStrengthMeter(input);
+        // Ne pas créer l'indicateur dès le chargement, il sera créé lors de la première saisie
         
         ['input', 'blur'].forEach(event => {
             input.addEventListener(event, () => {

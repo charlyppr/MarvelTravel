@@ -1105,8 +1105,8 @@ footer {
 
 .btn-primary,
 .btn-secondary {
-  padding: 8px 16px;
-  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-xs) 5%;
+  border-radius: var(--border-radius-lg);
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
