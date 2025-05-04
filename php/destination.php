@@ -172,7 +172,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 $icon_name = strtolower(str_replace(' ', '-', $voyage['titre']));
                                                 $icon_path = "../img/icone-voyage/{$icon_name}-icon.png";
                                                 // Vérifier si l'icône existe, sinon utiliser une icône par défaut
-                                                $icon_path = file_exists($_SERVER['DOCUMENT_ROOT'] . str_replace('../', '/', $icon_path)) 
+                                                $real_path = $_SERVER['DOCUMENT_ROOT'] . '/MarvelTravel/img/icone-voyage/' . $icon_name . '-icon.png';
+                                                $icon_path = file_exists($real_path) 
                                                     ? $icon_path 
                                                     : "../img/icone-voyage/default-icon.png";
                                                 

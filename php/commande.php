@@ -110,12 +110,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     <header class="reservation-header">
                         <div class="hero-banner" style="background-image: url('<?= htmlspecialchars($image_path) ?>')">
                             <div class="overlay">
-                                <?php if ($commande['status'] == 'accepted'): ?>
-                                <button class="action-button secondary-button generate-ticket-btn ticket-top-btn" data-transaction="<?= $commande['transaction'] ?>">
-                                    Télécharger mon billet
-                                    <img src="../img/svg/download.svg" alt="Télécharger">
-                                </button>
-                                <?php endif; ?>
                                 <div class="header-content">
                                     <div class="breadcrumb">
                                         <a href="mes-voyages.php" class="breadcrumb-link">
@@ -128,10 +122,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
                                     <div class="destination-title">
                                         <h1><?= htmlspecialchars($commande['voyage']) ?></h1>
-                                        <div class="status <?= $statut_class ?>">
-                                            <img src="../img/svg/<?= $status_icon ?>.svg" alt="Status">
-                                            <?= $statut_texte ?>
-                                        </div>
                                     </div>
 
                                     <div class="reservation-meta">
@@ -177,6 +167,30 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
                         <div class="transaction-status <?= $statut_class ?>">
                             <?= $statut_texte ?>
+                        </div>
+                    </div>
+
+                    <div class="modif-reservation">
+                        <div class="modif-header">
+                            <h3>Actions rapides</h3>
+                            <p>Gérez facilement votre réservation avec ces options</p>
+                        </div>
+                        <div class="modif-buttons">
+                            <?php if ($commande['status'] == 'accepted'): ?>
+                                <button class="action-button generate-ticket-btn" data-transaction="<?= $commande['transaction'] ?>">
+                                    Télécharger mon billet
+                                    <img src="../img/svg/download.svg" alt="Télécharger">
+                                </button>
+                                <a href="modifier-reservation.php?transaction=<?= $commande['transaction'] ?>" class="action-button secondary-button">
+                                    Modifier ma réservation
+                                    <img src="../img/svg/edit.svg" alt="Modifier">
+                                </a>
+                            <?php else: ?>
+                                <div class="status-message">
+                                    <img src="../img/svg/info.svg" alt="Info">
+                                    <p>Vous pourrez télécharger votre billet et modifier la réservation une fois confirmée.</p>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -378,12 +392,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             Réserver un nouveau voyage
                             <img src="../img/svg/plane.svg" alt="Voyage">
                         </a>
-                        <?php if ($commande['status'] == 'accepted'): ?>
-                            <button class="action-button secondary-button generate-ticket-btn" data-transaction="<?= $commande['transaction'] ?>">
-                                Télécharger mon billet
-                                <img src="../img/svg/download.svg" alt="Télécharger">
-                            </button>
-                        <?php endif; ?>
                     </div>
                 </div>
             </div>

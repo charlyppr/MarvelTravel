@@ -416,9 +416,9 @@
 
 .content-container-div {
     width: calc(100% - 280px);
-    margin-left: 260px;
+    margin-left: 270px;
     transition: all var(--transition-medium);
-    padding: var(--spacing-xl)
+    padding: var(--spacing-xl);
 }
 
 .sidebar-content {

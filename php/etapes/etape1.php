@@ -450,56 +450,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     </div>
 
     <script src="../../js/nav.js"></script>
-    <script>
-        // Mettre à jour dynamiquement le nombre de personnes et le prix total
-        document.getElementById('nb_personne').addEventListener('input', function () {
-            const nbPersonnes = parseInt(this.value);
-            const prixBase = <?php echo $voyage['prix']; ?>;
-            const prixTotal = nbPersonnes * prixBase;
-
-            document.getElementById('nb_personnes_display').textContent = nbPersonnes;
-            document.getElementById('prix_total').textContent = new Intl.NumberFormat('fr-FR', {
-                style: 'currency',
-                currency: 'EUR',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            }).format(prixTotal).replace('€', '') + ' €';
-        });
-
-        // Initialisation du calendrier personnalisé
-        document.addEventListener('DOMContentLoaded', function () {
-            // Si des valeurs sont déjà définies dans les champs cachés, initialiser les champs visibles
-            const dateDebutInput = document.getElementById('date-debut');
-            const dateFinInput = document.getElementById('date-fin');
-            const dateDebutVisible = document.getElementById('date-debut-visible');
-            const dateFinVisible = document.getElementById('date-fin-visible');
-
-            if (dateDebutInput && dateDebutInput.value) {
-                // Convertir la date au format lisible
-                const date = new Date(dateDebutInput.value);
-                const options = { day: 'numeric', month: 'short' };
-                dateDebutVisible.value = date.toLocaleDateString('fr-FR', options);
-            }
-
-            if (dateFinInput && dateFinInput.value) {
-                // Convertir la date au format lisible
-                const date = new Date(dateFinInput.value);
-                const options = { day: 'numeric', month: 'short' };
-                dateFinVisible.value = date.toLocaleDateString('fr-FR', options);
-            }
-
-            // S'assurer que le formulaire de réservation soumet les valeurs des champs cachés
-            document.getElementById('reservationForm').addEventListener('submit', function (e) {
-                // Vérifier que les dates sont remplies
-                if (!dateDebutInput.value || !dateFinInput.value) {
-                    e.preventDefault();
-                    alert('Veuillez sélectionner des dates d\'arrivée et de départ.');
-                }
-            });
-        });
-    </script>
-
     <script src="../../js/calendar.js"></script>
+    <script src="../../js/reservation.js"></script>
     <script src="../../js/destination.js"></script>
 </body>
 

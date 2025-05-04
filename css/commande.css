@@ -1,13 +1,8 @@
-.content-container-div {
-  width: 100%;
-  padding: var(--spacing-xl)
-}
-
 .content-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  animation: fadeIn .6s ease
+  animation: fadeIn .6s ease;
 }
 
 .content {
@@ -41,7 +36,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: var(--color-text-light)
+  color: var(--color-text-light);
+  backdrop-filter: blur(3px);
 }
 
 .header-content {
@@ -194,16 +190,6 @@
   color: var(--color-text-cream);
   position: relative;
   font-weight: 600
-}
-
-.ticket-top-btn {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  z-index: 10;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background-color: var(--color-card-hover) !important;
-  backdrop-filter: blur(5px)
 }
 
 .transaction-badge {
@@ -572,7 +558,8 @@
   transition: all var(--transition-medium);
   border: none;
   box-shadow: var(--shadow-button);
-  overflow: hidden
+  overflow: hidden;
+  width: fit-content;
 }
 
 .action-button::after {
@@ -584,10 +571,12 @@
   height: 100%;
   background: linear-gradient(to right, transparent, rgba(255, 255, 255, .2), transparent);
   transform: translateX(-100%);
+  opacity: 0;
   transition: transform var(--transition-slow)
 }
 
 .action-button:hover::after {
+  opacity: 1;
   transform: translateX(100%)
 }
 
@@ -630,10 +619,6 @@
   filter: brightness(0) invert(1);
   opacity: .8;
   transition: transform var(--transition-fast)
-}
-
-.secondary-button:hover img {
-  transform: translateX(-3px)
 }
 
 .transaction-bar {
@@ -849,4 +834,109 @@
   font-size: var(--font-size-sm);
   line-height: 1.5;
   margin: 0
+}
+
+.modif-reservation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  background: var(--color-card-bg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  margin-top: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-accent-faded);
+  position: relative;
+  backdrop-filter: blur(10px);
+  animation: slideUp .6s ease;
+  align-items: center;
+}
+
+.modif-reservation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(242, 219, 175, .1) 0, rgba(0, 0, 0, 0) 50%, rgba(242, 219, 175, .05) 100%);
+  pointer-events: none;
+  border-radius: var(--border-radius-lg);
+  z-index: 1;
+}
+
+.modif-header {
+  flex: 1;
+  min-width: 250px;
+}
+
+.modif-header h3 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.modif-header p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.modif-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  flex: 2;
+  justify-content: flex-end;
+}
+
+.modif-reservation .action-button {
+  position: relative;
+  z-index: 2;
+  min-width: 200px;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: all var(--transition-medium);
+}
+
+.modif-reservation .action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.modif-reservation .generate-ticket-btn {
+  background: var(--gradient-primary);
+  color: var(--color-text-light);
+  border: none;
+}
+
+.modif-reservation .generate-ticket-btn img,
+.modif-reservation a img {
+  width: 18px;
+  height: 18px;
+}
+
+.status-message {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: rgba(242, 219, 175, .1);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  border: 1px dashed var(--color-accent-faded);
+}
+
+.status-message img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(.9);
+  opacity: .7;
+}
+
+.status-message p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
 }

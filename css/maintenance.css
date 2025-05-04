@@ -4,7 +4,6 @@
     align-items: center;
     min-height: 100vh;
     padding: var(--spacing-xxl, 2rem);
-    margin-left: 260px;
     animation: fadeIn 0.5s ease;
 }
 

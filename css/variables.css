@@ -40,6 +40,7 @@
 .dark-theme {
   /* Couleurs de base */
   --color-background: #0d0d0d;
+  --color-background-faded: #0d0d0d40;
   --color-text-light: #ffffff;
   --color-text-cream: #fffae7;
   --color-text-dark: #0d0d0d;
@@ -126,6 +127,7 @@
 .light-theme {
   /* Couleurs de base */
   --color-background: #fffae7;
+  --color-background-faded: #fffae740;
   --color-text-light: #0d0d0d;
   --color-text-cream: #fffae7;
   --color-text-dark: #ffffff;

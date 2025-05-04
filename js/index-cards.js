@@ -44,5 +44,5 @@ document.addEventListener('DOMContentLoaded', function () {
         showCards();
     }
 
-    let intervalId = setInterval(nextCard, 5000);
+    let intervalId = setInterval(nextCard, 3000);
 }); 

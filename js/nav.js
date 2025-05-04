@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", () => {
     if (window.innerWidth > 768) {
       let scrollTop = document.documentElement.scrollTop;
+      window.navBarElement.style.transition = "transform 0.5s ease";
       
       // Skip the first scroll event after page load
       if (isInitialLoad) {
@@ -25,6 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
       
       // Ensure we update the last scroll position correctly
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }
+  });
+
+  // Afficher la barre de navigation rapidement lorsque la souris est en haut de l'écran
+  document.addEventListener("mousemove", (e) => {
+    if (window.innerWidth > 768 && e.clientY <= 70) {
+      window.navBarElement.style.transition = "transform 0.3s ease";
+      window.navBarElement.style.transform = "translateY(0)";
     }
   });
 

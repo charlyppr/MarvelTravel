@@ -115,7 +115,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         <p class="signature-name">Paul, Ibrahima, Charly</p>
                         <p class="signature-title">Fondateurs</p>
                     </div>
-                    <a href="#" class="story-button">Notre Histoire <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
+                    <a href="php/aboutus.php" class="story-button">Notre Histoire <span class="arrow"><img src="img/svg/arrow-right.svg" alt="arrow-right"></span></a>
                 </div>
             </div>
         </div>

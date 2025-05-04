@@ -677,6 +677,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </div>
 
+    <script src="../../js/reservation.js"></script>
+    
 </body>
 
 </html>

@@ -377,103 +377,19 @@
   margin-bottom: var(--spacing-sm)
 }
 
-@media screen and (max-width:768px) {
-  * {
-    margin: 0;
-    padding: 0
-  }
+.reset-search {
+  border: none;
+  padding: var(--spacing-sm);
+  background: var(--color-glass-dark);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-medium);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
 
-  .content-container-div {
-    padding: var(--spacing-md)
-  }
-
-  .main-container {
-    flex-direction: column
-  }
-
-  .sidebar {
-    width: 100%;
-    padding: 0;
-    border-radius: 0
-  }
-
-  .sidebar-content {
-    flex-direction: row-reverse;
-    padding: var(--spacing-md)
-  }
-
-  .content-container {
-    padding: var(--spacing-lg);
-    margin-top: 50px
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-md)
-  }
-
-  .search-bar {
-    width: 100%
-  }
-
-  .filters-bar {
-    flex-direction: column;
-    gap: var(--spacing-md);
-    align-items: flex-start
-  }
-
-  .filter-buttons {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: var(--spacing-xs)
-  }
-
-  .tab-voyageurs {
-    font-size: var(--font-size-xs)
-  }
-
-  .tab-voyageurs td,
-  .tab-voyageurs th {
-    padding: var(--spacing-xs)
-  }
-
-  .status {
-    padding: 6px 10px;
-    font-size: var(--font-size-xs)
-  }
-
-  .titre-content span:nth-child(1) {
-    font-size: 1.5em
-  }
-
-  .titre-content span:nth-child(2) {
-    font-size: .8em
-  }
-
-  .nom-head,
-  th {
-    font-size: .7em
-  }
-
-  .nom {
-    font-size: var(--font-size-xs)
-  }
-
-  .block {
-    font-size: var(--font-size-xs);
-    width: 90px
-  }
-
-  .novip,
-  .vip {
-    font-size: var(--font-size-xs);
-    width: 40px
-  }
-
-  .date {
-    font-size: var(--font-size-xs)
-  }
+.reset-search:hover{
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-dark);
 }
 
 img {

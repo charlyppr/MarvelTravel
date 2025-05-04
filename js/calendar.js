@@ -111,6 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // Mettre à jour le message d'instruction
       updateSelectionMessage("Sélectionnez la date d'arrivée");
     }
+    
+    // Trigger validation after resetting dates
+    if (typeof validateEtape1Form === 'function') {
+      validateEtape1Form();
+    }
   }
 
   // Fermer le dropdown en cliquant à l'extérieur
@@ -412,11 +417,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Mettre à jour l'affichage des champs
       updateInputDisplay();
+      
+      // Trigger validation after date selection
+      if (typeof validateEtape1Form === 'function') {
+        validateEtape1Form();
+      }
     } else {
       dateDebutInput.value = "";
       dateFinInput.value = "";
       dateDebutVisible.value = "";
       dateFinVisible.value = "";
+      
+      // Trigger validation after date selection
+      if (typeof validateEtape1Form === 'function') {
+        validateEtape1Form();
+      }
     }
   }
 
@@ -547,5 +562,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fonction pour prévisualiser les dates pour le mode d'édition de date de fin
   function applyEndDatePreview() {
     if (editMode !== "end" || !selectedStartDate) return;
+  }
+
+  // After updating the visible and hidden date input values
+  function updateHiddenInput(inputId, date) {
+    document.getElementById(inputId).value = formatDateForInput(date);
+    
+    // Trigger validation after date selection
+    if (typeof validateEtape1Form === 'function') {
+        validateEtape1Form();
+    }
   }
 });

@@ -101,6 +101,24 @@ $user_date_naissance = isset($_SESSION['date_naissance']) ? $_SESSION['date_nais
 $user_nationalite = isset($_SESSION['nationalite']) ? $_SESSION['nationalite'] : '';
 $user_passport_id = isset($_SESSION['passport_id']) ? $_SESSION['passport_id'] : '';
 
+// Si la nationalité n'est pas présente dans la session, la récupérer directement du fichier users.json
+if (empty($user_nationalite) && isset($_SESSION['email'])) {
+    $users_file = '../../json/users.json';
+    if (file_exists($users_file)) {
+        $users = json_decode(file_get_contents($users_file), true);
+        if (is_array($users)) {
+            foreach ($users as $user) {
+                if ($user['email'] === $_SESSION['email']) {
+                    $user_nationalite = $user['nationalite'] ?? '';
+                    // Mettre à jour la session avec la nationalité récupérée
+                    $_SESSION['nationalite'] = $user_nationalite;
+                    break;
+                }
+            }
+        }
+    }
+}
+
 // Calculer les dates en format lisible
 $date_debut_obj = new DateTime($date_debut);
 $date_fin_obj = new DateTime($date_fin);
@@ -344,7 +362,13 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                     <h3>Voyageur <?php echo $i; ?><?php echo ($i === 1) ? ' (Principal)' : ''; ?></h3>
                                 </div>
                                 <?php if ($i === 1): ?>
-                                    <button type="button" id="autofill-button" class="autofill-button">
+                                    <button type="button" id="autofill-button" class="autofill-button"
+                                        data-lastname="<?php echo addslashes($user_last_name); ?>"
+                                        data-firstname="<?php echo addslashes($user_first_name); ?>"
+                                        data-civilite="<?php echo addslashes($user_civilite); ?>"
+                                        data-birthdate="<?php echo addslashes($user_date_naissance); ?>"
+                                        data-nationality="<?php echo addslashes($user_nationalite); ?>"
+                                        data-passport="<?php echo addslashes($user_passport_id); ?>">
                                         <img src="../../img/svg/copy.svg" alt="Copier" class="autofill-icon">
                                         <span>Utiliser mes informations</span>
                                     </button>
@@ -450,6 +474,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 placeholder="XXX XXX XXX X" required>
                                         </div>
                                         <div class="field-help">Format : XXX XXX XXX X (lettres)</div>
+                                        <div class="error-message" id="passport_<?php echo $i; ?>_error">Le numéro de passeport doit contenir exactement 10 chiffres.</div>
                                     </div>
                                 </div>
                             </div>
@@ -492,7 +517,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                     <img src="../../img/svg/arrow-left.svg" alt="Retour">
                                     Modifier les dates
                                 </a>
-                                <button type="submit" class="primary-button">
+                                <button type="submit" class="primary-button" id="submit-button" disabled>
                                     Continuer vers les options
                                     <img src="../../img/svg/arrow-right.svg" alt="Continuer">
                                 </button>
@@ -504,100 +529,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Fonction d'autofill
-            const autoFillButton = document.getElementById('autofill-button');
-            if (autoFillButton) {
-                autoFillButton.addEventListener('click', function () {
-                    // Récupération des valeurs utilisateur
-                    const userData = {
-                        lastName: '<?php echo addslashes($user_last_name); ?>',
-                        firstName: '<?php echo addslashes($user_first_name); ?>',
-                        civilite: '<?php echo addslashes($user_civilite); ?>',
-                        dateNaissance: '<?php echo addslashes($user_date_naissance); ?>',
-                        nationalite: '<?php echo addslashes($user_nationalite); ?>',
-                        passport: '<?php echo addslashes($user_passport_id); ?>'
-                    };
-
-                    // Remplissage des champs du premier voyageur
-                    document.getElementById('nom_1').value = userData.lastName;
-                    document.getElementById('prenom_1').value = userData.firstName;
-
-                    if (userData.civilite) {
-                        document.getElementById('civilite_1').value = userData.civilite;
-                    }
-
-                    if (userData.dateNaissance) {
-                        document.getElementById('date_naissance_1').value = userData.dateNaissance;
-                    }
-
-                    if (userData.nationalite) {
-                        document.getElementById('nationalite_1').value = userData.nationalite;
-                    }
-
-                    if (userData.passport) {
-                        document.getElementById('passport_1').value = userData.passport;
-                        // Formater le passeport après l'avoir rempli avec les données utilisateur
-                        formatPassport(document.getElementById('passport_1'));
-                    }
-                });
-            }
-
-            // Formatage des numéros de passeport
-            const formatPassport = function (input) {
-                // Supprimer tout ce qui n'est pas un chiffre
-                let value = input.value.replace(/[^\d]/g, '');
-
-                // Limiter à 10 chiffres
-                value = value.slice(0, 10);
-
-                // Formater avec des espaces (XXX XXX XXX X)
-                let formattedValue = '';
-                for (let i = 0; i < value.length; i++) {
-                    if (i === 3 || i === 6 || i === 9) {
-                        formattedValue += ' ';
-                    }
-                    formattedValue += value[i];
-                }
-
-                // Mettre à jour la valeur dans l'input
-                input.value = formattedValue;
-            };
-
-            // Appliquer le formatage à tous les champs de passeport
-            const passportInputs = document.querySelectorAll('input[id^="passport_"]');
-            passportInputs.forEach(input => {
-                // Formater au chargement si une valeur existe déjà
-                if (input.value) {
-                    formatPassport(input);
-                }
-
-                // Ajouter des écouteurs d'événements pour les interactions utilisateur
-                input.addEventListener('input', function () {
-                    formatPassport(this);
-                });
-
-                input.addEventListener('keydown', function (e) {
-                    // Permettre la navigation, la suppression et les chiffres
-                    if (
-                        e.key === 'Backspace' ||
-                        e.key === 'Delete' ||
-                        e.key === 'ArrowLeft' ||
-                        e.key === 'ArrowRight' ||
-                        e.key === 'Tab' ||
-                        (e.key >= '0' && e.key <= '9')
-                    ) {
-                        return true;
-                    }
-
-                    // Bloquer tous les autres caractères
-                    e.preventDefault();
-                    return false;
-                });
-            });
-        });
-    </script>
+    <script src="../../js/reservation.js"></script>
 
 </body>
 

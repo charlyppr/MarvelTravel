@@ -2,6 +2,10 @@
 // Démarrer la session si ce n'est pas déjà fait
 session_start();
 
+$page_title = "Statistiques";
+$maintenance_message = "Cette fonctionnalité sera bientôt disponible";
+$completion_date = "PHASE 4";
+
 // Vérifier si l'utilisateur est connecté et est administrateur
 if ($_SESSION['role'] !== 'admin') {
     // Rediriger vers la page de connexion si l'utilisateur n'est pas admin
@@ -23,12 +27,25 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/sidebar.css">
 </head>
+
+<style>
+    .statistics-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-left: 260px;
+    }
+</style>
+
 <body class="<?php echo $theme; ?>-theme">
     <?php
     include('sidebar.php');
     ?>
-    
-    <?php include('maintenance.php'); ?>
+
+    <div class="statistics-container">
+        <?php include('maintenance.php'); ?>
+    </div>
 
 </body>
 </html> 

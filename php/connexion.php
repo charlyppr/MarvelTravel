@@ -14,6 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mémoriser l'email saisi pour le réafficher en cas d'erreur
     $_SESSION['login_mail'] = $login_mail;
 
+    // Mise à jour immédiate de $login_mail_value pour l'afficher en cas d'erreur
+    $login_mail_value = $login_mail;
+
     $json_file = "../json/users.json";
     $connexion = 1;
 
@@ -41,6 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['civilite'] = $user['civilite'] ?? '';
                     $_SESSION['date_naissance'] = $user['date_naissance'] ?? '';
                     $_SESSION['nationalite'] = $user['nationalite'] ?? '';
+                    if (empty($_SESSION['nationalite']) && isset($user['nationalite'])) {
+                        $_SESSION['nationalite'] = $user['nationalite'];
+                    }
                     $_SESSION['passport_id'] = $user['passport_id'] ?? '';
 
                     // En cas de connexion réussie, supprimer l'email mémorisé

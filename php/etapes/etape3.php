@@ -565,74 +565,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gestion des options et mise à jour dynamique du prix
-            const participantToggles = document.querySelectorAll('.participant-toggle');
-            const prixBaseElement = document.querySelector('.price-row:first-child span:last-child');
-            const prixOptionsElement = document.querySelector('.options-row span:last-child');
-            const prixTotalElement = document.querySelector('.price-total span:last-child');
-            
-            let prixBase = <?php echo $prix_base; ?>;
-            let prixOptions = <?php echo $prix_options; ?>;
-            let prixTotal = <?php echo $prix_total_avec_options; ?>;
-            
-            // Fonction pour mettre à jour les prix affichés
-            function updatePrices() {
-                prixOptionsElement.textContent = formatPrice(prixOptions) + ' €';
-                prixTotalElement.textContent = formatPrice(prixBase + prixOptions) + ' €';
-                
-                // Animation du changement de prix
-                prixOptionsElement.classList.add('price-updated');
-                prixTotalElement.classList.add('price-updated');
-                
-                setTimeout(() => {
-                    prixOptionsElement.classList.remove('price-updated');
-                    prixTotalElement.classList.remove('price-updated');
-                }, 700);
-            }
-            
-            // Fonction pour formater le prix
-            function formatPrice(price) {
-                return price.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',');
-            }
-            
-            // Gérer les clics sur les participants
-            participantToggles.forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    const checkbox = this.querySelector('input[type="checkbox"]');
-                    if (e.target.tagName.toLowerCase() !== 'input') {
-                        checkbox.checked = !checkbox.checked;
-                        e.preventDefault();
-                    }
-                    
-                    // Mettre à jour la classe selected
-                    if (checkbox.checked) {
-                        this.classList.add('selected');
-                    } else {
-                        this.classList.remove('selected');
-                    }
-                    
-                    // Calculer le prix des options
-                    const allCheckboxes = document.querySelectorAll('.participant-checkbox');
-                    prixOptions = 0;
-                    
-                    allCheckboxes.forEach(box => {
-                        if (box.checked) {
-                            // Extraire le prix de l'option du DOM
-                            const optionItem = box.closest('.option-item');
-                            const priceText = optionItem.querySelector('.option-price').textContent;
-                            const price = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-                            prixOptions += price;
-                        }
-                    });
-                    
-                    // Mettre à jour l'affichage des prix
-                    updatePrices();
-                });
-            });
-        });
-    </script>
+    <script src="../../js/reservation.js"></script>
 
 </body>
 </html>

@@ -149,6 +149,39 @@ body {
     gap: var(--spacing-xl);
 }
 
+/* ===== VALIDATION STYLING ===== */
+.error-message {
+    display: block;
+    color: #ff4d4d;
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-xxs);
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input.invalid, select.invalid {
+    border-color: transparent !important;
+}
+
+.form-field.invalid {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 0 1px rgba(255, 77, 77, 0.3);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    background: linear-gradient(to right, #666, #999);
+}
+
+button:disabled:hover {
+    background: linear-gradient(to right, #666, #999);
+    transform: none;
+}
+
 /* ===== DESTINATION INFO (COMMUN) ===== */
 .destination-info {
     position: sticky;

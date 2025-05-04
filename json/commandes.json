@@ -805,5 +805,78 @@
                 "total": 249.99
             }
         ]
+    },
+    {
+        "transaction": "abf1cf8859bcf0c6d21730ca",
+        "reservation_id": "MT-6E9EE702",
+        "montant": 1089.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "f42a7e93a7cda57d2487d337d83d9bf3",
+        "acheteur": "hello@gmail.com",
+        "voyage": "Xandar",
+        "date_debut": "2025-05-22",
+        "date_fin": "2025-05-25",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "Mme",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2025-05-01",
+                "nationalite": "Britannique",
+                "passport": "870 276 174 5"
+            }
+        ],
+        "date_achat": "2025-05-04 17:27:01",
+        "options": [
+            {
+                "etape": "Temple perdu",
+                "option": "Exploration guidée",
+                "prix_unitaire": 90,
+                "nb_participants": 1,
+                "total": 90
+            }
+        ]
+    },
+    {
+        "transaction": "b08525dabf30f5421406272a",
+        "reservation_id": "MT-DA4DFEA3",
+        "montant": 479.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "515c34f5fe04bf10b2f78b4a31fe5b29",
+        "acheteur": "hello@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-06-18",
+        "date_fin": "2025-06-27",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "Mme",
+                "nom": "Darling",
+                "prenom": "Hello",
+                "date_naissance": "2025-05-01",
+                "nationalite": "Britannique",
+                "passport": "870 276 174 5"
+            }
+        ],
+        "date_achat": "2025-05-04 17:30:06",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Central Park",
+                "option": "Balade à vélo",
+                "prix_unitaire": 30,
+                "nb_participants": 1,
+                "total": 30
+            }
+        ]
     }
 ]

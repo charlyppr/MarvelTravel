@@ -16,7 +16,7 @@
   background: url(../img/hero-bg.jpg) no-repeat center center;
   background-size: cover;
   z-index: -2;
-  mask-image: linear-gradient(to bottom, transparent -100%, transparent -20%, #000 20%, #000 30%, #000 70%, transparent 90%)
+  mask-image: linear-gradient(to bottom, transparent -30%, #000 20%, #000 70%, transparent 90%);
 }
 
 .hero-backdrop::after {
@@ -486,7 +486,7 @@
   align-items: center;
   gap: 8px;
   background: var(--gradient-primary);
-  color: var(--color-text-cream);
+  color: white;
   font-size: var(--font-size-sm);
   padding: var(--spacing-sm);
   border-radius: var(--border-radius-md);
@@ -1275,7 +1275,7 @@ input#budget-search {
 }
 
 .suggestion-item:nth-child(4) .suggestion-icon {
-  background-color: #eabd341f
+  background-color: #af43b130;
 }
 
 .suggestion-item:nth-child(5) .suggestion-icon {
@@ -1283,7 +1283,7 @@ input#budget-search {
 }
 
 .suggestion-item:nth-child(6) .suggestion-icon {
-  background-color: #b045b224
+  background-color: #e3b7321f;
 }
 
 .suggestion-item:nth-child(8) .suggestion-icon {

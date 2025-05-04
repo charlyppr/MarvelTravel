@@ -1,18 +1,12 @@
 <?php
-// Maintenance page template
-// This file should be included in pages that are under construction
-
-// Set page title if not already set
 if (!isset($page_title)) {
     $page_title = "Page en cours de maintenance";
 }
 
-// Set maintenance message if not already set
 if (!isset($maintenance_message)) {
     $maintenance_message = "Cette fonctionnalité sera bientôt disponible";
 }
 
-// Set estimated completion date if not already set
 if (!isset($completion_date)) {
     $completion_date = "prochainement";
 }
@@ -28,7 +22,7 @@ if (!isset($completion_date)) {
         </div>
         <h1 class="maintenance-title"><?= $page_title ?></h1>
         <p class="maintenance-message"><?= $maintenance_message ?></p>
-        <p class="maintenance-date">Disponible <?= $completion_date ?></p>
-        <a href="../index.php" class="btn-primary maintenance-btn">Retour à l'accueil</a>
+        <p class="maintenance-date">Disponible : <?= $completion_date ?></p>
+        <a href="javascript:history.back()" class="btn-primary maintenance-btn">Retour</a>
     </div>
 </div> 
