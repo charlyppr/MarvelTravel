@@ -1,19 +1,19 @@
 .content-container-div {
   width: 100%;
   padding: var(--spacing-xl);
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn .5s ease
 }
 
 .content-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-md)
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-xl)
 }
 
 .header {
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-lg);
-  animation: slideDown 0.6s ease;
+  animation: slideDown .6s ease
 }
 
 .search-bar {
@@ -29,18 +29,18 @@
   align-items: center;
   background-color: var(--color-field-bg);
   border-radius: var(--border-radius-xl);
-  padding: 12px 18px;
+  padding: var(--spacing-xs) var(--spacing-sm);
   width: 50%;
   border: 1px solid var(--color-accent-faded);
   transition: all var(--transition-medium);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)
 }
 
 .search-bar:focus-within {
   border-color: var(--color-accent-faded);
-  box-shadow: 0 0 0 1px rgba(242, 219, 175, 0.1);
+  box-shadow: 0 0 0 1px rgba(242, 219, 175, .1);
   transform: translateY(-2px);
-  background-color: var(--color-accent-faded);
+  background-color: var(--color-accent-faded)
 }
 
 .search-bar input {
@@ -48,16 +48,16 @@
   border: none;
   color: var(--color-text-light);
   width: 100%;
-  font-size: 14px;
-  font-family: "PP Formula";
+  font-size: var(--font-size-sm);
+  font-family: "PP Formula"
 }
 
 .search-bar input::placeholder {
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .search-bar input:focus {
-  outline: 0;
+  outline: 0
 }
 
 .search-bar button {
@@ -67,32 +67,32 @@
   display: flex;
   align-items: center;
   padding: 0;
-  margin-left: var(--spacing-xs);
+  margin-left: var(--spacing-xs)
 }
 
 .search-bar img {
   width: 18px;
   height: 18px;
-  opacity: 0.8;
-  transition: all var(--transition-fast);
+  opacity: .8;
+  transition: all var(--transition-fast)
 }
 
 .search-bar:hover img {
   opacity: 1;
-  filter: drop-shadow(0 0 2px rgba(242, 219, 175, 0.5));
+  filter: drop-shadow(0 0 2px rgba(242, 219, 175, .5))
 }
 
 .main-content {
   background-color: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-lg);
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  border: 1px solid rgba(242, 219, 175, .1);
   box-shadow: var(--shadow-card);
   transition: all var(--transition-medium);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  animation: slideUp 0.7s ease;
+  animation: slideUp .7s ease
 }
 
 .main-content::before {
@@ -102,20 +102,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(242, 219, 175, 0.1) 0,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(242, 219, 175, 0.05) 100%
-  );
+  background: linear-gradient(135deg, rgba(242, 219, 175, .1) 0, rgba(0, 0, 0, 0) 50%, rgba(242, 219, 175, .05) 100%);
   opacity: 0;
   transition: opacity var(--transition-medium);
   pointer-events: none;
-  z-index: 1;
+  z-index: 1
 }
 
 .main-content:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .titre-content {
@@ -124,14 +119,14 @@
   margin-bottom: var(--spacing-lg);
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .titre-content span:first-child {
-  font-size: 24px;
+  font-size: var(--font-size-xl);
   font-weight: 700;
   color: var(--color-text-light);
-  position: relative;
+  position: relative
 }
 
 .titre-content span:first-child::after {
@@ -142,16 +137,16 @@
   width: 50px;
   height: 3px;
   background: var(--gradient-primary);
-  border-radius: 3px;
+  border-radius: 3px
 }
 
 .titre-content span:last-child {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-accent);
-  padding: 6px 12px;
+  padding: 6px var(--spacing-xs);
   background-color: var(--color-accent-faded);
   border-radius: var(--border-radius-xl);
-  font-weight: 500;
+  font-weight: 500
 }
 
 .filters-bar {
@@ -160,46 +155,46 @@
   align-items: center;
   padding: var(--spacing-sm);
   border-bottom: 1px solid var(--color-accent-faded);
-  animation: slideDown 0.6s ease;
-  margin: 0 -30px 0 -30px;
+  animation: slideDown .6s ease;
+  margin: 0 -30px 0 -30px
 }
 
 .filter-buttons {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-xs)
 }
 
 .filter-button {
-  padding: 8px 16px;
+  padding: 8px var(--spacing-sm);
   border-radius: var(--border-radius-md);
   background-color: var(--color-card-hover);
   color: var(--color-text-muted);
   border: 1px solid transparent;
   cursor: pointer;
   transition: all var(--transition-fast);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
-  text-decoration: none;
+  text-decoration: none
 }
 
 .filter-button:hover {
   background-color: var(--color-accent-faded);
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .filter-button.active3 {
-  background-color: rgba(242, 219, 175, 0.15);
+  background-color: rgba(242, 219, 175, .15);
   color: var(--color-accent);
-  border-color: var(--color-accent-faded);
+  border-color: var(--color-accent-faded)
 }
 
 .sort-select {
   background-color: var(--color-accent-faded);
   color: var(--color-text-light);
-  border: 1px solid rgba(242, 219, 175, 0.1);
-  padding: 8px 16px;
+  border: 1px solid rgba(242, 219, 175, .1);
+  padding: 8px var(--spacing-sm);
   border-radius: var(--border-radius-md);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   appearance: none;
@@ -208,22 +203,22 @@
   background-position: right 12px center;
   background-size: 14px;
   padding-right: 32px;
-  font-family: "PP Formula";
+  font-family: "PP Formula"
 }
 
 .sort-select:hover {
-  background-color: rgba(242, 219, 175, 0.1);
-  border-color: var(--color-accent-faded);
+  background-color: rgba(242, 219, 175, .1);
+  border-color: var(--color-accent-faded)
 }
 
 .sort-select:focus {
   outline: 0;
-  box-shadow: 0 0 0 1px var(--color-accent-faded);
+  box-shadow: 0 0 0 1px var(--color-accent-faded)
 }
 
 .table-container {
   overflow-x: auto;
-  margin: 0 -30px;
+  margin: 0 -30px
 }
 
 .tab-voyageurs {
@@ -232,106 +227,106 @@
   border-spacing: 0;
   margin-bottom: var(--spacing-md);
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .tab-voyageurs thead tr {
   background-color: var(--color-card-hover);
-  border-bottom: 1px solid rgba(242, 219, 175, 0.1);
+  border-bottom: 1px solid rgba(242, 219, 175, .1)
 }
 
 .tab-voyageurs th {
   text-align: left;
   padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-accent);
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   border-bottom: 1px solid var(--color-accent-faded);
-  display: table-cell;
+  display: table-cell
 }
 
 .tab-voyageurs th.nom-head {
-  width: 30%;
+  width: 30%
 }
 
 .tab-voyageurs th.date {
   width: 20%;
-  text-align: center;
+  text-align: center
 }
 
 .tab-voyageurs tbody tr {
   transition: all var(--transition-fast);
-  display: table-row;
+  display: table-row
 }
 
 .tab-voyageurs tbody tr:hover {
   background-color: var(--color-card-hover);
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .tab-voyageurs td {
   padding: var(--spacing-md);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-light);
   border-bottom: 1px solid var(--color-card-hover);
-  display: table-cell;
+  display: table-cell
 }
 
 .tab-voyageurs td.nom {
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .tab-voyageurs td.date {
   text-align: center;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .status {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px var(--spacing-sm);
   border-radius: var(--border-radius-xl);
   width: fit-content;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   backdrop-filter: blur(5px);
-  transition: all 0.1s cubic-bezier(0.66, 0.46, 0.98, 1.53);
+  transition: all .1s cubic-bezier(.66, .46, .98, 1.53)
 }
 
 .status:hover {
-  transform: scale(1.05);
+  transform: scale(1.05)
 }
 
 .status img {
   width: 12px;
-  height: 12px;
+  height: 12px
 }
 
 .status-ok {
   background-color: var(--color-success-bg);
   color: var(--color-success);
-  border: 1px solid var(--color-success-border);
+  border: 1px solid var(--color-success-border)
 }
 
 .status-pending {
   background-color: var(--color-pending-bg);
   color: var(--color-pending);
-  border: 1px solid var(--color-pending-border);
+  border: 1px solid var(--color-pending-border)
 }
 
 .vip-badge {
   background-color: var(--color-warning-border);
   color: var(--color-accent);
-  border: 1px solid var(--color-warning);
+  border: 1px solid var(--color-warning)
 }
 
 .novip-badge {
   background-color: var(--color-accent-faded);
   color: var(--color-text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, .1)
 }
 
 .view-button {
@@ -342,28 +337,28 @@
   text-decoration: none;
   font-weight: 600;
   transition: all var(--transition-medium);
-  padding: 8px 16px;
+  padding: 8px var(--spacing-sm);
   border-radius: var(--border-radius-md);
-  background-color: rgba(123, 181, 232, 0.1);
-  border: 1px solid transparent;
+  background-color: rgba(123, 181, 232, .1);
+  border: 1px solid transparent
 }
 
 .view-button img {
   width: 14px;
   height: 14px;
   transition: transform var(--transition-fast);
-  filter: brightness(1.2);
+  filter: brightness(1.2)
 }
 
 .view-button:hover {
   color: var(--link-hover);
-  background-color: rgba(123, 181, 232, 0.2);
+  background-color: rgba(123, 181, 232, .2);
   transform: translateX(3px);
-  border-color: rgba(123, 181, 232, 0.2);
+  border-color: rgba(123, 181, 232, .2)
 }
 
 .view-button:hover img {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .no-res {
@@ -372,139 +367,139 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-xl);
-  color: var(--color-accent);
+  color: var(--color-accent)
 }
 
 .no-res-icon {
   width: 80px;
   height: 80px;
-  opacity: 0.6;
-  margin-bottom: var(--spacing-sm);
+  opacity: .6;
+  margin-bottom: var(--spacing-sm)
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width:768px) {
   * {
     margin: 0;
-    padding: 0;
+    padding: 0
   }
 
   .content-container-div {
-    padding: var(--spacing-md);
+    padding: var(--spacing-md)
   }
 
   .main-container {
-    flex-direction: column;
+    flex-direction: column
   }
 
   .sidebar {
     width: 100%;
     padding: 0;
-    border-radius: 0;
+    border-radius: 0
   }
 
   .sidebar-content {
     flex-direction: row-reverse;
-    padding: 20px;
+    padding: var(--spacing-md)
   }
 
   .content-container {
-    padding: 30px;
-    margin-top: 50px;
+    padding: var(--spacing-lg);
+    margin-top: 50px
   }
 
   .header {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-md);
+    gap: var(--spacing-md)
   }
 
   .search-bar {
-    width: 100%;
+    width: 100%
   }
 
   .filters-bar {
     flex-direction: column;
     gap: var(--spacing-md);
-    align-items: flex-start;
+    align-items: flex-start
   }
 
   .filter-buttons {
     width: 100%;
     overflow-x: auto;
-    padding-bottom: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs)
   }
 
   .tab-voyageurs {
-    font-size: 12px;
+    font-size: var(--font-size-xs)
   }
 
   .tab-voyageurs td,
   .tab-voyageurs th {
-    padding: var(--spacing-xs);
+    padding: var(--spacing-xs)
   }
 
   .status {
     padding: 6px 10px;
-    font-size: 11px;
+    font-size: var(--font-size-xs)
   }
 
   .titre-content span:nth-child(1) {
-    font-size: 1.5em;
+    font-size: 1.5em
   }
 
   .titre-content span:nth-child(2) {
-    font-size: 0.8em;
+    font-size: .8em
   }
 
   .nom-head,
   th {
-    font-size: 0.7em;
+    font-size: .7em
   }
 
   .nom {
-    font-size: 12px;
+    font-size: var(--font-size-xs)
   }
 
   .block {
-    font-size: 11px;
-    width: 90px;
+    font-size: var(--font-size-xs);
+    width: 90px
   }
 
   .novip,
   .vip {
-    font-size: 11px;
-    width: 40px;
+    font-size: var(--font-size-xs);
+    width: 40px
   }
 
   .date {
-    font-size: 12px;
+    font-size: var(--font-size-xs)
   }
 }
 
 img {
-  width: 20px;
+  width: 20px
 }
 
 .toggle-status,
 .toggle-vip {
   cursor: pointer;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
   min-width: 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center
 }
 
 .toggle-status:hover,
 .toggle-vip:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-small)
 }
 
 .updating {
-  opacity: 0.7;
-  pointer-events: none;
+  opacity: .7;
+  pointer-events: none
 }
 
 .tooltip {
@@ -514,57 +509,43 @@ img {
   transform: translateX(-50%);
   background-color: var(--color-card-hover);
   color: var(--color-text-light);
-  padding: 5px 10px;
+  padding: var(--spacing-xxs) var(--spacing-xs);
   border-radius: var(--border-radius-md);
-  font-size: 11px;
+  font-size: var(--font-size-xs);
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity .3s, visibility .3s;
   z-index: 10;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--color-accent-faded);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--color-accent-faded)
 }
 
 .toggle-status:hover .tooltip,
 .toggle-vip:hover .tooltip {
   opacity: 1;
-  visibility: visible;
+  visibility: visible
 }
 
 .notification {
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 15px 20px;
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-md);
   background-color: var(--color-card-bg);
   color: var(--color-text-light);
   z-index: 1000;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-medium);
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity .5s;
   max-width: 400px;
   backdrop-filter: blur(10px);
-  border: 1px solid var(--color-accent-faded);
+  border: 1px solid var(--color-accent-faded)
 }
 
 .notification-success {
   background-color: var(--color-success-bg);
   color: var(--color-success);
-  border: 1px solid var(--color-success-border);
-}
-
-@media screen and (max-width: 768px) {
-  .notification {
-    top: 10px;
-    right: 10px;
-    left: 10px;
-    max-width: none;
-    font-size: 12px;
-  }
-
-  .tooltip {
-    display: none;
-  }
+  border: 1px solid var(--color-success-border)
 }

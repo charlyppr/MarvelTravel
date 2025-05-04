@@ -1,49 +1,48 @@
 .content-container-div {
   width: 100%;
   padding: var(--spacing-xxl);
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn .5s ease
 }
 
 .content {
   display: flex;
-  flex-direction: column;
-  /* gap: 30px; */
+  flex-direction: column
 }
 
 .notification {
   position: fixed;
-  top: 24px;
-  right: 24px;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-card);
   z-index: 1100;
   max-width: 400px;
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn .4s ease forwards;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, .1)
 }
 
 .notification.success {
-  background-color: rgba(43, 132, 107, 0.85);
+  background-color: rgba(43, 132, 107, .85)
 }
 
 .notification.error {
-  background-color: rgba(226, 54, 54, 0.85);
+  background-color: rgba(226, 54, 54, .85)
 }
 
 .notification img {
   width: 20px;
-  height: 20px;
+  height: 20px
 }
 
 .notification p {
   margin: 0;
   flex-grow: 1;
-  font-size: 15px;
+  font-size: var(--font-size-sm)
 }
 
 .close-notification {
@@ -51,15 +50,15 @@
   border: none;
   color: var(--color-text-light);
   cursor: pointer;
-  font-size: 20px;
-  opacity: 0.7;
+  font-size: var(--font-size-xl);
+  opacity: .7;
   transition: opacity var(--transition-fast);
-  padding: 5px;
-  line-height: 1;
+  padding: var(--spacing-xxs);
+  line-height: 1
 }
 
 .close-notification:hover {
-  opacity: 1;
+  opacity: 1
 }
 
 .profile-header {
@@ -68,7 +67,7 @@
   align-items: flex-start;
   margin-bottom: var(--spacing-xxl);
   position: relative;
-  animation: slideDown 0.6s ease;
+  animation: slideDown .6s ease
 }
 
 .profile-greeting {
@@ -78,17 +77,17 @@
   position: relative;
   z-index: 2;
   align-items: flex-start;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .profile-greeting .titre {
-  font-size: 36px;
+  font-size: var(--font-size-xxl);
   color: var(--color-text-cream);
   position: relative;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
 
 .profile-greeting .titre::after {
@@ -99,60 +98,60 @@
   width: 80px;
   height: 4px;
   background: var(--gradient-primary);
-  border-radius: 4px;
+  border-radius: 4px
 }
 
 .subtitle {
   color: var(--color-text-muted);
-  font-size: 18px;
-  margin: 12px 0 0 0;
-  font-weight: 400;
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-xs) 0 0 0;
+  font-weight: 400
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
+  gap: var(--spacing-md)
 }
 
-.dashboard-grid > .card {
-  animation: fadeIn 0.5s ease forwards;
+.dashboard-grid>.card {
+  animation: fadeIn .5s ease forwards
 }
 
 .profile-card {
-  grid-column: span 7;
+  grid-column: span 7
 }
 
 .stats-card {
-  grid-column: span 5;
+  grid-column: span 5
 }
 
 .voyages-card {
   overflow-y: auto;
-  grid-column: span 8;
+  grid-column: span 8
 }
 
 .messages-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-md)
 }
 
 .message-item {
   display: flex;
-  gap: 16px;
-  padding: 16px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
   background-color: var(--color-glass-dark);
   border-radius: var(--border-radius-md);
   transition: all var(--transition-medium);
   border: 1px solid transparent;
-  cursor: pointer;
+  cursor: pointer
 }
 
 .message-item:hover {
   background-color: var(--color-accent-faded);
   border-color: var(--color-accent-faded);
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .message-icon {
@@ -163,58 +162,58 @@
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center
 }
 
 .message-icon img {
   width: 20px;
   height: 20px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1)
 }
 
 .message-details {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-xs)
 }
 
 .message-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
-  flex-direction: row;
+  gap: var(--spacing-xs);
+  flex-direction: row
 }
 
 .message-subject {
   font-weight: 600;
-  font-size: 16px;
-  color: var(--color-text-cream);
+  font-size: var(--font-size-md);
+  color: var(--color-text-cream)
 }
 
 .message-date {
-  font-size: 13px;
-  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted)
 }
 
 .message-preview {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  line-height: 1.4;
+  line-height: 1.4
 }
 
 .message-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 4px;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xxs)
 }
 
 .message-time {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-accent);
-  font-weight: 500;
+  font-weight: 500
 }
 
 .card {
@@ -225,9 +224,9 @@
   transition: all var(--transition-medium);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  border: 1px solid rgba(242, 219, 175, .1);
   backdrop-filter: blur(10px);
-  position: relative;
+  position: relative
 }
 
 .card::before {
@@ -237,45 +236,39 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(242, 219, 175, 0.1) 0,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(242, 219, 175, 0.05) 100%
-  );
+  background: linear-gradient(135deg, rgba(242, 219, 175, .1) 0, rgba(0, 0, 0, 0) 50%, rgba(242, 219, 175, .05) 100%);
   opacity: 0;
   transition: opacity var(--transition-medium);
   pointer-events: none;
-  z-index: 1;
-  /* border-radius: var(--border-radius-md); */
+  z-index: 1
 }
 
 .card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-card-hover);
-  border-color: rgba(242, 219, 175, 0.2);
+  border-color: rgba(242, 219, 175, .2)
 }
 
 .card:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .header-text {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: var(--spacing-sm);
   padding: var(--spacing-sm);
   border-bottom: 1px solid var(--color-accent-faded);
   position: relative;
   background-color: var(--color-card-hover);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0
 }
 
 .header-icon {
   width: 26px;
   height: 26px;
-  filter: opacity(0.9);
-  transition: transform var(--transition-fast);
+  filter: opacity(.9);
+  transition: transform var(--transition-fast)
 }
 
 .titre-card {
@@ -283,7 +276,7 @@
   font-weight: 700;
   color: var(--color-text-light);
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .card-content {
@@ -292,28 +285,28 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .card.messages-card {
-  grid-column: span 4;
+  grid-column: span 4
 }
 
 .profile-header-info {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: var(--spacing-md)
 }
 
 .profile-avatar {
   position: relative;
   width: 70px;
   height: 70px;
-  transition: transform var(--transition-bounce);
+  transition: transform var(--transition-bounce)
 }
 
 .profile-avatar:hover {
-  transform: scale(1.05);
+  transform: scale(1.05)
 }
 
 .profile-avatar img {
@@ -324,7 +317,7 @@
   border: 4px solid transparent;
   background-clip: padding-box;
   background-image: var(--gradient-primary);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .3)
 }
 
 .profile-status {
@@ -335,24 +328,24 @@
   height: 18px;
   border-radius: 50%;
   border: 3px solid var(--color-background);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .2)
 }
 
 .profile-status.online {
-  background-color: #4caf50;
+  background-color: #4caf50
 }
 
 .profile-name {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--spacing-xxs)
 }
 
 .profile-name h2 {
   margin: 0;
   font-size: var(--font-size-md);
   color: var(--color-text-light);
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px
 }
 
 .profile-email {
@@ -360,36 +353,36 @@
   font-size: var(--font-size-sm);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 5px
 }
 
 .separator {
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, var(--color-accent-faded), transparent);
-  margin: 24px 0;
+  margin: var(--spacing-md) 0
 }
 
 .profile-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-sm)
 }
 
 .profile-field {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .field-label {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   text-transform: uppercase;
-  opacity: 0.8;
-  transition: all var(--transition-medium);
+  opacity: .8;
+  transition: all var(--transition-medium)
 }
 
 .field-value {
@@ -397,31 +390,30 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-glass-dark);
-  padding: 4px 16px;
+  padding: 4px var(--spacing-md);
   border-radius: var(--border-radius-md);
   transition: all var(--transition-medium);
   border: 1px solid transparent;
   height: 54px;
-  /* overflow: hidden; */
-  position: relative;
+  position: relative
 }
 
 .field-value:hover {
-  border-color: rgba(242, 219, 175, 0.2);
+  border-color: rgba(242, 219, 175, .2);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-field);
+  box-shadow: var(--shadow-field)
 }
 
 .field-value.editing {
-  background-color: rgba(242, 219, 175, 0.08);
+  background-color: rgba(242, 219, 175, .08);
   border-color: var(--color-accent);
-  box-shadow: 0 0 15px rgba(242, 219, 175, 0.15);
-  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(242, 219, 175, .15);
+  transform: translateY(-2px)
 }
 
 .input-warning {
   font-size: var(--font-size-sm);
-  color: rgb(255 107 107 / 60%);
+  color: rgb(255 107 107 / 60%)
 }
 
 .input-wrapper {
@@ -429,11 +421,11 @@
   position: relative;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: center
 }
 
 .input-wrapper.focused::after {
-  width: 100%;
+  width: 100%
 }
 
 .profile-input {
@@ -446,25 +438,25 @@
   font-weight: 500;
   color: var(--color-text-light);
   padding: 0;
-  transition: all var(--transition-medium);
+  transition: all var(--transition-medium)
 }
 
 .profile-input::placeholder {
   color: var(--color-text-muted);
-  opacity: 0.6;
+  opacity: .6
 }
 
 .profile-input:disabled {
   color: #666;
   cursor: not-allowed;
-  opacity: 0.7;
-  border: none;
+  opacity: .7;
+  border: none
 }
 
 .field-actions {
   display: flex;
-  gap: 8px;
-  z-index: 2;
+  gap: var(--spacing-xs);
+  z-index: 2
 }
 
 .field-actions button {
@@ -478,44 +470,44 @@
   height: 30px;
   border-radius: 50%;
   transition: all var(--transition-fast);
-  opacity: 0.7;
-  background-color: transparent;
+  opacity: .7;
+  background-color: transparent
 }
 
 .field-actions button:hover {
   opacity: 1;
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, .1);
+  transform: translateY(-2px)
 }
 
 .field-actions button:active {
-  transform: translateY(-1px);
+  transform: translateY(-1px)
 }
 
 .field-actions button img {
   width: 16px;
   height: 16px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .field-edit:hover img {
-  transform: rotate(15deg);
+  transform: rotate(15deg)
 }
 
 .field-validate {
-  background-color: rgba(43, 132, 107, 0.15) !important;
+  background-color: rgba(43, 132, 107, .15) !important
 }
 
 .field-validate:hover {
-  background-color: rgba(43, 132, 107, 0.3) !important;
+  background-color: rgba(43, 132, 107, .3) !important
 }
 
 .field-cancel {
-  background-color: rgba(226, 54, 54, 0.15) !important;
+  background-color: rgba(226, 54, 54, .15) !important
 }
 
 .field-cancel:hover {
-  background-color: rgba(226, 54, 54, 0.3) !important;
+  background-color: rgba(226, 54, 54, .3) !important
 }
 
 .profile-action-container {
@@ -523,52 +515,51 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: 15px;
+  gap: var(--spacing-sm)
 }
 
 .profile-cancel-button,
 .profile-submit-button {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-xs);
   padding: var(--spacing-sm);
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text-light);
   border-radius: var(--border-radius-md);
   cursor: pointer;
-  transition: all var(--transition-medium), opacity 0.3s ease,
-    transform 0.3s ease;
+  transition: all var(--transition-medium), opacity .3s ease, transform .3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
   transform: translateY(10px);
-  pointer-events: none;
+  pointer-events: none
 }
 
 .profile-cancel-button.visible,
 .profile-submit-button.visible {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: auto;
+  pointer-events: auto
 }
 
 .profile-cancel-button .button-icon,
 .profile-submit-button .button-icon {
   width: 15px;
   height: 15px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .profile-cancel-button:hover .button-icon,
 .profile-submit-button:hover .button-icon {
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .profile-submit-button {
   background: var(--gradient-primary);
   border: none;
-  box-shadow: 0 5px 15px rgba(226, 54, 54, 0.2);
+  box-shadow: 0 5px 15px rgba(226, 54, 54, .2)
 }
 
 .profile-submit-button::before {
@@ -578,32 +569,27 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent 0, rgba(255, 255, 255, .1) 50%, transparent 100%);
+  transition: left .5s ease
 }
 
 .profile-submit-button:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(226, 54, 54, 0.4);
-  background: var(--gradient-hover);
+  box-shadow: 0 8px 20px rgba(226, 54, 54, .4);
+  background: var(--gradient-hover)
 }
 
 .profile-submit-button:hover::before {
-  left: 100%;
+  left: 100%
 }
 
 .profile-submit-button:active {
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .profile-cancel-button {
   background: var(--color-error-border);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, .1)
 }
 
 .profile-cancel-button::before {
@@ -613,41 +599,32 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent 0, rgba(255, 255, 255, .1) 50%, transparent 100%);
+  transition: left .5s ease
 }
 
 .profile-cancel-button:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
   background: var(--color-error);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, .2)
 }
 
 .profile-cancel-button:hover::before {
-  left: 100%;
+  left: 100%
 }
 
 .profile-cancel-button:active {
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .password-field-container .profile-input {
   font-family: monospace;
-  letter-spacing: 2px;
+  letter-spacing: 2px
 }
 
 .password-toggle {
-  /* position: absolute; */
-  /* right: 5px; */
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
-  background: transparent;
+  background: 0 0;
   border: none;
   cursor: pointer;
   display: flex;
@@ -657,30 +634,30 @@
   height: 30px;
   border-radius: 50%;
   transition: all var(--transition-fast);
-  opacity: 0.7;
+  opacity: .7
 }
 
 .password-toggle:hover {
   opacity: 1;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, .1)
 }
 
 .password-toggle img {
   width: 16px;
   height: 16px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .password-toggle:hover img {
-  transform: scale(1.1);
+  transform: scale(1.1)
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 16px;
-  height: 100%;
+  gap: var(--spacing-md);
+  height: 100%
 }
 
 .stat-item {
@@ -694,26 +671,26 @@
   border: 1px solid transparent;
   position: relative;
   justify-content: center;
-  background-color: var(--color-glass-dark);
+  background-color: var(--color-glass-dark)
 }
 
 .stat-item:hover {
   transform: translateY(-4px);
   background-color: var(--color-accent-faded);
-  box-shadow: var(--shadow-field);
+  box-shadow: var(--shadow-field)
 }
 
 .stat-item:nth-child(3) {
-  grid-column: span 2;
+  grid-column: span 2
 }
 
 .stat-value {
   font-size: var(--font-size-xl);
   color: var(--color-text-light);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-xs);
   position: relative;
   z-index: 2;
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px
 }
 
 .stat-label {
@@ -721,13 +698,13 @@
   color: var(--color-text-muted);
   position: relative;
   z-index: 2;
-  font-weight: 500;
+  font-weight: 500
 }
 
 .voyages-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-xs)
 }
 
 .voyage-item {
@@ -741,7 +718,7 @@
   transition: all var(--transition-medium);
   border: 1px solid transparent;
   overflow: hidden;
-  position: relative;
+  position: relative
 }
 
 .voyage-item::before {
@@ -752,37 +729,37 @@
   width: 4px;
   background: var(--gradient-primary);
   opacity: 0;
-  transition: opacity var(--transition-fast);
+  transition: opacity var(--transition-fast)
 }
 
 .voyage-item:hover {
   background-color: var(--color-accent-faded);
-  box-shadow: var(--shadow-field);
+  box-shadow: var(--shadow-field)
 }
 
 .voyage-item:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .voyage-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding-left: 10px;
+  gap: var(--spacing-xxs);
+  padding-left: var(--spacing-xs)
 }
 
 .voyage-destination {
-  font-size: 17px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .voyage-dates {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-xxs)
 }
 
 .voyage-dates::before {
@@ -793,104 +770,104 @@
   background-image: url(../img/svg/calendar.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.7;
+  opacity: .7
 }
 
 .voyage-meta {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .voyage-status {
-  font-size: 12px;
-  padding: 4px 12px;
+  font-size: var(--font-size-xs);
+  padding: 4px var(--spacing-xs);
   border-radius: 50px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--spacing-xxs)
 }
 
 .voyage-status::before {
   content: "";
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: 50%
 }
 
 .status-success {
   background-color: var(--color-success-bg);
   color: var(--color-success);
-  border: 1px solid var(--color-success-border);
+  border: 1px solid var(--color-success-border)
 }
 
 .status-success::before {
   background-color: var(--color-success);
-  box-shadow: 0 0 5px var(--color-success);
+  box-shadow: 0 0 5px var(--color-success)
 }
 
 .status-pending {
   background-color: var(--color-pending-bg);
   color: var(--color-pending);
-  border: 1px solid var(--color-pending-border);
+  border: 1px solid var(--color-pending-border)
 }
 
 .status-pending::before {
   background-color: var(--color-pending);
-  box-shadow: 0 0 5px var(--color-pending);
+  box-shadow: 0 0 5px var(--color-pending)
 }
 
 .voyage-price {
   font-weight: 700;
   font-size: var(--font-size-lg);
-  color: var(--color-accent);
+  color: var(--color-accent)
 }
 
 .voir-plus-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 20px;
+  padding: var(--spacing-sm) var(--spacing-md);
   background: var(--gradient-primary);
   border-radius: var(--border-radius-md);
   color: var(--color-text-cream);
   text-decoration: none;
-  margin-top: 16px;
+  margin-top: var(--spacing-md);
   font-weight: 600;
-  gap: 10px;
+  gap: var(--spacing-xs);
   transition: all var(--transition-medium);
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px
 }
 
 .voir-plus-btn:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(226, 54, 54, 0.4);
-  background: var(--gradient-hover);
+  box-shadow: 0 6px 20px rgba(226, 54, 54, .4);
+  background: var(--gradient-hover)
 }
 
 .voir-plus-btn:hover::after {
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.2)
 }
 
 .voir-plus-btn:active {
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .voir-plus-btn img {
   width: 18px;
   height: 18px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .voir-plus-btn:hover img {
-  transform: translateX(5px);
+  transform: translateX(5px)
 }
 
 .empty-state {
@@ -899,23 +876,23 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 30px 20px;
-  gap: 16px;
+  padding: var(--spacing-xl) var(--spacing-md);
+  gap: var(--spacing-md);
   height: 100%;
-  min-height: 200px;
+  min-height: 200px
 }
 
 .empty-state img {
   width: 70px;
   height: 70px;
-  opacity: 0.6;
+  opacity: .6
 }
 
 .empty-state p {
   color: var(--color-text-muted);
   margin: 0;
   font-size: var(--font-size-sm);
-  max-width: 250px;
+  max-width: 250px
 }
 
 .action-button {
@@ -929,28 +906,28 @@
   transition: all var(--transition-medium);
   border: none;
   cursor: pointer;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .action-button:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-hover)
 }
 
 .action-button img {
-  width: 20px;
+  width: 20px
 }
 
 .disabled-button {
-  opacity: 0.1 !important;
+  opacity: .1 !important;
   cursor: not-allowed !important;
-  pointer-events: none;
+  pointer-events: none
 }
 
 .field-validate {
-  transition: opacity 0.3s ease;
+  transition: opacity .3s ease
 }
 
 .field-validate.disabled-button img {
-  filter: grayscale(100%);
+  filter: grayscale(100%)
 }

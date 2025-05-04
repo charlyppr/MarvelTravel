@@ -11,7 +11,7 @@
 .date-inputs {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--spacing-xxs);
   flex-direction: row;
 }
 
@@ -38,7 +38,7 @@
   background: var(--color-background);
   border-radius: var(--border-radius-lg);
   z-index: 1000;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity var(--transition-medium), transform var(--transition-medium);
   width: max-content;
   border: 1px solid var(--color-accent-faded);
   box-shadow: var(--shadow-intense);
@@ -54,7 +54,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background: var(--color-background); */
   padding: var(--spacing-xl) var(--spacing-md);
   border-radius: var(--border-radius-lg);
   flex-direction: column;
@@ -64,14 +63,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-md);
   width: 100%;
-  gap: 20px;
+  gap: var(--spacing-md);
 }
 
 .calendar-months {
   display: flex;
-  gap: 40px;
+  gap: var(--spacing-xl);
   justify-content: center;
   flex-grow: 1;
 }
@@ -93,11 +92,11 @@
 }
 
 .calendar-day-header {
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   font-weight: 500;
   text-align: center;
   color: var(--color-accent);
-  padding-bottom: 10px;
+  padding-bottom: var(--spacing-xs);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -111,16 +110,16 @@
   width: 45px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   margin: 2px 0;
   color: var(--color-text-light);
-  border:1px solid transparent;
-  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
 }
 
 .calendar-day:hover {
   background: var(--color-accent-faded);
-  border:1px solid var(--color-accent-light);
+  border: 1px solid var(--color-accent-light);
   transform: translateY(-2px);
   color: var(--color-text-light);
 }
@@ -156,27 +155,27 @@
   background: var(--color-card-bg);
   border: 1px solid var(--color-field-bg);
   cursor: pointer;
-  padding: 8px;
+  padding: var(--spacing-xs);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
 }
 
 .prev-month:hover,
 .next-month:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, .15);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-medium);
 }
 
 .prev-month img,
 .next-month img {
   width: 20px;
   height: 20px;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  opacity: .8;
+  transition: opacity var(--transition-fast);
 }
 
 .prev-month:hover img,
@@ -187,10 +186,10 @@
 .reset-dates,
 .apply-dates {
   padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: 20px;
+  border-radius: var(--border-radius-lg);
   cursor: pointer;
   font-size: var(--font-size-sm);
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
   position: relative;
   overflow: hidden;
 }
@@ -211,7 +210,7 @@
 
 .apply-dates:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-medium);
   background: var(--color-text-dark);
   color: var(--color-accent);
   border-color: var(--color-accent);
@@ -233,11 +232,11 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, .2),
     transparent
   );
   transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  transition: transform var(--transition-slow);
 }
 
 .reset-dates:hover::after,
@@ -247,25 +246,25 @@
 
 .range-options {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-xs);
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .range-option {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 5px 12px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xxs) var(--spacing-xs);
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s;
+  font-size: var(--font-size-xs);
+  transition: all var(--transition-fast);
   color: var(--color-text-light);
 }
 
 .range-option:hover {
   border-color: var(--color-accent);
-  background: rgba(242, 219, 175, 0.1);
+  background: rgba(242, 219, 175, .1);
   transform: translateY(-2px);
 }
 
@@ -281,7 +280,7 @@
 }
 
 .calendar-day.past-day {
-  opacity: 0.3;
+  opacity: .3;
   cursor: not-allowed;
 }
 
@@ -294,10 +293,10 @@
   text-align: center;
   color: var(--color-text-light);
   background: var(--color-card-bg);
-  padding: 10px 15px;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-md);
-  font-size: 0.9rem;
-  animation: fadeIn 0.3s ease-in-out;
+  font-size: var(--font-size-xs);
+  animation: fadeIn var(--transition-medium) ease-in-out;
 }
 
 .calendar-day.preview-in-range {

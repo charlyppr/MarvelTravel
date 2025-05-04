@@ -190,13 +190,13 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                             ?>
                                             <tr class="<?php echo $row_class; ?>" data-date-achat="<?php echo isset($commande['date_achat']) ? $commande['date_achat'] : ''; ?>">
                                                 <td class="destination">
-                                                    <?php echo htmlspecialchars($commande['voyage']); ?>
                                                     <?php if ($commande['est_recent']): ?>
-                                                        <span class="badge badge-new">Nouveau</span>
+                                                        <div class="badge badge-new">Nouveau</div>
                                                     <?php endif; ?>
                                                     <?php if ($commande['is_upcoming'] && $commande['jours_restants'] < 7): ?>
-                                                        <span class="badge badge-soon">Imminent</span>
+                                                        <div class="badge badge-soon">Imminent</div>
                                                     <?php endif; ?>
+                                                    <?php echo htmlspecialchars($commande['voyage']); ?>
                                                 </td>
                                                 <td class="dates">
                                                     <?php echo date('d/m/Y', strtotime($commande['date_debut'])) . ' au ' . date('d/m/Y', strtotime($commande['date_fin'])); ?>
@@ -245,10 +245,10 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         data-date-achat="<?php echo isset($commande['date_achat']) ? $commande['date_achat'] : ''; ?>">
                                         <div class="voyage-header">
                                             <h3 class="destination">
-                                                <?php echo htmlspecialchars($commande['voyage']); ?>
                                                 <?php if ($commande['est_recent']): ?>
-                                                    <span class="badge badge-new">Nouveau</span>
+                                                    <div class="badge badge-new">Nouveau</div>
                                                 <?php endif; ?>
+                                                <?php echo htmlspecialchars($commande['voyage']); ?>
                                             </h3>
 
                                             <div class="status <?php echo $status_class; ?>">

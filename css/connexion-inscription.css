@@ -1,19 +1,12 @@
-/* ===================== STRUCTURE DE BASE ===================== */
 .card {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 2rem;
-  /* background: linear-gradient(
-    135deg,
-    rgba(13, 13, 13, 0.7) 0%,
-    rgba(42, 57, 101, 0.5) 100%
-  ); */
+  padding: var(--spacing-md)
 }
 
-/* ===================== CARTE DE CONTENU ===================== */
 .card-content {
   display: flex;
   flex-direction: column;
@@ -25,29 +18,26 @@
   background-color: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   border: 1px solid var(--color-accent-faded);
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */
   animation: fadeIn 1s ease;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium)
 }
 
-/* ===================== EN-TÊTE ET LOGO ===================== */
 .card-header {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: var(--spacing-xs);
   width: 100%;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-md)
 }
 
 .titre-2 {
-  /* font-family: "Orbitron", sans-serif; */
   font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--color-text-light);
   margin: 0;
-  padding-bottom: 0.5rem;
-  position: relative;
+  padding-bottom: var(--spacing-xs);
+  position: relative
 }
 
 .titre-2::after {
@@ -59,91 +49,88 @@
   width: 60%;
   height: 1px;
   background: var(--color-accent);
-  border-radius: 2px;
+  border-radius: var(--border-radius-xs)
 }
 
 .sous-titre-3 {
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.4
 }
 
-/* Logo Marvel Travel */
 .logo-container {
   text-decoration: none;
   display: flex;
-  gap: 5px;
-  /* margin-bottom: 1.5rem; */
-  transition: transform 0.3s ease;
-  animation: fadeIn 1s ease;
+  gap: var(--spacing-xxs);
+  transition: transform var(--transition-medium);
+  animation: fadeIn 1s ease
 }
 
 .logo-container:hover {
-  transform: scale(0.95);
+  transform: scale(.95)
 }
 
 .logo-gauche {
   display: flex;
-  flex-direction: column;
+  flex-direction: column
 }
 
 .logo-gauche span {
-  font-size: 2rem;
+  font-size: var(--font-size-xl);
   color: var(--color-text-light);
-  line-height: 0.9;
+  line-height: .9
 }
 
 .vel {
-  font-size: 4.6rem;
-  line-height: 0.9;
-  color: var(--color-text-light);
+  font-size: calc(var(--font-size-xxl) + var(--font-size-lg));
+  line-height: .9;
+  color: var(--color-text-light)
 }
 
-/* ===================== FORMULAIRES ===================== */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
+  gap: var(--spacing-md);
+  width: 100%
 }
 
 .form-row {
   display: flex;
-  gap: 0.8rem;
-  width: 100%;
+  gap: var(--spacing-xs);
+  width: 100%
 }
 
-.form-row input,
-.email,
-.mdp,
 .civilite,
+.email,
+.form-row input,
+.mdp,
 .nationalite {
   height: 50px;
   background-color: var(--color-field-bg);
   border-radius: var(--border-radius-lg);
   border: 1px solid var(--color-accent-faded);
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium)
 }
 
-.form-row input:hover,
-.email:hover,
-.mdp:hover,
 .civilite:hover,
-.nationalite:hover,
-.date-input:hover {
+.date-input:hover,
+.email:hover,
+.form-row input:hover,
+.mdp:hover,
+.nationalite:hover {
   border-color: var(--color-accent-light);
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
-.form-row input:focus-within,
-.email:focus-within,
-.mdp:focus-within,
 .civilite:focus-within,
-.nationalite:focus-within,
-.date-input:focus-within {
+.date-input:focus-within,
+.email:focus-within,
+.form-row input:focus-within,
+.mdp:focus-within,
+.nationalite:focus-within {
   border-color: var(--color-accent);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-small)
 }
 
 .email,
@@ -151,55 +138,54 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-xxs);
-  width: 100%;
+  width: 100%
 }
 
 .email img,
 .mdp img {
   width: 18px;
   height: 18px;
-  opacity: 0.7;
+  opacity: .7;
   filter: brightness(0) invert(1);
-  margin-left: 20px;
+  margin-left: var(--spacing-md)
 }
 
 .email:focus-within img,
 .mdp:focus-within img {
-  opacity: 1;
+  opacity: 1
 }
 
 input {
-  background: transparent;
+  background: 0 0;
   border: none;
   color: var(--color-text-light);
   font-size: var(--font-size-sm);
   width: 100%;
   height: 100%;
-  padding: var(--spacing-xs);
+  padding: var(--spacing-xs)
 }
 
 input::placeholder {
   color: var(--color-text-muted);
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  opacity: .7;
+  transition: opacity var(--transition-medium)
 }
 
 input:focus::placeholder {
-  opacity: 0.3;
+  opacity: .3
 }
 
 input:focus {
-  outline: none;
+  outline: 0
 }
 
 .form-row input {
-  padding: 0 1.2rem;
+  padding: 0 var(--spacing-md)
 }
 
-/* Sélecteurs (civilité, nationalité) */
 .civilite-container,
 .nationalite-container {
-  width: 100%;
+  width: 100%
 }
 
 .civilite,
@@ -207,50 +193,49 @@ input:focus {
   height: 50px;
   display: flex;
   align-items: center;
-  padding: 0 1.2rem;
+  padding: 0 var(--spacing-md);
   position: relative;
   width: 100%;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .civilite img,
 .nationalite img {
-  opacity: 0.7;
-  filter: brightness(0) invert(1);
+  opacity: .7;
+  filter: brightness(0) invert(1)
 }
 
 .civilite select,
 .nationalite select {
   border: none;
-  background: transparent;
-  outline: none;
+  background: 0 0;
+  outline: 0;
   color: var(--color-text-light);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   width: 100%;
   height: 100%;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  -moz-appearance: none;
+  -moz-appearance: none
 }
 
 .civilite select option,
 .nationalite select option {
   background-color: var(--color-card-bg);
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
-/* Entrée de date */
 .date-input-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .date-input-container label {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted)
 }
 
 .date-input {
@@ -260,110 +245,108 @@ input:focus {
   height: 50px;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-  width: 100%;
+  transition: all var(--transition-medium);
+  width: 100%
 }
 
 .date-input img {
-  margin-left: 20px;
-  opacity: 0.7;
-  filter: brightness(0) invert(1);
+  margin-left: var(--spacing-md);
+  opacity: .7;
+  filter: brightness(0) invert(1)
 }
 
-.date-input input[type="date"] {
+.date-input input[type=date] {
   border: none;
-  background: transparent;
-  outline: none;
+  background: 0 0;
+  outline: 0;
   color: var(--color-text-light);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   width: 100%;
   height: 100%;
   cursor: pointer;
-  padding: 0 2rem;
+  padding: 0 var(--spacing-md)
 }
 
-.date-input input[type="date"]::-webkit-calendar-picker-indicator {
+.date-input input[type=date]::-webkit-calendar-picker-indicator {
   filter: invert(1);
-  opacity: 0.6;
+  opacity: .6;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-medium)
 }
 
-.date-input input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
+.date-input input[type=date]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1
 }
 
-/* ===================== BOUTONS ===================== */
-.next-button,
-.generate-button {
+.generate-button,
+.next-button {
   font-size: var(--font-size-md);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: var(--spacing-xs);
   color: var(--color-text-light);
   background: var(--gradient-primary);
   border: none;
-  border-radius: 50px;
+  border-radius: var(--border-radius-xxl);
   width: 100%;
-  padding: 1rem 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 1rem;
-  transition: all 0.3s ease;
+  padding: var(--spacing-sm) 0;
+  box-shadow: var(--shadow-button);
+  margin-top: var(--spacing-sm);
+  transition: all var(--transition-medium)
 }
 
-.next-button:hover,
-.generate-button:hover {
+.generate-button:hover,
+.next-button:hover {
   transform: translateY(-2px);
   background-color: var(--color-accent-light);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-hover)
 }
 
-.next-button img,
-.generate-button img {
+.generate-button img,
+.next-button img {
   width: 20px;
   height: 20px;
   filter: brightness(0) invert(1);
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-medium)
 }
 
 .next-button:hover img {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .generate-button-container {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: var(--spacing-sm)
 }
 
-/* ===================== LIENS ET TEXTES ===================== */
 .other-text {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: var(--spacing-sm);
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  color: var(--color-error);
+  gap: var(--spacing-xs);
+  color: var(--color-error)
 }
 
 .other-text a {
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition-medium)
 }
 
 .other-text a span {
   font-weight: 600;
   color: var(--color-accent);
-  margin-left: 5px;
+  margin-left: var(--spacing-xxs);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium)
 }
 
 .other-text a span::after {
@@ -374,152 +357,126 @@ input:focus {
   width: 0;
   height: 1px;
   background: var(--color-accent);
-  transition: width 0.3s ease;
+  transition: width var(--transition-medium)
 }
 
 .other-text a:hover span::after {
-  width: 100%;
+  width: 100%
 }
 
 .other-text a:hover {
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
-/* ===================== DÉCORATIONS ET EFFETS ===================== */
 .retour {
   position: absolute;
   z-index: 10;
-  opacity: 0.7;
+  opacity: .7;
   transform: translate(-220px, 10px);
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium)
 }
 
 .retour:hover {
   opacity: 1;
-  transform: translate(-225px, 10px);
+  transform: translate(-225px, 10px)
 }
 
-.spiderman-pin,
+.captain-pin,
 .hulk-pin,
 .shield-pin,
-.captain-pin {
+.spiderman-pin {
   position: absolute;
   width: 80px;
   height: auto;
   z-index: 1;
-  /* opacity: 0.8; */
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium)
 }
 
 .spiderman-pin {
   position: absolute;
-  transform: rotate(10deg) translateX(280px);
+  transform: rotate(10deg) translateX(280px)
 }
 
 .hulk-pin {
   position: absolute;
-  transform: rotate(-10deg) translate(-370px, 500px);
+  transform: rotate(-10deg) translate(-370px, 500px)
 }
 
 .shield-pin {
   position: absolute;
-  transform: rotate(10deg) translate(350px, 310px);
+  transform: rotate(10deg) translate(350px, 310px)
 }
 
 .captain-pin {
   position: absolute;
-  transform: rotate(-10deg) translate(-280px, 10px);
+  transform: rotate(-10deg) translate(-280px, 10px)
 }
 
-/* ===================== AFFICHAGE DU MOT DE PASSE ===================== */
-.password-field-container,
-.mdp {
+.mdp,
+.password-field-container {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: center
 }
 
-.password-field-container input[type="password"],
-.password-field-container input[type="text"],
-.mdp input[type="password"],
-.mdp input[type="text"] {
+.mdp input[type=password],
+.mdp input[type=text],
+.password-field-container input[type=password],
+.password-field-container input[type=text] {
   padding-right: 40px;
-  width: 100%;
+  width: 100%
 }
 
 .password-toggle-btn {
   position: absolute;
-  right: 10px;
-  background: transparent;
+  right: var(--spacing-xs);
+  background: 0 0;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: var(--spacing-xs);
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  opacity: .7;
+  transition: opacity var(--transition-medium)
 }
 
 .password-toggle-btn:hover {
-  opacity: 1;
+  opacity: 1
 }
 
 .password-toggle-btn img {
   width: 20px;
-  height: 20px;
+  height: 20px
 }
 
 .form-container {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  gap: var(--spacing-md);
+  gap: var(--spacing-md)
 }
 
-/* ===================== ANIMATIONS SIMPLIFIÉES ===================== */
 @keyframes cardAppear {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px)
   }
+
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0)
   }
 }
 
 @keyframes fadeInDown {
   0% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-10px)
   }
+
   100% {
     opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 768px) {
-  .card-content {
-    padding: 2rem 1.5rem;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .retour {
-    top: 1rem;
-    left: 1rem;
-  }
-
-  .spiderman-pin,
-  .hulk-pin,
-  .shield-pin,
-  .captain-pin {
-    width: 30px;
+    transform: translateY(0)
   }
 }

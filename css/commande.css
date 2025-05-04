@@ -1,19 +1,19 @@
 .content-container-div {
   width: 100%;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-xl)
 }
 
 .content-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  animation: fadeIn 0.6s ease;
+  animation: fadeIn .6s ease
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-xl)
 }
 
 .reservation-header {
@@ -21,14 +21,14 @@
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  animation: slideDown 0.6s ease;
+  animation: slideDown .6s ease
 }
 
 .hero-banner {
   height: 320px;
   background-size: cover;
   background-position: center;
-  position: relative;
+  position: relative
 }
 
 .overlay {
@@ -41,150 +41,142 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .header-content {
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-md)
 }
 
 .breadcrumb {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  font-size: 14px;
+  font-size: var(--font-size-sm)
 }
 
 .breadcrumb-link {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-xxs);
   color: var(--color-text-light);
   text-decoration: none;
-  opacity: 0.9;
-  transition: opacity var(--transition-fast);
+  opacity: .9;
+  transition: opacity var(--transition-fast)
 }
 
 .breadcrumb-link:hover {
-  opacity: 1;
+  opacity: 1
 }
 
 .breadcrumb-link img {
   width: 14px;
   height: 14px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1)
 }
 
 .breadcrumb-separator {
-  opacity: 0.6;
+  opacity: .6
 }
 
 .breadcrumb-current {
-  opacity: 0.8;
+  opacity: .8
 }
 
 .destination-title {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-sm)
 }
 
 .destination-title h1 {
   margin: 0;
-  font-size: 36px;
+  font-size: var(--font-size-xxl);
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
 
 .status {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 20px;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--font-size-sm)
 }
 
 .status img {
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1);
-  opacity: 0.9;
+  opacity: .9
 }
 
 .status-success {
   background-color: var(--color-success-bg);
   color: var(--color-success);
   border: 1px solid var(--color-success-border);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)
 }
 
 .status-pending {
   background-color: var(--color-pending-bg);
   color: var(--color-pending);
-  border: 1px solid var(--color-pending-border);
+  border: 1px solid var(--color-pending-border)
 }
 
 .reservation-meta {
   display: flex;
   gap: var(--spacing-md);
   flex-wrap: wrap;
-  margin-top: var(--spacing-xs);
+  margin-top: var(--spacing-xs)
 }
 
 .meta-item {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  font-size: 14px;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 8px 15px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform var(--transition-fast);
+  font-size: var(--font-size-sm);
+  background-color: rgba(0, 0, 0, .4);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 255, 255, .1);
+  transition: transform var(--transition-fast)
 }
 
 .meta-item:hover {
   transform: translateY(-2px);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, .5)
 }
 
 .meta-item img {
   width: 16px;
   height: 16px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1)
 }
 
 .meta-item-highlight {
-  background: linear-gradient(
-    to right,
-    rgba(81, 140, 202, 0.6),
-    rgba(226, 54, 54, 0.6)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to right, rgba(81, 140, 202, .6), rgba(226, 54, 54, .6));
+  border: 1px solid rgba(255, 255, 255, .1);
   animation: pulse 4s infinite;
   backdrop-filter: blur(5px);
-  border: none;
+  border: none
 }
 
 .reservation-details {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  animation: slideUp 0.8s ease;
+  animation: slideUp .8s ease
 }
 
 .section-title {
@@ -193,55 +185,55 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm)
 }
 
 .section-title h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: var(--font-size-xl);
   color: var(--color-text-cream);
   position: relative;
-  font-weight: 600;
+  font-weight: 600
 }
 
 .ticket-top-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
   z-index: 10;
-  padding: 10px 15px;
+  padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--color-card-hover) !important;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)
 }
 
 .transaction-badge {
-  background-color: rgba(242, 219, 175, 0.1);
-  padding: 8px 15px;
+  background-color: rgba(242, 219, 175, .1);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-md);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 2px
 }
 
 .transaction-badge .label {
-  font-size: 11px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   color: var(--color-accent);
-  opacity: 0.8;
+  opacity: .8
 }
 
 .transaction-id {
   font-family: monospace;
   letter-spacing: 1px;
-  font-size: 14px;
-  color: var(--color-text-cream);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-cream)
 }
 
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: var(--spacing-lg);
+  gap: var(--spacing-lg)
 }
 
 .card {
@@ -250,9 +242,9 @@
   box-shadow: var(--shadow-card);
   overflow: hidden;
   transition: all var(--transition-medium);
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  border: 1px solid rgba(242, 219, 175, .1);
   backdrop-filter: blur(10px);
-  position: relative;
+  position: relative
 }
 
 .card::before {
@@ -262,26 +254,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(242, 219, 175, 0.1) 0,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(242, 219, 175, 0.05) 100%
-  );
+  background: linear-gradient(135deg, rgba(242, 219, 175, .1) 0, rgba(0, 0, 0, 0) 50%, rgba(242, 219, 175, .05) 100%);
   opacity: 0;
   transition: opacity var(--transition-medium);
   pointer-events: none;
-  z-index: 1;
+  z-index: 1
 }
 
 .card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-card-hover);
-  border-color: rgba(242, 219, 175, 0.2);
+  border-color: rgba(242, 219, 175, .2)
 }
 
 .card:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .card-header {
@@ -290,80 +277,79 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  border-bottom: 1px solid var(--color-accent-faded);
+  border-bottom: 1px solid var(--color-accent-faded)
 }
 
 .card-icon {
   width: 20px;
   height: 20px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .card:hover .card-icon {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 3px rgba(242, 219, 175, 0.5));
+  filter: drop-shadow(0 0 3px rgba(242, 219, 175, .5))
 }
 
 .card-title {
   margin: 0;
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .card-content {
   padding: var(--spacing-md);
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .info-row {
   display: flex;
   justify-content: space-between;
   padding: var(--spacing-xs) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: background-color var(--transition-fast),
-    transform var(--transition-fast);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  transition: background-color var(--transition-fast), transform var(--transition-fast)
 }
 
 .info-row:last-child {
-  border-bottom: none;
+  border-bottom: none
 }
 
 .info-row:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  transform: translateX(3px);
+  background-color: rgba(255, 255, 255, .05);
+  transform: translateX(3px)
 }
 
 .info-row.highlight {
-  background-color: rgba(226, 54, 54, 0.15);
+  background-color: rgba(226, 54, 54, .15);
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
-  margin-top: var(--spacing-xs);
+  margin-top: var(--spacing-xs)
 }
 
 .label {
   color: var(--color-text-muted);
   font-weight: 500;
-  font-size: 14px;
+  font-size: var(--font-size-sm)
 }
 
 .value {
   color: var(--color-text-cream);
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--font-size-sm)
 }
 
 .price-value {
   color: var(--color-accent);
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--font-size-md)
 }
 
 .travelers-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-sm)
 }
 
 .traveler-item {
@@ -373,13 +359,13 @@
   padding: var(--spacing-xs);
   border-radius: var(--border-radius-sm);
   transition: all var(--transition-fast);
-  border: 1px solid transparent;
+  border: 1px solid transparent
 }
 
 .traveler-item:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, .08);
   transform: translateX(3px);
-  border-color: var(--color-accent-faded);
+  border-color: var(--color-accent-faded)
 }
 
 .traveler-avatar {
@@ -392,44 +378,44 @@
   justify-content: center;
   color: var(--color-text-cream);
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-small)
 }
 
 .traveler-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 2px
 }
 
 .traveler-name {
   font-weight: 600;
-  font-size: 14px;
-  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light)
 }
 
 .traveler-type {
-  font-size: 12px;
-  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted)
 }
 
 .traveler-badge {
   background-color: var(--color-accent);
   color: var(--color-text-dark);
-  font-size: 10px;
+  font-size: var(--font-size-xs);
   padding: 2px 6px;
-  border-radius: 10px;
-  margin-left: 8px;
+  border-radius: var(--border-radius-xs);
+  margin-left: var(--spacing-xs);
   font-weight: 500;
-  vertical-align: middle;
+  vertical-align: middle
 }
 
 .traveler-details {
-  font-size: 13px;
-  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted)
 }
 
 .itinerary-container {
-  padding: var(--spacing-xs);
+  padding: var(--spacing-xs)
 }
 
 .timeline {
@@ -437,7 +423,7 @@
   flex-direction: column;
   position: relative;
   padding-left: 30px;
-  margin-left: var(--spacing-xs);
+  margin-left: var(--spacing-xs)
 }
 
 .timeline::before {
@@ -447,22 +433,18 @@
   top: 5px;
   bottom: 5px;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--couleur-primaire) 0,
-    var(--couleur-secondaire) 100%
-  );
-  border-radius: 1px;
+  background: linear-gradient(to bottom, var(--couleur-primaire) 0, var(--couleur-secondaire) 100%);
+  border-radius: 1px
 }
 
 .timeline-item {
   position: relative;
   padding: var(--spacing-xs) 0;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .timeline-item:hover {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .timeline-point {
@@ -473,49 +455,49 @@
   height: 20px;
   border-radius: 50%;
   background-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(30, 30, 30, 0.5);
+  box-shadow: 0 0 0 3px rgba(30, 30, 30, .5);
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-dark);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: var(--font-size-xs);
+  font-weight: 600
 }
 
 .timeline-point::after {
-  content: attr(data-step);
+  content: attr(data-step)
 }
 
 .timeline-content {
-  padding-left: var(--spacing-xs);
+  padding-left: var(--spacing-xs)
 }
 
 .etape-name {
   font-weight: 500;
   color: var(--color-text-light);
-  font-size: 15px;
+  font-size: var(--font-size-sm)
 }
 
 .etape-badge {
   display: inline-block;
   background-color: var(--color-accent);
   color: var(--color-text-dark);
-  font-size: 10px;
+  font-size: var(--font-size-xs);
   padding: 2px 6px;
-  border-radius: 10px;
-  margin-left: 8px;
-  font-weight: 500;
+  border-radius: var(--border-radius-xs);
+  margin-left: var(--spacing-xs);
+  font-weight: 500
 }
 
 .etape-badge.end {
-  background-color: var(--color-text-light);
+  background-color: var(--color-text-light)
 }
 
 .options-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--spacing-sm);
+  gap: var(--spacing-sm)
 }
 
 .option-item {
@@ -526,36 +508,36 @@
   border-radius: var(--border-radius-sm);
   transition: all var(--transition-fast);
   border: 1px solid var(--color-card-hover);
-  background-color: var(--color-card-bg);
+  background-color: var(--color-card-bg)
 }
 
 .option-item:hover {
-  background-color: rgba(242, 219, 175, 0.1);
+  background-color: rgba(242, 219, 175, .1);
   transform: translateY(-3px);
-  border-color: rgba(242, 219, 175, 0.2);
+  border-color: rgba(242, 219, 175, .2)
 }
 
 .option-icon img {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(0.9);
+  filter: brightness(0) invert(.9)
 }
 
 .option-info {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 3px
 }
 
 .option-name {
   font-weight: 600;
-  font-size: 14px;
-  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light)
 }
 
 .option-desc {
-  font-size: 12px;
-  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted)
 }
 
 .empty-notice {
@@ -563,34 +545,34 @@
   padding: var(--spacing-md);
   color: var(--color-text-muted);
   font-style: italic;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, .05);
   border-radius: var(--border-radius-sm);
   margin: var(--spacing-sm) 0;
-  border: 1px solid var(--color-accent-faded);
+  border: 1px solid var(--color-accent-faded)
 }
 
 .actions-container {
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-md);
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-md)
 }
 
 .action-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 22px;
+  padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--border-radius-md);
   font-weight: 600;
-  font-size: 15px;
+  font-size: var(--font-size-sm);
   cursor: pointer;
   gap: var(--spacing-xs);
   text-decoration: none;
   transition: all var(--transition-medium);
   border: none;
   box-shadow: var(--shadow-button);
-  overflow: hidden;
+  overflow: hidden
 }
 
 .action-button::after {
@@ -600,65 +582,58 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, .2), transparent);
   transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  transition: transform var(--transition-slow)
 }
 
 .action-button:hover::after {
-  transform: translateX(100%);
+  transform: translateX(100%)
 }
 
 .primary-button {
   background: var(--gradient-primary);
-  color: var(--color-text-light);
-  /* box-shadow: 0 4px 15px rgba(226, 54, 54, 0.3); */
+  color: var(--color-text-light)
 }
 
 .primary-button:hover {
   transform: translateY(-2px);
-  /* box-shadow: 0 6px 20px rgba(226, 54, 54, 0.4); */
-  background: var(--gradient-primary);
+  background: var(--gradient-primary)
 }
 
 .primary-button img {
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1);
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .primary-button:hover img {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .secondary-button {
   background-color: var(--color-glass-dark);
   color: var(--color-text-light);
-  border: 1px solid var(--color-accent-faded);
+  border: 1px solid var(--color-accent-faded)
 }
 
 .secondary-button:hover {
-  background-color: rgba(242, 219, 175, 0.15);
+  background-color: rgba(242, 219, 175, .15);
   transform: translateY(-2px);
-  border-color: rgba(242, 219, 175, 0.3);
+  border-color: rgba(242, 219, 175, .3)
 }
 
 .secondary-button img {
   width: 18px;
   height: 18px;
   filter: brightness(0) invert(1);
-  opacity: 0.8;
-  transition: transform var(--transition-fast);
+  opacity: .8;
+  transition: transform var(--transition-fast)
 }
 
 .secondary-button:hover img {
-  transform: translateX(-3px);
+  transform: translateX(-3px)
 }
 
 .transaction-bar {
@@ -672,52 +647,52 @@
   flex-wrap: wrap;
   gap: var(--spacing-md);
   box-shadow: var(--shadow-card);
-  animation: slideUp 0.5s ease;
+  animation: slideUp .5s ease;
   border: 1px solid var(--color-accent-faded);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px)
 }
 
 .transaction-info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--spacing-xxs)
 }
 
 .transaction-label {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px
 }
 
 .transaction-value {
-  font-size: 15px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-light);
-  font-weight: 600;
+  font-weight: 600
 }
 
 .transaction-value.price {
   color: var(--color-accent);
-  font-size: 16px;
+  font-size: var(--font-size-md)
 }
 
 .transaction-status {
-  padding: 8px 15px;
-  border-radius: 20px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--font-size-sm)
 }
 
 .summary-header {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg)
 }
 
 .summary-header h2 {
   color: var(--color-text-light);
-  font-size: 24px;
+  font-size: var(--font-size-xl);
   margin-bottom: var(--spacing-xl);
   font-weight: 700;
-  position: relative;
+  position: relative
 }
 
 .summary-header h2::after {
@@ -728,25 +703,25 @@
   width: 60px;
   height: 3px;
   background: var(--gradient-primary);
-  border-radius: 3px;
+  border-radius: 3px
 }
 
 .voyage-description {
   color: var(--color-text-muted);
-  font-size: 16px;
+  font-size: var(--font-size-md);
   line-height: 1.6;
   max-width: 800px;
-  margin-top: 16px;
+  margin-top: var(--spacing-sm)
 }
 
 .reservation-summary {
-  animation: slideUp 0.7s ease;
+  animation: slideUp .7s ease
 }
 
 .payment-details {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-xs)
 }
 
 .payment-row {
@@ -754,59 +729,58 @@
   justify-content: space-between;
   padding: var(--spacing-xs) 0;
   border-bottom: 1px solid var(--color-glass-dark);
-  transition: background-color var(--transition-fast),
-    transform var(--transition-fast);
+  transition: background-color var(--transition-fast), transform var(--transition-fast)
 }
 
 .payment-row:hover {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .payment-row:last-child {
-  border-bottom: none;
+  border-bottom: none
 }
 
 .payment-row.total {
   margin-top: var(--spacing-xs);
-  background-color: rgba(242, 219, 175, 0.1);
+  background-color: rgba(242, 219, 175, .1);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
-  border: 1px solid var(--color-accent-faded);
+  border: 1px solid var(--color-accent-faded)
 }
 
 .payment-label {
   color: var(--color-text-muted);
-  font-weight: 500;
+  font-weight: 500
 }
 
 .payment-value {
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .payment-row.total .payment-label,
 .payment-row.total .payment-value {
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--font-size-md)
 }
 
 .payment-row.total .payment-value {
-  color: var(--color-accent);
+  color: var(--color-accent)
 }
 
 .tips-section {
   margin-top: var(--spacing-lg);
   padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(242, 219, 175, 0.1);
-  animation: slideUp 0.8s ease;
+  border-top: 1px solid rgba(242, 219, 175, .1);
+  animation: slideUp .8s ease
 }
 
 .tips-section h2 {
   color: var(--color-text-light);
-  font-size: 22px;
+  font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-xl);
   font-weight: 700;
-  position: relative;
+  position: relative
 }
 
 .tips-section h2::after {
@@ -817,13 +791,13 @@
   width: 50px;
   height: 3px;
   background: var(--gradient-primary);
-  border-radius: 3px;
+  border-radius: 3px
 }
 
 .tips-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-md);
+  gap: var(--spacing-md)
 }
 
 .tip-item {
@@ -833,16 +807,16 @@
   display: flex;
   gap: var(--spacing-md);
   align-items: flex-start;
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  border: 1px solid rgba(242, 219, 175, .1);
   transition: all var(--transition-medium);
   box-shadow: var(--shadow-card);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px)
 }
 
 .tip-item:hover {
   transform: translateY(-5px);
-  border-color: rgba(242, 219, 175, 0.3);
-  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(242, 219, 175, .3);
+  box-shadow: var(--shadow-card-hover)
 }
 
 .tip-icon {
@@ -854,144 +828,25 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-small)
 }
 
 .tip-icon img {
   width: 20px;
   height: 20px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1)
 }
 
 .tip-content h3 {
   color: var(--color-accent);
-  margin: 0 0 8px 0;
-  font-size: 17px;
-  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-md);
+  font-weight: 600
 }
 
 .tip-content p {
   color: var(--color-text-muted);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   line-height: 1.5;
-  margin: 0;
-}
-
-@media screen and (max-width: 1200px) {
-  .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .content-container-div {
-    padding: var(--spacing-md);
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .hero-banner {
-    height: 280px;
-  }
-
-  .transaction-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-  }
-
-  .transaction-info {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .transaction-status {
-    width: 100%;
-    text-align: center;
-    margin-top: var(--spacing-xs);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .hero-banner {
-    height: 250px;
-  }
-
-  .header-content {
-    padding: var(--spacing-md);
-  }
-
-  .destination-title h1 {
-    font-size: 28px;
-  }
-
-  .meta-item {
-    width: 100%;
-  }
-
-  .section-title {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-xs);
-  }
-
-  .actions-container {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .action-button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .content-container-div {
-    padding: var(--spacing-sm);
-  }
-
-  .hero-banner {
-    height: 200px;
-  }
-
-  .destination-title h1 {
-    font-size: 24px;
-  }
-
-  .breadcrumb {
-    font-size: 12px;
-  }
-
-  .reservation-meta {
-    gap: var(--spacing-xs);
-  }
-
-  .card-header {
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  .transaction-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .tips-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .tip-item {
-    padding: var(--spacing-sm);
-  }
-
-  .payment-row.total {
-    flex-direction: column;
-    gap: var(--spacing-xxs);
-    align-items: center;
-  }
+  margin: 0
 }

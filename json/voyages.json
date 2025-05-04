@@ -55,7 +55,7 @@
       },
       {
         "auteur": "May Parker",
-        "photo": "..../img/avatars/may.jpg",
+        "photo": "../img/avatars/may.jpg",
         "texte": "Une expérience familiale parfaitement organisée, mon neveu a adoré !",
         "note": 4.5
       }

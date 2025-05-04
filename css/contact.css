@@ -1,13 +1,7 @@
-body {
-  background-color: var(--color-background);
-  color: var(--color-text-light);
-}
-
 .contact-us {
   display: flex;
   justify-content: center;
-  padding: var(--spacing-xl);
-  /* margin-bottom: -70px; */
+  padding: var(--spacing-xl)
 }
 
 .contact-container {
@@ -19,34 +13,33 @@ body {
   background-color: var(--color-card-hover);
   box-shadow: var(--shadow-medium);
   animation: fadeIn 1s ease;
-  justify-content: space-around;
+  justify-content: space-around
 }
 
 .left {
   display: flex;
   flex-basis: 50%;
   flex-direction: column;
-  justify-content: space-evenly;
-  /* gap: 30px; */
+  justify-content: space-evenly
 }
 
 .contact-info {
   font-family: "PP Formula Bold", sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  width: fit-content;
+  gap: var(--spacing-xl);
+  width: fit-content
 }
 
 .contact-title {
-  font-size: var(--font-size-xxl);
+  font-size: var(--font-size-xxl)
 }
 
 .contact-description {
   font-family: "PP Formula";
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  width: 400px;
+  width: 400px
 }
 
 .contact-email {
@@ -54,7 +47,7 @@ body {
   width: fit-content;
   font-size: var(--font-size-sm);
   color: var(--color-accent);
-  transition: var(--transition-medium);
+  transition: var(--transition-medium)
 }
 
 .contact-email::after {
@@ -64,44 +57,44 @@ body {
   bottom: -2px;
   height: 1px;
   background-color: var(--color-accent);
-  transition: var(--transition-medium);
+  transition: var(--transition-medium)
 }
 
 .contact-email:hover::after {
-  width: 0;
+  width: 0
 }
 
 .support-section {
   display: flex;
   gap: var(--spacing-sm);
-  justify-content: space-between;
+  justify-content: space-between
 }
 
 .support-info-card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
   width: fit-content;
   text-align: center;
   background: var(--color-field-bg);
   padding: var(--spacing-sm);
   border-radius: var(--border-radius-lg);
   border: 1px solid transparent;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast)
 }
 
 .support-info-card:hover {
-  border: 1px solid var(--color-accent-faded);
+  border: 1px solid var(--color-accent-faded)
 }
 
 .support-title {
   font-size: var(--font-size-sm);
-  font-weight: 800;
+  color: var(--color-text-light);
 }
 
 .support-description {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .right {
@@ -109,20 +102,19 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 45px;
-  padding: 50px;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xxl);
   border-radius: var(--border-radius-lg);
   background: var(--gradient-card);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-accent-faded);
-  /* box-shadow: var(--shadow-card); */
   transition: all var(--transition-medium);
-  animation: fadeIn 1s ease;
+  animation: fadeIn 1s ease
 }
 
 .spiderman-pin {
   position: absolute;
-  transform: rotate(-20deg) translateX(-270px);
+  transform: rotate(-20deg) translateX(-270px)
 }
 
 .header {
@@ -130,34 +122,34 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  gap: 5px;
+  gap: var(--spacing-xxs);
   max-width: 400px;
-  width: fit-content;
+  width: fit-content
 }
 
 .form-title {
   font-size: var(--font-size-xl);
-  font-weight: 800;
+  color: var(--color-text-light);
 }
 
 .form-description {
   font-size: var(--font-size-md);
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  width: 100%;
+  gap: var(--spacing-sm);
+  width: 100%
 }
 
 input,
 textarea {
   font-family: "PP Formula", sans-serif;
   font-size: var(--font-size-sm);
-  padding-left: 15px;
+  padding-left: var(--spacing-sm);
   height: 50px;
   width: 100%;
   display: flex;
@@ -165,25 +157,25 @@ textarea {
   background-color: var(--color-field-bg);
   border: 1px solid var(--color-accent-faded);
   transition: all var(--transition-medium);
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 textarea {
-  padding-top: 15px;
+  padding-top: var(--spacing-sm);
   min-height: 100px;
-  resize: none;
+  resize: none
 }
 
 .button-div {
-  margin-top: 45px;
-  width: 100%;
+  margin-top: var(--spacing-xl);
+  width: 100%
 }
 
 .button-form {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-xs);
   padding: var(--spacing-sm);
   font-size: var(--font-size-sm);
   border-radius: var(--border-radius-md);
@@ -193,25 +185,25 @@ textarea {
   background-color: var(--color-accent-faded);
   box-shadow: var(--shadow-button);
   color: var(--color-text-light);
-  transition: all var(--transition-medium);
+  transition: all var(--transition-medium)
 }
 
 .button-form:hover {
   background-color: var(--couleur-accent);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-3px);
+  transform: translateY(-3px)
 }
 
 .button-form:active {
   transform: translateY(0);
   box-shadow: var(--shadow-button);
-  transition: all 0.1s ease-in-out;
+  transition: all .1s ease-in-out
 }
 
 input:focus,
 textarea:focus {
   outline: 0;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-accent)
 }
 
 .email,
@@ -219,29 +211,28 @@ textarea:focus {
 .form-row,
 .message,
 .nom {
-  width: 100%;
+  width: 100%
 }
 
 .form-row {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-xs)
 }
 
 .location-faq {
   display: flex;
   flex-direction: column;
-  gap: 100px;
-  padding: 70px;
+  gap: var(--spacing-xxl);
+  padding: var(--spacing-xxl);
   padding-bottom: 150px;
-  /* background-color: var(--color-background); */
   border-top-left-radius: var(--border-radius-xxl);
-  border-bottom-right-radius: var(--border-radius-xxl);
+  border-bottom-right-radius: var(--border-radius-xxl)
 }
 
 .location {
   display: flex;
   margin-block: var(--spacing-xxl);
-  justify-content: space-evenly;
+  justify-content: space-evenly
 }
 
 .location-map {
@@ -250,126 +241,120 @@ textarea:focus {
   height: 100%;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-medium);
-  transition: var(--transition-medium);
+  transition: var(--transition-medium)
 }
 
 .location-map:hover {
   box-shadow: var(--shadow-large);
-  transform: scale(1.01);
+  transform: scale(1.01)
 }
 
 .location-info {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: var(--spacing-lg)
 }
 
 .location-details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-xs)
 }
 
 .location-sous-titre {
   font-size: var(--font-size-sm);
-  color: var(--couleur-sous-titre);
+  color: var(--color-text-light);
 }
 
 .location-titre {
   font-family: "PP Formula Bold", sans-serif;
   font-size: var(--font-size-lg);
-  font-weight: 600;
+  color: var(--color-text-light);
 }
 
 .location-description {
   font-size: var(--font-size-md);
   font-weight: 200;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .location-details a {
   font-size: var(--font-size-sm);
   color: var(--link-color);
-  transition: var(--transition-medium);
+  transition: var(--transition-medium)
 }
 
 .location-details a:hover {
   color: var(--link-hover);
-  text-decoration: underline;
+  text-decoration: underline
 }
 
 .faq {
-  /* font-family: "PP Formula Bold", sans-serif; */
   display: flex;
   justify-content: space-evenly;
-  gap: 30px;
-  padding-top: var(--spacing-xxl);
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xxl)
 }
 
 .faq-info {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 170px;
+  gap: var(--spacing-sm);
+  width: 170px
 }
 
 .faq-titre {
   font-size: var(--font-size-xxl);
-  font-weight: 800;
+  color: var(--color-text-light);
 }
 
 .questions-list {
   display: flex;
   flex-direction: column;
-  /* gap: 30px; */
-  width: 700px;
-  /* max-width: 700px; */
+  width: 700px
 }
 
 .question {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  /* padding: var(--spacing-sm); */
+  gap: var(--spacing-xs);
   border-bottom: 1px solid var(--color-accent-faded);
   font-size: var(--font-size-md);
   cursor: pointer;
   transition: var(--transition-medium);
   flex-direction: column;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs)
 }
 
 .question:hover {
   background-color: var(--color-field-bg);
-  border-radius: var(--border-radius-sm);
-  /* transform: translateX(5px); */
+  border-radius: var(--border-radius-sm)
 }
 
 .shield {
   position: absolute;
-  transform: rotate(15deg) translate(160px, -110px);
+  transform: rotate(15deg) translate(160px, -110px)
 }
 
 .alert {
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-sm);
   margin-bottom: var(--spacing-md);
-  text-align: center;
+  text-align: center
 }
 
 .alert-success {
   background-color: var(--color-success-bg);
   color: var(--color-success);
-  border: 1px solid var(--color-success-border);
+  border: 1px solid var(--color-success-border)
 }
 
 .alert-error {
   background-color: var(--color-error-bg);
   color: var(--color-error);
-  border: 1px solid var(--color-error-border);
+  border: 1px solid var(--color-error-border)
 }
 
-/* Add styles for the visually-hidden class for accessibility */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -378,80 +363,63 @@ textarea:focus {
   padding: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
+  border: 0
 }
 
-/* Enhance form elements */
 .form-group {
   width: 100%;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm)
 }
 
-/* Style for text gradient in headings */
 .text-gradient {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
 
-/* Map container styles */
 .location-map-container {
   width: 70%;
   max-width: 470px;
   overflow: hidden;
   border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-medium)
 }
 
-/* Enhanced location details */
 .location-details {
   padding: var(--spacing-md);
   border-radius: var(--border-radius-md);
   transition: var(--transition-medium);
-  animation: fadeIn 1s ease;
+  animation: fadeIn 1s ease
 }
 
 .location-details:hover {
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-hover)
 }
 
-/* Adjust image alignment in button */
 .button-form img {
-  transition: transform var(--transition-medium);
+  transition: transform var(--transition-medium)
 }
 
 .button-form:hover img {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
-/* Make sure images in the form are properly sized */
-form img,
-.button-form img {
+.button-form img,
+form img {
   width: 16px;
-  height: 16px;
+  height: 16px
 }
 
-/* Ensure the address looks good */
 address {
-  font-style: normal;
+  font-style: normal
 }
-
-/* Remplacer les styles details/summary par ceux-ci */
 
 .faq-item {
   border-bottom: 1px solid var(--color-accent-faded);
   margin-bottom: var(--spacing-xs);
   overflow: hidden;
-  transition: all var(--transition-elastic);
-}
-
-.faq-item.active {
-  margin-bottom: var(--spacing-md);
-  background-color: var(--color-field-bg);
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-small);
-  transition: all var(--transition-slow);
+  transition: all var(--transition-elastic)
 }
 
 .faq-question {
@@ -460,16 +428,13 @@ address {
   align-items: center;
   padding: var(--spacing-md);
   font-size: var(--font-size-md);
+  color: var(--color-text-light);
   cursor: pointer;
-  transition: all var(--transition-bounce);
+  transition: all var(--transition-bounce)
 }
 
 .faq-icon {
-  transition: transform 0.4s ease;
-}
-
-.faq-item.active .faq-icon {
-  transform: rotate(180deg);
+  transition: transform .4s ease
 }
 
 .faq-answer {
@@ -481,126 +446,5 @@ address {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   line-height: 1.6;
-  transition: all var(--transition-medium);
-}
-
-.faq-item.active .faq-answer {
-  max-height: 500px; /* Hauteur maximale approximative */
-  opacity: 1;
-  padding-bottom: var(--spacing-md);
-  font-size: var(--font-size-sm);
-  line-height: 1.8;
-  transition: all var(--transition-medium);
-}
-
-/* Assurez-vous de supprimer ou commenter les anciens styles details/summary */
-
-/* Media queries adjustments */
-@media (max-width: 768px) {
-  body {
-    font-size: var(--font-size-sm);
-  }
-
-  .contact-us {
-    flex-direction: column;
-    padding: var(--spacing-lg);
-    margin-bottom: 0;
-  }
-
-  .left,
-  .right {
-    flex-basis: auto;
-    margin-top: 15px;
-    gap: 20px;
-  }
-
-  .contact-info,
-  .right {
-    width: fit-content;
-  }
-
-  .contact-title {
-    font-size: var(--font-size-xl);
-  }
-
-  .contact-description,
-  .contact-email,
-  .form-description,
-  .location-description,
-  .support-description,
-  .support-title {
-    font-size: var(--font-size-xs);
-  }
-
-  .contact-email {
-    font-size: var(--font-size-xs);
-  }
-
-  .support-section {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .header {
-    width: 100%;
-  }
-
-  .form-title {
-    font-size: var(--font-size-lg);
-  }
-
-  .form-description {
-    font-size: var(--font-size-sm);
-  }
-
-  .location {
-    flex-direction: column-reverse;
-  }
-
-  .location-faq {
-    gap: 50px;
-    padding: var(--spacing-lg);
-    padding-bottom: 140px;
-  }
-
-  .faq {
-    flex-direction: column;
-    gap: 20px;
-    padding: var(--spacing-md);
-  }
-
-  .faq-info,
-  .location-info,
-  .questions-list {
-    width: 100%;
-  }
-
-  .location-map {
-    width: 100%;
-    height: 100%;
-  }
-
-  .faq-titre {
-    font-size: var(--font-size-xl);
-  }
-
-  .question {
-    font-size: var(--font-size-sm);
-  }
-
-  .contact-container {
-    padding: var(--spacing-md);
-  }
-
-  .location-map-container {
-    width: 100%;
-  }
-
-  .container {
-    padding: 0 var(--spacing-sm);
-  }
-
-  summary.question-title {
-    font-size: var(--font-size-sm);
-  }
+  transition: all var(--transition-medium)
 }

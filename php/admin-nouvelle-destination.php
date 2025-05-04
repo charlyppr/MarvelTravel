@@ -8,6 +8,9 @@ if ($_SESSION['role'] !== 'admin') {
     header('Location: connexion.php');
     exit;
 }
+
+// Récupérer le thème de la session
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +23,7 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/sidebar.css">
 </head>
-<body>
+<body class="<?php echo $theme; ?>-theme">
     <?php
     include('sidebar.php');
     ?>

@@ -49,7 +49,7 @@ if (isset($_GET['transaction']) && isset($_GET['status'])) {
         $_SESSION['processed_transactions'][] = $transaction_id;
     } else {
         // Transaction déjà traitée - permettre de voir la page d'échec de paiement
-        if ($result === 'accepted' && isset($_SESSION['confirmation_viewed']) && $_SESSION['confirmation_viewed'] === true) {
+        if (isset($_SESSION['confirmation_viewed']) && $_SESSION['confirmation_viewed'] === true) {
             redirect_error('already_processed');
         } else {
             // Si paiement échoué ou première vue, on autorise l'affichage

@@ -718,5 +718,92 @@
                 "total": 20
             }
         ]
+    },
+    {
+        "transaction": "ea373e7e8e90af1c051e47a4",
+        "reservation_id": "MT-3CE578D2",
+        "montant": 6399.93,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "d13ba1605ef0e4b5950dd069821cc14b",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "Atlantis",
+        "date_debut": "2025-05-14",
+        "date_fin": "2025-05-18",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-01-01",
+                "nationalite": "Asgardienne",
+                "passport": "127 168 461 9"
+            }
+        ],
+        "date_achat": "2025-05-04 12:52:22",
+        "options": [
+            {
+                "etape": "Ruines anciennes d'Atlantis",
+                "option": "Exploration archéologique",
+                "prix_unitaire": 499.99,
+                "nb_participants": 1,
+                "total": 499.99
+            },
+            {
+                "etape": "Ruines anciennes d'Atlantis",
+                "option": "Plongée dans les ruines",
+                "prix_unitaire": 299.99,
+                "nb_participants": 1,
+                "total": 299.99
+            }
+        ]
+    },
+    {
+        "transaction": "a4d3018eaceb8b081bdb5ada",
+        "reservation_id": "MT-39D28E0F",
+        "montant": 4699.92,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "27773d1272060eb62078d92179058ba8",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "The Battleworld",
+        "date_debut": "2025-06-09",
+        "date_fin": "2025-06-19",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-01-01",
+                "nationalite": "Asgardienne",
+                "passport": "127 168 461 9"
+            }
+        ],
+        "date_achat": "2025-05-04 13:32:11",
+        "options": [
+            {
+                "etape": "Zone des Champions",
+                "option": "Combat dans l'arène",
+                "prix_unitaire": 299.99,
+                "nb_participants": 1,
+                "total": 299.99
+            },
+            {
+                "etape": "Terre de l'Ultron",
+                "option": "Visite de la forteresse d'Ultron",
+                "prix_unitaire": 149.99,
+                "nb_participants": 1,
+                "total": 149.99
+            },
+            {
+                "etape": "Terre de l'Ultron",
+                "option": "Combat contre les armées de robots",
+                "prix_unitaire": 249.99,
+                "nb_participants": 1,
+                "total": 249.99
+            }
+        ]
     }
 ]

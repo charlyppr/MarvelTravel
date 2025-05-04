@@ -79,7 +79,7 @@
     padding: 0.8rem 2rem;
     background: var(--gradient-primary);
     border-radius: 50px;
-    color: var(--color-text-cream, #f2dbaf);
+    color: var(--color-text-light);
     text-decoration: none;
     font-weight: 600;
     transition: all var(--transition-medium, 0.3s);

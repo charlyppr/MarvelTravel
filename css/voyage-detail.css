@@ -1,16 +1,13 @@
-@import "destination.css";
-
 .voyage-detail-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: var(--spacing-xl);
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn .5s ease
 }
 
 .hero-section {
   height: 80vh;
-  /* margin-bottom: var(--spacing-xxl); */
-  margin-bottom: 160px; /* Espace pour le carrousel qui remonte */
+  margin-block: 160px;
 }
 
 .hero-backdrop {
@@ -22,11 +19,12 @@
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  transition: transform 0.8s ease;
+  transition: transform .8s ease;
+  filter: blur(5px);
 }
 
 .hero-section:hover .hero-backdrop {
-  transform: scale(1);
+  transform: scale(1)
 }
 
 .hero-backdrop::before {
@@ -36,13 +34,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.8) 0,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
-  z-index: 1;
+  background: linear-gradient(45deg, rgba(0, 0, 0, .8) 0, rgba(0, 0, 0, .4) 50%, rgba(0, 0, 0, .2) 100%);
+  z-index: 1
 }
 
 .hero-backdrop::after {
@@ -52,13 +45,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    transparent 0,
-    rgba(18, 18, 18, 0.8) 80%,
-    var(--color-background) 100%
-  );
-  z-index: 2;
+  background: linear-gradient(to bottom, transparent 0, rgba(18, 18, 18, .8) 80%, var(--color-background) 100%);
+  z-index: 2
 }
 
 .hero-container {
@@ -66,14 +54,18 @@
   display: flex;
   align-items: flex-end;
   z-index: 3;
-  animation: fadeIn 0.8s ease;
+  animation: fadeIn .8s ease
 }
 
 .hero-content {
+  display: flex;
   width: 100%;
   color: var(--color-text-cream);
   position: relative;
   padding-bottom: var(--spacing-xl);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .breadcrumb {
@@ -82,66 +74,66 @@
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-xl);
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, .1);
   padding: 8px 16px;
   border-radius: var(--border-radius-xl);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, .1);
   width: fit-content;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast)
 }
 
 .breadcrumb:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, .15);
+  border-color: rgba(255, 255, 255, .2);
+  transform: translateY(-2px)
 }
 
 .breadcrumb a {
   color: var(--color-text-cream);
   text-decoration: none;
-  opacity: 0.9;
+  opacity: .9;
   transition: all var(--transition-fast);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px
 }
 
 .breadcrumb a:hover {
   opacity: 1;
-  transform: translateX(-2px);
+  transform: translateX(-2px)
 }
 
 .breadcrumb img {
   width: 10px;
   height: 10px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1)
 }
 
 .hero-title {
+  font-family: 'Marvel';
+  text-transform: uppercase;
   font-size: 56px;
   font-weight: 800;
   margin-bottom: var(--spacing-md);
   line-height: 1.1;
   position: relative;
-  background: linear-gradient(
-    to right,
-    var(--color-text-cream) 0,
-    var(--color-accent) 100%
-  );
+  background: linear-gradient(to right, var(--color-text-cream) 0, var(--color-accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleFade 1s ease;
+  animation: titleFade 1s ease
 }
+
 @keyframes titleFade {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px)
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0)
   }
 }
 
@@ -151,7 +143,7 @@
   margin-bottom: var(--spacing-xl);
   color: var(--color-text-cream);
   max-width: 700px;
-  animation: FadeIn 1s ease 0.2s backwards;
+  animation: FadeIn 1s ease .2s backwards
 }
 
 .voyage-meta {
@@ -159,9 +151,9 @@
   flex-wrap: wrap;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-xxl);
-  animation: FadeIn 1s ease 0.4s backwards;
+  animation: FadeIn 1s ease .4s backwards;
   flex-direction: row;
-  align-items: center;
+  align-items: center
 }
 
 .meta-rating {
@@ -173,28 +165,28 @@
   border-radius: var(--border-radius-xl);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-accent-faded);
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast)
 }
 
 .meta-rating:hover {
   background: var(--color-accent-faded);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, .2);
+  transform: translateY(-2px)
 }
 
 .rating-stars {
   display: flex;
-  gap: 4px;
+  gap: 4px
 }
 
 .star {
   width: 18px;
   height: 18px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast)
 }
 
 .rating-stars:hover .star {
-  transform: scale(1.1);
+  transform: scale(1.1)
 }
 
 .category-tag {
@@ -205,21 +197,21 @@
   font-size: 14px;
   font-weight: 500;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(242, 219, 175, 0.2);
-  transition: all var(--transition-fast);
+  border: 1px solid rgba(242, 219, 175, .2);
+  transition: all var(--transition-fast)
 }
 
 .category-tag:hover {
   background: var(--color-accent-faded);
   border-color: var(--color-accent);
-  transform: translateY(-2px);
+  transform: translateY(-2px)
 }
 
 .quick-info {
   display: flex;
   gap: var(--spacing-lg);
   margin-top: var(--spacing-xxl);
-  animation: FadeIn 1s ease 0.6s backwards;
+  animation: FadeIn 1s ease .6s backwards
 }
 
 .info-item {
@@ -232,33 +224,33 @@
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-accent-faded);
   transition: all var(--transition-fast);
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .info-item:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, .15);
+  border-color: rgba(255, 255, 255, .2);
+  transform: translateY(-2px)
 }
 
 .info-item img {
   width: 24px;
   height: 24px;
   filter: brightness(0) invert(1);
-  opacity: 0.9;
-  transition: transform var(--transition-fast);
+  opacity: .9;
+  transition: transform var(--transition-fast)
 }
 
 .info-item:hover img {
   transform: scale(1.1);
-  opacity: 1;
+  opacity: 1
 }
 
 .main-content {
   margin: 0 90px;
   position: relative;
   z-index: 5;
-  margin-top: var(--spacing-xl); /* Espace après le carrousel */
+  margin-top: var(--spacing-xl)
 }
 
 .voyage-nav ul {
@@ -267,7 +259,7 @@
   gap: 32px;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0
 }
 
 .voyage-nav li a {
@@ -277,7 +269,7 @@
   font-weight: 500;
   padding: 6px 0;
   position: relative;
-  transition: color 0.25s ease;
+  transition: color .25s ease
 }
 
 .voyage-nav li a::after {
@@ -289,34 +281,35 @@
   height: 2px;
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.25s ease;
-  background: var(--gradient-primary);
+  transition: transform .25s ease;
+  background: var(--gradient-primary)
 }
 
 .voyage-nav li a.active,
 .voyage-nav li a:hover {
-  color: var(--color-text-cream);
+  color: var(--color-text-cream)
 }
 
 .voyage-nav li a.active::after,
 .voyage-nav li a:hover::after {
-  transform: scaleX(1);
+  transform: scaleX(1)
 }
 
 .amount {
   font-size: 17px;
   font-weight: 600;
-  color: var(--color-text-cream);
+  color: var(--color-text-cream)
 }
 
 .content-wrapper {
   display: grid;
   grid-template-columns: 1fr 360px;
   gap: 32px;
-  align-items: start;
+  align-items: start
 }
+
 #apercu {
-  animation: fadeIn 0.8s ease;
+  animation: fadeIn .8s ease
 }
 
 .card-icon {
@@ -329,15 +322,15 @@
   background: var(--gradient-primary);
   border-radius: 50%;
   padding: 12px;
-  box-shadow: 0 4px 12px rgba(226, 54, 54, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(226, 54, 54, .2);
+  transition: all .3s ease
 }
 
 .card-icon img {
   width: 22px;
   height: 22px;
   filter: brightness(0) invert(1);
-  opacity: 1;
+  opacity: 1
 }
 
 .card-content h3 {
@@ -345,9 +338,9 @@
   font-weight: 500;
   color: var(--color-text-muted);
   margin: 0 0 8px;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   text-transform: uppercase;
-  transition: color 0.3s ease;
+  transition: color .3s ease
 }
 
 .card-content p {
@@ -355,21 +348,21 @@
   font-weight: 600;
   color: var(--color-text-cream);
   margin: 0;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .description-section {
   background: var(--color-card-bg);
   border-radius: var(--border-radius-xl);
   padding: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, .05);
   margin-bottom: 40px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .15);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px)
 }
 
 .description-section::before {
@@ -379,10 +372,10 @@
   right: -100px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(226, 54, 54, 0.1), transparent 70%);
-  opacity: 0.6;
+  background: radial-gradient(circle, rgba(226, 54, 54, .1), transparent 70%);
+  opacity: .6;
   border-radius: 50%;
-  transition: all 0.5s ease;
+  transition: all .5s ease
 }
 
 .description-section::after {
@@ -392,26 +385,26 @@
   left: -80px;
   width: 160px;
   height: 160px;
-  background: radial-gradient(circle, rgba(81, 140, 202, 0.1), transparent 70%);
-  opacity: 0.6;
+  background: radial-gradient(circle, rgba(81, 140, 202, .1), transparent 70%);
+  opacity: .6;
   border-radius: 50%;
-  transition: all 0.5s ease;
+  transition: all .5s ease
 }
 
 .description-section:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .description-section:hover::before {
   transform: scale(1.2);
-  opacity: 0.8;
+  opacity: .8
 }
 
 .description-section:hover::after {
   transform: scale(1.2);
-  opacity: 0.8;
+  opacity: .8
 }
 
 .description-section h2 {
@@ -419,17 +412,13 @@
   font-weight: 700;
   color: var(--color-text-cream);
   margin-bottom: 28px;
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px;
   position: relative;
   padding-bottom: 16px;
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
 
 .description-section h2::after {
@@ -441,11 +430,11 @@
   height: 3px;
   background: var(--gradient-primary);
   border-radius: 3px;
-  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: width .4s cubic-bezier(.19, 1, .22, 1)
 }
 
 .description-section:hover h2::after {
-  width: 100px;
+  width: 100px
 }
 
 .description-text {
@@ -457,23 +446,23 @@
   border-left: none;
   padding-left: 0;
   font-weight: 400;
-  letter-spacing: 0.2px;
+  letter-spacing: .2px
 }
 
 .highlights-container {
   background: var(--color-card-hover);
   border-radius: var(--border-radius-lg);
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, .07);
+  transition: all .3s cubic-bezier(.165, .84, .44, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .1)
 }
 
 .highlights-container:hover {
   background: var(--color-card-hover);
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: rgba(242, 219, 175, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+  border-color: rgba(242, 219, 175, .1)
 }
 
 .highlights-container h3 {
@@ -483,17 +472,17 @@
   margin-block: 0 22px;
   position: relative;
   display: inline-block;
-  letter-spacing: -0.3px;
+  letter-spacing: -.3px
 }
 
 .highlights-container:hover h3::after {
-  transform: scaleX(1);
+  transform: scaleX(1)
 }
 
 .highlights-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 16px
 }
 
 .highlight-item {
@@ -503,43 +492,42 @@
   padding: 14px;
   background: var(--color-card-bg);
   border-radius: var(--border-radius-md);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  border-left: 2px solid transparent;
+  transition: all .3s cubic-bezier(.165, .84, .44, 1);
+  border-left: 2px solid transparent
 }
 
 .highlight-item:hover {
   transform: translateX(5px);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, .05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1)
 }
 
 .highlight-item img {
   width: 20px;
   height: 20px;
-  filter: brightness(0) saturate(100%) invert(87%) sepia(19%) saturate(751%)
-    hue-rotate(328deg) brightness(80%) contrast(99%);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: brightness(0) saturate(100%) invert(87%) sepia(19%) saturate(751%) hue-rotate(328deg) brightness(80%) contrast(99%);
+  transition: transform .3s cubic-bezier(.175, .885, .32, 1.275)
 }
 
 .highlight-item:hover img {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.2) rotate(5deg)
 }
 
 .highlight-item span {
   font-size: 13px;
   line-height: 1.5;
   color: var(--color-text-light);
-  transition: color 0.3s ease;
+  transition: color .3s ease
 }
 
 .highlight-item:hover span {
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .universe-section {
   margin-top: 48px;
-  animation: fadeIn 0.8s ease;
-  position: relative;
+  animation: fadeIn .8s ease;
+  position: relative
 }
 
 .universe-section h2 {
@@ -547,17 +535,13 @@
   font-weight: 700;
   color: var(--color-text-cream);
   margin-bottom: 28px;
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px;
   position: relative;
   padding-bottom: 16px;
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
 
 .universe-section h2::after {
@@ -569,11 +553,11 @@
   height: 3px;
   background: var(--gradient-primary);
   border-radius: 3px;
-  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: width .4s cubic-bezier(.19, 1, .22, 1)
 }
 
 .universe-section:hover h2::after {
-  width: 100px;
+  width: 100px
 }
 
 .universe-content {
@@ -582,13 +566,13 @@
   background: var(--color-card-bg);
   border-radius: var(--border-radius-xl);
   padding: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, .05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .15);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
   overflow: hidden;
-  position: relative;
+  position: relative
 }
 
 .universe-content::before {
@@ -598,11 +582,11 @@
   left: -80px;
   width: 160px;
   height: 160px;
-  background: radial-gradient(circle, rgba(226, 54, 54, 0.1), transparent 70%);
-  opacity: 0.6;
+  background: radial-gradient(circle, rgba(226, 54, 54, .1), transparent 70%);
+  opacity: .6;
   border-radius: 50%;
-  transition: all 0.5s ease;
-  z-index: 0;
+  transition: all .5s ease;
+  z-index: 0
 }
 
 .universe-content::after {
@@ -612,40 +596,40 @@
   right: -100px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(81, 140, 202, 0.1), transparent 70%);
-  opacity: 0.6;
+  background: radial-gradient(circle, rgba(81, 140, 202, .1), transparent 70%);
+  opacity: .6;
   border-radius: 50%;
-  transition: all 0.5s ease;
-  z-index: 0;
+  transition: all .5s ease;
+  z-index: 0
 }
 
 .universe-content:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .universe-content:hover::after,
 .universe-content:hover::before {
   transform: scale(1.2);
-  opacity: 0.8;
+  opacity: .8
 }
 
 .universe-media {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   height: 300px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
   position: relative;
   z-index: 1;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
+  border: 1px solid rgba(255, 255, 255, .05)
 }
 
 .universe-media:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  border-color: rgba(242, 219, 175, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
+  border-color: rgba(242, 219, 175, .2)
 }
 
 .universe-media::after {
@@ -655,31 +639,25 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.2) 0,
-    transparent 40%,
-    rgba(0, 0, 0, 0.5) 80%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
+  background: linear-gradient(180deg, rgba(0, 0, 0, .2) 0, transparent 40%, rgba(0, 0, 0, .5) 80%, rgba(0, 0, 0, .8) 100%);
   pointer-events: none;
-  opacity: 0.7;
-  transition: opacity 0.4s ease;
+  opacity: .7;
+  transition: opacity .4s ease
 }
 
 .universe-media:hover::after {
-  opacity: 0.4;
+  opacity: .4
 }
 
 .universe-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform .8s cubic-bezier(.165, .84, .44, 1)
 }
 
 .universe-media:hover .universe-image {
-  transform: scale(1.08);
+  transform: scale(1.08)
 }
 
 .universe-details {
@@ -687,7 +665,7 @@
   flex-direction: column;
   gap: 24px;
   position: relative;
-  z-index: 1;
+  z-index: 1
 }
 
 .characters-section h3,
@@ -698,31 +676,31 @@
   margin-bottom: 18px;
   position: relative;
   display: inline-block;
-  letter-spacing: -0.3px;
+  letter-spacing: -.3px
 }
 
 .characters-section:hover h3::after,
 .films-section:hover h3::after {
-  transform: scaleX(1);
+  transform: scaleX(1)
 }
 
 .films-grid {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
+  flex-wrap: wrap
 }
 
 .film-tag {
-  background: rgba(226, 54, 54, 0.08);
+  background: rgba(226, 54, 54, .08);
   color: var(--color-text-light);
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid rgba(226, 54, 54, 0.2);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(226, 54, 54, .2);
+  transition: all .3s cubic-bezier(.165, .84, .44, 1);
   position: relative;
-  overflow: hidden;
+  overflow: hidden
 }
 
 .film-tag::before {
@@ -732,30 +710,25 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  transition: all 0.6s ease;
+  background: linear-gradient(90deg, transparent 0, rgba(255, 255, 255, .1) 50%, transparent 100%);
+  transition: all .6s ease
 }
 
 .film-tag:hover {
-  background: rgba(226, 54, 54, 0.15);
+  background: rgba(226, 54, 54, .15);
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(226, 54, 54, 0.15);
-  border-color: rgba(226, 54, 54, 0.3);
+  box-shadow: 0 4px 12px rgba(226, 54, 54, .15);
+  border-color: rgba(226, 54, 54, .3)
 }
 
 .film-tag:hover::before {
-  left: 100%;
+  left: 100%
 }
 
 .characters-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 16px
 }
 
 .character-card {
@@ -767,16 +740,16 @@
   padding: 16px 12px;
   background: var(--color-field-bg);
   border-radius: var(--border-radius-lg);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all .3s cubic-bezier(.165, .84, .44, 1);
   border: 1px solid transparent;
-  justify-content: center;
+  justify-content: center
 }
 
 .character-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(242, 219, 175, 0.15);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, .06);
+  border-color: rgba(242, 219, 175, .15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .15)
 }
 
 .character-card img {
@@ -784,50 +757,49 @@
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: brightness(0.9);
+  border: 2px solid rgba(255, 255, 255, .1);
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  filter: brightness(.9)
 }
 
 .character-card:hover img {
   transform: scale(1.1);
   border-color: var(--color-accent);
   filter: brightness(1.1);
-  box-shadow: 0 0 15px rgba(242, 219, 175, 0.3);
+  box-shadow: 0 0 15px rgba(242, 219, 175, .3)
 }
 
 .character-card span {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text-light);
-  transition: color 0.3s ease;
+  transition: color .3s ease
 }
 
 .character-card:hover span {
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
+
 #programme {
   margin-top: 48px;
-  animation: fadeIn 0.8s ease;
-  position: relative;
+  animation: fadeIn .8s ease;
+  position: relative
 }
+
 #programme h2 {
   font-size: 28px;
   font-weight: 700;
   color: var(--color-text-cream);
   margin-bottom: 32px;
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px;
   position: relative;
   padding-bottom: 16px;
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
+
 #programme h2::after {
   content: "";
   position: absolute;
@@ -837,10 +809,11 @@
   height: 3px;
   background: var(--gradient-primary);
   border-radius: 3px;
-  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: width .4s cubic-bezier(.19, 1, .22, 1)
 }
+
 #programme:hover h2::after {
-  width: 100px;
+  width: 100px
 }
 
 .programme-timeline {
@@ -848,7 +821,7 @@
   flex-direction: column;
   gap: 32px;
   position: relative;
-  padding-left: 30px;
+  padding-left: 30px
 }
 
 .programme-timeline::before {
@@ -858,23 +831,19 @@
   left: 8px;
   height: calc(100% - 20px);
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    rgba(226, 54, 54, 0.2),
-    rgba(81, 140, 202, 0.2)
-  );
-  z-index: 0;
+  background: linear-gradient(to bottom, rgba(226, 54, 54, .2), rgba(81, 140, 202, .2));
+  z-index: 0
 }
 
 .timeline-card {
   background: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(255, 255, 255, .05);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
   position: relative;
   z-index: 1;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .15)
 }
 
 .timeline-card::before {
@@ -887,27 +856,27 @@
   background: var(--gradient-primary);
   border-radius: 50%;
   border: 3px solid var(--color-background);
-  box-shadow: 0 0 10px rgba(226, 54, 54, 0.3);
+  box-shadow: 0 0 10px rgba(226, 54, 54, .3);
   z-index: 2;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .timeline-card:hover {
   transform: translateX(5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, .2);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .timeline-card:hover::before {
   transform: scale(1.2);
-  box-shadow: 0 0 15px rgba(226, 54, 54, 0.5);
+  box-shadow: 0 0 15px rgba(226, 54, 54, .5)
 }
 
 .timeline-header {
   background: var(--color-card-hover);
   padding: 18px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+  position: relative
 }
 
 .day-badge {
@@ -919,13 +888,13 @@
   font-weight: 600;
   margin-bottom: 10px;
   color: var(--color-text-cream);
-  box-shadow: 0 3px 8px rgba(226, 54, 54, 0.25);
-  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(226, 54, 54, .25);
+  transition: all .3s ease
 }
 
 .timeline-card:hover .day-badge {
   transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(226, 54, 54, 0.35);
+  box-shadow: 0 5px 12px rgba(226, 54, 54, .35)
 }
 
 .timeline-header h3 {
@@ -933,18 +902,18 @@
   font-weight: 600;
   color: var(--color-text-light);
   margin: 0;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .timeline-card:hover .timeline-header h3 {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .timeline-content {
   padding: 24px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 24px;
+  gap: 24px
 }
 
 .timeline-media {
@@ -952,32 +921,32 @@
   height: 200px;
   border-radius: var(--border-radius-md);
   overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, .15);
+  border: 1px solid rgba(255, 255, 255, .05);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1)
 }
 
 .timeline-media:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-  border-color: rgba(242, 219, 175, 0.15);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
+  border-color: rgba(242, 219, 175, .15)
 }
 
 .timeline-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform .6s cubic-bezier(.165, .84, .44, 1)
 }
 
 .timeline-media:hover img {
-  transform: scale(1.05);
+  transform: scale(1.05)
 }
 
 .timeline-details {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 5px
 }
 
 .time-info {
@@ -986,25 +955,25 @@
   gap: 8px;
   color: var(--color-text-muted);
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, .03);
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
   width: fit-content;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .time-info img {
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1);
-  opacity: 0.8;
+  opacity: .8
 }
 
 .timeline-description {
   color: var(--color-text-muted);
   line-height: 1.7;
   margin-bottom: 16px;
-  font-size: 15px;
+  font-size: 15px
 }
 
 .activities-list,
@@ -1013,24 +982,24 @@
   border-radius: var(--border-radius-md);
   padding: 20px;
   margin-top: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, .07);
+  transition: all .3s ease;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  position: relative;
+  position: relative
 }
 
 .activities-list:hover,
 .options-list:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .activities-list:hover::before,
 .options-list:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .activities-list h4,
@@ -1042,13 +1011,13 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--color-text-muted);
   width: 100%;
-  display: block;
+  display: block
 }
 
 .activities-list ul {
   margin: 0;
   padding-left: 22px;
-  list-style-type: none;
+  list-style-type: none
 }
 
 .activities-list li {
@@ -1056,13 +1025,13 @@
   margin-bottom: 12px;
   line-height: 1.5;
   font-size: 15px;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   position: relative;
-  padding-left: 6px;
+  padding-left: 6px
 }
 
 .activities-list li:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0
 }
 
 .activities-list li::before {
@@ -1071,18 +1040,18 @@
   left: -12px;
   color: var(--color-accent);
   font-size: 18px;
-  line-height: 1;
+  line-height: 1
 }
 
 .activities-list li:hover {
   color: var(--color-text-light);
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .options-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 12px
 }
 
 .option-item {
@@ -1091,22 +1060,22 @@
   align-items: flex-start;
   padding: 12px 0;
   border-bottom: 1px solid var(--color-accent-faded);
-  transition: all 0.3s ease;
-  width: 100%;
+  transition: all .3s ease;
+  width: 100%
 }
 
 .option-item:first-child {
-  padding-top: 0;
+  padding-top: 0
 }
 
 .option-item:last-child {
   border-bottom: none;
-  padding-bottom: 0;
+  padding-bottom: 0
 }
 
 .option-info {
   flex: 1;
-  padding-right: 16px;
+  padding-right: 16px
 }
 
 .option-info h5 {
@@ -1114,7 +1083,7 @@
   font-weight: 600;
   margin: 0 0 6px;
   color: var(--color-text-light);
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .option-info p {
@@ -1122,7 +1091,7 @@
   color: var(--color-text-muted);
   margin: 0;
   line-height: 1.5;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .option-price {
@@ -1133,52 +1102,51 @@
   padding: 6px 12px;
   border-radius: var(--border-radius-md);
   white-space: nowrap;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  transition: all .3s ease;
+  border: 1px solid rgba(242, 219, 175, .1);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center
 }
 
 .option-item:hover {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .option-item:hover .option-info h5 {
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .option-item:hover .option-info p {
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .option-item:hover .option-price {
-  background: rgba(242, 219, 175, 0.15);
+  background: rgba(242, 219, 175, .15);
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-color: rgba(242, 219, 175, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+  border-color: rgba(242, 219, 175, .2)
 }
+
 #details {
   margin-block: var(--spacing-xxl);
-  animation: fadeIn 0.8s ease;
+  animation: fadeIn .8s ease
 }
+
 #details h2 {
   font-size: 28px;
   font-weight: 700;
   color: var(--color-text-cream);
   margin-bottom: 32px;
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px;
   position: relative;
   padding-bottom: 16px;
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
+
 #details h2::after {
   content: "";
   position: absolute;
@@ -1188,29 +1156,30 @@
   height: 3px;
   background: var(--gradient-primary);
   border-radius: 3px;
-  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: width .4s cubic-bezier(.19, 1, .22, 1)
 }
+
 #details:hover h2::after {
-  width: 100px;
+  width: 100px
 }
 
 .details-container {
   background: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   padding: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, .07);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
   position: relative;
-  overflow: hidden;
+  overflow: hidden
 }
 
 .details-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .2);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .details-tabs {
@@ -1218,7 +1187,7 @@
   gap: 10px;
   margin-bottom: 25px;
   padding-bottom: 5px;
-  border-bottom: 1px solid var(--color-accent-faded);
+  border-bottom: 1px solid var(--color-accent-faded)
 }
 
 .tab-button {
@@ -1230,41 +1199,41 @@
   padding: 10px 16px;
   border-radius: var(--border-radius-lg);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   position: relative;
-  font-family: "PP Formula Bold";
+  font-family: "PP Formula Bold"
 }
 
 .tab-button:hover {
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .tab-button.active {
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .tab-button.active::after {
-  transform: scaleX(1);
+  transform: scaleX(1)
 }
 
 .tab-content {
   display: none;
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn .5s ease
 }
 
 .tab-content.active {
-  display: block;
+  display: block
 }
 
 .details-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 24px
 }
 
 .details-column {
   display: flex;
-  flex-direction: column;
+  flex-direction: column
 }
 
 .details-list {
@@ -1273,7 +1242,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 14px
 }
 
 .details-list li {
@@ -1281,19 +1250,19 @@
   align-items: flex-start;
   gap: 12px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
-  color: var(--color-text-light);
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+  transition: all .3s ease;
+  color: var(--color-text-light)
 }
 
 .details-list li:last-child {
   border-bottom: none;
-  padding-bottom: 0;
+  padding-bottom: 0
 }
 
 .details-list li:hover {
   transform: translateX(5px);
-  color: var(--color-text-cream);
+  color: var(--color-text-cream)
 }
 
 .item-icon {
@@ -1301,78 +1270,77 @@
   height: 15px;
   flex-shrink: 0;
   margin-top: 3px;
-  transition: transform 0.3s ease;
+  transition: transform .3s ease
 }
 
 .details-list li:hover .item-icon {
-  transform: scale(1.2);
+  transform: scale(1.2)
 }
 
 .tab-content.active {
-  animation: fadeIn 0.4s ease;
+  animation: fadeIn .4s ease
 }
 
 .details-list li:nth-child(1) {
-  animation-delay: 0.1s;
+  animation-delay: .1s
 }
 
 .details-list li:nth-child(2) {
-  animation-delay: 0.2s;
+  animation-delay: .2s
 }
 
 .details-list li:nth-child(3) {
-  animation-delay: 0.3s;
+  animation-delay: .3s
 }
 
 .details-list li:nth-child(4) {
-  animation-delay: 0.4s;
+  animation-delay: .4s
 }
 
 .details-list li:nth-child(5) {
-  animation-delay: 0.5s;
+  animation-delay: .5s
 }
 
 .details-list li:nth-child(6) {
-  animation-delay: 0.6s;
+  animation-delay: .6s
 }
 
 .details-list li:nth-child(7) {
-  animation-delay: 0.7s;
+  animation-delay: .7s
 }
 
 .details-list li:nth-child(8) {
-  animation-delay: 0.8s;
+  animation-delay: .8s
 }
 
 .details-list li:nth-child(9) {
-  animation-delay: 0.9s;
+  animation-delay: .9s
 }
 
 .details-list li:nth-child(10) {
-  animation-delay: 1s;
+  animation-delay: 1s
 }
+
 #avis {
   margin-block: 48px;
-  animation: fadeIn 0.8s ease;
-  position: relative;
+  animation: fadeIn .8s ease;
+  position: relative
 }
+
 #avis h2 {
   font-size: 28px;
   font-weight: 700;
   color: var(--color-text-cream);
   margin-bottom: 32px;
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px;
   position: relative;
   padding-bottom: 16px;
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent
 }
+
 #avis h2::after {
   content: "";
   position: absolute;
@@ -1382,10 +1350,11 @@
   height: 3px;
   background: var(--gradient-primary);
   border-radius: 3px;
-  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: width .4s cubic-bezier(.19, 1, .22, 1)
 }
+
 #avis:hover h2::after {
-  width: 100px;
+  width: 100px
 }
 
 .reviews-header {
@@ -1398,68 +1367,67 @@
   border: none;
   box-shadow: none;
   backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  -webkit-backdrop-filter: none
 }
 
 .reviews-header::before {
-  display: none;
+  display: none
 }
 
 .reviews-header:hover {
   transform: none;
   box-shadow: none;
-  border-color: transparent;
+  border-color: transparent
 }
 
 .rating-stars {
   display: flex;
-  gap: 3px;
+  gap: 3px
 }
 
 .rating-stars img {
   width: 16px;
   height: 16px;
-  filter: invert(30%) sepia(44%) saturate(1011%) hue-rotate(359deg)
-    brightness(105%) contrast(104%);
-  transition: transform 0.3s ease;
+  filter: invert(30%) sepia(44%) saturate(1011%) hue-rotate(359deg) brightness(105%) contrast(104%);
+  transition: transform .3s ease
 }
 
 .review-count {
   color: var(--color-accent-light);
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   background: var(--color-field-bg);
   padding: 8px 14px;
   border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, .07)
 }
 
 .review-count:hover {
   color: var(--color-text-cream);
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-3px);
+  background: rgba(255, 255, 255, .08);
+  transform: translateY(-3px)
 }
 
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  margin-top: 10px;
+  margin-top: 10px
 }
 
 .review-card {
   background: var(--color-card-hover);
   border-radius: var(--border-radius-lg);
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(255, 255, 255, .07);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
   position: relative;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: hidden
 }
 
 .review-card::before {
@@ -1469,20 +1437,20 @@
   right: 15px;
   font-size: 70px;
   font-family: serif;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, .03);
   line-height: 1;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .review-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .2);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .review-card:hover::before {
   transform: scale(1.1);
-  color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, .05)
 }
 
 .review-header {
@@ -1490,7 +1458,7 @@
   gap: 14px;
   margin-bottom: 16px;
   position: relative;
-  z-index: 1;
+  z-index: 1
 }
 
 .reviewer-avatar {
@@ -1498,20 +1466,20 @@
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, .1);
+  transition: all .3s ease
 }
 
 .review-card:hover .reviewer-avatar {
-  border-color: rgba(255, 190, 0, 0.3);
+  border-color: rgba(255, 190, 0, .3);
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 190, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 190, 0, .2)
 }
 
 .reviewer-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center
 }
 
 .reviewer-info h4 {
@@ -1519,11 +1487,11 @@
   color: var(--color-text-light);
   margin: 0 0 4px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .review-card:hover .reviewer-info h4 {
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .review-date {
@@ -1531,7 +1499,7 @@
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 5px
 }
 
 .review-date::before {
@@ -1541,20 +1509,19 @@
   height: 12px;
   background: url(../img/svg/calendar.svg) no-repeat center center;
   background-size: contain;
-  filter: brightness(0) invert(70%);
+  filter: brightness(0) invert(70%)
 }
 
 .review-rating {
   margin-bottom: 14px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, .05)
 }
 
 .review-rating img {
   width: 14px;
   height: 14px;
-  filter: invert(60%) sepia(44%) saturate(1011%) hue-rotate(359deg)
-    brightness(105%) contrast(104%);
+  filter: invert(60%) sepia(44%) saturate(1011%) hue-rotate(359deg) brightness(105%) contrast(104%)
 }
 
 .review-text {
@@ -1565,30 +1532,31 @@
   position: relative;
   z-index: 1;
   flex-grow: 1;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .review-card:hover .review-text {
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
+
 span.rating-value {
-  color: var(--color-accent);
+  color: var(--color-accent)
 }
+
 img.item-icon.not-included {
-  filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg)
-    brightness(80%) contrast(100%);
+  filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg) brightness(80%) contrast(100%)
 }
 
 .booking-card {
   background: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   padding: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, .07);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+  transition: all .4s cubic-bezier(.165, .84, .44, 1);
+  overflow: hidden
 }
 
 .booking-card::before {
@@ -1598,10 +1566,10 @@ img.item-icon.not-included {
   right: -80px;
   width: 160px;
   height: 160px;
-  background: radial-gradient(circle, rgba(226, 54, 54, 0.1), transparent 70%);
-  opacity: 0.6;
+  background: radial-gradient(circle, rgba(226, 54, 54, .1), transparent 70%);
+  opacity: .6;
   border-radius: 50%;
-  transition: all 0.5s ease;
+  transition: all .5s ease
 }
 
 .booking-card::after {
@@ -1611,16 +1579,16 @@ img.item-icon.not-included {
   left: -60px;
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, rgba(81, 140, 202, 0.1), transparent 70%);
-  opacity: 0.6;
+  background: radial-gradient(circle, rgba(81, 140, 202, .1), transparent 70%);
+  opacity: .6;
   border-radius: 50%;
-  transition: all 0.5s ease;
+  transition: all .5s ease
 }
 
 .booking-card:hover::after,
 .booking-card:hover::before {
   transform: scale(1.2);
-  opacity: 0.8;
+  opacity: .8
 }
 
 .booking-header {
@@ -1629,50 +1597,46 @@ img.item-icon.not-included {
   gap: 20px;
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--color-text-muted);
+  border-bottom: 1px solid var(--color-text-muted)
 }
 
 .booking-price {
   display: flex;
-  flex-direction: column;
+  flex-direction: column
 }
 
 .price-amount {
   font-size: 42px;
   font-weight: 700;
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
+  background: linear-gradient(to right, var(--color-text-light), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -1px;
+  letter-spacing: -1px
 }
 
 .price-per {
   font-size: 15px;
   color: var(--color-text-muted);
-  font-weight: 500;
+  font-weight: 500
 }
 
 .availability-badge {
   align-self: flex-start;
-  background: rgba(39, 174, 96, 0.1);
+  background: rgba(39, 174, 96, .1);
   color: #2ecc71;
   padding: 8px 16px;
   border-radius: var(--border-radius-xxl);
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid rgba(39, 174, 96, 0.2);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(39, 174, 96, .2);
+  transition: all .3s ease
 }
 
 .availability-badge:hover {
   transform: translateY(-2px);
-  background: rgba(39, 174, 96, 0.15);
-  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.15);
+  background: rgba(39, 174, 96, .15);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, .15)
 }
 
 .booking-dates {
@@ -1680,38 +1644,38 @@ img.item-icon.not-included {
   border-radius: var(--border-radius-lg);
   padding: 20px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, .05);
+  transition: all .3s ease
 }
 
 .booking-dates:hover {
   background: var(--color-accent-faded);
-  transform: translateY(-3px);
+  transform: translateY(-3px)
 }
 
 .date-item {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100%
 }
 
 .date-item label {
   font-size: 13px;
   color: var(--color-text-muted);
-  font-weight: 500;
+  font-weight: 500
 }
 
 .date-item .date {
   font-size: 13px;
   color: var(--color-text-light);
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 
 .booking-features {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 24px
 }
 
 .feature-item {
@@ -1721,68 +1685,67 @@ img.item-icon.not-included {
   padding: 12px;
   background: var(--color-field-bg);
   border-radius: var(--border-radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, .05);
+  transition: all .3s ease
 }
 
 .feature-item:hover {
   background: var(--color-accent-faded);
   transform: translateX(5px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, .1)
 }
 
 .feature-item img {
   width: 20px;
   height: 20px;
   filter: brightness(0) invert(1);
-  opacity: 0.7;
-  transition: all 0.3s ease;
+  opacity: .7;
+  transition: all .3s ease
 }
 
 .feature-item:hover img {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.1)
 }
 
 .feature-item span {
   font-size: 14px;
   color: var(--color-text-muted);
-  transition: color 0.3s ease;
+  transition: color .3s ease
 }
 
 .feature-item:hover span {
-  color: var(--color-text-footer);
+  color: var(--color-text-footer)
 }
 
 .booking-note {
   margin-top: 24px;
   padding: 16px;
-  background: rgba(81, 140, 202, 0.1);
+  background: rgba(81, 140, 202, .1);
   border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid rgba(81, 140, 202, 0.2);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(81, 140, 202, .2);
+  transition: all .3s ease
 }
 
 .booking-note:hover {
-  background: rgba(81, 140, 202, 0.15);
-  transform: translateY(-3px);
+  background: rgba(81, 140, 202, .15);
+  transform: translateY(-3px)
 }
 
 .booking-note img {
   width: 18px;
   height: 18px;
-  filter: invert(56%) sepia(12%) saturate(1642%) hue-rotate(165deg)
-    brightness(86%) contrast(84%);
+  filter: invert(56%) sepia(12%) saturate(1642%) hue-rotate(165deg) brightness(86%) contrast(84%)
 }
 
 .booking-note p {
   font-size: 13px;
   color: var(--color-text-muted);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.5
 }
 
 .booking-column {
@@ -1790,10 +1753,11 @@ img.item-icon.not-included {
   top: 110px;
   height: fit-content;
   z-index: 10;
-  margin-bottom: var(--spacing-xxl);
+  margin-bottom: var(--spacing-xxl)
 }
+
 a.btn-book {
-  width: -webkit-fill-available;
+  width: -webkit-fill-available
 }
 
 .back-button {
@@ -1807,194 +1771,177 @@ a.btn-book {
   padding: 8px 12px;
   border-radius: var(--border-radius-md);
   background: var(--color-field-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, .07);
   transition: all var(--transition-medium);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px)
 }
 
 .back-button img {
   width: 16px;
   height: 16px;
-  filter: brightness(0) invert(0.8);
-  transition: transform var(--transition-medium);
+  filter: brightness(0) invert(.8);
+  transition: transform var(--transition-medium)
 }
 
 .back-button:hover {
   background: var(--color-accent-faded);
   color: var(--color-text-light);
-  transform: translateX(-5px);
+  transform: translateX(-5px)
 }
 
 .back-button:hover img {
   filter: brightness(0) invert(1);
-  transform: translateX(-3px);
+  transform: translateX(-3px)
 }
+
 img.item-icon.included {
-  filter: invert(83%) sepia(25%) saturate(464%) hue-rotate(93deg)
-    brightness(230%) contrast(87%);
+  filter: invert(83%) sepia(25%) saturate(464%) hue-rotate(93deg) brightness(230%) contrast(87%)
 }
+
 img.item-icon.not-included {
-  filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg)
-    brightness(80%) contrast(100%);
+  filter: invert(30%) sepia(100%) saturate(400%) hue-rotate(300deg) brightness(80%) contrast(100%)
 }
 
 .details-list li:hover .item-icon.included,
 .details-list li:hover .item-icon.not-included {
   transform: scale(1.2);
-  opacity: 1;
+  opacity: 1
 }
 
-/* Styles pour le carrousel de photos */
 .gallery-carousel {
-    margin-bottom: 100px;
-    position: relative;
-    z-index: 5;
-    margin-top: -220px;
-    padding: 0 var(--spacing-xl);
-}
-
-.gallery-carousel::before {
-    content: "";
-    position: absolute;
-    top: -40px;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--color-background));
-    z-index: -1;
+  margin-bottom: 100px;
+  position: relative;
+  z-index: 5;
+  margin-top: -150px;
+  padding: 0 var(--spacing-xl)
 }
 
 .carousel-container {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--shadow-soft);
-    border: 1px solid var(--color-accent-faded);
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    backdrop-filter: blur(10px);
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-accent-faded);
+  transition: all .5s cubic-bezier(.165, .84, .44, 1);
+  backdrop-filter: blur(10px)
 }
 
 .carousel-container:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-    transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+  transform: translateY(-5px)
 }
 
 .carousel-track {
-    display: flex;
-    transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-    height: 450px;
+  display: flex;
+  transition: transform 1.5s cubic-bezier(.23, 1, .32, 1);
+  height: 450px
 }
 
 .carousel-slide {
-    min-width: 100%;
-    flex: 0 0 100%;
-    position: relative;
-    overflow: hidden;
+  min-width: 100%;
+  flex: 0 0 100%;
+  position: relative;
+  overflow: hidden
 }
 
 .carousel-slide::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.1) 0%,
-        transparent 20%,
-        transparent 80%,
-        rgba(0, 0, 0, 0.3) 100%
-    );
-    z-index: 1;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .1) 0, transparent 20%, transparent 80%, rgba(0, 0, 0, .3) 100%);
+  z-index: 1;
+  pointer-events: none
 }
 
 .carousel-slide img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-    display: block;
-    transform: scale(1.05);
-    transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: 0.8;
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.05);
+  transition: transform 1.5s cubic-bezier(.165, .84, .44, 1);
+  opacity: .8
 }
 
 .carousel-container:hover .carousel-slide img {
-    transform: scale(1);
+  transform: scale(1)
 }
 
 .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--color-card-bg);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--color-card-bg);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, .1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease;
+  z-index: 10
 }
 
 .carousel-button:hover {
-    background-color: var(--color-accent-faded);
-    transform: translateY(-50%) scale(1.1);
-    opacity: 1;
+  background-color: var(--color-accent-faded);
+  transform: translateY(-50%) scale(1.1);
+  opacity: 1
 }
 
 .carousel-button img {
-    width: 24px;
-    height: 24px;
-    filter: invert(1);
-    transition: transform 0.3s ease;
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+  transition: transform .3s ease
 }
 
 .carousel-button:hover img {
-    transform: scale(1.2);
+  transform: scale(1.2)
 }
 
 .prev-button {
-    left: 15px;
+  left: 15px
 }
 
 .next-button {
-    right: 15px;
+  right: 15px
 }
 
 .carousel-dots {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 30px;
-    padding: 8px 16px;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 30px;
+  padding: 8px 16px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, .1)
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+  transition: all .3s ease
 }
 
-.dot.active, .dot:hover {
-    background-color: var(--color-text-cream);
-    transform: scale(1.2);
-    box-shadow: var(--shadow-intense);
+.dot.active,
+.dot:hover {
+  background-color: var(--color-text-cream);
+  transform: scale(1.2);
+  box-shadow: var(--shadow-intense)
 }

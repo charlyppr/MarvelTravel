@@ -1,19 +1,19 @@
 .content-container-div {
   width: 100%;
   padding: var(--spacing-xl);
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn .5s ease
 }
 
 .content-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-md)
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-xl)
 }
 
 .header {
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-lg);
-  animation: slideDown 0.6s ease;
+  animation: slideDown .6s ease
 }
 
 .search-bar {
@@ -29,18 +29,18 @@
   align-items: center;
   background-color: var(--color-field-bg);
   border-radius: var(--border-radius-xl);
-  padding: 12px 18px;
+  padding: var(--spacing-xs) var(--spacing-sm);
   width: 50%;
   border: 1px solid var(--color-accent-faded);
   transition: all var(--transition-medium);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)
 }
 
 .search-bar:focus-within {
   border-color: var(--color-accent-faded);
-  box-shadow: 0 0 0 1px rgba(242, 219, 175, 0.1);
+  box-shadow: 0 0 0 1px var(--color-accent-faded);
   transform: translateY(-2px);
-  background-color: var(--color-accent-faded);
+  background-color: var(--color-accent-faded)
 }
 
 .search-bar input {
@@ -48,16 +48,16 @@
   border: none;
   color: var(--color-text-light);
   width: 100%;
-  font-size: 14px;
-  font-family: "PP Formula";
+  font-size: var(--font-size-sm);
+  font-family: "PP Formula"
 }
 
 .search-bar input::placeholder {
-  color: var(--color-text-muted);
+  color: var(--color-text-muted)
 }
 
 .search-bar input:focus {
-  outline: 0;
+  outline: 0
 }
 
 .search-bar button {
@@ -67,32 +67,32 @@
   display: flex;
   align-items: center;
   padding: 0;
-  margin-left: var(--spacing-xs);
+  margin-left: var(--spacing-xs)
 }
 
 .search-bar img {
-  width: 18px;
-  height: 18px;
-  opacity: 0.8;
-  transition: all var(--transition-fast);
+  width: var(--font-size-md);
+  height: var(--font-size-md);
+  opacity: .8;
+  transition: all var(--transition-fast)
 }
 
 .search-bar:hover img {
   opacity: 1;
-  filter: drop-shadow(0 0 2px rgba(242, 219, 175, 0.5));
+  filter: drop-shadow(0 0 var(--spacing-xxs) var(--color-accent-faded))
 }
 
 .main-content {
   background-color: var(--color-card-bg);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-lg);
-  border: 1px solid rgba(242, 219, 175, 0.1);
+  border: 1px solid var(--color-accent-faded);
   box-shadow: var(--shadow-card);
   transition: all var(--transition-medium);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  animation: slideUp 0.7s ease;
+  animation: slideUp .7s ease
 }
 
 .main-content::before {
@@ -102,20 +102,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(242, 219, 175, 0.1) 0,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(242, 219, 175, 0.05) 100%
-  );
+  background: linear-gradient(135deg, var(--color-accent-faded) 0, transparent 50%, var(--color-accent-faded) 100%);
   opacity: 0;
   transition: opacity var(--transition-medium);
   pointer-events: none;
-  z-index: 1;
+  z-index: 1
 }
 
 .main-content:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .titre-content {
@@ -124,34 +119,34 @@
   margin-bottom: var(--spacing-lg);
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .titre-content span:first-child {
   font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-text-light);
-  position: relative;
+  position: relative
 }
 
 .titre-content span:first-child::after {
   content: "";
   position: absolute;
-  bottom: -8px;
+  top: var(--spacing-lg);
   left: 0;
   width: 50px;
   height: 3px;
   background: var(--gradient-primary);
-  border-radius: 3px;
+  border-radius: var(--border-radius-xs)
 }
 
 .titre-content span:last-child {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-accent);
-  padding: 6px 12px;
+  padding: var(--spacing-xxs) var(--spacing-xs);
   background-color: var(--color-accent-faded);
   border-radius: var(--border-radius-xl);
-  font-weight: 500;
+  font-weight: 500
 }
 
 .tab-voyages {
@@ -160,112 +155,112 @@
   border-spacing: 0;
   margin-bottom: var(--spacing-md);
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .tab-voyages thead tr {
-  border-bottom: 1px solid rgba(242, 219, 175, 0.1);
+  border-bottom: 1px solid var(--color-accent-faded)
 }
 
 .tab-voyages th {
   text-align: left;
   padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-accent);
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   border-bottom: 1px solid var(--color-accent-faded);
-  width: 16%;
+  width: 25%;
 }
 
 .tab-voyages tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--sidebar-border);
+  transition: all var(--transition-fast)
 }
 
 .tab-voyages tbody tr:hover {
-  background-color: var(--color-card-hover);
+  background-color: var(--color-card-hover)
 }
 
 .tab-voyages td {
   padding: var(--spacing-md);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-light);
-  border-bottom: 1px solid rgba(242, 219, 175, 0.05);
+  border-bottom: 1px solid var(--color-accent-faded);
 }
 
 .tab-voyages td.destination {
   font-weight: 600;
   color: var(--color-text-light);
-  text-align: center;
+  /* text-align: center; */
 }
 
 .status {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--border-radius-xl);
   width: fit-content;
-  gap: 8px;
-  font-size: 13px;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
   font-weight: 600;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)
 }
 
 .status img {
-  width: 10px;
-  height: 10px;
+  width: var(--spacing-xs);
+  height: var(--spacing-xs)
 }
 
 .status-ok {
   background-color: var(--color-success-bg);
   color: var(--color-success);
-  border: 1px solid var(--color-success-border);
+  border: 1px solid var(--color-success-border)
 }
 
 .status-pending {
   background-color: var(--color-pending-bg);
   color: var(--color-pending);
-  border: 1px solid var(--color-pending-border);
+  border: 1px solid var(--color-pending-border)
 }
 
 .view-button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-xs);
   color: var(--link-color);
   text-decoration: none;
   font-weight: 600;
   transition: all var(--transition-medium);
-  padding: 8px 16px;
+  padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--border-radius-md);
-  background-color: rgba(123, 181, 232, 0.1);
-  border: 1px solid transparent;
+  background-color: var(--color-glass-dark);
+  border: 1px solid transparent
 }
 
 .view-button img {
-  width: 14px;
-  height: 14px;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
   transition: transform var(--transition-fast);
-  filter: brightness(1.2);
+  filter: brightness(1.2)
 }
 
 .view-button:hover {
   color: var(--link-hover);
-  background-color: rgba(123, 181, 232, 0.2);
+  background-color: var(--color-glass);
   transform: translateX(3px);
-  border-color: rgba(123, 181, 232, 0.2);
+  border-color: var(--color-glass)
 }
 
 .view-button:hover img {
-  transform: translateX(3px);
+  transform: translateX(3px)
 }
 
 .voyages-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-md)
 }
 
 .voyage-card {
@@ -277,7 +272,7 @@
   text-decoration: none;
   color: var(--color-text-light);
   position: relative;
-  overflow: hidden;
+  overflow: hidden
 }
 
 .voyage-card::before {
@@ -287,27 +282,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(242, 219, 175, 0.1) 0,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(242, 219, 175, 0.05) 100%
-  );
+  background: linear-gradient(135deg, var(--color-accent-faded) 0, transparent 50%, var(--color-accent-faded) 100%);
   opacity: 0;
   transition: opacity var(--transition-medium);
   pointer-events: none;
-  z-index: 1;
+  z-index: 1
 }
 
 .voyage-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover);
   border-color: var(--color-accent);
-  background-color: var(--color-accent-faded);
+  background-color: var(--color-accent-faded)
 }
 
 .voyage-card:hover::before {
-  opacity: 1;
+  opacity: 1
 }
 
 .voyage-header {
@@ -318,22 +308,18 @@
   border-bottom: 1px solid var(--color-glass-dark);
   padding-bottom: var(--spacing-sm);
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .voyage-header h3 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--font-size-md);
+  /* font-weight: 600; */
   margin: 0;
-  color: var(--color-text-cream);
-  background: linear-gradient(
-    to right,
-    var(--color-text-light),
-    var(--color-accent)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-text-light);
+  /* background: linear-gradient(to right, var(--color-text-light), var(--color-accent)); */
+  /* -webkit-background-clip: text; */
+  /* background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
 }
 
 .voyage-details {
@@ -341,82 +327,82 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 2
 }
 
 .voyage-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-xs)
 }
 
 .voyage-info span {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--color-text-muted);
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted)
 }
 
 .voyage-info span.dates::before {
   content: "";
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
   background-image: url(../img/svg/calendar.svg);
   background-size: cover;
-  filter: brightness(0) invert(0.7);
+  filter: brightness(0) invert(.7)
 }
 
 .voyage-info span.price::before {
   content: "";
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
   background-image: url(../img/svg/euro.svg);
   background-size: cover;
-  filter: brightness(0) invert(0.7);
+  filter: brightness(0) invert(.7)
 }
 
 .voyage-info span.travelers::before {
   content: "";
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
   background-image: url(../img/svg/users.svg);
   background-size: cover;
-  filter: brightness(0) invert(0.7);
+  filter: brightness(0) invert(.7)
 }
 
 .voyage-info span.countdown::before {
   content: "";
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
   background-image: url(../img/svg/clock.svg);
   background-size: cover;
-  filter: brightness(0) invert(0.7);
+  filter: brightness(0) invert(.7)
 }
 
 .voyage-action {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-xs);
   color: var(--link-color);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  transition: all var(--transition-medium);
+  transition: all var(--transition-medium)
 }
 
 .voyage-action img {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-md);
+  height: var(--spacing-md);
   transition: transform var(--transition-fast);
-  filter: brightness(1.2);
+  filter: brightness(1.2)
 }
 
 .voyage-card:hover .voyage-action {
-  color: var(--link-hover);
+  color: var(--link-hover)
 }
 
 .no-res {
@@ -425,14 +411,14 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-xl);
-  color: var(--color-accent);
+  color: var(--color-accent)
 }
 
 .no-res-icon {
-  width: 80px;
-  height: 80px;
-  opacity: 0.6;
-  margin-bottom: var(--spacing-sm);
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  opacity: .6;
+  margin-bottom: var(--spacing-sm)
 }
 
 .filters-bar {
@@ -441,43 +427,41 @@
   align-items: center;
   padding: var(--spacing-sm);
   border-bottom: 1px solid var(--color-field-bg);
-  /* animation: slideDown 0.6s ease; */
-  margin: 0 -30px;
+  margin: 0 -30px
 }
 
 .filter-buttons {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-xs)
 }
 
 .filter-button {
-  padding: 8px 16px;
+  padding: 8px var(--spacing-xs);
   border-radius: var(--border-radius-md);
   background-color: var(--color-card-hover);
   color: var(--color-text-muted);
   border: 1px solid transparent;
   cursor: pointer;
   transition: all var(--transition-fast);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-size: var(--font-size-sm);
 }
 
 .filter-button:hover {
   background-color: var(--color-accent-faded);
-  color: var(--color-text-light);
+  color: var(--color-text-light)
 }
 
 .filter-button.active3 {
-  background-color: rgba(242, 219, 175, 0.15);
+  background-color: var(--color-accent-faded);
   color: var(--color-accent);
-  border-color: var(--color-accent-faded);
+  border-color: var(--color-accent-faded)
 }
 
 .sort-select {
   background-color: var(--color-accent-faded);
   color: var(--color-text-light);
-  border: 1px solid rgba(242, 219, 175, 0.1);
-  padding: 8px 16px;
+  border: 1px solid var(--color-accent-faded);
+  padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--border-radius-md);
   font-size: var(--font-size-xs);
   cursor: pointer;
@@ -485,192 +469,155 @@
   appearance: none;
   background-image: url(../img/svg/chevron-down.svg);
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right var(--spacing-xs) center;
   background-size: var(--font-size-xs);
-  padding-right: 32px;
-  font-family: "PP Formula";
+  padding-right: var(--spacing-xl);
+  font-family: "PP Formula"
 }
 
 .sort-select:hover {
-  background-color: rgba(242, 219, 175, 0.1);
-  border-color: var(--color-accent-faded);
+  background-color: var(--color-accent-faded);
+  border-color: var(--color-accent-faded)
 }
 
 .sort-select:focus {
   outline: 0;
-  box-shadow: 0 0 0 1px var(--color-accent-faded);
+  box-shadow: 0 0 0 1px var(--color-accent-faded)
 }
 
 .view-options {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-sm)
 }
 
 .view-toggles {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xxs);
+  gap: var(--spacing-xxs)
 }
 
 .view-toggle {
-  width: 36px;
-  height: 36px;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
   border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--color-glass-dark);
   border: 1px solid transparent;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast)
 }
 
 .view-toggle img {
-  width: 16px;
-  height: 16px;
-  filter: brightness(0) invert(0.7);
-  transition: filter var(--transition-fast);
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+  filter: brightness(0) invert(.7);
+  transition: filter var(--transition-fast)
 }
 
 .view-toggle:hover {
-  background-color: var(--color-accent-faded);
+  background-color: var(--color-accent-faded)
 }
 
 .view-toggle.active3 {
   background-color: var(--color-accent-faded);
-  border-color: rgba(242, 219, 175, 0.3);
+  border-color: var(--color-accent-faded)
 }
 
 .view-toggle.active img {
-  filter: brightness(0) invert(0.9);
+  filter: brightness(0) invert(.9)
 }
 
 .badge {
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  margin-left: 6px;
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xxs) var(--spacing-xxs);
+  border-radius: var(--border-radius-md);
+  margin: 0 0 var(--spacing-xs);
   font-weight: 600;
-  vertical-align: middle;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
+  text-align: center;
+  width: fit-content;
 }
 
 .badge-new {
-  background-color: rgba(81, 140, 202, 0.3);
-  color: #8cbeef;
-  border: 1px solid rgba(81, 140, 202, 0.3);
+  background-color: var(--color-glass);
+  color: var(--link-color);
+  border: 1px solid var(--link-color);
 }
 
 .badge-soon {
-  background-color: rgba(226, 54, 54, 0.3);
-  color: #f99;
-  border: 1px solid rgba(226, 54, 54, 0.3);
+  background-color: var(--color-pending-bg);
+  color: var(--color-pending);
+  border: 1px solid var(--color-pending-border)
 }
 
 .row-highlight {
-  background-color: rgba(226, 54, 54, 0.05);
+  background-color: var(--color-pending-bg)
 }
 
 .card-highlight {
-  border-color: rgba(226, 54, 54, 0.3) !important;
+  border-color: var(--color-pending-border) !important
 }
 
 .countdown {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-pending);
   font-weight: 500;
-  margin-top: 3px;
-  opacity: 0.9;
+  margin-top: var(--spacing-xxs);
+  opacity: .9
 }
 
 .table-container {
   overflow-x: auto;
-  margin: 0 -30px;
+  margin: 0 -30px
 }
 
 .actions-container {
   display: flex;
   justify-content: center;
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-lg)
 }
 
-/* Ajout du style pour les boutons de génération de billets */
 .generate-ticket-btn {
-    background-color: var(--accent-color);
-    color: var(--light-text);
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 8px;
-    transition: all 0.2s ease;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: 50%;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: var(--spacing-xs);
+  transition: all .2s ease
 }
 
 .generate-ticket-btn:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
+  background-color: var(--color-accent-light);
+  transform: translateY(-2px)
 }
 
 .generate-ticket-btn img {
-    width: 16px;
-    height: 16px;
-    filter: brightness(0) invert(1);
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+  filter: brightness(0) invert(1)
 }
 
 .generate-ticket-btn.small {
-    border-radius: 16px;
-    width: auto;
-    padding: var(--spacing-sm);
-    font-size: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background-color: var(--color-accent-faded);
+  border-radius: var(--border-radius-md);
+  width: auto;
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  background-color: var(--color-accent-faded)
 }
 
 .ticket-action {
-    margin-top: 6px;
-    display: block;
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    padding: var(--spacing-md);
-  }
-
-  .tab-voyages td,
-  .tab-voyages th {
-    padding: var(--spacing-xs);
-  }
-
-  .status {
-    padding: 6px 10px;
-  }
-
-  .view-button {
-    padding: 6px 10px;
-  }
-
-  .voyage-card {
-    padding: var(--spacing-sm);
-  }
-
-  .voyage-details {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-  }
-
-  .voyage-action {
-    width: 100%;
-    justify-content: center;
-    padding: var(--spacing-xs) 0;
-    border-top: 1px solid rgba(242, 219, 175, 0.1);
-    margin-top: var(--spacing-xs);
-  }
+  margin-top: var(--spacing-xxs);
+  display: block
 }

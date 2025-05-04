@@ -1,4 +1,3 @@
-/* Polices */
 @font-face {
   font-family: "Marvel";
   src: url("../police/Marvel.ttf");
@@ -19,7 +18,6 @@
   src: url("../police/OpenDyslexic-Regular.otf");
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     transform: translateY(10px);
@@ -31,11 +29,9 @@
 
 @keyframes slideUp {
   from {
-    /* opacity: 0; */
     transform: translateY(20px);
   }
   to {
-    /* opacity: 1; */
     transform: translateY(0);
   }
 }
@@ -220,7 +216,6 @@
   }
 }
 
-/* Styles de base */
 * {
   margin: 0;
   padding: 0;
@@ -235,11 +230,6 @@ body {
 
 body {
   font-family: "PP Formula", sans-serif;
-  /* background-image: url('../img/star.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; */
   background-color: var(--color-background);
   margin: 0;
   padding: 0;
@@ -276,26 +266,25 @@ textarea {
 .link-hover {
   width: 6em;
   height: 2.5em;
-  border-radius: 10px;
+  border-radius: var(--border-radius-md);
   transform: translate(-50%, -50%);
 }
 
 .titre {
   font-family: "PP Formula Bold", sans-serif;
   margin: 0;
-  font-size: 2.5rem;
-  /* text-align: center; */
+  font-size: var(--font-size-xxl);
 }
 
 .sous-titre {
   font-family: "PP Formula Bold", sans-serif;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: var(--font-size-xs);
 }
 
 .sous-titre-2 {
   font-family: "PP Formula Bold", sans-serif;
-  font-size: 1.2rem;
+  font-size: var(--font-size-md);
   text-align: center;
   font-weight: 600;
   letter-spacing: 0.8px;
@@ -316,7 +305,6 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Profile Dropdown Styles */
 .profile-dropdown-container {
   position: relative;
 }
@@ -334,18 +322,18 @@ textarea {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
 }
 
 .profile-dropdown {
   position: absolute;
   right: 0;
-  border-radius: 10px;
+  border-radius: var(--border-radius-md);
   width: 200px;
-  padding: 10px;
+  padding: var(--spacing-xs);
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--spacing-xxs);
   z-index: 1000;
   animation: fadeIn 0.3s ease;
 }
@@ -353,10 +341,10 @@ textarea {
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-xs);
   padding: var(--spacing-xs);
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  border-radius: var(--border-radius-xs);
+  transition: all var(--transition-fast);
   justify-content: flex-start;
 }
 
@@ -369,10 +357,9 @@ textarea {
   font-size: var(--font-size-xs);
 }
 
-/* Ajouts pour le switch de thème et bouton dÃ©connexion */
 .dropdown-divider {
   height: 1px;
-  margin: 5px 0;
+  margin: var(--spacing-xxs) 0;
   background: var(--color-glass-dark);
 }
 
@@ -397,7 +384,7 @@ textarea {
 }
 
 .dropdown-item.logout {
-  margin-top: 5px;
+  margin-top: var(--spacing-xxs);
   color: var(--color-pending);
 }
 
@@ -405,7 +392,6 @@ textarea {
   background-color: rgba(226, 54, 54, 0.15);
 }
 
-/* Improved theme toggle styles */
 .theme-transition {
   transition: all var(--transition-theme);
 }
@@ -416,7 +402,7 @@ body.theme-transition * {
 
 .dropdown-item.theme-toggle {
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 .toggle-switch.small {
@@ -434,7 +420,7 @@ body.theme-transition * {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 34px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
 }
 
 .toggle-label:before {
@@ -446,8 +432,8 @@ body.theme-transition * {
   bottom: 2px;
   background-color: white;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-medium);
+  box-shadow: var(--shadow-small);
 }
 
 .toggle-input:checked + .toggle-label {
@@ -462,10 +448,9 @@ body.theme-transition * {
   box-shadow: 0 0 3px var(--color-accent);
 }
 
-/* Style du bouton de changement de theme simplifié */
 .theme-toggle-btn {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
   display: flex;
   justify-content: space-between;
 }
@@ -473,61 +458,34 @@ body.theme-transition * {
 .theme-toggle-btn img {
   width: 20px;
   height: 20px;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-medium);
 }
 
 .theme-toggle-btn:hover img {
   transform: rotate(25deg);
 }
 
-/* Style des icones de theme */
 .theme-icons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-xs);
   position: relative;
 }
 
-/* Removing the ::before circle background */
-/* Deleting the following code:
-.theme-icons::before {
-  content: "";
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  background-color: var(--color-glass-dark);
-  border-radius: 50%;
-  z-index: -1;
-  transition: var(--transition-fast);
-  left: 0;
-  transform: translateY(-50%);
-  top: 50%;
-}
-
-.theme-icons.light-active::before {
-  left: -5px;
-}
-
-.theme-icons.dark-active::before {
-  left: 27px;
-}
-*/
-
-/* Style spécifique pour le thème dans la nav et dans le dropdown */
 .theme-toggle-nav .theme-icons,
 .profile-dropdown .theme-icons {
-  padding: 5px;
+  padding: var(--spacing-xxs);
   border-radius: 30px;
   background-color: var(--color-glass-dark);
 }
 
 .theme-icon-wrapper {
-  padding: 8px;
+  padding: var(--spacing-xs);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
   cursor: pointer;
   position: relative;
   z-index: 2;
@@ -551,22 +509,18 @@ body.theme-transition * {
 .theme-icon {
   width: 16px;
   height: 16px;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-medium);
 }
 
 .theme-icon-wrapper:hover .theme-icon {
   transform: rotate(15deg);
 }
 
-/* --------- Eviter un background sur les input --------- */
-
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   font-family: "PP Formula", sans-serif !important;
   transition: background-color 10000s, color 10000s !important;
 }
-
-/* ------------------------- NAV BAR ------------------------- */
 
 .nav {
   font-family: "PP Formula Bold", sans-serif;
@@ -575,7 +529,7 @@ input:-webkit-autofill:focus {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 var(--spacing-sm);
   top: 0;
   z-index: 100;
   transition: ease-in-out 0.5s;
@@ -584,7 +538,7 @@ input:-webkit-autofill:focus {
 
 .menu {
   transition: ease-in-out 0.5s;
-  margin-right: 20px;
+  margin-right: var(--spacing-md);
 }
 
 .logo-container {
@@ -594,7 +548,7 @@ input:-webkit-autofill:focus {
   display: flex;
   gap: 3px;
   flex-direction: row;
-  padding: 20px;
+  padding: var(--spacing-md);
   transition: var(--transition-medium);
 }
 
@@ -625,14 +579,13 @@ input:-webkit-autofill:focus {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 25px;
+  gap: var(--spacing-lg);
   list-style-type: none;
 }
 
 .menu-li {
-  font-size: 12px;
-
-  transition: all 0.2s ease-out;
+  font-size: var(--font-size-xs);
+  transition: all var(--transition-fast);
 }
 
 .hovered {
@@ -640,14 +593,14 @@ input:-webkit-autofill:focus {
 }
 
 .nav-button {
-  padding: 15px 20px;
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-lg);
   border: 1px solid var(--color-accent-faded);
-  transition: all 0.2s ease-out;
+  transition: all var(--transition-fast);
 }
 
 .nav-button li {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
 }
 
 .nav-button:hover {
@@ -670,7 +623,7 @@ input:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
 }
 
 .active-nav {
@@ -687,8 +640,7 @@ input:-webkit-autofill:focus {
   height: 2px;
   border-radius: 30px;
   background-color: var(--couleur-primaire);
-
-  transition: all 0.3s ease-out;
+  transition: all var(--transition-medium);
 }
 
 .active-nav:hover::after {
@@ -708,12 +660,11 @@ input:-webkit-autofill:focus {
 .theme-icons {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--spacing-xxs);
   position: relative;
 }
 
 .theme-icons::before {
-  /* content: ""; */
   position: absolute;
   width: 35px;
   height: 35px;
@@ -734,7 +685,6 @@ input:-webkit-autofill:focus {
   left: 27px;
 }
 
-/* Style spécifique pour le thème dans la nav et dans le dropdown */
 .theme-toggle-nav .theme-icons::before,
 .profile-dropdown .theme-icons::before {
   transform: translateY(-50%);
@@ -747,7 +697,7 @@ input:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
   cursor: pointer;
   opacity: 0.6;
   position: relative;
@@ -768,7 +718,7 @@ input:-webkit-autofill:focus {
 .theme-icon {
   width: 16px;
   height: 16px;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-medium);
 }
 
 .theme-icon-wrapper:hover .theme-icon {
@@ -783,16 +733,14 @@ input:-webkit-autofill:focus {
   background-color: transparent !important;
 }
 
-/* ------------------------- REDIRECTION TEXTE ------------------------- */
-
 .redir-text {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-xs);
   text-decoration: none;
   color: var(--color-text-light);
   font-size: var(--font-size-sm);
-  padding: 10px 18px;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 50px;
   background-color: var(--color-field-bg);
   transition: all var(--transition-medium);
@@ -806,7 +754,7 @@ input:-webkit-autofill:focus {
 .redir-text:hover {
   background-color: var(--color-accent-faded);
   transform: translateX(3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-small);
 }
 
 .redir-text img {
@@ -825,8 +773,6 @@ input:-webkit-autofill:focus {
   width: 100%;
 }
 
-/* ------------------------- FOOTER ------------------------- */
-
 footer {
   background-color: var(--color-footer);
   color: var(--color-text-footer);
@@ -838,7 +784,7 @@ footer {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  padding: 50px 70px;
+  padding: var(--spacing-xl) var(--spacing-xxl);
   gap: 100px;
   z-index: 3;
   transition: all var(--transition-slow);
@@ -852,44 +798,44 @@ footer {
 .footer-logo {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
   max-width: 250px;
   color: var(--color-text-footer);
 }
 
 .footer-right-top {
   display: flex;
-  gap: 70px;
+  gap: var(--spacing-xxl);
 }
 
 .footer-right-top-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: var(--spacing-lg);
   color: var(--color-text-footer);
   font-weight: 100;
 }
 
 .reseaux {
   display: flex;
-  gap: 20px;
+  gap: var(--spacing-md);
 }
 
 .footer-right-top-content ul {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
   list-style-type: none;
   margin: 0;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-md);
   font-size: var(--font-size-sm);
 }
 
 .footer-right-top-content a {
   font-weight: 800;
   color: var(--link-color);
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
 }
 
 .footer-right-top-content a:hover {
@@ -905,13 +851,13 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 30px;
+  gap: var(--spacing-lg);
 }
 
 .footer-right-bottom {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-md);
   font-size: 0.9em;
   font-weight: 200;
   color: var(--color-text-footer);
@@ -927,7 +873,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: var(--spacing-lg);
 }
 
 .footer-right-top-content img {
@@ -936,24 +882,23 @@ footer {
   filter: saturate(0);
 }
 
-/* Newsletter container */
 .newsletter-container {
-  margin-top: 20px;
+  margin-top: var(--spacing-md);
 }
 
 .newsletter-container p {
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-xs);
   font-size: 0.9em;
 }
 
 .newsletter-form {
   display: flex;
-  gap: 10px;
+  gap: var(--spacing-xs);
   max-width: 300px;
 }
 
 .newsletter-form input {
-  padding: 8px 12px;
+  padding: var(--spacing-xs) var(--spacing-xs);
   border-radius: var(--border-radius-sm);
   border: 1px solid var(--color-accent-faded);
   background-color: var(--color-field-bg);
@@ -963,7 +908,7 @@ footer {
 }
 
 .newsletter-form button {
-  padding: 8px 12px;
+  padding: var(--spacing-xs) var(--spacing-xs);
   border-radius: var(--border-radius-sm);
   border: none;
   background: var(--gradient-primary);
@@ -977,17 +922,16 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Team members styling */
 .team-links {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--spacing-sm);
 }
 
 .team-member {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--spacing-xxs);
 }
 
 .team-member span {
@@ -1011,9 +955,8 @@ footer {
   transform: scale(1.2);
 }
 
-/* Support info */
 .support-info {
-  margin-top: 10px;
+  margin-top: var(--spacing-xs);
   font-size: 0.85em;
 }
 
@@ -1027,9 +970,6 @@ footer {
   color: var(--link-hover);
 }
 
-/* -------------------------- modal ------------------------- */
-
-/* Modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -1052,7 +992,6 @@ footer {
   width: 100%;
   max-width: 400px;
   animation: modalFadeIn 0.3s ease;
-  /* box-shadow: var(--shadow-neon); */
 }
 
 @keyframes modalFadeIn {
@@ -1070,7 +1009,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: var(--spacing-sm) var(--spacing-md);
   border-bottom: 1px solid var(--color-glass-dark);
 }
 
@@ -1080,7 +1019,7 @@ footer {
 }
 
 .close-modal {
-  font-size: 24px;
+  font-size: var(--font-size-xl);
   font-weight: bold;
   color: var(--color-text-light);
   cursor: pointer;
@@ -1098,8 +1037,8 @@ footer {
 .modal-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  padding: 15px 20px;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-top: 1px solid var(--color-glass-dark);
 }
 
@@ -1109,7 +1048,7 @@ footer {
   border-radius: var(--border-radius-lg);
   cursor: pointer;
   border: none;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   font-size: var(--font-size-sm);
 }
 
@@ -1131,139 +1070,4 @@ footer {
 
 .btn-secondary:hover {
   background-color: var(--color-card-hover);
-}
-
-/* ------------------------- Media ------------------------- */
-
-@media (max-width: 768px) {
-  .titre {
-    font-size: 1.5rem;
-  }
-
-  .sous-titre {
-    font-size: 0.7rem;
-  }
-
-  .nav {
-    padding: 0;
-    position: fixed;
-    mask-image: none;
-    justify-content: center;
-    top: auto;
-    bottom: 0;
-    width: 100%;
-    backdrop-filter: none;
-  }
-
-  .menu {
-    margin: 10px;
-    width: 100%;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    background-color: #fffae766;
-  }
-
-  .menu ul {
-    font-family: "PP Formula";
-    padding: 10px;
-    padding-left: 20px;
-    margin: 0;
-    gap: 15px;
-    justify-content: space-evenly;
-  }
-
-  .menu ul li {
-    font-size: 11px;
-  }
-
-  .menu-li {
-    color: #0d0d0d;
-  }
-
-  .active::after {
-    background-color: #0d0d0d;
-  }
-
-  .nav-button {
-    padding: 10px;
-    border-radius: 15px;
-    background-color: #0d0d0d;
-    color: #fffae7;
-  }
-
-  .logo-container {
-    display: none;
-  }
-
-  .footer-content {
-    padding: 50px 30px;
-    gap: 20px;
-    font-size: 12px;
-  }
-
-  .footer-top,
-  .footer-bottom {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .footer-logo img {
-    width: 150px;
-  }
-
-  .footer-right-top {
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-  }
-
-  .footer-bottom {
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 5em;
-  }
-
-  .footer-right-bottom {
-    text-align: center;
-  }
-
-  .newsletter-form {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .team-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-  }
-
-  .support-info {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .rouge,
-  .bleu,
-  .vert,
-  .violet,
-  .orange {
-    display: none;
-  }
-}
-
-.reset-search {
-  color: var(--link-color);
-  background-color: var(--color-card-hover);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  border: none;
-  padding: var(--spacing-xs);
-  border-radius: var(--border-radius-sm);
-  cursor: pointer;
-}
-
-.reset-search:hover {
-  color: var(--link-hover);
 }
