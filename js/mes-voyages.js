@@ -1,5 +1,5 @@
 // Mettre à jour le compteur de voyages
-document.getElementById('voyage-count').textContent = "<?php echo $total_voyages; ?> au total";
+// document.getElementById('voyage-count').textContent = "<?php echo $total_voyages; ?> au total";
 
 document.addEventListener('DOMContentLoaded', function() {
     // Configuration centralisée
@@ -205,15 +205,40 @@ document.addEventListener('DOMContentLoaded', function() {
             const elements = this.getElements();
             let matchCount = 0;
             
+            // Détection si la recherche est un prix
+            const isPriceQuery = /^\d+[\d,. ]*€?$/.test(searchTerm);
+            let searchPrice = null;
+            let searchPriceString = null;
+            if (isPriceQuery) {
+                // Si l'utilisateur tape un nombre avec virgule ou point, on cherche la correspondance exacte
+                if (searchTerm.includes(',') || searchTerm.includes('.')) {
+                    searchPrice = parseFloat(searchTerm.replace(/[^\d,\.]/g, '').replace(',', '.'));
+                } else {
+                    // Sinon, on cherche tous les prix qui CONTIENNENT ce nombre
+                    searchPriceString = searchTerm.replace(/[^\d]/g, '');
+                }
+            }
+            
             // Parcourir tous les éléments et les filtrer
             elements.forEach(element => {
                 const destination = element.querySelector('.destination').textContent.toLowerCase();
                 const dates = element.querySelector('.dates').textContent.toLowerCase();
+                const priceText = element.querySelector('.price').textContent;
+                const priceValue = utils.extractPrice(priceText);
+                const priceDigits = priceText.replace(/[^\d]/g, '');
                 
                 let match = false;
                 
                 if (searchTerm === '') {
                     match = true;
+                } else if (isPriceQuery) {
+                    if (searchPrice !== null && !isNaN(searchPrice)) {
+                        // Recherche exacte (tolérance 1 centime)
+                        match = Math.abs(priceValue - searchPrice) < 0.01;
+                    } else if (searchPriceString) {
+                        // Recherche partielle : le prix affiché contient la séquence de chiffres
+                        match = priceDigits.includes(searchPriceString);
+                    }
                 } else if (utils.isDateQuery(searchTerm)) {
                     match = dates.includes(searchTerm);
                 } else {
