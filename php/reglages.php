@@ -225,7 +225,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             </div>
 
-                            <!-- Accessibilité -->
                             <div class="card settings-card">
                                 <div class="header-text">
                                     <img src="../img/svg/users.svg" alt="Accessibilité" class="header-icon">
@@ -281,7 +280,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             </div>
 
-                            <!-- Préférences avancées -->
                             <div class="card settings-card full-width">
                                 <div class="header-text">
                                     <img src="../img/svg/settings.svg" alt="Préférences avancées" class="header-icon">

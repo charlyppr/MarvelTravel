@@ -356,7 +356,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <?php include '../nav.php'; ?>
 
     <div class="reservation-container">
-        <!-- En-tête avec fil d'Ariane et progression -->
         <div class="booking-header">
             <div class="breadcrumb">
                 <a href="../destination.php" class="breadcrumb-link">
@@ -409,12 +408,10 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
 
         <div class="booking-content">
-            <!-- Colonne de gauche: Résumé du voyage -->
             <div class="booking-summary">
                 <div class="destination-info">
                     <h1 class="destination-title">Récapitulatif de votre réservation</h1>
 
-                    <!-- Image de la destination -->
                     <div class="destination-image">
                         <img src="../<?php echo htmlspecialchars($voyage['image']); ?>"
                             alt="<?php echo htmlspecialchars($voyage['titre']); ?>" class="destination-photo">
@@ -469,9 +466,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 </div>
             </div>
 
-            <!-- Colonne de droite: Détails de la réservation et paiement -->
             <div class="payment-container">
-                <!-- Détails voyageurs -->
                 <div class="card travelers-card">
                     <div class="card-header">
                         <img src="../../img/svg/users.svg" alt="Voyageurs" class="card-icon">
@@ -519,7 +514,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
                 </div>
 
-                <!-- Options sélectionnées -->
                 <?php if (!empty($details_options)): ?>
                     <div class="card options-card">
                         <div class="card-header">
@@ -560,7 +554,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
                 <?php endif; ?>
 
-                <!-- Récapitulatif de prix -->
                 <div class="card price-card">
                     <div class="card-header">
                         <img src="../../img/svg/credit-card.svg" alt="Paiement" class="card-icon">
@@ -586,7 +579,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             <?php endif; ?>
 
-                            <!-- Formulaire de code promo -->
                             <form action="etape4.php?id=<?php echo $id; ?>" method="post" class="promo-code-form">
                                 <div class="promo-code-container">
                                     <div class="promo-code-input">
@@ -602,7 +594,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                     <?php endif; ?>
                                 </div>
 
-                                <!-- Répliquer les données nécessaires pour maintenir les données de session -->
                                 <input type="hidden" name="date_debut"
                                     value="<?php echo htmlspecialchars($date_debut); ?>">
                                 <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
@@ -623,7 +614,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         value="<?php echo htmlspecialchars($voyageur['passport']); ?>">
                                 <?php endforeach; ?>
 
-                                <!-- Ajouter aussi les options si nécessaire -->
                                 <?php if ($form_data3 && isset($form_data3['options'])): ?>
                                     <input type="hidden" name="options"
                                         value='<?php echo htmlspecialchars(json_encode($form_data3['options'])); ?>'>
@@ -652,7 +642,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
                         </div>
 
-                        <!-- Formulaire de paiement -->
                         <form action='https://www.plateforme-smc.fr/cybank/index.php' method='POST' id="payment-form">
                             <input type='hidden' name='transaction' value='<?php echo $transaction; ?>'>
                             <input type='hidden' name='montant' value='<?php echo $prix_total_api; ?>'>

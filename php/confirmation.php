@@ -310,7 +310,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <div class="confirmation-container">
         <?php if ($payment_validated): ?>
-            <!-- AFFICHAGE EN CAS DE PAIEMENT RÉUSSI -->
             <div class="confirmation-header">
                 <div class="success-icon">
                     <img src="../img/svg/check-circle.svg" alt="Succès">
@@ -438,7 +437,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
             </div>
 
         <?php else: ?>
-            <!-- AFFICHAGE EN CAS D'ÉCHEC DU PAIEMENT -->
             <div class="confirmation-header error-header">
                 <div class="error-icon">
                     <img src="../img/svg/alert-circle.svg" alt="Erreur">
@@ -500,7 +498,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
                 </div>
 
-                <!-- Nouvelle carte avec des conseils pour réussir le paiement -->
                 <div class="confirmation-card payment-tips">
                     <div class="card-header">
                         <img src="../img/svg/help-circle.svg" alt="Conseils" class="card-icon">

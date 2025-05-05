@@ -246,7 +246,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         <?php endif; endforeach; ?>
                     </div>
                     
-                    <!-- Ajouter le résumé du total ici -->
                     <div class="cart-summary">
                         <div class="summary-row">
                             <span>Sous-total</span>

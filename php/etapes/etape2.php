@@ -224,7 +224,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <?php include '../nav.php'; ?>
 
     <div class="reservation-container">
-        <!-- En-tête avec fil d'Ariane et progression -->
+        
         <div class="booking-header">
             <div class="breadcrumb">
                 <a href="../destination.php" class="breadcrumb-link">
@@ -269,7 +269,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 <div class="destination-info">
                     <h1 class="destination-title"><?php echo htmlspecialchars($voyage['titre']); ?></h1>
 
-                    <!-- Image de la destination comme dans l'étape 1 -->
                     <div class="destination-image">
                         <img src="../<?php echo htmlspecialchars($voyage['image']); ?>"
                             alt="<?php echo htmlspecialchars($voyage['titre']); ?>" class="destination-photo">

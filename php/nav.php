@@ -85,7 +85,6 @@ if ($is_in_root) {
                 <li>Contact</li>
             </a>
 
-            <!-- Bouton de thème pour tous les utilisateurs -->
             <?php if (!isset($_SESSION['user'])) { ?>
                 <div class="theme-toggle-nav">
                     <div class="theme-icons">
@@ -175,7 +174,6 @@ if ($is_in_root) {
     </div>
 </header>
 
-<!-- Modal de confirmation de déconnexion -->
 <div id="nav-logout-modal" class="modal">
     <div class="modal-content">
         <div class="modal-header">

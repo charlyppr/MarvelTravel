@@ -151,7 +151,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
 
                     <div class="dashboard-grid">
-                        <!-- Carte du profil -->
                         <div class="card profile-card">
                             <div class="header-text">
                                 <img src="../img/svg/users.svg" alt="Profil" class="header-icon">
@@ -295,7 +294,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
                         </div>
 
-                        <!-- Statistiques -->
                         <div class="card stats-card">
                             <div class="header-text">
                                 <img src="../img/svg/chart.svg" alt="Statistiques" class="header-icon">
@@ -318,7 +316,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
                         </div>
 
-                        <!-- Derniers voyages -->
                         <div class="card voyages-card">
                             <div class="header-text">
                                 <img src="../img/svg/globe.svg" alt="Voyages" class="header-icon">
@@ -376,7 +373,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
                         </div>
 
-                        <!-- Messages -->
                         <div class="card messages-card">
                             <div class="header-text">
                                 <img src="../img/svg/message.svg" alt="Messages" class="header-icon">
@@ -390,7 +386,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         $count = 0;
                                         foreach ($messages as $msg):
                                             if ($count >= 3)
-                                                break; // Limite à 3 messages
+                                                break;
                                             $count++;
                                             ?>
                                             <div class="message-item">

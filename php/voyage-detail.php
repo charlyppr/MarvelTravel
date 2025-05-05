@@ -55,7 +55,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <?php include 'nav.php'; ?>
 
-    <!-- En-tête du voyage avec image de fond -->
     <section class="hero-section">
         <div class="hero-backdrop" style="background-image: url('<?php echo htmlspecialchars($voyage['image']); ?>')">
         </div>
@@ -153,9 +152,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <div class="main-content">
         <div class="content-wrapper">
-            <!-- Colonne principale -->
             <div class="main-column">
-                <!-- Section Aperçu -->
                 <section id="apercu" class="content-section">
                     <div class="description-section">
                         <h2>À propos de ce voyage</h2>
@@ -220,8 +217,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
                     <?php endif; ?>
                 </section>
-
-                <!-- Section Programme -->
+                                                        
                 <section id="programme" class="content-section">
                     <h2>Programme jour par jour</h2>
                     <div class="programme-timeline">
@@ -282,7 +278,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
                 </section>
 
-                <!-- Section Détails -->
                 <section id="details" class="content-section">
                     <h2>Détails pratiques</h2>
 
@@ -330,7 +325,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
                 </section>
 
-                <!-- Section Avis -->
                 <?php if (!empty($voyage['temoignages'])): ?>
                     <section id="avis" class="content-section">
                         <div class="reviews-header">
@@ -383,7 +377,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 <?php endif; ?>
             </div>
 
-            <!-- Colonne de réservation -->
             <div class="booking-column" id="reservation">
                 <a href="destination.php" class="back-button">
                     <img src="../img/svg/arrow-left.svg" alt="←">

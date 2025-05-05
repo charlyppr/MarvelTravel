@@ -39,7 +39,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         <div class="content-container-div">
             <div class="content-container">
                 <div class="content">
-                    <!-- En-tête avec recherche et navigation -->
                     <div class="header">
                         <div class="search-bar">
                             <input type="text" placeholder="Chercher un voyageur" id="search">
@@ -55,13 +54,11 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
 
                     <div class="main-content">
-                        <!-- Titre et compteur -->
                         <div class="titre-content">
                             <span>Voyageurs</span>
                             <span id="voyage-count"></span>
                         </div>
 
-                        <!-- Barre de filtres et options de tri -->
                         <div class="filters-bar">
                             <div class="filter-buttons">
                                 <a href="?filter=all"
@@ -168,7 +165,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </table>
                         </div>
 
-                        <!-- Message de recherche sans résultats (caché par défaut) -->
                         <div class="no-res" id="search-no-results" style="display: none;">
                             <img src="../img/svg/empty-voyages.svg" alt="Aucun résultat" class="no-res-icon">
                             <p>Aucun utilisateur ne correspond à votre recherche "<strong id="search-term"></strong>"

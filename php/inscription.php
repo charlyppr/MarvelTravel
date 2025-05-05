@@ -179,7 +179,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 echo "<p class='sous-titre-3'>Adresse email invalide</p>";
                                 break;
                         }
-                        unset($_SESSION['inscri']); // Supprime la variable après affichage
+                        unset($_SESSION['inscri']);
                     }
                     ?>
                 </div>

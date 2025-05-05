@@ -132,7 +132,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 <body class="<?php echo $theme; ?>-theme">
     <?php include 'nav.php'; ?>
 
-    <!-- Section d'en-tête avec bannière et recherche -->
     <section class="hero-section">
         <div class="hero-backdrop"></div>
         <div class="hero-container">
@@ -238,7 +237,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 </div>
                                             </div>
                                             
-                                            <!-- Nouvelles catégories ajoutées -->
                                             <div class="suggestion-item category-suggestion">
                                                 <div class="suggestion-icon category-icon"><img src="../img/icone-voyage/aventure-icon.png" alt="Espace Icon"></div>
                                                 <div class="suggestion-content">
@@ -307,7 +305,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                     <input type="hidden" id="date-fin" name="date_fin" value="<?= htmlspecialchars($date_fin) ?>" autocomplete="off">
                                 </div>
                                 
-                                <!-- Calendar Dropdown -->
                                 <div class="calendar-dropdown" id="calendar-dropdown">
                                     <div class="calendar-header">
                                     <div class="calendar-div">
@@ -416,7 +413,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     }
     ?>
     
-    <!-- Section Best-Sellers -->
     <?php if (empty($_GET) || ($category == 'all' && empty($recherche) && empty($date_debut) && empty($date_fin) && $budget <= 0)): ?>
         <section class="best-seller-section" id="best-seller">
             <div class="container">
@@ -443,7 +439,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                     <?php endif; ?>
                                     <div class="card-overlay"></div>
                                     
-                                    <!-- Badge pour les "best-sellers" -->
                                     <div class="feature-badge">
                                         <img src="../img/svg/crown.svg" alt="Top destination">
                                         <span>Top destination</span>
@@ -462,7 +457,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         </div>
                                     </div>
                                     
-                                    <!-- Ajout d'une courte description -->
                                     <p class="card-description">
                                         <?php 
                                         $description = isset($voyage['description']) ? $voyage['description'] : 'Une expérience unique dans l\'univers Marvel';
@@ -470,7 +464,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         ?>
                                     </p>
                                     
-                                    <!-- Évaluation détaillée -->
                                     <div class="card-ratings-detailed">
                                         <?php if (isset($voyage['rating'])): ?>
                                             <div class="rating-stars">
@@ -491,7 +484,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         <?php endif; ?>
                                     </div>
                                     
-                                    <!-- Caractéristiques principales -->
                                     <div class="card-features">
                                         <div class="feature-item">
                                             <img src="../img/svg/clock.svg" alt="Durée">
@@ -509,7 +501,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         <?php endif; ?>
                                     </div>
                                     
-                                    <!-- Points forts -->
                                     <div class="highlights">
                                         <h4>Points forts</h4>
                                         <ul class="highlights-list">
@@ -546,7 +537,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <?php endif; ?>
 
 
-    <!-- Toutes les destinations / Résultats de recherche -->
     <section id="toutes-destinations" class="all-destination-section">
         <div class="container">
             <div class="section-header">
@@ -662,7 +652,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
     </section>
 
-    <!-- Call to action -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-container">

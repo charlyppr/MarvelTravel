@@ -35,7 +35,6 @@ function isActive($page, $current_page)
 
             <nav class="nav-menu">
                 <?php if ($is_admin_page): ?>
-                    <!-- Menu pour la page administrateur -->
                     <a href="administrateur.php" class="nav-link <?= isActive('administrateur', $current_page) ?>">
                         <div class="nav-icon">
                             <img src="../img/svg/dashboard.svg" alt="Dashboard" class="icon-img">
@@ -52,7 +51,6 @@ function isActive($page, $current_page)
                         <span class="nav-text">Statistiques</span>
                     </a>
                 <?php else: ?>
-                    <!-- Menu pour les pages utilisateur -->
                     <a href="profil.php" class="nav-link <?= isActive('profil', $current_page) ?>">
                         <div class="nav-icon">
                             <img src="../img/svg/person.svg" alt="Personne" class="icon-img">
@@ -176,7 +174,6 @@ function isActive($page, $current_page)
     </div>
 </div>
 
-<!-- Modal de confirmation de déconnexion -->
 <div id="logout-modal" class="modal">
     <div class="modal-content">
         <div class="modal-header">

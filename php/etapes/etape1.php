@@ -362,7 +362,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             </div>
 
-                            <!-- Calendar Dropdown -->
                             <div class="calendar-dropdown" id="calendar-dropdown">
                                 <div class="calendar-header">
                                     <div class="calendar-div">

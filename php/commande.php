@@ -106,7 +106,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         <div class="content-container-div">
             <div class="content-container">
                 <div class="content">
-                    <!-- En-tête immersive -->
                     <header class="reservation-header">
                         <div class="hero-banner" style="background-image: url('<?= htmlspecialchars($image_path) ?>')">
                             <div class="overlay">
@@ -151,7 +150,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
                     </header>
 
-                    <!-- Barre d'information de transaction -->
                     <div class="transaction-bar">
                         <div class="transaction-info">
                             <div class="transaction-label">N° de transaction</div>
@@ -194,7 +192,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
                     </div>
 
-                    <!-- Résumé du voyage -->
                     <section class="reservation-summary">
                         <div class="summary-header">
                             <h2>Résumé de votre aventure</h2>
@@ -204,7 +201,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
 
                         <div class="cards-grid">
-                            <!-- Voyageurs -->
                             <div class="card travelers-card">
                                 <div class="card-header">
                                     <img src="../img/svg/users.svg" alt="Voyageurs" class="card-icon">
@@ -234,7 +230,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             </div>
 
-                            <!-- Étapes du voyage -->
                             <div class="card itinerary-card">
                                 <div class="card-header">
                                     <img src="../img/svg/map-pin.svg" alt="Étapes" class="card-icon">
@@ -274,7 +269,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             </div>
 
-                            <!-- Options du voyage -->
                             <div class="card options-card">
                                 <div class="card-header">
                                     <img src="../img/svg/briefcase.svg" alt="Options" class="card-icon">
@@ -308,7 +302,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </div>
                             </div>
 
-                            <!-- Détails du paiement -->
                             <div class="card payment-card">
                                 <div class="card-header">
                                     <img src="../img/svg/credit-card.svg" alt="Paiement" class="card-icon">
@@ -346,7 +339,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
                     </section>
 
-                    <!-- Recommandations -->
                     <?php if ($commande['status'] == 'accepted'): ?>
                         <section class="tips-section">
                             <h2>Conseils pour votre voyage</h2>
@@ -382,7 +374,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </section>
                     <?php endif; ?>
 
-                    <!-- Actions -->
                     <div class="actions-container">
                         <a href="mes-voyages.php" class="action-button secondary-button">
                             <img src="../img/svg/arrow-left.svg" alt="Retour">

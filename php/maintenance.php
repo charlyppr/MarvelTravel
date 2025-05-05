@@ -12,7 +12,6 @@ if (!isset($completion_date)) {
 }
 ?>
 
-<!-- On s'assure que le CSS de maintenance est chargé -->
 <link rel="stylesheet" href="../css/maintenance.css">
 
 <div class="maintenance-container">

@@ -44,7 +44,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         <div class="content-container-div">
             <div class="content-container">
                 <div class="content">
-                    <!-- En-tête avec recherche et navigation -->
                     <div class="header">
                         <div class="search-bar">
                             <input type="text" placeholder="Rechercher une destination, une date..." id="search">
@@ -60,13 +59,11 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                     </div>
 
                     <div class="main-content">
-                        <!-- Titre et compteur -->
                         <div class="titre-content">
                             <span>Mes Voyages</span>
                             <span id="voyage-count"></span>
                         </div>
 
-                        <!-- Barre de filtres et options de tri -->
                         <div class="filters-bar">
                             <div class="filter-buttons">
                                 <a href="?view=<?php echo $view; ?>&filter=all" 
@@ -163,7 +160,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         ?>
 
                         <?php if ($view == 'table' && $displayed_voyages > 0): ?>
-                            <!-- Vue tableau -->
                             <div class="table-container">
                                 <table class="tab-voyages">
                                     <thead>
@@ -227,7 +223,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 </table>
                             </div>
                         <?php elseif ($view == 'cards' && $displayed_voyages > 0): ?>
-                            <!-- Vue cartes -->
                             <div class="voyages-list">
                                 <?php foreach ($user_commandes as $commande): ?>
                                     <?php
@@ -289,7 +284,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 <?php endforeach; ?>
                             </div>
                         <?php else: ?>
-                            <!-- Message si aucun voyage -->
                             <div class="no-res">
                                 <img src="../img/svg/empty-voyages.svg" alt="Aucun voyage" class="no-res-icon">
                                 <p>Vous n'avez pas encore de voyages réservés</p>
@@ -300,7 +294,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
                         <?php endif; ?>
 
-                        <!-- Message de recherche sans résultats (caché par défaut) -->
                         <div class="no-res" id="search-no-results" style="display: none;">
                             <img src="../img/svg/empty-voyages.svg" alt="Aucun résultat" class="no-res-icon">
                             <p>Aucun voyage ne correspond à votre recherche "<strong id="search-term"></strong>"</p>
@@ -308,7 +301,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
 
                         <?php if ($displayed_voyages > 0): ?>
-                            <!-- Bouton pour réserver un nouveau voyage -->
                             <div class="actions-container">
                                 <a href="../php/destination.php" class="action-button primary-button">
                                     Réserver un nouveau voyage

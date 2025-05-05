@@ -273,7 +273,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <?php include '../nav.php'; ?>
 
     <div class="reservation-container">
-        <!-- En-tête avec fil d'Ariane et progression -->
         <div class="booking-header">
             <div class="breadcrumb">
                 <a href="../destination.php" class="breadcrumb-link">
@@ -320,7 +319,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         </div>
 
         <div class="booking-content">
-            <!-- Colonne de gauche : récapitulatif du voyage -->
             <div class="booking-summary">
                 <div class="destination-info">
                     <h1 class="destination-title"><?php echo htmlspecialchars($voyage['titre']); ?></h1>
@@ -391,12 +389,9 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                 </div>
             </div>
 
-            <!-- Colonne de droite : sélection des options -->
             <div class="options-container">
                 <form action="etape3.php?id=<?php echo $id; ?>" method="post" id="optionsForm" class="options-form">
-                    <!-- Notez que l'action pointe maintenant vers etape3.php au lieu de etape4.php -->
                     
-                    <!-- Données cachées des étapes précédentes -->
                     <input type="hidden" name="date_debut" value="<?php echo htmlspecialchars($date_debut); ?>">
                     <input type="hidden" name="date_fin" value="<?php echo htmlspecialchars($date_fin); ?>">
                     <input type="hidden" name="nb_personne" value="<?php echo $nb_personne; ?>">
