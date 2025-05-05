@@ -118,6 +118,7 @@
   font-weight: 800;
   margin-bottom: var(--spacing-md);
   line-height: 1.1;
+  letter-spacing: 2px;
   position: relative;
   background: linear-gradient(to right, var(--color-text-cream) 0, var(--color-accent) 100%);
   -webkit-background-clip: text;
@@ -1758,7 +1759,17 @@ img.item-icon.not-included {
 }
 
 a.btn-book {
-  width: -webkit-fill-available
+  display: flex;
+  padding: var(--spacing-sm);
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-md);
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition-medium);
+}
+
+a.btn-book:hover {
+  transform: translateY(-5px)
 }
 
 .back-button {

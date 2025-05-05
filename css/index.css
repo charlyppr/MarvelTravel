@@ -480,7 +480,7 @@
     color: var(--color-text-light);
     font-weight: 600;
     padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-lg);
     transition: all var(--transition-medium);
     position: relative;
     border: 1px solid var(--sidebar-border);

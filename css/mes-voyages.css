@@ -421,6 +421,21 @@
   margin-bottom: var(--spacing-sm)
 }
 
+.reset-search {
+  border: none;
+  padding: var(--spacing-sm);
+  background: var(--color-glass-dark);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-medium);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.reset-search:hover{
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-dark);
+}
+
 .filters-bar {
   display: flex;
   justify-content: space-between;

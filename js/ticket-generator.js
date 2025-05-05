@@ -816,7 +816,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Charge un script externe de manière asynchrone
+// Charge un script externe
 function loadScript(url) {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${url}"]`)) {

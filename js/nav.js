@@ -1,213 +1,288 @@
 document.addEventListener("DOMContentLoaded", function () {
-  window.navBarElement = document.querySelector(".nav");
-  let lastScrollTop = 0;
-  let isInitialLoad = true;
+  // Configuration centralisée
+  const config = {
+    navSelectors: {
+      navbar: ".nav",
+      menuItems: ".menu-li",
+      profileDropdown: ".profile-dropdown-container",
+      profileDropdownMenu: ".profile-dropdown",
+      themeIcons: ".theme-icons",
+      sunIcon: "#sunIcon",
+      moonIcon: "#moonIcon",
+      themeToggleBtn: "#themeToggleBtn",
+      logoutModal: "#nav-logout-modal",
+      logoutBtn: "#nav-logout-button",
+      closeModalBtn: "#nav-logout-modal .close-modal",
+      cancelLogoutBtn: "#cancel-nav-logout"
+    },
+    transitionTimes: {
+      navHide: "0.5s",
+      navShow: "0.3s",
+      themeChange: 1000
+    },
+    breakpoints: {
+      mobile: 768
+    }
+  };
 
-  // Ensure nav is visible on page load
-  window.navBarElement.style.transform = "translateY(0)";
+  // Gestionnaire de la barre de navigation
+  const navManager = {
+    navBarElement: null,
+    lastScrollTop: 0,
+    isInitialLoad: true,
 
-  window.addEventListener("scroll", () => {
-    if (window.innerWidth > 768) {
-      let scrollTop = document.documentElement.scrollTop;
-      window.navBarElement.style.transition = "transform 0.5s ease";
+    init() {
+      this.navBarElement = document.querySelector(config.navSelectors.navbar);
+      if (!this.navBarElement) return;
       
-      // Skip the first scroll event after page load
-      if (isInitialLoad) {
-        lastScrollTop = scrollTop;
-        isInitialLoad = false;
+      window.navBarElement = this.navBarElement; // Pour compatibilité
+      
+      // Assurer que la nav est visible au chargement
+      this.navBarElement.style.transform = "translateY(0)";
+      
+      this.setupEventListeners();
+    },
+
+    setupEventListeners() {
+      // Gestion du scroll pour cacher/montrer la navbar
+      window.addEventListener("scroll", () => this.handleScroll());
+      
+      // Montrer la navbar lors du survol en haut de l'écran
+      document.addEventListener("mousemove", (e) => this.handleMouseMove(e));
+    },
+
+    handleScroll() {
+      if (window.innerWidth <= config.breakpoints.mobile) return;
+      
+      const scrollTop = document.documentElement.scrollTop;
+      this.navBarElement.style.transition = `transform ${config.transitionTimes.navHide} ease`;
+      
+      // Ignorer le premier événement de défilement
+      if (this.isInitialLoad) {
+        this.lastScrollTop = scrollTop;
+        this.isInitialLoad = false;
         return;
       }
       
-      if (scrollTop > lastScrollTop) {
-        window.navBarElement.style.transform = "translateY(-100%)";
+      // Cacher la navbar en défilant vers le bas, la montrer en défilant vers le haut
+      if (scrollTop > this.lastScrollTop) {
+        this.navBarElement.style.transform = "translateY(-100%)";
       } else {
-        window.navBarElement.style.transform = "translateY(0)";
+        this.navBarElement.style.transform = "translateY(0)";
       }
       
-      // Ensure we update the last scroll position correctly
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      // Mettre à jour la position de défilement
+      this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    },
+
+    handleMouseMove(e) {
+      if (window.innerWidth <= config.breakpoints.mobile || !this.navBarElement) return;
+      
+      if (e.clientY <= 70) {
+        this.navBarElement.style.transition = `transform ${config.transitionTimes.navShow} ease`;
+        this.navBarElement.style.transform = "translateY(0)";
+      }
     }
-  });
+  };
 
-  // Afficher la barre de navigation rapidement lorsque la souris est en haut de l'écran
-  document.addEventListener("mousemove", (e) => {
-    if (window.innerWidth > 768 && e.clientY <= 70) {
-      window.navBarElement.style.transition = "transform 0.3s ease";
-      window.navBarElement.style.transform = "translateY(0)";
-    }
-  });
+  // Gestionnaire des effets du menu
+  const menuEffectsManager = {
+    menuItems: null,
 
-  // Menu hover effects
-  if (window.innerWidth > 768) {
-    const menuItems = document.querySelectorAll(".menu-li");
+    init() {
+      if (window.innerWidth <= config.breakpoints.mobile) return;
+      
+      this.menuItems = document.querySelectorAll(config.navSelectors.menuItems);
+      if (this.menuItems.length === 0) return;
+      
+      this.setupEventListeners();
+    },
 
-    const handleHover = (hoveredElement, isEntering) => {
-      menuItems.forEach((item) => {
+    setupEventListeners() {
+      this.menuItems.forEach(item => {
+        item.addEventListener("mouseover", () => this.handleHover(item, true));
+        item.addEventListener("mouseout", () => this.handleHover(item, false));
+      });
+    },
+
+    handleHover(hoveredElement, isEntering) {
+      this.menuItems.forEach(item => {
         if (item !== hoveredElement) {
           item.classList.toggle("hovered", isEntering);
         }
       });
-    };
-
-    menuItems.forEach((item) => {
-      item.addEventListener("mouseover", () => handleHover(item, true));
-      item.addEventListener("mouseout", () => handleHover(item, false));
-    });
-  }
-
-  // Profile dropdown functionality
-  const profileContainer = document.querySelector('.profile-dropdown-container');
-  
-  if (profileContainer) {
-    profileContainer.addEventListener('mouseenter', function () {
-      document.querySelector('.profile-dropdown').style.display = 'flex';
-    });
-
-    profileContainer.addEventListener('mouseleave', function () {
-      document.querySelector('.profile-dropdown').style.display = 'none';
-    });
-  }
-
-  // Theme toggle functionality - Maintenant accessible à tous les utilisateurs
-  function handleThemeToggle() {
-    // Use the getCookie function from theme-loader.js if available
-    function getThemeCookie(name) {
-      if (typeof getCookie === 'function') {
-        return getCookie(name);
-      } else {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return null;
-      }
     }
-    
-    // Recherche tous les groupes d'icônes de thème sur la page (navbar et dropdown si connecté)
-    const allThemeIcons = document.querySelectorAll('.theme-icons');
-    
-    if (allThemeIcons.length > 0) {
-      const currentThemeValue = getThemeCookie('theme') || 'dark';
+  };
+
+  // Gestionnaire du menu déroulant du profil
+  const profileDropdownManager = {
+    container: null,
+    dropdown: null,
+
+    init() {
+      this.container = document.querySelector(config.navSelectors.profileDropdown);
+      if (!this.container) return;
       
-      // Mettre à jour l'état visuel de tous les sélecteurs de thème
-      updateThemeIcons(currentThemeValue);
+      this.dropdown = document.querySelector(config.navSelectors.profileDropdownMenu);
+      if (!this.dropdown) return;
+      
+      this.setupEventListeners();
+    },
 
-      function changeTheme(newTheme) {
-        // Use the functions from theme-loader.js if available
-        if (typeof toggleTheme === 'function') {
-          toggleTheme(newTheme);
-        } else {
-          // Fallback if theme-loader.js is not loaded
-          document.cookie = `theme=${newTheme};path=/;max-age=31536000`;
-          document.body.classList.remove('light-theme', 'dark-theme');
-          document.body.classList.add(newTheme + '-theme');
-        }
+    setupEventListeners() {
+      this.container.addEventListener("mouseenter", () => {
+        this.dropdown.style.display = "flex";
+      });
 
-        // Update UI for theme icons
-        updateThemeIcons(newTheme);
+      this.container.addEventListener("mouseleave", () => {
+        this.dropdown.style.display = "none";
+      });
+    }
+  };
 
-        // Add transition effect
-        document.body.classList.add('theme-transition');
-        setTimeout(() => {
-          document.body.classList.remove('theme-transition');
-        }, 1000);
-      }
+  // Gestionnaire de thème
+  const themeManager = {
+    themeIcons: null,
+    sunIcons: null,
+    moonIcons: null,
+    themeToggleBtn: null,
 
-      // Function to update all theme icons based on current theme
-      function updateThemeIcons(theme) {
-        const allSunIcons = document.querySelectorAll('#sunIcon');
-        const allMoonIcons = document.querySelectorAll('#moonIcon');
+    init() {
+      this.themeIcons = document.querySelectorAll(config.navSelectors.themeIcons);
+      if (this.themeIcons.length === 0) return;
+      
+      this.getCookieHelper = typeof getCookie === "function" ? getCookie : this.fallbackGetCookie;
+      this.toggleThemeHelper = typeof toggleTheme === "function" ? toggleTheme : this.fallbackToggleTheme;
+      
+      this.setCurrentTheme();
+      this.setupThemeIcons();
+      this.setupSimpleToggle();
+    },
+
+    setCurrentTheme() {
+      const currentTheme = this.getCookieHelper("theme") || "dark";
+      this.updateThemeIcons(currentTheme);
+    },
+
+    setupThemeIcons() {
+      this.sunIcons = document.querySelectorAll(config.navSelectors.sunIcon);
+      this.moonIcons = document.querySelectorAll(config.navSelectors.moonIcon);
+      
+      this.sunIcons.forEach(icon => {
+        icon.addEventListener("click", () => this.changeTheme("light"));
+      });
+      
+      this.moonIcons.forEach(icon => {
+        icon.addEventListener("click", () => this.changeTheme("dark"));
+      });
+    },
+
+    setupSimpleToggle() {
+      this.themeToggleBtn = document.getElementById("themeToggleBtn");
+      if (!this.themeToggleBtn) return;
+      
+      this.themeToggleBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         
-        if (theme === 'light') {
-          allSunIcons.forEach(icon => icon.classList.add('active'));
-          allMoonIcons.forEach(icon => icon.classList.remove('active'));
-        } else {
-          allMoonIcons.forEach(icon => icon.classList.add('active'));
-          allSunIcons.forEach(icon => icon.classList.remove('active'));
-        }
-      }
-
-      // Ajouter des écouteurs d'événements à tous les boutons de thème
-      const allSunIcons = document.querySelectorAll('#sunIcon'); 
-      const allMoonIcons = document.querySelectorAll('#moonIcon');
-      
-      allSunIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-          changeTheme('light');
-        });
+        const isLightMode = document.body.classList.contains("light-theme") || 
+                           document.cookie.includes("theme=light");
+        
+        this.changeTheme(isLightMode ? "dark" : "light");
       });
+    },
+
+    changeTheme(newTheme) {
+      this.toggleThemeHelper(newTheme);
+      this.updateThemeIcons(newTheme);
+      this.addTransitionEffect();
+    },
+
+    updateThemeIcons(theme) {
+      if (!this.sunIcons || !this.moonIcons) return;
       
-      allMoonIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-          changeTheme('dark');
-        });
-      });
-    }
-  }
-  
-  // Appeler la fonction de gestion du thème
-  handleThemeToggle();
-
-  // Simple theme toggle button functionality
-  const themeToggleBtn = document.getElementById("themeToggleBtn");
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      // Determine current theme
-      const isLightMode =
-        document.body.classList.contains("light-theme") ||
-        document.cookie.includes("theme=light");
-
-      // Toggle to opposite theme
-      const newTheme = isLightMode ? "dark" : "light";
-      
-      // Use toggleTheme from theme-loader if available
-      if (typeof toggleTheme === 'function') {
-        toggleTheme(newTheme);
+      if (theme === "light") {
+        this.sunIcons.forEach(icon => icon.classList.add("active"));
+        this.moonIcons.forEach(icon => icon.classList.remove("active"));
       } else {
-        // Fallback
-        document.cookie = `theme=${newTheme};path=/;max-age=31536000`;
-        document.body.classList.remove("light-theme", "dark-theme");
-        document.body.classList.add(`${newTheme}-theme`);
+        this.moonIcons.forEach(icon => icon.classList.add("active"));
+        this.sunIcons.forEach(icon => icon.classList.remove("active"));
       }
+    },
 
-      // Animation
+    addTransitionEffect() {
       document.body.classList.add("theme-transition");
       setTimeout(() => {
         document.body.classList.remove("theme-transition");
-      }, 1000);
-    });
-  }
+      }, config.transitionTimes.themeChange);
+    },
 
-  // Logout modal functionality
-  const navLogoutModal = document.getElementById('nav-logout-modal');
-  const navLogoutBtn = document.getElementById('nav-logout-button');
-  const closeNavModalBtn = document.querySelector('#nav-logout-modal .close-modal');
-  const cancelNavLogoutBtn = document.getElementById('cancel-nav-logout');
+    fallbackGetCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return null;
+    },
 
-  if (navLogoutBtn) {
-    navLogoutBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      navLogoutModal.style.display = 'flex';
-    });
-  }
-
-  if (closeNavModalBtn) {
-    closeNavModalBtn.addEventListener('click', function () {
-      navLogoutModal.style.display = 'none';
-    });
-  }
-
-  if (cancelNavLogoutBtn) {
-    cancelNavLogoutBtn.addEventListener('click', function () {
-      navLogoutModal.style.display = 'none';
-    });
-  }
-
-  // Close modal when clicking outside
-  window.addEventListener('click', function (event) {
-    if (event.target === navLogoutModal) {
-      navLogoutModal.style.display = 'none';
+    fallbackToggleTheme(theme) {
+      document.cookie = `theme=${theme};path=/;max-age=31536000`;
+      document.body.classList.remove("light-theme", "dark-theme");
+      document.body.classList.add(`${theme}-theme`);
     }
-  });
+  };
+
+  // Gestionnaire du modal de déconnexion
+  const logoutModalManager = {
+    modal: null,
+    logoutBtn: null,
+    closeBtn: null,
+    cancelBtn: null,
+
+    init() {
+      this.modal = document.getElementById("nav-logout-modal");
+      this.logoutBtn = document.getElementById("nav-logout-button");
+      
+      if (!this.modal || !this.logoutBtn) return;
+      
+      this.closeBtn = document.querySelector(config.navSelectors.closeModalBtn);
+      this.cancelBtn = document.getElementById("cancel-nav-logout");
+      
+      this.setupEventListeners();
+    },
+
+    setupEventListeners() {
+      this.logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.openModal();
+      });
+      
+      if (this.closeBtn) {
+        this.closeBtn.addEventListener("click", () => this.closeModal());
+      }
+      
+      if (this.cancelBtn) {
+        this.cancelBtn.addEventListener("click", () => this.closeModal());
+      }
+      
+      window.addEventListener("click", (event) => {
+        if (event.target === this.modal) {
+          this.closeModal();
+        }
+      });
+    },
+
+    openModal() {
+      this.modal.style.display = "flex";
+    },
+
+    closeModal() {
+      this.modal.style.display = "none";
+    }
+  };
+
+  // Initialisation des gestionnaires
+  navManager.init();
+  menuEffectsManager.init();
+  profileDropdownManager.init();
+  themeManager.init();
+  logoutModalManager.init();
 });

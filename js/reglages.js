@@ -1,154 +1,225 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Animation des notifications
-    const notifications = document.querySelectorAll('.notification');
-    if (notifications.length > 0) {
-        notifications.forEach(notification => {
-            // Ajouter un bouton de fermeture s'il n'existe pas déjà
-            if (!notification.querySelector('.close-notification')) {
-                const closeButton = document.createElement('button');
-                closeButton.className = 'close-notification';
-                closeButton.innerHTML = '&times;';
-                notification.appendChild(closeButton);
-            }
+    // Configuration centralisée
+    const config = {
+        selectors: {
+            notifications: '.notification',
+            closeNotification: '.close-notification',
+            resetButton: '.reset-button',
+            themeOptions: 'input[name="theme"]',
+            themeSelector: '.theme-selector .theme-option',
+            highContrastToggle: '#highContrast',
+            fontSizeOptions: 'input[name="fontSize"]',
+            fontSizeSelector: '.font-size-selector .theme-option',
+            dyslexicFontToggle: '#dyslexicFont',
+            reduceMotionToggle: '#reduceMotion',
+            downloadButton: '.download-button'
+        },
+        classes: {
+            themeTransition: 'theme-transition',
+            selected: 'selected',
+            highContrast: 'high-contrast',
+            dyslexicFont: 'dyslexic-font',
+            reduceMotion: 'reduce-motion'
+        },
+        timing: {
+            notificationAutoClose: 5000,
+            notificationFadeOut: 300,
+            themeTransitionDuration: 600
+        }
+    };
 
-            // Gérer la fermeture au clic
-            notification.querySelector('.close-notification').addEventListener('click', () => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            });
-
-            // Fermeture automatique après 5 secondes
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, 5000);
-        });
-    }
-
-    // Fonction simplifiée pour définir un cookie
-    function setCookie(name, value, days) {
-        const expires = new Date();
-        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = name + '=' + value + ';path=/;expires=' + expires.toUTCString();
-    }
-
-    // Gestion du bouton de réinitialisation
-    const resetButton = document.querySelector('.reset-button');
-    if (resetButton) {
-        resetButton.addEventListener('click', function () {
-            if (confirm('Êtes-vous sûr de vouloir réinitialiser tous les paramètres ?')) {
-                // Créer un formulaire caché pour soumettre l'action de réinitialisation
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = '';
-
+    // Utilitaires
+    const utils = {
+        // Définir un cookie
+        setCookie: (name, value, days) => {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = `${name}=${value};path=/;expires=${expires.toUTCString()}`;
+        },
+        
+        // Créer et soumettre un formulaire
+        submitForm: (action, params) => {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = action || '';
+            
+            Object.entries(params).forEach(([key, value]) => {
                 const input = document.createElement('input');
                 input.type = 'hidden';
-                input.name = 'reset_settings';
-                input.value = '1';
-
+                input.name = key;
+                input.value = value;
                 form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-            }
-        });
-    }
+            });
+            
+            document.body.appendChild(form);
+            form.submit();
+        }
+    };
 
-    // Gestion des options de thème en temps réel (uniquement pour la prévisualisation)
-    const themeOptions = document.querySelectorAll('input[name="theme"]');
-    themeOptions.forEach(option => {
-        option.addEventListener('change', function () {
-            let theme = this.value;
-
-            // Ajouter la classe de transition avant de changer le thème
-            document.body.classList.add('theme-transition');
-
-            // Nettoyer les classes existantes
+    // Gestionnaire des réglages
+    const settingsManager = {
+        // Initialisation
+        init() {
+            this.setupNotifications();
+            this.setupResetButton();
+            this.setupThemeOptions();
+            this.setupAccessibilityOptions();
+            this.setupDataExport();
+        },
+        
+        // Gestion des notifications
+        setupNotifications() {
+            const notifications = document.querySelectorAll(config.selectors.notifications);
+            if (notifications.length === 0) return;
+            
+            notifications.forEach(notification => {
+                // Ajouter un bouton de fermeture si nécessaire
+                if (!notification.querySelector(config.selectors.closeNotification)) {
+                    const closeButton = document.createElement('button');
+                    closeButton.className = 'close-notification';
+                    closeButton.innerHTML = '&times;';
+                    notification.appendChild(closeButton);
+                }
+                
+                // Configurer la fermeture au clic
+                notification.querySelector(config.selectors.closeNotification)
+                    .addEventListener('click', () => this.fadeOutNotification(notification));
+                
+                // Fermeture automatique
+                setTimeout(() => this.fadeOutNotification(notification), config.timing.notificationAutoClose);
+            });
+        },
+        
+        // Effet de disparition pour les notifications
+        fadeOutNotification(notification) {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), config.timing.notificationFadeOut);
+        },
+        
+        // Bouton de réinitialisation
+        setupResetButton() {
+            const resetButton = document.querySelector(config.selectors.resetButton);
+            if (!resetButton) return;
+            
+            resetButton.addEventListener('click', () => {
+                if (confirm('Êtes-vous sûr de vouloir réinitialiser tous les paramètres ?')) {
+                    utils.submitForm('', { reset_settings: '1' });
+                }
+            });
+        },
+        
+        // Options de thème
+        setupThemeOptions() {
+            const themeOptions = document.querySelectorAll(config.selectors.themeOptions);
+            if (themeOptions.length === 0) return;
+            
+            themeOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    this.applyTheme(option.value);
+                    
+                    // Mise à jour visuelle de la sélection
+                    document.querySelectorAll(config.selectors.themeSelector).forEach(el => {
+                        el.classList.remove(config.classes.selected);
+                    });
+                    option.closest('.theme-option').classList.add(config.classes.selected);
+                });
+            });
+        },
+        
+        // Appliquer un thème
+        applyTheme(theme) {
+            // Ajouter la transition
+            document.body.classList.add(config.classes.themeTransition);
+            
+            // Supprimer les classes de thème existantes
             document.body.classList.remove('light-theme', 'dark-theme', 'auto-theme');
-
-            // Si auto, déterminer en fonction des préférences système
+            
+            // Déterminer le thème à appliquer
+            let effectiveTheme = theme;
             if (theme === 'auto') {
                 const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                theme = prefersDarkMode ? 'dark' : 'light';
+                effectiveTheme = prefersDarkMode ? 'dark' : 'light';
             }
-
-            // Appliquer la nouvelle classe
-            document.body.classList.add(`${theme}-theme`);
-
-            // Mettre à jour la classe 'selected' UNIQUEMENT sur les options de thème
-            document.querySelectorAll('.theme-selector .theme-option').forEach(optionEl => {
-                optionEl.classList.remove('selected');
-            });
-            this.closest('.theme-option').classList.add('selected');
-
-            // Supprimer la classe de transition après un délai pour permettre la transition complète
+            
+            // Appliquer le thème
+            document.body.classList.add(`${effectiveTheme}-theme`);
+            
+            // Supprimer la classe de transition après délai
             setTimeout(() => {
-                document.body.classList.remove('theme-transition');
-            }, 600); // Délai légèrement supérieur à la durée de transition (0.5s)
-        });
-    });
-
-    // Gestion des autres options d'accessibilité pour la prévisualisation
-    const highContrastToggle = document.getElementById('highContrast');
-    if (highContrastToggle) {
-        highContrastToggle.addEventListener('change', function () {
-            document.body.classList.toggle('high-contrast', this.checked);
-        });
-    }
-
-    const fontSizeOptions = document.querySelectorAll('input[name="fontSize"]');
-    fontSizeOptions.forEach(option => {
-        option.addEventListener('change', function () {
-            // Mise à jour des classes de taille de police sur le body
-            document.body.classList.remove('font-size-normal', 'font-size-large', 'font-size-larger');
-            document.body.classList.add(`font-size-${this.value}`);
-
-            // Mise à jour visuelle de la sélection active
-            document.querySelectorAll('.font-size-selector .theme-option').forEach(optionEl => {
-                optionEl.classList.remove('selected');
+                document.body.classList.remove(config.classes.themeTransition);
+            }, config.timing.themeTransitionDuration);
+        },
+        
+        // Options d'accessibilité
+        setupAccessibilityOptions() {
+            this.setupHighContrastToggle();
+            this.setupFontSizeOptions();
+            this.setupDyslexicFontToggle();
+            this.setupReduceMotionToggle();
+        },
+        
+        // Option de contraste élevé
+        setupHighContrastToggle() {
+            const highContrastToggle = document.getElementById('highContrast');
+            if (!highContrastToggle) return;
+            
+            highContrastToggle.addEventListener('change', () => {
+                document.body.classList.toggle(config.classes.highContrast, highContrastToggle.checked);
             });
-            this.closest('.theme-option').classList.add('selected');
-        });
-    });
-
-    const dyslexicFontToggle = document.getElementById('dyslexicFont');
-    if (dyslexicFontToggle) {
-        dyslexicFontToggle.addEventListener('change', function () {
-            document.body.classList.toggle('dyslexic-font', this.checked);
-        });
-    }
-
-    const reduceMotionToggle = document.getElementById('reduceMotion');
-    if (reduceMotionToggle) {
-        reduceMotionToggle.addEventListener('change', function () {
-            document.body.classList.toggle('reduce-motion', this.checked);
-        });
-    }
-
-    // Gestion du bouton d'exportation des données
-    const downloadButton = document.querySelector('.download-button');
-    if (downloadButton) {
-        downloadButton.addEventListener('click', function (e) {
-            // Empêcher le comportement par défaut
-            e.preventDefault();
-
-            // Créer un formulaire dédié pour l'exportation
-            const exportForm = document.createElement('form');
-            exportForm.method = 'POST';
-            exportForm.action = '';
-
-            const exportInput = document.createElement('input');
-            exportInput.type = 'hidden';
-            exportInput.name = 'export_data';
-            exportInput.value = '1';
-
-            exportForm.appendChild(exportInput);
-            document.body.appendChild(exportForm);
-            exportForm.submit();
-        });
-    }
+        },
+        
+        // Options de taille de police
+        setupFontSizeOptions() {
+            const fontSizeOptions = document.querySelectorAll(config.selectors.fontSizeOptions);
+            if (fontSizeOptions.length === 0) return;
+            
+            fontSizeOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    // Mettre à jour les classes de taille
+                    document.body.classList.remove('font-size-normal', 'font-size-large', 'font-size-larger');
+                    document.body.classList.add(`font-size-${option.value}`);
+                    
+                    // Mise à jour visuelle
+                    document.querySelectorAll(config.selectors.fontSizeSelector).forEach(el => {
+                        el.classList.remove(config.classes.selected);
+                    });
+                    option.closest('.theme-option').classList.add(config.classes.selected);
+                });
+            });
+        },
+        
+        // Option de police pour dyslexiques
+        setupDyslexicFontToggle() {
+            const dyslexicFontToggle = document.getElementById('dyslexicFont');
+            if (!dyslexicFontToggle) return;
+            
+            dyslexicFontToggle.addEventListener('change', () => {
+                document.body.classList.toggle(config.classes.dyslexicFont, dyslexicFontToggle.checked);
+            });
+        },
+        
+        // Option de réduction des animations
+        setupReduceMotionToggle() {
+            const reduceMotionToggle = document.getElementById('reduceMotion');
+            if (!reduceMotionToggle) return;
+            
+            reduceMotionToggle.addEventListener('change', () => {
+                document.body.classList.toggle(config.classes.reduceMotion, reduceMotionToggle.checked);
+            });
+        },
+        
+        // Exportation des données
+        setupDataExport() {
+            const downloadButton = document.querySelector(config.selectors.downloadButton);
+            if (!downloadButton) return;
+            
+            downloadButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                utils.submitForm('', { export_data: '1' });
+            });
+        }
+    };
+    
+    // Initialisation du gestionnaire de réglages
+    settingsManager.init();
 }); 

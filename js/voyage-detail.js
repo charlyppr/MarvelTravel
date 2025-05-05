@@ -1,87 +1,148 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+    // Configuration centralisée
+    const config = {
+        selectors: {
+            tabButtons: '.tab-button',
+            tabContents: '.tab-content',
+            tabContainer: '.tab-buttons',
+            carousel: '.carousel-container',
+            carouselTrack: '.carousel-track',
+            carouselSlide: '.carousel-slide',
+            dotsContainer: '.carousel-dots',
+            nextButton: '.next-button',
+            prevButton: '.prev-button',
+            dot: '.dot'
+        },
+        classes: {
+            active: 'active'
+        },
+        timing: {
+            autoPlayInterval: 5000
+        }
+    };
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+    // Gestionnaire du détail de voyage
+    const voyageDetailManager = {
+        // Propriétés
+        currentIndex: 0,
+        intervalId: null,
+        elements: {},
 
-            // Add active class to clicked button
-            this.classList.add('active');
+        // Initialisation
+        init() {
+            this.cacheElements();
+            this.setupTabs();
+            this.setupCarousel();
+        },
 
-            // Show corresponding content
-            const tabId = this.getAttribute('data-tab');
-            document.getElementById(tabId + '-content').classList.add('active');
-        });
-    });
+        // Mise en cache des éléments DOM fréquemment utilisés
+        cacheElements() {
+            this.elements = {
+                tabContainer: document.querySelector(config.selectors.tabContainer) || document.body,
+                tabButtons: document.querySelectorAll(config.selectors.tabButtons),
+                tabContents: document.querySelectorAll(config.selectors.tabContents),
+                carousel: document.querySelector(config.selectors.carousel)
+            };
 
-    // Carousel functionality
-    const carousel = document.querySelector('.carousel-container');
-    if (carousel) {
-        const track = carousel.querySelector('.carousel-track');
-        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
-        const nextButton = carousel.querySelector('.next-button');
-        const prevButton = carousel.querySelector('.prev-button');
-        const dots = Array.from(carousel.querySelectorAll('.dot'));
+            // Éléments du carousel (seulement si le carousel existe)
+            if (this.elements.carousel) {
+                this.elements.track = this.elements.carousel.querySelector(config.selectors.carouselTrack);
+                this.elements.slides = Array.from(this.elements.carousel.querySelectorAll(config.selectors.carouselSlide));
+                this.elements.dotsContainer = this.elements.carousel.querySelector(config.selectors.dotsContainer) || this.elements.carousel;
+                this.elements.nextButton = this.elements.carousel.querySelector(config.selectors.nextButton);
+                this.elements.prevButton = this.elements.carousel.querySelector(config.selectors.prevButton);
+                this.elements.dots = Array.from(this.elements.carousel.querySelectorAll(config.selectors.dot));
+            }
+        },
 
-        let currentIndex = 0;
+        // Configuration des onglets
+        setupTabs() {
+            const { tabContainer, tabButtons, tabContents } = this.elements;
+            
+            tabContainer.addEventListener('click', (e) => {
+                const button = e.target.closest(config.selectors.tabButtons);
+                if (!button) return;
+                
+                // Gestion des classes actives
+                tabButtons.forEach(btn => btn.classList.remove(config.classes.active));
+                tabContents.forEach(content => content.classList.remove(config.classes.active));
+                
+                button.classList.add(config.classes.active);
+                
+                // Affichage du contenu correspondant
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId + '-content').classList.add(config.classes.active);
+            });
+        },
 
-        // Function to move to specific slide
-        const moveToSlide = (index) => {
-            // Update track position for sliding animation
+        // Configuration du carousel
+        setupCarousel() {
+            if (!this.elements.carousel) return;
+            
+            const { carousel, nextButton, prevButton, dotsContainer } = this.elements;
+            
+            // Navigation par boutons
+            nextButton.addEventListener('click', () => this.moveToSlide(this.getNextIndex()));
+            prevButton.addEventListener('click', () => this.moveToSlide(this.getPrevIndex()));
+            
+            // Navigation par points
+            dotsContainer.addEventListener('click', (e) => {
+                const dot = e.target.closest(config.selectors.dot);
+                if (!dot) return;
+                
+                const index = this.elements.dots.indexOf(dot);
+                if (index !== -1) {
+                    this.moveToSlide(index);
+                }
+            });
+            
+            // Contrôle de l'autoplay
+            this.startAutoPlay();
+            carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+            carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+            
+            // Initialisation du premier slide
+            this.moveToSlide(0);
+        },
+
+        // Déplacement vers un slide spécifique
+        moveToSlide(index) {
+            const { track, dots } = this.elements;
+            
             track.style.transform = `translateX(-${index * 100}%)`;
-
-            // Update active dot
+            
+            // Mise à jour des points indicateurs
             dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
+                dot.classList.toggle(config.classes.active, i === index);
             });
+            
+            this.currentIndex = index;
+        },
 
-            // Update current index
-            currentIndex = index;
-        };
+        // Calcul de l'index suivant
+        getNextIndex() {
+            return (this.currentIndex + 1) % this.elements.slides.length;
+        },
 
-        // Event listeners for buttons
-        nextButton.addEventListener('click', () => {
-            const nextIndex = (currentIndex + 1) % slides.length;
-            moveToSlide(nextIndex);
-        });
+        // Calcul de l'index précédent
+        getPrevIndex() {
+            return (this.currentIndex - 1 + this.elements.slides.length) % this.elements.slides.length;
+        },
 
-        prevButton.addEventListener('click', () => {
-            const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-            moveToSlide(prevIndex);
-        });
+        // Démarrage de l'autoplay
+        startAutoPlay() {
+            this.stopAutoPlay(); // Arrêt préventif
+            this.intervalId = setInterval(() => {
+                this.moveToSlide(this.getNextIndex());
+            }, config.timing.autoPlayInterval);
+        },
 
-        // Event listeners for dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                moveToSlide(index);
-            });
-        });
-
-        // Auto-play functionality
-        let intervalId;
-
-        const startAutoPlay = () => {
-            intervalId = setInterval(() => {
-                const nextIndex = (currentIndex + 1) % slides.length;
-                moveToSlide(nextIndex);
-            }, 5000);
-        };
-
-        const stopAutoPlay = () => {
-            clearInterval(intervalId);
-        };
-
-        // Start autoplay
-        startAutoPlay();
-
-        // Pause autoplay on hover
-        carousel.addEventListener('mouseenter', stopAutoPlay);
-        carousel.addEventListener('mouseleave', startAutoPlay);
-
-        // Initialize first slide
-        moveToSlide(0);
-    }
+        // Arrêt de l'autoplay
+        stopAutoPlay() {
+            clearInterval(this.intervalId);
+        }
+    };
+    
+    // Initialisation du gestionnaire
+    voyageDetailManager.init();
 }); 

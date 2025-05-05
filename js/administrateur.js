@@ -1,205 +1,279 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Afficher le nombre d'utilisateurs
-    const userCount = document.querySelectorAll('tbody tr').length;
-    document.getElementById('voyage-count').textContent = userCount + ' voyageurs';
-
-    // Gestion des clics sur les status (bloqué/actif)
-    document.querySelectorAll('.toggle-status').forEach(statusElement => {
-        statusElement.addEventListener('click', function () {
-            // Vérifier l'état actuel
-            const isBlocked = this.getAttribute('data-status') === 'blocked';
-
-            // Simuler un délai de mise à jour
-            this.classList.add('updating');
-
-            setTimeout(() => {
-                // Basculer l'état
-                if (isBlocked) {
-                    // Changer en Actif
-                    this.classList.remove('status-pending');
-                    this.classList.add('status-ok');
-                    this.setAttribute('data-status', 'active');
-                    this.innerHTML = 'Actif<img src="../img/svg/check.svg" alt="check"><span class="tooltip">Cliquez pour bloquer</span>';
-                } else {
-                    // Changer en Bloqué
-                    this.classList.remove('status-ok');
-                    this.classList.add('status-pending');
-                    this.setAttribute('data-status', 'blocked');
-                    this.innerHTML = 'Bloqué<img src="../img/svg/block.svg" alt="block"><span class="tooltip">Cliquez pour débloquer</span>';
-                }
-
-                this.classList.remove('updating');
-
-                // Afficher une notification
-                showNotification(isBlocked ? 'Utilisateur débloqué avec succès' : 'Utilisateur bloqué avec succès', 'success');
-            }, 1000);
-        });
-    });
-
-    // Gestion des clics sur les badges VIP
-    document.querySelectorAll('.toggle-vip').forEach(vipElement => {
-        vipElement.addEventListener('click', function () {
-            // Vérifier l'état actuel
-            const isVip = this.getAttribute('data-vip') === '1';
-
-            // Simuler un délai de mise à jour
-            this.classList.add('updating');
-
-            setTimeout(() => {
-                // Basculer l'état
-                if (isVip) {
-                    // Changer en non-VIP
-                    this.classList.remove('vip-badge');
-                    this.classList.add('novip-badge');
-                    this.setAttribute('data-vip', '0');
-                    this.innerHTML = 'Non<img src="../img/svg/no.svg" alt="croix"><span class="tooltip">Cliquez pour ajouter le VIP</span>';
-                } else {
-                    // Changer en VIP
-                    this.classList.remove('novip-badge');
-                    this.classList.add('vip-badge');
-                    this.setAttribute('data-vip', '1');
-                    this.innerHTML = 'VIP<img src="../img/svg/etoile.svg" alt="etoile"><span class="tooltip">Cliquez pour retirer le VIP</span>';
-                }
-
-                this.classList.remove('updating');
-
-                // Afficher une notification
-                showNotification(isVip ? 'Statut VIP retiré avec succès' : 'Statut VIP ajouté avec succès', 'success');
-            }, 1000);
-        });
-    });
-
-    // Fonction pour afficher les notifications
-    function showNotification(message, type = 'success') {
-        // Supprimer une notification existante si elle est déjà présente
-        const existingNotification = document.querySelector('.notification');
-        if (existingNotification) {
-            existingNotification.remove();
+    // Configuration centralisée
+    const config = {
+        selectors: {
+            tableBody: '.tab-voyageurs tbody',
+            rows: 'tr',
+            voyageCount: '#voyage-count',
+            toggleStatus: '.toggle-status',
+            toggleVip: '.toggle-vip',
+            searchInput: '#search',
+            searchNoResults: '#search-no-results',
+            searchTerm: '#search-term',
+            sortSelect: '#sort-select',
+            searchButton: '#search-button',
+            resetSearch: '#reset-search'
+        },
+        classes: {
+            notification: 'notification',
+            updating: 'updating',
+            statusOk: 'status-ok',
+            statusPending: 'status-pending',
+            vipBadge: 'vip-badge',
+            novipBadge: 'novip-badge'
+        },
+        timing: {
+            toggleDelay: 1000,
+            notificationFadeIn: 10,
+            notificationDuration: 3000,
+            notificationFadeOut: 500
+        },
+        status: {
+            blocked: {
+                value: 'blocked',
+                class: 'status-pending',
+                html: 'Bloqué<img src="../img/svg/block.svg" alt="block"><span class="tooltip">Cliquez pour débloquer</span>',
+                message: 'Utilisateur bloqué avec succès'
+            },
+            active: {
+                value: 'active',
+                class: 'status-ok',
+                html: 'Actif<img src="../img/svg/check.svg" alt="check"><span class="tooltip">Cliquez pour bloquer</span>',
+                message: 'Utilisateur débloqué avec succès'
+            }
+        },
+        vip: {
+            no: {
+                value: '0',
+                class: 'novip-badge',
+                html: 'Non<img src="../img/svg/no.svg" alt="croix"><span class="tooltip">Cliquez pour ajouter le VIP</span>',
+                message: 'Statut VIP retiré avec succès'
+            },
+            yes: {
+                value: '1',
+                class: 'vip-badge',
+                html: 'VIP<img src="../img/svg/etoile.svg" alt="etoile"><span class="tooltip">Cliquez pour retirer le VIP</span>',
+                message: 'Statut VIP ajouté avec succès'
+            }
         }
+    };
 
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-
-        document.body.appendChild(notification);
-
-        // Afficher avec fade-in
-        setTimeout(() => notification.style.opacity = '1', 10);
-
-        // Cacher après 3 secondes
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            setTimeout(() => notification.remove(), 500);
-        }, 3000);
-    }
-
-    // Fonctionnalité de tri
-    const sortSelect = document.getElementById('sort-select');
-    sortSelect.addEventListener('change', function() {
-        sortTable(this.value);
-    });
-
-    function sortTable(sortBy) {
-        const tableBody = document.querySelector('.tab-voyageurs tbody');
-        const rows = Array.from(tableBody.querySelectorAll('tr'));
+    // Utilitaires
+    const utils = {
+        // Sélecteurs d'éléments
+        dom: {
+            getElement: (selector) => {
+                return document.querySelector(selector);
+            },
+            
+            getAllElements: (selector, parent = document) => {
+                return parent.querySelectorAll(selector);
+            }
+        },
         
-        rows.sort((a, b) => {
-            switch(sortBy) {
-                case 'recent':
-                    // Tri par date d'inscription (plus récent d'abord)
-                    const dateA = new Date(a.querySelector('.date').getAttribute('data-date'));
-                    const dateB = new Date(b.querySelector('.date').getAttribute('data-date'));
-                    return dateB - dateA;
-                case 'oldest':
-                    // Tri par date d'inscription (plus ancien d'abord)
-                    const dateC = new Date(a.querySelector('.date').getAttribute('data-date'));
-                    const dateD = new Date(b.querySelector('.date').getAttribute('data-date'));
-                    return dateC - dateD;
-                case 'name-asc':
-                    // Tri par nom (A-Z)
+        // Notifications
+        notification: {
+            show: (message, type = 'success') => {
+                const existingNotification = utils.dom.getElement('.' + config.classes.notification);
+                if (existingNotification) existingNotification.remove();
+                
+                const notification = document.createElement('div');
+                notification.className = `${config.classes.notification} notification-${type}`;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.style.opacity = '1', config.timing.notificationFadeIn);
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), config.timing.notificationFadeOut);
+                }, config.timing.notificationDuration);
+            }
+        },
+        
+        // Stratégies de tri
+        sort: {
+            strategies: {
+                'recent': (a, b) => {
+                    return new Date(b.querySelector('.date').getAttribute('data-date')) - 
+                           new Date(a.querySelector('.date').getAttribute('data-date'));
+                },
+                'oldest': (a, b) => {
+                    return new Date(a.querySelector('.date').getAttribute('data-date')) - 
+                           new Date(b.querySelector('.date').getAttribute('data-date'));
+                },
+                'name-asc': (a, b) => {
                     return a.querySelector('.nom').textContent.localeCompare(b.querySelector('.nom').textContent);
-                case 'name-desc':
-                    // Tri par nom (Z-A)
+                },
+                'name-desc': (a, b) => {
                     return b.querySelector('.nom').textContent.localeCompare(a.querySelector('.nom').textContent);
-                default:
-                    return 0;
+                }
             }
-        });
+        }
+    };
+
+    // Gestionnaire de l'administration
+    const adminManager = {
+        // Éléments DOM fréquemment utilisés
+        elements: {
+            tableBody: null,
+            voyageCount: null,
+            searchInput: null,
+            searchNoResults: null,
+            searchTerm: null,
+            sortSelect: null
+        },
         
-        // Vider et remplir le tableau avec les lignes triées
-        tableBody.innerHTML = '';
-        rows.forEach(row => tableBody.appendChild(row));
+        // Initialisation
+        init() {
+            this.cacheElements();
+            this.setupToggleStatus();
+            this.setupToggleVip();
+            this.setupSearch();
+            this.setupSort();
+            this.updateUserCount();
+            this.sortTable('recent');
+        },
         
-        // Mise à jour du compteur après le tri
-        updateUserCount();
-    }
-    
-    // Fonctionnalité de recherche
-    const searchInput = document.getElementById('search');
-    const searchButton = searchInput.nextElementSibling;
-    const searchNoResults = document.getElementById('search-no-results');
-    const searchTerm = document.getElementById('search-term');
-    const resetSearch = document.getElementById('reset-search');
-    
-    // Fonction de recherche
-    function performSearch() {
-        const query = searchInput.value.toLowerCase().trim();
-        const rows = document.querySelectorAll('.tab-voyageurs tbody tr');
-        let hasResults = false;
+        // Mise en cache des éléments DOM
+        cacheElements() {
+            this.elements = {
+                tableBody: utils.dom.getElement(config.selectors.tableBody),
+                voyageCount: utils.dom.getElement(config.selectors.voyageCount),
+                searchInput: utils.dom.getElement(config.selectors.searchInput),
+                searchNoResults: utils.dom.getElement(config.selectors.searchNoResults),
+                searchTerm: utils.dom.getElement(config.selectors.searchTerm),
+                sortSelect: utils.dom.getElement(config.selectors.sortSelect)
+            };
+        },
         
-        rows.forEach(row => {
-            const name = row.querySelector('.nom').textContent.toLowerCase();
-            const email = row.getAttribute('data-email').toLowerCase();
+        // Fonction générique pour configurer les éléments basculables
+        setupToggle(selector, options) {
+            utils.dom.getAllElements(selector).forEach(element => {
+                element.addEventListener('click', function () {
+                    const currentState = this.getAttribute(options.dataAttr) === options.states[0].value;
+                    this.classList.add(config.classes.updating);
+                    
+                    setTimeout(() => {
+                        const newState = currentState ? options.states[1] : options.states[0];
+                        
+                        // Mettre à jour les classes
+                        this.classList.remove(currentState ? options.states[0].class : options.states[1].class);
+                        this.classList.add(currentState ? options.states[1].class : options.states[0].class);
+                        
+                        // Mettre à jour l'attribut de données
+                        this.setAttribute(options.dataAttr, currentState ? newState.value : options.states[0].value);
+                        
+                        // Mettre à jour le contenu HTML
+                        this.innerHTML = (currentState ? newState.html : options.states[0].html);
+                        
+                        this.classList.remove(config.classes.updating);
+                        
+                        // Afficher notification
+                        utils.notification.show(currentState ? newState.message : options.states[0].message, 'success');
+                    }, config.timing.toggleDelay);
+                });
+            });
+        },
+        
+        // Configuration du basculement de statut
+        setupToggleStatus() {
+            this.setupToggle(config.selectors.toggleStatus, {
+                dataAttr: 'data-status',
+                states: [
+                    config.status.blocked,
+                    config.status.active
+                ]
+            });
+        },
+        
+        // Configuration du basculement VIP
+        setupToggleVip() {
+            this.setupToggle(config.selectors.toggleVip, {
+                dataAttr: 'data-vip',
+                states: [
+                    config.vip.no,
+                    config.vip.yes
+                ]
+            });
+        },
+        
+        // Configuration de la recherche
+        setupSearch() {
+            const { searchInput } = this.elements;
             
-            // Si la requête contient @ ou ressemble à un email, chercher dans l'email aussi
-            // Sinon chercher uniquement dans le nom
-            const matchFound = query.includes('@') 
-                ? email.includes(query) 
-                : name.includes(query);
+            // Écouter les événements de recherche
+            searchInput.addEventListener('input', () => this.performSearch());
             
-            if (matchFound || query === '') {
-                row.style.display = '';
-                hasResults = true;
-            } else {
-                row.style.display = 'none';
+            const searchButton = utils.dom.getElement(config.selectors.searchButton) || 
+                                searchInput.nextElementSibling;
+            if (searchButton) {
+                searchButton.addEventListener('click', () => this.performSearch());
             }
-        });
+            
+            searchInput.addEventListener('keypress', e => { 
+                if (e.key === 'Enter') this.performSearch();
+            });
+            
+            utils.dom.getElement(config.selectors.resetSearch).addEventListener('click', () => {
+                searchInput.value = '';
+                this.performSearch();
+                searchInput.focus();
+            });
+        },
         
-        // Afficher le message "aucun résultat" si nécessaire
-        if (!hasResults && query !== '') {
-            searchNoResults.style.display = 'flex';
-            searchTerm.textContent = query;
-        } else {
-            searchNoResults.style.display = 'none';
-        }
+        // Exécution de la recherche
+        performSearch() {
+            const { searchInput, searchNoResults, searchTerm, tableBody } = this.elements;
+            const query = searchInput.value.toLowerCase().trim();
+            const rows = utils.dom.getAllElements(config.selectors.rows, tableBody);
+            let hasResults = false;
+            
+            rows.forEach(row => {
+                const name = row.querySelector('.nom').textContent.toLowerCase();
+                const email = row.getAttribute('data-email').toLowerCase();
+                const matchFound = query.includes('@') ? email.includes(query) : name.includes(query);
+                
+                row.style.display = (matchFound || query === '') ? '' : 'none';
+                hasResults = hasResults || (matchFound || query === '');
+            });
+            
+            searchNoResults.style.display = (!hasResults && query !== '') ? 'flex' : 'none';
+            if (!hasResults && query !== '') {
+                searchTerm.textContent = query;
+            }
+            
+            this.updateUserCount();
+        },
         
-        // Mise à jour du compteur après la recherche
-        updateUserCount();
-    }
-    
-    // Événements de recherche
-    searchInput.addEventListener('input', performSearch);
-    searchButton.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
+        // Configuration du tri
+        setupSort() {
+            this.elements.sortSelect.addEventListener('change', e => this.sortTable(e.target.value));
+        },
+        
+        // Tri du tableau
+        sortTable(sortBy) {
+            const { tableBody } = this.elements;
+            
+            if (!utils.sort.strategies[sortBy]) return;
+            
+            const rowsArray = Array.from(utils.dom.getAllElements(config.selectors.rows, tableBody));
+            rowsArray.sort(utils.sort.strategies[sortBy]);
+            
+            // Vider et remplir le tableau avec les lignes triées
+            tableBody.innerHTML = '';
+            rowsArray.forEach(row => tableBody.appendChild(row));
+            
+            this.updateUserCount();
+        },
+        
+        // Mise à jour du compteur d'utilisateurs
+        updateUserCount() {
+            const { tableBody, voyageCount } = this.elements;
+            const visibleUsers = utils.dom.getAllElements('tr:not([style*="display: none"])', tableBody).length;
+            voyageCount.textContent = visibleUsers + ' voyageurs';
         }
-    });
+    };
     
-    // Réinitialiser la recherche
-    resetSearch.addEventListener('click', function() {
-        searchInput.value = '';
-        performSearch();
-        searchInput.focus();
-    });
-    
-    // Fonction pour mettre à jour le compteur d'utilisateurs visibles
-    function updateUserCount() {
-        const visibleUsers = document.querySelectorAll('.tab-voyageurs tbody tr[style=""]').length || 
-                             document.querySelectorAll('.tab-voyageurs tbody tr:not([style*="display: none"])').length;
-        document.getElementById('voyage-count').textContent = visibleUsers + ' voyageurs';
-    }
-    
-    // Tri initial
-    sortTable('recent');
+    // Initialisation du gestionnaire d'administration
+    adminManager.init();
 }); 

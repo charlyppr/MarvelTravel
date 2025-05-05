@@ -1,471 +1,489 @@
-/**
- * Marvel Travel - Reservation System JavaScript
- * Handles all functionalities for the 4 reservation steps
- */
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Determine which step page we're on
-    const pathname = window.location.pathname;
-    const isEtape1 = pathname.includes('etape1.php');
-    const isEtape2 = pathname.includes('etape2.php');
-    const isEtape3 = pathname.includes('etape3.php');
-    const isEtape4 = pathname.includes('etape4.php');
-
-    // Common functionalities across steps
-    initializeCommonFunctions();
-
-    // Step-specific functionalities
-    if (isEtape1) {
-        initializeEtape1();
-    } else if (isEtape2) {
-        initializeEtape2();
-    } else if (isEtape3) {
-        initializeEtape3();
-    } else if (isEtape4) {
-        initializeEtape4();
-    }
-});
-
-/**
- * Common functionalities used across multiple steps
- */
-function initializeCommonFunctions() {
-    // Navigation toggles, common UI elements, etc.
-}
-
-/**
- * Etape 1 - Dates and number of travelers
- */
-function initializeEtape1() {
-    // Price update based on number of people
-    const nbPersonneInput = document.getElementById('nb_personne');
-    if (nbPersonneInput) {
-        nbPersonneInput.addEventListener('input', function() {
-            updatePriceDisplay();
-        });
-        // Initialize price display on page load
-        updatePriceDisplay();
-    }
-
-    // Form validation
-    const reservationForm = document.getElementById('reservationForm');
-    const submitButton = reservationForm.querySelector('button[type="submit"]');
-    
-    // Disable submit button by default if dates are not set
-    validateEtape1Form();
-    
-    // Check date fields on input
-    const dateDebutInput = document.getElementById('date-debut');
-    const dateFinInput = document.getElementById('date-fin');
-    
-    if (dateDebutInput) {
-        dateDebutInput.addEventListener('input', validateEtape1Form);
-    }
-    
-    if (dateFinInput) {
-        dateFinInput.addEventListener('input', validateEtape1Form);
-    }
-    
-    if (reservationForm) {
-        reservationForm.addEventListener('submit', function(e) {
-            if (!validateEtape1Form()) {
-                e.preventDefault();
-                alert('Veuillez sélectionner des dates d\'arrivée et de départ.');
-            }
-        });
-    }
-
-    // Initialize date fields
-    initializeDateFields();
-}
-
-/**
- * Validates the dates form and enables/disables submit button
- */
-function validateEtape1Form() {
-    const dateDebutInput = document.getElementById('date-debut');
-    const dateFinInput = document.getElementById('date-fin');
-    const submitButton = document.querySelector('#reservationForm button[type="submit"]');
-    
-    if (!dateDebutInput || !dateFinInput || !submitButton) {
-        return false;
-    }
-    
-    const isValid = dateDebutInput.value && dateFinInput.value;
-    
-    if (submitButton) {
-        submitButton.disabled = !isValid;
-    }
-    
-    return isValid;
-}
-
-/**
- * Updates price display based on number of people
- */
-function updatePriceDisplay() {
-    const nbPersonnes = parseInt(document.getElementById('nb_personne').value);
-    const prixBaseElement = document.querySelector('.price-row:first-child span:last-child');
-    const prixBase = parseFloat(prixBaseElement.textContent.replace(/[^\d,]/g, '').replace(',', '.'));
-    const prixTotal = nbPersonnes * prixBase;
-
-    document.getElementById('nb_personnes_display').textContent = nbPersonnes;
-    document.getElementById('prix_total').textContent = formatPrice(prixTotal) + ' €';
-}
-
-/**
- * Format price with French number formatting
- */
-function formatPrice(price) {
-    return new Intl.NumberFormat('fr-FR', {
-        style: 'currency',
-        currency: 'EUR',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }).format(price).replace('€', '').trim();
-}
-
-/**
- * Initialize date input fields and setup visibility
- */
-function initializeDateFields() {
-    const dateDebutInput = document.getElementById('date-debut');
-    const dateFinInput = document.getElementById('date-fin');
-    const dateDebutVisible = document.getElementById('date-debut-visible');
-    const dateFinVisible = document.getElementById('date-fin-visible');
-
-    // Initialize visible fields with formatted dates if values exist
-    if (dateDebutInput && dateDebutInput.value) {
-        const date = new Date(dateDebutInput.value);
-        const options = { day: 'numeric', month: 'short' };
-        dateDebutVisible.value = date.toLocaleDateString('fr-FR', options);
-    }
-
-    if (dateFinInput && dateFinInput.value) {
-        const date = new Date(dateFinInput.value);
-        const options = { day: 'numeric', month: 'short' };
-        dateFinVisible.value = date.toLocaleDateString('fr-FR', options);
-    }
-}
-
-/**
- * Etape 2 - Travelers information
- */
-function initializeEtape2() {
-    // Autofill button functionality
-    const autoFillButton = document.getElementById('autofill-button');
-    if (autoFillButton) {
-        autoFillButton.addEventListener('click', function() {
-            autofillPrimaryTraveler();
-        });
-    }
-
-    // Format passport fields
-    const passportInputs = document.querySelectorAll('input[id^="passport_"]');
-    passportInputs.forEach(input => {
-        // Format existing values
-        if (input.value) {
-            formatPassport(input);
-        }
-
-        // Add event listeners for input formatting
-        input.addEventListener('input', function() {
-            formatPassport(this);
-            validatePassport(this);
-            validateForm();
-        });
-
-        input.addEventListener('keydown', function(e) {
-            // Allow only valid keys: numbers, navigation, etc.
-            if (
-                e.key === 'Backspace' ||
-                e.key === 'Delete' ||
-                e.key === 'ArrowLeft' ||
-                e.key === 'ArrowRight' ||
-                e.key === 'Tab' ||
-                (e.key >= '0' && e.key <= '9')
-            ) {
-                return true;
-            }
-
-            // Block all other characters
-            e.preventDefault();
-            return false;
-        });
-    });
-
-    // Add validation for all required fields
-    const requiredInputs = document.querySelectorAll('input[required], select[required]');
-    requiredInputs.forEach(input => {
-        input.addEventListener('input', function() {
-            validateForm();
-        });
-        input.addEventListener('change', function() {
-            validateForm();
-        });
-    });
-
-    // Initial form validation
-    validateForm();
-}
-
-/**
- * Validate form and update submit button state
- */
-function validateForm() {
-    const form = document.getElementById('travelersForm');
-    const submitButton = document.getElementById('submit-button');
-    let isValid = true;
-
-    // Check all required fields
-    const requiredInputs = form.querySelectorAll('input[required], select[required]');
-    requiredInputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-        }
-        
-        // Special validation for passport numbers
-        if (input.id.startsWith('passport_')) {
-            const digitsOnly = input.value.replace(/[^\d]/g, '');
-            if (digitsOnly.length !== 10 && digitsOnly.length !== 0) {
-                isValid = false;
-            }
+    // Configuration centralisée
+    const config = {
+        selectors: {
+            // Étape 1
+            nbPersonne: '#nb_personne',
+            reservationForm: '#reservationForm',
+            dateDebut: '#date-debut',
+            dateFin: '#date-fin',
+            dateDebutVisible: '#date-debut-visible',
+            dateFinVisible: '#date-fin-visible',
+            nbPersonnesDisplay: '#nb_personnes_display',
+            prixTotal: '#prix_total',
+            submitButton: '#reservationForm button[type="submit"]',
+            prixBaseElement: '.price-row:first-child span:last-child',
             
-            // If there's no value, we don't show red border but the field is still required
-            if (digitsOnly.length === 0) {
-                isValid = false;
-            }
+            // Étape 2
+            travelersForm: '#travelersForm',
+            autofillButton: '#autofill-button',
+            passportInputs: 'input[id^="passport_"]',
+            requiredInputs: 'input[required], select[required]',
+            
+            // Étape 3
+            optionsForm: '#optionsForm',
+            participantToggles: '.participant-toggle',
+            participantCheckbox: '.participant-checkbox',
+            optionsPrice: '.options-row span:last-child',
+            totalPrice: '.price-total span:last-child',
+            
+        },
+        classes: {
+            selected: 'selected',
+            invalid: 'invalid',
+            priceUpdated: 'price-updated'
+        },
+        timing: {
+            priceAnimationDuration: 700
         }
-    });
-
-    // Check if any form-field has invalid class
-    const invalidFields = form.querySelectorAll('.form-field.invalid');
-    if (invalidFields.length > 0) {
-        isValid = false;
-    }
-
-    // Update submit button state
-    if (submitButton) {
-        submitButton.disabled = !isValid;
-    }
-}
-
-/**
- * Validate passport field
- */
-function validatePassport(input) {
-    const errorElement = document.getElementById(input.id + '_error');
-    if (!errorElement) return;
-    
-    // Get the form-field container
-    const formField = input.closest('.form-field');
-    
-    const digitsOnly = input.value.replace(/[^\d]/g, '');
-    
-    if (digitsOnly.length === 0) {
-        // Input is empty, remove any error message
-        errorElement.style.opacity = '0';
-        formField.classList.remove('invalid');
-    } else if (digitsOnly.length !== 10) {
-        // Input has content but not exactly 10 digits
-        errorElement.style.opacity = '1';
-        formField.classList.add('invalid');
-    } else {
-        // Input has exactly 10 digits
-        errorElement.style.opacity = '0';
-        formField.classList.remove('invalid');
-    }
-}
-
-/**
- * Autofill form with primary traveler information
- */
-function autofillPrimaryTraveler() {
-    // These values should be set as data attributes on the button or a hidden input
-    // For now, we'll retrieve them from the page in runtime context
-    const userData = {
-        lastName: document.querySelector('#autofill-button').getAttribute('data-lastname'),
-        firstName: document.querySelector('#autofill-button').getAttribute('data-firstname'),
-        civilite: document.querySelector('#autofill-button').getAttribute('data-civilite'),
-        dateNaissance: document.querySelector('#autofill-button').getAttribute('data-birthdate'),
-        nationalite: document.querySelector('#autofill-button').getAttribute('data-nationality'),
-        passport: document.querySelector('#autofill-button').getAttribute('data-passport')
     };
 
-    // Fill the fields
-    if (document.getElementById('nom_1')) document.getElementById('nom_1').value = userData.lastName;
-    if (document.getElementById('prenom_1')) document.getElementById('prenom_1').value = userData.firstName;
-    
-    if (userData.civilite && document.getElementById('civilite_1')) {
-        document.getElementById('civilite_1').value = userData.civilite;
-    }
-    
-    if (userData.dateNaissance && document.getElementById('date_naissance_1')) {
-        document.getElementById('date_naissance_1').value = userData.dateNaissance;
-    }
-    
-    if (userData.nationalite && document.getElementById('nationalite_1')) {
-        document.getElementById('nationalite_1').value = userData.nationalite;
-    }
-    
-    if (userData.passport && document.getElementById('passport_1')) {
-        document.getElementById('passport_1').value = userData.passport;
-        formatPassport(document.getElementById('passport_1'));
-        validatePassport(document.getElementById('passport_1'));
-    }
-    
-    // Trigger validation after autofill
-    validateForm();
-}
-
-/**
- * Format passport number with spaces (XXX XXX XXX X)
- */
-function formatPassport(input) {
-    // Remove all non-digits
-    let value = input.value.replace(/[^\d]/g, '');
-    
-    // Limit to 10 digits
-    value = value.slice(0, 10);
-    
-    // Format with spaces (XXX XXX XXX X)
-    let formattedValue = '';
-    for (let i = 0; i < value.length; i++) {
-        if (i === 3 || i === 6 || i === 9) {
-            formattedValue += ' ';
-        }
-        formattedValue += value[i];
-    }
-    
-    // Update input value
-    input.value = formattedValue;
-}
-
-/**
- * Etape 3 - Options selection
- */
-function initializeEtape3() {
-    // Handle participant toggles for options
-    const participantToggles = document.querySelectorAll('.participant-toggle');
-    const prixOptionsElement = document.querySelector('.options-row span:last-child');
-    const prixTotalElement = document.querySelector('.price-total span:last-child');
-    
-    // Extract the base price once
-    const prixBaseText = document.querySelector('.price-row:first-child span:last-child').textContent;
-    const prixBase = parseFloat(prixBaseText.replace(/[^\d,]/g, '').replace(',', '.'));
-    
-    let prixOptions = 0;
-    
-    // Initialize price options from existing selections
-    calculateInitialOptionsPrice();
-    
-    // Handle clicks on participant toggles
-    participantToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            handleParticipantToggle(e, this);
-            updateOptionsPrice();
-        });
-    });
-
-    /**
-     * Calculate initial price of selected options
-     */
-    function calculateInitialOptionsPrice() {
-        const allCheckboxes = document.querySelectorAll('.participant-checkbox:checked');
+    // Utilitaires
+    const utils = {
+        // Formater un prix en format français
+        formatPrice: (price) => {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(price).replace('€', '').trim();
+        },
         
-        allCheckboxes.forEach(box => {
-            const optionItem = box.closest('.option-item');
-            const priceText = optionItem.querySelector('.option-price').textContent;
-            const price = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-            prixOptions += price;
-        });
-        
-        // Update the display
-        if (prixOptionsElement) {
-            prixOptionsElement.textContent = formatPrice(prixOptions) + ' €';
+        // Extraire un nombre d'une chaîne de prix
+        extractPrice: (priceString) => {
+            return parseFloat(priceString.replace(/[^\d,]/g, '').replace(',', '.'));
         }
-        
-        if (prixTotalElement) {
-            prixTotalElement.textContent = formatPrice(prixBase + prixOptions) + ' €';
-        }
-    }
+    };
 
-    /**
-     * Handle participant toggle click
-     */
-    function handleParticipantToggle(e, toggleElement) {
-        const checkbox = toggleElement.querySelector('input[type="checkbox"]');
-        if (e.target.tagName.toLowerCase() !== 'input') {
-            checkbox.checked = !checkbox.checked;
-            e.preventDefault();
-        }
-        
-        // Update toggle styling
-        if (checkbox.checked) {
-            toggleElement.classList.add('selected');
-        } else {
-            toggleElement.classList.remove('selected');
-        }
-    }
+    // Gestionnaire de réservation
+    const reservationManager = {
+        // Initialisation
+        init() {
+            // Déterminer sur quelle page nous sommes
+            const pathname = window.location.pathname;
+            const isEtape1 = pathname.includes('etape1.php');
+            const isEtape2 = pathname.includes('etape2.php');
+            const isEtape3 = pathname.includes('etape3.php');
 
-    /**
-     * Update options price based on selected participants
-     */
-    function updateOptionsPrice() {
-        const allCheckboxes = document.querySelectorAll('.participant-checkbox');
-        prixOptions = 0;
-        
-        allCheckboxes.forEach(box => {
-            if (box.checked) {
-                // Extract price from the DOM
-                const optionItem = box.closest('.option-item');
-                const priceText = optionItem.querySelector('.option-price').textContent;
-                const price = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-                prixOptions += price;
+            // Initialiser les fonctionnalités spécifiques à chaque étape
+            if (isEtape1) {
+                this.initializeEtape1();
+            } else if (isEtape2) {
+                this.initializeEtape2();
+            } else if (isEtape3) {
+                this.initializeEtape3();
             }
-        });
-        
-        // Update price displays with animation
-        updatePriceDisplays();
-    }
+        },
 
-    /**
-     * Update price displays with animation
-     */
-    function updatePriceDisplays() {
-        if (prixOptionsElement) {
-            prixOptionsElement.textContent = formatPrice(prixOptions) + ' €';
-            prixOptionsElement.classList.add('price-updated');
-        }
-        
-        if (prixTotalElement) {
-            prixTotalElement.textContent = formatPrice(prixBase + prixOptions) + ' €';
-            prixTotalElement.classList.add('price-updated');
-        }
-        
-        // Remove animation class after transition
-        setTimeout(() => {
-            if (prixOptionsElement) prixOptionsElement.classList.remove('price-updated');
-            if (prixTotalElement) prixTotalElement.classList.remove('price-updated');
-        }, 700);
-    }
-}
+        // ÉTAPE 1 - Dates et nombre de voyageurs
+        initializeEtape1() {
+            this.setupNbPersonneInput();
+            this.setupDateFields();
+            this.setupReservationFormValidation();
+        },
 
-/**
- * Etape 4 - Payment
- */
-function initializeEtape4() {
-    // Handle promo code application and payment form validation
-    const promoForm = document.querySelector('.promo-code-form');
-    const promoInput = document.getElementById('promo-code');
-    const promoMessage = document.getElementById('promo-message');
+        // Configuration du champ nombre de personnes
+        setupNbPersonneInput() {
+            const nbPersonneInput = document.querySelector(config.selectors.nbPersonne);
+            if (!nbPersonneInput) return;
+
+            nbPersonneInput.addEventListener('input', () => this.updatePriceDisplay());
+            this.updatePriceDisplay();
+        },
+
+        // Mise à jour de l'affichage du prix
+        updatePriceDisplay() {
+            const nbPersonneInput = document.querySelector(config.selectors.nbPersonne);
+            const prixBaseElement = document.querySelector(config.selectors.prixBaseElement);
+            const nbPersonnesDisplay = document.querySelector(config.selectors.nbPersonnesDisplay);
+            const prixTotalElement = document.querySelector(config.selectors.prixTotal);
+            
+            if (!nbPersonneInput || !prixBaseElement || !nbPersonnesDisplay || !prixTotalElement) return;
+            
+            const nbPersonnes = parseInt(nbPersonneInput.value);
+            const prixBase = utils.extractPrice(prixBaseElement.textContent);
+            const prixTotal = nbPersonnes * prixBase;
+
+            nbPersonnesDisplay.textContent = nbPersonnes;
+            prixTotalElement.textContent = utils.formatPrice(prixTotal) + ' €';
+        },
+
+        // Configuration des champs de date
+        setupDateFields() {
+            const dateDebutInput = document.querySelector(config.selectors.dateDebut);
+            const dateFinInput = document.querySelector(config.selectors.dateFin);
+            const dateDebutVisible = document.querySelector(config.selectors.dateDebutVisible);
+            const dateFinVisible = document.querySelector(config.selectors.dateFinVisible);
+
+            if (!dateDebutInput || !dateFinInput || !dateDebutVisible || !dateFinVisible) return;
+
+            // Initialiser les champs visibles avec des dates formatées si les valeurs existent
+            if (dateDebutInput.value) {
+                const date = new Date(dateDebutInput.value);
+                const options = { day: 'numeric', month: 'short' };
+                dateDebutVisible.value = date.toLocaleDateString('fr-FR', options);
+            }
+
+            if (dateFinInput.value) {
+                const date = new Date(dateFinInput.value);
+                const options = { day: 'numeric', month: 'short' };
+                dateFinVisible.value = date.toLocaleDateString('fr-FR', options);
+            }
+
+            // Ajouter des écouteurs pour la validation
+            dateDebutInput.addEventListener('input', () => this.validateEtape1Form());
+            dateFinInput.addEventListener('input', () => this.validateEtape1Form());
+            
+            // Déclencher la validation au démarrage
+            this.validateEtape1Form();
+        },
+
+        // Configuration de la validation du formulaire
+        setupReservationFormValidation() {
+            const form = document.querySelector(config.selectors.reservationForm);
+            
+            // Validation initiale
+            this.validateEtape1Form();
+            
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    if (!this.validateEtape1Form()) {
+                        e.preventDefault();
+                        alert('Veuillez sélectionner des dates d\'arrivée et de départ.');
+                    }
+                });
+            }
+        },
+
+        // Validation du formulaire étape 1
+        validateEtape1Form() {
+            const dateDebutInput = document.querySelector(config.selectors.dateDebut);
+            const dateFinInput = document.querySelector(config.selectors.dateFin);
+            const submitButton = document.querySelector(config.selectors.submitButton);
+            
+            if (!dateDebutInput || !dateFinInput || !submitButton) {
+                return false;
+            }
+            
+            const isValid = dateDebutInput.value && dateFinInput.value;
+            
+            submitButton.disabled = !isValid;
+            return isValid;
+        },
+
+        // ÉTAPE 2 - Informations des voyageurs
+        initializeEtape2() {
+            this.setupAutofillButton();
+            this.setupPassportFields();
+            this.setupEtape2FormValidation();
+        },
+
+        // Configuration du bouton d'auto-remplissage
+        setupAutofillButton() {
+            const autoFillButton = document.querySelector(config.selectors.autofillButton);
+            if (!autoFillButton) return;
+            
+            autoFillButton.addEventListener('click', () => this.autofillPrimaryTraveler());
+        },
+
+        // Auto-remplissage des informations du voyageur principal
+        autofillPrimaryTraveler() {
+            const autoFillButton = document.querySelector(config.selectors.autofillButton);
+            if (!autoFillButton) return;
+            
+            // Récupérer les données de l'utilisateur
+            const userData = {
+                lastName: autoFillButton.getAttribute('data-lastname'),
+                firstName: autoFillButton.getAttribute('data-firstname'),
+                civilite: autoFillButton.getAttribute('data-civilite'),
+                dateNaissance: autoFillButton.getAttribute('data-birthdate'),
+                nationalite: autoFillButton.getAttribute('data-nationality'),
+                passport: autoFillButton.getAttribute('data-passport')
+            };
+
+            // Remplir les champs
+            const fields = {
+                nom: document.getElementById('nom_1'),
+                prenom: document.getElementById('prenom_1'),
+                civilite: document.getElementById('civilite_1'),
+                dateNaissance: document.getElementById('date_naissance_1'),
+                nationalite: document.getElementById('nationalite_1'),
+                passport: document.getElementById('passport_1')
+            };
+
+            if (fields.nom) fields.nom.value = userData.lastName;
+            if (fields.prenom) fields.prenom.value = userData.firstName;
+            if (userData.civilite && fields.civilite) fields.civilite.value = userData.civilite;
+            if (userData.dateNaissance && fields.dateNaissance) fields.dateNaissance.value = userData.dateNaissance;
+            if (userData.nationalite && fields.nationalite) fields.nationalite.value = userData.nationalite;
+            
+            if (userData.passport && fields.passport) {
+                fields.passport.value = userData.passport;
+                this.formatPassport(fields.passport);
+                this.validatePassport(fields.passport);
+            }
+            
+            // Déclencher la validation après auto-remplissage
+            this.validateEtape2Form();
+        },
+
+        // Configuration des champs de passeport
+        setupPassportFields() {
+            const passportInputs = document.querySelectorAll(config.selectors.passportInputs);
+            passportInputs.forEach(input => {
+                // Formater les valeurs existantes
+                if (input.value) {
+                    this.formatPassport(input);
+                }
+
+                // Ajouter des écouteurs pour le formatage à la saisie
+                input.addEventListener('input', () => {
+                    this.formatPassport(input);
+                    this.validatePassport(input);
+                    this.validateEtape2Form();
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    // Autoriser uniquement les touches valides : chiffres, navigation, etc.
+                    if (
+                        e.key === 'Backspace' ||
+                        e.key === 'Delete' ||
+                        e.key === 'ArrowLeft' ||
+                        e.key === 'ArrowRight' ||
+                        e.key === 'Tab' ||
+                        (e.key >= '0' && e.key <= '9')
+                    ) {
+                        return true;
+                    }
+
+                    // Bloquer tous les autres caractères
+                    e.preventDefault();
+                    return false;
+                });
+            });
+        },
+
+        // Formatage du numéro de passeport avec des espaces (XXX XXX XXX X)
+        formatPassport(input) {
+            // Supprimer tous les caractères non numériques
+            let value = input.value.replace(/[^\d]/g, '');
+            
+            // Limiter à 10 chiffres
+            value = value.slice(0, 10);
+            
+            // Formater avec des espaces (XXX XXX XXX X)
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i === 3 || i === 6 || i === 9) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            
+            // Mettre à jour la valeur de l'input
+            input.value = formattedValue;
+        },
+
+        // Validation d'un champ de passeport
+        validatePassport(input) {
+            const errorElement = document.getElementById(input.id + '_error');
+            if (!errorElement) return;
+            
+            // Récupérer le conteneur form-field
+            const formField = input.closest('.form-field');
+            
+            const digitsOnly = input.value.replace(/[^\d]/g, '');
+            
+            if (digitsOnly.length === 0) {
+                // L'input est vide, supprimer tout message d'erreur
+                errorElement.style.opacity = '0';
+                formField.classList.remove(config.classes.invalid);
+            } else if (digitsOnly.length !== 10) {
+                // L'input a du contenu mais pas exactement 10 chiffres
+                errorElement.style.opacity = '1';
+                formField.classList.add(config.classes.invalid);
+            } else {
+                // L'input a exactement 10 chiffres
+                errorElement.style.opacity = '0';
+                formField.classList.remove(config.classes.invalid);
+            }
+        },
+
+        // Configuration de la validation du formulaire étape 2
+        setupEtape2FormValidation() {
+            const form = document.querySelector(config.selectors.travelersForm);
+            if (!form) return;
+            
+            // Utiliser la délégation d'événements pour la validation
+            form.addEventListener('input', (e) => {
+                if (e.target.hasAttribute('required') || e.target.id.startsWith('passport_')) {
+                    this.validateEtape2Form();
+                }
+            });
+            
+            form.addEventListener('change', (e) => {
+                if (e.target.hasAttribute('required')) {
+                    this.validateEtape2Form();
+                }
+            });
+
+            // Validation initiale
+            this.validateEtape2Form();
+        },
+
+        // Validation du formulaire étape 2
+        validateEtape2Form() {
+            const form = document.querySelector(config.selectors.travelersForm);
+            const submitButton = document.getElementById('submit-button');
+            if (!form || !submitButton) return;
+            
+            let isValid = true;
+
+            // Vérifier tous les champs obligatoires
+            const requiredInputs = form.querySelectorAll(config.selectors.requiredInputs);
+            requiredInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                }
+                
+                // Validation spéciale pour les numéros de passeport
+                if (input.id.startsWith('passport_')) {
+                    const digitsOnly = input.value.replace(/[^\d]/g, '');
+                    if (digitsOnly.length !== 10 && digitsOnly.length !== 0) {
+                        isValid = false;
+                    }
+                    
+                    // S'il n'y a pas de valeur, nous n'affichons pas de bordure rouge 
+                    // mais le champ est toujours requis
+                    if (digitsOnly.length === 0) {
+                        isValid = false;
+                    }
+                }
+            });
+
+            // Vérifier si un champ form-field a la classe invalid
+            const invalidFields = form.querySelectorAll('.form-field.' + config.classes.invalid);
+            if (invalidFields.length > 0) {
+                isValid = false;
+            }
+
+            // Mettre à jour l'état du bouton de soumission
+            submitButton.disabled = !isValid;
+        },
+
+        // ÉTAPE 3 - Sélection des options
+        initializeEtape3() {
+            this.setupOptionSelectors();
+        },
+
+        // Configuration des sélecteurs d'options
+        setupOptionSelectors() {
+            const optionsForm = document.querySelector(config.selectors.optionsForm);
+            if (!optionsForm) return;
+            
+            // Extraire les éléments d'affichage de prix
+            const priceElements = {
+                options: document.querySelector(config.selectors.optionsPrice),
+                total: document.querySelector(config.selectors.totalPrice),
+                base: document.querySelector(config.selectors.prixBaseElement)
+            };
+            
+            if (!priceElements.base) return;
+            
+            // Extraire le prix de base une seule fois
+            const prixBase = utils.extractPrice(priceElements.base.textContent);
+            
+            // Initialiser le prix des options à partir des sélections existantes
+            this.calculateInitialOptionsPrice(priceElements, prixBase);
+            
+            // Utiliser la délégation d'événements pour les toggles de participants
+            optionsForm.addEventListener('click', (e) => {
+                const toggle = e.target.closest(config.selectors.participantToggles);
+                if (toggle) {
+                    this.handleParticipantToggle(e, toggle);
+                    this.updateOptionsPrice(priceElements, prixBase);
+                }
+            });
+        },
+
+        // Calcul du prix initial des options sélectionnées
+        calculateInitialOptionsPrice(priceElements, prixBase) {
+            if (!priceElements.options || !priceElements.total) return;
+            
+            const allCheckboxes = document.querySelectorAll(config.selectors.participantCheckbox + ':checked');
+            let prixOptions = 0;
+            
+            allCheckboxes.forEach(box => {
+                const optionItem = box.closest('.option-item');
+                if (!optionItem) return;
+                
+                const priceText = optionItem.querySelector('.option-price')?.textContent;
+                if (!priceText) return;
+                
+                const price = utils.extractPrice(priceText);
+                prixOptions += price;
+            });
+            
+            // Mettre à jour l'affichage
+            priceElements.options.textContent = utils.formatPrice(prixOptions) + ' €';
+            priceElements.total.textContent = utils.formatPrice(prixBase + prixOptions) + ' €';
+        },
+
+        // Gestion du clic sur un toggle de participant
+        handleParticipantToggle(e, toggleElement) {
+            const checkbox = toggleElement.querySelector('input[type="checkbox"]');
+            if (!checkbox) return;
+            
+            if (e.target.tagName.toLowerCase() !== 'input') {
+                checkbox.checked = !checkbox.checked;
+                e.preventDefault();
+            }
+            
+            // Mettre à jour le style du toggle
+            toggleElement.classList.toggle(config.classes.selected, checkbox.checked);
+        },
+
+        // Mise à jour du prix des options
+        updateOptionsPrice(priceElements, prixBase) {
+            if (!priceElements.options || !priceElements.total) return;
+            
+            const allCheckboxes = document.querySelectorAll(config.selectors.participantCheckbox);
+            let prixOptions = 0;
+            
+            allCheckboxes.forEach(box => {
+                if (box.checked) {
+                    // Extraire le prix depuis le DOM
+                    const optionItem = box.closest('.option-item');
+                    if (!optionItem) return;
+                    
+                    const priceText = optionItem.querySelector('.option-price')?.textContent;
+                    if (!priceText) return;
+                    
+                    const price = utils.extractPrice(priceText);
+                    prixOptions += price;
+                }
+            });
+            
+            // Mettre à jour les affichages de prix avec animation
+            priceElements.options.textContent = utils.formatPrice(prixOptions) + ' €';
+            priceElements.options.classList.add(config.classes.priceUpdated);
+            
+            priceElements.total.textContent = utils.formatPrice(prixBase + prixOptions) + ' €';
+            priceElements.total.classList.add(config.classes.priceUpdated);
+            
+            // Supprimer la classe d'animation après la transition
+            setTimeout(() => {
+                priceElements.options.classList.remove(config.classes.priceUpdated);
+                priceElements.total.classList.remove(config.classes.priceUpdated);
+            }, config.timing.priceAnimationDuration);
+        },
+
+    };
+
+    // Initialisation du gestionnaire de réservation
+    reservationManager.init();
     
-    if (promoForm) {
-        // Promo code form submission - optional if already handled by page reloading
-        promoForm.addEventListener('submit', function(e) {
-            // You can add validation here if needed
-        });
-    }
-    
-    // Any additional payment page specific code
-} 
+    // Pour qu'il soit accessible par calendar.js
+    window.reservationManager = reservationManager;
+});

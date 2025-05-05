@@ -277,8 +277,8 @@
   height: 22px;
   width: 22px;
   left: var(--spacing-xxs);
-  bottom: 3px;
-  background-color: var(--color-text-light);
+  bottom: 4px;
+  background-color: white;
   border-radius: 50%;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-small);

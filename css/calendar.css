@@ -296,7 +296,8 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-md);
   font-size: var(--font-size-xs);
-  animation: fadeIn var(--transition-medium) ease-in-out;
+  margin-block: var(--spacing-md) 0;
+  animation: slideUp var(--transition-medium) ease-in-out;
 }
 
 .calendar-day.preview-in-range {
