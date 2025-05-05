@@ -286,7 +286,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                         </div>
 
                                         <div class="field-content"> 
-                                            <label for="date-inputs">Arrivée</label>
+                                            <label for="date-debut-visible">Arrivée</label>
                                             <input type="text" id="date-debut-visible" readonly placeholder="Arrivée" class="date-input" value="<?php echo !empty($date_debut) ? date('d M', strtotime($date_debut)) : ''; ?>" autocomplete="off">
                                         </div>
                                     </div>
@@ -298,7 +298,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                             <img src="../img/svg/departure.svg" alt="Dates" class="field-icon-img">
                                         </div>
                                         <div class="field-content">
-                                            <label for="date-inputs">Départ</label>
+                                            <label for="date-fin-visible">Départ</label>
                                             <input type="text" id="date-fin-visible" readonly placeholder="Départ" class="date-input" value="<?php echo !empty($date_fin) ? date('d M', strtotime($date_fin)) : ''; ?>" autocomplete="off">
                                         </div>
                                     </div>

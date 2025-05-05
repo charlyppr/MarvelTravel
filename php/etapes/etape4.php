@@ -591,7 +591,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 <div class="promo-code-container">
                                     <div class="promo-code-input">
                                         <input type="text" name="promo_code" placeholder="Code promo" id="promo-code"
-                                            value="<?php echo htmlspecialchars($promo_code); ?>">
+                                            value="<?php echo htmlspecialchars($promo_code); ?>" autocomplete="off">
                                         <button type="submit" name="apply_promo" class="promo-button">Appliquer</button>
                                     </div>
                                     <?php if (!empty($promo_message)): ?>

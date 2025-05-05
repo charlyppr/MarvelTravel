@@ -129,11 +129,11 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                 echo '<div class="form-row">
                                     <div class="form-group">
                                         <label for="nom" class="visually-hidden">Prénom</label>
-                                        <input type="text" name="nom" id="nom" value="' . $_SESSION['first_name'] . '" readonly>
+                                        <input type="text" name="nom" id="nom" value="' . $_SESSION['first_name'] . '" readonly autocomplete="nom">
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="visually-hidden">Email</label>
-                                        <input type="email" name="email" id="email" value="' . $_SESSION['email'] . '" readonly>
+                                        <input type="email" name="email" id="email" value="' . $_SESSION['email'] . '" readonly autocomplete="email">
                                     </div>
                                 </div>';
                             } ?>
@@ -146,7 +146,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
                             <div class="form-group">
                                 <label for="message" class="visually-hidden">Message</label>
-                                <textarea name="message" id="message" placeholder="Message" required></textarea>
+                                <textarea name="message" id="message" placeholder="Message" required autocomplete="off"></textarea>
                             </div>
 
                             <div class="button-div">

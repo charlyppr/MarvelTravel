@@ -111,24 +111,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
     
-    <!-- Style pour les boutons désactivés -->
-    <style>
-        .disabled-button {
-            opacity: 0.5;
-            cursor: not-allowed !important;
-            pointer-events: none;
-        }
-        
-        .field-validate {
-            transition: opacity 0.3s ease;
-        }
-        
-        .field-validate.disabled-button img {
-            filter: grayscale(100%);
-        }
-    </style>
-    
-    <!-- Charger le script de validation après avoir défini notre propre script -->
     <script src="../js/form-validation.js"></script>
     <script src="../js/profil.js" defer></script>
 </head>
@@ -199,7 +181,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 <div class="input-wrapper">
                                                     <input type="text" name="first_name" id="first_name"
                                                         class="profile-input" value="<?= $_SESSION['first_name'] ?>"
-                                                        data-original-value="<?= $_SESSION['first_name'] ?>" disabled>
+                                                        data-original-value="<?= $_SESSION['first_name'] ?>" disabled autocomplete="given-name">
                                                     <span class="input-highlight"></span>
                                                 </div>
                                                 <div class="field-actions">
@@ -224,7 +206,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 <div class="input-wrapper">
                                                     <input type="text" name="last_name" id="last_name"
                                                         class="profile-input" value="<?= $_SESSION['last_name'] ?>"
-                                                        data-original-value="<?= $_SESSION['last_name'] ?>" disabled>
+                                                        data-original-value="<?= $_SESSION['last_name'] ?>" disabled autocomplete="family-name">
                                                     <span class="input-highlight"></span>
                                                 </div>
                                                 <div class="field-actions">
@@ -249,7 +231,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 <div class="input-wrapper">
                                                     <input type="email" name="email" id="email" class="profile-input"
                                                         value="<?= $_SESSION['email'] ?>"
-                                                        data-original-value="<?= $_SESSION['email'] ?>" disabled>
+                                                        data-original-value="<?= $_SESSION['email'] ?>" disabled autocomplete="email">
                                                     <span class="input-highlight"></span>
                                                 </div>
                                                 <div class="field-actions">
