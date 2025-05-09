@@ -636,3 +636,197 @@
   margin-top: var(--spacing-xxs);
   display: block
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .search-bar {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .content-container-div {
+    width: 100%;
+    margin-left: 0;
+    padding: var(--spacing-md);
+  }
+  
+  .search-bar {
+    width: 70%;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+  
+  .header .search-bar {
+    width: 100%;
+  }
+  
+  .main-content {
+    padding: var(--spacing-md);
+  }
+  
+  .filters-bar {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+  }
+  
+  .filter-buttons {
+    width: 100%;
+    overflow-x: auto;
+    padding: var(--spacing-xs);
+    justify-content: flex-start;
+  }
+  
+  .view-options {
+    width: 100%;
+    justify-content: space-between;
+    padding: var(--spacing-xs);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content-container-div {
+    padding: var(--spacing-sm);
+  }
+  
+  .main-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .tab-voyages {
+    display: block;
+    width: 100%;
+  }
+  
+  .tab-voyages thead {
+    display: none;
+  }
+  
+  .tab-voyages tbody, .tab-voyages tr, .tab-voyages td {
+    display: block;
+    width: 100%;
+  }
+  
+  .tab-voyages tr {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--color-accent-faded);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xs);
+  }
+  
+  .tab-voyages td {
+    padding: var(--spacing-xs);
+    text-align: right;
+    position: relative;
+    border-bottom: 1px solid var(--color-accent-faded);
+  }
+  
+  .tab-voyages td:last-child {
+    border-bottom: none;
+  }
+  
+  .tab-voyages td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: var(--spacing-xs);
+    width: 40%;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-text-muted);
+  }
+  
+  .tab-voyages td.destination {
+    text-align: center;
+    font-size: var(--font-size-md);
+    padding-bottom: var(--spacing-md);
+  }
+  
+  .tab-voyages .view-button {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .voyage-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .voyage-details {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .voyage-header {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .voyage-action {
+    align-self: flex-end;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .filters-bar {
+    margin: 0 -15px;
+    padding: var(--spacing-xs);
+  }
+  
+  .table-container {
+    margin: 0 -15px;
+  }
+  
+  .titre-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+  
+  .filter-button {
+    font-size: var(--font-size-xs);
+    padding: 6px var(--spacing-xxs);
+  }
+  
+  .sort-select {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xxs) var(--spacing-sm);
+    padding-right: var(--spacing-lg);
+    background-position: right var(--spacing-xxs) center;
+  }
+  
+  .view-toggle {
+    width: var(--spacing-lg);
+    height: var(--spacing-lg);
+  }
+  
+  .view-toggle img {
+    width: var(--spacing-sm);
+    height: var(--spacing-sm);
+  }
+  
+  .badge {
+    font-size: 9px;
+  }
+  
+  .voyage-info span {
+    font-size: var(--font-size-xs);
+  }
+  
+  .voyage-header h3 {
+    font-size: var(--font-size-sm);
+  }
+  
+  .actions-container {
+    margin-top: var(--spacing-md);
+  }
+  
+  .action-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

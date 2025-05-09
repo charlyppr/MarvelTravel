@@ -480,3 +480,229 @@ input:focus {
     transform: translateY(0)
   }
 }
+
+/* ===== RESPONSIVE STYLES ===== */
+@media screen and (max-width: 1200px) {
+  .card-content {
+    max-width: 520px;
+    padding: var(--spacing-md);
+  }
+  
+  .spiderman-pin {
+    transform: rotate(10deg) translateX(240px);
+  }
+  
+  .hulk-pin {
+    transform: rotate(-10deg) translate(-330px, 450px);
+  }
+  
+  .shield-pin {
+    transform: rotate(10deg) translate(320px, 280px);
+  }
+  
+  .captain-pin {
+    transform: rotate(-10deg) translate(-250px, 10px);
+  }
+  
+  .retour {
+    transform: translate(-200px, 10px);
+  }
+  
+  .retour:hover {
+    transform: translate(-205px, 10px);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .card-content {
+    max-width: 480px;
+    padding: var(--spacing-md);
+  }
+  
+  .titre-2 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .sous-titre-3 {
+    font-size: var(--font-size-xs);
+  }
+  
+  .spiderman-pin {
+    width: 70px;
+    transform: rotate(10deg) translateX(220px);
+  }
+  
+  .hulk-pin {
+    width: 70px;
+    transform: rotate(-10deg) translate(-280px, 420px);
+  }
+  
+  .shield-pin {
+    width: 70px;
+    transform: rotate(10deg) translate(280px, 260px);
+  }
+  
+  .captain-pin {
+    width: 70px;
+    transform: rotate(-10deg) translate(-220px, 10px);
+  }
+  
+  .retour {
+    transform: translate(-180px, 10px);
+  }
+  
+  .retour:hover {
+    transform: translate(-185px, 10px);
+  }
+  
+  .form-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    padding: var(--spacing-sm);
+    align-items: flex-start;
+  }
+  
+  .card-content {
+    max-width: 100%;
+    padding: var(--spacing-sm);
+  }
+  
+  .titre-2 {
+    font-size: var(--font-size-md);
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .next-button,
+  .generate-button {
+    font-size: var(--font-size-sm);
+    padding: 12px 0;
+  }
+  
+  /* Hide decorative pins on tablets */
+  .spiderman-pin,
+  .hulk-pin,
+  .shield-pin,
+  .captain-pin {
+    display: none;
+  }
+  
+  /* Reposition back button */
+  .retour {
+    position: relative;
+    align-self: flex-start;
+    transform: translate(0, 0);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .retour:hover {
+    transform: translate(-5px, 0);
+  }
+  
+  /* Reduce height of input fields slightly */
+  .civilite, 
+  .email, 
+  .form-row input, 
+  .mdp, 
+  .nationalite,
+  .date-input {
+    height: 45px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card {
+    padding: var(--spacing-xs);
+  }
+  
+  .card-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .logo-gauche span {
+    font-size: var(--font-size-lg);
+  }
+  
+  .vel {
+    font-size: calc(var(--font-size-xl) + var(--font-size-md));
+  }
+  
+  .card-header {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .titre-2 {
+    font-size: var(--font-size-md);
+  }
+  
+  .sous-titre-3 {
+    font-size: 11px;
+  }
+  
+  .form {
+    gap: var(--spacing-sm);
+  }
+  
+  .civilite, 
+  .email, 
+  .form-row input, 
+  .mdp, 
+  .nationalite,
+  .date-input {
+    height: 40px;
+  }
+  
+  .email img, 
+  .mdp img,
+  .date-input img {
+    width: 16px;
+    height: 16px;
+    margin-left: var(--spacing-sm);
+  }
+  
+  input {
+    font-size: var(--font-size-xs);
+  }
+  
+  .form-row input {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .civilite, 
+  .nationalite {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .civilite select, 
+  .nationalite select,
+  .date-input input[type="date"] {
+    font-size: var(--font-size-xs);
+  }
+  
+  .date-input-container label {
+    font-size: var(--font-size-xs);
+  }
+  
+  .password-toggle-btn {
+    right: var(--spacing-xxs);
+  }
+  
+  .password-toggle-btn img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .other-text a {
+    font-size: 11px;
+    text-align: center;
+  }
+}

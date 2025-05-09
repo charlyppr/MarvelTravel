@@ -125,7 +125,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
                                             echo '<tr data-email="' . htmlspecialchars($user['email']) . '">';
                                             echo '<td class="nom">' . $user['first_name'] . ' ' . $user['last_name'] . '</td>';
-                                            echo '<td>';
+                                            echo '<td data-label="Status">';
                                             // Bouton interactif pour le statut bloqué/actif
                                             if ($user['blocked']) {
                                                 echo '<div class="status status-pending toggle-status" data-status="blocked">';
@@ -139,7 +139,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                 echo '</div>';
                                             }
                                             echo '</td>';
-                                            echo '<td>';
+                                            echo '<td data-label="VIP">';
                                             // Bouton interactif pour le statut VIP/non VIP
                                             if ($user['vip']) {
                                                 echo '<div class="status vip-badge toggle-vip" data-vip="1">';
@@ -156,7 +156,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                             // Formatage de la date au format français (JJ/MM/AAAA)
                                             $date_inscription = new DateTime($user['date_inscription']);
                                             $date_formatted = $date_inscription->format('d/m/Y');
-                                            echo '<td class="date" data-date="' . $user['date_inscription'] . '">' . $date_formatted . '</td>';
+                                            echo '<td class="date" data-label="Membre depuis" data-date="' . $user['date_inscription'] . '">' . $date_formatted . '</td>';
                                             echo '</tr>';
                                         }
                                     }

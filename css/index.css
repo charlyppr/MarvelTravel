@@ -952,3 +952,192 @@
     flex-grow: 1;
     position: relative;
 }
+
+/* ===== RESPONSIVE STYLES ===== */
+@media screen and (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        gap: var(--spacing-xxl);
+        padding: var(--spacing-xl) 5%;
+    }
+
+    .hero h1 {
+        font-size: calc(var(--font-size-xl) + 0.2rem);
+    }
+
+    .hero p {
+        max-width: 100%;
+        font-size: var(--font-size-md);
+    }
+
+    .hero-image {
+        margin-top: var(--spacing-lg);
+    }
+
+    .card-stack {
+        width: 90%;
+        margin-left: 0;
+    }
+
+    .marvel-main-card {
+        left: 0;
+        width: 90%;
+    }
+
+    .destination-card {
+        width: 90%;
+    }
+
+    .companies-grid {
+        gap: var(--spacing-md);
+    }
+
+    .about-card {
+        max-width: 100%;
+    }
+
+    .about-content {
+        padding: var(--spacing-md);
+    }
+
+    .signature-footer {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+    }
+
+    .destinations-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .infinity-green-content {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .infinity-green-description {
+        padding: var(--spacing-xxl);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-stats {
+        left: 0;
+        bottom: 0;
+        margin-top: var(--spacing-lg);
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .card-stack {
+        height: 250px;
+    }
+
+    .marvel-main-card {
+        height: 220px;
+    }
+
+    .popular-destinations .container{
+        padding: var(--spacing-sm);
+    }
+
+    .destination-card {
+        height: 220px;
+    }
+
+    .marvel-logo {
+        transform: translate(-80px, -40px);
+    }
+
+    .about-title {
+        font-size: var(--font-size-md);
+    }
+
+    .section-title {
+        font-size: var(--font-size-md);
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+
+    .company-logo {
+        width: 100px;
+        height: 40px;
+    }
+
+    .guides-description {
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .hero p {
+        font-size: var(--font-size-sm);
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-cta {
+        align-items: center;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .about-card {
+        transform: none;
+    }
+
+    .about-text {
+        font-size: var(--font-size-xs);
+    }
+
+    .destination-name {
+        font-size: var(--font-size-md);
+    }
+
+    .destination-description {
+        font-size: var(--font-size-xs);
+    }
+
+    .guide-card {
+        scale: 1;
+    }
+
+    .guide-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .guide-name {
+        font-size: var(--font-size-lg);
+    }
+
+    .infinity-feature-item {
+        gap: var(--spacing-sm);
+    }
+
+    .popular-destinations {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .trust-section, .about-section, .guides-experts, .infinity-green, .contact-cta {
+        padding: var(--spacing-xl) 5%;
+    }
+
+    .contact-cta-text {
+        font-size: var(--font-size-sm);
+    }
+}

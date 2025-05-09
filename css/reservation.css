@@ -1295,3 +1295,278 @@ select {
     top: 0% !important;
     left: -55% !important;
 }
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media screen and (max-width: 1200px) {
+  .reservation-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .booking-content {
+    gap: var(--spacing-lg);
+  }
+  
+  .destination-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .booking-progress {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .reservation-container {
+    padding: var(--spacing-md);
+  }
+  
+  .booking-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .destination-info {
+    position: relative;
+    top: 0;
+    order: 0;
+  }
+  
+  .booking-form-container,
+  .travelers-form-container,
+  .options-container,
+  .payment-container {
+    order: 1;
+  }
+  
+  .breadcrumb {
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .booking-progress {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .progress-line {
+    width: 20px;
+    flex-grow: 0;
+  }
+  
+  .step-label {
+    font-size: 10px;
+  }
+  
+  .progress-step {
+    flex: 0 0 auto;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .form-group-wide {
+    grid-column: span 1;
+  }
+  
+  .autofill-button {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+  
+  .calendar-dropdown {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90%;
+    max-width: 350px;
+    z-index: 9999;
+  }
+  
+  .option-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .option-price {
+    font-size: var(--font-size-md);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .reservation-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .booking-header {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .step-indicator {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  
+  .step-indicator img {
+    width: 12px;
+  }
+  
+  .progress-line {
+    margin-bottom: 18px;
+  }
+  
+  .destination-title {
+    font-size: 24px;
+  }
+  
+  .card-header {
+    flex-wrap: wrap;
+  }
+  
+  .traveler-number {
+    width: 100%;
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .card-header .autofill-button {
+    margin-left: auto;
+  }
+  
+  .price-total {
+    font-size: var(--font-size-lg);
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .secondary-button, .primary-button {
+    width: 100%;
+  }
+  
+  .participants-list {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .traveler-item {
+    padding: var(--spacing-xs);
+  }
+  
+  .traveler-header {
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+  
+  .traveler-details .detail-row {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .traveler-avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+  
+  .option-details {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .payment-icons {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+  
+  .payment-icon {
+    height: 24px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .reservation-container {
+    padding: var(--spacing-xs);
+  }
+  
+  .card-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .booking-progress {
+    display: none; /* Hide on very small screens or redesign as vertical */
+  }
+  
+  .breadcrumb {
+    font-size: var(--font-size-xs);
+  }
+  
+  .breadcrumb-link img {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .destination-image {
+    height: 150px;
+  }
+  
+  .booking-detail {
+    padding: var(--spacing-xs);
+  }
+  
+  .detail-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .detail-value {
+    font-size: var(--font-size-xs);
+  }
+  
+  .detail-tag {
+    font-size: 10px;
+  }
+  
+  .field-help {
+    display: none;
+  }
+  
+  .price-row {
+    font-size: var(--font-size-sm);
+  }
+  
+  .price-total {
+    font-size: var(--font-size-md);
+  }
+  
+  .instructions-panel {
+    padding: var(--spacing-sm);
+  }
+  
+  .instructions-title {
+    font-size: var(--font-size-md);
+  }
+  
+  .instructions-text, .instructions-note p {
+    font-size: 11px;
+  }
+  
+  .promo-code-input {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .promo-button {
+    align-self: flex-start;
+  }
+}

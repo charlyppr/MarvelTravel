@@ -878,5 +878,143 @@
                 "total": 30
             }
         ]
+    },
+    {
+        "transaction": "49cbf2d881b78aa55e06c339",
+        "reservation_id": "MT-79816BE0",
+        "montant": 1199.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "a12d9a387dd9bf33a908aa57f7ac1099",
+        "acheteur": "ibra@gmail.com",
+        "voyage": "Hala",
+        "date_debut": "2025-05-22",
+        "date_fin": "2025-05-31",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "hamelin",
+                "prenom": "simon",
+                "date_naissance": "2005-11-11",
+                "nationalite": "Indienne",
+                "passport": "246 691 085 0"
+            }
+        ],
+        "date_achat": "2025-05-05 09:29:53",
+        "options": []
+    },
+    {
+        "transaction": "cdb72fb9e036484b90f4915f",
+        "reservation_id": "MT-394743A4",
+        "montant": 434.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "6a2fc07ce1360b25b675dbecb86d76bd",
+        "acheteur": "simon@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-05-10",
+        "date_fin": "2025-05-25",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "Autre",
+                "nom": "Hamelin",
+                "prenom": "Simon",
+                "date_naissance": "2025-05-01",
+                "nationalite": "Russe",
+                "passport": "199 296 872 8"
+            }
+        ],
+        "date_achat": "2025-05-05 09:39:59",
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    },
+    {
+        "transaction": "705cff489c0dcaf653e12148",
+        "reservation_id": "MT-558D8DCC",
+        "montant": 504.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "7d8f8438c8d3397933c5bb590be1df1d",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-05-14",
+        "date_fin": "2025-05-18",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-01-01",
+                "nationalite": "Asgardienne",
+                "passport": "127 168 461 9"
+            }
+        ],
+        "date_achat": "2025-05-05 11:05:37",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Visite guidée",
+                "prix_unitaire": 50,
+                "nb_participants": 1,
+                "total": 50
+            },
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 20,
+                "nb_participants": 1,
+                "total": 20
+            },
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    },
+    {
+        "transaction": "ed792b69af5863e3a261ddb6",
+        "reservation_id": "MT-05ACA419",
+        "montant": 419.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "b06d945ca79a44988d286083d27d7ea5",
+        "acheteur": "caryl@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-05-14",
+        "date_fin": "2025-05-24",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Lebreton",
+                "prenom": "Caryl",
+                "date_naissance": "2000-01-01",
+                "nationalite": "Asgardienne",
+                "passport": "127 168 461 9"
+            }
+        ],
+        "date_achat": "2025-05-08 22:21:45",
+        "options": [
+            {
+                "etape": "Times Square",
+                "option": "Shopping",
+                "prix_unitaire": 20,
+                "nb_participants": 1,
+                "total": 20
+            }
+        ]
     }
 ]

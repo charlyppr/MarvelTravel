@@ -76,7 +76,6 @@
   gap: var(--spacing-xs);
   position: relative;
   z-index: 2;
-  align-items: flex-start;
   gap: var(--spacing-xs)
 }
 
@@ -94,7 +93,7 @@
   content: "";
   position: absolute;
   bottom: -8px;
-  left: 0;
+  left: 50px;
   width: 80px;
   height: 4px;
   background: var(--gradient-primary);
@@ -115,7 +114,7 @@
 }
 
 .dashboard-grid>.card {
-  animation: fadeIn .5s ease forwards
+  /* animation: fadeIn .5s ease forwards; */
 }
 
 .profile-card {
@@ -288,7 +287,7 @@
   z-index: 2
 }
 
-.card.messages-card {
+.messages-card {
   grid-column: span 4
 }
 
@@ -930,4 +929,161 @@
 
 .field-validate.disabled-button img {
   filter: grayscale(100%)
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--spacing-sm);
+  }
+  
+  .profile-card {
+    grid-column: span 6;
+  }
+  
+  .stats-card {
+    grid-column: span 6;
+  }
+  
+  .voyages-card {
+    grid-column: span 6;
+  }
+  
+  .messages-card {
+    grid-column: span 6;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .profile-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+    text-align: center;
+  }
+  
+  .content-container-div {
+    width: 100%;
+    margin-left: 0;
+    padding: var(--spacing-md);
+    transition: margin-left var(--transition-medium);
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    z-index: 99;
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--sidebar-border);
+  }
+  
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+  }
+  
+  .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-header-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-name {
+    align-items: center;
+  }
+  
+  .stats-grid {
+    gap: var(--spacing-sm);
+  }
+  
+  .voyage-item {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .voyage-meta {
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .voyage-price {
+    font-size: var(--font-size-md);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .content-container-div {
+    padding: var(--spacing-sm);
+  }
+  
+  .profile-greeting .titre {
+    font-size: var(--font-size-xl);
+  }
+  
+  .subtitle {
+    font-size: var(--font-size-md);
+  }
+  
+  .field-value {
+    height: auto;
+    min-height: 54px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .notification {
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    max-width: calc(100% - var(--spacing-md) * 2);
+  }
+  
+  .profile-submit-button, 
+  .profile-cancel-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .profile-action-container {
+    flex-direction: column;
+  }
+  
+  .message-item {
+    padding: var(--spacing-xs);
+  }
+  
+  .message-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

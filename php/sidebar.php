@@ -15,6 +15,10 @@ function isActive($page, $current_page)
 
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+<button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+    <span></span>
+</button>
+
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <a href="../index.php" class="logo-container">
@@ -24,9 +28,6 @@ function isActive($page, $current_page)
             </div>
             <span class="logo vel">VEL</span>
         </a>
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
     </div>
 
     <div class="sidebar-content">

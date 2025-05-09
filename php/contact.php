@@ -67,7 +67,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 
     <main>
         <section class="contact-us">
-            <div class="container">
                 <div class="contact-container">
                     <div class="left">
                         <div class="contact-info">
@@ -158,11 +157,9 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </form>
                     </div>
                 </div>
-            </div>
         </section>
 
         <section class="location-faq">
-            <div class="container">
                 <div class="location">
                     <div class="location-map-container">
                         <img class="location-map" src="../img/map.png" alt="Carte du Sanctum Sanctorum">
@@ -248,7 +245,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </main>
 

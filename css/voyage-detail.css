@@ -6,7 +6,6 @@
 }
 
 .hero-section {
-  height: 80vh;
   margin-block: 160px;
 }
 
@@ -14,7 +13,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 110%;
+  width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -22,10 +21,6 @@
   transition: transform .8s ease;
   filter: blur(5px);
   position-area: center;
-}
-
-.hero-section:hover .hero-backdrop {
-  transform: scale(1)
 }
 
 .hero-backdrop::before {
@@ -167,13 +162,22 @@
   border-radius: var(--border-radius-xl);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-accent-faded);
-  transition: all var(--transition-fast)
+  transition: all var(--transition-fast);
+  flex-wrap: wrap;
 }
 
 .meta-rating:hover {
   background: var(--color-accent-faded);
   border-color: rgba(255, 255, 255, .2);
   transform: translateY(-2px)
+}
+
+.meta-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
 }
 
 .rating-stars {
@@ -1369,7 +1373,8 @@
   border: none;
   box-shadow: none;
   backdrop-filter: none;
-  -webkit-backdrop-filter: none
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
 }
 
 .reviews-header::before {
@@ -1956,4 +1961,369 @@ img.item-icon.not-included {
   background-color: var(--color-text-cream);
   transform: scale(1.2);
   box-shadow: var(--shadow-intense)
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .content-wrapper {
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .main-content {
+    margin: 0 var(--spacing-lg);
+  }
+  
+  .hero-section {
+    /* height: 70vh; */
+  }
+  
+  .hero-title {
+    font-size: 48px;
+  }
+  
+  .highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .characters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .carousel-container {
+    max-width: 800px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  section {
+    padding: var(--spacing-xl);
+  }
+  
+  .voyage-detail-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .booking-column {
+    position: relative;
+    top: 0;
+    margin-top: var(--spacing-xl);
+    order: -1;
+    padding: var(--spacing-xl);
+  }
+  
+  .hero-section {
+    /* height: 60vh; */
+    margin-block: 120px;
+  }
+  
+  .hero-title {
+    font-size: 42px;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+  }
+  
+  .quick-info {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .voyage-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .gallery-carousel {
+    margin-top: -100px;
+    padding: 0 var(--spacing-md);
+  }
+  
+  .carousel-container {
+    max-width: 100%;
+  }
+  
+  .carousel-track {
+    height: 350px;
+  }
+  
+  .carousel-slide img {
+    height: 350px;
+  }
+  
+  .programme-timeline {
+    padding-left: 20px;
+  }
+  
+  .timeline-card::before {
+    left: -20px;
+  }
+  
+  .timeline-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .voyage-detail-container {
+    padding: var(--spacing-md);
+  }
+  
+  .main-content {
+    margin: 0;
+  }
+  
+  .hero-section {
+    /* height: 50vh; */
+    margin-block: 100px;
+  }
+  
+  .hero-content {
+    padding-bottom: var(--spacing-lg);
+  }
+  
+  .hero-title {
+    font-size: 36px;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .quick-info {
+    gap: var(--spacing-xs);
+  }
+  
+  .info-item {
+    padding: 12px 16px;
+  }
+  
+  .breadcrumb {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .gallery-carousel {
+    margin-top: -80px;
+    margin-bottom: 60px;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .carousel-track,
+  .carousel-slide img {
+    height: 250px;
+  }
+  
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .characters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .description-section,
+  .universe-content,
+  .details-container,
+  .booking-card {
+    padding: var(--spacing-md);
+  }
+  
+  .description-section h2,
+  .universe-section h2,
+  #programme h2,
+  #details h2,
+  #avis h2 {
+    font-size: 24px;
+  }
+  
+  .timeline-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .timeline-header {
+    padding: 14px 18px;
+  }
+  
+  .timeline-header h3 {
+    font-size: 18px;
+  }
+  
+  .film-tag {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .voyage-detail-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .hero-section {
+    /* height: 40vh; */
+    margin-block: 80px;
+  }
+  
+  .hero-content {
+    padding-bottom: var(--spacing-md);
+  }
+  
+  .hero-title {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  
+  .hero-subtitle {
+    font-size: 14px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .breadcrumb {
+    font-size: 10px;
+    padding: 4px 8px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .quick-info {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-xs);
+  }
+  
+  .info-item {
+    width: 100%;
+  }
+  
+  .gallery-carousel {
+    margin-top: -60px;
+    margin-bottom: 40px;
+  }
+  
+  .carousel-track,
+  .carousel-slide img {
+    height: 200px;
+  }
+  
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .carousel-button img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .carousel-dots {
+    padding: 6px 12px;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .description-section h2,
+  .universe-section h2,
+  #programme h2,
+  #details h2,
+  #avis h2 {
+    font-size: 22px;
+  }
+  
+  .description-text {
+    font-size: 14px;
+  }
+  
+  .highlights-container,
+  .activities-list,
+  .options-list {
+    padding: 15px;
+  }
+  
+  .highlight-item {
+    padding: 10px;
+  }
+  
+  .highlight-item span {
+    font-size: 12px;
+  }
+  
+  .tab-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+  
+  .price-amount {
+    font-size: 32px;
+  }
+  
+  .booking-features {
+    gap: var(--spacing-xxs);
+  }
+  
+  .feature-item {
+    padding: 10px;
+  }
+  
+  .feature-item span {
+    font-size: 12px;
+  }
+  
+  .programme-timeline {
+    gap: var(--spacing-md);
+  }
+  
+  .timeline-card {
+    margin-left: 5px;
+  }
+  
+  .timeline-media {
+    height: 150px;
+  }
+  
+  .characters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .character-card {
+    padding: 10px 8px;
+  }
+  
+  .character-card img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .review-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .review-text {
+    font-size: 13px;
+  }
 }

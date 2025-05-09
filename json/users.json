@@ -12,7 +12,7 @@
         "date_inscription": "2025-05-02 19:06:37",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-05 00:32:53"
+        "last_login": "2025-05-08 22:47:56"
     },
     {
         "civilite": "Mme",
@@ -73,5 +73,20 @@
         "blocked": false,
         "vip": false,
         "last_login": "2025-05-05 02:15:59"
+    },
+    {
+        "civilite": "Autre",
+        "first_name": "Simon",
+        "last_name": "Hamelin",
+        "email": "simon@gmail.com",
+        "password": "$2y$10$WqcGZDkzQlx1bWFAAHMw\/eqNtvwZakjykNOBRjxR65tNlrspXTPVi",
+        "date_naissance": "2025-05-01",
+        "nationalite": "Russe",
+        "role": "user",
+        "passport_id": "1600962000",
+        "date_inscription": "2025-05-05 09:36:49",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
     }
 ]

@@ -36,6 +36,12 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
         height: 100vh;
         margin-left: 260px;
     }
+
+    @media screen and (max-width: 992px) {
+        .statistics-container {
+            margin-left: 0;
+        }
+    }
 </style>
 
 <body class="<?php echo $theme; ?>-theme">

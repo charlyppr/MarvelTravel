@@ -13,7 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
       logoutModal: "#nav-logout-modal",
       logoutBtn: "#nav-logout-button",
       closeModalBtn: "#nav-logout-modal .close-modal",
-      cancelLogoutBtn: "#cancel-nav-logout"
+      cancelLogoutBtn: "#cancel-nav-logout",
+      hamburgerButton: ".hamburger-button",
+      menu: ".menu",
+      menuOverlay: ".menu-overlay",
+      menuLinks: ".menu a"
     },
     transitionTimes: {
       navHide: "0.5s",
@@ -25,264 +29,375 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Gestionnaire de la barre de navigation
-  const navManager = {
-    navBarElement: null,
+  // Sélection des éléments DOM essentiels (évite les multiples sélections)
+  const elements = {
+    navbar: document.querySelector(config.navSelectors.navbar),
+    menuItems: document.querySelectorAll(config.navSelectors.menuItems),
+    profileContainer: document.querySelector(config.navSelectors.profileDropdown),
+    profileDropdown: document.querySelector(config.navSelectors.profileDropdownMenu),
+    themeIcons: document.querySelectorAll(config.navSelectors.themeIcons),
+    sunIcons: document.querySelectorAll(config.navSelectors.sunIcon),
+    moonIcons: document.querySelectorAll(config.navSelectors.moonIcon),
+    themeToggleBtn: document.getElementById("themeToggleBtn"),
+    logoutModal: document.getElementById("nav-logout-modal"),
+    logoutBtn: document.getElementById("nav-logout-button"),
+    closeModalBtn: document.querySelector(config.navSelectors.closeModalBtn),
+    cancelBtn: document.getElementById("cancel-nav-logout"),
+    hamburgerButton: document.querySelector(config.navSelectors.hamburgerButton),
+    menu: document.querySelector(config.navSelectors.menu),
+    menuOverlay: document.querySelector(config.navSelectors.menuOverlay),
+    menuLinks: document.querySelectorAll(config.navSelectors.menuLinks)
+  };
+
+  // État global
+  const state = {
     lastScrollTop: 0,
     isInitialLoad: true,
-
-    init() {
-      this.navBarElement = document.querySelector(config.navSelectors.navbar);
-      if (!this.navBarElement) return;
-      
-      window.navBarElement = this.navBarElement; // Pour compatibilité
-      
-      // Assurer que la nav est visible au chargement
-      this.navBarElement.style.transform = "translateY(0)";
-      
-      this.setupEventListeners();
-    },
-
-    setupEventListeners() {
-      // Gestion du scroll pour cacher/montrer la navbar
-      window.addEventListener("scroll", () => this.handleScroll());
-      
-      // Montrer la navbar lors du survol en haut de l'écran
-      document.addEventListener("mousemove", (e) => this.handleMouseMove(e));
-    },
-
-    handleScroll() {
-      if (window.innerWidth <= config.breakpoints.mobile) return;
-      
-      const scrollTop = document.documentElement.scrollTop;
-      this.navBarElement.style.transition = `transform ${config.transitionTimes.navHide} ease`;
-      
-      // Ignorer le premier événement de défilement
-      if (this.isInitialLoad) {
-        this.lastScrollTop = scrollTop;
-        this.isInitialLoad = false;
-        return;
-      }
-      
-      // Cacher la navbar en défilant vers le bas, la montrer en défilant vers le haut
-      if (scrollTop > this.lastScrollTop) {
-        this.navBarElement.style.transform = "translateY(-100%)";
-      } else {
-        this.navBarElement.style.transform = "translateY(0)";
-      }
-      
-      // Mettre à jour la position de défilement
-      this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    },
-
-    handleMouseMove(e) {
-      if (window.innerWidth <= config.breakpoints.mobile || !this.navBarElement) return;
-      
-      if (e.clientY <= 70) {
-        this.navBarElement.style.transition = `transform ${config.transitionTimes.navShow} ease`;
-        this.navBarElement.style.transform = "translateY(0)";
-      }
-    }
+    isMobileMenuOpen: false,
+    scrollPosition: 0,
+    isDropdownOpen: false,
+    isMobile: window.innerWidth <= config.breakpoints.mobile
   };
 
-  // Gestionnaire des effets du menu
-  const menuEffectsManager = {
-    menuItems: null,
-
-    init() {
-      if (window.innerWidth <= config.breakpoints.mobile) return;
-      
-      this.menuItems = document.querySelectorAll(config.navSelectors.menuItems);
-      if (this.menuItems.length === 0) return;
-      
-      this.setupEventListeners();
+  // Fonctions utilitaires
+  const utils = {
+    getScrollbarWidth() {
+      return window.innerWidth - document.documentElement.clientWidth;
+    },
+    
+    disableScroll() {
+      state.scrollPosition = window.pageYOffset;
+      document.documentElement.style.setProperty('--scrollbar-width', `${this.getScrollbarWidth()}px`);
+      document.body.classList.add('no-scroll');
+      document.body.style.top = `-${state.scrollPosition}px`;
+    },
+    
+    enableScroll() {
+      document.body.classList.remove('no-scroll');
+      document.body.style.top = '';
+      document.documentElement.style.removeProperty('--scrollbar-width');
+      window.scrollTo(0, state.scrollPosition);
     },
 
-    setupEventListeners() {
-      this.menuItems.forEach(item => {
-        item.addEventListener("mouseover", () => this.handleHover(item, true));
-        item.addEventListener("mouseout", () => this.handleHover(item, false));
-      });
-    },
-
-    handleHover(hoveredElement, isEntering) {
-      this.menuItems.forEach(item => {
-        if (item !== hoveredElement) {
-          item.classList.toggle("hovered", isEntering);
-        }
-      });
-    }
-  };
-
-  // Gestionnaire du menu déroulant du profil
-  const profileDropdownManager = {
-    container: null,
-    dropdown: null,
-
-    init() {
-      this.container = document.querySelector(config.navSelectors.profileDropdown);
-      if (!this.container) return;
-      
-      this.dropdown = document.querySelector(config.navSelectors.profileDropdownMenu);
-      if (!this.dropdown) return;
-      
-      this.setupEventListeners();
-    },
-
-    setupEventListeners() {
-      this.container.addEventListener("mouseenter", () => {
-        this.dropdown.style.display = "flex";
-      });
-
-      this.container.addEventListener("mouseleave", () => {
-        this.dropdown.style.display = "none";
-      });
-    }
-  };
-
-  // Gestionnaire de thème
-  const themeManager = {
-    themeIcons: null,
-    sunIcons: null,
-    moonIcons: null,
-    themeToggleBtn: null,
-
-    init() {
-      this.themeIcons = document.querySelectorAll(config.navSelectors.themeIcons);
-      if (this.themeIcons.length === 0) return;
-      
-      this.getCookieHelper = typeof getCookie === "function" ? getCookie : this.fallbackGetCookie;
-      this.toggleThemeHelper = typeof toggleTheme === "function" ? toggleTheme : this.fallbackToggleTheme;
-      
-      this.setCurrentTheme();
-      this.setupThemeIcons();
-      this.setupSimpleToggle();
-    },
-
-    setCurrentTheme() {
-      const currentTheme = this.getCookieHelper("theme") || "dark";
-      this.updateThemeIcons(currentTheme);
-    },
-
-    setupThemeIcons() {
-      this.sunIcons = document.querySelectorAll(config.navSelectors.sunIcon);
-      this.moonIcons = document.querySelectorAll(config.navSelectors.moonIcon);
-      
-      this.sunIcons.forEach(icon => {
-        icon.addEventListener("click", () => this.changeTheme("light"));
-      });
-      
-      this.moonIcons.forEach(icon => {
-        icon.addEventListener("click", () => this.changeTheme("dark"));
-      });
-    },
-
-    setupSimpleToggle() {
-      this.themeToggleBtn = document.getElementById("themeToggleBtn");
-      if (!this.themeToggleBtn) return;
-      
-      this.themeToggleBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        const isLightMode = document.body.classList.contains("light-theme") || 
-                           document.cookie.includes("theme=light");
-        
-        this.changeTheme(isLightMode ? "dark" : "light");
-      });
-    },
-
-    changeTheme(newTheme) {
-      this.toggleThemeHelper(newTheme);
-      this.updateThemeIcons(newTheme);
-      this.addTransitionEffect();
-    },
-
-    updateThemeIcons(theme) {
-      if (!this.sunIcons || !this.moonIcons) return;
-      
-      if (theme === "light") {
-        this.sunIcons.forEach(icon => icon.classList.add("active"));
-        this.moonIcons.forEach(icon => icon.classList.remove("active"));
-      } else {
-        this.moonIcons.forEach(icon => icon.classList.add("active"));
-        this.sunIcons.forEach(icon => icon.classList.remove("active"));
-      }
-    },
-
-    addTransitionEffect() {
-      document.body.classList.add("theme-transition");
-      setTimeout(() => {
-        document.body.classList.remove("theme-transition");
-      }, config.transitionTimes.themeChange);
-    },
-
-    fallbackGetCookie(name) {
+    getCookie(name) {
+      if (typeof getCookie === "function") return getCookie(name);
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(";").shift();
       return null;
     },
 
-    fallbackToggleTheme(theme) {
-      document.cookie = `theme=${theme};path=/;max-age=31536000`;
-      document.body.classList.remove("light-theme", "dark-theme");
-      document.body.classList.add(`${theme}-theme`);
+    toggleTheme(theme) {
+      if (typeof toggleTheme === "function") {
+        toggleTheme(theme);
+      } else {
+        document.cookie = `theme=${theme};path=/;max-age=31536000`;
+        document.body.classList.remove("light-theme", "dark-theme");
+        document.body.classList.add(`${theme}-theme`);
+      }
     }
   };
 
-  // Gestionnaire du modal de déconnexion
-  const logoutModalManager = {
-    modal: null,
-    logoutBtn: null,
-    closeBtn: null,
-    cancelBtn: null,
-
+  // Navigation
+  const navManager = {
     init() {
-      this.modal = document.getElementById("nav-logout-modal");
-      this.logoutBtn = document.getElementById("nav-logout-button");
+      if (!elements.navbar) return;
       
-      if (!this.modal || !this.logoutBtn) return;
+      // Style initial
+      elements.navbar.style.transform = "translateY(0)";
+      elements.navbar.style.position = "fixed";
+      elements.navbar.style.top = "0";
+      elements.navbar.style.width = "100%";
+      elements.navbar.style.zIndex = "1000";
       
-      this.closeBtn = document.querySelector(config.navSelectors.closeModalBtn);
-      this.cancelBtn = document.getElementById("cancel-nav-logout");
+      // Event listeners
+      window.addEventListener("scroll", () => this.handleScroll());
+      document.addEventListener("mousemove", (e) => this.handleMouseMove(e));
       
-      this.setupEventListeners();
+      // Observer pour détecter l'état du menu mobile
+      if (elements.menu) {
+        new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.attributeName === 'class') {
+              state.isMobileMenuOpen = elements.menu.classList.contains('open');
+            }
+          });
+        }).observe(elements.menu, { attributes: true });
+      }
     },
 
-    setupEventListeners() {
-      this.logoutBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.openModal();
-      });
+    handleScroll() {
+      if (state.isMobileMenuOpen || !elements.navbar) return;
       
-      if (this.closeBtn) {
-        this.closeBtn.addEventListener("click", () => this.closeModal());
+      const scrollTop = document.documentElement.scrollTop;
+      elements.navbar.style.transition = `transform ${config.transitionTimes.navHide} ease`;
+      
+      if (state.isInitialLoad) {
+        state.lastScrollTop = scrollTop;
+        state.isInitialLoad = false;
+        return;
       }
       
-      if (this.cancelBtn) {
-        this.cancelBtn.addEventListener("click", () => this.closeModal());
+      elements.navbar.style.transform = (scrollTop > state.lastScrollTop && scrollTop > 50) 
+        ? "translateY(-100%)" 
+        : "translateY(0)";
+      
+      state.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    },
+
+    handleMouseMove(e) {
+      if (state.isMobile || !elements.navbar || state.isMobileMenuOpen) return;
+      
+      if (e.clientY <= 70) {
+        elements.navbar.style.transition = `transform ${config.transitionTimes.navShow} ease`;
+        elements.navbar.style.transform = "translateY(0)";
+      }
+    },
+    
+    showNavbar() {
+      if (elements.navbar) {
+        elements.navbar.style.transform = "translateY(0)";
+      }
+    }
+  };
+
+  // Gestionnaire des menus
+  const menuManager = {
+    init() {
+      // Effets du menu (survol)
+      if (!state.isMobile && elements.menuItems.length > 0) {
+        elements.menuItems.forEach(item => {
+          item.addEventListener("mouseover", () => this.handleHover(item, true));
+          item.addEventListener("mouseout", () => this.handleHover(item, false));
+        });
       }
       
-      window.addEventListener("click", (event) => {
-        if (event.target === this.modal) {
-          this.closeModal();
+      // Menu mobile
+      if (elements.hamburgerButton && elements.menu && elements.menuOverlay) {
+        elements.hamburgerButton.addEventListener('click', () => this.toggleMobileMenu());
+        elements.menuOverlay.addEventListener('click', () => this.closeMobileMenu());
+        
+        if (elements.menuLinks) {
+          elements.menuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+              if (!link.closest('.profile-dropdown-container') && 
+                  !link.closest('.theme-toggle-container')) {
+                this.closeMobileMenu();
+              }
+            });
+          });
+        }
+        
+        // Événements de touch pour mobile
+        document.addEventListener('touchmove', (e) => {
+          if (document.body.classList.contains('no-scroll')) {
+            if (!e.target.closest('.menu') || 
+                (e.target.closest('.menu') && !this.isMenuScrollable())) {
+              e.preventDefault();
+            }
+          }
+        }, { passive: false });
+        
+        window.addEventListener('resize', () => {
+          state.isMobile = window.innerWidth <= config.breakpoints.mobile;
+          if (!state.isMobile && elements.menu.classList.contains('open')) {
+            this.closeMobileMenu();
+          }
+        });
+      }
+    },
+    
+    handleHover(hoveredElement, isEntering) {
+      elements.menuItems.forEach(item => {
+        if (item !== hoveredElement) {
+          item.classList.toggle("hovered", isEntering);
         }
       });
     },
-
-    openModal() {
-      this.modal.style.display = "flex";
+    
+    isMenuScrollable() {
+      return elements.menu.scrollHeight > elements.menu.clientHeight;
     },
-
-    closeModal() {
-      this.modal.style.display = "none";
+    
+    toggleMobileMenu() {
+      const isOpening = !elements.menu.classList.contains('open');
+      
+      elements.hamburgerButton.classList.toggle('open');
+      elements.menu.classList.toggle('open');
+      elements.menuOverlay.classList.toggle('open');
+      
+      if (isOpening) {
+        utils.disableScroll();
+        navManager.showNavbar();
+      } else {
+        utils.enableScroll();
+        state.lastScrollTop = window.pageYOffset;
+      }
+      
+      // Menu déroulant du profil dans le menu mobile
+      if (elements.profileDropdown && state.isMobile) {
+        elements.profileDropdown.style.display = elements.menu.classList.contains('open') ? 
+          'flex' : 
+          (!elements.profileDropdown.closest('.profile-dropdown-container:hover') ? 'none' : 'flex');
+      }
+    },
+    
+    closeMobileMenu() {
+      if (!elements.menu.classList.contains('open')) return;
+      
+      elements.hamburgerButton.classList.remove('open');
+      elements.menu.classList.remove('open');
+      elements.menuOverlay.classList.remove('open');
+      
+      utils.enableScroll();
+      state.lastScrollTop = window.pageYOffset;
+      
+      if (elements.profileDropdown && state.isMobile && 
+          !elements.profileDropdown.closest('.profile-dropdown-container:hover')) {
+        elements.profileDropdown.style.display = 'none';
+      }
     }
   };
 
-  // Initialisation des gestionnaires
+  // Profile dropdown
+  const profileManager = {
+    init() {
+      if (!elements.profileContainer || !elements.profileDropdown) return;
+      
+      // Événements de souris pour ordinateur de bureau
+      elements.profileContainer.addEventListener("mouseenter", () => {
+        if (!state.isMobile) {
+          elements.profileDropdown.style.display = "flex";
+        }
+      });
+
+      elements.profileContainer.addEventListener("mouseleave", () => {
+        if (!state.isMobile) {
+          elements.profileDropdown.style.display = "none";
+        }
+      });
+      
+      // Événements de clic/tap pour mobile
+      elements.profileContainer.addEventListener("click", (e) => {
+        if (state.isMobile && !state.isMobileMenuOpen) {
+          if (e.target === elements.profileContainer || 
+              !e.target.closest('a') || 
+              e.target.closest('.profile-icon-container')) {
+            e.preventDefault();
+            this.toggleDropdown();
+          }
+        }
+      });
+      
+      // Fermer le menu déroulant lorsque l'on clique en dehors
+      document.addEventListener("click", (e) => {
+        if (state.isMobile && state.isDropdownOpen && 
+            !elements.profileContainer.contains(e.target) && 
+            !state.isMobileMenuOpen) {
+          elements.profileDropdown.style.display = "none";
+          state.isDropdownOpen = false;
+        }
+      });
+    },
+    
+    toggleDropdown() {
+      state.isDropdownOpen = !state.isDropdownOpen;
+      elements.profileDropdown.style.display = state.isDropdownOpen ? "flex" : "none";
+    }
+  };
+
+  // Gestionnaire de thème
+  const themeManager = {
+    init() {
+      if (elements.themeIcons.length === 0) return;
+      
+      // Initialiser le thème actuel
+      const currentTheme = utils.getCookie("theme") || "dark";
+      this.updateThemeIcons(currentTheme);
+      
+      // Configuration des événements de basculement du thème
+      elements.sunIcons.forEach(icon => {
+        icon.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.changeTheme("light");
+        });
+      });
+      
+      elements.moonIcons.forEach(icon => {
+        icon.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.changeTheme("dark");
+        });
+      });
+      
+      // Gestion du bouton de basculement du thème
+      if (elements.themeToggleBtn) {
+        elements.themeToggleBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const isLightMode = document.body.classList.contains("light-theme") || 
+                             document.cookie.includes("theme=light");
+          
+          this.changeTheme(isLightMode ? "dark" : "light");
+        });
+      }
+    },
+
+    changeTheme(newTheme) {
+      utils.toggleTheme(newTheme);
+      this.updateThemeIcons(newTheme);
+      
+      // Effet de transition
+      document.body.classList.add("theme-transition");
+      setTimeout(() => {
+        document.body.classList.remove("theme-transition");
+      }, config.transitionTimes.themeChange);
+    },
+
+    updateThemeIcons(theme) {
+      if (!elements.sunIcons || !elements.moonIcons) return;
+      
+      const isLight = theme === "light";
+      elements.sunIcons.forEach(icon => icon.classList.toggle("active", isLight));
+      elements.moonIcons.forEach(icon => icon.classList.toggle("active", !isLight));
+    }
+  };
+
+  // Modal de déconnexion
+  const modalManager = {
+    init() {
+      if (!elements.logoutModal || !elements.logoutBtn) return;
+      
+      elements.logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        elements.logoutModal.style.display = "flex";
+      });
+      
+      if (elements.closeModalBtn) {
+        elements.closeModalBtn.addEventListener("click", () => {
+          elements.logoutModal.style.display = "none";
+        });
+      }
+      
+      if (elements.cancelBtn) {
+        elements.cancelBtn.addEventListener("click", () => {
+          elements.logoutModal.style.display = "none";
+        });
+      }
+      
+      window.addEventListener("click", (event) => {
+        if (event.target === elements.logoutModal) {
+          elements.logoutModal.style.display = "none";
+        }
+      });
+    }
+  };
+
+  // Initialiser les fonctionnalités
   navManager.init();
-  menuEffectsManager.init();
-  profileDropdownManager.init();
+  menuManager.init();
+  profileManager.init();
   themeManager.init();
-  logoutModalManager.init();
+  modalManager.init();
 });

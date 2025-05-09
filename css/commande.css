@@ -131,9 +131,7 @@
 }
 
 .reservation-meta {
-  display: flex;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
+  display: none;
   margin-top: var(--spacing-xs)
 }
 
@@ -939,4 +937,217 @@
   margin: 0;
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+}
+
+/* Styles responsives */
+@media screen and (max-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hero-banner {
+    height: 260px;
+  }
+  
+  .destination-title h1 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .transaction-bar {
+    padding: var(--spacing-sm) var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--spacing-sm) var(--spacing-lg);
+  }
+  
+  .transaction-status {
+    margin-left: auto;
+  }
+  
+  .modif-reservation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .modif-buttons {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: var(--spacing-sm);
+  }
+  
+  .modif-header {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reservation-meta {
+    align-items: flex-start;
+  }
+  
+  .meta-item {
+    width: 100%;
+  }
+  
+  .header-content {
+    padding: var(--spacing-md);
+  }
+  
+  .actions-container {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  
+  .action-button {
+    width: 100%;
+  }
+  
+  .travelers-list {
+    gap: var(--spacing-xs);
+  }
+  
+  .option-item {
+    padding: var(--spacing-xs);
+  }
+  
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .transaction-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+  
+  .transaction-status {
+    align-self: flex-start;
+    margin-left: 0;
+  }
+  
+  .modif-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .modif-reservation .action-button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hero-banner {
+    height: 220px;
+  }
+  
+  .destination-title h1 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .breadcrumb {
+    font-size: var(--font-size-xs);
+  }
+  
+  .card {
+    border-radius: var(--border-radius-md);
+  }
+  
+  .card-header {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-md);
+  }
+  
+  .card-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .payment-row.total .payment-label,
+  .payment-row.total .payment-value {
+    font-size: var(--font-size-sm);
+  }
+  
+  .traveler-item {
+    padding: var(--spacing-xxs);
+  }
+  
+  .traveler-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .traveler-name, .traveler-details {
+    font-size: calc(var(--font-size-xs) - 1px);
+  }
+  
+  .transaction-value {
+    font-size: var(--font-size-xs);
+  }
+  
+  .transaction-value.price {
+    font-size: var(--font-size-sm);
+  }
+  
+  .voyage-description {
+    font-size: var(--font-size-sm);
+  }
+  
+  .summary-header h2, 
+  .tips-section h2 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .timeline {
+    padding-left: 25px;
+    margin-left: 0;
+  }
+  
+  .timeline-point {
+    width: 16px;
+    height: 16px;
+    left: -25px;
+    top: 14px;
+    font-size: 10px;
+  }
+  
+  .tip-item {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  
+  .tip-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .tip-icon img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .tip-content h3 {
+    font-size: var(--font-size-sm);
+  }
+  
+  .tip-content p {
+    font-size: calc(var(--font-size-xs) - 1px);
+  }
 }

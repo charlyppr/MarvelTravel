@@ -70,6 +70,13 @@ if ($is_in_root) {
         <span class="logo vel">VEL</span>
     </a>
 
+    <!-- Add hamburger button for mobile -->
+    <div class="hamburger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <div class="menu">
         <ul>
             <a href="<?php echo $base_url; ?>/index.php"
@@ -173,6 +180,9 @@ if ($is_in_root) {
         </ul>
     </div>
 </header>
+
+<!-- Add overlay for mobile menu -->
+<div class="menu-overlay"></div>
 
 <div id="nav-logout-modal" class="modal">
     <div class="modal-content">

@@ -194,23 +194,23 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                                                     <?php endif; ?>
                                                     <?php echo htmlspecialchars($commande['voyage']); ?>
                                                 </td>
-                                                <td class="dates">
+                                                <td class="dates" data-label="Dates">
                                                     <?php echo date('d/m/Y', strtotime($commande['date_debut'])) . ' au ' . date('d/m/Y', strtotime($commande['date_fin'])); ?>
                                                     <?php if ($commande['is_upcoming']): ?>
                                                         <div class="countdown">Dans <?php echo $commande['jours_restants'] + 1; ?>
                                                             jour<?php echo $commande['jours_restants'] > 1 ? 's' : ''; ?></div>
                                                     <?php endif; ?>
                                                 </td>
-                                                <td class="travelers"><?php echo $commande['nb_personne']; ?>
+                                                <td class="travelers" data-label="Voyageurs"><?php echo $commande['nb_personne']; ?>
                                                     personne<?php echo $commande['nb_personne'] > 1 ? 's' : ''; ?></td>
-                                                <td class="price"><?php echo number_format($commande['montant'], 2, ',', ' '); ?> €</td>
-                                                <td>
+                                                <td class="price" data-label="Prix"><?php echo number_format($commande['montant'], 2, ',', ' '); ?> €</td>
+                                                <td data-label="Statut">
                                                     <div class="status <?php echo $status_class; ?>">
                                                         <?php echo $status_text; ?>
                                                         <img src="../img/svg/<?php echo $status_icon; ?>" alt="statut">
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td data-label="Actions">
                                                     <a href="commande.php?transaction=<?php echo $commande['transaction']; ?>"
                                                         class="view-button">
                                                         Détails

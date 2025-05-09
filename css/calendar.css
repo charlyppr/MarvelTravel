@@ -325,3 +325,136 @@
   border-radius: 0 50% 50% 0;
   pointer-events: none;
 }
+
+/* ===== RESPONSIVE STYLES ===== */
+@media screen and (max-width: 1200px) {
+  .calendar-dropdown {
+    transform: translate(0);
+    margin-top: var(--spacing-md);
+  }
+  
+  .calendar-months {
+    gap: var(--spacing-md);
+  }
+  
+  .calendar-day {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .calendar-dropdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 550px;
+    z-index: 9999;
+    background: var(--color-background);
+    box-shadow: var(--shadow-intense);
+    overflow: auto;
+    max-height: 90vh;
+  }
+  
+  .calendar-header {
+    padding: var(--spacing-md);
+  }
+  
+  .calendar-day {
+    height: 38px;
+    width: 38px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .prev-month, .next-month {
+    padding: var(--spacing-xxs);
+  }
+  
+  .prev-month img, .next-month img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .calendar-dropdown {
+    max-width: 450px;
+  }
+  
+  .calendar-months {
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+  
+  .month-container:last-child {
+    padding-bottom: var(--spacing-md);
+  }
+  
+  .month-name {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .calendar-day {
+    height: 40px;
+    width: 40px;
+  }
+  
+  .reset-dates,
+  .apply-dates {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+  
+  .range-options {
+    gap: var(--spacing-xxs);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .calendar-dropdown {
+    width: 95%;
+    max-width: 350px;
+    max-height: 85vh;
+  }
+  
+  .calendar-header {
+    padding: var(--spacing-sm);
+  }
+  
+  .calendar-div {
+    gap: var(--spacing-sm);
+  }
+  
+  .month-name {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .calendar-day-header {
+    font-size: 10px;
+  }
+  
+  .calendar-day {
+    height: 35px;
+    width: 35px;
+    font-size: 11px;
+    margin: 1px 0;
+  }
+  
+  .prev-month, .next-month {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .prev-month img, .next-month img {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .calendar-selection-message {
+    padding: var(--spacing-xxs) var(--spacing-xs);
+    font-size: 11px;
+  }
+}
