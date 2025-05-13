@@ -95,8 +95,8 @@
         "items": [
             {
                 "voyage_id": 7,
-                "date_debut": "2025-05-21",
-                "date_fin": "2025-05-25",
+                "date_debut": "2025-05-14",
+                "date_fin": "2025-05-17",
                 "nb_personnes": "1",
                 "prix_unitaire": 5599.95,
                 "voyageurs": [
@@ -109,29 +109,9 @@
                         "passport": "870 276 174 5"
                     }
                 ],
-                "options": [
-                    [
-                        {
-                            "voyageurs": [
-                                0
-                            ]
-                        }
-                    ],
-                    [
-                        {
-                            "voyageurs": [
-                                0
-                            ]
-                        },
-                        {
-                            "voyageurs": [
-                                0
-                            ]
-                        }
-                    ]
-                ],
-                "prix_options": 999.97,
-                "etape_atteinte": 4
+                "options": [],
+                "prix_options": 0,
+                "etape_atteinte": 3
             }
         ]
     },
