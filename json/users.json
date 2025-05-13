@@ -28,7 +28,7 @@
         "date_inscription": "2025-05-04 00:23:31",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-13 01:34:45",
+        "last_login": "2025-05-13 11:31:05",
         "theme": "light"
     },
     {
@@ -90,7 +90,7 @@
         "role": "user",
         "passport_id": "1600962000",
         "date_inscription": "2025-05-05 09:36:49",
-        "blocked": false,
+        "blocked": true,
         "vip": false,
         "last_login": "null",
         "theme": "dark"

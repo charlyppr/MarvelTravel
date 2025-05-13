@@ -42,7 +42,8 @@
 .notification p {
   margin: 0;
   flex-grow: 1;
-  font-size: var(--font-size-sm)
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
 }
 
 .close-notification {
