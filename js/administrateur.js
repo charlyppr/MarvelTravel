@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleDelay: 1000,
             notificationFadeIn: 10,
             notificationDuration: 3000,
-            notificationFadeOut: 500
+            notificationFadeOut: 500,
+            minLoadingDuration: 800
         },
         status: {
             blocked: {
@@ -55,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 html: 'VIP<img src="../img/svg/etoile.svg" alt="etoile"><span class="tooltip">Cliquez pour retirer le VIP</span>',
                 message: 'Statut VIP ajouté avec succès'
             }
+        },
+        api: {
+            updateUserStatus: '../php/update_user_status.php'
         }
     };
 
@@ -108,6 +112,46 @@ document.addEventListener('DOMContentLoaded', function () {
                     return b.querySelector('.nom').textContent.localeCompare(a.querySelector('.nom').textContent);
                 }
             }
+        },
+
+        // API
+        api: {
+            updateUserStatus: async (email, updateData) => {
+                try {                    
+                    const response = await fetch(config.api.updateUserStatus, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, ...updateData })
+                    });
+                                        
+                    if (!response.ok) {
+                        console.error(`Server error: ${response.status} ${response.statusText}`);
+                        return { 
+                            success: false, 
+                            message: `Erreur serveur: ${response.status} ${response.statusText}` 
+                        };
+                    }
+                    
+                    const text = await response.text();
+                    
+                    let data;
+                    
+                    try {
+                        data = JSON.parse(text);
+                    } catch (parseError) {
+                        return { 
+                            success: false, 
+                            message: 'Réponse du serveur invalide' 
+                        };
+                    }
+                    
+                    return data;
+                } catch (error) {
+                    return { success: false, message: 'Erreur de connexion' };
+                }
+            }
         }
     };
 
@@ -146,54 +190,152 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         },
         
-        // Fonction générique pour configurer les éléments basculables
-        setupToggle(selector, options) {
-            utils.dom.getAllElements(selector).forEach(element => {
-                element.addEventListener('click', function () {
-                    const currentState = this.getAttribute(options.dataAttr) === options.states[0].value;
+        // Configuration du basculement de statut
+        setupToggleStatus() {
+            const self = this; // Référence à adminManager
+            
+            utils.dom.getAllElements(config.selectors.toggleStatus).forEach(element => {
+                element.addEventListener('click', async function () {
+                    const currentState = this.getAttribute('data-status') === config.status.blocked.value;
                     this.classList.add(config.classes.updating);
                     
+                    // Obtenir l'email de l'utilisateur depuis la ligne parente
+                    const userRow = this.closest('tr');
+                    const userEmail = userRow.getAttribute('data-email');
+                    const newStatus = currentState ? config.status.active.value : config.status.blocked.value;
+                    
+                    // Temps de début pour maintenir un temps minimal de chargement
+                    const startTime = Date.now();
+                    
+                    // Appel à l'API
+                    const response = await utils.api.updateUserStatus(userEmail, { status: newStatus });
+                    
+                    // Assurer un délai minimum pour l'affichage du chargement
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, config.timing.minLoadingDuration - elapsedTime);
+                    
                     setTimeout(() => {
-                        const newState = currentState ? options.states[1] : options.states[0];
-                        
-                        // Mettre à jour les classes
-                        this.classList.remove(currentState ? options.states[0].class : options.states[1].class);
-                        this.classList.add(currentState ? options.states[1].class : options.states[0].class);
-                        
-                        // Mettre à jour l'attribut de données
-                        this.setAttribute(options.dataAttr, currentState ? newState.value : options.states[0].value);
-                        
-                        // Mettre à jour le contenu HTML
-                        this.innerHTML = (currentState ? newState.html : options.states[0].html);
+                        if (response.success) {
+                            // Mettre à jour visuellement l'élément
+                            const newState = currentState ? config.status.active : config.status.blocked;
+                            
+                            // Mettre à jour les classes
+                            this.classList.remove(currentState ? config.status.blocked.class : config.status.active.class);
+                            this.classList.add(currentState ? config.status.active.class : config.status.blocked.class);
+                            
+                            // Mettre à jour l'attribut de données
+                            this.setAttribute('data-status', newStatus);
+                            
+                            // Mettre à jour le contenu HTML
+                            this.innerHTML = (currentState ? newState.html : config.status.blocked.html);
+                            
+                            // Si on bloque un utilisateur, mettre à jour le bouton VIP
+                            if (newStatus === config.status.blocked.value) {
+                                const vipToggle = userRow.querySelector(config.selectors.toggleVip);
+                                if (vipToggle && vipToggle.getAttribute('data-vip') === config.vip.yes.value) {
+                                    // Mettre à jour le toggle VIP en non-VIP
+                                    vipToggle.classList.remove(config.vip.yes.class);
+                                    vipToggle.classList.add(config.vip.no.class);
+                                    vipToggle.setAttribute('data-vip', config.vip.no.value);
+                                    vipToggle.innerHTML = config.vip.no.html;
+                                }
+                                
+                                // Désactiver le bouton VIP
+                                self.updateVipToggleState(userRow, true);
+                            } else {
+                                // Réactiver le bouton VIP
+                                self.updateVipToggleState(userRow, false);
+                            }
+                            
+                            // Afficher notification
+                            utils.notification.show(response.message, 'success');
+                        } else {
+                            utils.notification.show(response.message || 'Une erreur est survenue', 'error');
+                        }
                         
                         this.classList.remove(config.classes.updating);
-                        
-                        // Afficher notification
-                        utils.notification.show(currentState ? newState.message : options.states[0].message, 'success');
-                    }, config.timing.toggleDelay);
+                    }, remainingTime);
                 });
             });
         },
         
-        // Configuration du basculement de statut
-        setupToggleStatus() {
-            this.setupToggle(config.selectors.toggleStatus, {
-                dataAttr: 'data-status',
-                states: [
-                    config.status.blocked,
-                    config.status.active
-                ]
-            });
+        // Mettre à jour l'état du toggle VIP en fonction du statut bloqué/actif
+        updateVipToggleState(userRow, isBlocked) {
+            const vipToggle = userRow.querySelector(config.selectors.toggleVip);
+            if (vipToggle) {
+                if (isBlocked) {
+                    vipToggle.classList.add('disabled');
+                    vipToggle.title = "Impossible d'attribuer le statut VIP à un utilisateur bloqué";
+                } else {
+                    vipToggle.classList.remove('disabled');
+                    vipToggle.title = "";
+                }
+            }
         },
         
         // Configuration du basculement VIP
         setupToggleVip() {
-            this.setupToggle(config.selectors.toggleVip, {
-                dataAttr: 'data-vip',
-                states: [
-                    config.vip.no,
-                    config.vip.yes
-                ]
+            const self = this; // Référence à adminManager
+            
+            utils.dom.getAllElements(config.selectors.toggleVip).forEach(element => {
+                // Initialiser l'état du toggle VIP en fonction du statut initial
+                const userRow = element.closest('tr');
+                const statusToggle = userRow.querySelector(config.selectors.toggleStatus);
+                const isBlocked = statusToggle && statusToggle.getAttribute('data-status') === config.status.blocked.value;
+                self.updateVipToggleState(userRow, isBlocked);
+                
+                element.addEventListener('click', async function (e) {
+                    // Vérifier si l'utilisateur est bloqué
+                    const userRow = this.closest('tr');
+                    const statusToggle = userRow.querySelector(config.selectors.toggleStatus);
+                    const isBlocked = statusToggle && statusToggle.getAttribute('data-status') === config.status.blocked.value;
+                    
+                    if (isBlocked) {
+                        utils.notification.show("Impossible d'attribuer le statut VIP à un utilisateur bloqué", 'error');
+                        return;
+                    }
+                    
+                    const currentVipState = this.getAttribute('data-vip') === config.vip.yes.value;
+                    this.classList.add(config.classes.updating);
+                    
+                    // Obtenir l'email de l'utilisateur depuis la ligne parente
+                    const userEmail = userRow.getAttribute('data-email');
+                    const newVipStatus = currentVipState ? false : true;
+                    
+                    // Temps de début pour maintenir un temps minimal de chargement
+                    const startTime = Date.now();
+                    
+                    // Appel à l'API
+                    const response = await utils.api.updateUserStatus(userEmail, { vip: newVipStatus });
+                    
+                    // Assurer un délai minimum pour l'affichage du chargement
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, config.timing.minLoadingDuration - elapsedTime);
+                    
+                    setTimeout(() => {
+                        if (response.success) {
+                            // Mettre à jour visuellement l'élément
+                            const newState = currentVipState ? config.vip.no : config.vip.yes;
+                            
+                            // Mettre à jour les classes
+                            this.classList.remove(currentVipState ? config.vip.yes.class : config.vip.no.class);
+                            this.classList.add(currentVipState ? config.vip.no.class : config.vip.yes.class);
+                            
+                            // Mettre à jour l'attribut de données
+                            this.setAttribute('data-vip', currentVipState ? config.vip.no.value : config.vip.yes.value);
+                            
+                            // Mettre à jour le contenu HTML
+                            this.innerHTML = (currentVipState ? config.vip.no.html : config.vip.yes.html);
+                            
+                            // Afficher notification
+                            utils.notification.show(response.message, 'success');
+                        } else {
+                            utils.notification.show(response.message || 'Une erreur est survenue', 'error');
+                        }
+                        
+                        this.classList.remove(config.classes.updating);
+                    }, remainingTime);
+                });
             });
         },
         

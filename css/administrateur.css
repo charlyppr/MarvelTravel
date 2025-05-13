@@ -412,9 +412,47 @@ img {
   box-shadow: var(--shadow-small)
 }
 
+.toggle-vip.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: auto;
+}
+
+.toggle-vip.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .updating {
   opacity: .7;
-  pointer-events: none
+  pointer-events: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.updating::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: loading-pulse 1.5s infinite;
+}
+
+@keyframes loading-pulse {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .tooltip {
@@ -463,6 +501,12 @@ img {
   background-color: var(--color-success-bg);
   color: var(--color-success);
   border: 1px solid var(--color-success-border)
+}
+
+.notification-error {
+  background-color: var(--color-pending-bg);
+  color: var(--color-pending);
+  border: 1px solid var(--color-pending-border)
 }
 
 /* Responsive Design */

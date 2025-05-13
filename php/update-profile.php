@@ -2,6 +2,13 @@
 require('session.php');
 check_auth('connexion.php');
 
+// Préparer la réponse JSON
+$response = [
+    'success' => false,
+    'message' => '',
+    'data' => []
+];
+
 // Vérifier si les données du formulaire ont été soumises
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer et valider les données
@@ -57,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         }
 
                         if ($email_exists) {
-                            $_SESSION['error'] = "Cet email est déjà utilisé par un autre compte.";
-                            header('Location: profil.php');
+                            $response['message'] = "Cet email est déjà utilisé par un autre compte.";
+                            echo json_encode($response);
                             exit;
                         }
 
@@ -84,20 +91,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['last_name'] = $last_name;
                 $_SESSION['email'] = $email;
 
-                $_SESSION['success'] = "Votre profil a été mis à jour avec succès!";
+                $response['success'] = true;
+                $response['message'] = "Votre profil a été mis à jour avec succès!";
+                $response['data'] = [
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'email' => $email
+                ];
             } else {
-                $_SESSION['error'] = "Utilisateur non trouvé.";
+                $response['message'] = "Utilisateur non trouvé.";
             }
         } else {
-            $_SESSION['error'] = "Erreur système: fichier utilisateurs introuvable.";
+            $response['message'] = "Erreur système: fichier utilisateurs introuvable.";
         }
     } else {
-        // S'il y a des erreurs, les stocker dans la session
-        $_SESSION['error'] = implode("<br>", $errors);
+        // S'il y a des erreurs, les renvoyer
+        $response['message'] = implode("<br>", $errors);
     }
+} else {
+    $response['message'] = "Méthode non autorisée.";
 }
 
-// Redirection vers la page de profil
-header('Location: profil.php');
+// Envoyer la réponse JSON
+header('Content-Type: application/json');
+echo json_encode($response);
 exit;
 ?>

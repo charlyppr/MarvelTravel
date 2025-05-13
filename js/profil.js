@@ -240,9 +240,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (!profileForm) return;
             
+            // Attacher l'écouteur d'événement directement sur le formulaire
             profileForm.addEventListener('submit', (event) => {
+                // Toujours empêcher la soumission par défaut en premier
+                event.preventDefault();
+                event.stopPropagation();
+                
+                console.log('Formulaire intercepté, soumission empêchée');
+                
                 if (!this.validateAllEditingFields()) {
-                    event.preventDefault();
                     return;
                 }
                 
@@ -250,7 +256,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 utils.getElements(config.selectors.inputs).forEach(input => {
                     input.disabled = false;
                 });
+                
+                // Collecter les données du formulaire
+                const formData = new FormData(profileForm);
+                
+                // Afficher un indicateur de chargement
+                this.showLoading();
+                
+                // Envoyer la requête asynchrone
+                fetch('../php/update-profile.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Stocker les données et l'état de réussite pour afficher après le chargement
+                    this.pendingNotification = {
+                        type: data.success ? 'success' : 'error',
+                        message: data.message || (data.success ? 'Vos informations ont été mises à jour avec succès.' : 'Une erreur est survenue lors de la mise à jour.'),
+                        data: data
+                    };
+                    
+                    // Masquer le chargement qui va déclencher la notification à la fin
+                    this.hideLoading();
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    
+                    // Stocker l'erreur pour afficher après le chargement
+                    this.pendingNotification = {
+                        type: 'error',
+                        message: 'Une erreur de connexion est survenue.'
+                    };
+                    
+                    // Masquer le chargement qui va déclencher la notification à la fin
+                    this.hideLoading();
+                });
+                
+                // Retourner false pour garantir que le formulaire ne se soumette pas traditionnellement
+                return false;
             });
+            
+            // Attacher également un gestionnaire au bouton de soumission pour plus de sécurité
+            const { submitBtn } = this.elements;
+            if (submitBtn) {
+                submitBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    // Déclencher manuellement la soumission du formulaire pour passer par notre gestionnaire
+                    const submitEvent = new Event('submit', { cancelable: true, bubbles: true });
+                    profileForm.dispatchEvent(submitEvent);
+                    
+                    return false;
+                });
+            }
         },
         
         // Gestion du clic sur un bouton de validation
@@ -521,6 +581,129 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Mettre à jour l'UI
             this.updateActionButtons();
+        },
+        
+        // Afficher une notification
+        showNotification(type, message) {
+            // Supprimer les notifications existantes
+            utils.getElements(config.selectors.notifications).forEach(notification => {
+                this.fadeOutAndRemove(notification);
+            });
+            
+            // Créer une nouvelle notification
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            const icon = document.createElement('img');
+            icon.src = type === 'success' ? '../img/svg/check-circle.svg' : '../img/svg/alert-circle.svg';
+            icon.alt = type === 'success' ? 'Succès' : 'Erreur';
+            
+            const text = document.createElement('p');
+            text.textContent = message;
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'close-notification';
+            closeBtn.innerHTML = '&times;';
+            closeBtn.addEventListener('click', () => this.fadeOutAndRemove(notification));
+            
+            notification.appendChild(icon);
+            notification.appendChild(text);
+            notification.appendChild(closeBtn);
+            
+            // Ajouter la notification au document
+            document.body.insertBefore(notification, document.body.firstChild);
+            
+            // Fermeture automatique après 5 secondes
+            setTimeout(() => this.fadeOutAndRemove(notification), 5000);
+        },
+        
+        // Afficher l'indicateur de chargement
+        showLoading() {
+            const { submitBtn } = this.elements;
+            if (!submitBtn) return;
+            
+            // Définir un timestamp de début de chargement
+            this.loadingStartTime = Date.now();
+            
+            // Appliquer la classe de chargement
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            const originalText = submitBtn.querySelector('span');
+            if (originalText) {
+                originalText.setAttribute('data-original-text', originalText.textContent);
+                originalText.textContent = 'Traitement en cours...';
+            }
+        },
+        
+        // Masquer l'indicateur de chargement
+        hideLoading() {
+            const { submitBtn } = this.elements;
+            if (!submitBtn) return;
+            
+            // Calculer le temps écoulé depuis le début du chargement
+            const elapsedTime = Date.now() - (this.loadingStartTime || 0);
+            const minLoadingTime = 800; // Temps minimum de chargement en ms
+            
+            // Si le temps écoulé est inférieur au minimum, attendre avant de cacher
+            if (elapsedTime < minLoadingTime) {
+                setTimeout(() => {
+                    this.hideLoadingImmediately();
+                    this.processPendingNotification();
+                }, minLoadingTime - elapsedTime);
+            } else {
+                this.hideLoadingImmediately();
+                this.processPendingNotification();
+            }
+        },
+        
+        // Masquer immédiatement l'indicateur de chargement
+        hideLoadingImmediately() {
+            const { submitBtn } = this.elements;
+            if (!submitBtn) return;
+            
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            
+            const textElement = submitBtn.querySelector('span');
+            if (textElement && textElement.hasAttribute('data-original-text')) {
+                textElement.textContent = textElement.getAttribute('data-original-text');
+                textElement.removeAttribute('data-original-text');
+            }
+        },
+        
+        // Traiter la notification en attente
+        processPendingNotification() {
+            if (!this.pendingNotification) return;
+            
+            const { type, message, data } = this.pendingNotification;
+            
+            // Afficher la notification
+            this.showNotification(type, message);
+            
+            // Appliquer les changements appropriés en fonction du type
+            if (type === 'success' && data && data.success) {
+                // Mettre à jour les valeurs originales des champs modifiés
+                this.state.validated.forEach(field => {
+                    const input = document.getElementById(field);
+                    if (input) {
+                        input.setAttribute('data-original-value', input.value);
+                    }
+                });
+                
+                // Réinitialiser l'état
+                this.state.validated.clear();
+                this.state.editingFields.clear();
+                
+                // Mettre à jour l'UI
+                this.updateActionButtons();
+            } else if (type === 'error') {
+                // Restaurer les valeurs originales
+                this.resetAllFields();
+            }
+            
+            // Nettoyer la notification en attente
+            this.pendingNotification = null;
         }
     };
     

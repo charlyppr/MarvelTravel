@@ -1,29 +1,65 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Éléments du modal
-    const modal = document.getElementById('logout-modal');
+    // Éléments du modal de déconnexion
+    const logoutModal = document.getElementById('logout-modal');
     const logoutBtn = document.getElementById('logout-button');
-    const closeBtn = document.querySelector('.close-modal');
-    const cancelBtn = document.getElementById('cancel-logout');
+    const closeLogoutBtn = document.querySelector('.close-modal');
+    const cancelLogoutBtn = document.getElementById('cancel-logout');
+
+    // Éléments du modal de suppression de compte
+    const deleteModal = document.getElementById('delete-account-modal');
+    const deleteBtn = document.getElementById('delete-account-button');
+    const closeDeleteBtn = document.querySelector('.close-modal-delete');
+    const cancelDeleteBtn = document.getElementById('cancel-delete');
 
     // Ouvrir le modal quand on clique sur le bouton de déconnexion
-    logoutBtn.addEventListener('click', function () {
-        modal.style.display = 'flex';
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function () {
+            logoutModal.style.display = 'flex';
+        });
+    }
 
-    // Fermer le modal sur le bouton de fermeture
-    closeBtn.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
+    // Fermer le modal de déconnexion
+    if (closeLogoutBtn) {
+        closeLogoutBtn.addEventListener('click', function () {
+            logoutModal.style.display = 'none';
+        });
+    }
 
     // Fermer le modal sur le bouton Annuler
-    cancelBtn.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
+    if (cancelLogoutBtn) {
+        cancelLogoutBtn.addEventListener('click', function () {
+            logoutModal.style.display = 'none';
+        });
+    }
+
+    // Ouvrir le modal quand on clique sur le bouton de suppression de compte
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function () {
+            deleteModal.style.display = 'flex';
+        });
+    }
+
+    // Fermer le modal de suppression
+    if (closeDeleteBtn) {
+        closeDeleteBtn.addEventListener('click', function () {
+            deleteModal.style.display = 'none';
+        });
+    }
+
+    // Fermer le modal sur le bouton Annuler
+    if (cancelDeleteBtn) {
+        cancelDeleteBtn.addEventListener('click', function () {
+            deleteModal.style.display = 'none';
+        });
+    }
 
     // Fermer le modal si on clique à l'extérieur
     window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
+        if (event.target === logoutModal) {
+            logoutModal.style.display = 'none';
+        }
+        if (event.target === deleteModal) {
+            deleteModal.style.display = 'none';
         }
     });
     

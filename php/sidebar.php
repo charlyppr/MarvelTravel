@@ -191,4 +191,21 @@ function isActive($page, $current_page)
     </div>
 </div>
 
+<div id="delete-account-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Confirmation de suppression</h3>
+            <span class="close-modal-delete">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir supprimer définitivement votre compte ?</p>
+            <p class="warning-text">Cette action est irréversible et toutes vos données seront perdues.</p>
+        </div>
+        <div class="modal-footer">
+            <button id="cancel-delete" class="btn-secondary">Annuler</button>
+            <a href="delete-account.php" class="btn-danger">Supprimer mon compte</a>
+        </div>
+    </div>
+</div>
+
 <script src="../js/sidebar.js" defer></script>

@@ -158,7 +158,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
                             </div>
 
                             <div class="card-content">
-                                <form id="profileForm" method="post" action="update-profile.php">
+                                <form id="profileForm" method="post" action="javascript:void(0);">
                                     <div class="profile-header-info">
                                         <div class="profile-avatar">
                                             <img src="../img/svg/spiderman-pin.svg" alt="photo de profil"
