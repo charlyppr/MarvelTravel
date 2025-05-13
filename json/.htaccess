@@ -1,0 +1,13 @@
+# Empêcher l'accès direct aux fichiers JSON
+<FilesMatch "\.json$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Permettre l'accès depuis le serveur PHP
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost [NC]
+    RewriteCond %{HTTP_REFERER} !^http://(www\.)?127\.0\.0\.1 [NC]
+    RewriteRule \.(json)$ - [F]
+</IfModule> 
