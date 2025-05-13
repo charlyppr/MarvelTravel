@@ -90,7 +90,7 @@
         "role": "user",
         "passport_id": "1600962000",
         "date_inscription": "2025-05-05 09:36:49",
-        "blocked": false,
+        "blocked": true,
         "vip": false,
         "last_login": "null",
         "theme": "dark"

@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (isset($user['blocked']) && $user['blocked'] === true) {
                         $_SESSION['login_mail'] = $login_mail;
                         $_SESSION['connexion'] = 2; // Code spécifique pour utilisateur bloqué
+                        header("Location: connexion.php");
                         exit();
                     }
                     

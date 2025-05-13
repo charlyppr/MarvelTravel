@@ -399,7 +399,7 @@ input:focus {
 
 .hulk-pin {
   position: absolute;
-  transform: rotate(-10deg) translate(-370px, 500px)
+  transform: rotate(-10deg) translate(-370px, 410px);
 }
 
 .shield-pin {
