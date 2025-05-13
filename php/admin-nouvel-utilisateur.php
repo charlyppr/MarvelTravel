@@ -2,6 +2,9 @@
 // Démarrer la session si ce n'est pas déjà fait
 session_start();
 
+// Inclure le fichier session.php pour accéder à la fonction load_user_theme
+require_once 'session.php';
+
 $page_title = "Création d'utilisateur";
 $maintenance_message = "Cette fonctionnalité sera bientôt disponible";
 $completion_date = "PHASE 4";
@@ -14,7 +17,7 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 // Récupérer le thème de la session
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

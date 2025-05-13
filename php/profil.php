@@ -92,7 +92,7 @@ if (file_exists($messages_file)) {
 }
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

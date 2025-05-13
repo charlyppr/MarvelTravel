@@ -8,6 +8,7 @@ body {
     margin: 0 auto;
     padding: var(--spacing-xl);
     animation: fadeIn 0.5s ease;
+    margin-top: 100px;
 }
 
 /* ===== HEADER DE RÉSERVATION ===== */

@@ -78,7 +78,7 @@ $today = new DateTime();
 $jours_restants = $today < $debut ? $today->diff($debut)->days : 0;
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

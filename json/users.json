@@ -12,7 +12,7 @@
         "date_inscription": "2025-05-02 19:06:37",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-13 00:46:12",
+        "last_login": "2025-05-13 01:42:59",
         "theme": "dark"
     },
     {
@@ -28,7 +28,8 @@
         "date_inscription": "2025-05-04 00:23:31",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-13 00:45:43"
+        "last_login": "2025-05-13 01:34:45",
+        "theme": "light"
     },
     {
         "civilite": "Mme",
@@ -43,7 +44,8 @@
         "date_inscription": "2025-05-05 02:08:49",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-05 02:13:50"
+        "last_login": "2025-05-05 02:13:50",
+        "theme": "light"
     },
     {
         "civilite": "Autre",
@@ -58,7 +60,8 @@
         "date_inscription": "2025-05-05 02:12:32",
         "blocked": true,
         "vip": false,
-        "last_login": "2025-05-05 02:13:32"
+        "last_login": "2025-05-05 02:13:32",
+        "theme": "dark"
     },
     {
         "civilite": "M",
@@ -73,7 +76,8 @@
         "date_inscription": "2025-05-05 02:15:06",
         "blocked": false,
         "vip": true,
-        "last_login": "2025-05-05 02:15:59"
+        "last_login": "2025-05-05 02:15:59",
+        "theme": "light"
     },
     {
         "civilite": "Autre",
@@ -88,6 +92,7 @@
         "date_inscription": "2025-05-05 09:36:49",
         "blocked": false,
         "vip": false,
-        "last_login": "null"
+        "last_login": "null",
+        "theme": "dark"
     }
 ]

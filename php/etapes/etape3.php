@@ -249,7 +249,7 @@ if (isset($_POST['submit_options'])) {
 }
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

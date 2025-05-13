@@ -1,18 +1,10 @@
 <?php
+// Inclure le fichier session.php pour accéder à la fonction load_user_theme
+require_once 'session.php';
+
 // Initialiser la session si ce n'est pas déjà fait
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-
-// Fonction pour nettoyer les données de réservation
-function clear_reservation_data()
-{
-    if (isset($_SESSION['reservation'])) {
-        unset($_SESSION['reservation']);
-    }
-    if (isset($_SESSION['current_voyage_id'])) {
-        unset($_SESSION['current_voyage_id']);
-    }
 }
 
 // Charger les données des voyages
@@ -108,7 +100,7 @@ if ($category != 'all' || !empty($recherche) || !empty($date_debut) || !empty($d
 $best_voyages = array_slice($voyages, 0, 4);
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

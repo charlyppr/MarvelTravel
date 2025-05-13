@@ -55,7 +55,7 @@ $voyagesJson = file_get_contents('../json/voyages.json');
 $voyages = json_decode($voyagesJson, true);
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

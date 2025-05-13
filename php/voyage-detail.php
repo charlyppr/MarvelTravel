@@ -1,4 +1,7 @@
 <?php
+
+require_once 'session.php';
+
 // Initialiser la session si ce n'est pas déjà fait
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -31,7 +34,7 @@ $voyage['langue'] = isset($voyage['langue']) ? $voyage['langue'] : ['Français']
 $voyage['activites'] = isset($voyage['activites']) ? $voyage['activites'] : [];
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

@@ -4,7 +4,7 @@ check_auth('connexion.php');
 
 // Initialisation des variables
 $message = '';
-$theme = 'dark'; // Thème par défaut
+$theme = load_user_theme(); // Charger le thème depuis users.json ou le cookie
 $highContrast = false;
 $fontSize = 'normal';
 $dyslexicFont = false;

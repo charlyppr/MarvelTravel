@@ -48,6 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['nationalite'] = $user['nationalite'];
                     }
                     $_SESSION['passport_id'] = $user['passport_id'] ?? '';
+                    
+                    // Récupérer et appliquer le thème de l'utilisateur depuis users.json
+                    if (isset($user['theme'])) {
+                        $userTheme = $user['theme'];
+                        // Définir le cookie avec le thème de l'utilisateur
+                        setcookie('theme', $userTheme, time() + (30 * 24 * 60 * 60), '/');
+                    }
 
                     // En cas de connexion réussie, supprimer l'email mémorisé
                     unset($_SESSION['login_mail']);
@@ -85,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-// Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+// Récupérer le thème (en utilisant la fonction helper)
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

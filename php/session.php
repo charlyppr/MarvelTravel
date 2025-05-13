@@ -40,6 +40,10 @@ function log_out()
 {
     session_unset(); // Supprime toutes les variables de session
     session_destroy(); // Détruit la session
+    
+    // Ne pas supprimer le cookie du thème, car cela pourrait donner une expérience utilisateur incohérente
+    // Le thème sera automatiquement mis à jour lors de la prochaine connexion
+    
     header("Location: ../index.php"); // Redirection vers la page de connexion
     exit();
 }
@@ -64,11 +68,14 @@ function get_form_data($step)
     return null;
 }
 
-// Fonction pour effacer toutes les données de réservation en session
+// Fonction pour nettoyer les données de réservation
 function clear_reservation_data()
 {
-    if (isset($_SESSION['reservation_data'])) {
-        unset($_SESSION['reservation_data']);
+    if (isset($_SESSION['reservation'])) {
+        unset($_SESSION['reservation']);
+    }
+    if (isset($_SESSION['current_voyage_id'])) {
+        unset($_SESSION['current_voyage_id']);
     }
 }
 
@@ -85,6 +92,31 @@ function remove_query_param($param)
     $params = $_GET;
     unset($params[$param]);
     return '?' . http_build_query($params);
+}
+
+// Fonction pour charger le thème de l'utilisateur depuis users.json
+function load_user_theme()
+{
+    if (isset($_SESSION['user']) && isset($_SESSION['email'])) {
+        $userEmail = $_SESSION['email'];
+        $json_file = dirname(__FILE__) . '/../json/users.json';
+        
+        if (file_exists($json_file)) {
+            $users = json_decode(file_get_contents($json_file), true);
+            if ($users) {
+                foreach ($users as $user) {
+                    if ($user['email'] === $userEmail && isset($user['theme'])) {
+                        // Définir le cookie avec le thème de l'utilisateur
+                        setcookie('theme', $user['theme'], time() + (30 * 24 * 60 * 60), '/');
+                        return $user['theme'];
+                    }
+                }
+            }
+        }
+    }
+    
+    // Par défaut, retourner le thème du cookie ou 'dark' si non défini
+    return isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 }
 
 ?>

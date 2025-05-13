@@ -1,4 +1,6 @@
 <?php
+
+require_once 'session.php';
 // Démarrer la session si ce n'est pas déjà fait
 session_start();
 
@@ -7,7 +9,7 @@ $maintenance_message = "Cette fonctionnalité sera bientôt disponible";
 $completion_date = "PHASE 4";
 
 // Récupérer le thème de la session
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

@@ -1,4 +1,5 @@
 <?php
+require_once 'session.php';
 $error_type = isset($_GET['error']) ? $_GET['error'] : 'unknown';
 
 $error_messages = [
@@ -14,7 +15,7 @@ $error_messages = [
 $error_message = $error_messages[$error_type] ?? $error_messages['unknown'];
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

@@ -3,7 +3,7 @@ require('php/session.php');
 $_SESSION['current_url'] = $_SERVER['REQUEST_URI'];
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

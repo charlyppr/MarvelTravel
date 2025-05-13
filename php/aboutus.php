@@ -2,12 +2,15 @@
 // Démarrer la session si ce n'est pas déjà fait
 session_start();
 
+// Inclure le fichier session.php pour accéder à la fonction load_user_theme
+require_once 'session.php';
+
 $page_title = "A propos de nous";
 $maintenance_message = "Si vous souhaitez en savoir plus sur notre histoire, attendez la prochaine mise à jour !";
 $completion_date = "PHASE 4";
 
 // Récupérer le thème de la session
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

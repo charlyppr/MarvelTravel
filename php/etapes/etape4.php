@@ -332,7 +332,7 @@ $api_key = getAPIKey($vendeur);
 $control = md5($api_key . "#" . $transaction . "#" . $prix_total_api . "#" . $vendeur . "#" . $retour . "#");
 
 // Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>

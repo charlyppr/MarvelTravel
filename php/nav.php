@@ -1,5 +1,8 @@
 <?php
-// Si la session n'est pas déjà démarrée
+// Inclure le fichier session.php pour accéder à la fonction load_user_theme
+require_once 'session.php';
+
+// Si la session n'est pas déjà démarrée (cette vérification est maintenant redondante car session.php le fait déjà)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -95,10 +98,11 @@ if ($is_in_root) {
             <?php if (!isset($_SESSION['user'])) { ?>
                 <div class="theme-toggle-nav">
                     <div class="theme-icons">
-                        <div id="sunIcon" class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'active' : ''; ?>">
+                        <?php $theme = load_user_theme(); ?>
+                        <div id="sunIcon" class="theme-icon-wrapper <?php echo ($theme === 'light') ? 'active' : ''; ?>">
                             <img src="<?php echo getAssetPath('svg/sun.svg'); ?>" alt="Mode clair" class="theme-icon">
                         </div>
-                        <div id="moonIcon" class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? '' : 'active'; ?>">
+                        <div id="moonIcon" class="theme-icon-wrapper <?php echo ($theme === 'light') ? '' : 'active'; ?>">
                             <img src="<?php echo getAssetPath('svg/moon.svg'); ?>" alt="Mode sombre" class="theme-icon">
                         </div>
                     </div>
@@ -135,13 +139,14 @@ if ($is_in_root) {
                         <div class="dropdown-item theme-toggle-container">
                             <span id="themeText">Thème</span>
                             <div class="theme-icons">
+                                <?php $theme = load_user_theme(); ?>
                                 <div id="sunIcon"
-                                    class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? 'active' : ''; ?>">
+                                    class="theme-icon-wrapper <?php echo ($theme === 'light') ? 'active' : ''; ?>">
                                     <img src="<?php echo getAssetPath('svg/sun.svg'); ?>" alt="Mode clair"
                                         class="theme-icon">
                                 </div>
                                 <div id="moonIcon"
-                                    class="theme-icon-wrapper <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'light') ? '' : 'active'; ?>">
+                                    class="theme-icon-wrapper <?php echo ($theme === 'light') ? '' : 'active'; ?>">
                                     <img src="<?php echo getAssetPath('svg/moon.svg'); ?>" alt="Mode sombre"
                                         class="theme-icon">
                                 </div>

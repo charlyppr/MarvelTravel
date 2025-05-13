@@ -1,6 +1,7 @@
 <?php
 session_start();
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+require_once 'session.php';
+$theme = load_user_theme();
 ?>
 
 <!DOCTYPE html>
