@@ -1,3 +1,8 @@
+<?php
+session_start();
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

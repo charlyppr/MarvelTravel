@@ -113,6 +113,16 @@ document.addEventListener('DOMContentLoaded', function () {
             const themeOptions = document.querySelectorAll(config.selectors.themeOptions);
             if (themeOptions.length === 0) return;
             
+            // S'assurer que la sélection visuelle corresponde au thème actuel au chargement
+            const currentTheme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*\=\s*([^;]*).*$)|^.*$/, "$1") || "dark";
+            document.querySelectorAll(config.selectors.themeSelector).forEach(el => {
+                el.classList.remove(config.classes.selected);
+                const radioInput = el.querySelector('input[type="radio"]');
+                if (radioInput && radioInput.value === currentTheme) {
+                    el.classList.add(config.classes.selected);
+                }
+            });
+            
             themeOptions.forEach(option => {
                 option.addEventListener('change', () => {
                     this.applyTheme(option.value);
@@ -148,6 +158,12 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 document.body.classList.remove(config.classes.themeTransition);
             }, config.timing.themeTransitionDuration);
+            
+            // Si la fonction updateUserThemeInDB existe (définie dans theme-loader.js),
+            // l'utiliser pour mettre à jour le thème dans la base de données
+            if (typeof updateUserThemeInDB === 'function') {
+                updateUserThemeInDB(theme);
+            }
         },
         
         // Options d'accessibilité

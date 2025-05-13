@@ -56,6 +56,49 @@ function toggleTheme(newTheme) {
   setTimeout(() => {
     document.body.classList.remove("theme-transition");
   }, 500); // Durée légèrement supérieure à la transition CSS (0.5s)
+  
+  // Mettre à jour le thème dans la base de données utilisateur
+  updateUserThemeInDB(newTheme);
+}
+
+// Fonction pour mettre à jour le thème dans la base de données
+function updateUserThemeInDB(theme) {
+  // Vérifier si l'utilisateur est connecté (on peut détecter cela en cherchant des éléments spécifiques dans la page)
+  if (document.querySelector('.profile-dropdown-container')) {
+    // L'utilisateur est probablement connecté, essayons de mettre à jour son thème
+    const xhr = new XMLHttpRequest();
+    
+    // Déterminer le chemin relatif en fonction de l'URL actuelle
+    let path;
+    
+    // Récupérer le chemin de base du projet
+    const pathSegments = window.location.pathname.split('/');
+    const projectIndex = pathSegments.findIndex(segment => segment === 'MarvelTravel');
+    
+    if (projectIndex !== -1) {
+      // Construire le chemin de base
+      const basePath = pathSegments.slice(0, projectIndex + 1).join('/');
+      path = `${basePath}/php/update-theme.php`;
+    } else {
+      // Fallback: essayer de déterminer le chemin relatif en fonction de la structure actuelle
+      if (window.location.pathname.includes('/php/etapes/')) {
+        path = '../update-theme.php';
+      } else if (window.location.pathname.includes('/php/')) {
+        path = 'update-theme.php';
+      } else {
+        path = 'php/update-theme.php';
+      }
+    }
+    
+    xhr.open('POST', path, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        console.log('Theme update response:', xhr.responseText);
+      }
+    };
+    xhr.send('theme=' + theme);
+  }
 }
 
 // Listener pour les changements de préférences système

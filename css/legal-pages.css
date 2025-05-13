@@ -10,6 +10,7 @@
     color: var(--color-text-light);
     min-height: 70vh;
     animation: slideUp 0.5s ease;
+    margin-top: 100px;
 }
 
 .container {

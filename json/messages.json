@@ -1,26 +1,5 @@
 [
     {
-        "nom": "ca",
-        "objet": "avis",
-        "email": "caca@gmail.com",
-        "message": "le site est nulle",
-        "date": "2025-03-26 09:43:00"
-    },
-    {
-        "nom": "ca",
-        "objet": "avis",
-        "email": "caca@gmail.com",
-        "message": "caca le site",
-        "date": "2025-03-26 09:47:07"
-    },
-    {
-        "nom": "ca",
-        "objet": "avis",
-        "email": "caca@gmail.com",
-        "message": "caca le site",
-        "date": "2025-03-26 09:47:28"
-    },
-    {
         "nom": "Hello",
         "objet": "dze",
         "email": "hello@gmail.com",
@@ -77,13 +56,6 @@
         "date": "2025-03-30 18:56:08"
     },
     {
-        "nom": "caca",
-        "email": "hello@gmail.com",
-        "objet": "caca",
-        "message": "cacacacacacac",
-        "date": "2025-03-30 18:56:23"
-    },
-    {
         "nom": "Hello",
         "email": "hello@gmail.com",
         "objet": "maim",
@@ -96,12 +68,5 @@
         "objet": "guizo",
         "message": "huize",
         "date": "2025-03-30 19:17:42"
-    },
-    {
-        "nom": "Ibrahima",
-        "email": "ibra@gmail.com",
-        "objet": "MA BITE",
-        "message": "VAS TE FAIRE ENCULER IBRA",
-        "date": "2025-05-05 09:31:00"
     }
 ]

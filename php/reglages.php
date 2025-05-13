@@ -66,6 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_settings'])) {
     setcookie('fontSize', $fontSize, time() + (30 * 24 * 60 * 60), '/');
     setcookie('dyslexicFont', $dyslexicFont ? 'true' : 'false', time() + (30 * 24 * 60 * 60), '/');
     setcookie('reduceMotion', $reduceMotion ? 'true' : 'false', time() + (30 * 24 * 60 * 60), '/');
+    
+    // Mettre à jour le thème dans users.json si l'utilisateur est connecté
+    if (isset($_SESSION['user']) && isset($_SESSION['email'])) {
+        // Inclure le fichier update-theme.php pour mettre à jour le thème dans users.json
+        include_once('update-theme.php');
+    }
 
     // Message de succès
     $message = 'Vos préférences ont été enregistrées avec succès !';
@@ -121,8 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export_data'])) {
     }
 }
 
-// Récupérer le thème depuis le cookie
-$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 ?>
 
 <!DOCTYPE html>
