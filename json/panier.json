@@ -80,23 +80,14 @@
             },
             {
                 "voyage_id": 0,
-                "date_debut": "2025-05-14",
-                "date_fin": "2025-05-29",
+                "date_debut": "2025-05-15",
+                "date_fin": "2025-05-23",
                 "nb_personnes": "1",
                 "prix_unitaire": 399.95,
-                "voyageurs": [
-                    {
-                        "civilite": "M",
-                        "nom": "Lebreton",
-                        "prenom": "Caryl",
-                        "date_naissance": "2000-01-01",
-                        "nationalite": "Asgardienne",
-                        "passport": "127 168 461 9"
-                    }
-                ],
+                "voyageurs": null,
                 "options": [],
                 "prix_options": 0,
-                "etape_atteinte": 3
+                "etape_atteinte": 2
             }
         ]
     },

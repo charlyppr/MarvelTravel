@@ -472,7 +472,7 @@ $theme = load_user_theme();
                                                 value="<?php echo htmlspecialchars($passport); ?>"
                                                 placeholder="XXX XXX XXX X" required>
                                         </div>
-                                        <div class="field-help">Format : XXX XXX XXX X (lettres)</div>
+                                        <div class="field-help">Format : XXX XXX XXX X (chiffres)</div>
                                         <div class="error-message" id="passport_<?php echo $i; ?>_error">Le numéro de passeport doit contenir exactement 10 chiffres.</div>
                                     </div>
                                 </div>
