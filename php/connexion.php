@@ -64,6 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
 
+                    if (isset($_SESSION['error'])) {
+                        unset($_SESSION['error']);
+                    }
+
                     // Redirection
                     if (isset($_SESSION['current_url'])) {
                         header('Location: ' . $_SESSION['current_url']);

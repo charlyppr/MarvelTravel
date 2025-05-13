@@ -51,6 +51,8 @@ if (file_exists($messagesFile)) {
     $updatedMessages = array_filter($messages, function($message) use ($userEmail) {
         return $message['email'] !== $userEmail;
     });
+    // Réindexer le tableau pour supprimer les clés numériques
+    $updatedMessages = array_values($updatedMessages);
     $success = $success && file_put_contents($messagesFile, json_encode($updatedMessages, JSON_PRETTY_PRINT));
 }
 
@@ -61,10 +63,13 @@ if (file_exists($commandesFile)) {
     $updatedCommandes = array_filter($commandes, function($commande) use ($userEmail) {
         return $commande['acheteur'] !== $userEmail;
     });
+    // Réindexer le tableau pour supprimer les clés numériques
+    $updatedCommandes = array_values($updatedCommandes);
     $success = $success && file_put_contents($commandesFile, json_encode($updatedCommandes, JSON_PRETTY_PRINT));
 }
 
-// Sauvegarder les données utilisateurs mises à jour
+// 5. Sauvegarder les données utilisateurs mises à jour
+$updatedUsers = array_values($updatedUsers);
 if ($success && file_put_contents($usersFile, json_encode($updatedUsers, JSON_PRETTY_PRINT))) {
     // Détruire la session
     session_destroy();
@@ -72,10 +77,10 @@ if ($success && file_put_contents($usersFile, json_encode($updatedUsers, JSON_PR
     // Rediriger vers la page de connexion avec un message
     session_start();
     $_SESSION['success'] = "Votre compte a été supprimé avec succès.";
-    header('Location: login.php');
+    header('Location: ../index.php');
     exit;
 } else {
     $_SESSION['error'] = "Une erreur est survenue lors de la suppression du compte.";
-    header('Location: profil.php');
+    header('Location: ../index.php');
     exit;
 } 
