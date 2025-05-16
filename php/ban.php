@@ -1,3 +1,32 @@
+<?php
+// Vérification du statut de bannissement
+session_start();
+
+if (isset($_SESSION['user']) && isset($_SESSION['email'])) {
+    $userEmail = $_SESSION['email'];
+    $json_file = dirname(__FILE__) . '/../json/users.json';
+    
+    if (file_exists($json_file)) {
+        $users = json_decode(file_get_contents($json_file), true);
+        if ($users) {
+            $userStillBanned = false;
+            
+            foreach ($users as $user) {
+                if ($user['email'] === $userEmail && $user['blocked']) {
+                    $userStillBanned = true;
+                    break;
+                }
+            }
+            
+            // Si l'utilisateur n'est plus banni, le rediriger vers la page d'accueil
+            if (!$userStillBanned) {
+                header("Location: ../index.php");
+                exit();
+            }
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -33,10 +62,9 @@
                 </div>
                 <div class="card-content">
                     <ul class="error-reasons">
-                        <li>contactez notre service client</li>
-                        <li>vous pouvez consulter notre <a class="link" href="cgv-light.php">politique de confidentialité</a></li>
-                        <li>vous pouvez consulter nos <a class="link" href="cvg.php">conditions générales d'utilisation</a></li>
-                        <li>N'hésitez à aller trouver <a class="link" href="https://www.francetravail.fr/accueil/">un travail</a></li>
+                        <li>Contactez notre service client</li>
+                        <li>Vous pouvez consulter notre <a class="link" href="cgv-light.php">politique de confidentialité</a></li>
+                        <li>Vous pouvez consulter nos <a class="link" href="cvg.php">conditions générales d'utilisation</a></li>
                     </ul>
                 </div>
             </div>

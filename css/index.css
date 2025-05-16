@@ -480,7 +480,7 @@
     text-decoration: none;
     color: var(--color-text-light);
     font-weight: 600;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: var(--spacing-sm) 10%;
     border-radius: var(--border-radius-lg);
     transition: all var(--transition-medium);
     position: relative;
@@ -490,8 +490,7 @@
 }
 
 .postcard-link:hover {
-    background-color: var(--color-accent);
-    color: var(--color-background);
+    background-color: var(--color-background-faded);
 }
 
 .postcard-link .arrow {

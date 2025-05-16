@@ -105,9 +105,8 @@ $theme = load_user_theme();
                     nous créons des expériences inoubliables qui résonnent vraiment avec l'univers qui nous entoure.
                 </p>
                 
-                <video class="signature-video" autoplay muted playsinline>
+                <video class="signature-video" autoplay muted playsinline hidden>
                     <source src="img/signature.webm" type="video/webm">
-                    <img src="img/svg/signature.svg" alt="Signature" class="signature-img">
                 </video>
                 
                 <div class="signature-footer">

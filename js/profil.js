@@ -52,7 +52,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return document.querySelector(`${config.selectors[type]}[data-field="${field}"]`);
         },
         
-        delay: (ms) => new Promise(resolve => setTimeout(resolve, ms))
+        delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
+        
+        // Fonction pour débouncer les fonctions (éviter les appels répétés)
+        debounce: (fn, delay) => {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
     };
     
     // Gestionnaire de profil
@@ -60,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // État
         state: {
             validated: new Set(),
-            editingFields: new Set()
+            editingFields: new Set(),
+            submitting: false
         },
         
         // Éléments DOM principaux
@@ -74,6 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
             this.setupFieldControls();
             this.setupFormSubmission();
             this.setupPasswordToggle();
+            
+            // Initialiser tous les champs comme désactivés
+            this.disableAllInputs();
         },
         
         // Mise en cache des éléments DOM fréquemment utilisés
@@ -84,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 profileForm: utils.getElement(config.selectors.profileForm),
                 passwordToggle: utils.getElement(config.selectors.passwordToggle),
                 toggleIcon: utils.getElement(config.selectors.toggleIcon),
-                passwordInput: document.getElementById('password')
+                passwordInput: document.getElementById('password'),
+                inputs: utils.getElements(config.selectors.inputs)
             };
         },
         
@@ -99,13 +113,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.disabled = false;
             }, 100);
             
-            submitBtn.addEventListener('click', () => {
-                // Activer tous les champs avant la soumission
-                utils.getElements(config.selectors.inputs).forEach(input => {
-                    input.disabled = false;
-                });
+            submitBtn.addEventListener('click', (event) => {
+                event.preventDefault();
                 
-                this.elements.profileForm.submit();
+                if (this.state.submitting) return;
+                
+                // Soumettre le formulaire
+                this.submitForm();
             });
         },
         
@@ -192,6 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (field === 'email' || field === 'password') {
                         input.dispatchEvent(new Event('input'));
                     }
+                    
+                    // Mettre à jour l'état des boutons d'action
+                    this.updateActionButtons();
                 });
             });
         },
@@ -199,8 +216,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Configuration des événements de validation des champs
         setupValidationEvents() {
             utils.getElements(config.selectors.inputs).forEach(input => {
-                input.addEventListener('input', () => this.validateField(input.id));
-                input.addEventListener('keyup', () => this.validateField(input.id));
+                // Utiliser debounce pour éviter les validations trop fréquentes
+                const debouncedValidate = utils.debounce(() => {
+                    this.validateField(input.id);
+                }, 200);
+                
+                input.addEventListener('input', debouncedValidate);
+                input.addEventListener('keyup', debouncedValidate);
             });
         },
         
@@ -242,75 +264,95 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Attacher l'écouteur d'événement directement sur le formulaire
             profileForm.addEventListener('submit', (event) => {
-                // Toujours empêcher la soumission par défaut en premier
+                // Toujours empêcher la soumission par défaut
                 event.preventDefault();
                 event.stopPropagation();
                 
-                console.log('Formulaire intercepté, soumission empêchée');
-                
-                if (!this.validateAllEditingFields()) {
-                    return;
-                }
-                
-                // Activer tous les champs pour l'envoi
-                utils.getElements(config.selectors.inputs).forEach(input => {
-                    input.disabled = false;
-                });
-                
-                // Collecter les données du formulaire
-                const formData = new FormData(profileForm);
-                
-                // Afficher un indicateur de chargement
-                this.showLoading();
-                
-                // Envoyer la requête asynchrone
-                fetch('../php/update-profile.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Stocker les données et l'état de réussite pour afficher après le chargement
-                    this.pendingNotification = {
-                        type: data.success ? 'success' : 'error',
-                        message: data.message || (data.success ? 'Vos informations ont été mises à jour avec succès.' : 'Une erreur est survenue lors de la mise à jour.'),
-                        data: data
-                    };
-                    
-                    // Masquer le chargement qui va déclencher la notification à la fin
-                    this.hideLoading();
-                })
-                .catch(error => {
-                    console.error('Erreur:', error);
-                    
-                    // Stocker l'erreur pour afficher après le chargement
-                    this.pendingNotification = {
-                        type: 'error',
-                        message: 'Une erreur de connexion est survenue.'
-                    };
-                    
-                    // Masquer le chargement qui va déclencher la notification à la fin
-                    this.hideLoading();
-                });
-                
-                // Retourner false pour garantir que le formulaire ne se soumette pas traditionnellement
-                return false;
+                // Soumettre le formulaire via notre méthode
+                this.submitForm();
             });
+        },
+        
+        // Soumettre le formulaire
+        submitForm() {
+            if (this.state.submitting) return;
             
-            // Attacher également un gestionnaire au bouton de soumission pour plus de sécurité
-            const { submitBtn } = this.elements;
-            if (submitBtn) {
-                submitBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    
-                    // Déclencher manuellement la soumission du formulaire pour passer par notre gestionnaire
-                    const submitEvent = new Event('submit', { cancelable: true, bubbles: true });
-                    profileForm.dispatchEvent(submitEvent);
-                    
-                    return false;
-                });
+            // Vérifier que tous les champs en édition sont valides
+            if (!this.validateAllEditingFields()) {
+                return;
             }
+            
+            const { profileForm } = this.elements;
+            if (!profileForm) return;
+            
+            // Marquer comme en cours de soumission
+            this.state.submitting = true;
+            
+            // Activer tous les champs pour l'envoi
+            this.enableAllInputs();
+            
+            // Collecter les données du formulaire
+            const formData = new FormData(profileForm);
+            
+            // Afficher un indicateur de chargement
+            this.showLoading();
+            
+            // Envoyer la requête asynchrone
+            fetch('../php/update-profile.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Stocker les données et l'état de réussite
+                this.pendingNotification = {
+                    type: data.success ? 'success' : 'error',
+                    message: data.message || (data.success ? 'Vos informations ont été mises à jour avec succès.' : 'Une erreur est survenue lors de la mise à jour.'),
+                    data: data
+                };
+                
+                // Terminer le processus
+                this.finalizeSubmission();
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                
+                this.pendingNotification = {
+                    type: 'error',
+                    message: 'Une erreur de connexion est survenue.'
+                };
+                
+                this.finalizeSubmission();
+            });
+        },
+        
+        // Finaliser la soumission du formulaire
+        finalizeSubmission() {
+            // Désactiver tous les champs
+            this.disableAllInputs();
+            
+            // Masquer le chargement
+            this.hideLoading();
+            
+            // Réinitialiser l'état de soumission
+            this.state.submitting = false;
+        },
+        
+        // Activer tous les champs de saisie
+        enableAllInputs() {
+            this.elements.inputs.forEach(input => {
+                input.disabled = false;
+            });
+        },
+        
+        // Désactiver tous les champs de saisie sauf ceux en cours d'édition
+        disableAllInputs() {
+            this.elements.inputs.forEach(input => {
+                // Ne pas désactiver les champs en cours d'édition
+                if (!this.state.editingFields.has(input.id)) {
+                    input.disabled = true;
+                }
+            });
         },
         
         // Gestion du clic sur un bouton de validation
@@ -343,12 +385,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (field === 'password' && this.elements.passwordToggle) {
                 this.elements.passwordToggle.style.display = 'none';
                 input.setAttribute('type', 'password');
+                if (this.elements.toggleIcon) {
+                    this.elements.toggleIcon.src = '../img/svg/eye.svg';
+                }
             }
             
             // Mettre à jour l'état
+            this.state.editingFields.delete(field);
             if (hasChanged) this.state.validated.add(field);
             else this.state.validated.delete(field);
             
+            // Mettre à jour les boutons d'action
             this.updateActionButtons();
         },
         
@@ -364,9 +411,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!input) return;
             
             // Réinitialiser la valeur et désactiver l'édition
-            input.value = input.dataset.originalValue;
+            input.value = input.getAttribute('data-original-value') || '';
             input.disabled = true;
             this.toggleEditingClass(field, false);
+            
+            // Nettoyer l'UI de validation
+            this.cleanupValidationUI(input);
             
             // Mettre à jour l'UI
             cancelBtn.style.display = 'none';
@@ -375,16 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Mettre à jour l'état
             this.state.editingFields.delete(field);
-            
-            // Mise à jour des boutons d'action
-            if (this.state.editingFields.size === 0 && this.state.validated.size === 0) {
-                this.elements.cancelAllBtn.style.display = 'none';
-            }
-            
-            // Gestion spéciale pour les champs email et password
-            if (field === 'email' || field === 'password') {
-                this.cleanupValidationUI(input);
-            }
+            this.state.validated.delete(field);
             
             // Gestion spéciale pour le mot de passe
             if (field === 'password' && this.elements.passwordToggle) {
@@ -392,9 +433,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.setAttribute('type', 'password');
                 if (this.elements.toggleIcon) {
                     this.elements.toggleIcon.src = '../img/svg/eye.svg';
-                    this.elements.toggleIcon.alt = 'Afficher';
                 }
             }
+            
+            // Mettre à jour les boutons d'action après un court délai pour éviter les problèmes de timing
+            setTimeout(() => {
+                this.updateActionButtons();
+            }, 50);
         },
         
         // Validation d'un champ spécifique
@@ -432,36 +477,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Validation de tous les champs en cours d'édition
         validateAllEditingFields() {
-            let isValid = true;
+            let allValid = true;
             
-            // Si email est en édition, vérifier sa validité
-            if (this.state.editingFields.has('email')) {
-                const emailInput = document.getElementById('email');
-                if (emailInput && !config.validation.email.regex.test(emailInput.value.trim())) {
-                    isValid = false;
+            // Vérifier tous les champs en édition
+            this.state.editingFields.forEach(field => {
+                if (!this.validateField(field)) {
+                    allValid = false;
                 }
-            }
+            });
             
-            // Si mot de passe est en édition et non vide, vérifier sa validité
-            if (this.state.editingFields.has('password')) {
-                const passwordInput = document.getElementById('password');
-                if (passwordInput && passwordInput.value !== '') {
-                    const criteriaCount = [
-                        passwordInput.value.length >= config.validation.password.minLength,
-                        ...config.validation.password.patterns.map(pattern => pattern.test(passwordInput.value))
-                    ].filter(Boolean).length;
-                    
-                    if (criteriaCount < 5) isValid = false;
-                }
-            }
-            
-            return isValid;
+            return allValid;
         },
         
         // Nettoyage de l'UI de validation pour un champ
         cleanupValidationUI(input) {
+            if (!input) return;
+            
             // Retirer les classes de validation
-            input.parentElement.classList.remove(config.classes.inputValid, config.classes.inputInvalid);
+            const inputWrapper = input.parentElement;
+            if (inputWrapper) {
+                inputWrapper.classList.remove(config.classes.inputValid, config.classes.inputInvalid);
+            }
             
             // Utiliser la fonction externe removeWarning si disponible
             if (typeof removeWarning === 'function') {
@@ -470,14 +506,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Fallback: suppression manuelle des messages d'erreur
-            let nextElem = input.parentElement.nextElementSibling;
-            while (nextElem) {
-                if (nextElem.classList.contains('input-warning') || 
-                    nextElem.classList.contains('password-strength-meter')) {
-                    nextElem.remove();
-                    nextElem = input.parentElement.nextElementSibling;
-                } else {
-                    nextElem = nextElem.nextElementSibling;
+            if (inputWrapper) {
+                let nextElem = inputWrapper.nextElementSibling;
+                while (nextElem) {
+                    if (nextElem.classList.contains('input-warning') || 
+                        nextElem.classList.contains('password-strength-meter')) {
+                        nextElem.remove();
+                        nextElem = inputWrapper.nextElementSibling;
+                    } else {
+                        nextElem = nextElem.nextElementSibling;
+                    }
                 }
             }
             
@@ -502,30 +540,37 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (!submitBtn || !cancelAllBtn) return;
             
-            if (this.state.validated.size > 0) {
-                // Afficher les boutons avec animation
-                submitBtn.style.display = 'inline-flex';
-                cancelAllBtn.style.display = 'inline-flex';
-                
-                // S'assurer que le bouton n'est pas désactivé
-                submitBtn.disabled = false;
-                submitBtn.classList.remove(config.classes.disabled);
-                
-                // Animation
-                setTimeout(() => {
-                    submitBtn.classList.add(config.classes.visible);
-                    cancelAllBtn.classList.add(config.classes.visible);
-                }, 10);
+            const hasValidatedFields = this.state.validated.size > 0;
+            
+            // Plutôt que de jouer avec display et visibility, on utilise une classe
+            if (hasValidatedFields) {
+                // Si les boutons ne sont pas déjà visibles, les afficher
+                if (!submitBtn.classList.contains(config.classes.visible)) {
+                    // Définir display avant d'ajouter la classe visible
+                    submitBtn.style.display = 'inline-flex';
+                    cancelAllBtn.style.display = 'inline-flex';
+                    
+                    // Permettre au navigateur de traiter le changement de display
+                    setTimeout(() => {
+                        submitBtn.classList.add(config.classes.visible);
+                        cancelAllBtn.classList.add(config.classes.visible);
+                    }, 10);
+                }
             } else {
-                // Cacher les boutons avec animation
-                submitBtn.classList.remove(config.classes.visible);
-                cancelAllBtn.classList.remove(config.classes.visible);
-                
-                // Attendre la fin de l'animation
-                setTimeout(() => {
-                    submitBtn.style.display = 'none';
-                    cancelAllBtn.style.display = 'none';
-                }, config.transitions.buttons);
+                // Si les boutons sont visibles, les cacher
+                if (submitBtn.classList.contains(config.classes.visible)) {
+                    // Enlever d'abord la classe visible
+                    submitBtn.classList.remove(config.classes.visible);
+                    cancelAllBtn.classList.remove(config.classes.visible);
+                    
+                    // Attendre la fin de la transition avant de changer display
+                    setTimeout(() => {
+                        if (!this.state.validated.size) { // double vérification
+                            submitBtn.style.display = 'none';
+                            cancelAllBtn.style.display = 'none';
+                        }
+                    }, config.transitions.buttons);
+                }
             }
         },
         
@@ -536,15 +581,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const input = document.getElementById(field);
                 if (!input) return;
                 
-                input.value = input.dataset.originalValue;
+                input.value = input.getAttribute('data-original-value') || '';
                 input.disabled = true;
                 this.toggleEditingClass(field, false);
-                
-                if (typeof removeWarning === 'function') {
-                    removeWarning(input);
-                }
-                
-                input.parentElement.classList.remove(config.classes.inputValid, config.classes.inputInvalid);
+                this.cleanupValidationUI(input);
             });
             
             // Réinitialiser les champs en cours d'édition
@@ -552,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const input = document.getElementById(field);
                 if (!input) return;
                 
-                input.value = input.dataset.originalValue;
+                input.value = input.getAttribute('data-original-value') || '';
                 input.disabled = true;
                 this.toggleEditingClass(field, false);
                 
@@ -564,14 +604,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (validateBtn) validateBtn.style.display = 'none';
                 if (cancelBtn) cancelBtn.style.display = 'none';
                 
-                if (typeof removeWarning === 'function') {
-                    removeWarning(input);
-                }
-                
-                input.parentElement.classList.remove(config.classes.inputValid, config.classes.inputInvalid);
+                this.cleanupValidationUI(input);
                 
                 if (field === 'password' && this.elements.passwordToggle) {
                     this.elements.passwordToggle.style.display = 'none';
+                    input.setAttribute('type', 'password');
+                    if (this.elements.toggleIcon) {
+                        this.elements.toggleIcon.src = '../img/svg/eye.svg';
+                    }
                 }
             });
             
@@ -579,8 +619,10 @@ document.addEventListener('DOMContentLoaded', function() {
             this.state.validated.clear();
             this.state.editingFields.clear();
             
-            // Mettre à jour l'UI
-            this.updateActionButtons();
+            // Mettre à jour l'UI après un court délai
+            setTimeout(() => {
+                this.updateActionButtons();
+            }, 50);
         },
         
         // Afficher une notification
@@ -695,8 +737,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.state.validated.clear();
                 this.state.editingFields.clear();
                 
-                // Mettre à jour l'UI
-                this.updateActionButtons();
+                // Désactiver tous les inputs
+                this.disableAllInputs();
+                
+                // Mettre à jour l'UI après un court délai
+                setTimeout(() => {
+                    this.updateActionButtons();
+                }, 50);
             } else if (type === 'error') {
                 // Restaurer les valeurs originales
                 this.resetAllFields();

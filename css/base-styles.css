@@ -267,15 +267,6 @@ a {
   text-decoration: none;
 }
 
-a.link{
-  color: var(--color-error);
-}
-
-a:link:hover{
-  color:var(--color-error-bg);
-  transition:200ms;
-}
-
 img {
   max-width: 100%;
 }
@@ -594,20 +585,13 @@ input:-webkit-autofill:focus {
 
 .logo-gauche span {
   font-size: 1.6rem;
-  color: var(--couleur-primaire);
   transition: ease-out 0.5s;
 }
 
 .vel {
   font-size: 4rem;
   line-height: 1;
-  color: var(--couleur-primaire);
   transition: ease-out 0.5s;
-}
-
-.logo-container:hover .logo-gauche span,
-.logo-container:hover .vel {
-  color: var(--couleur-accent) !important;
 }
 
 .menu ul {

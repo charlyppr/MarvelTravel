@@ -114,9 +114,9 @@
     "titre": "Wakanda",
     "image": "../img/destinations/wakanda.jpg",
     "galerie": [
-      "../img/destinations-more/wakanda_1.jpg",
-      "../img/destinations-more/wakanda-2.jpg",
-      "../img/destinations-more/wakanda-3.jpg"
+      "../img/destinations-more/Wakanda-1.jpg",
+      "../img/destinations-more/Wakanda-2.jpg",
+      "../img/destinations-more/Wakanda-3.jpg"
     ],
     "prix": 5099.95,
     "prix_initial": null,
@@ -219,9 +219,9 @@
     "titre": "Hala",
     "image": "../img/destinations/hala.jpg",
     "galerie": [
-      "../img/destinations-more/hala-1.jpg",
-      "../img/destinations-more/hala-2.jpg",
-      "../img/destinations-more/hala-3.jpg"
+      "../img/destinations-more/Hala-1.jpg",
+      "../img/destinations-more/Hala-2.jpg",
+      "../img/destinations-more/Hala-3.jpg"
     ],
     "prix": 1199.95,
     "prix_initial": null,
@@ -383,9 +383,9 @@
     "titre": "Asgard",
     "image": "../img/destinations/asgard.jpg",
     "galerie": [
-      "../img/destinations-more/asgard-1.jpg",
-      "../img/destinations-more/asgard-2.jpg",
-      "../img/destinations-more/asgard-3.jpg"
+      "../img/destinations-more/Asgard-1.jpg",
+      "../img/destinations-more/Asgard-2.jpg",
+      "../img/destinations-more/Asgard-3.jpg"
     ],
     "prix": 2499.95,
     "prix_initial": null,
@@ -475,9 +475,9 @@
     "titre": "Genosha",
     "image": "../img/destinations/genosha.jpg",
     "galerie": [
-      "../img/destinations-more/genosha-1.jpg",
-      "../img/destinations-more/genosha_2.jpg",
-      "../img/destinations-more/genosha_3.jpg"
+      "../img/destinations-more/Genosha-1.jpg",
+      "../img/destinations-more/Genosha-2.jpg",
+      "../img/destinations-more/Genosha-3.jpg"
     ],
     "prix": 1499.95,
     "prix_initial": null,
@@ -569,9 +569,9 @@
     "titre": "Sakaar",
     "image": "../img/destinations/sakaar.jpg",
     "galerie": [
-      "../img/destinations-more/sakaar_1.jpg",
-      "../img/destinations-more/sakaar_2.jpg",
-      "../img/destinations-more/sakaar-3.jpg"
+      "../img/destinations-more/Sakaar-1.jpg",
+      "../img/destinations-more/Sakaar-2.jpg",
+      "../img/destinations-more/Sakaar-3.jpg"
     ],
     "prix": 2199.95,
     "prix_initial": null,
@@ -806,9 +806,9 @@
     "titre": "Kree Homeworld",
     "image": "../img/destinations/kree-homeworld.jpg",
     "galerie": [
-      "../img/destinations-more/kree-1.jpg",
-      "../img/destinations-more/kree-2.jpg",
-      "../img/destinations-more/kree-3.jpg"
+      "../img/destinations-more/Kree-1.jpg",
+      "../img/destinations-more/Kree-2.jpg",
+      "../img/destinations-more/Kree-3.jpg"
     ],
     "prix": 1799.95,
     "prix_initial": null,
@@ -963,9 +963,9 @@
     "titre": "The Negative Zone",
     "image": "../img/destinations/the-negative-zone.jpg",
     "galerie": [
-      "../img/destinations-more/negative-1.jpg",
-      "../img/destinations-more/negative-2.jpg",
-      "../img/destinations-more/negative-3.jpg"
+      "../img/destinations-more/Negative-1.jpg",
+      "../img/destinations-more/Negative-2.jpg",
+      "../img/destinations-more/Negative-3.jpg"
     ],
     "prix": 2299.95,
     "prix_initial": null,

@@ -53,7 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $user['last_name'] = $last_name;
 
                     // Si l'email a changé
+                    $email_changed = false;
+                    $old_email = '';
+                    
                     if ($email !== $_SESSION['email']) {
+                        $old_email = $_SESSION['email'];
+                        $email_changed = true;
+                        
                         // Vérifier que le nouvel email n'est pas déjà utilisé
                         $email_exists = false;
                         foreach ($users as $u) {
@@ -78,6 +84,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     $success = true;
+                    
+                    // Si l'email a été modifié, mettre à jour les autres fichiers JSON
+                    if ($email_changed) {
+                        // 1. Mettre à jour commandes.json
+                        update_email_in_commandes($old_email, $email);
+                        
+                        // 2. Mettre à jour panier.json
+                        update_email_in_panier($old_email, $email);
+                        
+                        // 3. Mettre à jour messages.json
+                        update_email_in_messages($old_email, $email);
+                    }
+                    
                     break;
                 }
             }
@@ -110,6 +129,90 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     $response['message'] = "Méthode non autorisée.";
+}
+
+/**
+ * Met à jour l'email dans le fichier commandes.json
+ * 
+ * @param string $old_email Ancien email
+ * @param string $new_email Nouvel email
+ * @return void
+ */
+function update_email_in_commandes($old_email, $new_email) {
+    $commandes_file = '../json/commandes.json';
+    
+    if (file_exists($commandes_file)) {
+        $json_commandes = file_get_contents($commandes_file);
+        $commandes = json_decode($json_commandes, true) ?: [];
+        $updated = false;
+        
+        foreach ($commandes as &$commande) {
+            if ($commande['acheteur'] === $old_email) {
+                $commande['acheteur'] = $new_email;
+                $updated = true;
+            }
+        }
+        
+        if ($updated) {
+            file_put_contents($commandes_file, json_encode($commandes, JSON_PRETTY_PRINT));
+        }
+    }
+}
+
+/**
+ * Met à jour l'email dans le fichier panier.json
+ * 
+ * @param string $old_email Ancien email
+ * @param string $new_email Nouvel email
+ * @return void
+ */
+function update_email_in_panier($old_email, $new_email) {
+    $panier_file = '../json/panier.json';
+    
+    if (file_exists($panier_file)) {
+        $json_panier = file_get_contents($panier_file);
+        $panier = json_decode($json_panier, true) ?: [];
+        
+        // Vérifier si l'ancien email existe dans le panier
+        if (isset($panier[$old_email])) {
+            // Copier les données de l'ancien email vers le nouveau
+            $panier[$new_email] = $panier[$old_email];
+            
+            // Supprimer l'ancien email
+            unset($panier[$old_email]);
+            
+            // Sauvegarder les modifications
+            file_put_contents($panier_file, json_encode($panier, JSON_PRETTY_PRINT));
+        }
+    }
+}
+
+/**
+ * Met à jour l'email dans le fichier messages.json
+ * 
+ * @param string $old_email Ancien email
+ * @param string $new_email Nouvel email
+ * @return void
+ */
+function update_email_in_messages($old_email, $new_email) {
+    $messages_file = '../json/messages.json';
+    
+    if (file_exists($messages_file)) {
+        $json_messages = file_get_contents($messages_file);
+        $messages = json_decode($json_messages, true) ?: [];
+        $updated = false;
+        
+        foreach ($messages as &$message) {
+            if ($message['email'] === $old_email) {
+                $message['email'] = $new_email;
+                $updated = true;
+            }
+        }
+        
+        if ($updated) {
+            file_put_contents($messages_file, json_encode($messages, JSON_PRETTY_PRINT));
+        }
+    }
 }
 
 // Envoyer la réponse JSON

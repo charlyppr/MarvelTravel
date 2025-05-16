@@ -25,14 +25,14 @@
         "options": [
             {
                 "etape": "Capitale Kree",
-                "option": "Visite du palais impérial",
+                "option": "Visite du palais imp\u00e9rial",
                 "prix_unitaire": 70,
                 "nb_participants": 1,
                 "total": 70
             },
             {
                 "etape": "Observatoire stellaire",
-                "option": "Nuit sous les étoiles",
+                "option": "Nuit sous les \u00e9toiles",
                 "prix_unitaire": 100,
                 "nb_participants": 1,
                 "total": 100
@@ -105,7 +105,7 @@
                 "nom": "Parker",
                 "prenom": "Peter",
                 "date_naissance": "2025-01-22",
-                "nationalite": "Américaine",
+                "nationalite": "Am\u00e9ricaine",
                 "passport": "57Z385Z783"
             }
         ],
@@ -113,7 +113,7 @@
         "options": [
             {
                 "etape": "Central Park",
-                "option": "Balade à vélo",
+                "option": "Balade \u00e0 v\u00e9lo",
                 "prix_unitaire": 30,
                 "nb_participants": 2,
                 "total": 60
@@ -161,21 +161,21 @@
         "options": [
             {
                 "etape": "Golden City",
-                "option": "Musée Wakandais",
+                "option": "Mus\u00e9e Wakandais",
                 "prix_unitaire": 300,
                 "nb_participants": 2,
                 "total": 600
             },
             {
                 "etape": "Golden City",
-                "option": "Marché tribal",
+                "option": "March\u00e9 tribal",
                 "prix_unitaire": 250,
                 "nb_participants": 1,
                 "total": 250
             },
             {
                 "etape": "Mont Bashenga",
-                "option": "Randonnée",
+                "option": "Randonn\u00e9e",
                 "prix_unitaire": 200,
                 "nb_participants": 1,
                 "total": 200
@@ -189,7 +189,7 @@
             },
             {
                 "etape": "Lac de Vibranium",
-                "option": "Plongée sous-marine",
+                "option": "Plong\u00e9e sous-marine",
                 "prix_unitaire": 150,
                 "nb_participants": 1,
                 "total": 150
@@ -222,21 +222,21 @@
         "options": [
             {
                 "etape": "Times Square",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
             },
             {
-                "etape": "Statue de la Liberté",
-                "option": "Traversée en ferry",
+                "etape": "Statue de la Libert\u00e9",
+                "option": "Travers\u00e9e en ferry",
                 "prix_unitaire": 25,
                 "nb_participants": 1,
                 "total": 25
             },
             {
                 "etape": "Central Park",
-                "option": "Balade à vélo",
+                "option": "Balade \u00e0 v\u00e9lo",
                 "prix_unitaire": 30,
                 "nb_participants": 1,
                 "total": 30
@@ -276,21 +276,21 @@
         "options": [
             {
                 "etape": "Golden City",
-                "option": "Musée Wakandais",
+                "option": "Mus\u00e9e Wakandais",
                 "prix_unitaire": 300,
                 "nb_participants": 1,
                 "total": 300
             },
             {
                 "etape": "Mont Bashenga",
-                "option": "Randonnée",
+                "option": "Randonn\u00e9e",
                 "prix_unitaire": 200,
                 "nb_participants": 1,
                 "total": 200
             },
             {
                 "etape": "Lac de Vibranium",
-                "option": "Plongée sous-marine",
+                "option": "Plong\u00e9e sous-marine",
                 "prix_unitaire": 150,
                 "nb_participants": 1,
                 "total": 150
@@ -323,14 +323,14 @@
         "options": [
             {
                 "etape": "Golden City",
-                "option": "Musée Wakandais",
+                "option": "Mus\u00e9e Wakandais",
                 "prix_unitaire": 300,
                 "nb_participants": 1,
                 "total": 300
             },
             {
                 "etape": "Lac de Vibranium",
-                "option": "Plongée sous-marine",
+                "option": "Plong\u00e9e sous-marine",
                 "prix_unitaire": 150,
                 "nb_participants": 1,
                 "total": 150
@@ -363,7 +363,7 @@
         "options": [
             {
                 "etape": "Times Square",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
@@ -411,21 +411,21 @@
         "options": [
             {
                 "etape": "Golden City",
-                "option": "Musée Wakandais",
+                "option": "Mus\u00e9e Wakandais",
                 "prix_unitaire": 300,
                 "nb_participants": 1,
                 "total": 300
             },
             {
                 "etape": "Golden City",
-                "option": "Marché tribal",
+                "option": "March\u00e9 tribal",
                 "prix_unitaire": 250,
                 "nb_participants": 1,
                 "total": 250
             },
             {
                 "etape": "Lac de Vibranium",
-                "option": "Plongée sous-marine",
+                "option": "Plong\u00e9e sous-marine",
                 "prix_unitaire": 150,
                 "nb_participants": 2,
                 "total": 300
@@ -457,7 +457,7 @@
         "date_achat": "2025-04-24 20:18:42",
         "options": [
             {
-                "etape": "Arène de combat",
+                "etape": "Ar\u00e8ne de combat",
                 "option": "Spectacle de gladiateurs",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
@@ -465,7 +465,7 @@
             },
             {
                 "etape": "Observatoire stellaire",
-                "option": "Nuit sous les étoiles",
+                "option": "Nuit sous les \u00e9toiles",
                 "prix_unitaire": 100,
                 "nb_participants": 1,
                 "total": 100
@@ -498,14 +498,14 @@
         "options": [
             {
                 "etape": "Capitale Kree",
-                "option": "Visite du palais impérial",
+                "option": "Visite du palais imp\u00e9rial",
                 "prix_unitaire": 70,
                 "nb_participants": 1,
                 "total": 70
             },
             {
                 "etape": "Observatoire stellaire",
-                "option": "Nuit sous les étoiles",
+                "option": "Nuit sous les \u00e9toiles",
                 "prix_unitaire": 100,
                 "nb_participants": 1,
                 "total": 100
@@ -538,14 +538,14 @@
         "options": [
             {
                 "etape": "Times Square",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
             },
             {
                 "etape": "Central Park",
-                "option": "Balade à vélo",
+                "option": "Balade \u00e0 v\u00e9lo",
                 "prix_unitaire": 30,
                 "nb_participants": 1,
                 "total": 30
@@ -578,14 +578,14 @@
         "options": [
             {
                 "etape": "Hall du Sanctum",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 149.99,
                 "nb_participants": 1,
                 "total": 149.99
             },
             {
                 "etape": "Salle des Portails",
-                "option": "Séance de méditation mystique",
+                "option": "S\u00e9ance de m\u00e9ditation mystique",
                 "prix_unitaire": 99.99,
                 "nb_participants": 1,
                 "total": 99.99
@@ -625,7 +625,7 @@
             },
             {
                 "etape": "Montagnes de Titan",
-                "option": "Campement sous les étoiles",
+                "option": "Campement sous les \u00e9toiles",
                 "prix_unitaire": 159.99,
                 "nb_participants": 1,
                 "total": 159.99
@@ -658,14 +658,14 @@
         "options": [
             {
                 "etape": "Golden City",
-                "option": "Musée Wakandais",
+                "option": "Mus\u00e9e Wakandais",
                 "prix_unitaire": 300,
                 "nb_participants": 1,
                 "total": 300
             },
             {
                 "etape": "Mont Bashenga",
-                "option": "Randonnée",
+                "option": "Randonn\u00e9e",
                 "prix_unitaire": 200,
                 "nb_participants": 1,
                 "total": 200
@@ -705,7 +705,7 @@
         "options": [
             {
                 "etape": "Times Square",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
@@ -745,14 +745,14 @@
         "options": [
             {
                 "etape": "Ruines anciennes d'Atlantis",
-                "option": "Exploration archéologique",
+                "option": "Exploration arch\u00e9ologique",
                 "prix_unitaire": 499.99,
                 "nb_participants": 1,
                 "total": 499.99
             },
             {
                 "etape": "Ruines anciennes d'Atlantis",
-                "option": "Plongée dans les ruines",
+                "option": "Plong\u00e9e dans les ruines",
                 "prix_unitaire": 299.99,
                 "nb_participants": 1,
                 "total": 299.99
@@ -785,7 +785,7 @@
         "options": [
             {
                 "etape": "Zone des Champions",
-                "option": "Combat dans l'arène",
+                "option": "Combat dans l'ar\u00e8ne",
                 "prix_unitaire": 299.99,
                 "nb_participants": 1,
                 "total": 299.99
@@ -799,7 +799,7 @@
             },
             {
                 "etape": "Terre de l'Ultron",
-                "option": "Combat contre les armées de robots",
+                "option": "Combat contre les arm\u00e9es de robots",
                 "prix_unitaire": 249.99,
                 "nb_participants": 1,
                 "total": 249.99
@@ -832,7 +832,7 @@
         "options": [
             {
                 "etape": "Temple perdu",
-                "option": "Exploration guidée",
+                "option": "Exploration guid\u00e9e",
                 "prix_unitaire": 90,
                 "nb_participants": 1,
                 "total": 90
@@ -865,14 +865,14 @@
         "options": [
             {
                 "etape": "Times Square",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50
             },
             {
                 "etape": "Central Park",
-                "option": "Balade à vélo",
+                "option": "Balade \u00e0 v\u00e9lo",
                 "prix_unitaire": 30,
                 "nb_participants": 1,
                 "total": 30
@@ -963,7 +963,7 @@
         "options": [
             {
                 "etape": "Times Square",
-                "option": "Visite guidée",
+                "option": "Visite guid\u00e9e",
                 "prix_unitaire": 50,
                 "nb_participants": 1,
                 "total": 50

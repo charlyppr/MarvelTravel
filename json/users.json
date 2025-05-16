@@ -17,7 +17,7 @@
     },
     {
         "civilite": "Mme",
-        "first_name": "Hello",
+        "first_name": "Hell",
         "last_name": "Darling",
         "email": "hello@gmail.com",
         "password": "$2y$10$Ixo2nstsWn6a0T9917..oumEYfNdr65SL4iMMpq5cThnEdY2skwWq",
@@ -26,9 +26,9 @@
         "role": "user",
         "passport_id": "8702761745",
         "date_inscription": "2025-05-04 00:23:31",
-        "blocked": true,
+        "blocked": false,
         "vip": false,
-        "last_login": "2025-05-16 12:20:21",
+        "last_login": "2025-05-16 20:12:33",
         "theme": "dark"
     },
     {
@@ -58,7 +58,7 @@
         "role": "user",
         "passport_id": "7854246392",
         "date_inscription": "2025-05-05 02:12:32",
-        "blocked": false,
+        "blocked": true,
         "vip": false,
         "last_login": "2025-05-05 02:13:32",
         "theme": "dark"
