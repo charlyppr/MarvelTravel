@@ -1016,5 +1016,63 @@
                 "total": 20
             }
         ]
+    },
+    {
+        "transaction": "b1e9a0e6a493d03d220532fc",
+        "reservation_id": "MT-388BB98F",
+        "montant": 434.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "de65a5b160d72e8012bcb760ea6be03c",
+        "acheteur": "Legrand@gmail.com",
+        "voyage": "New York",
+        "date_debut": "2025-05-22",
+        "date_fin": "2025-06-20",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Michel",
+                "prenom": "Michel",
+                "date_naissance": "2025-05-11",
+                "nationalite": "Japonaise",
+                "passport": "994 541 642 7"
+            }
+        ],
+        "date_achat": "2025-05-13 12:26:33",
+        "options": [
+            {
+                "etape": "Central Park",
+                "option": "Pique-nique",
+                "prix_unitaire": 35,
+                "nb_participants": 1,
+                "total": 35
+            }
+        ]
+    },
+    {
+        "transaction": "a64f8fd0ca81b16787c1af8a",
+        "reservation_id": "MT-F558596F",
+        "montant": 5099.95,
+        "vendeur": "MEF-2_F",
+        "status": "accepted",
+        "control": "d5dbaef7d97145a18ec6101f9aee81bc",
+        "acheteur": "Legrand@gmail.com",
+        "voyage": "Wakanda",
+        "date_debut": "2025-05-23",
+        "date_fin": "2025-06-24",
+        "nb_personne": 1,
+        "voyageurs": [
+            {
+                "civilite": "M",
+                "nom": "Michel",
+                "prenom": "Michel",
+                "date_naissance": "2025-05-11",
+                "nationalite": "Japonaise",
+                "passport": "994 541 642 7"
+            }
+        ],
+        "date_achat": "2025-05-16 08:28:41",
+        "options": []
     }
 ]

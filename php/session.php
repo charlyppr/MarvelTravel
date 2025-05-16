@@ -22,6 +22,31 @@ function check_none_auth($path)
     }
 }
 
+function check_blocked()
+{
+    if (isset($_SESSION['user'])) {
+        $userEmail = $_SESSION['email'];
+        $json_file = dirname(__FILE__) . '/../json/users.json';
+        if (file_exists($json_file)) {
+            $users = json_decode(file_get_contents($json_file), true);
+            if ($users) {
+                foreach ($users as $user) {
+                    if ($user['email'] === $userEmail && $user['blocked']) {
+                        // L'utilisateur est banni, rediriger vers la page de bannissement
+                        $base_url = dirname($_SERVER['PHP_SELF']);
+                        $base_url = str_replace('/php', '', $base_url);
+
+                        header("Location: $base_url/php/ban.php");
+                        $_SESSION['error'] = "Vous êtes banni. Votre compte ne respecte pas notre politique.";
+                        exit();
+                    }
+                }
+            }
+        }
+        exit();
+    }
+}
+
 function current_url()
 {
     $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
@@ -118,5 +143,7 @@ function load_user_theme()
     // Par défaut, retourner le thème du cookie ou 'dark' si non défini
     return isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark';
 }
+
+check_blocked();
 
 ?>
