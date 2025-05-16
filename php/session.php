@@ -43,7 +43,6 @@ function check_blocked()
                 }
             }
         }
-        exit();
     }
 }
 
