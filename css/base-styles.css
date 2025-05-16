@@ -1063,29 +1063,31 @@ footer {
   border-top: 1px solid var(--color-glass-dark);
 }
 
-.btn-primary,
-.btn-secondary {
-  padding: var(--spacing-xs) 5%;
-  border-radius: var(--border-radius-lg);
-  cursor: pointer;
+.btn-primary, .btn-secondary, .btn-danger {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
   border: none;
-  transition: all var(--transition-fast);
+  font-family: inherit;
   font-size: var(--font-size-sm);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-sidebar);
 }
 
 .btn-primary {
-  background-color: var(--color-error);
+  background-color: var(--delete-color);
   color: white;
-  text-decoration: none;
-}
-
-.btn-secondary {
-  background-color: var(--color-card-bg);
-  color: var(--color-text-light);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-error-bg);
+  background-color: #c62828;
+}
+
+.btn-secondary {
+  background-color: var(--color-field-bg);
   color: var(--color-text-light);
 }
 
@@ -1093,7 +1095,7 @@ footer {
   background-color: var(--color-card-hover);
 }
 
-/* ===== RESPONSIVE STYLES ===== */
+
 @media screen and (max-width: 992px) {
   .nav {
     padding: 0 var(--spacing-xs);

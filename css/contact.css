@@ -10,7 +10,7 @@
 .contact-container {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-lg);
   background-color: var(--color-card-hover);
