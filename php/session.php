@@ -37,7 +37,6 @@ function check_blocked()
                         $base_url = str_replace('/php', '', $base_url);
 
                         header("Location: $base_url/php/ban.php");
-                        $_SESSION['error'] = "Vous êtes banni. Votre compte ne respecte pas notre politique.";
                         exit();
                     }
                 }

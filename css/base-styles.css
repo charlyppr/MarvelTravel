@@ -267,6 +267,15 @@ a {
   text-decoration: none;
 }
 
+a.link{
+  color: var(--color-error);
+}
+
+a:link:hover{
+  color:var(--color-error-bg);
+  transition:200ms;
+}
+
 img {
   max-width: 100%;
 }
