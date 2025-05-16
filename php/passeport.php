@@ -1,5 +1,5 @@
 <?php
-require_once "session.php";
+require_once 'session.php';
 
 // Vérifier si les informations du passeport sont disponibles
 if (!isset($_SESSION['passport_info'])) {

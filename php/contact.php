@@ -1,5 +1,5 @@
 <?php
-require('session.php');
+require_once 'session.php';
 $_SESSION['current_url'] = current_url();
 
 // Variables pour le message de confirmation

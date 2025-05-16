@@ -1,9 +1,7 @@
 <?php
 
 require_once 'session.php';
-// Démarrer la session si ce n'est pas déjà fait
-session_start();
-
+    
 $page_title = "Modification de réservation";
 $maintenance_message = "Cette fonctionnalité sera bientôt disponible";
 $completion_date = "PHASE 4";

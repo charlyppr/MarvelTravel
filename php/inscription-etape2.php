@@ -1,5 +1,5 @@
 <?php
-require_once "session.php";
+require_once 'session.php';
 
 // Vérifier si l'utilisateur a bien passé l'étape 1
 if (!isset($_SESSION['inscription'])) {

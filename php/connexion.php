@@ -1,5 +1,5 @@
 <?php
-require_once "session.php";
+require_once 'session.php';
 check_none_auth($_SESSION['current_url'] ?? "../index.php");
 
 // Récupérer l'email saisi précédemment (s'il existe)

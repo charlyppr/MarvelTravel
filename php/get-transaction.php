@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de session pour gérer l'authentification
-require_once('session.php');
+require_once 'session.php';
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {

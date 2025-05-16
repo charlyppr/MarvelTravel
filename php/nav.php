@@ -1,8 +1,7 @@
 <?php
-// Inclure le fichier session.php pour accéder à la fonction load_user_theme
+
 require_once 'session.php';
 
-// Si la session n'est pas déjà démarrée (cette vérification est maintenant redondante car session.php le fait déjà)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

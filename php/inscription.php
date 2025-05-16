@@ -1,5 +1,5 @@
 <?php
-require_once "session.php";
+require_once 'session.php';
 
 // Récupérer les données sauvegardées si elles existent
 $login_civilite_value = $_SESSION['inscription']['civilite'] ?? '';

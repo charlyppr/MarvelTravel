@@ -48,9 +48,7 @@ $theme = load_user_theme();
 </style>
 
 <body class="<?php echo $theme; ?>-theme">
-    <?php
-    include('sidebar.php');
-    ?>
+    <?php include 'sidebar.php'; ?>
         
     <div class="user-creation-container">
         <?php include('maintenance.php'); ?>

@@ -1,5 +1,5 @@
 <?php
-require('session.php');
+require_once 'session.php';
 $_SESSION['current_url'] = current_url();
 check_auth($_SESSION['current_url'] ?? "../index.php");
 

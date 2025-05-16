@@ -1,4 +1,6 @@
 <?php
+require_once 'session.php';
+
 // Vérification du statut de bannissement
 session_start();
 

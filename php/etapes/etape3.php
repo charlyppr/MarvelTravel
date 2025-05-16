@@ -1,5 +1,5 @@
 <?php
-require_once('../session.php');
+require_once '../session.php';
 check_auth('../../connexion.php');
 
 // Récupérer l'ID du voyage en premier

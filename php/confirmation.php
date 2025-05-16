@@ -1,6 +1,6 @@
 <?php
-require_once('session.php');
-require_once('getapikey.php');
+require_once 'session.php';
+require_once 'getapikey.php';
 
 // Initialisation des variables par défaut
 $payment_validated = false;

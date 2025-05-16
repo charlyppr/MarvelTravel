@@ -1,6 +1,6 @@
 <?php
 
-require('session.php');
+require_once 'session.php';
 check_admin_auth('connexion.php');
 $_SESSION['current_url'] = current_url();
 

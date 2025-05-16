@@ -1,5 +1,5 @@
 <?php
-require('session.php');
+require_once 'session.php';
 check_auth('connexion.php');
 
 // Paramètres de filtrage
@@ -39,7 +39,7 @@ $theme = load_user_theme();
 <body class="<?php echo $theme; ?>-theme">
 
     <div class="main-container">
-        <?php include 'sidebar.php'; ?>
+        <?php include_once 'sidebar.php'; ?>
 
         <div class="content-container-div">
             <div class="content-container">

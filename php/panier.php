@@ -1,5 +1,6 @@
 <?php
-require_once('session.php');
+
+require_once 'session.php';
 
 // Rediriger l'utilisateur vers la connexion s'il n'est pas connecté
 if (!isset($_SESSION['user'])) {

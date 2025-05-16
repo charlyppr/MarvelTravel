@@ -1,5 +1,5 @@
 <?php
-require('session.php');
+require_once 'session.php';
 check_auth('connexion.php');
 
 // Récupérer les données des commandes

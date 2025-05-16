@@ -1,5 +1,5 @@
 <?php
-require_once('../session.php');
+require_once '../session.php';
 check_auth('../../connexion.php');
 
 // Récupérer l'ID du voyage en premier
@@ -220,11 +220,11 @@ $theme = load_user_theme();
 </head>
 
 <body class="<?php echo $theme; ?>-theme">
-    
+
     <?php include '../nav.php'; ?>
 
     <div class="reservation-container">
-        
+
         <div class="booking-header">
             <div class="breadcrumb">
                 <a href="../destination.php" class="breadcrumb-link">

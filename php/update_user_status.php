@@ -1,5 +1,5 @@
 <?php
-require('session.php');
+require_once 'session.php';
 check_admin_auth('connexion.php');
 
 // Préparer la réponse JSON
