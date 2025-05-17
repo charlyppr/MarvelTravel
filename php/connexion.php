@@ -157,9 +157,7 @@ $theme = load_user_theme();
                 <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg"
                         alt="etoile"></button>
 
-                <div class="code-text">
-                    <a href="connexion_code.php" id="codeLink">Se connecter avec un code unique</a>
-                </div>
+                <a href="connexion_code.php" class="code-text" id="codeLink">Se connecter avec un code unique</a>
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {

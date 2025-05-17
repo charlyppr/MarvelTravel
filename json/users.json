@@ -125,7 +125,8 @@
         "vip": false,
         "last_login": "2025-05-17 18:09:58",
         "reset_token": "43c4531c0acdd468701ca85cd3554789d2a439d778da2b6323187569da2222f6",
-        "reset_expiry": "2025-05-17 18:11:53"
+        "reset_expiry": "2025-05-17 18:11:53",
+        "theme": "dark"
     },
     {
         "civilite": "M",
