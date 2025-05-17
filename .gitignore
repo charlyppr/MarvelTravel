@@ -1,1 +1,12 @@
+# Fichiers macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Fichiers de configuration contenant des secrets
+php/config.php
+
+# Dossiers et fichiers à ignorer
+/vendor/
+/node_modules/
+/temp/
