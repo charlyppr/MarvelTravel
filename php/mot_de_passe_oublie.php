@@ -5,6 +5,18 @@ check_none_auth($_SESSION['current_url'] ?? "../index.php");
 $message = "";
 $alertType = "";
 
+// Récupérer l'email de l'URL ou de la session
+$email_value = '';
+
+// Priorité à l'email dans l'URL
+if (isset($_GET['email']) && !empty($_GET['email'])) {
+    $email_value = trim($_GET['email']);
+}
+// Puis la session de connexion si disponible
+else if (isset($_SESSION['login_mail']) && !empty($_SESSION['login_mail'])) {
+    $email_value = $_SESSION['login_mail'];
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email'] ?? '');
     
@@ -157,7 +169,7 @@ $theme = load_user_theme();
             <form class="form" action="mot_de_passe_oublie.php" method="post">
                 <div class="email">
                     <img src="../img/svg/email.svg" alt="Email Icon">
-                    <input type="email" id="email" name="email" placeholder="Votre email" required autocomplete="email">
+                    <input type="email" id="email" name="email" placeholder="Votre email" required autocomplete="email" value="<?php echo htmlspecialchars($email_value); ?>">
                 </div>
 
                 <button class="next-button" type="submit">Recevoir le lien<img src="../img/svg/sparkle.svg" alt="etoile"></button>

@@ -152,10 +152,40 @@ $theme = load_user_theme();
                     </button>
                 </div>
 
-                <a href="mot_de_passe_oublie.php" class="redir-text">Mot de passe oublié dans la galaxie ?</a>
+                <a href="mot_de_passe_oublie.php" class="redir-text" id="forgotPasswordLink">Mot de passe oublié dans la galaxie ?</a>
 
                 <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg"
                         alt="etoile"></button>
+
+                <div class="code-text">
+                    <a href="connexion_code.php" id="codeLink">Se connecter avec un code unique</a>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Ajouter l'email au lien quand il est disponible
+                        const emailInput = document.getElementById('email');
+                        const codeLink = document.getElementById('codeLink');
+                        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+                        
+                        // Mise à jour initiale si l'email est déjà rempli
+                        updateLinks();
+                        
+                        // Mise à jour à chaque modification du champ email
+                        emailInput.addEventListener('input', updateLinks);
+                        
+                        function updateLinks() {
+                            if (emailInput.value) {
+                                const encodedEmail = encodeURIComponent(emailInput.value);
+                                codeLink.href = "connexion_code.php?email=" + encodedEmail;
+                                forgotPasswordLink.href = "mot_de_passe_oublie.php?email=" + encodedEmail;
+                            } else {
+                                codeLink.href = "connexion_code.php";
+                                forgotPasswordLink.href = "mot_de_passe_oublie.php";
+                            }
+                        }
+                    });
+                </script>
 
                 <div class="other-text">
                     <a href="inscription.php">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>

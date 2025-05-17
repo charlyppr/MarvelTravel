@@ -493,6 +493,27 @@ input:focus {
     border: 1px solid rgba(52, 152, 219, 0.2);
 }
 
+.code-text {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-accent-faded);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    text-decoration: none;
+    transition: all var(--transition-medium);
+    cursor: pointer;
+}
+
+.code-text:hover {
+    background-color: var(--color-accent-faded);
+    color: var(--color-text-light);
+    transform: translateY(-2px);
+}
+
 @keyframes cardAppear {
   0% {
     opacity: 0;

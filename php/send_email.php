@@ -117,4 +117,66 @@ function send_welcome_email($to_email, $to_name, $passport_id) {
     
     // Envoi de l'email
     return send_password_reset_email($to_email, $to_name, $subject, $htmlContent);
+}
+
+/**
+ * Envoie un code de connexion à 6 chiffres par email
+ * 
+ * @param string $to_email L'adresse email du destinataire
+ * @param string $to_name Le nom du destinataire
+ * @param string $code Le code à 6 chiffres
+ * @return bool True si l'email a été envoyé avec succès, false sinon
+ */
+function send_login_code_email($to_email, $to_name, $code) {
+    $subject = "Votre code de connexion Marvel Travel";
+    
+    // Création du contenu HTML de l'email
+    $htmlContent = "
+    <html>
+    <head>
+        <title>Code de connexion Marvel Travel</title>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    </head>
+    <body style='margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f7f7f7;'>
+        <div style='max-width: 600px; margin: 20px auto; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
+            <!-- Header -->
+            <div style='text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;'>
+                <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>
+                <h1 style='color: #e23636; margin: 0; font-size: 24px;'>Code de connexion</h1>
+            </div>
+            
+            <!-- Content -->
+            <div style='color: #444444; line-height: 1.6; font-size: 16px;'>
+                <p style='margin-bottom: 20px;'>Bonjour <strong>{$to_name}</strong>,</p>
+                
+                <p style='margin-bottom: 20px;'>Voici votre code de connexion pour accéder à votre compte Marvel Travel :</p>
+                
+                <div style='text-align: center; margin: 30px 0; background-color: #f5f5f5; padding: 20px; border-radius: 6px;'>
+                    <div style='font-size: 32px; letter-spacing: 6px; font-weight: bold; color: #e23636; font-family: monospace;'>{$code}</div>
+                </div>
+                
+                <p>Ce code est valable pendant <strong>15 minutes</strong>.</p>
+                
+                <p style='margin-top: 20px;'>Si vous n'avez pas demandé ce code, vous pouvez ignorer cet email.</p>
+                
+                <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #eeeeee;'>
+                    <p style='font-size: 14px; color: #777;'>Pour votre sécurité, ne partagez jamais ce code avec qui que ce soit, y compris le personnel de Marvel Travel. Notre équipe ne vous demandera jamais votre code de connexion.</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div style='margin-top: 40px; padding-top: 20px; border-top: 1px solid #eeeeee; text-align: center; color: #777777; font-size: 14px;'>
+                <p>&copy; 2025 Marvel Travel. Tous droits réservés.</p>
+                <div style='margin-top: 15px;'>
+                    <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 40px; margin-bottom: 15px;'>
+                </div>
+                <p style='margin-top: 15px;'>Pour toute question, contactez notre support client. <a href='mailto:contact@marveltravel.shop'>contact@marveltravel.shop</a></p>
+            </div>
+        </div>
+    </body>
+    </html>";
+    
+    // Envoi de l'email
+    return send_password_reset_email($to_email, $to_name, $subject, $htmlContent);
 } 
