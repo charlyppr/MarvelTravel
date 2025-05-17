@@ -12,7 +12,7 @@
         "date_inscription": "2025-05-02 19:06:37",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-17 15:12:09",
+        "last_login": "2025-05-17 18:43:34",
         "theme": "dark"
     },
     {
@@ -26,9 +26,9 @@
         "role": "user",
         "passport_id": "8702761745",
         "date_inscription": "2025-05-04 00:23:31",
-        "blocked": false,
+        "blocked": true,
         "vip": false,
-        "last_login": "2025-05-16 22:22:04",
+        "last_login": "2025-05-17 19:08:50",
         "theme": "dark"
     },
     {
@@ -106,7 +106,7 @@
         "role": "user",
         "passport_id": "9945416427",
         "date_inscription": "2025-05-13 12:24:55",
-        "blocked": false,
+        "blocked": true,
         "vip": false,
         "last_login": "2025-05-16 12:11:34"
     },
@@ -114,48 +114,15 @@
         "civilite": "M",
         "first_name": "Charly",
         "last_name": "Pupier",
-        "email": "charlypupier01@gmail.com",
-        "password": "$2y$10$apWs.AV31fV1Vd6p9.sgtebORvxtlbpAPQH4ZJ0S75gnlgvB2zDYW",
-        "date_naissance": "2005-03-10",
-        "nationalite": "Fran\u00e7aise",
-        "role": "user",
-        "passport_id": "7176916341",
-        "date_inscription": "2025-05-17 03:00:52",
-        "blocked": false,
-        "vip": false,
-        "last_login": "2025-05-17 18:09:58",
-        "reset_token": "43c4531c0acdd468701ca85cd3554789d2a439d778da2b6323187569da2222f6",
-        "reset_expiry": "2025-05-17 18:11:53",
-        "theme": "dark"
-    },
-    {
-        "civilite": "M",
-        "first_name": "Hello",
-        "last_name": "Baba",
-        "email": "hellobaba@gmail.com",
-        "password": "$2y$10$ufHdTGHScTAF2p7jq3XNven8XJRVYRiOL35iNKIwnWY2wvOwGssT.",
-        "date_naissance": "2025-05-07",
-        "nationalite": "Asgardienne",
-        "role": "user",
-        "passport_id": 2327052190,
-        "date_inscription": "2025-05-17 15:31:50",
-        "blocked": false,
-        "vip": true,
-        "last_login": "null"
-    },
-    {
-        "civilite": "M",
-        "first_name": "Miam",
-        "last_name": "Hola",
         "email": "charlypupier@icloud.com",
-        "password": "$2y$10$\/fRcP5K5Rl2yiXVo3kskM.IGbsusFWgcKu5XJgb9v19ZlyN42F\/F.",
-        "date_naissance": "2025-05-07",
-        "nationalite": "Wakandaise",
-        "role": "user",
-        "passport_id": "5218620066",
-        "date_inscription": "2025-05-17 17:19:11",
+        "password": "$2y$10$YjKwrUjexIPh0Gs\/FMa0rOCO9AfJQiBaj3.bhnsTNtMeaaBbEbMNa",
+        "date_naissance": "2025-05-15",
+        "nationalite": "Skrull",
+        "role": "admin",
+        "passport_id": "7058011230",
+        "date_inscription": "2025-05-17 18:44:52",
         "blocked": false,
         "vip": false,
-        "last_login": "null"
+        "last_login": "2025-05-17 18:47:10"
     }
 ]

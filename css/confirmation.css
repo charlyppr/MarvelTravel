@@ -586,7 +586,15 @@
   line-height: 1.5
 }
 
-/* ===== RESPONSIVE STYLES ===== */
+.link {
+  color: var(--color-accent);
+  transition: color var(--transition-fast);
+}
+
+.link:hover { 
+  color: var(--color-text-muted);
+}
+
 @media screen and (max-width: 1200px) {
   .confirmation-container {
     padding: var(--spacing-lg);

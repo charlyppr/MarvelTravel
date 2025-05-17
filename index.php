@@ -1,5 +1,5 @@
 <?php
-require('php/session.php');
+require_once 'php/session.php';
 $_SESSION['current_url'] = $_SERVER['REQUEST_URI'];
 
 // Récupérer le thème depuis le cookie

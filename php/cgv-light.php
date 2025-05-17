@@ -1,6 +1,4 @@
 <div class="legal-content">
-    <h1 class="titre">Conditions Générales de Vente</h1>
-
     <div class="container">
         <section class="legal-section">
             <h2 class="sous-titre">Préambule</h2>

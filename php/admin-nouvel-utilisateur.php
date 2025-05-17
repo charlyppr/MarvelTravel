@@ -5,6 +5,32 @@ session_start();
 // Inclure le fichier session.php pour accéder à la fonction load_user_theme
 require_once 'session.php';
 
+// Fonction pour générer un ID de passeport unique à 10 chiffres
+function generateUniquePassportID()
+{
+    $json_file = "../json/users.json";
+    $users = [];
+    if (file_exists($json_file)) {
+        $json_data = file_get_contents($json_file);
+        $users = json_decode($json_data, true) ?? [];
+    }
+
+    // Récupérer tous les ID de passeport existants
+    $existing_ids = [];
+    foreach ($users as $user) {
+        if (isset($user['passport_id'])) {
+            $existing_ids[] = $user['passport_id'];
+        }
+    }
+
+    // Générer un nouvel ID unique
+    do {
+        $passport_id = sprintf('%010d', mt_rand(1000000000, 9999999999));
+    } while (in_array($passport_id, $existing_ids));
+
+    return $passport_id;
+}
+
 $page_title = "Création d'utilisateur";
 $message = "";
 $message_type = "";
@@ -55,8 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Cette adresse email est déjà utilisée";
                 $message_type = "error";
             } else {
-                // Générer un ID unique de passeport (10 chiffres)
-                $passport_id = mt_rand(1000000000, 9999999999);
+                // Générer un ID unique de passeport avec la fonction
+                $passport_id = generateUniquePassportID();
                 
                 // Préparer le nouvel utilisateur
                 $newUser = [

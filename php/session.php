@@ -24,6 +24,12 @@ function check_none_auth($path)
 
 function check_blocked()
 {
+    // Si on est déjà sur la page ban.php, ne pas rediriger
+    $current_script = basename($_SERVER['SCRIPT_NAME']);
+    if ($current_script === 'ban.php') {
+        return;
+    }
+
     if (isset($_SESSION['user'])) {
         $userEmail = $_SESSION['email'];
         $json_file = dirname(__FILE__) . '/../json/users.json';
@@ -64,14 +70,9 @@ function log_out()
     session_unset(); // Supprime toutes les variables de session
     session_destroy(); // Détruit la session
     
-    // Ne pas supprimer le cookie du thème, car cela pourrait donner une expérience utilisateur incohérente
-    // Le thème sera automatiquement mis à jour lors de la prochaine connexion
-    
     header("Location: ../index.php"); // Redirection vers la page de connexion
     exit();
 }
-
-// Ajouter ces fonctions
 
 // Fonction pour stocker les données d'étape
 function store_form_data($step, $data)

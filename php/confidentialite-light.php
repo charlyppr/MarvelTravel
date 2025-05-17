@@ -1,24 +1,4 @@
-<?php
-require_once 'session.php';
-
-$theme = load_user_theme();
-?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Travel • Politique de Confidentialité</title>
-    <link rel="stylesheet" href="../css/theme.css">
-    <link rel="stylesheet" href="../css/legal-pages.css">
-</head>
-<body class="<?php echo $theme; ?>-theme">
-    <?php include 'nav.php'; ?>
-
-<main class="legal-content">
-    <h1 class="titre">Politique de Confidentialité</h1>
-
+<div class="legal-content">
     <div class="container">
         
         <section class="legal-section">
@@ -110,10 +90,4 @@ $theme = load_user_theme();
             <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:contact@marveltravel.shop">contact@marveltravel.shop</a></p>
         </section>
     </div>
-</main>
-
-<?php
-include 'footer.php';
-?> 
-</body>
-</html>
+</div>
