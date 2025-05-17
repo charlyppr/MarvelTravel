@@ -2009,7 +2009,7 @@ img.item-icon.not-included {
   }
   
   .booking-column {
-    position: relative;
+    position: relative; 
     top: 0;
     margin-top: var(--spacing-xl);
     order: -1;

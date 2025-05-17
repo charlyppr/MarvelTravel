@@ -55,6 +55,14 @@ if (isset($_SESSION['auto_login'])) {
             if (!$email_exists) {
                 $users[] = $user_data;
                 file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
+                
+                // Envoi de l'email de bienvenue
+                require_once 'send_email.php';
+                send_welcome_email(
+                    $user_data['email'],
+                    $user_data['first_name'] . ' ' . $user_data['last_name'],
+                    $passport_info['passport_id']
+                );
             }
 
             // Marquer l'utilisateur comme enregistré

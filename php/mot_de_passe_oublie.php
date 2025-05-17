@@ -37,17 +37,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <html>
                         <head>
                             <title>Réinitialisation de votre mot de passe</title>
+                            <meta charset='utf-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                         </head>
-                        <body>
-                            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
-                                <h2 style='color: #e23636;'>Marvel Travel - Réinitialisation de mot de passe</h2>
-                                <p>Bonjour {$user['first_name']},</p>
-                                <p>Vous avez demandé la réinitialisation de votre mot de passe sur Marvel Travel.</p>
-                                <p>Cliquez sur le lien ci-dessous pour définir un nouveau mot de passe:</p>
-                                <p><a href='{$resetUrl}' style='padding: 10px 15px; background-color: #e23636; color: white; text-decoration: none; border-radius: 5px;'>Réinitialiser mon mot de passe</a></p>
-                                <p>Ce lien est valable pendant 1 heure.</p>
-                                <p>Si vous n'avez pas demandé cette réinitialisation, ignorez simplement cet email.</p>
-                                <p>L'équipe Marvel Travel</p>
+                        <body style='margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f7f7f7;'>
+                            <div style='max-width: 600px; margin: 20px auto; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
+                                <!-- Header -->
+                                <div style='text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;'>
+                                    <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>                                    
+                                </div>
+                                
+                                <!-- Content -->
+                                <div style='color: #444444; line-height: 1.6; font-size: 16px;'>
+                                    <h2 style='color: #222222; margin-top: 0;'>Réinitialisation de mot de passe</h2>
+                                    
+                                    <p style='margin-bottom: 20px;'>Bonjour <strong>{$user['first_name']}</strong>,</p>
+                                    
+                                    <p style='margin-bottom: 20px;'>Vous avez demandé la réinitialisation de votre mot de passe sur Marvel Travel.</p>
+                                    
+                                    <p style='margin-bottom: 25px;'>Pour définir un nouveau mot de passe, veuillez cliquer sur le bouton ci-dessous :</p>
+                                    
+                                    <div style='text-align: center; margin: 30px 0;'>
+                                        <a href='{$resetUrl}' style='display: inline-block; padding: 12px 24px; background-color: #e23636; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);'>Réinitialiser mon mot de passe</a>
+                                    </div>
+                                    
+                                    <p style='margin-top: 25px; font-size: 14px;'>Ce lien est valable pendant <strong>1 heure</strong>. Après cette période, vous devrez faire une nouvelle demande.</p>
+                                    
+                                    <p style='font-size: 14px;'>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet email en toute sécurité.</p>
+                                </div>
+                                
+                                <!-- Footer -->
+                                <div style='margin-top: 40px; padding-top: 20px; border-top: 1px solid #eeeeee; text-align: center; color: #777777; font-size: 14px;'>
+                                    <p>&copy; 2025 Marvel Travel. Tous droits réservés.</p>
+                                    <div style='margin-top: 15px;'>
+                                        <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 60px; margin-bottom: 15px;'>
+                                    </div>
+                                    <p style='margin-top: 15px;'>Pour toute question, contactez notre support client. <a href='mailto:contact@marveltravel.shop'>contact@marveltravel.shop</a></p>
+                                </div>
                             </div>
                         </body>
                         </html>";

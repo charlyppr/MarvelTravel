@@ -123,7 +123,9 @@
         "date_inscription": "2025-05-17 03:00:52",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-17 03:02:01"
+        "last_login": "2025-05-17 16:59:40",
+        "reset_token": "43c4531c0acdd468701ca85cd3554789d2a439d778da2b6323187569da2222f6",
+        "reset_expiry": "2025-05-17 18:11:53"
     },
     {
         "civilite": "M",
@@ -138,6 +140,21 @@
         "date_inscription": "2025-05-17 15:31:50",
         "blocked": false,
         "vip": true,
+        "last_login": "null"
+    },
+    {
+        "civilite": "M",
+        "first_name": "Miam",
+        "last_name": "Hola",
+        "email": "charlypupier@icloud.com",
+        "password": "$2y$10$\/fRcP5K5Rl2yiXVo3kskM.IGbsusFWgcKu5XJgb9v19ZlyN42F\/F.",
+        "date_naissance": "2025-05-07",
+        "nationalite": "Wakandaise",
+        "role": "user",
+        "passport_id": "5218620066",
+        "date_inscription": "2025-05-17 17:19:11",
+        "blocked": false,
+        "vip": false,
         "last_login": "null"
     }
 ]
