@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de configuration
-require_once __DIR__ . '/config.php';
+require_once 'config.php';
 
 function send_password_reset_email($to_email, $to_name, $subject, $html_content) {
     // Configuration de Brevo API

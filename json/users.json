@@ -109,5 +109,20 @@
         "blocked": false,
         "vip": false,
         "last_login": "2025-05-16 12:11:34"
+    },
+    {
+        "civilite": "M",
+        "first_name": "Charly",
+        "last_name": "Pupier",
+        "email": "charlypupier01@gmail.com",
+        "password": "$2y$10$apWs.AV31fV1Vd6p9.sgtebORvxtlbpAPQH4ZJ0S75gnlgvB2zDYW",
+        "date_naissance": "2005-03-10",
+        "nationalite": "Fran\u00e7aise",
+        "role": "user",
+        "passport_id": "7176916341",
+        "date_inscription": "2025-05-17 03:00:52",
+        "blocked": false,
+        "vip": false,
+        "last_login": "2025-05-17 03:02:01"
     }
 ]
