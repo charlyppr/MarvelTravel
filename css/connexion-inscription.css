@@ -457,6 +457,40 @@ input:focus {
   gap: var(--spacing-md)
 }
 
+.message {
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.success {
+  background-color: rgba(47, 158, 68, 0.1);
+  color: #2f9e44;
+  border: 1px solid rgba(47, 158, 68, 0.2);
+}
+
+.error {
+  background-color: var(--color-pending-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.warning {
+  background-color: rgba(255, 187, 52, 0.1);
+  color: #ffbb34;
+  border: 1px solid rgba(255, 187, 52, 0.2);
+}
+
+.info {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
 @keyframes cardAppear {
   0% {
     opacity: 0;

@@ -160,21 +160,25 @@ $theme = load_user_theme();
                 <div class="other-text">
                     <a href="inscription.php">Pas de passeport Multiversel ?&nbsp;<span>Créer un compte</span></a>
                 </div>
-                <div class="other-text">
-                    <?php
-                    // Affichage du message si une connexion a été tentée
-                    if (isset($_SESSION['connexion'])) {
-                        if ($_SESSION['connexion'] == 0) {
-                            echo "<a href='../index.php'>Connexion réussi !&nbsp<span>Retour à l'acceuil</span></a>";
-                        } elseif ($_SESSION['connexion'] == 1) {
-                            echo "<p>Identifiant ou mot de passe incorrect</p>";
-                        } elseif ($_SESSION['connexion'] == 2) {
-                            echo "<p>Votre compte a été bloqué. Veuillez contacter l'administrateur.</p>";
-                        }
-                        unset($_SESSION['connexion']);
+                <?php
+                // Affichage du message si une connexion a été tentée
+                if (isset($_SESSION['connexion'])) {
+                    $alertType = '';
+                    $alertMsg = '';
+                    if ($_SESSION['connexion'] == 0) {
+                        $alertType = 'success';
+                        $alertMsg = "Connexion réussie ! <a href='../index.php'><span>Retour à l'accueil</span></a>";
+                    } elseif ($_SESSION['connexion'] == 1) {
+                        $alertType = 'error';
+                        $alertMsg = "Identifiant ou mot de passe incorrect";
+                    } elseif ($_SESSION['connexion'] == 2) {
+                        $alertType = 'error';
+                        $alertMsg = "Votre compte a été bloqué. Veuillez contacter l'administrateur.";
                     }
-                    ?>
-                </div>
+                    echo '<div class="message ' . $alertType . '">' . $alertMsg . '</div>';
+                    unset($_SESSION['connexion']);
+                }
+                ?>
             </form>
         </div>
     </div>

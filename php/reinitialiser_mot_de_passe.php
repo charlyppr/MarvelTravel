@@ -99,7 +99,6 @@ $theme = load_user_theme();
     <link rel="stylesheet" href="../css/theme.css" id="theme">
     <link rel="stylesheet" href="../css/connexion-inscription.css">
     <link rel="stylesheet" href="../css/form-validation.css">
-    <link rel="stylesheet" href="../css/alert.css">
     <link rel="shortcut icon" href="../img/svg/spiderman-pin.svg" type="image/x-icon">
 </head>
 

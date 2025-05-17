@@ -168,16 +168,21 @@ $theme = load_user_theme();
                     <a href='connexion.php'>Déjà membre chez nous ?&nbsp<span>Se connecter</span></a>
                     <?php
                     if (isset($_SESSION['inscri'])) {
+                        $alertType = 'error';
+                        $alertMsg = '';
                         switch ($_SESSION['inscri']) {
                             case 1:
-                                echo "<p class='sous-titre-3'>Veuillez remplir tous les champs</p>";
+                                $alertMsg = "Veuillez remplir tous les champs";
                                 break;
                             case 2:
-                                echo "<p class='sous-titre-3'>Cette adresse email est déjà utilisée</p>";
+                                $alertMsg = "Cette adresse email est déjà utilisée";
                                 break;
                             case 3:
-                                echo "<p class='sous-titre-3'>Adresse email invalide</p>";
+                                $alertMsg = "Adresse email invalide";
                                 break;
+                        }
+                        if ($alertMsg) {
+                            echo '<div class="message ' . $alertType . '">' . $alertMsg . '</div>';
                         }
                         unset($_SESSION['inscri']);
                     }
