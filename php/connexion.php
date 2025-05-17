@@ -152,7 +152,7 @@ $theme = load_user_theme();
                     </button>
                 </div>
 
-                <a href="#" class="redir-text">Mot de passe oublié dans la galaxie ?</a>
+                <a href="mot_de_passe_oublie.php" class="redir-text">Mot de passe oublié dans la galaxie ?</a>
 
                 <button class="next-button" type="submit">Entrer dans le Multivers<img src="../img/svg/sparkle.svg"
                         alt="etoile"></button>
