@@ -256,7 +256,7 @@
   margin: 0 90px;
   position: relative;
   z-index: 5;
-  margin-top: var(--spacing-xl)
+  margin-top: var(--spacing-xl);
 }
 
 .voyage-nav ul {
@@ -311,7 +311,7 @@
   display: grid;
   grid-template-columns: 1fr 360px;
   gap: 32px;
-  align-items: start
+  align-items: start;
 }
 
 #apercu {

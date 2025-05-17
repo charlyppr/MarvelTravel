@@ -1,10 +1,10 @@
 <?php
 
 require_once 'session.php';
-    
+
 $page_title = "Modification de réservation";
 $maintenance_message = "Cette fonctionnalité sera bientôt disponible";
-$completion_date = "PHASE 4";
+$completion_date = "Plus tard";
 
 // Récupérer le thème de la session
 $theme = load_user_theme();

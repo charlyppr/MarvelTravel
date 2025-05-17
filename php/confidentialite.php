@@ -96,7 +96,7 @@ $theme = load_user_theme();
                 <li>Droit d'opposition au traitement pour des raisons légitimes.</li>
                 <li>Droit de retirer votre consentement à tout moment lorsque le traitement est basé sur le consentement.</li>
             </ul>
-            <p>Pour exercer ces droits, veuillez nous contacter à l'adresse email suivante : <a href="mailto:support@marveltravel.com">support@marveltravel.com</a></p>
+            <p>Pour exercer ces droits, veuillez nous contacter à l'adresse email suivante : <a href="mailto:contact@marveltravel.shop">contact@marveltravel.shop</a></p>
         </section>
         
         <section class="legal-section">
@@ -107,7 +107,7 @@ $theme = load_user_theme();
         
         <section class="legal-section">
             <h2 class="sous-titre">Contact</h2>
-            <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:support@marveltravel.com">support@marveltravel.com</a></p>
+            <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:contact@marveltravel.shop">contact@marveltravel.shop</a></p>
         </section>
     </div>
 </main>

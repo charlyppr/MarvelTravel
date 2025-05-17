@@ -94,7 +94,7 @@ $base_url = $protocol . "://" . $host . $relative_path . '/';
             <div class="footer-left-bottom">
                 <span class="copyright">Fait avec amour… et un peu de Vibranium • © 2025 Marvel Travel</span>
                 <div class="support-info">
-                    <p>Besoin d'aide ? <a href="mailto:support@marveltravel.com">support@marveltravel.com</a></p>
+                    <p>Besoin d'aide ? <a href="mailto:contact@marveltravel.shop">contact@marveltravel.shop</a></p>
                 </div>
             </div>
 

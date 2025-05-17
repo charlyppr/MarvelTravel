@@ -73,7 +73,7 @@ $theme = load_user_theme();
                             <h1 class="contact-title"><span class="text-gradient">Contactez-nous</span></h1>
                             <p class="contact-description">Envoyez-nous un mail ou complétez le formulaire pour que nous
                                 puissions vous aider dans votre prochaine aventure héroïque.</p>
-                            <a href="mailto:contact@marveltravel.com" class="contact-email">contact@marveltravel.com</a>
+                            <a href="mailto:contact@marveltravel.shop" class="contact-email">contact@marveltravel.shop</a>
                         </div>
 
                         <div class="support-section">

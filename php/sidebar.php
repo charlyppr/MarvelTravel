@@ -44,13 +44,13 @@ function isActive($page, $current_page)
                         <span class="nav-text">Dashboard</span>
                     </a>
 
-                    <a href="admin-statistiques.php" class="nav-link <?= isActive('admin-statistiques', $current_page) ?>">
+                    <!-- <a href="admin-statistiques.php" class="nav-link <?= isActive('admin-statistiques', $current_page) ?>">
                         <div class="nav-icon">
                             <img src="../img/svg/chart-bar.svg" alt="Statistiques" class="icon-img">
                             <div class="icon-highlight"></div>
                         </div>
                         <span class="nav-text">Statistiques</span>
-                    </a>
+                    </a> -->
                 <?php else: ?>
                     <a href="profil.php" class="nav-link <?= isActive('profil', $current_page) ?>">
                         <div class="nav-icon">

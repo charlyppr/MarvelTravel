@@ -84,7 +84,7 @@ $theme = load_user_theme();
         
         <section class="legal-section">
             <h2 class="sous-titre">Contact</h2>
-            <p>Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:support@marveltravel.com">support@marveltravel.com</a></p>
+            <p>Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:contact@marveltravel.shop">contact@marveltravel.shop</a></p>
         </section>
     </div>
 </main>
