@@ -49,6 +49,11 @@ function send_password_reset_email($to_email, $to_name, $subject, $html_content)
 function send_welcome_email($to_email, $to_name, $passport_id) {
     $subject = "Bienvenue dans le Multivers Marvel Travel !";
     
+    // Adaptation pour fonctionner à la fois en local et en production
+    $is_local = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'mamp') !== false);
+    $base_path = $is_local ? "/MarvelTravel" : "";
+    $protocol = $is_local ? "http" : "https";
+    
     // Création du contenu HTML de l'email
     $htmlContent = "
     <html>
@@ -61,7 +66,7 @@ function send_welcome_email($to_email, $to_name, $passport_id) {
         <div style='max-width: 600px; margin: 20px auto; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
             <!-- Header -->
             <div style='text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;'>
-                <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>
+                <img src='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>
             </div>
             
             <!-- Content -->
@@ -99,7 +104,7 @@ function send_welcome_email($to_email, $to_name, $passport_id) {
                 </div>
                 
                 <div style='text-align: center; margin: 30px 0;'>
-                    <a href='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/index.php' style='display: inline-block; padding: 12px 24px; background-color: #e23636; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);'>Commencer l'aventure</a>
+                    <a href='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/index.php' style='display: inline-block; padding: 12px 24px; background-color: #e23636; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);'>Commencer l'aventure</a>
                 </div>
             </div>
             
@@ -107,7 +112,7 @@ function send_welcome_email($to_email, $to_name, $passport_id) {
             <div style='margin-top: 40px; padding-top: 20px; border-top: 1px solid #eeeeee; text-align: center; color: #777777; font-size: 14px;'>
                 <p>&copy; 2025 Marvel Travel. Tous droits réservés.</p>
                 <div style='margin-top: 15px;'>
-                    <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 40px; margin-bottom: 15px;'>
+                    <img src='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 40px; margin-bottom: 15px;'>
                 </div>
                 <p style='margin-top: 15px;'>Pour toute question, contactez notre support client. <a href='mailto:contact@marveltravel.shop'>contact@marveltravel.shop</a></p>
             </div>
@@ -130,6 +135,11 @@ function send_welcome_email($to_email, $to_name, $passport_id) {
 function send_login_code_email($to_email, $to_name, $code) {
     $subject = "Votre code de connexion Marvel Travel";
     
+    // Adaptation pour fonctionner à la fois en local et en production
+    $is_local = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'mamp') !== false);
+    $base_path = $is_local ? "/MarvelTravel" : "";
+    $protocol = $is_local ? "http" : "https";
+    
     // Création du contenu HTML de l'email
     $htmlContent = "
     <html>
@@ -142,7 +152,7 @@ function send_login_code_email($to_email, $to_name, $code) {
         <div style='max-width: 600px; margin: 20px auto; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
             <!-- Header -->
             <div style='text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;'>
-                <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>
+                <img src='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>
                 <h1 style='color: #e23636; margin: 0; font-size: 24px;'>Code de connexion</h1>
             </div>
             
@@ -169,7 +179,7 @@ function send_login_code_email($to_email, $to_name, $code) {
             <div style='margin-top: 40px; padding-top: 20px; border-top: 1px solid #eeeeee; text-align: center; color: #777777; font-size: 14px;'>
                 <p>&copy; 2025 Marvel Travel. Tous droits réservés.</p>
                 <div style='margin-top: 15px;'>
-                    <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 40px; margin-bottom: 15px;'>
+                    <img src='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 40px; margin-bottom: 15px;'>
                 </div>
                 <p style='margin-top: 15px;'>Pour toute question, contactez notre support client. <a href='mailto:contact@marveltravel.shop'>contact@marveltravel.shop</a></p>
             </div>
