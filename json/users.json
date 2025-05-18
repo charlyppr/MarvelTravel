@@ -17,7 +17,7 @@
     },
     {
         "civilite": "Mme",
-        "first_name": "Hell",
+        "first_name": "Hello",
         "last_name": "Darling",
         "email": "hello@gmail.com",
         "password": "$2y$10$Ixo2nstsWn6a0T9917..oumEYfNdr65SL4iMMpq5cThnEdY2skwWq",
@@ -26,9 +26,9 @@
         "role": "user",
         "passport_id": "8702761745",
         "date_inscription": "2025-05-04 00:23:31",
-        "blocked": true,
+        "blocked": false,
         "vip": false,
-        "last_login": "2025-05-17 19:08:50",
+        "last_login": "2025-05-17 19:39:34",
         "theme": "dark"
     },
     {

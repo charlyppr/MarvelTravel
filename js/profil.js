@@ -12,7 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
             validateBtns: '.field-validate',
             cancelBtns: '.field-cancel',
             notifications: '.notification',
-            closeNotification: '.close-notification'
+            closeNotification: '.close-notification',
+            // Message modal selectors
+            messageItems: '.message-item',
+            messageModal: '#messageModal',
+            closeModal: '.close-message-modal',
+            messageSubjectModal: '.message-subject-modal',
+            messageDateModal: '.message-date-modal',
+            messageTimeModal: '.message-time-modal',
+            messageContentModal: '.message-content-modal'
         },
         classes: {
             disabled: 'disabled-button',
@@ -20,7 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
             editing: 'editing',
             focused: 'focused',
             inputValid: 'input-valid',
-            inputInvalid: 'input-invalid'
+            inputInvalid: 'input-invalid',
+            // Modal classes
+            modalActive: 'message-modal-active'
         },
         validation: {
             email: {
@@ -84,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.setupFieldControls();
             this.setupFormSubmission();
             this.setupPasswordToggle();
+            this.setupMessageModal();
             
             // Initialiser tous les champs comme désactivés
             this.disableAllInputs();
@@ -271,6 +282,100 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Soumettre le formulaire via notre méthode
                 this.submitForm();
             });
+        },
+        
+        // Configuration du modal de message
+        setupMessageModal() {
+            const messageItems = utils.getElements(config.selectors.messageItems);
+            const messageModal = utils.getElement(config.selectors.messageModal);
+            const closeModal = utils.getElement(config.selectors.closeModal);
+            
+            if (!messageItems.length || !messageModal) return;
+            
+            // Ajouter le gestionnaire d'événements pour ouvrir le modal
+            messageItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    this.openMessageModal(item);
+                });
+            });
+            
+            // Ajouter le gestionnaire d'événements pour fermer le modal
+            if (closeModal) {
+                closeModal.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.closeMessageModal();
+                });
+            }
+            
+            // Fermer le modal en cliquant à l'extérieur
+            messageModal.addEventListener('click', (e) => {
+                if (e.target === messageModal) {
+                    this.closeMessageModal();
+                }
+            });
+            
+            // Fermer le modal avec la touche Echap
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && messageModal.classList.contains(config.classes.modalActive)) {
+                    this.closeMessageModal();
+                }
+            });
+        },
+        
+        // Ouvrir le modal de message
+        openMessageModal(messageItem) {
+            const messageData = JSON.parse(messageItem.dataset.message);
+            const subjectElement = utils.getElement(config.selectors.messageSubjectModal);
+            const dateElement = utils.getElement(config.selectors.messageDateModal);
+            const timeElement = utils.getElement(config.selectors.messageTimeModal);
+            const contentElement = utils.getElement(config.selectors.messageContentModal);
+            const messageModal = utils.getElement(config.selectors.messageModal);
+            
+            if (!messageData || !subjectElement || !dateElement || !timeElement || !contentElement || !messageModal) return;
+            
+            // Remplir le modal avec les données du message
+            subjectElement.textContent = messageData.objet;
+            
+            const messageDate = new Date(messageData.date);
+            dateElement.textContent = messageDate.toLocaleDateString('fr-FR', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            timeElement.textContent = messageDate.toLocaleTimeString('fr-FR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            contentElement.textContent = messageData.message;
+            
+            // Afficher le modal
+            messageModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Empêcher le défilement du body
+            
+            // Ajouter une courte temporisation pour l'animation
+            setTimeout(() => {
+                messageModal.classList.add(config.classes.modalActive);
+            }, 10);
+        },
+        
+        // Fermer le modal de message
+        closeMessageModal() {
+            const messageModal = utils.getElement(config.selectors.messageModal);
+            
+            if (!messageModal) return;
+            
+            // Déclencher l'animation de fermeture
+            messageModal.classList.remove(config.classes.modalActive);
+            
+            // Attendre la fin de l'animation avant de cacher complètement le modal
+            setTimeout(() => {
+                if (!messageModal.classList.contains(config.classes.modalActive)) {
+                    messageModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }, 300); // Durée de la transition
         },
         
         // Soumettre le formulaire

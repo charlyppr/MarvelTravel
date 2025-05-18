@@ -389,7 +389,11 @@ $theme = load_user_theme();
                                                 break;
                                             $count++;
                                             ?>
-                                            <div class="message-item">
+                                            <div class="message-item" data-message="<?= htmlspecialchars(json_encode([
+                                                'objet' => $msg['objet'],
+                                                'date' => $msg['date'],
+                                                'message' => $msg['message']
+                                            ])) ?>">
                                                 <div class="message-icon">
                                                     <img src="../img/svg/mail.svg" alt="Message">
                                                 </div>
@@ -421,6 +425,23 @@ $theme = load_user_theme();
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for message details -->
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <div class="message-modal-header">
+                <span class="message-subject-modal"></span>
+                <button type="button" class="close-message-modal" onclick="const modal = document.getElementById('messageModal'); modal.classList.remove('message-modal-active'); setTimeout(() => { if (!modal.classList.contains('message-modal-active')) { modal.style.display = 'none'; document.body.style.overflow = ''; } }, 300);">&times;</button>
+            </div>
+            <div class="message-modal-body">
+                <div class="message-info">
+                    <span class="message-date-modal"></span>
+                    <span class="message-time-modal"></span>
+                </div>
+                <div class="message-content-modal"></div>
             </div>
         </div>
     </div>
