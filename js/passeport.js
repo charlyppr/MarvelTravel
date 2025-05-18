@@ -1,44 +1,37 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Gestion de la case à cocher
-    document.getElementById('rules-accept').addEventListener('change', function () {
-        const continueBtn = document.getElementById('continue-btn');
-        if (this.checked) {
-            continueBtn.style.opacity = '1';
-            continueBtn.style.pointerEvents = 'auto';
-        } else {
-            continueBtn.style.opacity = '0.5';
-            continueBtn.style.pointerEvents = 'none';
-        }
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("cgv-modal");
+  const rulesAccept = document.getElementById("rules-accept");
+  const continueBtn = document.getElementById("continue-btn");
 
-    // Gestion du modal CGV
-    const modal = document.getElementById('cgv-modal');
-    const showCGVBtn = document.getElementById('show-cgv');
-    const closeModal = document.querySelector('.close-modal');
+  // Gestion du bouton "Continuer"
+  rulesAccept?.addEventListener("change", () => {
+    const isChecked = rulesAccept.checked;
+    continueBtn.style.opacity = isChecked ? "1" : "0.5";
+    continueBtn.style.pointerEvents = isChecked ? "auto" : "none";
+  });
 
-    // Ouvrir le modal
-    showCGVBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Empêcher le défilement de la page
-    });
+  // Gestion du modal CGV
+  const toggleModal = (show) => {
+    if (!modal) return;
+    modal.style.display = show ? "block" : "none";
+    document.body.style.overflow = show ? "hidden" : "auto";
+  };
 
-    // Fermer le modal avec le bouton X
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Réactiver le défilement
-    });
+  document.getElementById("show-cgv")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleModal(true);
+  });
 
-    // Fermer le modal en cliquant en dehors
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
+  document
+    .querySelector(".close-modal")
+    ?.addEventListener("click", () => toggleModal(false));
 
-    // Empêcher la fermeture en cliquant sur le contenu
-    document.querySelector('.modal-content').addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
-}); 
+  window.addEventListener(
+    "click",
+    (e) => e.target === modal && toggleModal(false)
+  );
+
+  document
+    .querySelector(".modal-content")
+    ?.addEventListener("click", (e) => e.stopPropagation());
+});

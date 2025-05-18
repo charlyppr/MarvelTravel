@@ -448,10 +448,8 @@ $theme = load_user_theme();
         </div>
     </div>
 
-    <script src="../../js/nav.js"></script>
     <script src="../../js/calendar.js"></script>
     <script src="../../js/reservation.js"></script>
-    <script src="../../js/destination.js"></script>
 </body>
 
 </html>

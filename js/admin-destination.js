@@ -1,330 +1,242 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Sélectionner tous les champs requis et le bouton de soumission
-    const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
-    const submitButton = document.querySelector('.next-button');
-    
-    // Gestion de la galerie d'images
-    const galleryInput = document.getElementById('gallery_images');
-    const galleryPreview = document.getElementById('gallery-preview');
-    
-    if (galleryInput && galleryPreview) {
-        galleryInput.addEventListener('change', function() {
-            // Limiter à 5 images maximum
-            if (this.files.length > 5) {
-                alert('Vous ne pouvez sélectionner que 5 images maximum pour le carrousel.');
-                this.value = '';
-                return;
-            }
-            
-            // Vider la prévisualisation
-            galleryPreview.innerHTML = '';
-            
-            // Créer les prévisualisations pour chaque image
-            Array.from(this.files).forEach((file, index) => {
-                if (!file.type.match('image.*')) return;
-                
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    galleryItem.dataset.index = index;
-                    
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = file.name;
-                    
-                    const removeBtn = document.createElement('div');
-                    removeBtn.className = 'gallery-item-remove';
-                    removeBtn.innerHTML = '&times;';
-                    removeBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        galleryItem.remove();
-                        
-                        // Comme nous ne pouvons pas modifier les FileList directement,
-                        // nous allons réinitialiser l'input si toutes les images sont supprimées
-                        if (galleryPreview.querySelectorAll('.gallery-item').length === 0) {
-                            galleryInput.value = '';
-                        }
-                    });
-                    
-                    galleryItem.appendChild(img);
-                    galleryItem.appendChild(removeBtn);
-                    galleryPreview.appendChild(galleryItem);
-                };
-                
-                reader.readAsDataURL(file);
-            });
-            
-            // Mettre à jour le label
-            const fileLabel = galleryInput.nextElementSibling;
-            if (fileLabel && fileLabel.classList.contains('file-label')) {
-                fileLabel.textContent = `${this.files.length} image(s) sélectionnée(s)`;
-                fileLabel.classList.add('file-selected');
-            }
-        });
-    }
-    
-    // Validation spécifique pour le champ de durée
-    const dureeInput = document.getElementById('duree_jours');
-    if (dureeInput) {
-        dureeInput.addEventListener('input', function() {
-            const value = parseInt(this.value);
-            if (value < 2) {
-                this.value = 2;
-            }
-        });
-    }
-    
-    // Ajout de la capitalisation pour le champ titre
-    const titreInput = document.querySelector('input[name="titre"]');
-    if (titreInput) {
-        titreInput.addEventListener('blur', function() {
-            // Capitaliser la première lettre de chaque mot
-            this.value = this.value.split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-        });
-    }
-    
-    // Ajout des tags pour les champs avec virgules
-    const tagFields = [
-        'categories', 'highlights', 'langues', 'inclus', 
-        'non_inclus', 'films', 'personnages'
-    ];
-    
-    tagFields.forEach(fieldName => {
-        const input = document.querySelector(`input[name="${fieldName}"]`);
-        if (!input) return;
-        
-        // Créer un conteneur pour les tags
-        const container = document.createElement('div');
-        container.className = 'tags-container';
-        input.parentNode.insertBefore(container, input.nextSibling);
-        
-        // Masquer le champ input original
-        input.style.display = 'none';
-        
-        // Créer un nouvel input visible pour la saisie des tags
-        const visibleInput = document.createElement('input');
-        visibleInput.type = 'text';
-        visibleInput.className = 'tag-input';
-        visibleInput.placeholder = input.placeholder;
-        input.parentNode.insertBefore(visibleInput, input.nextSibling);
-        
-        // Fonction pour mettre à jour l'input original avec les valeurs des tags
-        function updateOriginalInput() {
-            const tags = Array.from(container.querySelectorAll('.tag')).map(tag => tag.dataset.value);
-            input.value = tags.join(',');
-            // Déclencher l'événement input pour la validation
-            const event = new Event('input', { bubbles: true });
-            input.dispatchEvent(event);
-        }
-        
-        // Fonction pour ajouter un tag
-        function addTag(value) {
-            if (!value.trim()) return;
-            
-            // Capitaliser la première lettre de chaque mot
-            const formattedValue = value.trim().split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                .join(' ');
-            
-            // Créer l'élément tag
-            const tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = formattedValue;
-            tag.dataset.value = formattedValue;
-            
-            // Ajouter bouton de suppression
-            const removeBtn = document.createElement('span');
-            removeBtn.className = 'tag-remove';
-            removeBtn.innerHTML = '&times;';
-            removeBtn.addEventListener('click', function() {
-                container.removeChild(tag);
-                updateOriginalInput();
-                visibleInput.focus();
-            });
-            
-            tag.appendChild(removeBtn);
-            container.appendChild(tag);
-            
-            // Mettre à jour l'input original
-            updateOriginalInput();
-            
-            // Réinitialiser le champ visible
-            visibleInput.value = '';
-        }
-        
-        // Ajouter les tags initiaux s'il y en a
-        if (input.value) {
-            input.value.split(',').forEach(tag => {
-                if (tag.trim()) addTag(tag.trim());
-            });
-        }
-        
-        // Gérer l'ajout de nouveaux tags
-        visibleInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ',') {
-                e.preventDefault();
-                addTag(this.value);
-            } else if (e.key === 'Backspace' && this.value === '') {
-                // Si l'input est vide et qu'on appuie sur Backspace, supprimer le dernier tag
-                const tags = container.querySelectorAll('.tag');
-                if (tags.length > 0) {
-                    const lastTag = tags[tags.length - 1];
-                    container.removeChild(lastTag);
-                    updateOriginalInput();
-                }
-            }
-        });
-        
-        // Ajouter également un tag lorsqu'on quitte le champ
-        visibleInput.addEventListener('blur', function() {
-            if (this.value.trim()) {
-                addTag(this.value);
-            }
-        });
-        
-        // Capitaliser pendant la saisie
-        visibleInput.addEventListener('input', function() {
-            if (this.value.includes(',')) {
-                // Si l'utilisateur a tapé une virgule, ajouter le tag
-                const value = this.value.replace(',', '');
-                if (value.trim()) {
-                    addTag(value);
-                }
-            }
-        });
+document.addEventListener("DOMContentLoaded", () => {
+  const requiredFields = document.querySelectorAll(
+    "input[required], select[required], textarea[required]"
+  );
+  const submitButton = document.querySelector(".next-button");
+  const buttonImage = submitButton?.querySelector("img");
+
+  // Gestion de la galerie d'images
+  const galleryInput = document.getElementById("gallery_images");
+  const galleryPreview = document.getElementById("gallery-preview");
+
+  if (galleryInput && galleryPreview) {
+    galleryInput.addEventListener("change", function () {
+      if (this.files.length > 5) {
+        alert(
+          "Vous ne pouvez sélectionner que 5 images maximum pour le carrousel."
+        );
+        this.value = "";
+        return;
+      }
+
+      galleryPreview.innerHTML = "";
+
+      Array.from(this.files).forEach((file, index) => {
+        if (!file.type.match("image.*")) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const galleryItem = document.createElement("div");
+          galleryItem.className = "gallery-item";
+          galleryItem.dataset.index = index;
+
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.alt = file.name;
+
+          const removeBtn = document.createElement("div");
+          removeBtn.className = "gallery-item-remove";
+          removeBtn.innerHTML = "&times;";
+          removeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            galleryItem.remove();
+            if (galleryPreview.querySelectorAll(".gallery-item").length === 0)
+              galleryInput.value = "";
+          });
+
+          galleryItem.append(img, removeBtn);
+          galleryPreview.appendChild(galleryItem);
+        };
+        reader.readAsDataURL(file);
+      });
+
+      updateFileLabel(
+        galleryInput,
+        `${this.files.length} image(s) sélectionnée(s)`
+      );
     });
-    
-    // Fonction pour vérifier si tous les champs sont valides
-    function validateForm() {
-        let isValid = true;
-        let validFieldsCount = 0;
-        const totalFields = requiredFields.length;
-        
-        requiredFields.forEach(field => {
-            // Vérification spécifique pour chaque type de champ
-            let fieldValid = true;
-            
-            if (field.value.trim() === '') {
-                fieldValid = false;
-            } else if (field.type === 'number' && (isNaN(field.value) || parseFloat(field.value) <= 0)) {
-                fieldValid = false;
-            } else if (field.type === 'file' && field.files.length === 0) {
-                fieldValid = false;
-            }
-            
-            if (!fieldValid) {
-                isValid = false;
-            } else {
-                validFieldsCount++;
-            }
-            
-            // Ajouter une classe visuelle pour indiquer l'état
-            if (field.value.trim() !== '' && (field.type !== 'file' || field.files.length > 0)) {
-                field.classList.add('input-valid');
-                field.classList.remove('input-invalid');
-            } else {
-                field.classList.add('input-invalid');
-                field.classList.remove('input-valid');
-            }
-        });
-        
-        return isValid;
-    }
-    
-    // Appliquer la classe appropriée au bouton en fonction de la validation
-    function updateSubmitButton() {
-        if (validateForm()) {
-            submitButton.classList.remove('disabled-button');
-            submitButton.disabled = false;
-        } else {
-            submitButton.classList.add('disabled-button');
-            submitButton.disabled = true;
-        }
-    }
-    
-    // Mettre à jour immédiatement au chargement
-    updateSubmitButton();
-    
-    // Écouteurs d'événements pour tous les champs
-    requiredFields.forEach(field => {
-        // Pour les inputs normaux, déclencher sur input
-        field.addEventListener('input', updateSubmitButton);
-        
-        // Pour les selects, déclencher sur change
-        if (field.tagName === 'SELECT') {
-            field.addEventListener('change', updateSubmitButton);
-        }
-        
-        // Pour les fichiers, déclencher sur change
-        if (field.type === 'file') {
-            field.addEventListener('change', updateSubmitButton);
-        }
-        
-        // Pour les textareas, déclencher sur input
-        if (field.tagName === 'TEXTAREA') {
-            field.addEventListener('input', updateSubmitButton);
-        }
-        
-        // Pour gérer le focus et le blur
-        field.addEventListener('focus', function() {
-            field.classList.add('focus-within');
-        });
-        
-        field.addEventListener('blur', function() {
-            field.classList.remove('focus-within');
-            
-            // Valider à la perte du focus
-            if (field.value.trim() === '') {
-                field.classList.add('input-invalid');
-                field.classList.remove('input-valid');
-            } else if (field.type === 'number' && (isNaN(field.value) || parseFloat(field.value) <= 0)) {
-                field.classList.add('input-invalid');
-                field.classList.remove('input-valid');
-            } else if (field.type === 'file' && field.files.length === 0) {
-                field.classList.add('input-invalid');
-                field.classList.remove('input-valid');
-            } else {
-                field.classList.add('input-valid');
-                field.classList.remove('input-invalid');
-            }
-        });
+  }
+
+  // Validation et capitalisation des champs
+  document
+    .getElementById("duree_jours")
+    ?.addEventListener("input", function () {
+      if (parseInt(this.value) < 2) this.value = 2;
     });
-    
-    // Animation de l'effet de survol du bouton
-    submitButton.addEventListener('mouseover', function() {
-        if (!submitButton.disabled) {
-            const buttonImage = submitButton.querySelector('img');
-            if (buttonImage) {
-                buttonImage.style.transform = 'translateX(5px)';
-            }
-        }
+
+  document
+    .querySelector('input[name="titre"]')
+    ?.addEventListener("blur", function () {
+      this.value = this.value
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
     });
-    
-    submitButton.addEventListener('mouseout', function() {
-        const buttonImage = submitButton.querySelector('img');
-        if (buttonImage) {
-            buttonImage.style.transform = 'translateX(0)';
+
+  // Gestion des tags
+  [
+    "categories",
+    "highlights",
+    "langues",
+    "inclus",
+    "non_inclus",
+    "films",
+    "personnages",
+  ].forEach((fieldName) => {
+    const input = document.querySelector(`input[name="${fieldName}"]`);
+    if (!input) return;
+
+    const container = document.createElement("div");
+    container.className = "tags-container";
+
+    const visibleInput = document.createElement("input");
+    visibleInput.type = "text";
+    visibleInput.className = "tag-input";
+    visibleInput.placeholder = input.placeholder;
+
+    input.parentNode.insertBefore(container, input.nextSibling);
+    input.parentNode.insertBefore(visibleInput, input.nextSibling);
+    input.style.display = "none";
+
+    const updateOriginalInput = () => {
+      input.value = Array.from(container.querySelectorAll(".tag"))
+        .map((tag) => tag.dataset.value)
+        .join(",");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    };
+
+    const addTag = (value) => {
+      if (!value.trim()) return;
+
+      const formattedValue = value
+        .trim()
+        .split(" ")
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ");
+
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = formattedValue;
+      tag.dataset.value = formattedValue;
+
+      const removeBtn = document.createElement("span");
+      removeBtn.className = "tag-remove";
+      removeBtn.innerHTML = "&times;";
+      removeBtn.addEventListener("click", () => {
+        container.removeChild(tag);
+        updateOriginalInput();
+        visibleInput.focus();
+      });
+
+      tag.appendChild(removeBtn);
+      container.appendChild(tag);
+      updateOriginalInput();
+      visibleInput.value = "";
+    };
+
+    if (input.value)
+      input.value.split(",").forEach((tag) => tag.trim() && addTag(tag));
+
+    visibleInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === ",") {
+        e.preventDefault();
+        addTag(e.target.value);
+      } else if (e.key === "Backspace" && e.target.value === "") {
+        const tags = container.querySelectorAll(".tag");
+        if (tags.length > 0) {
+          container.removeChild(tags[tags.length - 1]);
+          updateOriginalInput();
         }
+      }
     });
-    
-    // Styliser le champ d'upload de fichier
-    const fileInput = document.getElementById('image');
-    const fileLabel = document.querySelector('.file-label');
-    
-    if (fileInput && fileLabel) {
-        fileInput.addEventListener('change', function() {
-            if (fileInput.files.length > 0) {
-                fileLabel.textContent = fileInput.files[0].name;
-                fileLabel.classList.add('file-selected');
-            } else {
-                fileLabel.textContent = 'Image principale';
-                fileLabel.classList.remove('file-selected');
-            }
-            updateSubmitButton();
-        });
+
+    visibleInput.addEventListener(
+      "blur",
+      (e) => e.target.value.trim() && addTag(e.target.value)
+    );
+    visibleInput.addEventListener("input", (e) => {
+      if (e.target.value.includes(",")) {
+        const value = e.target.value.replace(",", "");
+        value.trim() && addTag(value);
+      }
+    });
+  });
+
+  // Validation du formulaire
+  const validateField = (field) => {
+    let valid = field.value.trim() !== "";
+    if (field.type === "number")
+      valid = valid && !isNaN(field.value) && parseFloat(field.value) > 0;
+    if (field.type === "file") valid = valid && field.files.length > 0;
+
+    field.classList.toggle("input-valid", valid);
+    field.classList.toggle("input-invalid", !valid);
+    return valid;
+  };
+
+  const validateForm = () => {
+    let valid = true;
+    requiredFields.forEach((field) => (valid = validateField(field) && valid));
+
+    if (submitButton) {
+      submitButton.classList.toggle("disabled-button", !valid);
+      submitButton.disabled = !valid;
     }
-}); 
+
+    return valid;
+  };
+
+  // Initialiser la validation
+  validateForm();
+
+  // Événements de validation pour tous les champs requis
+  requiredFields.forEach((field) => {
+    const eventType =
+      field.tagName === "SELECT" || field.type === "file" ? "change" : "input";
+    field.addEventListener(eventType, validateForm);
+
+    field.addEventListener("focus", () => field.classList.add("focus-within"));
+    field.addEventListener("blur", () => {
+      field.classList.remove("focus-within");
+      validateField(field);
+    });
+  });
+
+  // Animation du bouton
+  if (submitButton) {
+    submitButton.addEventListener(
+      "mouseover",
+      () =>
+        buttonImage &&
+        !submitButton.disabled &&
+        (buttonImage.style.transform = "translateX(5px)")
+    );
+
+    submitButton.addEventListener(
+      "mouseout",
+      () => buttonImage && (buttonImage.style.transform = "translateX(0)")
+    );
+  }
+
+  // Style du champ d'upload
+  const fileInput = document.getElementById("image");
+
+  fileInput?.addEventListener("change", function () {
+    updateFileLabel(
+      this,
+      this.files.length > 0 ? this.files[0].name : "Image principale"
+    );
+    validateForm();
+  });
+
+  // Fonction utilitaire pour les labels de fichiers
+  function updateFileLabel(input, text) {
+    const fileLabel = input.nextElementSibling;
+    if (fileLabel?.classList.contains("file-label")) {
+      fileLabel.textContent = text;
+      fileLabel.classList.add("file-selected");
+    }
+  }
+});

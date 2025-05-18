@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 // Générer un ID unique de passeport avec la fonction
                 $passport_id = generateUniquePassportID();
-                
+
                 // Préparer le nouvel utilisateur
                 $newUser = [
                     'civilite' => $civilite,
@@ -103,12 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Ajouter le nouvel utilisateur
                 $users[] = $newUser;
-                
+
                 // Sauvegarder dans le fichier JSON
                 if (file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT))) {
                     $message = "L'utilisateur a été créé avec succès";
                     $message_type = "success";
-                    
+
                     // Réinitialiser les valeurs du formulaire
                     $civilite = $first_name = $last_name = $email = $password = $date_naissance = $nationalite = "";
                     $role = "user";
@@ -131,6 +131,7 @@ $theme = load_user_theme();
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,7 +146,7 @@ $theme = load_user_theme();
 
 <body class="<?php echo $theme; ?>-theme">
     <?php include 'sidebar.php'; ?>
-        
+
     <div class="user-creation-container">
         <div class="card-content">
             <div class="card-header">
@@ -162,12 +163,13 @@ $theme = load_user_theme();
             <form class="form" action="admin-nouvel-utilisateur.php" method="post">
                 <div class="form-section">
                     <h3 class="form-section-title">Informations personnelles</h3>
-                    
+
                     <div class="civilite-container">
                         <div class="civilite">
                             <select name="civilite" id="civilite" required>
                                 <option value="" <?php echo empty($civilite) ? 'selected' : ''; ?>>Civilité</option>
-                                <option value="M" <?php echo isset($civilite) && $civilite === 'M' ? 'selected' : ''; ?>>Monsieur</option>
+                                <option value="M" <?php echo isset($civilite) && $civilite === 'M' ? 'selected' : ''; ?>>
+                                    Monsieur</option>
                                 <option value="Mme" <?php echo isset($civilite) && $civilite === 'Mme' ? 'selected' : ''; ?>>Madame</option>
                                 <option value="Autre" <?php echo isset($civilite) && $civilite === 'Autre' ? 'selected' : ''; ?>>Autre</option>
                             </select>
@@ -175,7 +177,7 @@ $theme = load_user_theme();
                     </div>
 
                     <div class="form-row">
-                        <input type="text" name="first_name" placeholder="Prénom" required 
+                        <input type="text" name="first_name" placeholder="Prénom" required
                             value="<?php echo isset($first_name) ? htmlspecialchars($first_name) : ''; ?>">
                         <input type="text" name="last_name" placeholder="Nom" required
                             value="<?php echo isset($last_name) ? htmlspecialchars($last_name) : ''; ?>">
@@ -189,7 +191,8 @@ $theme = load_user_theme();
 
                     <div class="mdp">
                         <img src="../img/svg/lock.svg" alt="Lock Icon">
-                        <input type="password" name="password" placeholder="Mot de passe" required autocomplete="new-password">
+                        <input type="password" name="password" placeholder="Mot de passe" required
+                            autocomplete="new-password">
                         <button type="button" class="password-toggle-btn" title="Afficher le mot de passe">
                             <img src="../img/svg/eye-slash.svg" alt="Afficher le mot de passe" class="eye-icon">
                         </button>
@@ -198,13 +201,13 @@ $theme = load_user_theme();
 
                 <div class="form-section">
                     <h3 class="form-section-title">Informations supplémentaires</h3>
-                    
+
                     <div class="date-input-container">
                         <label for="date_naissance">Date de naissance</label>
                         <div class="date-input">
                             <img src="../img/svg/calendar.svg" alt="Date Icon">
                             <input type="date" id="date_naissance" name="date_naissance" required
-                                max="<?php echo date('Y-m-d'); ?>" 
+                                max="<?php echo date('Y-m-d'); ?>"
                                 value="<?php echo isset($date_naissance) ? htmlspecialchars($date_naissance) : ''; ?>">
                         </div>
                     </div>
@@ -213,7 +216,8 @@ $theme = load_user_theme();
                         <div class="nationalite">
                             <img src="../img/svg/globe.svg" alt="Globe Icon">
                             <select name="nationalite" id="nationalite" required>
-                                <option value="" disabled <?php echo empty($nationalite) ? 'selected' : ''; ?>>Nationalité</option>
+                                <option value="" disabled <?php echo empty($nationalite) ? 'selected' : ''; ?>>
+                                    Nationalité</option>
                                 <option value="Wakandaise" <?php echo isset($nationalite) && $nationalite === 'Wakandaise' ? 'selected' : ''; ?>>Wakandaise</option>
                                 <option value="Asgardienne" <?php echo isset($nationalite) && $nationalite === 'Asgardienne' ? 'selected' : ''; ?>>Asgardienne</option>
                                 <option value="Xandarienne" <?php echo isset($nationalite) && $nationalite === 'Xandarienne' ? 'selected' : ''; ?>>Xandarienne</option>
@@ -229,10 +233,12 @@ $theme = load_user_theme();
 
                 <div class="form-section">
                     <h3 class="form-section-title">Paramètres du compte</h3>
-                    
+
                     <select name="role" class="role-select" required>
-                        <option value="user" <?php echo (!isset($role) || $role === 'user') ? 'selected' : ''; ?>>Utilisateur standard</option>
-                        <option value="admin" <?php echo isset($role) && $role === 'admin' ? 'selected' : ''; ?>>Administrateur</option>
+                        <option value="user" <?php echo (!isset($role) || $role === 'user') ? 'selected' : ''; ?>>
+                            Utilisateur standard</option>
+                        <option value="admin" <?php echo isset($role) && $role === 'admin' ? 'selected' : ''; ?>>
+                            Administrateur</option>
                     </select>
 
                     <div class="checkbox-container">
@@ -241,13 +247,15 @@ $theme = load_user_theme();
                     </div>
                 </div>
 
-                <button class="next-button" type="submit">Créer l'utilisateur<img src="../img/svg/fleche-droite.svg" alt="fleche"></button>
+                <button class="next-button" type="submit">Créer l'utilisateur<img src="../img/svg/fleche-droite.svg"
+                        alt="fleche"></button>
             </form>
         </div>
     </div>
 
     <script src="../js/password-toggle.js"></script>
     <script src="../js/form-validation.js"></script>
-    <script src="../js/admin-validation.js"></script>
+    <script src="../js/admin-user.js"></script>
 </body>
+
 </html>
