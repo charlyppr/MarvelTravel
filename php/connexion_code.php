@@ -375,7 +375,7 @@ $theme = load_user_theme();
             <?php endif; ?>
         </div>
     </div>
-
+    
     <script>
     <?php if ($showCodeForm): ?>
     document.addEventListener('DOMContentLoaded', function() {
