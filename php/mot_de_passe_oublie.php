@@ -39,8 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $users[$key]['reset_expiry'] = $expiry;
                     file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
                     
-                    // URL de réinitialisation
-                    $resetUrl = "http://" . $_SERVER['HTTP_HOST'] . "/MarvelTravel/php/reinitialiser_mot_de_passe.php?token=" . $token;
+                    // URL de réinitialisation - Adaptation pour fonctionner à la fois en local et en production
+                    $is_local = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'mamp') !== false);
+                    $base_path = $is_local ? "/MarvelTravel" : "";
+                    $protocol = $is_local ? "http" : "https";
+                    $resetUrl = $protocol . "://" . $_SERVER['HTTP_HOST'] . $base_path . "/php/reinitialiser_mot_de_passe.php?token=" . $token . "&email=" . urlencode($email);
                     
                     // Envoyer l'email via Brevo
                     require_once 'send_email.php';
@@ -56,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div style='max-width: 600px; margin: 20px auto; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
                                 <!-- Header -->
                                 <div style='text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;'>
-                                    <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>                                    
+                                    <img src='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/img/svg/logo.svg' alt='Marvel Travel Logo' style='height: 60px; margin-bottom: 15px;'>                                    
                                 </div>
                                 
                                 <!-- Content -->
@@ -82,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div style='margin-top: 40px; padding-top: 20px; border-top: 1px solid #eeeeee; text-align: center; color: #777777; font-size: 14px;'>
                                     <p>&copy; 2025 Marvel Travel. Tous droits réservés.</p>
                                     <div style='margin-top: 15px;'>
-                                        <img src='http://{$_SERVER['HTTP_HOST']}/MarvelTravel/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 60px; margin-bottom: 15px;'>
+                                        <img src='{$protocol}://{$_SERVER['HTTP_HOST']}{$base_path}/img/svg/spiderman-pin.svg' alt='Spiderman pin' style='height: 60px; margin-bottom: 15px;'>
                                     </div>
                                     <p style='margin-top: 15px;'>Pour toute question, contactez notre support client. <a href='mailto:contact@marveltravel.shop'>contact@marveltravel.shop</a></p>
                                 </div>

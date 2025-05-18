@@ -28,19 +28,19 @@ function generate_login_code() {
     return str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
 }
 
+// Récupérer les messages de session (toujours vérifier, qu'on soit en mode formulaire de code ou non)
+if (isset($_SESSION['code_message']) && isset($_SESSION['code_alert_type'])) {
+    $message = $_SESSION['code_message'];
+    $alertType = $_SESSION['code_alert_type'];
+    
+    // Nettoyer les messages de session après utilisation
+    unset($_SESSION['code_message']);
+    unset($_SESSION['code_alert_type']);
+}
+
 // Vérifier si on a été redirigé après envoi d'un code
 if (isset($_GET['show_code_form']) && $_GET['show_code_form'] == '1') {
     $showCodeForm = true;
-    
-    // Récupérer le message de la session
-    if (isset($_SESSION['code_message']) && isset($_SESSION['code_alert_type'])) {
-        $message = $_SESSION['code_message'];
-        $alertType = $_SESSION['code_alert_type'];
-        
-        // Nettoyer les messages de session après utilisation
-        unset($_SESSION['code_message']);
-        unset($_SESSION['code_alert_type']);
-    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -91,9 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 
                 if (!$userFound) {
-                    // Pour des raisons de sécurité, ne pas indiquer si l'email existe ou non
-                    $_SESSION['code_message'] = "Si cette adresse email est associée à un compte, un code de connexion a été envoyé.";
-                    $_SESSION['code_alert_type'] = "info";
+                    // Indiquer clairement que l'email n'existe pas
+                    $_SESSION['code_message'] = "Cet email n'existe pas dans notre base de données. <a href='inscription.php'><span>Créer un compte</span></a>";
+                    $_SESSION['code_alert_type'] = "error";
                     header("Location: connexion_code.php");
                     exit();
                 }

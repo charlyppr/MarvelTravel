@@ -24,73 +24,92 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (file_exists($json_file)) {
             // Lire le fichier JSON et le convertir en tableau PHP
             $users = json_decode(file_get_contents($json_file), true) ?? [];
+            $userExists = false;
+            
             foreach ($users as $user) {
-                if ($user['email'] === $login_mail && password_verify($login_pass, $user['password'])) {
-                    // Vérifier si l'utilisateur est bloqué
-                    if (isset($user['blocked']) && $user['blocked'] === true) {
-                        $_SESSION['login_mail'] = $login_mail;
-                        $_SESSION['connexion'] = 2; // Code spécifique pour utilisateur bloqué
+                if ($user['email'] === $login_mail) {
+                    $userExists = true;
+                    
+                    if (password_verify($login_pass, $user['password'])) {
+                        // Vérifier si l'utilisateur est bloqué
+                        if (isset($user['blocked']) && $user['blocked'] === true) {
+                            $_SESSION['login_mail'] = $login_mail;
+                            $_SESSION['connexion'] = 2; // Code spécifique pour utilisateur bloqué
+                            header("Location: connexion.php");
+                            exit();
+                        }
+                        
+                        session_start();
+                        $_SESSION['user'] = $login_mail;
+                        $_SESSION['role'] = $user['role'];
+                        $_SESSION['email'] = $login_mail;
+                        $_SESSION['first_name'] = $user['first_name'];
+                        $_SESSION['last_name'] = $user['last_name'];
+
+                        // Ajouter ces lignes pour stocker toutes les données utilisateur
+                        $_SESSION['civilite'] = $user['civilite'] ?? '';
+                        $_SESSION['date_naissance'] = $user['date_naissance'] ?? '';
+                        $_SESSION['nationalite'] = $user['nationalite'] ?? '';
+                        if (empty($_SESSION['nationalite']) && isset($user['nationalite'])) {
+                            $_SESSION['nationalite'] = $user['nationalite'];
+                        }
+                        $_SESSION['passport_id'] = $user['passport_id'] ?? '';
+                        
+                        // Récupérer et appliquer le thème de l'utilisateur depuis users.json
+                        if (isset($user['theme'])) {
+                            $userTheme = $user['theme'];
+                            // Définir le cookie avec le thème de l'utilisateur
+                            setcookie('theme', $userTheme, time() + (30 * 24 * 60 * 60), '/');
+                        }
+
+                        // En cas de connexion réussie, supprimer l'email mémorisé
+                        unset($_SESSION['login_mail']);
+
+                        // Mise à jour de la date de dernière connexion
+                        $user['last_login'] = date("Y-m-d H:i:s");
+
+                        // Enregistrer la mise à jour dans le fichier JSON
+                        foreach ($users as $key => $u) {
+                            if ($u['email'] === $login_mail) {
+                                $users[$key]['last_login'] = $user['last_login'];
+                                break;
+                            }
+                        }
+                        file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
+
+                        if (isset($_SESSION['error'])) {
+                            unset($_SESSION['error']);
+                        }
+
+                        // Redirection
+                        if (isset($_SESSION['current_url'])) {
+                            header('Location: ' . $_SESSION['current_url']);
+                        } else {
+                            header('Location: ../index.php');
+                        }
+                        exit();
+                    } else {
+                        // Mot de passe incorrect
+                        $_SESSION['connexion'] = 1; // Code pour connexion échouée
                         header("Location: connexion.php");
                         exit();
                     }
-                    
-                    session_start();
-                    $_SESSION['user'] = $login_mail;
-                    $_SESSION['role'] = $user['role'];
-                    $_SESSION['email'] = $login_mail;
-                    $_SESSION['first_name'] = $user['first_name'];
-                    $_SESSION['last_name'] = $user['last_name'];
-
-                    // Ajouter ces lignes pour stocker toutes les données utilisateur
-                    $_SESSION['civilite'] = $user['civilite'] ?? '';
-                    $_SESSION['date_naissance'] = $user['date_naissance'] ?? '';
-                    $_SESSION['nationalite'] = $user['nationalite'] ?? '';
-                    if (empty($_SESSION['nationalite']) && isset($user['nationalite'])) {
-                        $_SESSION['nationalite'] = $user['nationalite'];
-                    }
-                    $_SESSION['passport_id'] = $user['passport_id'] ?? '';
-                    
-                    // Récupérer et appliquer le thème de l'utilisateur depuis users.json
-                    if (isset($user['theme'])) {
-                        $userTheme = $user['theme'];
-                        // Définir le cookie avec le thème de l'utilisateur
-                        setcookie('theme', $userTheme, time() + (30 * 24 * 60 * 60), '/');
-                    }
-
-                    // En cas de connexion réussie, supprimer l'email mémorisé
-                    unset($_SESSION['login_mail']);
-
-                    // Mise à jour de la date de dernière connexion
-                    $user['last_login'] = date("Y-m-d H:i:s");
-
-                    // Enregistrer la mise à jour dans le fichier JSON
-                    foreach ($users as $key => $u) {
-                        if ($u['email'] === $login_mail) {
-                            $users[$key]['last_login'] = $user['last_login'];
-                            break;
-                        }
-                    }
-                    file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
-
-                    if (isset($_SESSION['error'])) {
-                        unset($_SESSION['error']);
-                    }
-
-                    // Redirection
-                    if (isset($_SESSION['current_url'])) {
-                        header('Location: ' . $_SESSION['current_url']);
-                    } else {
-                        header('Location: ../index.php');
-                    }
-                    exit();
                 }
             }
+            
+            if (!$userExists) {
+                // Email introuvable dans la base de données
+                $_SESSION['connexion'] = 3; // Nouveau code pour email inexistant
+                header("Location: connexion.php");
+                exit();
+            }
         }
+    } else {
+        // Champs vides
+        $_SESSION['connexion'] = 4; // Nouveau code pour champs vides
+        header("Location: connexion.php");
+        exit();
     }
-
-    // Gérer l'échec de connexion
-    $_SESSION['connexion'] = 1; // Code pour connexion échouée
-
 }
 
 // Récupérer le thème (en utilisant la fonction helper)
@@ -202,6 +221,12 @@ $theme = load_user_theme();
                     } elseif ($_SESSION['connexion'] == 2) {
                         $alertType = 'error';
                         $alertMsg = "Votre compte a été bloqué. Veuillez contacter l'administrateur.";
+                    } elseif ($_SESSION['connexion'] == 3) {
+                        $alertType = 'error';
+                        $alertMsg = "Cet email n'existe pas dans notre base de données. <a href='inscription.php'><span>Créer un compte</span></a>";
+                    } elseif ($_SESSION['connexion'] == 4) {
+                        $alertType = 'error';
+                        $alertMsg = "Veuillez remplir tous les champs";
                     }
                     echo '<div class="message ' . $alertType . '">' . $alertMsg . '</div>';
                     unset($_SESSION['connexion']);
