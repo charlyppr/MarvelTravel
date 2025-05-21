@@ -1,354 +1,222 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Configuration centralisée
-    const config = {
-        selectors: {
-            forms: 'form',
-            emailInputs: 'input[type="email"]',
-            passwordInputs: 'input[type="password"]',
-            submitButtons: 'button[type="submit"], .next-button',
-            inputContainers: [
-                '.mdp', 
-                '.email', 
-                '.field-value', 
-                '.profile-field', 
-                '.form-row',
-                '.civilite-container'
-            ]
-        },
-        classes: {
-            inputValid: 'input-valid',
-            inputInvalid: 'input-invalid',
-            disabledButton: 'disabled-button',
-            inputWarning: 'input-warning',
-            strengthMeter: 'password-strength-meter',
-            strengthIndicator: 'strength-indicator',
-            strengthWeak: 'strength-weak',
-            strengthFair: 'strength-fair',
-            strengthGood: 'strength-good',
-            strengthStrong: 'strength-strong'
-        },
-        regex: {
-            email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        },
-        passwordCriteria: {
-            minLength: 8,
-            requireLowercase: true,
-            requireUppercase: true,
-            requireNumber: true,
-            requireSpecial: true
-        }
+document.addEventListener("DOMContentLoaded", () => {
+  // Sélecteurs et expressions régulières essentiels
+  const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Sélectionner tous les formulaires
+  document.querySelectorAll("form").forEach((form) => {
+    const emailInput = form.querySelector('input[type="email"]');
+    const passwordInput = form.querySelector('input[type="password"]');
+    const submitButton = form.querySelector(
+      'button[type="submit"], .next-button'
+    );
+
+    // Désactiver le bouton par défaut
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.classList.add("disabled-button");
+    }
+
+    // Validation d'email
+    if (emailInput) {
+      ["input", "blur"].forEach((event) =>
+        emailInput.addEventListener(event, () => {
+          const isValid = validateEmail(emailInput);
+          updateFormValidity(form, emailInput, isValid);
+        })
+      );
+    }
+
+    // Validation de mot de passe
+    if (passwordInput) {
+      ["input", "blur"].forEach((event) =>
+        passwordInput.addEventListener(event, () => {
+          const isValid = validatePassword(passwordInput);
+          updateFormValidity(form, passwordInput, isValid);
+        })
+      );
+    }
+
+    // Gestion de soumission du formulaire
+    form.addEventListener("submit", (event) => {
+      let isFormValid = true;
+
+      if (emailInput && !validateEmail(emailInput)) isFormValid = false;
+      if (passwordInput && !validatePassword(passwordInput))
+        isFormValid = false;
+
+      if (!isFormValid) {
+        event.preventDefault();
+        const firstError = form.querySelector(
+          '.input-warning[style*="display: block"]'
+        );
+        if (firstError)
+          firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  });
+
+  // Fonction de validation d'email
+  function validateEmail(input) {
+    const value = input.value.trim();
+    const container = getContainer(input);
+
+    if (!value) {
+      updateFieldStatus(input, "");
+      return false;
+    }
+
+    if (!EMAIL_REGEX.test(value)) {
+      updateFieldStatus(input, "Adresse email invalide");
+      return false;
+    }
+
+    updateFieldStatus(input, "");
+    container.classList.remove("input-invalid");
+    container.classList.add("input-valid");
+    return true;
+  }
+
+  // Fonction de validation de mot de passe
+  function validatePassword(input) {
+    const value = input.value;
+    const container = getContainer(input);
+
+    if (!value) {
+      updateFieldStatus(input, "");
+      hideStrengthMeter(input);
+      return false;
+    }
+
+    const criteria = {
+      length: value.length >= 8,
+      lowercase: /[a-z]/.test(value),
+      uppercase: /[A-Z]/.test(value),
+      number: /[0-9]/.test(value),
+      special: /[^A-Za-z0-9]/.test(value),
     };
 
-    // Gestionnaire de validation de formulaire
-    const formValidator = {
-        // Éléments DOM mis en cache
-        elements: {},
+    const passedCriteria = Object.values(criteria).filter(Boolean).length;
+    updateStrengthMeter(input, passedCriteria);
 
-        // Initialisation
-        init() {
-            this.cacheElements();
-            this.disableSubmitButtons();
-            this.setupEventListeners();
-            this.initialValidation();
-        },
+    if (passedCriteria < 5) {
+      let message = "Le mot de passe doit contenir:";
+      if (!criteria.length) message += "<br>• Au moins 8 caractères";
+      if (!criteria.lowercase) message += "<br>• Au moins 1 minuscule";
+      if (!criteria.uppercase) message += "<br>• Au moins 1 majuscule";
+      if (!criteria.number) message += "<br>• Au moins 1 chiffre";
+      if (!criteria.special) message += "<br>• Au moins 1 caractère spécial";
 
-        // Mise en cache des éléments DOM
-        cacheElements() {
-            this.elements = {
-                forms: document.querySelectorAll(config.selectors.forms),
-                emailInputs: document.querySelectorAll(config.selectors.emailInputs),
-                passwordInputs: document.querySelectorAll(config.selectors.passwordInputs),
-                submitButtons: document.querySelectorAll(config.selectors.submitButtons)
-            };
-        },
+      updateFieldStatus(input, message);
+      return false;
+    }
 
-        // Désactiver les boutons de soumission par défaut
-        disableSubmitButtons() {
-            this.elements.submitButtons.forEach(button => {
-                button.disabled = true;
-                button.classList.add(config.classes.disabledButton);
-            });
-        },
+    updateFieldStatus(input, "");
+    container.classList.remove("input-invalid");
+    container.classList.add("input-valid");
+    return true;
+  }
 
-        // Configuration des écouteurs d'événements
-        setupEventListeners() {
-            this.setupEmailValidation();
-            this.setupPasswordValidation();
-            this.setupFormSubmission();
-        },
+  // Fonctions utilitaires
+  function getContainer(input) {
+    const selectors = [
+      ".mdp",
+      ".email",
+      ".field-value",
+      ".profile-field",
+      ".form-row",
+      ".civilite-container",
+    ];
+    for (const selector of selectors) {
+      const container = input.closest(selector);
+      if (container) return container;
+    }
+    return input.parentElement;
+  }
 
-        // Validation initiale des formulaires
-        initialValidation() {
-            this.elements.forms.forEach(form => {
-                this.updateSubmitButton(form);
-            });
-        },
+  function updateFieldStatus(input, errorMessage) {
+    const container = getContainer(input);
+    let errorContainer = container.nextElementSibling;
 
-        // -- GESTION DES CONTENEURS --
+    while (
+      errorContainer &&
+      !errorContainer.classList.contains("input-warning")
+    ) {
+      errorContainer = errorContainer.nextElementSibling;
+    }
 
-        // Obtenir le conteneur du champ
-        getInputContainer(input) {
-            for (const selector of config.selectors.inputContainers) {
-                const container = input.closest(selector);
-                if (container) return container;
-            }
-            return input.parentElement;
-        },
+    if (errorMessage) {
+      if (!errorContainer) {
+        errorContainer = document.createElement("div");
+        errorContainer.className = "input-warning";
+        container.after(errorContainer);
+      }
+      errorContainer.innerHTML = errorMessage;
+      errorContainer.style.display = "block";
+      container.classList.remove("input-valid");
+      container.classList.add("input-invalid");
+    } else if (errorContainer) {
+      errorContainer.style.display = "none";
+    }
+  }
 
-        // -- GESTION DES ERREURS --
+  function updateFormValidity(form, input, isValid) {
+    const submitButton = form.querySelector(
+      'button[type="submit"], .next-button'
+    );
+    if (!submitButton) return;
 
-        // Afficher un message d'erreur
-        showError(input, message) {
-            let errorContainer = this.findErrorContainer(input);
-            
-            if (!errorContainer) {
-                errorContainer = document.createElement('div');
-                errorContainer.className = config.classes.inputWarning;
-                
-                const container = this.getInputContainer(input);
-                if (container) {
-                    container.after(errorContainer);
-                }
-            }
-            
-            errorContainer.innerHTML = message;
-            errorContainer.style.display = 'block';
-            
-            const parentElement = input.parentElement;
-            parentElement.classList.remove(config.classes.inputValid);
-            parentElement.classList.add(config.classes.inputInvalid);
-            
-            return errorContainer;
-        },
+    const emailInput = form.querySelector('input[type="email"]');
+    const passwordInput = form.querySelector('input[type="password"]');
 
-        // Masquer un message d'erreur
-        hideError(input) {
-            const errorContainer = this.findErrorContainer(input);
-            if (errorContainer) {
-                errorContainer.style.display = 'none';
-            }
-        },
+    let formValid = true;
+    if (emailInput && emailInput.value)
+      formValid = formValid && validateEmail(emailInput);
+    if (passwordInput && passwordInput.value)
+      formValid = formValid && validatePassword(passwordInput);
 
-        // Trouver un conteneur d'erreur existant
-        findErrorContainer(input) {
-            const container = this.getInputContainer(input);
-            if (!container) return null;
-            
-            let sibling = container.nextElementSibling;
-            if (sibling && sibling.classList.contains(config.classes.inputWarning)) {
-                return sibling;
-            }
-            
-            return null;
-        },
+    submitButton.disabled = !formValid;
+    submitButton.classList.toggle("disabled-button", !formValid);
+  }
 
-        // -- GESTION DE L'INDICATEUR DE FORCE --
+  function updateStrengthMeter(input, strength) {
+    const container = getContainer(input);
+    let meter = container.nextElementSibling;
 
-        // Obtenir ou créer un indicateur de force
-        getStrengthMeter(passwordInput) {
-            const container = this.getInputContainer(passwordInput);
-            if (!container) return null;
-            
-            let sibling = container.nextElementSibling;
-            while (sibling) {
-                if (sibling.classList.contains(config.classes.strengthMeter)) {
-                    return sibling;
-                }
-                
-                if (sibling.classList.contains(config.classes.inputWarning)) {
-                    sibling = sibling.nextElementSibling;
-                    continue;
-                }
-                
-                break;
-            }
-            
-            const meter = document.createElement('div');
-            meter.className = config.classes.strengthMeter;
-            meter.style.display = 'none';
-            
-            const indicator = document.createElement('div');
-            indicator.className = config.classes.strengthIndicator;
-            meter.appendChild(indicator);
-            
-            if (sibling && sibling.classList.contains(config.classes.inputWarning)) {
-                sibling.after(meter);
-            } else {
-                container.after(meter);
-            }
-            
-            return meter;
-        },
+    while (meter && !meter.classList.contains("password-strength-meter")) {
+      meter = meter.nextElementSibling;
+    }
 
-        // Mettre à jour l'indicateur de force
-        updateStrengthMeter(passwordInput, strength) {
-            const meter = this.getStrengthMeter(passwordInput);
-            if (!meter) return;
-            
-            meter.className = config.classes.strengthMeter;
-            
-            if (strength <= 1) {
-                meter.classList.add(config.classes.strengthWeak);
-            } else if (strength === 2) {
-                meter.classList.add(config.classes.strengthFair);
-            } else if (strength <= 4) {
-                meter.classList.add(config.classes.strengthGood);
-            } else {
-                meter.classList.add(config.classes.strengthStrong);
-            }
-            
-            meter.style.display = 'block';
-        },
+    if (!meter) {
+      meter = document.createElement("div");
+      meter.className = "password-strength-meter";
+      const indicator = document.createElement("div");
+      indicator.className = "strength-indicator";
+      meter.appendChild(indicator);
+      container.after(meter);
+    }
 
-        // Masquer l'indicateur de force
-        hideStrengthMeter(passwordInput) {
-            const meter = this.getStrengthMeter(passwordInput);
-            if (meter) {
-                meter.style.display = 'none';
-            }
-        },
+    meter.className = "password-strength-meter";
+    if (strength <= 1) {
+      meter.classList.add("strength-weak");
+    } else if (strength === 2) {
+      meter.classList.add("strength-fair");
+    } else if (strength <= 4) {
+      meter.classList.add("strength-good");
+    } else {
+      meter.classList.add("strength-strong");
+    }
 
-        // -- FONCTIONS DE VALIDATION --
+    meter.style.display = "block";
+  }
 
-        // Valider un champ email
-        validateEmail(input) {
-            const value = input.value.trim();
-            
-            if (value === '') {
-                this.hideError(input);
-                input.parentElement.classList.remove(config.classes.inputValid, config.classes.inputInvalid);
-                return false;
-            }
-            
-            if (!config.regex.email.test(value)) {
-                this.showError(input, 'Adresse email invalide');
-                return false;
-            }
-            
-            this.hideError(input);
-            input.parentElement.classList.remove(config.classes.inputInvalid);
-            input.parentElement.classList.add(config.classes.inputValid);
-            return true;
-        },
+  function hideStrengthMeter(input) {
+    const container = getContainer(input);
+    let meter = container.nextElementSibling;
 
-        // Valider un champ mot de passe
-        validatePassword(input) {
-            const value = input.value;
-            
-            if (value === '') {
-                this.hideError(input);
-                this.hideStrengthMeter(input);
-                input.parentElement.classList.remove(config.classes.inputValid, config.classes.inputInvalid);
-                return false;
-            }
-            
-            const criteria = {
-                length: value.length >= config.passwordCriteria.minLength,
-                lowercase: !config.passwordCriteria.requireLowercase || /[a-z]/.test(value),
-                uppercase: !config.passwordCriteria.requireUppercase || /[A-Z]/.test(value),
-                number: !config.passwordCriteria.requireNumber || /[0-9]/.test(value),
-                special: !config.passwordCriteria.requireSpecial || /[^A-Za-z0-9]/.test(value)
-            };
-            
-            const passedCriteria = Object.values(criteria).filter(Boolean).length;
-            
-            this.updateStrengthMeter(input, passedCriteria);
-            
-            if (passedCriteria < 5) {
-                let message = 'Le mot de passe doit contenir:';
-                if (!criteria.length) message += '<br>• Au moins 8 caractères';
-                if (!criteria.lowercase) message += '<br>• Au moins 1 minuscule';
-                if (!criteria.uppercase) message += '<br>• Au moins 1 majuscule';
-                if (!criteria.number) message += '<br>• Au moins 1 chiffre';
-                if (!criteria.special) message += '<br>• Au moins 1 caractère spécial';
-                
-                this.showError(input, message);
-                return false;
-            }
-            
-            this.hideError(input);
-            input.parentElement.classList.remove(config.classes.inputInvalid);
-            input.parentElement.classList.add(config.classes.inputValid);
-            return true;
-        },
+    while (meter && !meter.classList.contains("password-strength-meter")) {
+      meter = meter.nextElementSibling;
+    }
 
-        // Mettre à jour l'état du bouton de soumission
-        updateSubmitButton(form) {
-            const emailInput = form.querySelector(config.selectors.emailInputs);
-            const passwordInput = form.querySelector(config.selectors.passwordInputs);
-            const submitButton = form.querySelector(config.selectors.submitButtons);
-            
-            if (!submitButton) return;
-            
-            let isValid = true;
-            
-            if (emailInput) {
-                isValid = isValid && this.validateEmail(emailInput);
-            }
-            
-            if (passwordInput) {
-                isValid = isValid && this.validatePassword(passwordInput);
-            }
-            
-            submitButton.disabled = !isValid;
-            submitButton.classList.toggle(config.classes.disabledButton, !isValid);
-        },
-
-        // -- CONFIGURATION DES ÉVÉNEMENTS --
-
-        // Configuration de la validation des emails
-        setupEmailValidation() {
-            this.elements.emailInputs.forEach(input => {
-                ['input', 'blur'].forEach(event => {
-                    input.addEventListener(event, () => {
-                        this.validateEmail(input);
-                        this.updateSubmitButton(input.form);
-                    });
-                });
-            });
-        },
-
-        // Configuration de la validation des mots de passe
-        setupPasswordValidation() {
-            this.elements.passwordInputs.forEach(input => {
-                ['input', 'blur'].forEach(event => {
-                    input.addEventListener(event, () => {
-                        this.validatePassword(input);
-                        this.updateSubmitButton(input.form);
-                    });
-                });
-            });
-        },
-
-        // Configuration de la soumission des formulaires
-        setupFormSubmission() {
-            this.elements.forms.forEach(form => {
-                form.addEventListener('submit', event => {
-                    let isValid = true;
-                    
-                    const emailInput = form.querySelector(config.selectors.emailInputs);
-                    if (emailInput) {
-                        isValid = this.validateEmail(emailInput) && isValid;
-                    }
-                    
-                    const passwordInput = form.querySelector(config.selectors.passwordInputs);
-                    if (passwordInput) {
-                        isValid = this.validatePassword(passwordInput) && isValid;
-                    }
-                    
-                    if (!isValid) {
-                        event.preventDefault();
-                        
-                        const firstError = document.querySelector(`.${config.classes.inputWarning}[style*="display: block"]`);
-                        if (firstError) {
-                            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }
-                });
-            });
-        }
-    };
-    
-    // Initialisation du gestionnaire de validation
-    formValidator.init();
-}); 
+    if (meter) meter.style.display = "none";
+  }
+});
