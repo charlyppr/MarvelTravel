@@ -1,5 +1,5 @@
 // Gestion des cookies
-if (typeof window.getCookie !== 'function') {
+if (typeof window.getCookie !== "function") {
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -8,7 +8,7 @@ if (typeof window.getCookie !== 'function') {
   window.getCookie = getCookie;
 }
 
-if (typeof window.setCookie !== 'function') {
+if (typeof window.setCookie !== "function") {
   const setCookie = (name, value, days = 365) => {
     const d = new Date();
     d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);

@@ -336,7 +336,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Rendre accessible pour calendar.js
   window.updatePriceDisplay =
     typeof updatePriceDisplay !== "undefined" ? updatePriceDisplay : null;
 });

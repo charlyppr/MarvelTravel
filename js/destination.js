@@ -235,25 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
         startDateSelected = endDateSelected = false;
       });
     }
-
-    const searchInputs = document.querySelectorAll(".search-field input"),
-      focusIndicator = document.querySelector(".field-focus-indicator");
-
-    if (focusIndicator) {
-      new MutationObserver((mutations) => {
-        mutations.forEach((m) => {
-          if (
-            m.attributeName === "class" &&
-            !calendarDropdown.classList.contains("active") &&
-            lastActiveDateField &&
-            !Array.from(searchInputs).includes(document.activeElement)
-          ) {
-            focusIndicator.style.opacity = "0";
-            lastActiveDateField = null;
-          }
-        });
-      }).observe(calendarDropdown, { attributes: true });
-    }
   }
 
   // 4. Indicateurs UI

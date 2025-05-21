@@ -169,9 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordInput = form.querySelector('input[type="password"]');
 
     let formValid = true;
-    if (emailInput && emailInput.value)
+    if (emailInput && (emailInput.required || emailInput.value))
       formValid = formValid && validateEmail(emailInput);
-    if (passwordInput && passwordInput.value)
+    if (passwordInput && (passwordInput.required || passwordInput.value))
       formValid = formValid && validatePassword(passwordInput);
 
     submitButton.disabled = !formValid;
