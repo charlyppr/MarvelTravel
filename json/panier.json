@@ -37,7 +37,7 @@
                     ]
                 },
                 "prix_options": 140,
-                "etape_atteinte": 4
+                "etape_atteinte": 3
             },
             {
                 "voyage_id": 1,
@@ -52,31 +52,14 @@
             },
             {
                 "voyage_id": 4,
-                "date_debut": "2025-06-09",
-                "date_fin": "2025-06-16",
+                "date_debut": "2025-05-20",
+                "date_fin": "2025-05-24",
                 "nb_personnes": "1",
                 "prix_unitaire": 2499.95,
-                "voyageurs": [
-                    {
-                        "civilite": "M",
-                        "nom": "Lebreton",
-                        "prenom": "Caryl",
-                        "date_naissance": "2000-01-01",
-                        "nationalite": "Asgardienne",
-                        "passport": "127 168 461 9"
-                    }
-                ],
-                "options": [
-                    [
-                        {
-                            "voyageurs": [
-                                0
-                            ]
-                        }
-                    ]
-                ],
-                "prix_options": 100,
-                "etape_atteinte": 4
+                "voyageurs": null,
+                "options": [],
+                "prix_options": 0,
+                "etape_atteinte": 2
             },
             {
                 "voyage_id": 0,
@@ -153,6 +136,21 @@
                 "options": [],
                 "prix_options": 0,
                 "etape_atteinte": 3
+            }
+        ]
+    },
+    "pupierchar@cy-tech.fr": {
+        "items": [
+            {
+                "voyage_id": 1,
+                "date_debut": "2025-06-10",
+                "date_fin": "2025-06-13",
+                "nb_personnes": "1",
+                "prix_unitaire": 5099.95,
+                "voyageurs": null,
+                "options": [],
+                "prix_options": 0,
+                "etape_atteinte": 2
             }
         ]
     }

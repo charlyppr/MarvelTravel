@@ -449,6 +449,7 @@ $theme = load_user_theme();
     </div>
 
     <script src="../../js/calendar.js"></script>
+    <script src="../../js/destination.js"></script>
     <script src="../../js/reservation.js"></script>
 </body>
 

@@ -1526,10 +1526,6 @@ footer {
     /* transform: translateY(-50%); */
   }
 
-  .nav-button {
-    /* margin-right: 35px; */
-  }
-
   .menu {
     width: 85%;
   }
@@ -1541,7 +1537,6 @@ footer {
   height: 100% !important;
   position: fixed;
   width: 100%;
-  /* Garde le contenu au même endroit pour éviter le saut */
   padding-right: var(--scrollbar-width, 0px);
 }
 

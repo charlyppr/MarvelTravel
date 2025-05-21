@@ -2,15 +2,16 @@
 // Inclure le fichier de configuration
 require_once 'config.php';
 
-function send_password_reset_email($to_email, $to_name, $subject, $html_content) {
+function send_password_reset_email($to_email, $to_name, $subject, $html_content)
+{
     // Configuration de Brevo API
     $api_key = BREVO_API_KEY;
     $api_url = "https://api.brevo.com/v3/smtp/email";
-    
-    // Préparation des données
+
+    // Préparation des données avec paramètres améliorés
     $data = [
         "sender" => [
-            "name" => SENDER_NAME,
+            "name" => "Marvel Travel",  // Nom d'expéditeur constant
             "email" => SENDER_EMAIL
         ],
         "to" => [
@@ -20,12 +21,18 @@ function send_password_reset_email($to_email, $to_name, $subject, $html_content)
             ]
         ],
         "subject" => $subject,
-        "htmlContent" => $html_content
+        "htmlContent" => $html_content,
+        "headers" => [
+            "X-Mailer" => "Marvel Travel App",
+            "List-Unsubscribe" => "<mailto:unsubscribe@marveltravel.shop>, <https://marveltravel.shop/unsubscribe>"
+        ],
+        "tags" => ["transactionnel", "compte"], // Étiquetage pour Brevo
+        "category" => "transactionnel"
     ];
-    
+
     // Conversion en JSON
     $payload = json_encode($data);
-    
+
     // Configuration de cURL
     $ch = curl_init($api_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -36,29 +43,30 @@ function send_password_reset_email($to_email, $to_name, $subject, $html_content)
         "accept: application/json",
         "api-key: " . $api_key
     ]);
-    
+
     // Exécution de la requête
     $response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    
+
     // Vérification du succès (codes 200 ou 201)
     return ($http_code == 200 || $http_code == 201);
 }
 
-function send_welcome_email($to_email, $to_name, $passport_id) {
-    $subject = "Bienvenue dans le Multivers Marvel Travel !";
-    
+function send_welcome_email($to_email, $to_name, $passport_id)
+{
+    $subject = "Marvel Travel - Bienvenue dans le Multivers !";
+
     // Adaptation pour fonctionner à la fois en local et en production
     $is_local = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'mamp') !== false);
     $base_path = $is_local ? "/MarvelTravel" : "";
     $protocol = $is_local ? "http" : "https";
-    
+
     // Création du contenu HTML de l'email
     $htmlContent = "
     <html>
     <head>
-        <title>Bienvenue chez Marvel Travel</title>
+        <title>{$subject}</title>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     </head>
@@ -119,32 +127,25 @@ function send_welcome_email($to_email, $to_name, $passport_id) {
         </div>
     </body>
     </html>";
-    
+
     // Envoi de l'email
     return send_password_reset_email($to_email, $to_name, $subject, $htmlContent);
 }
 
-/**
- * Envoie un code de connexion à 6 chiffres par email
- * 
- * @param string $to_email L'adresse email du destinataire
- * @param string $to_name Le nom du destinataire
- * @param string $code Le code à 6 chiffres
- * @return bool True si l'email a été envoyé avec succès, false sinon
- */
-function send_login_code_email($to_email, $to_name, $code) {
-    $subject = "Votre code de connexion Marvel Travel";
-    
+function send_login_code_email($to_email, $to_name, $code)
+{
+    $subject = "Marvel Travel - Votre code de connexion";
+
     // Adaptation pour fonctionner à la fois en local et en production
     $is_local = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'mamp') !== false);
     $base_path = $is_local ? "/MarvelTravel" : "";
     $protocol = $is_local ? "http" : "https";
-    
+
     // Création du contenu HTML de l'email
     $htmlContent = "
     <html>
     <head>
-        <title>Code de connexion Marvel Travel</title>
+        <title>{$subject}</title>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     </head>
@@ -186,7 +187,7 @@ function send_login_code_email($to_email, $to_name, $code) {
         </div>
     </body>
     </html>";
-    
+
     // Envoi de l'email
     return send_password_reset_email($to_email, $to_name, $subject, $htmlContent);
-} 
+}

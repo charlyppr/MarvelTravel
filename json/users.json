@@ -12,7 +12,7 @@
         "date_inscription": "2025-05-02 19:06:37",
         "blocked": false,
         "vip": false,
-        "last_login": "2025-05-17 18:43:34",
+        "last_login": "2025-05-19 11:04:01",
         "theme": "dark",
         "login_code": "832523",
         "login_code_expiry": "2025-05-18 03:09:46"
@@ -128,5 +128,20 @@
         "last_login": "2025-05-18 16:03:26",
         "reset_token": "12046c814bc8f2cafb855c5305513cfb8819ac7b9bcdf11f94f32d2b896b1931",
         "reset_expiry": "2025-05-18 03:48:49"
+    },
+    {
+        "civilite": "M",
+        "first_name": "Franck",
+        "last_name": "Ngakoli",
+        "email": "pupierchar@cy-tech.fr",
+        "password": "$2y$10$u\/IM3ndkUJ6AJxZABR90ueZiix4bCaqSwolLQIlGMYi4NR9TOJf.a",
+        "date_naissance": "2025-04-30",
+        "nationalite": "Kree",
+        "role": "user",
+        "passport_id": "4727653580",
+        "date_inscription": "2025-05-19 11:42:57",
+        "blocked": false,
+        "vip": false,
+        "last_login": "null"
     }
 ]
