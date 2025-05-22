@@ -104,6 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+
+    window.validateEtape1Form = validateForm;
   }
 
   // ÉTAPE 2 - Informations des voyageurs

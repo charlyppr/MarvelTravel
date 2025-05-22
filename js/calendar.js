@@ -327,12 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validateForm() {
-    if (
-      window.reservationManager &&
-      typeof window.reservationManager.validateEtape1Form === "function"
-    )
-      window.reservationManager.validateEtape1Form();
-    else if (typeof validateEtape1Form === "function") validateEtape1Form();
+    if (window.validateEtape1Form) window.validateEtape1Form();
   }
 
   // Utilitaires
