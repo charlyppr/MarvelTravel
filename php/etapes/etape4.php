@@ -147,9 +147,10 @@ $promo_status = '';
 // Vérifier si un code promo est présent dans l'URL (venant du panier)
 if (isset($_GET['promo_code'])) {
     $promo_code = htmlspecialchars(trim($_GET['promo_code']));
-    if ($promo_code === 'MARVEL10') {
+    $tab_promo_code = ['MARVEL10' => 0.10, 'MARVEL20' => 0.20, 'MARVEL30' => 0.30, 'MARVEL40' => 0.40, 'MARVEL50' => 0.50];
+    if (isset($tab_promo_code[$promo_code])) {
         // Code promo valide, appliquer 10% de réduction
-        $reduction = $prix_total_base * 0.1;
+        $reduction = $prix_total_base * $tab_promo_code[$promo_code];
         $prix_total = $prix_total_base - $reduction;
         $promo_message = "Code promo appliqué ! -10% sur votre commande";
         $promo_status = "success";

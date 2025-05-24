@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let formattedValue = "";
 
       for (let i = 0; i < value.length; i++) {
-        if (i === 3 || i === 6 || i === 9) formattedValue += " ";
+        if (i === 2 || i === 4 || i === 6 || i === 8) formattedValue += " ";
         formattedValue += value[i];
       }
 
