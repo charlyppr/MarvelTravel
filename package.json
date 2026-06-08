@@ -1,0 +1,17 @@
+{
+  "name": "marveltravel",
+  "version": "1.0.0",
+  "description": "Développement complet d'un site web pour une agence de voyage sur le thème de Marvel.",
+  "main": "index.php",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "php -S localhost:3000"
+  },
+  "keywords": [
+    "marvel",
+    "travel",
+    "agency"
+  ],
+  "author": "Charly Pupier, Ibrahima Balde Cisse, Paul Marmelat",
+  "license": "MIT"
+}
