@@ -6,8 +6,10 @@ WORKDIR /var/www/html
 # Copier tout le projet dans le conteneur
 COPY . .
 
-# Droits d'écriture sur les données JSON (inscriptions, commandes, panier...)
-RUN chmod -R 775 json
+# Conserver une copie des JSON par défaut, pour pré-remplir le volume au 1er démarrage
+RUN cp -r json /opt/json-seed \
+    && chmod -R 775 json \
+    && chmod +x docker-entrypoint.sh
 
 # Railway/Render fournissent $PORT ; 8080 par défaut en local
 ENV PORT=8080
@@ -15,5 +17,5 @@ ENV PORT=8080
 ENV PHP_CLI_SERVER_WORKERS=4
 EXPOSE 8080
 
-# Lancer le serveur PHP intégré, racine = dossier du projet
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT} -t /var/www/html"]
+# L'entrypoint seed le volume puis lance le serveur PHP
+CMD ["./docker-entrypoint.sh"]
