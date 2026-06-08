@@ -1,16 +1,19 @@
 {
+  "buildCommand": "echo 'PHP project ready for deployment'",
+  "outputDirectory": ".",
+  "framework": "php",
   "functions": {
     "api/**/*.php": {
-      "runtime": "now-php@0.6.0"
+      "runtime": "php:8.3"
     }
   },
   "routes": [
     {
-      "src": "^/api/(.*)\\.php$",
-      "dest": "/api/$1.php"
+      "src": "^/(.*)\\.php$",
+      "dest": "/$1.php"
     },
     {
-      "src": "/(.*)",
+      "src": "^/(.*)$",
       "dest": "/index.php"
     }
   ]
