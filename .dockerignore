@@ -1,0 +1,7 @@
+.git
+node_modules
+*.pdf
+.env
+.env.local
+vercel.json
+.vercelignore
