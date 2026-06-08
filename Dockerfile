@@ -1,6 +1,10 @@
 # Image PHP + Apache : disque inscriptible, sessions et écriture JSON fonctionnent
 FROM php:8.3-apache
 
+# Forcer un seul MPM (l'image charge parfois mpm_event ET mpm_prefork -> crash "More than one MPM loaded")
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true; \
+    a2enmod mpm_prefork
+
 # Activer la réécriture d'URL (utile si besoin plus tard)
 RUN a2enmod rewrite
 
