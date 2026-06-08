@@ -1,23 +1,19 @@
-# Image PHP + Apache : disque inscriptible, sessions et écriture JSON fonctionnent
-FROM php:8.3-apache
+# Serveur web intégré de PHP : pas d'Apache => plus aucun problème de MPM
+FROM php:8.3-cli
 
-# Forcer un seul MPM (l'image charge parfois mpm_event ET mpm_prefork -> crash "More than one MPM loaded")
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true; \
-    a2enmod mpm_prefork
+WORKDIR /var/www/html
 
-# Activer la réécriture d'URL (utile si besoin plus tard)
-RUN a2enmod rewrite
+# Copier tout le projet dans le conteneur
+COPY . .
 
-# Copier tout le projet dans le docroot d'Apache
-COPY . /var/www/html/
+# Droits d'écriture sur les données JSON (inscriptions, commandes, panier...)
+RUN chmod -R 775 json
 
-# Donner à Apache les droits d'écriture sur les données JSON (inscriptions, commandes, panier...)
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/json
+# Railway/Render fournissent $PORT ; 8080 par défaut en local
+ENV PORT=8080
+# Plusieurs workers pour gérer les requêtes simultanées (assets css/js/img en parallèle)
+ENV PHP_CLI_SERVER_WORKERS=4
+EXPOSE 8080
 
-# Apache écoute sur le port fourni par l'hébergeur (Railway/Render fixent $PORT), sinon 80
-ENV PORT=80
-RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf \
-    && sed -i 's/:80>/:${PORT}>/' /etc/apache2/sites-available/000-default.conf
-
-CMD ["apache2-foreground"]
+# Lancer le serveur PHP intégré, racine = dossier du projet
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT} -t /var/www/html"]
