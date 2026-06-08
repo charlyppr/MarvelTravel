@@ -19,4 +19,4 @@ fi
 
 chmod -R 775 /var/www/html/json 2>/dev/null || true
 
-exec php -S 0.0.0.0:"${PORT}" -t /var/www/html
+exec php -c /var/www/html/php.ini -S 0.0.0.0:"${PORT}" -t /var/www/html

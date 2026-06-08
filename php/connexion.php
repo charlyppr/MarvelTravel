@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             exit();
                         }
                         
-                        session_start();
                         $_SESSION['user'] = $login_mail;
                         $_SESSION['role'] = $user['role'];
                         $_SESSION['email'] = $login_mail;

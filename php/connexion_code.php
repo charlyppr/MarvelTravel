@@ -126,7 +126,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         strtotime($user['login_code_expiry']) > time()) {
                         
                         // Code valide, authentifier l'utilisateur
-                        session_start();
                         $_SESSION['user'] = $email;
                         $_SESSION['role'] = $user['role'];
                         $_SESSION['email'] = $email;
